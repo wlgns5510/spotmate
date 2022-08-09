@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+.s-date::placeholder {
+	font-weight: 300;
+	color: #e8e7e7
+}
+.s-time::placeholder {
+	font-weight: 300;
+	color: #e8e7e7
+}
+.s-addr::placeholder {
+	font-weight: 300;
+	color: #e8e7e7
+}
+.e-addr::placeholder {
+	font-weight: 300;
+	color: #e8e7e7
+}
+.t-sec > input::placeholder {
+	font-weight: 300;
+	color: #e8e7e7
+}
+.driverintroduce::placeholder {
+	font-weight: 300;
+	color: #e8e7e7
+}
+/* input[type="checkbox"] { */
+/* 	display:none; */
+/* } */
+/* input[type="checkbox"] + label { */
+/* 	display:inline; */
+/* 	width: 18px; */
+/* 	height: 18px; */
+/* 	position: relative; */
+/* } */
+/* input + label::after { */
+/* 	background-color: #4454a1; */
+/*     position: absolute; */
+/* } */
+
+
+.inner > .top {
+	position:relative;
+	text-align:center;
+	margin: 100px 0px 0px 0px;
+	font-family: 'Montserrat';
+	font-weight: 600;
+}
+.inner > .top > div > span {
+	font-size: 30px;
+	
+}
+.inner > .top > div > p {
+	font-size: 30px;
+}
+.inner > .top > p {
+	font-size: 16px;
+}
+.inner > .top > div {
+	margin: 30px 0px 30px 0px;
+}
+.inner > .top > span {
+	position:absolute;
+	top: 170px;
+	left: 1010px;
+	font-size: 16px;
+	color: #4454a1;
+}
+
+.inner > .mid {
+	font-family: 'Montserrat';
+	font-weight: 600;
+	font-size: 16px;
+	width: 720px;
+	margin: 60px auto;
+	padding: 50px;
+	box-shadow: 0px 0px 5px 1px #e8e7e7;
+}
+.f-sec {
+	margin: 30px 0px 50px 0px;
+}
+.f-sec .s-date {
+	width: 500px;
+	height: 50px;
+}
+.f-sec .s-time {
+	width: 200px;
+	height: 50px;
+}
+
+
+
+.s-sec {
+	margin: 30px 0px 30px 0px;
+	position:relative;
+	height: 220px;
+}
+.s-sec table {
+	display:inline;
+}
+.s-sec > p {
+	position: absolute;
+	top: 30px;
+}
+.s-sec > img {
+	position: absolute;
+	top: 100px;
+	width: 15px;
+	height: 73px;
+}
+#input-div {
+	width: 730px;
+	position: absolute;
+	top: 70px;
+}
+.s-addr {
+	width: 670px;
+	height: 30px;
+	margin: 15px 0px 15px 0px;
+}
+
+.e-addr {
+	width: 670px;
+	height: 30px;
+	margin: 15px 0px 15px 0px;
+}
+
+.ae-btn {
+	display:inline;
+	margin:0px 0px 0px 10px;
+}
+.ae-btn:hover {
+	cursor: pointer;
+}
+.ic-btn {
+	display:inline;
+	margin:0px 0px 0px 10px;
+}
+.ic-btn:hover {
+	cursor: pointer;
+}
+
+
+
+.t-sec > input {
+	width: 718px;
+	height: 50px;
+	margin: 30px 0px 50px 0px;
+}
+.t-sec > table {
+	width: 100%;
+	margin: 30px 0px 50px 0px;
+}
+.t-sec > table > tbody > tr > td {
+	padding: 10px 40px 5px 0px;
+	
+}
+.t-sec > table > tbody > tr > .td2 {
+	margin: 0px 0px 0px 50px;
+}
+.t-sec > table > tbody > tr > .selected {
+	color: #4454a1;
+	font-weight: bold;
+}
+.t-sec > .driverintroduce {
+	width: 720px;
+	height: 100px;
+	margin: 30px 0px 0px 0px;
+}
+.mid > form > button {
+	width: 200px;
+	height: 50px;
+	margin: 50px 0px 0px 260px;
+	border: 1px solid #4454a1;
+}

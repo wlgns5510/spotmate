@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+
+.inner > .top > .clear > .matedesc {
+	font-size: 30px;
+	
+}
+.inner > .top > .clear {
+	margin: 0px 0px 30px 380px;
+}
+.inner > .top > .clear .matedesc {
+	float:left; 
+	text-align:left;
+}
+.inner > .top > .clear > img {
+	float:left; 
+	margin: 0px 30px 0px 0px;
+}
+.inner > .top > .clear > span {
+	position:absolute;
+	top: 170px;
+	left: 1010px;
+	font-size: 16px;
+	color: #4454a1;
+}
+.inner > .top > ul {
+	text-align:left; 
+	color: #4454a1; 
+	padding:0px 0px 0px 500px;
+}
+.inner > .top > ul > li{
+	list-style-type:circle;
+}
