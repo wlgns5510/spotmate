@@ -87,7 +87,7 @@ public class NaviHttpRequest {
 				str.insert(1, ",");
 			}
 		}
-		str.append("원");
+		str.append("P");
 
 		JsonElement jRoad = JsonParser.parseString(section);
 		String roads = jRoad.getAsJsonObject().get("roads").toString();
