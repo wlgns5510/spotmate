@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
-<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<script src="${pageContext.request.contextPath }/assets/js/jquery-1.11.0.min.js"></script>
 
 
 <title>myPointMain</title>
@@ -24,22 +24,22 @@
 		<nav class="myPage_topNav">
 			<div class="box1">
 				<div class="box1_box">
-					<img src="/assets/images/box_user.png">
+					<img src="${pageContext.request.contextPath }/assets/images/box_user.png">
 				</div>
 				<p>yujieun님</p>
-				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.5</span>
+				<span>Reviews</span><span><img src="${pageContext.request.contextPath }/assets/images/ico_star.png">4.5</span>
 			</div>
 			<div class="box2">
 				<p>
 					<a href="./myPointCarge">포인트 충전 ></a>
 				</p>
-				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
+				<span>1,0000P </span> <img src="${pageContext.request.contextPath }/assets/images/ico_point.png">
 			</div>
 			<div class="box3">
 				<p>
 					<a href="./myCouponMain">쿠폰 사용 ></a>
 				</p>
-				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
+				<span>2개 </span> <img src="${pageContext.request.contextPath }/assets/images/ico_coupon.png">
 			</div>
 		</nav>
 
@@ -51,14 +51,14 @@
 				<h2>마이페이지</h2>
 				<!-- h2? -->
 				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myDriverForm">드라이버 신청/정보<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myUsageDriverMain">이용 내역<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myReservationDriverMain">예약 내역<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myQnaMain">문의 내역<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointMain">포인트<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myCouponMain">쿠폰<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointRefundMain">환불 내역<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
+					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img src="${pageContext.request.contextPath }/assets/images/chevron-right-blue.png"></a></li>
 				</ul>
 			</nav>
 
@@ -99,7 +99,7 @@
 							</select>
 							<div class="btns">
 								<button type="button" class="myPage_btnB">조회하기</button>
-								<a href="./myPointCarge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
+								<a href="./myPointCharge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
 							</div>
 						</form>
 					</div>
@@ -216,10 +216,10 @@
 					</table>
 					<div class="paging">
 						<ul>
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-double-left.png">
 							</a></li>
 
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-left.png">
 							</a></li>
 
 							<li><a href="">1</a></li>
@@ -233,10 +233,10 @@
 							<li><a href="">9</a></li>
 							<li><a href="">10</a></li>
 
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-right.png">
 							</a></li>
 
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-double-right.png">
 							</a></li>
 						</ul>
 					</div>
