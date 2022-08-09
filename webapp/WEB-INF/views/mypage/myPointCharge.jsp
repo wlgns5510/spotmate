@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
- 
+  
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
 <script src="/assets/js/jquery-1.11.0.min.js"></script>
 
