@@ -12,6 +12,7 @@ public class MateController {
 		System.out.println("MateController");
 		
 		
+		
 		return "/mate/mateInfo";
 	}
 
