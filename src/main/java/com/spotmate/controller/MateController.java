@@ -13,6 +13,7 @@ public class MateController {
 		
 		
 		
+		
 		return "/mate/mateInfo";
 	}
 
