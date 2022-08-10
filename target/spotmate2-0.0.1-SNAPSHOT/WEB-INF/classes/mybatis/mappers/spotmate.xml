@@ -3,4 +3,21 @@
 
 <mapper namespace="spotmate">
 
+	<select id="list" resultType="com.spotmate.vo.UserVo">
+		select no,
+			id,
+			pw,
+			name,
+			email,
+			phone,
+			address,
+			gender,
+			birth,
+			licenseno licenseNo, 
+			licensetype licenseType
+		from users
+	       order by no desc
+	</select>
+	
+
 </mapper>

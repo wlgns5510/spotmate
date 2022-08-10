@@ -9,8 +9,9 @@
 @import url("./spot/hitchhike/spotHitchMain.css");
 @import url("./spot/hitchhike/spotHitchDeep.css");
 @import url("./driver/driverMain.css");
-@import url("./driver/driverDeepCommon.css");
-@import url("./driver/matedriver.css");
+@import url("./driver/driverWriteCommon.css");
+@import url("./driver/mateWrite.css");
+@import url("./driver/mateWriteOk.css");
 
 /* @import url("datepicker.css"); */
 
@@ -27,10 +28,10 @@
 @import url("./mate/mateDeep.css");
 
 /* 유지은 김려경 */
+@import url("./mypage/Common_Mypage.css");
 @import url("./mypage/myCouponBuy.css");
 @import url("./mypage/myCouponUse.css");
 @import url("./mypage/myInfoChk.css");
-@import url("./mypage/myPointCarge.css");
+@import url("./mypage/myPointCharge.css");
 @import url("./mypage/myPointMain.css");
 @import url("./mypage/myPointRefundMain.css");
-@import url("./mypage/Common_Mypage.css");

@@ -530,7 +530,7 @@
 }
 /*페이징*/
 .paging {
-   margin: 100px 0px 0px 650px;
+   margin: 50px 0px 0px 175px;
 /*    margin-top: 50px; */
    width: 672px;
    height: 40px;
@@ -553,6 +553,7 @@
 .paging ul>li>a {
    color: rgba(75, 75, 75, 1);
 }
+
 .reserv-paging {
    margin: 50px 0px 0px 200px;
 /*    margin-top: 50px; */

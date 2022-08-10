@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+  
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
 <script src="/assets/js/jquery-1.11.0.min.js"></script>
 
@@ -32,7 +32,7 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="./myPointCharge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>

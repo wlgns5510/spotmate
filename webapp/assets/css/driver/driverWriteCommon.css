@@ -3,6 +3,7 @@
 input {
 	border: 1px solid #bfbfbf;
 	border-radius: 15px;
+	padding: 0px 0px 0px 5px;
 }
 textarea {
 	border: 1px solid #e8e7e7;
@@ -178,6 +179,7 @@ textarea {
 	width: 720px;
 	height: 100px;
 	margin: 30px 0px 0px 0px;
+	padding: 5px 0px 0px 5px;
 }
 .mid > form > button {
 	width: 200px;
