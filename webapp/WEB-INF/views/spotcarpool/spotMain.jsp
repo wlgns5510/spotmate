@@ -41,7 +41,7 @@
 			
 			<div class="service1">
 				<div class="service1_image">
-					<a href="/spotCarpool"> <img src="${pageContext.request.contextPath}/assets/images/picture1.png" alt="hover">
+					<a href="spotCarpool"> <img src="${pageContext.request.contextPath}/assets/images/picture1.png" alt="hover">
 						<h3>
 							<span> SPOT CARPOOL<br> 서비스란?
 							</span>
@@ -67,7 +67,7 @@
 
 			<div class="service2">
 				<div class="service2_image">
-					<a href="/spotHitchhike"> <img src="${pageContext.request.contextPath}/assets/images/picture2.png" alt="hover">
+					<a href="spotHitchhike"> <img src="${pageContext.request.contextPath}/assets/images/picture2.png" alt="hover">
 						<h3>
 							<span> SPOT HITCHHIKE <br>서비스란?
 							</span>
