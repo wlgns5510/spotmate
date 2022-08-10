@@ -9,6 +9,11 @@ public class MateController {
 
 	@RequestMapping(value = "/mateInfo", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mateInfo() {
+		System.out.println("MateController");
+		
+		
+		
+		
 		return "/mate/mateInfo";
 	}
 

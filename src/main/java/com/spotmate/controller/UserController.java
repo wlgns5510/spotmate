@@ -15,7 +15,7 @@ public class UserController {
 	private UserService us;
 	
 	
-	@RequestMapping("/users")
+	@RequestMapping("/test")
 	public String users(Model model) {
 //		System.out.println("hi");
 		UserVo uVo = us.getInfo();

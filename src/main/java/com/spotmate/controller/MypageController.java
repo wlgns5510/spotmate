@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MypageController {
-	
+	 
 	 
 	@RequestMapping(value="/myCouponBuy", method={RequestMethod.GET, RequestMethod.POST})
 	public String myCouponBuy() {

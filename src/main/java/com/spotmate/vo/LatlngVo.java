@@ -2,16 +2,16 @@ package com.spotmate.vo;
 
 public class LatlngVo {
 
-	private double slat;
-	private double slng;
-	private double elat;
-	private double elng;
+	private double slat, slng, elat, elng;
+	private String splace, eplace;
 	
 	
 	public LatlngVo() {
 	}
 	
-	public LatlngVo(double slat, double slng, double elat, double elng) {
+	public LatlngVo(String splace, String eplace, double slat, double slng, double elat, double elng) {
+		this.splace = splace;
+		this.eplace = eplace;
 		this.slat = slat;
 		this.slng = slng;
 		this.elat = elat;
@@ -50,12 +50,25 @@ public class LatlngVo {
 		this.elng = elng;
 	}
 
-	@Override
-	public String toString() {
-		return "LatlngVo [slat=" + slat + ", slng=" + slng + ", elat=" + elat + ", elng=" + elng + "]";
+	public String getSplace() {
+		return splace;
 	}
 
-	
-	
-	
+	public void setSplace(String splace) {
+		this.splace = splace;
+	}
+
+	public String getEplace() {
+		return eplace;
+	}
+
+	public void setEplace(String eplace) {
+		this.eplace = eplace;
+	}
+
+	@Override
+	public String toString() {
+		return "LatlngVo [slat=" + slat + ", slng=" + slng + ", elat=" + elat + ", elng=" + elng + ", splace=" + splace
+				+ ", eplace=" + eplace + "]";
+	}
 }

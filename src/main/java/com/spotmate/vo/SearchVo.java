@@ -24,7 +24,6 @@ public class SearchVo {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	
 	public String getTitle() {
 		return title;
 	}

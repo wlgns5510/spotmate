@@ -300,10 +300,18 @@
 		}
 
 		function clickPos() {
+				var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
+				imageOption = {
+					offset : new kakao.maps.Point(20, 36)
+				};
+				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
+						imageOption)
 				var marker = new kakao.maps.Marker({
 					// 지도 중심좌표에 마커를 생성합니다 
 					position : map.getCenter(),
-					draggable : true
+					draggable : true,
+					image: markerImage
 				});
 				//지도에 마커를 표시합니다
 				marker.setMap(map);

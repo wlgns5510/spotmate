@@ -20,11 +20,10 @@
 	<div class="inner">
 		<div class="top">
 			<div class="clear">
-<!-- 				<div class="mategift"></div> -->
 				<img src="/assets/images/ico_boxgift.png">
 				
 				<div class="matedesc">
-					<span>SPOT CARPOOL 등록시</span>
+					<span>Mate 등록시</span>
 					<p>예상 적립 포인트는 5,000P입니다.</p>
 				</div>
 			</div>
