@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spotmate.function.LatlngHttpRequest;
 import com.spotmate.function.NaviHttpRequest;
 import com.spotmate.service.DriverWriteService;
 import com.spotmate.vo.DriverWriteVo;
 import com.spotmate.vo.LatlngVo;
 import com.spotmate.vo.SearchVo;
+import com.spotmate.vo.WaylatlngVo;
 
 @Controller
 public class DriverWriteController {
@@ -109,6 +111,52 @@ public class DriverWriteController {
 	@RequestMapping(value = "/ssp", method = { RequestMethod.GET, RequestMethod.POST })
 	public String ssp() throws IOException {
 		return "/driver/ssp";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/setWayPath", method = { RequestMethod.GET, RequestMethod.POST })
+	public List<Double> setWayPath(Model model, @RequestBody WaylatlngVo waylatlng) throws IOException {
+		List<Double> start = new ArrayList<Double>();
+		start.add(waylatlng.getSlng());
+		start.add(waylatlng.getSlat());
+		List<Double> end = new ArrayList<Double>();
+		end.add(waylatlng.getElng());
+		end.add(waylatlng.getElat());
+		List<Double> way2 = new ArrayList<Double>();
+		way2.add(waylatlng.getW2lng());
+		way2.add(waylatlng.getW2lat());
+		List<Double> way3 = new ArrayList<Double>();
+		way3.add(waylatlng.getW3lng());
+		way3.add(waylatlng.getW3lat());
+		List<Double> way4 = new ArrayList<Double>();
+		way4.add(waylatlng.getW4lng());
+		way4.add(waylatlng.getW4lat());
+		List<Double> way5 = new ArrayList<Double>();
+		way5.add(waylatlng.getW5lng());
+		way5.add(waylatlng.getW5lat());
+		List<Double> way6 = new ArrayList<Double>();
+		way6.add(waylatlng.getW6lng());
+		way6.add(waylatlng.getW6lat());
+		LatlngHttpRequest lhr = new LatlngHttpRequest(start, way2);
+		LatlngHttpRequest lhr2 = new LatlngHttpRequest(way2, way3);
+		LatlngHttpRequest lhr3 = new LatlngHttpRequest(way3, way4);
+		LatlngHttpRequest lhr4 = new LatlngHttpRequest(way4, way5);
+		LatlngHttpRequest lhr5 = new LatlngHttpRequest(way5, way6);
+		LatlngHttpRequest lhr6 = new LatlngHttpRequest(way6, end);
+		List<Double> route = lhr.getVer();
+		List<Double> route2 = lhr2.getVer();
+		List<Double> route3 = lhr3.getVer();
+		List<Double> route4 = lhr4.getVer();
+		List<Double> route5 = lhr5.getVer();
+		List<Double> route6 = lhr6.getVer();
+		List<Double> mergedRoute = new ArrayList<Double>();
+		mergedRoute.addAll(route);
+		mergedRoute.addAll(route2);
+		mergedRoute.addAll(route3);
+		mergedRoute.addAll(route4);
+		mergedRoute.addAll(route5);
+		mergedRoute.addAll(route6);
+		System.out.println(mergedRoute.size());
+		return mergedRoute;
 	}
 
 	@RequestMapping(value = "/swp2", method = { RequestMethod.GET, RequestMethod.POST })
