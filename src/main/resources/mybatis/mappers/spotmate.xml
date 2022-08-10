@@ -19,5 +19,26 @@
 	       order by no desc
 	</select>
 	
+	<insert id="insert" parameterType="DWVo">
+			insert into dwv
+			values ( 
+				TO_CHAR(#{startdate}, 'YYYY-MM-DD HH24:MI'),
+				TO_CHAR(#{enddate}, 'YYYY-MM-DD'),
+				#{splace},
+				#{eplace},
+				#{fare},
+				1,
+				#{people},
+				#{slate},
+				#{slng},
+				#{elat},
+				#{elng},
+				#{latlng},
+				#{dur},
+				#{dis},
+				#{introduce}
+			)
+		</insert>
+	
 
 </mapper>

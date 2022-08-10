@@ -6,7 +6,7 @@ import java.util.List;
 public class DriverWriteVo {
 
 	private String startdate, enddate, splace, eplace, fare, nosmoke, phoneCharge, drivergender, silence, pet,
-			introduce;
+			introduce, dur, dis;
 	private int people;
 	private double slat, slng, elat, elng;
 	private List<Double> latlng = new ArrayList<Double>();
@@ -17,7 +17,7 @@ public class DriverWriteVo {
 
 	public DriverWriteVo(String startdate, String enddate, String splace, String eplace, String fare, String nosmoke,
 			String drivergender, String phoneCharge, String silence, String pet, String introduce, int people,
-			double slat, double slng, double elat, double elng, List<Double> latlng) {
+			double slat, double slng, double elat, double elng, List<Double> latlng, String dur, String dis) {
 		this.startdate = startdate;
 		this.enddate = enddate;
 		this.splace = splace;
@@ -35,6 +35,8 @@ public class DriverWriteVo {
 		this.elat = elat;
 		this.elng = elng;
 		this.latlng = latlng;
+		this.dur = dur;
+		this.dis = dis;
 	}
 
 	public String getStartdate() {
@@ -125,6 +127,22 @@ public class DriverWriteVo {
 		this.introduce = introduce;
 	}
 
+	public String getDur() {
+		return dur;
+	}
+
+	public void setDur(String dur) {
+		this.dur = dur;
+	}
+
+	public String getDis() {
+		return dis;
+	}
+
+	public void setDis(String dis) {
+		this.dis = dis;
+	}
+
 	public int getPeople() {
 		return people;
 	}
@@ -178,7 +196,8 @@ public class DriverWriteVo {
 		return "DriverWriteVo [startdate=" + startdate + ", enddate=" + enddate + ", splace=" + splace + ", eplace="
 				+ eplace + ", fare=" + fare + ", nosmoke=" + nosmoke + ", phoneCharge=" + phoneCharge
 				+ ", drivergender=" + drivergender + ", silence=" + silence + ", pet=" + pet + ", introduce="
-				+ introduce + ", people=" + people + ", slat=" + slat + ", slng=" + slng + ", elat=" + elat + ", elng="
-				+ elng + ", latlng=" + latlng + "]";
+				+ introduce + ", dur=" + dur + ", dis=" + dis + ", people=" + people + ", slat=" + slat + ", slng="
+				+ slng + ", elat=" + elat + ", elng=" + elng + ", latlng=" + latlng + "]";
 	}
+
 }

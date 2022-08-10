@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <title>Insert title here</title>
-<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<script src="/assets/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
 <link rel="stylesheet" href="/assets/css/style.css">
 </head>
@@ -24,14 +24,14 @@
 				</div>
 			</div>
 			<ul>
-				<li>도착까지 예상 소요시간 23분, 21km</li>
+				<li>도착까지 예상 소요시간 ${dwv.dur}, ${dwv.dis}</li>
 				<li>입력해주신 SPOT CARPOOL 내용이 맞으시면 등록을 눌러주세요.</li>
 			</ul>
 
 			<span>*필수 입력사항</span>
 		</div>
 	<div class="mid">
-		<form action="/carpoolWriteOk" method="get">
+		<form action="/carpoolWriteInsert" method="post">
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
 				<span>출발 날짜</span><input type="datetime-local" name="startdate" value="${dwv.startdate}" id="s-date" readonly><br>
@@ -61,29 +61,29 @@
 				<p>탑승 가능한 인원 수*</p>
 				<input value="${dwv.people}" type="number" readonly> 
 				<p>차량 상세조건</p>
-<!-- 				<table class="deepsel"> -->
-<!-- 					<tr> -->
-<%-- 					<c:if test="${dwv.nosmoke != null}"> --%>
-<!-- 						<td><input type="checkbox" id="smoke" name="smoke" value="nosmoke"><label for="smoke"></label>비흡연자</td> -->
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${dwv.phonecharge != null}"> --%>
-<!-- 						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge"><label for="phonecharge"></label>핸드폰 충전기 이용 가능</td> -->
-<%-- 					</c:if> --%>
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<%-- 					<c:if test="${dwv.drivergender != null}"> --%>
-<!-- 						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender"></label>여성 드라이버</td> -->
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${dwv.silence != null}"> --%>
-<!-- 						<td><input class="td2" type="checkbox" id="silence" name="silence" value="silence"><label for="silence"></label>조용하게 가는 것을 선호</td> -->
-<%-- 					</c:if> --%>
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<%-- 					<c:if test="${dwv.pet != null}"> --%>
-<!-- 						<td><input class="td2" type="checkbox" id="pet" name="pet" value="pet"><label for="pet"></label>반려동물 탑승 가능</td> -->
-<%-- 					</c:if> --%>
-<!-- 					</tr> -->
-<!-- 				</table> -->
+				<table class="deepsel">
+					<tr>
+					<c:if test="${dwv.nosmoke != null}">
+						<td><input type="hidden" id="nosmoke" name="nosmoke" value="nosmoke" readonly>비흡연자</td>
+					</c:if>
+					<c:if test="${dwv.phoneCharge != null}">
+						<td><input class="td2" type="hidden" id="phonecharge" name="phonecharge" value="phonecharge" readonly>핸드폰 충전기 이용 가능</td>
+					</c:if>
+					</tr>
+					<tr>
+					<c:if test="${dwv.drivergender != null}">
+						<td><input type="hidden" id="drivergender" name="drivergender" value="female" readonly>여성 드라이버</td>
+					</c:if>
+					<c:if test="${dwv.silence != null}">
+						<td><input class="td2" type="hidden" id="silence" name="silence" value="silence" readonly>조용하게 가는 것을 선호</td>
+					</c:if>
+					</tr>
+					<tr>
+					<c:if test="${dwv.pet != null}">
+						<td><input class="td2" type="hidden" id="pet" name="pet" value="pet" readonly>반려동물 탑승 가능</td>
+					</c:if>
+					</tr>
+				</table>
 				<p>드라이버님을 소개해주세요*</p>
 				<textarea class="driverintroduce" name="introduce" readonly>${dwv.introduce}</textarea>
 			</div>
@@ -101,7 +101,6 @@
 	var elat = $(".e-lat").val();
 	var elng = $(".e-lng").val();
 	var Strlatlng = $("#latlng").val().replace('[', '').replace(']','');
-// 	var Strlatlng = $("#latlng").val().replace(/[ | ]/g, '');
 	var latlng = Strlatlng.split(',');
 	
 	$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");

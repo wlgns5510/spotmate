@@ -37,17 +37,19 @@
 				<img src="assets/images/map_line_02.png">
 				<table>
 					<tr>
-						<td><input type="text" name="splace" value="" id="s-addr" class="s-addr" placeholder="출발지를 입력하세요" onclick="ssp()"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
+						<td><input autocomplete="off" type="text" name="splace" value="" id="s-addr" class="s-addr" placeholder="출발지를 입력하세요" onclick="ssp()"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
 						<td><input type="hidden" name="slat" value="" class="s-lat"></td>
 						<td><input type="hidden" name="slng" value="" class="s-lng"></td>
 					</tr>
 					<tr>
-					 	<td><input type="text" name="eplace" value="" id="e-addr" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
+					 	<td><input autocomplete="off" type="text" name="eplace" value="" id="e-addr" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
 						<td><input type="hidden" name="elat" value="" class="e-lat"></td>
 						<td><input type="hidden" name="elng" value="" class="e-lng"></td>
 						<td><input type="hidden" name="latlng" value="" id="latlng"></td>
 				</table>
 				<div class='fare'>1인당 적립 포인트:</div>
+				<div class='dur'>예상 소요 시간:</div>
+				<div class='dis'>예상 거리:</div>
 				</div>
 			<span id="finish">설정완료</span>
 			</div>
@@ -58,15 +60,15 @@
 				<p>차량 상세조건</p>
 				<table class="deepsel">
 					<tr>
-						<td><input type="checkbox" id="nosmoke" name="nosmoke" value="nosmoke"><label for="smoke"></label>비흡연자</td>
-						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge"><label for="phonecharge"></label>핸드폰 충전기 이용 가능</td>
+						<td><input type="checkbox" id="nosmoke" name="nosmoke" value="nosmoke"><label for="nosmoke">비흡연자</label></td>
+						<td><input class="td2" type="checkbox" id="phoneCharge" name="phoneCharge" value="phoneCharge"><label for="phoneCharge">핸드폰 충전기 이용 가능</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender"></label>여성 드라이버</td>
-						<td><input class="td2" type="checkbox" id="silence" name="silence" value="silence"><label for="silence"></label>조용하게 가는 것을 선호</td>
+						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender">여성 드라이버</label></td>
+						<td><input class="td2" type="checkbox" id="silence" name="silence" value="silence"><label for="silence">조용하게 가는 것을 선호</label></td>
 					</tr>
 					<tr>
-						<td><input class="td2" type="checkbox" id="pet" name="pet" value="pet"><label for="pet"></label>반려동물 탑승 가능</td>
+						<td><input class="td2" type="checkbox" id="pet" name="pet" value="pet"><label for="pet">반려동물 탑승 가능</label></td>
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
@@ -122,7 +124,11 @@ $("#finish").on("click", function() {
 		success : function(result){
 			$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
 			$(".fare").remove();
+			$(".dur").remove();
+			$(".dis").remove();
 			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
+			document.getElementById("input-div").innerHTML += "<div class='dur'>예상 소요 시간:&nbsp; <input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
+			document.getElementById("input-div").innerHTML += "<div class='dis'>예상 거리:&nbsp; <input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
 			document.getElementById("s-addr").value = result.splace;
 			document.getElementById("e-addr").value = result.eplace;
 			var bounds = new kakao.maps.LatLngBounds();
