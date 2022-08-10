@@ -22,10 +22,10 @@ import com.spotmate.vo.SearchVo;
 
 @Controller
 public class DriverWriteController {
-	
+
 	@Autowired
 	private DriverWriteService dws;
-	
+
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String Main() {
 		return "/driver/driverMain";
@@ -67,22 +67,33 @@ public class DriverWriteController {
 
 	@RequestMapping(value = "/carpoolWriteOk", method = { RequestMethod.GET, RequestMethod.POST })
 	public String carpoolOk(Model model, @ModelAttribute DriverWriteVo dwv) {
-		System.out.println(dwv.toString());
 		model.addAttribute("dwv", dwv);
 		return "/driver/carpoolWriteOk";
 	}
-	
+
 	@RequestMapping(value = "/carpoolWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String carpoolInsert(@ModelAttribute DriverWriteVo dwv) {
-		System.out.println("carpoolWriteInsert");
-		System.out.println(dwv.toString());
-		dws.register(dwv);
-		return "/mypage/myDriverMain";
+		dws.CarpoolRegister(dwv);
+		return "redirect:/myReservationDriverMain";
 	}
 
 	@RequestMapping(value = "/hitchWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitch1() {
+	public String hitch() {
 		return "/driver/hitchWrite";
+	}
+
+	@RequestMapping(value = "/hitchWriteOk", method = { RequestMethod.GET, RequestMethod.POST })
+	public String hitchOk(Model model, @ModelAttribute DriverWriteVo dwv) {
+		System.out.println(dwv.toString());
+		model.addAttribute("dwv", dwv);
+		return "/driver/hitchWriteOk";
+	}
+
+	@RequestMapping(value = "/hitchWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String hitchInsert(@ModelAttribute DriverWriteVo dwv) {
+		System.out.println(dwv.toString());
+		dws.HitchRegister(dwv);
+		return "redirect:/myReservationDriverMain";
 	}
 
 	@RequestMapping(value = "/mateWrite", method = { RequestMethod.GET, RequestMethod.POST })
@@ -94,7 +105,7 @@ public class DriverWriteController {
 	public String mateOk() {
 		return "/driver/mateWriteOk";
 	}
-
+	
 	@RequestMapping(value = "/ssp", method = { RequestMethod.GET, RequestMethod.POST })
 	public String ssp() throws IOException {
 		return "/driver/ssp";
@@ -128,6 +139,41 @@ public class DriverWriteController {
 	@RequestMapping(value = "/sep", method = { RequestMethod.GET, RequestMethod.POST })
 	public String sep() throws IOException {
 		return "/driver/sep";
+	}
+
+	@RequestMapping(value = "/ssp2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String ssp2() throws IOException {
+		return "/driver/ssp2";
+	}
+
+	@RequestMapping(value = "/swp12", method = { RequestMethod.GET, RequestMethod.POST })
+	public String swp12() throws IOException {
+		return "/driver/swp12";
+	}
+
+	@RequestMapping(value = "/swp13", method = { RequestMethod.GET, RequestMethod.POST })
+	public String swp13() throws IOException {
+		return "/driver/swp13";
+	}
+
+	@RequestMapping(value = "/swp14", method = { RequestMethod.GET, RequestMethod.POST })
+	public String swp14() throws IOException {
+		return "/driver/swp14";
+	}
+
+	@RequestMapping(value = "/swp15", method = { RequestMethod.GET, RequestMethod.POST })
+	public String swp15() throws IOException {
+		return "/driver/swp15";
+	}
+
+	@RequestMapping(value = "/swp16", method = { RequestMethod.GET, RequestMethod.POST })
+	public String swp16() throws IOException {
+		return "/driver/swp16";
+	}
+
+	@RequestMapping(value = "/sep2", method = { RequestMethod.GET, RequestMethod.POST })
+	public String sep2() throws IOException {
+		return "/driver/sep2";
 	}
 
 }

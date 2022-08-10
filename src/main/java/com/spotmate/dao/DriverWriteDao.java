@@ -12,9 +12,11 @@ public class DriverWriteDao {
 	@Autowired
 	private SqlSession ss;
 	
-	public void Insert(DriverWriteVo dwv) {
-		System.out.println("hi");
-		ss.insert("spotmate.insert", dwv);
+	public void CarpoolInsert(DriverWriteVo dwv) {
+		ss.insert("spotmate.carpoolinsert", dwv);
+	}
+	public void HitchInsert(DriverWriteVo dwv) {
+		ss.insert("spotmate.hitchinsert", dwv);
 	}
 
 }

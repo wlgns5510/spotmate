@@ -24,18 +24,20 @@
 				</div>
 			</div>
 			<ul>
-				<li>도착까지 예상 소요시간 ${dwv.dur}, ${dwv.dis}</li>
+				<li>도착까지 예상 소요시간 ${dwv.dur},&nbsp; ${dwv.dis}</li>
 				<li>입력해주신 SPOT CARPOOL 내용이 맞으시면 등록을 눌러주세요.</li>
 			</ul>
-
 			<span>*필수 입력사항</span>
 		</div>
 	<div class="mid">
 		<form action="/carpoolWriteInsert" method="post">
+		<input type="hidden" name="type" value="1">
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
-				<span>출발 날짜</span><input type="datetime-local" name="startdate" value="${dwv.startdate}" id="s-date" readonly><br>
-				<span>도착 날짜</span><input type="date" name="enddate" value="${dwv.enddate}" id="e-date" readonly>
+				<span>출발 날짜</span><input type="text" name="sdate" value="${dwv.sdate}" id="s-date" readonly>
+				<span>출발 시간</span><input type="text" name="stime" value="${dwv.stime}" id="s-time" readonly>
+				<br>
+				<span>도착 날짜</span><input type="text" name="edate" value="${dwv.edate}" id="e-date" readonly>
 			</div>
 			<div class="s-sec">
 				<p>드라이버님의 이동 경로입니다</p>
@@ -52,40 +54,60 @@
 					 	<td><input type="text" name="eplace" value="${dwv.eplace}" id="e-addr" class="e-addr" readonly></td>
 						<td><input type="hidden" name="elat" value="${dwv.elat}" class="e-lat"></td>
 						<td><input type="hidden" name="elng" value="${dwv.elng}" class="e-lng"></td>
-						<td><input type="hidden" name="latlng" value="${dwv.latlng}" id="latlng"></td>
 				</table>
+				<input type="hidden" name="latlng" value="${dwv.latlng}" id="latlng">
 				</div>
 			</div>
 			<div id="map"></div>
 			<div class="t-sec">
 				<p>탑승 가능한 인원 수*</p>
-				<input value="${dwv.people}" type="number" readonly> 
+				<input name="people" value="${dwv.people}" type="number" readonly>
+				<input type="hidden" name="fare" value="${dwv.fare}">
+				<input type="hidden" name="dur" value="${dwv.dur}">
+				<input type="hidden" name="dis" value="${dwv.dis}">
 				<p>차량 상세조건</p>
 				<table class="deepsel">
 					<tr>
 					<c:if test="${dwv.nosmoke != null}">
-						<td><input type="hidden" id="nosmoke" name="nosmoke" value="nosmoke" readonly>비흡연자</td>
+						<td><input type="hidden" id="nosmoke" name="nosmoke" value="nosmoke">비흡연자</td>
+					</c:if>
+					<c:if test="${dwv.nosmoke == null}">
+						<td><input type="hidden" id="nosmoke" name="nosmoke" value=""></td>
 					</c:if>
 					<c:if test="${dwv.phoneCharge != null}">
-						<td><input class="td2" type="hidden" id="phonecharge" name="phonecharge" value="phonecharge" readonly>핸드폰 충전기 이용 가능</td>
+						<td><input class="td2" type="hidden" id="phoneCharge" name="phoneCharge" value="phoneCharge">핸드폰 충전기 이용 가능</td>
+					</c:if>
+					<c:if test="${dwv.phoneCharge == null}">
+						<td><input type="hidden" id="nosmoke" name="phoneCharge" value=""></td>
 					</c:if>
 					</tr>
 					<tr>
 					<c:if test="${dwv.drivergender != null}">
-						<td><input type="hidden" id="drivergender" name="drivergender" value="female" readonly>여성 드라이버</td>
+						<td><input type="hidden" id="drivergender" name="drivergender" value="female">여성 드라이버</td>
+					</c:if>
+					<c:if test="${dwv.drivergender == null}">
+						<td><input type="hidden" id="nosmoke" name="drivergender" value=""></td>
 					</c:if>
 					<c:if test="${dwv.silence != null}">
-						<td><input class="td2" type="hidden" id="silence" name="silence" value="silence" readonly>조용하게 가는 것을 선호</td>
+						<td><input class="td2" type="hidden" id="silence" name="silence" value="silence">조용하게 가는 것을 선호</td>
+					</c:if>
+					<c:if test="${dwv.silence == null}">
+						<td><input type="hidden" id="nosmoke" name="silence" value=""></td>
 					</c:if>
 					</tr>
 					<tr>
 					<c:if test="${dwv.pet != null}">
-						<td><input class="td2" type="hidden" id="pet" name="pet" value="pet" readonly>반려동물 탑승 가능</td>
+						<td><input class="td2" type="hidden" id="pet" name="pet" value="pet">반려동물 탑승 가능</td>
+					</c:if>
+					<c:if test="${dwv.pet == null}">
+						<td><input class="td2" type="hidden" id="pet" name="pet" value=""></td>
 					</c:if>
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="driverintroduce" name="introduce" readonly>${dwv.introduce}</textarea>
+				<textarea class="introduce" name="introduce" readonly>${dwv.introduce}</textarea>
+				<p>드라이버님이 하고싶은 말을 적어주세요</p>
+				<textarea class="comments" name="comments">${dwv.comments}</textarea>
 			</div>
 		<button type="submit">등록하기</button>
 		</form>
@@ -102,6 +124,7 @@
 	var elng = $(".e-lng").val();
 	var Strlatlng = $("#latlng").val().replace('[', '').replace(']','');
 	var latlng = Strlatlng.split(',');
+	$("#latlng").val(latlng);
 	
 	$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
 	var bounds = new kakao.maps.LatLngBounds();

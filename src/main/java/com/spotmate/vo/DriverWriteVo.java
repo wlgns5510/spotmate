@@ -1,25 +1,21 @@
 package com.spotmate.vo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DriverWriteVo {
 
-	private String startdate, enddate, splace, eplace, fare, nosmoke, phoneCharge, drivergender, silence, pet,
-			introduce, dur, dis;
-	private int people;
+	private String sdate, edate, splace, eplace, fare, nosmoke, phoneCharge, drivergender, silence, pet, introduce, dur,
+			dis, latlng, comments, stime;
+	private int people, type;
 	private double slat, slng, elat, elng;
-	private List<Double> latlng = new ArrayList<Double>();
-	
 
 	public DriverWriteVo() {
 	}
 
-	public DriverWriteVo(String startdate, String enddate, String splace, String eplace, String fare, String nosmoke,
+	public DriverWriteVo(String sdate, String edate, String splace, String eplace, String fare, String nosmoke,
 			String drivergender, String phoneCharge, String silence, String pet, String introduce, int people,
-			double slat, double slng, double elat, double elng, List<Double> latlng, String dur, String dis) {
-		this.startdate = startdate;
-		this.enddate = enddate;
+			double slat, double slng, double elat, double elng, String latlng, String dur, String dis, int type,
+			String comments, String stime) {
+		this.sdate = sdate;
+		this.edate = edate;
 		this.splace = splace;
 		this.eplace = eplace;
 		this.fare = fare;
@@ -37,22 +33,25 @@ public class DriverWriteVo {
 		this.latlng = latlng;
 		this.dur = dur;
 		this.dis = dis;
+		this.type = type;
+		this.comments = comments;
+		this.stime = stime;
 	}
 
-	public String getStartdate() {
-		return startdate;
+	public String getSdate() {
+		return sdate;
 	}
 
-	public void setStartdate(String startdate) {
-		this.startdate = startdate;
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
 	}
 
-	public String getEnddate() {
-		return enddate;
+	public String getEdate() {
+		return edate;
 	}
 
-	public void setEnddate(String enddate) {
-		this.enddate = enddate;
+	public void setEdate(String edate) {
+		this.edate = edate;
 	}
 
 	public String getSplace() {
@@ -143,12 +142,44 @@ public class DriverWriteVo {
 		this.dis = dis;
 	}
 
+	public String getLatlng() {
+		return latlng;
+	}
+
+	public void setLatlng(String latlng) {
+		this.latlng = latlng;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getStime() {
+		return stime;
+	}
+
+	public void setStime(String stime) {
+		this.stime = stime;
+	}
+
 	public int getPeople() {
 		return people;
 	}
 
 	public void setPeople(int people) {
 		this.people = people;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public double getSlat() {
@@ -183,21 +214,14 @@ public class DriverWriteVo {
 		this.elng = elng;
 	}
 
-	public List<Double> getLatlng() {
-		return latlng;
-	}
-
-	public void setLatlng(List<Double> latlng) {
-		this.latlng = latlng;
-	}
-
 	@Override
 	public String toString() {
-		return "DriverWriteVo [startdate=" + startdate + ", enddate=" + enddate + ", splace=" + splace + ", eplace="
-				+ eplace + ", fare=" + fare + ", nosmoke=" + nosmoke + ", phoneCharge=" + phoneCharge
-				+ ", drivergender=" + drivergender + ", silence=" + silence + ", pet=" + pet + ", introduce="
-				+ introduce + ", dur=" + dur + ", dis=" + dis + ", people=" + people + ", slat=" + slat + ", slng="
-				+ slng + ", elat=" + elat + ", elng=" + elng + ", latlng=" + latlng + "]";
+		return "DriverWriteVo [sdate=" + sdate + ", edate=" + edate + ", splace=" + splace + ", eplace=" + eplace
+				+ ", fare=" + fare + ", nosmoke=" + nosmoke + ", phoneCharge=" + phoneCharge + ", drivergender="
+				+ drivergender + ", silence=" + silence + ", pet=" + pet + ", introduce=" + introduce + ", dur=" + dur
+				+ ", dis=" + dis + ", comments=" + comments + ", stime=" + stime + ", people="
+				+ people + ", type=" + type + ", slat=" + slat + ", slng=" + slng + ", elat=" + elat + ", elng=" + elng
+				+ ", latlng=" + latlng + "]";
 	}
 
 }
