@@ -85,7 +85,7 @@
 <!-- 					</tr> -->
 <!-- 				</table> -->
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="driverintroduce" name="introduce" readonly></textarea>
+				<textarea class="driverintroduce" name="introduce" readonly>${dwv.introduce}</textarea>
 			</div>
 		<button type="submit">등록하기</button>
 		</form>

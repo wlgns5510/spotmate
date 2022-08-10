@@ -41,7 +41,7 @@
 			
 			<div class="service1">
 				<div class="service1_image">
-					<a href="/spotCarpool""> <img src="/assets/images/picture1.png" alt="hover">
+					<a href="/spotCarpool"> <img src="${pageContext.request.contextPath}/assets/images/picture1.png" alt="hover">
 						<h3>
 							<span> SPOT CARPOOL<br> 서비스란?
 							</span>
@@ -55,9 +55,9 @@
 					원하는 장소와 기간을 설정하여 등록할 수 있습니다.
 				</p>
 				
-				<a href="/spotCarpool">
+				<a href="spotCarpool">
 					<button class="usebutton1">
-					<img class="usebuttonPicto" src="/assets/images/common/arrow-right.png">
+					<img class="usebuttonPicto" src="${pageContext.request.contextPath}/assets/images/common/arrow-right.png">
 					<p>이용하기</p>
 					</button>
 				</a>
@@ -67,7 +67,7 @@
 
 			<div class="service2">
 				<div class="service2_image">
-					<a href="/spotHitchhike"> <img src="/assets/images/picture2.png" alt="hover">
+					<a href="/spotHitchhike"> <img src="${pageContext.request.contextPath}/assets/images/picture2.png" alt="hover">
 						<h3>
 							<span> SPOT HITCHHIKE <br>서비스란?
 							</span>
@@ -81,9 +81,9 @@
 					유저의 현재 위치 5Km 반경내에 있는 차량이 공유되어<br> 실시간으로 탑승을 요청 할 수 있는 서비스입니다.
 				</p>
 
-				<a href="/spotHitchhike">
+				<a href="spotHitchhike">
 					<button class="usebutton2">
-					<img class="usebuttonPicto" src="/assets/images/common/arrow-right.png">
+					<img class="usebuttonPicto" src="${pageContext.request.contextPath}/assets/images/common/arrow-right.png">
 					<p>이용하기</p>
 					</button>
 				</a>

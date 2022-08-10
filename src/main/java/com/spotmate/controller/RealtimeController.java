@@ -1,4 +1,4 @@
-package com.spotmate.function;
+package com.spotmate.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,8 +10,7 @@ public class RealtimeController {
 	@RequestMapping("/real")
 	public ModelAndView real() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("real");
+		mv.setViewName("/test/real");
 		return mv;
 	}
-
 }
