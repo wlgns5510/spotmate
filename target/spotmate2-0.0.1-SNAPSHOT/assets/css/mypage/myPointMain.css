@@ -2,7 +2,7 @@
 
 /*wrap*/
 #wrap {
-	width: 1920px;
+	width: 100%;
 	margin: 0px auto;
 }
 
@@ -42,15 +42,15 @@
 /**************************topNav******************************/
 
 /*topNav*/
-.myPage_topNav {
-	width: 1920px;
-	height: 200px;
-	background: rgba(247, 247, 247, 1);
-	text-align: center;
-}
+/* .myPage_topNav_inner { */
+/* 	width: 1920px; */
+/* /* 	height: 200px; */ */
+/* 	background: rgba(247, 247, 247, 1); */
+/* 	text-align: center; */
+/* } */
 
 /*메뉴박스1*/
-.myPage_topNav>.box1 {
+.myPage_topNav.myPage_topNav_inner>.box1 {
 	width: 228px;
 	height: 68px;
 	position: relative;

@@ -73,9 +73,9 @@
 				<div class='dur'>예상 소요 시간:</div>
 				<div class='dis'>예상 거리:</div>
 				</div>
-			<span id="finish">설정완료</span>
 			</div>
 			</div>
+			<div id="finish">설정완료</div>
 			<div id="map"></div>
 				<div class="t-sec">
 					<p>탑승 가능한 인원 수*</p>
@@ -565,8 +565,8 @@ $("#finish").on("click", function() {
 		return;
 	}
 	var latlng = "";
-	var splace = $(".s-addr").val();
-	var eplace = $(".e-addr").val();
+	var splace = $("#s-addr").val();
+	var eplace = $("#e-addr").val();
 	var w2p = $("#w-addr2").val();
 	var w3p = $("#w-addr3").val();
 	var w4p = $("#w-addr4").val();
@@ -629,8 +629,7 @@ $("#finish").on("click", function() {
 			bounds.extend(new kakao.maps.LatLng(slat, slng));
 			bounds.extend(new kakao.maps.LatLng(elat, elng));
 			latlng = result;
-			console.log(latlng);
-			document.getElementById("latlng").value = result.toString();
+			document.getElementById("latlng").value = latlng.toString();
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = { 
 			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
@@ -638,9 +637,7 @@ $("#finish").on("click", function() {
 			};  
 			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			map.setBounds(bounds);
-			var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-			imageSize = new kakao.maps.Size(36, 36); // 마커이미지의 크기입니다
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+			
 			var positions = [
 				{
 					latlng: new kakao.maps.LatLng(slat, slng)
@@ -666,6 +663,9 @@ $("#finish").on("click", function() {
 			];
 			
 			for (var i=0;i<positions.length;i++) {
+				var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(36, 36); // 마커이미지의 크기입니다
+				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 				var marker = new kakao.maps.Marker({
 					position: positions[i].latlng,
 					map: map,
