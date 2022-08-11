@@ -1,8 +1,13 @@
-.inputBox  input::placeholder {
+.mateMain_inputBox input::placeholder {
 	color: #C2C6CC;
 }
-.inputBox  input {
+.mateMain_inputBox input {
 	border: none;
+}
+input[type=checkbox] {
+    accent-color: rgba(73,85,159,1);    
+   -webkit-transform: scale(1.6); /* Safari and Chrome */
+   padding: 10px;
 }
 .mateMain_wrap {
 /* 	width: 1920px; */
@@ -39,7 +44,7 @@
   font-size: 40px;
   margin: 0px 0px 30px 0px;
 }
-.mateMain_content .inputBox {
+.mateMain_content .mateMain_inputBox {
   width: 1000px;
   height: 70px;
   background: rgba(255,255,255,1);
@@ -103,7 +108,7 @@
 .mateMain_content .searchPictogrem {
   width: 54px;
   height: 54px;
-  background: url("../images/round-search.png");
+  background: url("/assets/images/round-search.png");
   border-radius: 50%;
   float: right;
   position: absolute;

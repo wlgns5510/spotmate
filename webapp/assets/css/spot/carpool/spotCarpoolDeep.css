@@ -18,15 +18,14 @@
 	margin:0px auto;
 }
 .content-head{
-/*   width: 1920px; */
+
 	margin: 0px auto;
 	height: 230px;
 	background:rgba(245,245,245,1);	
 }
 
 .carpool-MainText1 {
-/*   top: 303px; */
-/*   left: 951px; */
+
   width: 660px;
   color: rgba(30,30,30,1);
   font-family: Montserrat;
@@ -34,7 +33,7 @@
   font-size: 32px;
   text-align: left;
   float: left;
-  margin: 90px 0px 0px 550px;
+  margin: 120px 0px 0px 120px;
 }
 
 .carpool-MainText2 {
@@ -48,7 +47,7 @@
   text-align: left;
   float: right;
   padding: 100px 50px 0px 0px;
-  margin: 0px 160px 0px 0px;
+  margin: 30px 570px 0px 0px;
 
 }
 /****************aside******************/
@@ -170,14 +169,14 @@
     font-weight: 500;
     font-size: 18px;
     text-align: left;
-    margin : 10px 0px 0px 0px;
+    margin : 20px 0px 0px 0px;
 }
 
 
 
 .path-confirm{
     color: rgba(91,91,91,1);
-    width:550px;
+    width:520px;
 	font-family: Montserrat;
     font-weight: 700;
     font-size: 18px;
@@ -191,14 +190,14 @@
 .pathPicto{
 	position:absolute;
 	top:145px;
-	left:600px;
+	left:620px;
 	
 }
 
 .pathTime{
 	position:absolute;
 	top:175px;
-	left:640px;
+	left:670px;
 	color: rgba(73,85,159,1);
 	font-family: Montserrat;
 	font-weight: 600;
@@ -309,7 +308,7 @@
     font-weight: 700;
     font-size: 24px;
     text-align: left;
-    padding:70px 0px 0px 0px;
+    padding:50px 0px 0px 0px;
     float:left;
 }   
     
@@ -330,15 +329,23 @@
 .introduceText{
 	width: 800px;
     color: rgba(72,72,72,1);
-   /* position: absolute;
-    top: 760px;
-    left: 0px;*/
     font-family: Noto Sans Korean;
     font-weight: 500;
     font-size: 18px;
     text-align: left;
     padding: 30px 200px 0px 0px;
     float:right;
+}   
+
+.driverComments{
+	width: 310px;
+    color: rgba(72,72,72,1);
+    font-family: Noto Sans Korean;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: left;
+    padding:50px 0px 0px 0px;
+    float:left;
 }   
 
 /*****************드라이버 차량 정보**********/
@@ -358,7 +365,6 @@
     width: 700px;
     color: rgba(72,72,72,1);
 	border-collapse: collapse;
-	/*position: relative;*/
     font-family: Noto Sans;
     font-weight: 500; 
     font-size: 16px;
@@ -384,13 +390,14 @@
 
 
 .review{
-	width: 250px;
+	width: 1000px;
     color: rgba(72,72,72,1);
     font-family: Montserrat;
     font-weight: 700;
     font-size: 24px;
     text-align: left;
-    margin:50px 0px 30px 550px;
+    margin:50px 0px 30px 0px;
+    float:left;
 }
 
 .review_banner_wrapper{display:block; position:relative; width:100%; height:350px; padding:35px 0 70px; box-sizing:border-box; background:#f6f6f6;}
@@ -420,9 +427,6 @@
 .recommend{
 	width: 250px;
     color: rgba(72,72,72,1);
-    /*position: absolute;
-    top: 2110px;
-    left: 250px;*/
     font-family: Noto Sans;
     font-weight: 700;
     font-size: 24px;
@@ -435,9 +439,6 @@
 	width: 310px;
     height: 130px;
     background: rgba(255,255,255,1);
-   /* position: absolute;
-    top: 0x;
-    left: 0px;*/
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom-left-radius: 6px;
