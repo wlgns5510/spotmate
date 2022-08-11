@@ -316,7 +316,10 @@
 .inputBox {
 	padding: 14px 2px 10px 7px;
 	text-align: left;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 
 .myPage_article2 .btn_review {
@@ -328,6 +331,7 @@
 	font-weight: bold;
 }
 
+<<<<<<< HEAD
 .inputBox input {
 	width: 178px;
 	height: 40px;
@@ -339,6 +343,20 @@
 	font-weight: Regular;
 	font-size: 16px;
 	text-align: center;
+=======
+.myPage_article> .inputBox >form >input {
+	width: 172px;
+	height: 40px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	text-align: center;
+	color: rgba(102, 102, 102, 1);
+	font-family: Noto Sans;
+	font-weight: Regular;
+	font-size: 16px;
+	text-align: center;
+	border-radius: 0px;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 
 .inputBox select {
@@ -409,7 +427,11 @@
 	text-decoration: none;
 	font-size: 17px;
 	font-weight: bold;
+<<<<<<< HEAD
 	width: 450px;
+=======
+	width: 455px;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	border: 1px solid rgba(217, 217, 217, 1);
 }
 
@@ -418,16 +440,31 @@
 	background-color: white;
 	color: blue;
 	border-bottom: 2px solid blue;
+<<<<<<< HEAD
 	
+=======
+	width: 455px;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
 	background-color: white;
 	color: blue;
+<<<<<<< HEAD
 	
+=======
+	width: 455px;
 }
 
+/*****************top-nav****************************/
+
+/*inputBox*/
+.inputBox {
+	padding: 15px 0px 10px 0px;
+	text-align: center;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
+}
 
 /************section-article2*****************/
 .require_info {
@@ -441,6 +478,7 @@
 	height: 100%;
 	/*border: 1px solid #ff00ff;*/
 	float: left;
+<<<<<<< HEAD
 }
 
 .DriverenrollForm>form {
@@ -449,6 +487,8 @@
 	padding: 20px;
 	box-shadow: 0px 4px 56px rgb(0 0 0/ 4%);
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 
 /*h4 글자*/
@@ -500,6 +540,7 @@
 	height: 40px;
 }
 
+<<<<<<< HEAD
 
 .DForm_enrollbtn0 {
 	width: 283px;
@@ -514,6 +555,12 @@
 	margin-top: 50px;
 	display: inline-block;
 	text-align: center;
+=======
+.memo textarea {
+	width: 800px;
+	height: 100px;
+	margin: 2px 0px 0px 50px;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 .DForm_enrollbtn {
 	width: 283px;
@@ -524,8 +571,12 @@
 	font-family: Noto Sans;
 	font-weight: SemiBold;
 	font-size: 24px;
+<<<<<<< HEAD
 	margin-left: 300px; 
 	margin-top: 100px;
+=======
+	margin: 100px 0px 20px 350px;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	display: inline-block;
 	text-align: center;
 }
@@ -639,10 +690,13 @@
 	display: inline-block;
 	padding-top: 10px;
 }
+<<<<<<< HEAD
 .DriverenrollForm h5 {
 
 	padding-bottom: 10px;
 }
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 /*input 모양잡기*/
 .DL_info input {
 	width: 281px;
@@ -650,7 +704,11 @@
 	background: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
 	border-radius: 6px;
+<<<<<<< HEAD
 	margin: 10px 10px 10px 50px;
+=======
+	margin: 10px auto;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 
 .DC_info input {
@@ -659,9 +717,14 @@
 	background: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
 	border-radius: 6px;
+<<<<<<< HEAD
 	margin: 10px 10px 10px 50px;
+=======
+	margin: 10px auto;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 
+<<<<<<< HEAD
 .DC_etc input {
     accent-color: rgba(73,85,159,1);
 }
@@ -678,11 +741,14 @@
 }
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 .DriverenrollForm th.one {
 	display: inline-block;
 	width: 283;
 }
 /*차량인증 띈거 붙이기*/
+<<<<<<< HEAD
 .DriverenrollForm td {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
@@ -698,3 +764,11 @@
 	float:right;
 }
 
+=======
+.DL_info td {
+	padding: 0px 0px 0px 0px;
+	background-color: white;
+	border-bottom: none;
+	width: 182.8;
+}
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
