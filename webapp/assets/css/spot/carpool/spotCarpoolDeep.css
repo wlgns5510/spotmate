@@ -34,7 +34,7 @@
   font-size: 32px;
   text-align: left;
   float: left;
-  margin: 90px 0px 0px 550px;
+  margin: 120px 0px 0px 210px;
 }
 
 .carpool-MainText2 {
@@ -48,7 +48,7 @@
   text-align: left;
   float: right;
   padding: 100px 50px 0px 0px;
-  margin: 0px 160px 0px 0px;
+  margin: 30px 470px 0px 0px;
 
 }
 /****************aside******************/
@@ -170,14 +170,14 @@
     font-weight: 500;
     font-size: 18px;
     text-align: left;
-    margin : 10px 0px 0px 0px;
+    margin : 20px 0px 0px 0px;
 }
 
 
 
 .path-confirm{
     color: rgba(91,91,91,1);
-    width:550px;
+    width:520px;
 	font-family: Montserrat;
     font-weight: 700;
     font-size: 18px;
@@ -191,14 +191,14 @@
 .pathPicto{
 	position:absolute;
 	top:145px;
-	left:600px;
+	left:620px;
 	
 }
 
 .pathTime{
 	position:absolute;
 	top:175px;
-	left:640px;
+	left:670px;
 	color: rgba(73,85,159,1);
 	font-family: Montserrat;
 	font-weight: 600;

@@ -31,13 +31,13 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="/myPointCarge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
 			<div class="box3">
 				<p>
-					<a href="./myCouponMain">쿠폰 사용 ></a>
+					<a href="/myCouponMain">쿠폰 사용 ></a>
 				</p>
 				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
 			</div>
@@ -140,12 +140,12 @@
 						<tbody>
 							<tr>
 								<td>1</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+3000</td>
-								<td class="myRDMstate">남은좌석1</td>
+								<td>${dwv.type}</td>
+								<td>${dwv.sdate}</td>
+								<td>${dwv.splace}</td>
+								<td>${dwv.eplace}</td>
+								<td>+${dwv.fare}</td>
+								<td class="myRDMstate">${dwv.people}</td>
 							</tr>
 							<tr>
 								<td>2</td>

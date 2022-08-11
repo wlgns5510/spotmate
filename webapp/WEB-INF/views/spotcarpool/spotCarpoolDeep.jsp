@@ -25,8 +25,8 @@
 
 		<div class="content-head">
 		<div class="clear" style="width:1920px; margin:0px auto;">
-			<div class="mate-deep-banner-l-sec">
-			<span>같이 타고 가요</span><p>FIND YOUR MATE</p>
+			<div class="carpool-MainText1">
+			<span>같이 타고 가요</span><p>SPOT CARPOOL</p>
 		</div> <span class="carpool-MainText2"> 이동하는 경로가 비슷한 드라이버를 찾아 <br> 출발지부터 목적지까지 편하게 이동해보세요.
 			</span>
 		</div>
