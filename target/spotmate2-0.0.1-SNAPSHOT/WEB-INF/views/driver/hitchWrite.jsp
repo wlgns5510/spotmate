@@ -9,11 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="/assets/js/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
-<script src="/assets/jqueryUi/jquery-ui.js"></script>
-<script src="/assets/MultiDatesPicker/jquery-ui.multidatespicker.js"></script>
-<link rel="stylesheet" href="/assets/jqueryUi/jquery-ui.min.css">
 <link rel="stylesheet" href="/assets/css/style.css">
-<link rel="stylesheet" href="/assets/css/datepicker.css">
 </head>
 <body>
 <body>
@@ -29,11 +25,11 @@
 		<span>*필수 입력사항</span>
 	</div>
 	<div class="mid">
-		<form action="" method="get">
+		<form action="/hitchWriteOk" method="post">
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
-				<input type="text" id="datepicker" class="s-date" placeholder="2022.07.20 - 2022.08.20" autocomplete="off">
-				<input type="text" class="s-time" placeholder="아침 8:00">
+				<span>출발 날짜</span><input style="width:550px;" type="text" name="sdate" value="" id="s-date" readonly><br>
+				<span>출발 시간</span><input style="width:550px;" type="text" name="stime" value="" id="s-time" readonly>
 			</div>
 			<div class="s-sec">
 				<p>드라이버님의 이동 경로를 입력해주세요*</p>
@@ -42,37 +38,44 @@
 				<img src="assets/images/map_line_02.png">
 				<table>
 					<tr>
-						<td><input type="text" value="" id="s-addr" class="s-addr" placeholder="출발지를 입력하세요"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
-						<td><input type="hidden" value="" class="s-lat"></td>
-						<td><input type="hidden" value="" class="s-lng"></td>
+						<td><input type="text" value="" name="splace" id="s-addr" class="s-addr" placeholder="출발지를 입력하세요"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
+						<td><input type="hidden" name="slat" value="" class="s-lat"></td>
+						<td><input type="hidden" name="slng" value="" class="s-lng"></td>
 					</tr>
 					<tr>
-					 	<td><input type="text" value="" id="e-addr" class="e-addr" placeholder="도착지를 입력하세요"><img class="ic-btn" src="assets/images/ico_close.png"></td>
-						<td><input type="hidden" value="" class="e-lat"></td>
-						<td><input type="hidden" value="" class="e-lng"></td>
+					 	<td><input type="text" value="" name="eplace" id="e-addr" class="e-addr" placeholder="도착지를 입력하세요"><img class="ic-btn" src="assets/images/ico_close.png"></td>
+						<td><input type="hidden" name="elat" value="" class="e-lat"></td>
+						<td><input type="hidden" name="elng" value="" class="e-lng"></td>
+						<td><input type="hidden" name="latlng" value="" id="latlng"></td>
 				</table>
+				<div class='fare'>1인당 적립 포인트:</div>
+				<div class='dur'>예상 소요 시간:</div>
+				<div class='dis'>예상 거리:</div>
 				</div>
+				<span id="finish">설정완료</span>
 			</div>
+			<div id="map"></div>
 			<div class="t-sec">
 				<p>탑승 가능한 인원 수*</p>
-				<input type="number" min=1 placeholder="1명"> 
+				<input name="people" type="number" min=1 placeholder="1명"> 
 				<p>차량 상세조건</p>
 				<table class="deepsel">
 					<tr>
-						<td><input type="checkbox" id="smoke" name="smoke" value="nosmoke"><label for="smoke"></label>비흡연자</td>
-						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge"><label for="phonecharge"></label>핸드폰 충전기 이용 가능</td>
+						<td><input type="checkbox" id="nosmoke" name="nosmoke" value="nosmoke"><label for="nosmoke">비흡연자</label></td>
+						<td><input class="td2" type="checkbox" id="phoneCharge" name="phoneCharge" value="phoneCharge"><label for="phoneCharge">핸드폰 충전기 이용 가능</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" name="wifi" id="wifi" value="wifi"><label for="wifi"></label>차량 와이파이 이용 가능</td>
-						<td><input class="td2" type="checkbox" id="silence" name="silence" value="silence"><label for="silence"></label>조용하게 가는 것을 선호</td>
+						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender">여성 드라이버</label></td>
+						<td><input class="td2" type="checkbox" id="silence" name="silence" value="silence"><label for="silence">조용하게 가는 것을 선호</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender"></label>여성 드라이버</td>
-						<td><input class="td2" type="checkbox" id="pet" name="pet" value="pet"><label for="pet"></label>반려동물 탑승 가능</td>
+						<td><input class="td2" type="checkbox" id="pet" name="pet" value="pet"><label for="pet">반려동물 탑승 가능</label></td>
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="driverintroduce" name="introduce" placeholder="하고싶은 말을 적어주세요!"></textarea>
+				<textarea class="introduce" name="introduce" readonly></textarea>
+				<p>드라이버님이 하고싶은 말을 적어주세요</p>
+				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 			</div>
 		<button type="submit">등록하기</button>
 		</form>
@@ -91,33 +94,100 @@ $(document).ready(function() {
 	      }
 	    });
 	});
-// $(function() {
-//     //input을 datepicker로 선언
-//     $("#datepicker").datepicker({
-//         dateFormat: 'yy-mm-dd' //달력 날짜 형태
-// //         ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-//         ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
-//         ,changeYear: true //option값 년 선택 가능
-//         ,changeMonth: true //option값  월 선택 가능                
-//         ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
-//         ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
-// //         ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
-// //         ,buttonText: "선택" //버튼 호버 텍스트              
-//         ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
-//         ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
-//         ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
-//         ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
-//         ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
-//         ,minDate: "-5Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-//         ,maxDate: "+5y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-//     });                    
-//     //초기값을 오늘 날짜로 설정해줘야 합니다.
-//     $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
-// });
-// $("#datepicker").multiDatesPicker();
-// $("#datepicker").multiDatesPicker('gotDate', new Date());
-// $("#datepicker").multiDatesPicker();
-// var dates = $('#datepicker').multiDatesPicker('getDates');
+	
+document.getElementById("s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+document.getElementById("s-time").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(11, 16);
+$("#finish").on("click", function() {
+	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {
+		alert("검색 후에 시도해주세요");
+		return;
+	}
+	var latlng = "";
+	var splace = $(".s-addr").val();
+	var eplace = $(".e-addr").val();
+	var slat = $(".s-lat").val();
+	var slng = $(".s-lng").val();
+	var elat = $(".e-lat").val();
+	var elng = $(".e-lng").val();
+	$.ajax({
+		
+		url : "${pageContext.request.contextPath}/setPath",		
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify({slat: slat,
+			slng: slng,
+			elat: elat,
+			elng: elng,
+			splace: splace,
+			eplace: eplace}),
+
+		dataType : "json",
+		success : function(result){
+			$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
+			$(".fare").remove();
+			$(".dur").remove();
+			$(".dis").remove();
+			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
+			document.getElementById("input-div").innerHTML += "<div class='dur'>예상 소요 시간:&nbsp; <input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
+			document.getElementById("input-div").innerHTML += "<div class='dis'>예상 거리:&nbsp; <input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
+			document.getElementById("s-addr").value = result.splace;
+			document.getElementById("e-addr").value = result.eplace;
+			var bounds = new kakao.maps.LatLngBounds();
+			bounds.extend(new kakao.maps.LatLng(slat, slng));
+			bounds.extend(new kakao.maps.LatLng(elat, elng));
+			latlng = result.latlng;
+			document.getElementById("latlng").value = latlng.toString();
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = { 
+			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
+			    level: 4 // 지도의 확대 레벨
+			};  
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			map.setBounds(bounds);
+			var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
+			imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
+			imageOption = {
+				offset : new kakao.maps.Point(20, 36)
+			};
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
+					imageOption)
+			var marker = new kakao.maps.Marker({
+				position: new kakao.maps.LatLng(slat, slng),
+				map: map,
+				image: markerImage
+			})
+			
+			//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+			//테스트 결과 json 파싱해서 for문 반복으로 넣어주면 될듯
+			var linePath = [
+				new kakao.maps.LatLng(slat, slng),
+				];
+			for (var i=0; i<latlng.length; i++) {
+					if (i == latlng.length) {
+						linePath.push(new kakao.maps.LatLng(elat,elng));
+						break;
+					}
+					linePath.push(new kakao.maps.LatLng(latlng[i+1],latlng[i]),);
+					i++;
+				};
+			
+			//지도에 표시할 선을 생성합니다
+			var polyline = new kakao.maps.Polyline({
+				path: linePath, // 선을 구성하는 좌표배열 입니다
+				strokeWeight: 5, // 선의 두께 입니다
+				strokeColor: '#4454a1', // 선의 색깔입니다
+				strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+				strokeStyle: 'solid' // 선의 스타일입니다
+			});
+			
+			//지도에 선을 표시합니다 
+			polyline.setMap(map); 
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+})
 $(".ae-btn").on("click", function() {
 	var saddr = $(".s-addr").val();
 	var slat = $(".s-lat").val();

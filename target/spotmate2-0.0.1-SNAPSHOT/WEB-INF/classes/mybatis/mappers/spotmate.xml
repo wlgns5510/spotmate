@@ -19,24 +19,70 @@
 	       order by no desc
 	</select>
 	
-	<insert id="insert" parameterType="DWVo">
+	<select id="select" resultType="DWVo">
+		select type,
+			sdate,
+			splace,
+			eplace,
+			fare,
+			people
+		from dwv
+	</select>
+	
+	<insert id="carpoolinsert" parameterType="DWVo">
 			insert into dwv
 			values ( 
-				TO_CHAR(#{startdate}, 'YYYY-MM-DD HH24:MI'),
-				TO_CHAR(#{enddate}, 'YYYY-MM-DD'),
+				#{type},
+				#{sdate},
+				#{edate},
+				#{stime},
 				#{splace},
 				#{eplace},
 				#{fare},
-				1,
 				#{people},
-				#{slate},
+				#{slat},
 				#{slng},
 				#{elat},
 				#{elng},
 				#{latlng},
 				#{dur},
 				#{dis},
-				#{introduce}
+				#{introduce},
+				#{comments},
+				1,
+				#{nosmoke}||' '||
+				#{phoneCharge}||' '||
+				#{drivergender}||' '||
+				#{silence}||' '||
+				#{pet}
+			)
+		</insert>
+		<insert id="hitchinsert" parameterType="DWVo">
+			insert into dwv
+			values ( 
+				#{type},
+				#{sdate},
+				#{sdate},
+				#{stime},
+				#{splace},
+				#{eplace},
+				#{fare},
+				#{people},
+				#{slat},
+				#{slng},
+				#{elat},
+				#{elng},
+				#{latlng},
+				#{dur},
+				#{dis},
+				#{introduce},
+				#{comments},
+				1,
+				#{nosmoke}||' '||
+				#{phoneCharge}||' '||
+				#{drivergender}||' '||
+				#{silence}||' '||
+				#{pet}
 			)
 		</insert>
 	

@@ -25,7 +25,7 @@
 	<div class="mateMain_content">
 	<div class="seachBox">
 			<h2>FIND YOUR MATE</h2>
-			<div class="inputBox">
+			<div class="mateMain_inputBox">
 				<div class="selBox">
 					<div class="sel1">
 						<label for="Location" class="LocationLabel">Location</label><br>
