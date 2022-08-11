@@ -1,15 +1,27 @@
 @charset "UTF-8";
 
-input {
+/* hover */
+.ia-btn:hover {
+	cursor: pointer;
+}
+
+.ic-btn:hover {
+	cursor: pointer;
+}
+
+/* hover */
+
+.inner > .mid input {
 	border: 1px solid #bfbfbf;
 	border-radius: 15px;
 	padding: 0px 0px 0px 5px;
 }
-textarea {
+.inner > .mid textarea {
 	border: 1px solid #e8e7e7;
 	border-radius: 15px;
 }
-::placeholder {
+.inner > .mid ::placeholder {
+	color: #e8e7e7;
 	padding: 0px 0px 0px 10px;
 }
 .e-time::placeholder {
@@ -79,7 +91,6 @@ textarea {
 .inner > .mid {
 	font-family: 'Montserrat';
 	font-weight: 600;
-	font-size: 16px;
 	width: 720px;
 	margin: 60px auto;
 	padding: 50px;
@@ -110,26 +121,26 @@ textarea {
 
 .s-sec {
 	margin: 30px 0px 30px 0px;
-	position:relative;
-	height: 220px;
+/* 	position:relative; */
+/* 	height: 220px; */
 }
 .s-sec table {
 	display:inline;
 }
 .s-sec > p {
-	position: absolute;
-	top: 30px;
+/* 	position: absolute; */
+/* 	top: 30px; */
 }
 .s-sec > img {
-	position: absolute;
-	top: 100px;
+/* 	position: absolute; */
+/* 	top: 100px; */
 	width: 15px;
 	height: 73px;
 }
 #input-div {
 	width: 730px;
-	position: absolute;
-	top: 70px;
+/* 	position: absolute; */
+/* 	top: 70px; */
 }
 .s-addr {
 	width: 670px;

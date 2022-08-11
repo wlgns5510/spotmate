@@ -53,7 +53,6 @@ public class NaviHttpRequest {
 		String info = element.getAsJsonObject().get("routes").toString();
 		info = info.substring(1);
 		info = info.substring(0, info.length()-1);
-		
 		JsonElement jSection = JsonParser.parseString(info);
 		String section = jSection.getAsJsonObject().get("sections").toString();
 		String summary = jSection.getAsJsonObject().get("summary").toString();

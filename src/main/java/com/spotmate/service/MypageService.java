@@ -15,5 +15,5 @@ public class MypageService {
 	public DriverWriteVo getList() {
 		return md.getList();
 	}
-
+	
 }
