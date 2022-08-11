@@ -32,7 +32,7 @@ public class MypageController {
 	}
 	@RequestMapping(value="/myDriverMain", method={RequestMethod.GET, RequestMethod.POST})
 	public String myDriverMain() {
-		return "/mypage/myDriverForm";
+		return "/mypage/myDriverMain";
 	}
 	@RequestMapping(value="/myDriverMain2", method={RequestMethod.GET, RequestMethod.POST})
 	public String myDriverMain2() {
