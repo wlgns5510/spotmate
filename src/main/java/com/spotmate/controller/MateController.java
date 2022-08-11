@@ -11,9 +11,6 @@ public class MateController {
 	public String mateInfo() {
 		System.out.println("MateController");
 		
-		
-		
-		
 		return "/mate/mateInfo";
 	}
 
