@@ -25,10 +25,13 @@
 	</div>
 	<div class="mid">
 		<form action="/carpoolWriteOk" method="post">
+		<input type="hidden" name="type" value="1">
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
-				<span>출발 날짜</span><input type="datetime-local" name="startdate" value="" id="s-date"><br>
-				<span>도착 날짜</span><input type="date" name="enddate" value="" id="e-date">
+				<span>출발 날짜</span><input type="date" name="sdate" value="" id="s-date">
+				<span>출발 시간</span><input type="time" name="stime" value="" id="s-time">
+				<br>
+				<span>도착 날짜</span><input type="date" name="edate" value="" id="e-date">
 			</div>
 			<div class="s-sec">
 				<p>드라이버님의 이동 경로를 입력해주세요*</p>
@@ -72,7 +75,9 @@
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="driverintroduce" name="introduce" placeholder="하고싶은 말을 적어주세요!"></textarea>
+				<textarea class="introduce" name="introduce" readonly></textarea>
+				<p>드라이버님이 하고싶은 말을 적어주세요</p>
+				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 			</div>
 		<button type="submit">등록하기</button>
 		</form>
@@ -92,7 +97,9 @@ $(document).ready(function() {
 	    });
 	});
 
-document.getElementById("s-date").value = new Date().toISOString().slice(0, 16);
+
+document.getElementById("s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+document.getElementById("s-time").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(11, 16);
 
 $("#finish").on("click", function() {
 	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {
@@ -101,9 +108,7 @@ $("#finish").on("click", function() {
 	}
 	var latlng = "";
 	var splace = $(".s-addr").val();
-	console.log("splace");
 	var eplace = $(".e-addr").val();
-	console.log("eplace");
 	var slat = $(".s-lat").val();
 	var slng = $(".s-lng").val();
 	var elat = $(".e-lat").val();
@@ -135,7 +140,7 @@ $("#finish").on("click", function() {
 			bounds.extend(new kakao.maps.LatLng(slat, slng));
 			bounds.extend(new kakao.maps.LatLng(elat, elng));
 			latlng = result.latlng;
-			document.getElementById("latlng").value = latlng;
+			document.getElementById("latlng").value = latlng.toString();
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = { 
 			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표

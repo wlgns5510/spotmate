@@ -1,10 +1,12 @@
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\AddrSearch.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\DriverLicenseAuth.java
+C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\vo\WaylatlngVo.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\vo\LatlngVo.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\LicenseAuth.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\Main.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\ProtectInfo.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\controller\MypageController.java
+C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\dao\MypageDao.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\vo\MapVo.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\service\KakaoAuthService.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\service\UserService.java
@@ -19,6 +21,7 @@ C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\controller\Carpoo
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\NaviHttpRequest.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\KakaoDirec.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\vo\UserVo.java
+C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\LatlngHttpRequest.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\controller\UserController.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\service\RealtimeConfig.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\dao\UserDao.java
@@ -28,3 +31,4 @@ C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\dao\DriverWriteDa
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\service\Realtime.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\function\AESTest.java
 C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\controller\HitchhikeController.java
+C:\JavaStudy\workspaceWeb\spotmate2\src\main\java\com\spotmate\service\MypageService.java
