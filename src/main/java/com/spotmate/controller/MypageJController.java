@@ -21,7 +21,7 @@ public class MypageJController {
 	public String myCouponUse() {
 		return "/mypage/myCouponUse";
 	}
-	
+	 
 	//쿠폰메인
 	@RequestMapping(value="/myCouponMain", method={RequestMethod.GET, RequestMethod.POST})
 	public String myCouponMain() {
