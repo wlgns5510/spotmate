@@ -21,8 +21,8 @@
 		<div class="top">
 			<div class="clear">
 				<img src="/assets/images/ico_boxgift.png">
-				
 				<div class="matedesc">
+				<div>final</div>
 					<span>Mate 등록시</span>
 					<p>예상 적립 포인트는 5,000P입니다.</p>
 				</div>
@@ -38,7 +38,7 @@
 			<form action="/myUsageDriverMain" method="get">
 				<p>등록하신 날짜와 출발시간입니다.</p>
 				<div class="f-sec">
-					<input type="text" id="datepicker" class="mate-s-date" placeholder="2022.07.20 - 2022.08.20">
+					<input type="text" class="mate-s-date" placeholder="2022.07.20 - 2022.08.20">
 				</div>
 				<div id="s-sec-box">
 					<div class="s-sec">

@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 
 public class CarpoolController {
+	
+	/*@Autowired
+	CarpoolService CarpoolService;//*/
+
 	@RequestMapping(value = "/spotMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotMain() {
+		
 		return "/spotcarpool/spotMain";
 	}
 
