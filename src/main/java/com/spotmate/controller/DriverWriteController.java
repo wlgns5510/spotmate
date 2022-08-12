@@ -22,6 +22,7 @@ import com.spotmate.service.DriverWriteService;
 import com.spotmate.vo.DaylatlngVo;
 import com.spotmate.vo.DriverWriteVo;
 import com.spotmate.vo.LatlngVo;
+import com.spotmate.vo.MateWriteVo;
 import com.spotmate.vo.SearchVo;
 
 @Controller
@@ -106,7 +107,9 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/mateWriteOk", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateOk() {
+	public String mateOk(Model model, @ModelAttribute MateWriteVo mwVo) {
+		System.out.println(mwVo.toString());
+		model.addAttribute("mwVo", mwVo);
 		return "/driver/mateWriteOk";
 	}
 	
@@ -127,7 +130,7 @@ public class DriverWriteController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/setDayPath", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<Double> setDayPath(Model model, @RequestBody DaylatlngVo daylatlng) throws IOException {
+	public Map<String, Object> setDayPath(Model model, @RequestBody DaylatlngVo daylatlng) throws IOException {
 		Map<Integer, List<Double>> dll = new HashMap<>();
 		List<Double> start = new ArrayList<Double>();
 		start.add(daylatlng.getSlng());
@@ -169,6 +172,7 @@ public class DriverWriteController {
 		dll.put(6, end);
 		List<Double> mergedRoute = new ArrayList<Double>();
 		List<Integer> lst = new ArrayList<Integer>();
+		int sum = 0;
 		for (int i=0;i<7;i++) {
 			if ( dll.get(i) != null ) {
 				lst.add(i);
@@ -181,12 +185,38 @@ public class DriverWriteController {
 			try {
 				LatlngHttpRequest lhr = new LatlngHttpRequest(dll.get(lst.get(i)), dll.get(lst.get(i+1)));
 				List<Double> route = lhr.getVer();
+				sum += lhr.getFare();
 				mergedRoute.addAll(route);
 			} catch (NullPointerException e) {
 				System.out.println("길찾기 실패");
 			}
 		}
-		return mergedRoute;
+		Map<String, Object> totalInfo = new HashMap<>();
+		sum = (int) (sum*0.125);
+		StringBuffer str = new StringBuffer();
+		str.append(sum);
+		if (str.length() > 6) {
+			if (str.length() == 7) {
+				str.insert(1, ",");
+				str.insert(5, ",");
+			} else if (str.length() == 8) {
+				str.insert(2, ",");
+				str.insert(6, ",");
+			}
+		} else if (str.length() <= 6 && str.length() > 3) {
+			if (str.length() == 6) {
+				str.insert(3, ",");
+			} else if (str.length() == 5) {
+				str.insert(2, ",");
+			} else if (str.length() == 4) {
+				str.insert(1, ",");
+			}
+		}
+		str.append("P");
+		totalInfo.put("latlng", mergedRoute);
+		totalInfo.put("fare", str);
+		
+		return totalInfo;
 	} 
 
 }
