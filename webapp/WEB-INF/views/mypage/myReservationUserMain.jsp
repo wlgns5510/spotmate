@@ -230,7 +230,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<div class="reserv-paging">
+				<div class="point-paging">
 						<ul>
 							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 							</a></li>
