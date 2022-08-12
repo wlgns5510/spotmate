@@ -46,8 +46,8 @@
 							<span>일정을 추가하려면 눌러주세요</span>
 							<img class="ia-btn2" src="assets/images/ico_add.png" onclick="add()">
 							<img class="rmv-btn" src="assets/images/ico_close.png" onclick="rmv()">
-							<p>드라이버님의 1일차 이동 경로를 입력해주세요*</p>
 						</div>
+						
 						<div id="input-div">
 							<img class="mate-img" src="assets/images/map_line_03.png">
 							<table id="addTable1">
@@ -72,6 +72,11 @@
 									<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 								</tr>
 							</table>
+						<div class='fare'>1인당 적립 포인트:</div>
+				<div class='dur'>예상 소요 시간:</div>
+				<div class='dis'>예상 거리:</div>
+				<div onclick="finish()">설정완료</div>
+				<div id="map"></div>
 						<div class='fare1'>1인당 적립 포인트:</div>
 				<div id="finish1" onclick="setDayPath(1)">설정완료</div>
 				<div id="map1"></div>
@@ -156,6 +161,7 @@ function add() {
 		}
 	}
 }
+	
 
 function rmv() {
 	index--;
@@ -360,6 +366,29 @@ function setDayPath(index) {
 
 		dataType : "json",
 		success : function(result){
+			$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
+			$(".s-sec2").attr("style","margin:300px 0px 0px 0px;");
+			$(".fare").remove();
+			$(".dur").remove();
+			$(".dis").remove();
+			document.getElementById("s-addr").value = splace;
+			document.getElementById("e-addr").value = eplace;
+			document.getElementById("w-addr2").value = w2p;
+			document.getElementById("w-addr3").value = w3p;
+			document.getElementById("w-addr4").value = w4p;
+			document.getElementById("w-addr5").value = w5p;
+			document.getElementById("w-addr6").value = w6p;
+			var bounds = new kakao.maps.LatLngBounds();
+			bounds.extend(new kakao.maps.LatLng(slat, slng));
+			bounds.extend(new kakao.maps.LatLng(elat, elng));
+			latlng = result;
+			document.getElementById("latlng").value = latlng.toString();
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = { 
+			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
+			    level: 4 // 지도의 확대 레벨
+			};  
+			
 			$("#map"+index).attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
 			$(".fare"+index).remove();
 			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare"+index+"' value='"+result.fare+"'>"+result.fare+"</div>";

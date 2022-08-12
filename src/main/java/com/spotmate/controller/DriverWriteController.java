@@ -32,7 +32,7 @@ public class DriverWriteController {
 	private DriverWriteService dws;
 
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-	public String Main() {
+	public String main() {
 		return "/driver/driverMain";
 	}
 	

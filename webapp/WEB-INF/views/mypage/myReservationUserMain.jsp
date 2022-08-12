@@ -31,7 +31,7 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="./myPointCharge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
@@ -114,7 +114,7 @@
 									</select>
 
 									<button type="button" class="myPage_btnB">조회하기</button>
-									<a href="./myPointCarge"><button type="button" class="myPage_btnY">등록하러가기 ></button></a>
+									<a href="./spotMain"><button type="button" class="myPage_btnY">신청하러가기 ></button></a>
 								</form>
 							</div>
 
@@ -124,7 +124,7 @@
 
 				<!-- //section-article2 -->
 				<article class="myPage_article2">
-					<h4>예약 등록 내역</h4>
+					<h4>예약 신청 내역</h4>
 					<table>
 						<thead>
 							<tr>

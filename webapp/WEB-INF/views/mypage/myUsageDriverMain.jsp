@@ -31,7 +31,7 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="./myPointCharge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
@@ -94,7 +94,7 @@
 
 
 
-					<div class="inputBox">
+					<div class="UsageinputBox">
 						<form>
 							<input type="date" value="2022-08-02"> <span> ~ </span> <input type="date" value="2022-08-02">
 
@@ -115,8 +115,8 @@
 								<option value="2">후기완료</option>
 							</select>
 
-							<button type="button" class="myPage_btnB">조회하기</button>
-							<a href="./myPointCarge"><button type="button" class="myPage_btnY">등록하러가기 ></button></a>
+							<button type="button" class="UsagemyPage_btnB">조회하기</button>
+							<!-- <a href="./myPointCarge"><button type="button" class="myPage_btnY">등록하러가기 ></button></a> -->
 						</form>
 					</div>
 
@@ -126,7 +126,7 @@
 				<!-- //section-article2 -->
 				<article class="myPage_article2">
 
-					<h4>예약 등록 내역</h4>
+					<h4>이용 내역</h4>
 					<table>
 						<thead>
 							<tr>
@@ -275,7 +275,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<div class="point-paging">
+					<div class="reserv-paging">
 						<ul>
 							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 							</a></li>

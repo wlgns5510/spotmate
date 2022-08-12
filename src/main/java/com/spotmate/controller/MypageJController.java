@@ -1,18 +1,17 @@
 package com.spotmate.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spotmate.service.MypageService;
+
 
 @Controller
 public class MypageJController {
 	 
-	@Autowired
-	private MypageService ms;
+
 	 
 	@RequestMapping(value="/myCouponBuy", method={RequestMethod.GET, RequestMethod.POST})
 	public String myCouponBuy() {
@@ -22,11 +21,11 @@ public class MypageJController {
 	public String myCouponUse() {
 		return "/mypage/myCouponUse";
 	}
-	
+	  
 	//쿠폰메인
 	@RequestMapping(value="/myCouponMain", method={RequestMethod.GET, RequestMethod.POST})
 	public String myCouponMain() {
-		
+		 
 		
 		return "/mypage/myCouponMain";
 	}

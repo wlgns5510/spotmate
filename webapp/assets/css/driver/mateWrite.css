@@ -66,10 +66,17 @@
 	height: 50px;
 }
 
+<<<<<<< HEAD
+#s-sec-box {
+	margin: 0px 0px 50px 0px;
+}
+.s-sec #input-div #addTable {
+=======
 
 
 
 .s-sec1 #input-div #addTable1 {
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	display: inline;
 }
 
@@ -152,8 +159,22 @@
 
 .s-sec2 {
 	margin: 30px 0px 30px 0px;
+<<<<<<< HEAD
+/* 	position:relative; */
+/* 	height: 220px; */
+}
+.s-sec2 > p {
+/* 	position: absolute; */
+/* 	top: 30px; */
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 .s-sec2 > img {
+<<<<<<< HEAD
+/* 	position: absolute; */
+/* 	top: 100px; */
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	width: 15px;
 	height: 73px;
 }
