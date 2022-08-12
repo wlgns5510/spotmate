@@ -1,18 +1,16 @@
 package com.spotmate.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spotmate.service.MypageService;
 
 @Controller
 public class MypageRController {
 	 
-	@Autowired
-	private MypageService ms;
+	
 	 
 	
 	@RequestMapping(value="/myDriverForm", method={RequestMethod.GET, RequestMethod.POST})
@@ -21,7 +19,7 @@ public class MypageRController {
 	}
 	@RequestMapping(value="/myDriverMain", method={RequestMethod.GET, RequestMethod.POST})
 	public String myDriverMain() {
-		return "/mypage/myDriverForm";
+		return "/mypage/myDriverMain";
 	}
 	@RequestMapping(value="/myDriverMain2", method={RequestMethod.GET, RequestMethod.POST})
 	public String myDriverMain2() {
@@ -36,8 +34,7 @@ public class MypageRController {
 		return "/mypage/myQnaWriteForm";
 	}
 	@RequestMapping(value="/myReservationDriverMain", method={RequestMethod.GET, RequestMethod.POST})
-	public String myReservationDriverMain(Model model) {
-		model.addAttribute("dwv", ms.getList());
+	public String myReservationDriverMain() {
 		return "/mypage/myReservationDriverMain";
 	}
 	@RequestMapping(value="/myReservationUserMain", method={RequestMethod.GET, RequestMethod.POST})
