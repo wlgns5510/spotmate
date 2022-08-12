@@ -101,7 +101,7 @@
 							</select>
 
 							<button type="button" class="myPage_btnB">조회하기</button>
-							<a href="./myPointCarge"><button type="button" class="myPage_btnY">1:1문의하기 ></button></a>
+							<a href="./myQnaWriteForm"><button type="button" class="myPage_btnY">1:1문의하기 ></button></a>
 						</form>
 					</div>
 

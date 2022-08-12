@@ -1,42 +1,35 @@
 @charset "UTF-8";
-/* placeholder */
-::placeholder {
-	font-weight: 300;
-	color: #e8e7e7
-}
-/* placeholder */
-
 /* hover */
+
 .ia-btn2:hover {
 	cursor: pointer;
 }
-.id-btn2:hover {
-	cursor: pointer;
-}
 
-.id-btn3:hover {
+.id-btn:hover {
 	cursor: pointer;
 }
-
-.id-btn4:hover {
+.rmv-btn:hover {
 	cursor: pointer;
 }
-
-.id-btn5:hover {
-	cursor: pointer;
-}
-
-.id-btn6:hover {
-	cursor: pointer;
-}
+/* hover */
 
 .mate-ic-btn:hover {
 	cursor: pointer;
 }
 /* hover */
+#mate-s-date {
+	width: 590px;
+	height:50px;
+	margin: 0px 0px 20px 0px;
+}
+
+#mate-e-date {
+	width: 590px;
+	height:50px;
+}
 
 .mate-e-addr-tr {
-	border-bottom:5px solid #4454a1;
+	border-bottom:3px solid #4454a1;
 }
 
 .mate-img {
@@ -50,125 +43,138 @@
 	margin: 0px 0px 0px 10px;
 }
 
+.ia-btn2 {
+	display: inline;
+	padding: 0px 0px 5px 0px;
+}
 
 .id-btn {
 	display: inline;
 	margin: 0px 0px 0px 10px;
 }
+.rmv-btn {
+	padding: 0px 0px 5px 0px;
+}
 
-
-.f-sec #mate-s-date {
+.f-sec #mate-s-date1 {
 	width: 590px;
 	height: 50px;
 	margin: 0px 0px 10px 0px;
 }
-.f-sec #mate-e-date {
+.f-sec #mate-e-date1 {
 	width: 590px;
 	height: 50px;
 }
 
+<<<<<<< HEAD
+#s-sec-box {
+	margin: 0px 0px 50px 0px;
+}
 .s-sec #input-div #addTable {
+=======
+
+
+
+.s-sec1 #input-div #addTable1 {
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	display: inline;
 }
 
-.s-sec .mate-s-addr {
+.s-sec1 .mate-s-addr1 {
+	margin: 10px 0px 10px 0px;
+	width: 400px;
+	height: 30px;
+}
+.s-sec1 .mate-s-time1 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec1 #w-addr11 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec #w-addr2 {
-	margin: 10px 0px 10px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec #w-addr3 {
+.s-sec1 #w-addr12 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec #w-addr4 {
+.s-sec1 #w-addr13 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec #w-addr5 {
+.s-sec1 #w-addr14 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec #w-addr6 {
+.s-sec1 #w-addr15 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec .mate-e-addr {
+.s-sec1 .w-time11 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec1 .w-time12 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec1 .w-time13 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec1 .w-time14 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec1 .w-time15 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec1 .mate-e-addr1 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
 }
-
-.s-sec .mate-s-time {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec .w-time2 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec .w-time3 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec .w-time4 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec .w-time5 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec .w-time6 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-
-.s-sec .mate-ic-btn {
-	display: inline;
-	margin: 0px 0px 0px 10px;
-}
-
-/* /////////// */
 
 .s-sec2 {
 	margin: 30px 0px 30px 0px;
-	position:relative;
-	height: 220px;
+<<<<<<< HEAD
+/* 	position:relative; */
+/* 	height: 220px; */
 }
 .s-sec2 > p {
-	position: absolute;
-	top: 30px;
+/* 	position: absolute; */
+/* 	top: 30px; */
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 .s-sec2 > img {
-	position: absolute;
-	top: 100px;
+<<<<<<< HEAD
+/* 	position: absolute; */
+/* 	top: 100px; */
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	width: 15px;
 	height: 73px;
 }
@@ -177,35 +183,68 @@
 	width: 400px;
 	height: 30px;
 }
-
-.s-sec2 #w-addr12 {
+.s-sec2 .mate-s-time2 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+.s-sec2 #w-addr21 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec2 #w-addr13 {
+.s-sec2 #w-addr22 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec2 #w-addr14 {
+.s-sec2 #w-addr23 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec2 #w-addr15 {
+.s-sec2 #w-addr24 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec2 #w-addr16 {
+.s-sec2 #w-addr25 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
+}
+.s-sec2 .w-time21 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec2 .w-time22 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec2 .w-time23 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec2 .w-time24 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec2 .w-time25 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
 }
 
 .s-sec2 .mate-e-addr2 {
@@ -214,60 +253,11 @@
 	height: 30px;
 }
 
-.s-sec2 .mate-s-time2 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec2 .w-time12 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec2 .w-time13 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec2 .w-time14 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec2 .w-time15 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec2 .w-time16 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec2 .mate-ic-btn2 {
-	display: inline;
-	margin: 0px 0px 0px 10px;
-}
-
 
 .s-sec3 {
 	margin: 30px 0px 30px 0px;
-	position:relative;
-	height: 220px;
-}
-.s-sec3 > p {
-	position: absolute;
-	top: 30px;
 }
 .s-sec3 > img {
-	position: absolute;
-	top: 100px;
 	width: 15px;
 	height: 73px;
 }
@@ -276,96 +266,79 @@
 	width: 400px;
 	height: 30px;
 }
-
-.s-sec3 #w-addr22 {
+.s-sec3 .mate-s-time3 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+.s-sec3 #w-addr31 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec3 #w-addr23 {
+.s-sec3 #w-addr32 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec3 #w-addr24 {
+.s-sec3 #w-addr33 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec3 #w-addr25 {
+.s-sec3 #w-addr34 {
 	margin: 10px 0px 8px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec3 #w-addr26 {
+.s-sec3 #w-addr35 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
 }
+.s-sec3 .w-time31 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
 
+.s-sec3 .w-time32 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec3 .w-time33 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec3 .w-time34 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
+
+.s-sec3 .w-time35 {
+	width: 200px;
+	height: 30px;
+	margin: 0px 0px 0px 10px;
+}
 .s-sec3 .mate-e-addr3 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
 	height: 30px;
 }
 
-.s-sec3 .mate-s-time3 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec3 .w-time22 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec3 .w-time23 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec3 .w-time24 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec3 .w-time25 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec3 .w-time26 {
-	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
-}
-
-.s-sec3 .mate-ic-btn3 {
-	display: inline;
-	margin: 0px 0px 0px 10px;
-}
-
 .s-sec4 {
 	margin: 30px 0px 30px 0px;
-	position:relative;
-	height: 220px;
-}
-.s-sec4 > p {
-	position: absolute;
-	top: 30px;
 }
 .s-sec4 > img {
-	position: absolute;
-	top: 100px;
 	width: 15px;
 	height: 73px;
 }
@@ -374,96 +347,82 @@
 	width: 400px;
 	height: 30px;
 }
-
-.s-sec4 #w-addr32 {
-	margin: 10px 0px 10px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec4 #w-addr33 {
-	margin: 10px 0px 8px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec4 #w-addr34 {
-	margin: 10px 0px 8px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec4 #w-addr35 {
-	margin: 10px 0px 8px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec4 #w-addr36 {
-	margin: 10px 0px 10px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec4 .mate-e-addr4 {
-	margin: 10px 0px 10px 0px;
-	width: 400px;
-	height: 30px;
-}
-
 .s-sec4 .mate-s-time4 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time32 {
+.s-sec4 #w-addr41 {
+	margin: 10px 0px 10px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec4 #w-addr42 {
+	margin: 10px 0px 8px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec4 #w-addr43 {
+	margin: 10px 0px 8px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec4 #w-addr44 {
+	margin: 10px 0px 8px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec4 #w-addr45 {
+	margin: 10px 0px 10px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+
+.s-sec4 .w-time41 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time33 {
+.s-sec4 .w-time42 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time34 {
+.s-sec4 .w-time43 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time35 {
+.s-sec4 .w-time44 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time36 {
+.s-sec4 .w-time45 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
-
-.s-sec4 .mate-ic-btn4 {
-	display: inline;
-	margin: 0px 0px 0px 10px;
+.s-sec4 .mate-e-addr4 {
+	margin: 10px 0px 10px 0px;
+	width: 400px;
+	height: 30px;
 }
 
 .s-sec5 {
 	margin: 30px 0px 30px 0px;
-	position:relative;
-	height: 220px;
-}
-.s-sec5 > p {
-	position: absolute;
-	top: 30px;
 }
 .s-sec5 > img {
-	position: absolute;
-	top: 100px;
 	width: 15px;
 	height: 73px;
 }
@@ -472,80 +431,73 @@
 	width: 400px;
 	height: 30px;
 }
-
-.s-sec5 #w-addr42 {
-	margin: 10px 0px 10px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec5 #w-addr43 {
-	margin: 10px 0px 8px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec5 #w-addr44 {
-	margin: 10px 0px 8px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec5 #w-addr45 {
-	margin: 10px 0px 8px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec5 #w-addr46 {
-	margin: 10px 0px 10px 0px;
-	width: 400px;
-	height: 30px;
-}
-
-.s-sec5 .mate-e-addr5 {
-	margin: 10px 0px 10px 0px;
-	width: 400px;
-	height: 30px;
-}
-
 .s-sec5 .mate-s-time5 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time42 {
+.s-sec5 #w-addr51 {
+	margin: 10px 0px 10px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec5 #w-addr52 {
+	margin: 10px 0px 8px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec5 #w-addr53 {
+	margin: 10px 0px 8px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec5 #w-addr54 {
+	margin: 10px 0px 8px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec5 #w-addr55 {
+	margin: 10px 0px 10px 0px;
+	width: 400px;
+	height: 30px;
+}
+
+.s-sec5 .w-time51 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time43 {
+.s-sec5 .w-time52 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time44 {
+.s-sec5 .w-time53 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time45 {
+.s-sec5 .w-time54 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time46 {
+.s-sec5 .w-time55 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
-
-.s-sec5 .mate-ic-btn5 {
-	display: inline;
-	margin: 0px 0px 0px 10px;
+.s-sec5 .mate-e-addr5 {
+	margin: 10px 0px 10px 0px;
+	width: 400px;
+	height: 30px;
 }

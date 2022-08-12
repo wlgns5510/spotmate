@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +8,16 @@
 <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-<div style="background-color:red" class="clearfix">
-	<img src="/assets/images/bluelogo.png"  style="float:left;">
-</div>
-<div>
-	<div style="background-color:blue">hello</div>
-</div>
+	<p>hi</p>
 </body>
+<script type="text/javascript">
+console.log('1');
+	for (var i = 0; i < 10; i++) {
+		a1(i);
+	}
+	
+function (a+'1')(i) {
+	console.log(i);
+}
+</script>
 </html>

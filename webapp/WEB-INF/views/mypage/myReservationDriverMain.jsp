@@ -110,10 +110,10 @@
 									</select>
 
 									<button type="button" class="myPage_btnB">조회하기</button>
-									<a href="./myPointCarge"><button type="button" class="myPage_btnY">등록하러가기 ></button></a>
+									<a href="./driver"><button type="button" class="myPage_btnY">등록하러가기 ></button></a>
 								</form>
 							</div>
-
+<!--  메모-->
 						</article>
 					</tr>
 
@@ -140,12 +140,12 @@
 						<tbody>
 							<tr>
 								<td>1</td>
-								<td>${dwv.type}</td>
-								<td>${dwv.sdate}</td>
-								<td>${dwv.splace}</td>
-								<td>${dwv.eplace}</td>
-								<td>+${dwv.fare}</td>
-								<td class="myRDMstate">${dwv.people}</td>
+								<td>히치하이크</td>
+								<td>2022.07.26</td>
+								<td>출발지</td>
+								<td>도착지</td>
+								<td>+10000</td>
+								<td class="myRDMstate">모집완료</td>
 							</tr>
 							<tr>
 								<td>2</td>

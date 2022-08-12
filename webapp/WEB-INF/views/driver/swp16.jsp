@@ -253,9 +253,9 @@
 		clickPos();
 		function setParentText() {
 			if ($("#title").val() == "") {
-				opener.$(".w-addr16").val($("#addr").val())
+				opener.$("#w-addr16").val($("#addr").val())
 			} else {
-				opener.$(".w-addr16").val($("#title").val())	
+				opener.$("#w-addr16").val($("#title").val())	
 			}
 			opener.$(".w-lat16").val($("#lat").val())
 			opener.$(".w-lng16").val($("#lng").val())

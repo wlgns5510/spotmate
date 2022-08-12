@@ -327,8 +327,8 @@
 	font-weight: bold;
 }
 
-.myPage_article> .inputBox >form >input {
-	width: 172px;
+.inputBox input {
+	width: 178px;
 	height: 40px;
 	background: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
@@ -338,7 +338,6 @@
 	font-weight: Regular;
 	font-size: 16px;
 	text-align: center;
-	border-radius: 0px;
 }
 
 .inputBox select {
@@ -364,12 +363,12 @@
 	margin: 1px 8px 0px 0px;
 }
 
-.myPage_btnB {
-	width: 150px;
+.UsagemyPage_btnB {
+	width: 200px;
 	height: 40px;
 }
 
-.myPage_btnB {
+.UsagemyPage_btnB {
 	color: rgba(255, 255, 255, 1);
 	font-family: Noto Sans;
 	font-weight: SemiBold;
@@ -409,7 +408,7 @@
 	text-decoration: none;
 	font-size: 17px;
 	font-weight: bold;
-	width: 455px;
+	width: 450px;
 	border: 1px solid rgba(217, 217, 217, 1);
 }
 
@@ -418,22 +417,12 @@
 	background-color: white;
 	color: blue;
 	border-bottom: 2px solid blue;
-	width: 455px;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
 	background-color: white;
 	color: blue;
-	width: 455px;
-}
-
-/*****************top-nav****************************/
-
-/*inputBox*/
-.inputBox {
-	padding: 15px 0px 10px 0px;
-	text-align: center;
 }
 
 /************section-article2*****************/
@@ -448,6 +437,13 @@
 	height: 100%;
 	/*border: 1px solid #ff00ff;*/
 	float: left;
+}
+
+.DriverenrollForm>form {
+	height: 100%;
+	margin: 50px;
+	padding: 20px;
+	box-shadow: 0px 4px 56px rgb(0 0 0/ 4%);
 }
 
 /*h4 글자*/
@@ -499,10 +495,19 @@
 	height: 40px;
 }
 
-.memo textarea {
-	width: 800px;
-	height: 100px;
-	margin: 2px 0px 0px 50px;
+.DForm_enrollbtn0 {
+	width: 283px;
+	height: 65px;
+	background-color: rgba(70, 84, 163, 1);
+	border-radius: 6px;
+	color: rgba(255, 255, 255, 1);
+	font-family: Noto Sans;
+	font-weight: SemiBold;
+	font-size: 24px;
+	margin-left: 200px;
+	margin-top: 50px;
+	display: inline-block;
+	text-align: center;
 }
 
 .DForm_enrollbtn {
@@ -514,7 +519,8 @@
 	font-family: Noto Sans;
 	font-weight: SemiBold;
 	font-size: 24px;
-	margin: 100px 0px 20px 350px;
+	margin-left: 300px;
+	margin-top: 100px;
 	display: inline-block;
 	text-align: center;
 }
@@ -586,6 +592,29 @@
 	border-bottom: none;
 }
 
+.DL_info {
+	margin: 50px 100px 50px 50px;
+}
+
+.DC_info {
+	margin: 50px 50px 50px 50px;
+}
+
+.DC_etc {
+	margin: 50px 100px 50px 50px;
+}
+
+.memo {
+	margin: 50px 100px 50px 50px;
+}
+
+.memo textarea {
+	width: 700px;
+	height: 130px;
+	background: rgba(255, 255, 255, 1);
+	display: inline-block;
+	float: left;
+}
 /*버튼 모양잡기*/
 .DriverenrollForm  .smallbtn {
 	text-align: center;
@@ -606,6 +635,10 @@
 	display: inline-block;
 	padding-top: 10px;
 }
+
+.DriverenrollForm h5 {
+	padding-bottom: 10px;
+}
 /*input 모양잡기*/
 .DL_info input {
 	width: 281px;
@@ -613,7 +646,7 @@
 	background: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
 	border-radius: 6px;
-	margin: 10px auto;
+	margin: 10px 10px 10px 50px;
 }
 
 .DC_info input {
@@ -622,7 +655,23 @@
 	background: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
 	border-radius: 6px;
-	margin: 10px auto;
+	margin: 10px 10px 10px 50px;
+}
+
+.DC_etc input {
+	accent-color: rgba(73, 85, 159, 1);
+}
+
+.DC_etc span {
+	color: rgba(72, 72, 72, 1);
+	font-family: Noto Sans;
+	font-weight: 500;
+	font-size: 16px;
+	text-align: left;
+	float: left;
+	padding: 0px 15px 0px 15px;
+	margin: 18px 0px 0px 0px;
+	cursor: pointer;
 }
 
 .DriverenrollForm th.one {
@@ -630,9 +679,121 @@
 	width: 283;
 }
 /*차량인증 띈거 붙이기*/
-.DL_info td {
+.DriverenrollForm td {
 	padding: 0px 0px 0px 0px;
 	background-color: white;
 	border-bottom: none;
 	width: 182.8;
+}
+/*Usage*/
+.UsageinputBox input {
+	width: 178px;
+	height: 40px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	text-align: center;
+	color: rgba(102, 102, 102, 1);
+	font-family: Noto Sans;
+	font-weight: Regular;
+	font-size: 16px;
+	text-align: center;
+}
+
+.UsageinputBox select {
+	width: 128px;
+	height: 42px;
+	background: rgba(255, 255, 255, 1);
+	opacity: 1;
+	top: 580px;
+	left: 945px;
+	border: 1px solid rgba(217, 217, 217, 1);
+	overflow: hidden;
+	text-align: center;
+	color: rgba(102, 102, 102, 1);
+	font-family: Noto Sans;
+	font-weight: Regular;
+	font-size: 16px;
+	text-align: center;
+}
+
+.UsageinputBox {
+	padding: 14px 2px 10px 55px;
+	text-align: left;
+}
+
+/*drivermain2*/
+.car_pic {
+	padding-bottom: 20px;
+}
+
+.right_smallbtn {
+	float: right;
+}
+/*myQnaWriteForm*/
+.myQnaryeo {
+	margin: 20px 50px 0px 50px;
+	padding: 20px;
+}
+
+.myQnaryeo label {
+	width: 39px;
+	color: rgba(30, 30, 30, 1);
+	font-family: Noto Sans;
+	font-weight: Regular;
+	font-size: 16px;
+	opacity: 1;
+	text-align: left;
+}
+
+.myQnaryeo input, select {
+	width: 650px;
+	height: 45px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	color: rgba(217, 217, 217, 1);
+}
+
+.myQnaryeo td {
+	margin: 20px;
+	padding: 10px;
+}
+
+.myQnaryeo textarea {
+	width: 650px;
+	height: 380px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	color: rgba(217, 217, 217, 1);
+}
+
+.QnaWFp_group {
+	margin-left: 150px;
+	color: #444150;
+	display: inline-block;
+}
+
+.underlinegray {
+	margin-top: 20px;
+	border-bottom: 1px solid rgba(217, 217, 217, 1);
+}
+
+.myQnaryeo .imgbox {
+	width: 90px;
+	height: 90px;
+	background: rgba(255, 255, 255, 1);
+	opacity: 1;
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	overflow: hidden;
 }

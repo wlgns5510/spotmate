@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
 <script src="/assets/js/jquery-1.11.0.min.js"></script>
 
 
@@ -27,7 +29,8 @@
 					<img src="/assets/images/box_user.png">
 				</div>
 				<p>Ryeo-kyoung,kim님</p>
-				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.3</span>
+				<span>Reviews</span><span><img
+					src="/assets/images/ico_star.png">4.3</span>
 			</div>
 			<div class="box2">
 				<p>
@@ -51,14 +54,22 @@
 				<h2>마이페이지</h2>
 				<!-- h2? -->
 				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myDriverForm">드라이버 신청/정보<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myUsageDriverMain">이용 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myReservationDriverMain">예약 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myQnaMain">문의 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointMain">포인트<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myCouponMain">쿠폰<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointRefundMain">환불 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
 				</ul>
 			</nav>
 
@@ -78,41 +89,52 @@
 
 				<article class="myPage_article2">
 					<h4></h4>
-					<table>
-						<span>유형*</span>
-						<select id="option1" class="form-select" aria-label="Default select example">
-							<option value=selected>문의 유형을 선택해주세요</option>
-							<option value="1">카풀 문의</option>
-							<option value="2">히치하이크 문의</option>
-							<option value="3">메이트 문의</option>
-							<option value="4">드라이버 문의</option>
-							<option value="5">포인트/쿠폰문의</option>
-							<option value="6">기타문의</option>
-
-						</select>
-						<br>
 
 
+					<div class="myQnaryeo">
+						<table>
+
+							<tr>
+								<td><label for="type">유형*</label></td>
+								<td><select id="option1" class="form-select"
+									aria-label="Default select example">
+										<option value=selected>&nbsp;&nbsp;문의 유형을 선택해주세요</option>
+										<option value="1">카풀 문의</option>
+										<option value="2">히치하이크 문의</option>
+										<option value="3">메이트 문의</option>
+										<option value="4">드라이버 문의</option>
+										<option value="5">포인트/쿠폰문의</option>
+										<option value="6">기타문의</option>
+								</select></td>
+							</tr>
 
 
-						<span>제목*</span>
-						<input type="text">
-						<br>
-						<span>내용*</span>
-						<input type="text">
-						<br>
-						<span>이미지</span>
-						<button class="image_buttton">button text</button>
-						<p>* 30MB이상의 이미지만 업로드 가능합니다.</p>
-						<p>* 서비스와 무관한 내용이거나 음란 및 불법적인 내용은 사전 통보없이 삭제될 수 있습니다.</p>
-						<p>* 사진은 최대 8장까지 등록가능합니다.</p>
-
-						<form>
-							<input type="button" class="myQna_enroll" value="등록하기" onclick="msg()">
-						</form>
-
-
-					</table>
+							<tr>
+								<td><label>제목*</label></td>
+								<td><input id="title" placeholder="&nbsp;제목을 작성해주세요"
+									type="text"></td>
+							</tr>
+							<tr>
+								<td><span>내용*</span></td>
+								<td><textarea placeholder="내용을 입력해주세요"></textarea></td>
+							</tr>
+							<tr>
+								<td><span>이미지</span></td>
+								<td><div class="imgbox"></div></td>
+							</tr>
+						</table>
+					</div>
+					<div class="QnaWFp_group">
+						<p class=gray_bottomtext>* 30MB이상의 이미지만 업로드 가능합니다.</p>
+						<p class=gray_bottomtext>* 서비스와 무관한 내용이거나 음란 및 불법적인 내용은 사전
+							통보없이 삭제될 수 있습니다.</p>
+						<p class=gray_bottomtext>* 사진은 최대 8장까지 등록가능합니다.</p>
+					</div>
+					<br>
+					<br>
+					<div class="underlinegray"></div>
+					<a type="button" href="./myQnaMain" target="self" alt="등록하기"
+						class="DForm_enrollbtn"> <span>등록하기</span></a>
 
 				</article>
 			</section>
