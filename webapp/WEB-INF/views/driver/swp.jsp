@@ -214,14 +214,15 @@
 	</div>
 	<div id="clickLatlng"></div>
 	<button class="search-btn" onclick="setParentText()" style="position:absolute; top:25px; left: 1100px; z-index:1;">장소 확정</button>
-	<input type="hidden" value="" id="addr" style="position:absolute; top:125px; left: 1100px; z-index:1;">
-	<input type="hidden" value="" id="lat" style="position:absolute; top:125px; left: 1100px; z-index:1;">
-	<input type="hidden" value="" id="lng" style="position:absolute; top:125px; left: 1100px; z-index:1;">
-	<input type="hidden" value="" id="title" style="position:absolute; top:125px; left: 1100px; z-index:1;">
+	<input type="hidden" value="" id="addr">
+	<input type="hidden" value="" id="lat">
+	<input type="hidden" value="" id="lng">
+	<input type="hidden" value="" id="title">
+	<input type="hidden" value="${no}" id="no">
 	
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
-	<script type="text/javascript" src="./assets/js/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="/assets/js/jquery-1.12.4.js"></script>
 	<script>
 		// 마커를 담을 배열입니다
 		var markers = [];
@@ -229,7 +230,7 @@
 
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
-			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+			center : new kakao.maps.LatLng(37.48183434555088, 126.95327137866363), // 지도의 중심좌표
 			level : 3
 		// 지도의 확대 레벨
 		};
@@ -252,14 +253,17 @@
 		searchPlaces();
 		clickPos();
 		function setParentText() {
+			var i = $("#no").val();
 			if ($("#title").val() == "") {
-				opener.$(".w-addr13").val($("#addr").val())
+				opener.$("#w-addr"+i).val($("#addr").val());
+				opener.$(".mate-w-addr"+i).val($("#addr").val());
 			} else {
-				opener.$(".w-addr13").val($("#title").val())	
+				opener.$("#w-addr"+i).val($("#title").val());
+				opener.$(".mate-w-addr"+i).val($("#title").val());
 			}
-			opener.$(".w-lat13").val($("#lat").val())
-			opener.$(".w-lng13").val($("#lng").val())
-			window.close() 
+			opener.$(".w-lat"+i).val($("#lat").val());
+			opener.$(".w-lng"+i).val($("#lng").val());
+			window.close();
         }
 		// 키워드 검색을 요청하는 함수입니다
 		function searchPlaces() {
@@ -300,13 +304,9 @@
 		}
 
 		function clickPos() {
-				var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-				imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
-				imageOption = {
-					offset : new kakao.maps.Point(20, 36)
-				};
-				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-						imageOption)
+				var imageSrc = '/assets/images/common/android-icon-48x48.png', // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 				var marker = new kakao.maps.Marker({
 					// 지도 중심좌표에 마커를 생성합니다 
 					position : map.getCenter(),

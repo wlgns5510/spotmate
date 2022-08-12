@@ -321,8 +321,8 @@
 }
 
 /*inputBox 스타일*/
-.inputBox input {
-	width: 178px;
+.myPage_article> .inputBox >form >input {
+	width: 172px;
 	height: 40px;
 	background: rgba(255, 255, 255, 1);
 	opacity: 1;
@@ -336,6 +336,7 @@
 	font-weight: Regular;
 	font-size: 16px;
 	text-align: center;
+	border-radius: 0px;
 }
 
 .inputBox select {
