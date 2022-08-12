@@ -61,26 +61,7 @@
 					<button class="rideButton">탑승하기</button>
 				</div>
 			</div>
-			<!-- mateDeep_content -->
-			<!-- <div class="mateDeep_infoBox">
-			<div class="driverInfo">
-				<span class="mateDeep_passengers">탑승 인원수</span>
-				<span class="mateDeep_CPassengers">1명</span>
-				<span class="mateDeep_boardingtime">탑승 시간</span>
-				<span class="mateDeep_CBoardingtime">오전 08:00</span>
-				<span class="mateDeep_startDay">출발 날짜</span>
-				<span class="mateDeep_CStartDay">2022.07.25.월요일</span>
-				<span class="mateDeep_endDay">도착 날짜</span>
-				<span class="mateDeep_CEndDay">2022.07.27.수요일</span>
-			</div>
-				<span class="mateDeep_totalPoint">총 결제 포인트</span>
-				<span class="mateDeep_payPoint">50,000 포인트</span>
-				<p class="p1">*포인트는 선결제되며,<br> 도착시 드라이버에게 지급이됩니다.</p>
-				<p class="p2">*출발 예정시간보다 15분이상 늦게 도착시<br> 패널티가 부여될 수 있으며, 자세한 사항은<br> 공지사항에서 확인 부탁드립니다.</p>
-				<button class="mateDeep_boardingBtn">
-					<p class="p3">탑승하기</p>
-				</button>		
-			</div> -->
+			
 			<div class="mateDeep_content">
 				<div class="mateDeep_titleFont1">이동 스케줄</div>
 
@@ -159,6 +140,16 @@
 						<option value="attraction">명소</option>
 				</select>
 				</span> <img class="mateDeep_img2" src="/assets/images/square-search.png">
+				
+				<div class="mateDeep_recommendListBox">
+					<button class="beforeBtn" type="button"><img src="/assets/images/common/ico_arrow_lft.png"></button>
+					<div class="mateDeep_recommendList"></div>
+					<div class="mateDeep_recommendList"></div>
+					<div class="mateDeep_recommendList"></div>
+					
+					
+					<button class="nextBtn" type="button"><img src="/assets/images/common/ico_arrow_rit.png"></button>
+				</div>
 
 
 

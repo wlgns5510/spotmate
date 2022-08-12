@@ -22,6 +22,40 @@ public class LatlngHttpRequest {
 		this.start = start;
 		this.end = end;
 	}
+	public int getFare() throws IOException {
+		
+		URL url = new URL("https://apis-navi.kakaomobility.com/v1/directions?origin="+start.get(0)+","+start.get(1)+"&destination="+end.get(0)+","+end.get(1)+"&waypoints=&priority=RECOMMEND&car_fuel=GASOLINE&car_hipass=true&alternatives=false&road_details=false");
+		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+		httpConn.setRequestMethod("GET");
+
+		httpConn.setRequestProperty("Authorization", "KakaoAK 2b24f06df2137983cc98995c1ddce575");
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
+		String line = "";
+		String result = "";
+        
+		while ((line = br.readLine()) != null) {
+			result += line;
+		}
+		br.close();
+		
+		
+		JsonElement element = JsonParser.parseString(result);
+		String info = element.getAsJsonObject().get("routes").toString();
+		info = info.substring(1);
+		info = info.substring(0, info.length()-1);
+		JsonElement jSection = JsonParser.parseString(info);
+		String summary = jSection.getAsJsonObject().get("summary").toString();
+		
+		JsonElement jSummary = JsonParser.parseString(summary);
+		String fare = jSummary.getAsJsonObject().get("fare").toString();
+		
+		JsonElement jFare = JsonParser.parseString(fare);
+		String taxi = jFare.getAsJsonObject().get("taxi").toString();
+		String toll = jFare.getAsJsonObject().get("toll").toString();
+		int totalFare = Integer.parseInt(taxi) + Integer.parseInt(toll);
+		return totalFare;
+	}
 	
 	public List<Double> getVer() throws IOException {
 		

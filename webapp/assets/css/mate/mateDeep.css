@@ -403,8 +403,28 @@
 	margin: 0px 0px 21px 0px;
 }
 
-#content2 {
-	float: right;
-	width: 200px;
-	height: 50px;
+.mateDeep_recommendListBox {
+	width: 900px;
+	height: 200px;
+	margin: 20px 20px 20px 40px;
+}
+.mateDeep_recommendListBox .beforeBtn {
+    float: left;
+    margin: 75px 0px 0px 0px;
+}
+.mateDeep_recommendListBox .nextBtn {
+	float: left;
+	margin: 75px 0px 0px 0px;
+}
+.mateDeep_recommendListBox .mateDeep_recommendList{
+	width: 220px;
+    height: 131px;
+    background: rgba(255,255,255,1);
+    border: 1px solid rgba(217,217,217,1);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin: 30px 15px 0px 15px;
+    float: left;
 }

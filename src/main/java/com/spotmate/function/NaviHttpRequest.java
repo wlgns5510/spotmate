@@ -53,7 +53,6 @@ public class NaviHttpRequest {
 		String info = element.getAsJsonObject().get("routes").toString();
 		info = info.substring(1);
 		info = info.substring(0, info.length()-1);
-		
 		JsonElement jSection = JsonParser.parseString(info);
 		String section = jSection.getAsJsonObject().get("sections").toString();
 		String summary = jSection.getAsJsonObject().get("summary").toString();
@@ -89,6 +88,7 @@ public class NaviHttpRequest {
 		String taxi = jFare.getAsJsonObject().get("taxi").toString();
 		String toll = jFare.getAsJsonObject().get("toll").toString();
 		int totalFare = Integer.parseInt(taxi) + Integer.parseInt(toll);
+		totalFare = (int) (totalFare*0.3);
 		StringBuffer str = new StringBuffer();
 		str.append(totalFare);
 		if (str.length() > 6) {
