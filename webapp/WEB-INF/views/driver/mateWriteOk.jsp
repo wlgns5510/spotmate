@@ -21,7 +21,6 @@
 		<div class="top">
 			<div class="clear">
 				<img src="/assets/images/ico_boxgift.png">
-				<div></div>hihello123
 				<div class="matedesc">
 					<span>Mate 등록시</span>
 					<p>예상 적립 포인트는 5,000P입니다.</p>
