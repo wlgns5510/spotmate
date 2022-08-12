@@ -44,8 +44,9 @@
 						<div>
 							<span>일정을 추가하려면 눌러주세요</span>
 							<img class="ia-btn2" src="assets/images/ico_add.png" onclick="add()">
+							<p>드라이버님의 1일차 이동 경로를 입력해주세요*</p>
 						</div>
-						<p>드라이버님의 1일차 이동 경로를 입력해주세요*</p>
+						
 
 						<div id="input-div">
 							<img class="mate-img" src="assets/images/map_line_03.png">
@@ -72,11 +73,12 @@
 						<div class='fare'>1인당 적립 포인트:</div>
 				<div class='dur'>예상 소요 시간:</div>
 				<div class='dis'>예상 거리:</div>
+				<div onclick="finish()">설정완료</div>
+				<div id="map"></div>
 				</div>
 			</div>
 			</div>
-			<div id="finish">설정완료</div>
-			<div id="map"></div>
+			
 				<div class="t-sec">
 					<p>탑승 가능한 인원 수*</p>
 					<input type="number" min=1 placeholder="1명">
@@ -147,7 +149,7 @@ function add() {
 		index1 = 6;
 		return;
 	}
-	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index1+'"><div><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"></div><p>드라이버님의 '+index1+'일차 이동 경로를 입력해주세요*</p><div id="input-div"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index1+'" style="display:inline;"><tr><td><input type="text" onclick="ssp'+index1+'()" value="" class="mate-s-addr'+index1+'" placeholder="출발지를 입력하세요"><input type="time" value="" class="mate-s-time'+index1+'" placeholder="아침 8:00"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow'+index1+'()"></td><td><input type="hidden" value="" class="s-lat'+index1+'"></td><td><input type="hidden" value="" class="s-lng'+index1+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" class="mate-e-addr'+index1+'" placeholder="도착지를 입력하세요" onclick="sep'+index1+'()"><img class="mate-ic-btn'+index1+'" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="e-lat'+index1+'"></td><td><input type="hidden" value="" class="e-lng'+index1+'"></td></tr></table><div class="fare'+index1+'">1인당 적립 포인트:</div><div class="dur'+index1+'">예상 소요 시간:</div><div class="dis'+index1+'">예상 거리:</div></div><span id="finish'+index1+'">설정완료</span></div><div id="map'+index1+'"></div>';
+	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index1+'"><div><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index1+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index1+'" style="display:inline;"><tr><td><input type="text" onclick="ssp'+index1+'()" value="" class="mate-s-addr'+index1+'" placeholder="출발지를 입력하세요"><input type="time" value="" class="mate-s-time'+index1+'" placeholder="아침 8:00"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow'+index1+'()"></td><td><input type="hidden" value="" name="s-lat'+index1+'" class="s-lat'+index1+'"></td><td><input type="hidden" value="" name="s-lng'+index1+'" class="s-lng'+index1+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="mate-e-addr'+index1+'" class="mate-e-addr'+index1+'" placeholder="도착지를 입력하세요" onclick="sep'+index1+'()"><img class="mate-ic-btn'+index1+'" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" name="e-lat'+index1+'" class="e-lat'+index1+'"></td><td><input type="hidden" value="" name="e-lng'+index1+'" class="e-lng'+index1+'"></td><td><input type="hidden" name="latlng'+index1+'" value="" id="latlng'+index1+'"></td></tr></table><div class="fare'+index1+'">1인당 적립 포인트:</div><div class="dur'+index1+'">예상 소요 시간:</div><div class="dis'+index1+'">예상 거리:</div><div onclick="finish'+index1+'()">설정완료</div><div id="map'+index1+'"></div></div></div>';
 	index1++;
 }
 function insRow() {
@@ -159,15 +161,15 @@ function insRow() {
 	}
 	index++;
 	if (index == 2) {
-		$(".s-sec").attr("style", "height:270px;");
-	} else if (index == 3) {
 		$(".s-sec").attr("style", "height:320px;");
-	} else if (index == 4) {
+	} else if (index == 3) {
 		$(".s-sec").attr("style", "height:370px;");
-	} else if (index == 5) {
+	} else if (index == 4) {
 		$(".s-sec").attr("style", "height:420px;");
-	} else if (index == 6) {
+	} else if (index == 5) {
 		$(".s-sec").attr("style", "height:470px;");
+	} else if (index == 6) {
+		$(".s-sec").attr("style", "height:520px;");
 	}
 	
 	oTbl = document.getElementById("addTable");
@@ -190,15 +192,15 @@ function insRow2() {
 	}
 	index2++;
 	if (index2 == 12) {
-		$(".s-sec2").attr("style", "height:270px;");
-	} else if (index2 == 13) {
 		$(".s-sec2").attr("style", "height:320px;");
-	} else if (index2 == 14) {
+	} else if (index2 == 13) {
 		$(".s-sec2").attr("style", "height:370px;");
-	} else if (index2 == 15) {
+	} else if (index2 == 14) {
 		$(".s-sec2").attr("style", "height:420px;");
-	} else if (index2 == 16) {
+	} else if (index2 == 15) {
 		$(".s-sec2").attr("style", "height:470px;");
+	} else if (index2 == 16) {
+		$(".s-sec2").attr("style", "height:520px;");
 	}
 	
 	oTbl2 = document.getElementById("addTable2");
@@ -313,15 +315,15 @@ function remove() {
 	}
 	console.log(index);
 	if (index >= 5) {
-		$(".s-sec").attr("style", "height:420px;");
+		$(".s-sec").attr("style", "height:470px;");
 	} else if (index == 1) {
-		$(".s-sec").attr("style", "height:220px;");
-	} else if (index == 2) {
 		$(".s-sec").attr("style", "height:270px;");
-	} else if (index == 3) {
+	} else if (index == 2) {
 		$(".s-sec").attr("style", "height:320px;");
-	} else if (index == 4) {
+	} else if (index == 3) {
 		$(".s-sec").attr("style", "height:370px;");
+	} else if (index == 4) {
+		$(".s-sec").attr("style", "height:420px;");
 	}
 }
 function remove2() {
@@ -331,15 +333,15 @@ function remove2() {
 	} catch(TypeError) {
 	}
 	if (index2 >= 15) {
-		$(".s-sec2").attr("style", "height:420px;");
+		$(".s-sec2").attr("style", "height:470px;");
 	} else if (index2 == 11) {
-		$(".s-sec2").attr("style", "height:220px;");
-	} else if (index2 == 12) {
 		$(".s-sec2").attr("style", "height:270px;");
-	} else if (index2 == 13) {
+	} else if (index2 == 12) {
 		$(".s-sec2").attr("style", "height:320px;");
-	} else if (index2 == 14) {
+	} else if (index2 == 13) {
 		$(".s-sec2").attr("style", "height:370px;");
+	} else if (index2 == 14) {
+		$(".s-sec2").attr("style", "height:420px;");
 	}
 }
 function remove3() {
@@ -559,7 +561,7 @@ function sep5() {
 }
 
 
-$("#finish").on("click", function() {
+function finish() {
 	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {
 		alert("검색 후에 시도해주세요");
 		return;
@@ -615,6 +617,7 @@ $("#finish").on("click", function() {
 		dataType : "json",
 		success : function(result){
 			$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
+			$(".s-sec2").attr("style","margin:300px 0px 0px 0px;");
 			$(".fare").remove();
 			$(".dur").remove();
 			$(".dis").remove();
@@ -702,6 +705,150 @@ $("#finish").on("click", function() {
 			console.error(status + " : " + error);
 		}
 	});
-})
+}
+function finish2() {
+	if($(".s-lat2").val() == "" || $(".s-lng2").val() == "" || $(".e-lat2").val() == "" || $(".e-lng2").val() == "") {
+		alert("검색 후에 시도해주세요");
+		return;
+	}
+	var latlng = "";
+	var splace2 = $(".mate-s-addr2").val();
+	var eplace2 = $(".mate-e-addr2").val();
+	var w12p = $("#w-addr12").val();
+	var w13p = $("#w-addr13").val();
+	var w14p = $("#w-addr14").val();
+	var w15p = $("#w-addr15").val();
+	var w16p = $("#w-addr16").val();
+	var slat2 = $(".s-lat2").val();
+	var slng2 = $(".s-lng2").val();
+	var w12lat = $(".w-lat12").val();
+	var w12lng = $(".w-lng12").val();
+	var w13lat = $(".w-lat13").val();
+	var w13lng = $(".w-lng13").val();
+	var w14lat = $(".w-lat14").val();
+	var w14lng = $(".w-lng14").val();
+	var w15lat = $(".w-lat15").val();
+	var w15lng = $(".w-lng15").val();
+	var w16lat = $(".w-lat16").val();
+	var w16lng = $(".w-lng16").val();
+	var elat2 = $(".e-lat2").val();
+	var elng2 = $(".e-lng2").val();
+	$.ajax({
+		url : "${pageContext.request.contextPath}/setWayPath2",		
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify({slat2: slat2,
+			slng2: slng2,
+			elat2: elat2,
+			elng2: elng2,
+			w12lat: w12lat,
+			w12lng: w12lng,
+			w13lat: w13lat,
+			w13lng: w13lng,
+			w14lat: w14lat,
+			w14lng: w14lng,
+			w15lat: w15lat,
+			w15lng: w15lng,
+			w16lat: w16lat,
+			w16lng: w16lng,
+			splace2: splace2,
+			eplace2: eplace2,
+			w12p: w12p,
+			w13p: w13p,
+			w14p: w14p,
+			w15p: w15p,
+			w16p: w16p}),
+
+		dataType : "json",
+		success : function(result){
+			$("#map2").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
+			$(".fare2").remove();
+			$(".dur2").remove();
+			$(".dis2").remove();
+			document.getElementsByClassName("mate-s-addr2")[0].value = splace2;
+			document.getElementsByClassName("mate-e-addr2")[0].value = eplace2;
+			document.getElementById("w-addr12").value = w12p;
+			document.getElementById("w-addr13").value = w13p;
+			document.getElementById("w-addr14").value = w14p;
+			document.getElementById("w-addr15").value = w15p;
+			document.getElementById("w-addr16").value = w16p;
+			var bounds = new kakao.maps.LatLngBounds();
+			bounds.extend(new kakao.maps.LatLng(slat2, slng2));
+			bounds.extend(new kakao.maps.LatLng(elat2, elng2));
+			latlng = result;
+			document.getElementById("latlng2").value = latlng.toString();
+			var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
+			mapOption = { 
+			    center: new kakao.maps.LatLng(slat2, slng2), // 지도의 중심좌표
+			    level: 4 // 지도의 확대 레벨
+			};  
+			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			map.setBounds(bounds);
+			
+			var positions = [
+				{
+					latlng: new kakao.maps.LatLng(slat2, slng2)
+				},
+				{
+					latlng: new kakao.maps.LatLng(w12lat, w12lng)
+				},
+				{
+					latlng: new kakao.maps.LatLng(w13lat, w13lng)
+				},
+				{
+					latlng: new kakao.maps.LatLng(w14lat, w14lng)
+				},
+				{
+					latlng: new kakao.maps.LatLng(w15lat, w15lng)
+				},
+				{
+					latlng: new kakao.maps.LatLng(w16lat, w16lng)
+				},
+				{
+					latlng: new kakao.maps.LatLng(elat2, elng2)
+				}
+			];
+			
+			for (var i=0;i<positions.length;i++) {
+				var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(36, 36); // 마커이미지의 크기입니다
+				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+				var marker = new kakao.maps.Marker({
+					position: positions[i].latlng,
+					map: map,
+					image: markerImage
+				});
+			}
+			
+			
+			//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+			//테스트 결과 json 파싱해서 for문 반복으로 넣어주면 될듯
+			var linePath = [
+				new kakao.maps.LatLng(slat2, slng2),
+				];
+			for (var i=0; i<latlng.length; i++) {
+					if (i == latlng.length) {
+						linePath.push(new kakao.maps.LatLng(elat2,elng2));
+						break;
+					}
+					linePath.push(new kakao.maps.LatLng(latlng[i+1],latlng[i]),);
+					i++;
+				};
+			
+			//지도에 표시할 선을 생성합니다
+			var polyline = new kakao.maps.Polyline({
+				path: linePath, // 선을 구성하는 좌표배열 입니다
+				strokeWeight: 5, // 선의 두께 입니다
+				strokeColor: '#4454a1', // 선의 색깔입니다
+				strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+				strokeStyle: 'solid', // 선의 스타일입니다
+				map: map
+			});
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
 </script>
 </html>
