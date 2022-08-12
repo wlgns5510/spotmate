@@ -113,7 +113,7 @@
 									<a href="./driver"><button type="button" class="myPage_btnY">등록하러가기 ></button></a>
 								</form>
 							</div>
-<!--  -->
+<!--  메모-->
 						</article>
 					</tr>
 
