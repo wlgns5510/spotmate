@@ -23,11 +23,6 @@ import com.spotmate.vo.DaylatlngVo;
 import com.spotmate.vo.DriverWriteVo;
 import com.spotmate.vo.LatlngVo;
 import com.spotmate.vo.SearchVo;
-<<<<<<< HEAD
-import com.spotmate.vo.Waylatlng2Vo;
-import com.spotmate.vo.WaylatlngVo;
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 @Controller
 public class DriverWriteController {
@@ -40,14 +35,6 @@ public class DriverWriteController {
 		return "/driver/driverMain";
 	}
 	
-<<<<<<< HEAD
-	@RequestMapping(value = "/test", method = { RequestMethod.GET, RequestMethod.POST })
-	public String test() {
-		return "/test/test";
-	}
-
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	@RequestMapping(value = "/driver", method = { RequestMethod.GET, RequestMethod.POST })
 	public String driveMain() {
 		return "/driver/driverMain";
@@ -133,86 +120,9 @@ public class DriverWriteController {
 		model.addAttribute("no", no);
 		return "/driver/swp";
 	}
-<<<<<<< HEAD
-	@ResponseBody
-	@RequestMapping(value = "/setWayPath2", method = { RequestMethod.GET, RequestMethod.POST })
-	public List<Double> setWayPath2(Model model, @RequestBody Waylatlng2Vo waylatlng2) throws IOException {
-		List<Double> start = new ArrayList<Double>();
-		start.add(waylatlng2.getSlng2());
-		start.add(waylatlng2.getSlat2());
-		List<Double> end = new ArrayList<Double>();
-		end.add(waylatlng2.getElng2());
-		end.add(waylatlng2.getElat2());
-		List<Double> way2 = new ArrayList<Double>();
-		way2.add(waylatlng2.getW12lng());
-		way2.add(waylatlng2.getW12lat());
-		List<Double> way3 = new ArrayList<Double>();
-		way3.add(waylatlng2.getW13lng());
-		way3.add(waylatlng2.getW13lat());
-		List<Double> way4 = new ArrayList<Double>();
-		way4.add(waylatlng2.getW14lng());
-		way4.add(waylatlng2.getW14lat());
-		List<Double> way5 = new ArrayList<Double>();
-		way5.add(waylatlng2.getW15lng());
-		way5.add(waylatlng2.getW15lat());
-		List<Double> way6 = new ArrayList<Double>();
-		way6.add(waylatlng2.getW16lng());
-		way6.add(waylatlng2.getW16lat());
-		LatlngHttpRequest lhr = new LatlngHttpRequest(start, way2);
-		LatlngHttpRequest lhr2 = new LatlngHttpRequest(way2, way3);
-		LatlngHttpRequest lhr3 = new LatlngHttpRequest(way3, way4);
-		LatlngHttpRequest lhr4 = new LatlngHttpRequest(way4, way5);
-		LatlngHttpRequest lhr5 = new LatlngHttpRequest(way5, way6);
-		LatlngHttpRequest lhr6 = new LatlngHttpRequest(way6, end);
-		List<Double> route = lhr.getVer();
-		List<Double> route2 = lhr2.getVer();
-		List<Double> route3 = lhr3.getVer();
-		List<Double> route4 = lhr4.getVer();
-		List<Double> route5 = lhr5.getVer();
-		List<Double> route6 = lhr6.getVer();
-		List<Double> mergedRoute = new ArrayList<Double>();
-		mergedRoute.addAll(route);
-		mergedRoute.addAll(route2);
-		mergedRoute.addAll(route3);
-		mergedRoute.addAll(route4);
-		mergedRoute.addAll(route5);
-		mergedRoute.addAll(route6);
-		System.out.println(mergedRoute.size());
-		return mergedRoute;
-	}
-
-	@RequestMapping(value = "/swp2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String swp2() throws IOException {
-		return "/driver/swp2";
-	}
-
-	@RequestMapping(value = "/swp3", method = { RequestMethod.GET, RequestMethod.POST })
-	public String swp3() throws IOException {
-		return "/driver/swp3";
-	}
-
-	@RequestMapping(value = "/swp4", method = { RequestMethod.GET, RequestMethod.POST })
-	public String swp4() throws IOException {
-		return "/driver/swp4";
-	}
-
-	@RequestMapping(value = "/swp5", method = { RequestMethod.GET, RequestMethod.POST })
-	public String swp5() throws IOException {
-		return "/driver/swp5";
-	}
-
-	@RequestMapping(value = "/swp6", method = { RequestMethod.GET, RequestMethod.POST })
-	public String swp6() throws IOException {
-		return "/driver/swp6";
-	}
-
-	@RequestMapping(value = "/sep", method = { RequestMethod.GET, RequestMethod.POST })
-	public String sep() throws IOException {
-=======
 	@RequestMapping(value = "/sep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String sep(@PathVariable("no") int no, Model model) throws IOException {
 		model.addAttribute("no", no);
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 		return "/driver/sep";
 	}
 	@ResponseBody

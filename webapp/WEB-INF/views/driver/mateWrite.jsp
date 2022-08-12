@@ -45,17 +45,9 @@
 						<div class="schedule">
 							<span>일정을 추가하려면 눌러주세요</span>
 							<img class="ia-btn2" src="assets/images/ico_add.png" onclick="add()">
-<<<<<<< HEAD
-=======
 							<img class="rmv-btn" src="assets/images/ico_close.png" onclick="rmv()">
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
-							<p>드라이버님의 1일차 이동 경로를 입력해주세요*</p>
 						</div>
-<<<<<<< HEAD
 						
-
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 						<div id="input-div">
 							<img class="mate-img" src="assets/images/map_line_03.png">
 							<table id="addTable1">
@@ -80,17 +72,14 @@
 									<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 								</tr>
 							</table>
-<<<<<<< HEAD
 						<div class='fare'>1인당 적립 포인트:</div>
 				<div class='dur'>예상 소요 시간:</div>
 				<div class='dis'>예상 거리:</div>
 				<div onclick="finish()">설정완료</div>
 				<div id="map"></div>
-=======
 						<div class='fare1'>1인당 적립 포인트:</div>
 				<div id="finish1" onclick="setDayPath(1)">설정완료</div>
 				<div id="map1"></div>
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 				</div>
 			</div>
 			</div>
@@ -149,19 +138,6 @@ var a, b, oTbl;
 var index = 2;
 
 function add() {
-<<<<<<< HEAD
-	if (index1 >= 6) {
-		alert("여행 일자는 5일 이상 추가할 수 없습니다.");
-		index1 = 6;
-		return;
-	}
-	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index1+'"><div><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index1+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index1+'" style="display:inline;"><tr><td><input type="text" onclick="ssp'+index1+'()" value="" class="mate-s-addr'+index1+'" placeholder="출발지를 입력하세요"><input type="time" value="" class="mate-s-time'+index1+'" placeholder="아침 8:00"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow'+index1+'()"></td><td><input type="hidden" value="" name="s-lat'+index1+'" class="s-lat'+index1+'"></td><td><input type="hidden" value="" name="s-lng'+index1+'" class="s-lng'+index1+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="mate-e-addr'+index1+'" class="mate-e-addr'+index1+'" placeholder="도착지를 입력하세요" onclick="sep'+index1+'()"><img class="mate-ic-btn'+index1+'" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" name="e-lat'+index1+'" class="e-lat'+index1+'"></td><td><input type="hidden" value="" name="e-lng'+index1+'" class="e-lng'+index1+'"></td><td><input type="hidden" name="latlng'+index1+'" value="" id="latlng'+index1+'"></td></tr></table><div class="fare'+index1+'">1인당 적립 포인트:</div><div class="dur'+index1+'">예상 소요 시간:</div><div class="dis'+index1+'">예상 거리:</div><div onclick="finish'+index1+'()">설정완료</div><div id="map'+index1+'"></div></div></div>';
-	index1++;
-}
-function insRow() {
-	
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	if (index >= 6) {
 		alert("여행 일자는 5일 이상 추가할 수 없습니다.");
 		index = 6;
@@ -169,18 +145,6 @@ function insRow() {
 	}
 	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index+'"><div><span>일정을 추가하려면 눌러주세요</span><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index+'" style="display:inline;"><tr><td><input type="text" id="s-addr'+index+'" name="splace'+index+'" onclick="ssp('+index+')" value="" class="mate-s-addr'+index+'" placeholder="출발지를 입력하세요"><input type="time" value="" name="stime'+index+'" class="mate-s-time'+index+'" placeholder="아침 8:00"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow('+index+')"></td><td><input type="hidden" value="" class="hide-s-addr'+index+'"></td><td><input type="hidden" value="" name="slat'+index+'" class="s-lat'+index+'"></td><td><input type="hidden" name="slng'+index+'" value="" class="s-lng'+index+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="eplace'+index+'" id="e-addr'+index+'" class="mate-e-addr'+index+'" placeholder="도착지를 입력하세요" onclick="sep('+index+')"><img onclick="clean('+index+')" class="ic-btn" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="hide-e-addr'+index+'"></td><td><input type="hidden" value="" name="elat'+index+'" class="e-lat'+index+'"></td><td><input type="hidden" name="elng'+index+'" value="" class="e-lng'+index+'"></td><td><input type="hidden" name="latlng'+index+'" value="" id="latlng'+index+'"></td></tr></table><p class="fare'+index+'">1인당 적립 포인트:</p><p id="finish'+index+'" onclick="setDayPath('+index+')">설정완료</p><div id="map'+index+'"></div></div></div>';
 	index++;
-<<<<<<< HEAD
-	if (index == 2) {
-		$(".s-sec").attr("style", "height:320px;");
-	} else if (index == 3) {
-		$(".s-sec").attr("style", "height:370px;");
-	} else if (index == 4) {
-		$(".s-sec").attr("style", "height:420px;");
-	} else if (index == 5) {
-		$(".s-sec").attr("style", "height:470px;");
-	} else if (index == 6) {
-		$(".s-sec").attr("style", "height:520px;");
-=======
 	for (var i=1;i<index;i++) {
 		if ( $(".hide-s-addr"+i).val() != "" ) {
 			document.getElementById("s-addr"+i).value = $(".hide-s-addr"+i).val();
@@ -188,7 +152,6 @@ function insRow() {
 		if ( $(".hide-e-addr"+i).val() != "" ) {
 			document.getElementById("e-addr"+i).value = $(".hide-e-addr"+i).val();
 		}
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	}
 	for (var i=1;i<=index;i++) {
 		for (var j=(9*i)+(i+1);j<(9*i)+(i+1)+5;j++) {
@@ -197,232 +160,8 @@ function insRow() {
 			}
 		}
 	}
-<<<<<<< HEAD
-	index2++;
-	if (index2 == 12) {
-		$(".s-sec2").attr("style", "height:320px;");
-	} else if (index2 == 13) {
-		$(".s-sec2").attr("style", "height:370px;");
-	} else if (index2 == 14) {
-		$(".s-sec2").attr("style", "height:420px;");
-	} else if (index2 == 15) {
-		$(".s-sec2").attr("style", "height:470px;");
-	} else if (index2 == 16) {
-		$(".s-sec2").attr("style", "height:520px;");
-	}
-	
-	oTbl2 = document.getElementById("addTable2");
-	var oRow = oTbl2.insertRow();
-	oRow.onmouseover=function(){oTbl2.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-	var oCell = oRow.insertCell();
-	
-	//삽입될 Form Tag
-	var waypoint = '<input type="text" value="" onclick="search1()" id="w-addr'+ index2 + '" placeholder="경유지를 입력하세요"><input type="time" value="" class="w-time'+ index2 + '" placeholder="아침 8:00"><input type="hidden" value="" class="w-lat'+ index2 + '"><input type="hidden" value="" class="w-lng'+ index2 + '"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove2()">';
-	
-	oCell.innerHTML = waypoint;
-	
 }
-function insRow3() {
 	
-	if (index3 >= 26) {
-		alert("경유지는 5개 이상 추가할 수 없습니다.");
-		index3 = 26;
-		return;
-	}
-	index3++;
-	if (index3 == 22) {
-		$(".s-sec3").attr("style", "height:270px;");
-	} else if (index3 == 23) {
-		$(".s-sec3").attr("style", "height:320px;");
-	} else if (index3 == 24) {
-		$(".s-sec3").attr("style", "height:370px;");
-	} else if (index3 == 25) {
-		$(".s-sec3").attr("style", "height:420px;");
-	} else if (index3 == 26) {
-		$(".s-sec3").attr("style", "height:470px;");
-	}
-	
-	oTbl3 = document.getElementById("addTable3");
-	var oRow = oTbl3.insertRow();
-	oRow.onmouseover=function(){oTbl3.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-	var oCell = oRow.insertCell();
-	
-	//삽입될 Form Tag
-	var waypoint = '<input type="text" value="" onclick="search2()" id="w-addr'+ index3 + '" placeholder="경유지를 입력하세요"><input type="time" value="" class="w-time'+ index3 + '" placeholder="아침 8:00"><input type="hidden" value="" class="w-lat'+ index3 + '"><input type="hidden" value="" class="w-lng'+ index3 + '"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove3()">';
-	
-	oCell.innerHTML = waypoint;
-	
-}
-function insRow4() {
-	
-	if (index4 >= 36) {
-		alert("경유지는 5개 이상 추가할 수 없습니다.");
-		index4 = 36;
-		return;
-	}
-	index4++;
-	if (index4 == 32) {
-		$(".s-sec4").attr("style", "height:270px;");
-	} else if (index4 == 33) {
-		$(".s-sec4").attr("style", "height:320px;");
-	} else if (index4 == 34) {
-		$(".s-sec4").attr("style", "height:370px;");
-	} else if (index4 == 35) {
-		$(".s-sec4").attr("style", "height:420px;");
-	} else if (index4 == 36) {
-		$(".s-sec4").attr("style", "height:470px;");
-	}
-	
-	oTbl4 = document.getElementById("addTable4");
-	var oRow = oTbl4.insertRow();
-	oRow.onmouseover=function(){oTbl4.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-	var oCell = oRow.insertCell();
-	
-	//삽입될 Form Tag
-	var waypoint = '<input type="text" value="" onclick="search3()" id="w-addr'+ index4 + '" placeholder="경유지를 입력하세요"><input type="time" value="" class="w-time'+ index4 + '" placeholder="아침 8:00"><input type="hidden" value="" class="w-lat'+ index4 + '"><input type="hidden" value="" class="w-lng'+ index4 + '"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove4()">';
-	
-	oCell.innerHTML = waypoint;
-	
-}
-function insRow5() {
-	
-	if (index5 >= 46) {
-		alert("경유지는 5개 이상 추가할 수 없습니다.");
-		index5 = 46;
-		return;
-	}
-	index5++;
-	if (index5 == 42) {
-		$(".s-sec5").attr("style", "height:270px;");
-	} else if (index5 == 43) {
-		$(".s-sec5").attr("style", "height:320px;");
-	} else if (index5 == 44) {
-		$(".s-sec5").attr("style", "height:370px;");
-	} else if (index5 == 45) {
-		$(".s-sec5").attr("style", "height:420px;");
-	} else if (index5 == 46) {
-		$(".s-sec5").attr("style", "height:470px;");
-	}
-	
-	oTbl5 = document.getElementById("addTable5");
-	var oRow = oTbl5.insertRow();
-	oRow.onmouseover=function(){oTbl5.clickedRowIndex=this.rowIndex}; //clickedRowIndex - 클릭한 Row의 위치를 확인;
-	var oCell = oRow.insertCell();
-	
-	//삽입될 Form Tag
-	var waypoint = '<input type="text" value="" onclick="search4()" id="w-addr'+ index5 + '" placeholder="경유지를 입력하세요"><input type="time" value="" class="w-time'+ index5 + '" placeholder="아침 8:00"><input type="hidden" value="" class="w-lat'+ index5 + '"><input type="hidden" value="" class="w-lng'+ index5 + '"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove5()">';
-	
-	oCell.innerHTML = waypoint;
-	
-}
-function remove() {
-	try {
-		oTbl.deleteRow(oTbl.clickedRowIndex);
-		index--;
-	} catch(TypeError) {
-	}
-	console.log(index);
-	if (index >= 5) {
-		$(".s-sec").attr("style", "height:470px;");
-	} else if (index == 1) {
-		$(".s-sec").attr("style", "height:270px;");
-	} else if (index == 2) {
-		$(".s-sec").attr("style", "height:320px;");
-	} else if (index == 3) {
-		$(".s-sec").attr("style", "height:370px;");
-	} else if (index == 4) {
-		$(".s-sec").attr("style", "height:420px;");
-	}
-}
-function remove2() {
-	try {
-		oTbl2.deleteRow(oTbl2.clickedRowIndex);
-		index2--;
-	} catch(TypeError) {
-	}
-	if (index2 >= 15) {
-		$(".s-sec2").attr("style", "height:470px;");
-	} else if (index2 == 11) {
-		$(".s-sec2").attr("style", "height:270px;");
-	} else if (index2 == 12) {
-		$(".s-sec2").attr("style", "height:320px;");
-	} else if (index2 == 13) {
-		$(".s-sec2").attr("style", "height:370px;");
-	} else if (index2 == 14) {
-		$(".s-sec2").attr("style", "height:420px;");
-	}
-}
-function remove3() {
-	try {
-		oTbl3.deleteRow(oTbl3.clickedRowIndex);
-		index3--;
-	} catch(TypeError) {
-	}
-	if (index3 >= 25) {
-		$(".s-sec3").attr("style", "height:420px;");
-	} else if (index3 == 21) {
-		$(".s-sec3").attr("style", "height:220px;");
-	} else if (index3 == 22) {
-		$(".s-sec3").attr("style", "height:270px;");
-	} else if (index3 == 23) {
-		$(".s-sec3").attr("style", "height:320px;");
-	} else if (index3 == 24) {
-		$(".s-sec3").attr("style", "height:370px;");
-	}
-}
-function remove4() {
-	try {
-		oTbl4.deleteRow(oTbl4.clickedRowIndex);
-		index4--;
-	} catch(TypeError) {
-	}
-	if (index4 >= 35) {
-		$(".s-sec4").attr("style", "height:420px;");
-	} else if (index4 == 31) {
-		$(".s-sec4").attr("style", "height:220px;");
-	} else if (index4 == 32) {
-		$(".s-sec4").attr("style", "height:270px;");
-	} else if (index4 == 33) {
-		$(".s-sec4").attr("style", "height:320px;");
-	} else if (index4 == 34) {
-		$(".s-sec4").attr("style", "height:370px;");
-	}
-}
-function remove5() {
-	try {
-		oTbl5.deleteRow(oTbl5.clickedRowIndex);
-		index5--;
-	} catch(TypeError) {
-	}
-	if (index5 >= 45) {
-		$(".s-sec5").attr("style", "height:420px;");
-	} else if (index5 == 41) {
-		$(".s-sec5").attr("style", "height:220px;");
-	} else if (index5 == 42) {
-		$(".s-sec5").attr("style", "height:270px;");
-	} else if (index5 == 43) {
-		$(".s-sec5").attr("style", "height:320px;");
-	} else if (index5 == 44) {
-		$(".s-sec5").attr("style", "height:370px;");
-	}
-}
-function search() {
-	window.open("swp"+oTbl.clickedRowIndex, "child", "width=1350, height=820, left=300, top=100");
-}
-function search1() {
-	window.open("swp1"+oTbl2.clickedRowIndex, "child", "width=1350, height=820, left=300, top=100");
-}
-function search2() {
-	window.open("swp2"+oTbl3.clickedRowIndex, "child", "width=1350, height=820, left=300, top=100");
-}
-function search3() {
-	window.open("swp3"+oTbl4.clickedRowIndex, "child", "width=1350, height=820, left=300, top=100");
-}
-function search4() {
-	window.open("swp4"+oTbl5.clickedRowIndex, "child", "width=1350, height=820, left=300, top=100");
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
-}
 
 function rmv() {
 	index--;
@@ -559,10 +298,6 @@ function clean(index) {
 }
 
 
-<<<<<<< HEAD
-function finish() {
-	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {
-=======
 function search(a) {
 	window.open("swp/"+a, "child", "width=1350, height=820, left=300, top=100");
 }
@@ -577,7 +312,6 @@ function sep(index) {
 
 function setDayPath(index) {
 	if( $(".s-lat"+index).val() == "" || $(".s-lng"+index).val() == "" || $(".e-lat"+index).val() == "" || $(".e-lng"+index).val() == "" ) {
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 		alert("검색 후에 시도해주세요");
 		return;
 	}
@@ -632,7 +366,6 @@ function setDayPath(index) {
 
 		dataType : "json",
 		success : function(result){
-<<<<<<< HEAD
 			$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
 			$(".s-sec2").attr("style","margin:300px 0px 0px 0px;");
 			$(".fare").remove();
@@ -655,7 +388,7 @@ function setDayPath(index) {
 			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
 			    level: 4 // 지도의 확대 레벨
 			};  
-=======
+			
 			$("#map"+index).attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
 			$(".fare"+index).remove();
 			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare"+index+"' value='"+result.fare+"'>"+result.fare+"</div>";
@@ -708,7 +441,6 @@ function setDayPath(index) {
 				    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
 				    level: 4 // 지도의 확대 레벨
 				};  
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			map.setBounds(bounds);
 			
@@ -777,152 +509,5 @@ function setDayPath(index) {
 		}
 	});
 }
-<<<<<<< HEAD
-function finish2() {
-	if($(".s-lat2").val() == "" || $(".s-lng2").val() == "" || $(".e-lat2").val() == "" || $(".e-lng2").val() == "") {
-		alert("검색 후에 시도해주세요");
-		return;
-	}
-	var latlng = "";
-	var splace2 = $(".mate-s-addr2").val();
-	var eplace2 = $(".mate-e-addr2").val();
-	var w12p = $("#w-addr12").val();
-	var w13p = $("#w-addr13").val();
-	var w14p = $("#w-addr14").val();
-	var w15p = $("#w-addr15").val();
-	var w16p = $("#w-addr16").val();
-	var slat2 = $(".s-lat2").val();
-	var slng2 = $(".s-lng2").val();
-	var w12lat = $(".w-lat12").val();
-	var w12lng = $(".w-lng12").val();
-	var w13lat = $(".w-lat13").val();
-	var w13lng = $(".w-lng13").val();
-	var w14lat = $(".w-lat14").val();
-	var w14lng = $(".w-lng14").val();
-	var w15lat = $(".w-lat15").val();
-	var w15lng = $(".w-lng15").val();
-	var w16lat = $(".w-lat16").val();
-	var w16lng = $(".w-lng16").val();
-	var elat2 = $(".e-lat2").val();
-	var elng2 = $(".e-lng2").val();
-	$.ajax({
-		url : "${pageContext.request.contextPath}/setWayPath2",		
-		type : "post",
-		contentType : "application/json",
-		data : JSON.stringify({slat2: slat2,
-			slng2: slng2,
-			elat2: elat2,
-			elng2: elng2,
-			w12lat: w12lat,
-			w12lng: w12lng,
-			w13lat: w13lat,
-			w13lng: w13lng,
-			w14lat: w14lat,
-			w14lng: w14lng,
-			w15lat: w15lat,
-			w15lng: w15lng,
-			w16lat: w16lat,
-			w16lng: w16lng,
-			splace2: splace2,
-			eplace2: eplace2,
-			w12p: w12p,
-			w13p: w13p,
-			w14p: w14p,
-			w15p: w15p,
-			w16p: w16p}),
-
-		dataType : "json",
-		success : function(result){
-			$("#map2").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
-			$(".fare2").remove();
-			$(".dur2").remove();
-			$(".dis2").remove();
-			document.getElementsByClassName("mate-s-addr2")[0].value = splace2;
-			document.getElementsByClassName("mate-e-addr2")[0].value = eplace2;
-			document.getElementById("w-addr12").value = w12p;
-			document.getElementById("w-addr13").value = w13p;
-			document.getElementById("w-addr14").value = w14p;
-			document.getElementById("w-addr15").value = w15p;
-			document.getElementById("w-addr16").value = w16p;
-			var bounds = new kakao.maps.LatLngBounds();
-			bounds.extend(new kakao.maps.LatLng(slat2, slng2));
-			bounds.extend(new kakao.maps.LatLng(elat2, elng2));
-			latlng = result;
-			document.getElementById("latlng2").value = latlng.toString();
-			var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
-			mapOption = { 
-			    center: new kakao.maps.LatLng(slat2, slng2), // 지도의 중심좌표
-			    level: 4 // 지도의 확대 레벨
-			};  
-			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-			map.setBounds(bounds);
-			
-			var positions = [
-				{
-					latlng: new kakao.maps.LatLng(slat2, slng2)
-				},
-				{
-					latlng: new kakao.maps.LatLng(w12lat, w12lng)
-				},
-				{
-					latlng: new kakao.maps.LatLng(w13lat, w13lng)
-				},
-				{
-					latlng: new kakao.maps.LatLng(w14lat, w14lng)
-				},
-				{
-					latlng: new kakao.maps.LatLng(w15lat, w15lng)
-				},
-				{
-					latlng: new kakao.maps.LatLng(w16lat, w16lng)
-				},
-				{
-					latlng: new kakao.maps.LatLng(elat2, elng2)
-				}
-			];
-			
-			for (var i=0;i<positions.length;i++) {
-				var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-				imageSize = new kakao.maps.Size(36, 36); // 마커이미지의 크기입니다
-				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-				var marker = new kakao.maps.Marker({
-					position: positions[i].latlng,
-					map: map,
-					image: markerImage
-				});
-			}
-			
-			
-			//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
-			//테스트 결과 json 파싱해서 for문 반복으로 넣어주면 될듯
-			var linePath = [
-				new kakao.maps.LatLng(slat2, slng2),
-				];
-			for (var i=0; i<latlng.length; i++) {
-					if (i == latlng.length) {
-						linePath.push(new kakao.maps.LatLng(elat2,elng2));
-						break;
-					}
-					linePath.push(new kakao.maps.LatLng(latlng[i+1],latlng[i]),);
-					i++;
-				};
-			
-			//지도에 표시할 선을 생성합니다
-			var polyline = new kakao.maps.Polyline({
-				path: linePath, // 선을 구성하는 좌표배열 입니다
-				strokeWeight: 5, // 선의 두께 입니다
-				strokeColor: '#4454a1', // 선의 색깔입니다
-				strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-				strokeStyle: 'solid', // 선의 스타일입니다
-				map: map
-			});
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
-	});
-}
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 </script>
 </html>
