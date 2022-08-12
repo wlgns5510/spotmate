@@ -8,6 +8,9 @@
 .id-btn:hover {
 	cursor: pointer;
 }
+.rmv-btn:hover {
+	cursor: pointer;
+}
 /* hover */
 
 .mate-ic-btn:hover {
@@ -45,6 +48,13 @@
 	padding: 0px 0px 5px 0px;
 }
 
+.id-btn {
+	display: inline;
+	margin: 0px 0px 0px 10px;
+}
+.rmv-btn {
+	padding: 0px 0px 5px 0px;
+}
 
 .f-sec #mate-s-date1 {
 	width: 590px;

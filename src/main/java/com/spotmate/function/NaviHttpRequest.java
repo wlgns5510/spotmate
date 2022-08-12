@@ -88,6 +88,7 @@ public class NaviHttpRequest {
 		String taxi = jFare.getAsJsonObject().get("taxi").toString();
 		String toll = jFare.getAsJsonObject().get("toll").toString();
 		int totalFare = Integer.parseInt(taxi) + Integer.parseInt(toll);
+		totalFare = (int) (totalFare*0.3);
 		StringBuffer str = new StringBuffer();
 		str.append(totalFare);
 		if (str.length() > 6) {

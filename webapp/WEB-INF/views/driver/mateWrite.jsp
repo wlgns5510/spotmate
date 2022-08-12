@@ -36,15 +36,16 @@
 			<form action="/mateWriteOk" method="post">
 				<p>등록하신 날짜와 출발시간입니다.</p>
 				<div class="f-sec">
-					<span>출발 날짜</span><input type="date" name="sdate" value="" id="mate-s-date">
+					<span>출발 날짜</span><input type="date" name="sdate1" value="" id="mate-s-date">
 					<br>
-					<span>도착 날짜</span><input type="date" name="edate" value="" id="mate-e-date">
+					<span>도착 날짜</span><input type="date" name="edate1" value="" id="mate-e-date">
 				</div>
 				<div id="s-sec-box">
 					<div class="s-sec1">
 						<div class="schedule">
 							<span>일정을 추가하려면 눌러주세요</span>
 							<img class="ia-btn2" src="assets/images/ico_add.png" onclick="add()">
+							<img class="rmv-btn" src="assets/images/ico_close.png" onclick="rmv()">
 							<p>드라이버님의 1일차 이동 경로를 입력해주세요*</p>
 						</div>
 						<div id="input-div">
@@ -52,22 +53,22 @@
 							<table id="addTable1">
 								<tr>
 									<td>
-										<input type="text" value="" id="s-addr1" class="mate-s-addr1" placeholder="출발지를 입력하세요" onclick="ssp(1)">
-										<input type="time" value="" id="s-time1" class="mate-s-time1" placeholder="아침 8:00">
+										<input type="text" name="splace1" value="" id="s-addr1" class="mate-s-addr1" placeholder="출발지를 입력하세요" onclick="ssp(1)">
+										<input type="time" name="stime1" value="" id="s-time1" class="mate-s-time1" placeholder="아침 8:00">
 										<img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow(1)">
 									</td>
 									<td><input type="hidden" value="" class="hide-s-addr1"></td>
-									<td><input type="hidden" value="" class="s-lat1"></td>
-									<td><input type="hidden" value="" class="s-lng1"></td>
+									<td><input type="hidden" name="slat1" value="" class="s-lat1"></td>
+									<td><input type="hidden" name="slng1" value="" class="s-lng1"></td>
 								</tr>
 								<tr class="mate-e-addr-tr">
 									<td>
-										<input type="text" value="" id="e-addr1" class="mate-e-addr1" placeholder="도착지를 입력하세요" onclick="sep(1)">
+										<input type="text" name="eplace1" value="" id="e-addr1" class="mate-e-addr1" placeholder="도착지를 입력하세요" onclick="sep(1)">
 										<img class="ic-btn" src="assets/images/ico_close.png" onclick="clean(1)">
 									</td>
 									<td><input type="hidden" value="" class="hide-e-addr1"></td>
-									<td><input type="hidden" value="" class="e-lat1"></td>
-									<td><input type="hidden" value="" class="e-lng1"></td>
+									<td><input type="hidden" name="elat1" value="" class="e-lat1"></td>
+									<td><input type="hidden" name="elng1" value="" class="e-lng1"></td>
 									<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 								</tr>
 							</table>
@@ -84,24 +85,22 @@
 					<p>차량 상세조건</p>
 					<table>
 						<tr>
-							<td><input type="checkbox" id="smoke" name="smoke"
-								value="nosmoke"><label for="smoke">비흡연자</label></td>
+							<td><input type="checkbox" id="nosmoke" name="nosmoke"
+								value="nosmoke"><label for="nosmoke">비흡연자</label></td>
 							<td><input class="td2" type="checkbox" id="phonecharge"
 								name="phonecharge" value="phonecharge"><label
 								for="phonecharge">핸드폰 충전기 이용 가능</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="wifi" id="wifi"
-								value="wifi"><label for="wifi">차량 와이파이 이용 가능</label></td>
+							<td><input type="checkbox" id="drivergender"
+								name="drivergender" value="female"><label
+								for="drivergender">여성 드라이버</label></td>
 							<td><input class="td2" type="checkbox" id="silence"
 								name="silence" value="silence"><label for="silence">조용하게
 									가는 것을 선호</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="drivergender"
-								name="drivergender" value="female"><label
-								for="drivergender">여성 드라이버</label></td>
-							<td><input class="td2" type="checkbox" id="pet" name="pet"
+							<td><input type="checkbox" id="pet" name="pet"
 								value="pet"><label for="pet">반려동물 탑승 가능</label></td>
 						</tr>
 					</table>
@@ -139,7 +138,7 @@ function add() {
 		index = 6;
 		return;
 	}
-	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index+'"><div><span>일정을 추가하려면 눌러주세요</span><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index+'" style="display:inline;"><tr><td><input type="text" id="s-addr'+index+'" onclick="ssp('+index+')" value="" class="mate-s-addr'+index+'" placeholder="출발지를 입력하세요"><input type="time" value="" class="mate-s-time'+index+'" placeholder="아침 8:00"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow('+index+')"></td><td><input type="hidden" value="" class="hide-s-addr'+index+'"></td><td><input type="hidden" value="" class="s-lat'+index+'"></td><td><input type="hidden" value="" class="s-lng'+index+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" id="e-addr'+index+'" class="mate-e-addr'+index+'" placeholder="도착지를 입력하세요" onclick="sep('+index+')"><img onclick="clean('+index+')" class="ic-btn" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="hide-e-addr'+index+'"></td><td><input type="hidden" value="" class="e-lat'+index+'"></td><td><input type="hidden" value="" class="e-lng'+index+'"></td><td><input type="hidden" name="latlng'+index+'" value="" id="latlng'+index+'"></td></tr></table><p class="fare'+index+'">1인당 적립 포인트:</p><p id="finish'+index+'" onclick="setDayPath('+index+')">설정완료</p><div id="map'+index+'"></div></div></div>';
+	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index+'"><div><span>일정을 추가하려면 눌러주세요</span><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index+'" style="display:inline;"><tr><td><input type="text" id="s-addr'+index+'" name="splace'+index+'" onclick="ssp('+index+')" value="" class="mate-s-addr'+index+'" placeholder="출발지를 입력하세요"><input type="time" value="" name="stime'+index+'" class="mate-s-time'+index+'" placeholder="아침 8:00"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow('+index+')"></td><td><input type="hidden" value="" class="hide-s-addr'+index+'"></td><td><input type="hidden" value="" name="slat'+index+'" class="s-lat'+index+'"></td><td><input type="hidden" name="slng'+index+'" value="" class="s-lng'+index+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="eplace'+index+'" id="e-addr'+index+'" class="mate-e-addr'+index+'" placeholder="도착지를 입력하세요" onclick="sep('+index+')"><img onclick="clean('+index+')" class="ic-btn" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="hide-e-addr'+index+'"></td><td><input type="hidden" value="" name="elat'+index+'" class="e-lat'+index+'"></td><td><input type="hidden" name="elng'+index+'" value="" class="e-lng'+index+'"></td><td><input type="hidden" name="latlng'+index+'" value="" id="latlng'+index+'"></td></tr></table><p class="fare'+index+'">1인당 적립 포인트:</p><p id="finish'+index+'" onclick="setDayPath('+index+')">설정완료</p><div id="map'+index+'"></div></div></div>';
 	index++;
 	for (var i=1;i<index;i++) {
 		if ( $(".hide-s-addr"+i).val() != "" ) {
@@ -156,9 +155,32 @@ function add() {
 			}
 		}
 	}
-	
 }
 
+function rmv() {
+	index--;
+	if (index <= 1) {
+		alert("여행 일자는 최소 하루여야 합니다.");
+		index = 2;
+		return;
+	}
+	$(".s-sec"+index).remove();
+	for (var i=1;i<index;i++) {
+		if ( $(".hide-s-addr"+i).val() != "" ) {
+			document.getElementById("s-addr"+i).value = $(".hide-s-addr"+i).val();
+		} 
+		if ( $(".hide-e-addr"+i).val() != "" ) {
+			document.getElementById("e-addr"+i).value = $(".hide-e-addr"+i).val();
+		}
+	}
+	for (var i=1;i<=index;i++) {
+		for (var j=(9*i)+(i+1);j<(9*i)+(i+1)+5;j++) {
+			if ( $(".mate-w-addr"+j).val() != "" && $(".mate-w-addr"+j).val() != null) {
+				document.getElementById("w-addr"+j).value = $(".mate-w-addr"+j).val();
+			}
+		}
+	}
+}
 
 function insRow(index) {
 		if ( document.getElementById("insRowChk").value == "" ) {
@@ -198,7 +220,7 @@ function insRow(index) {
 			var oCell = oRow.insertCell();
 			
 			//삽입될 Form Tag
-			var waypoint = '<input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" value="" class="w-time'+a+'" placeholder="아침 8:00"><input type="hidden" value="" class="w-lat'+a+'"><input type="hidden" value="" class="w-lng'+a+'"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
+			var waypoint = '<input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" name="wtime'+a+'" value="" class="w-time'+a+'" placeholder="아침 8:00"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
 			
 			oCell.innerHTML = waypoint;
 			
@@ -229,7 +251,7 @@ function insRow(index) {
 			var oCell = oRow.insertCell();
 			
 			//삽입될 Form Tag
-			var waypoint = '<input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" value="" class="w-time'+a+'" placeholder="아침 8:00"><input type="hidden" value="" class="w-lat'+a+'"><input type="hidden" value="" class="w-lng'+a+'"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
+			var waypoint = '<input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" name="wtime'+a+'" value="" class="w-time'+a+'" placeholder="아침 8:00"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
 			
 			oCell.innerHTML = waypoint;
 			
@@ -340,36 +362,41 @@ function setDayPath(index) {
 		success : function(result){
 			$("#map"+index).attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
 			$(".fare"+index).remove();
+			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare"+index+"' value='"+result.fare+"'>"+result.fare+"</div>";
 			document.getElementById("s-addr"+index).value = saddr;
 			document.getElementById("e-addr"+index).value = eaddr;
 			if (waddr1 != null) {
 				document.getElementById("w-addr"+((9*index)+(index+1))).value = waddr1;
-			} else if (waddr2 != null) {
+			} 
+			if (waddr2 != null) {
 				document.getElementById("w-addr"+((9*index)+(index+1)+1)).value = waddr2;
-			} else if (waddr3 != null) {
+			} 
+			if (waddr3 != null) {
 				document.getElementById("w-addr"+((9*index)+(index+1)+2)).value = waddr3;
-			} else if (waddr4 != null) {
+			} 
+			if (waddr4 != null) {
 				document.getElementById("w-addr"+((9*index)+(index+1)+3)).value = waddr4;
-			} else if (waddr5 != null) {
+			} 
+			if (waddr5 != null) {
 				document.getElementById("w-addr"+((9*index)+(index+1)+4)).value = waddr5;
 			}
 			var latArray = [slat, elat],
 				lngArray = [slng, elng];
 			if (wlat1 != null) {
-				latArray.wlat1 = wlat1;
-				lngArray.wlng1 = wlng1;
+				latArray.push(wlat1);
+				lngArray.push(wlng1);
 			} else if (wlat2 != null) {
-				latArray.wlat2 = wlat2;
-				lngArray.wlng2 = wlng2;
+				latArray.push(wlat2);
+				lngArray.push(wlng2);
 			} else if (wlat3 != null) {
-				latArray.wlat3 = wlat3;
-				lngArray.wlng3 = wlng3;
+				latArray.push(wlat3);
+				lngArray.push(wlng3);
 			} else if (wlat4 != null) {
-				latArray.wlat4 = wlat4;
-				lngArray.wlng4 = wlng4;
+				latArray.push(wlat4);
+				lngArray.push(wlng4);
 			} else if (wlat5 != null) {
-				latArray.wlat5 = wlat5;
-				lngArray.wlng5 = wlng5;
+				latArray.push(wlat5);
+				lngArray.push(wlng5);
 			};
 			var maxLat = Math.max(...latArray),
 				maxLng = Math.max(...lngArray),
@@ -378,7 +405,7 @@ function setDayPath(index) {
 				bounds = new kakao.maps.LatLngBounds();
 			bounds.extend(new kakao.maps.LatLng(maxLat, maxLng));
 			bounds.extend(new kakao.maps.LatLng(minLat, minLng));
-			latlng = result;
+			latlng = result.latlng;
 			document.getElementById("latlng"+index).value = latlng.toString();
 			var mapContainer = document.getElementById('map'+index), // 지도를 표시할 div 
 				mapOption = { 
