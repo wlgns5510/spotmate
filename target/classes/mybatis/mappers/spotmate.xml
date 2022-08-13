@@ -4,86 +4,18 @@
 <mapper namespace="spotmate">
 
 	<select id="list" resultType="com.spotmate.vo.UserVo">
-		select no,
-			id,
-			pw,
-			name,
-			email,
-			phone,
-			address,
-			gender,
-			birth,
-			licenseno licenseNo, 
-			licensetype licenseType
-		from users
-	       order by no desc
+		
 	</select>
 	
 	<select id="select" resultType="DWVo">
-		select type,
-			sdate,
-			splace,
-			eplace,
-			fare,
-			people
-		from dwv
+		
 	</select>
 	
 	<insert id="carpoolinsert" parameterType="DWVo">
-			insert into dwv
-			values ( 
-				#{type},
-				#{sdate},
-				#{edate},
-				#{stime},
-				#{splace},
-				#{eplace},
-				#{fare},
-				#{people},
-				#{slat},
-				#{slng},
-				#{elat},
-				#{elng},
-				#{latlng},
-				#{dur},
-				#{dis},
-				#{introduce},
-				#{comments},
-				1,
-				#{nosmoke}||' '||
-				#{phonecharge}||' '||
-				#{drivergender}||' '||
-				#{silence}||' '||
-				#{pet}
-			)
+			
 		</insert>
 		<insert id="hitchinsert" parameterType="DWVo">
-			insert into dwv
-			values ( 
-				#{type},
-				#{sdate},
-				#{sdate},
-				#{stime},
-				#{splace},
-				#{eplace},
-				#{fare},
-				#{people},
-				#{slat},
-				#{slng},
-				#{elat},
-				#{elng},
-				#{latlng},
-				#{dur},
-				#{dis},
-				#{introduce},
-				#{comments},
-				1,
-				#{nosmoke}||' '||
-				#{phonecharge}||' '||
-				#{drivergender}||' '||
-				#{silence}||' '||
-				#{pet}
-			)
+		
 		</insert>
 		
 		<insert id="mateinsert" parameterType="mwVo">
@@ -473,7 +405,8 @@
 				#{wtime41},
 				#{wplace41},
 				#{wlat41},
-				#{wlng41}
+				#{wlng41},
+				''
 			)
 			</if>
 			
@@ -671,7 +604,6 @@
 				''
 			)
 			</if>
-			
 			select *
 			from dual
 			
