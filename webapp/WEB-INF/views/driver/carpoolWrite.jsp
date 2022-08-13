@@ -48,7 +48,7 @@
 					 	<td><input autocomplete="off" type="text" name="eplace" value="" id="e-addr1" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
 						<td><input type="hidden" name="elat" value="" class="e-lat1"></td>
 						<td><input type="hidden" name="elng" value="" class="e-lng1"></td>
-						<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
+						<td><input type="hidden" name="latlng" value="" id="latlng1"></td>
 				</table>
 				<div class='fare'>1인당 적립 포인트:</div>
 				<div class='dur'>예상 소요 시간:</div>
@@ -99,6 +99,7 @@ $(document).ready(function() {
 
 
 document.getElementById("s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+document.getElementById("e-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("s-time").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(11, 16);
 
 $("#finish").on("click", function() {
@@ -106,7 +107,6 @@ $("#finish").on("click", function() {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
-	var latlng = "";
 	var splace = $("#s-addr1").val();
 	var eplace = $("#e-addr1").val();
 	var slat = $(".s-lat1").val();
@@ -139,7 +139,7 @@ $("#finish").on("click", function() {
 			var bounds = new kakao.maps.LatLngBounds();
 			bounds.extend(new kakao.maps.LatLng(slat, slng));
 			bounds.extend(new kakao.maps.LatLng(elat, elng));
-			latlng = result.latlng;
+			var latlng = result.latlng;
 			document.getElementById("latlng1").value = latlng.toString();
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = { 
@@ -156,18 +156,28 @@ $("#finish").on("click", function() {
 					latlng: new kakao.maps.LatLng(elat, elng)
 				}
 			];
+			var iwContent;
 			for (var i=0;i<2;i++) {
+				if ( i==0 ) {
+					iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">출발지 입니다</div>'; 
+				} else if (i==1){
+					iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">도착지 입니다</div>';
+				}
+				var infowindow = new kakao.maps.InfoWindow({
+				    content : iwContent
+				});
 				var min = Math.ceil(1),
-		    	max = Math.floor(14),
-		    	rnd = Math.floor(Math.random() * (max - min)) + min;
+			    	max = Math.floor(14),
+			    	rnd = Math.floor(Math.random() * (max - min)) + min;
 				var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
-				imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+					imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
 				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 				var marker = new kakao.maps.Marker({
 					position: positions[i].latlng,
 					map: map,
 					image: markerImage
 				});
+				infowindow.open(map, marker);
 			}
 			
 			//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다

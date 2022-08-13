@@ -137,18 +137,37 @@
 	};  
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	map.setBounds(bounds);
-	var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-	imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
-	imageOption = {
-		offset : new kakao.maps.Point(20, 36)
-	};
-	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-			imageOption)
-	var marker = new kakao.maps.Marker({
-		position: new kakao.maps.LatLng(slat, slng),
-		map: map,
-		image: markerImage
-	})
+	var positions = [
+		{
+			latlng: new kakao.maps.LatLng(slat, slng)
+		},
+		{
+			latlng: new kakao.maps.LatLng(elat, elng)
+		}
+	];
+	var iwContent;
+	for (var i=0;i<2;i++) {
+		if ( i==0 ) {
+			iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">출발지 입니다</div>'; 
+		} else if (i==1){
+			iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">도착지 입니다</div>';
+		}
+		var infowindow = new kakao.maps.InfoWindow({
+		    content : iwContent
+		});
+		var min = Math.ceil(1),
+	    	max = Math.floor(14),
+	    	rnd = Math.floor(Math.random() * (max - min)) + min;
+		var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
+			imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		var marker = new kakao.maps.Marker({
+			position: positions[i].latlng,
+			map: map,
+			image: markerImage
+		});
+		infowindow.open(map, marker);
+	}
 	
 	//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 	//테스트 결과 json 파싱해서 for문 반복으로 넣어주면 될듯
