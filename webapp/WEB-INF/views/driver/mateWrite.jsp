@@ -448,75 +448,45 @@ function setDayPath(index) {
 				document.getElementById("w-time"+(i+4)).value = wtime5;
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			//마커 위치 찍어주기 및 bound설정
 			var latArray = [slat, elat],
 				lngArray = [slng, elng],
 				positions = [{
 					latlng: new kakao.maps.LatLng(slat, slng)
 				},];
-			var ssum = parseFloat(slat) + parseFloat(slng);
-			var sumArray = [ssum];
 			if (wlat1 != null) {
 				latArray.push(wlat1);
 				lngArray.push(wlng1);
 				positions.push({latlng: new kakao.maps.LatLng(wlat1, wlng1)},);
-				var wsum1 = parseFloat(wlat1) + parseFloat(wlng1);
-				sumArray.push(wsum1);
 			} 
 			if (wlat2 != null) {
 				latArray.push(wlat2);
 				lngArray.push(wlng2);
 				positions.push({latlng: new kakao.maps.LatLng(wlat2, wlng2)},);
-				var wsum2 = parseFloat(wlat2) + parseFloat(wlng2);
-				sumArray.push(wsum2);
 			} 
 			if (wlat3 != null) {
 				latArray.push(wlat3);
 				lngArray.push(wlng3);
 				positions.push({latlng: new kakao.maps.LatLng(wlat3, wlng3)},);
-				var wsum3 = parseFloat(wlat3) + parseFloat(wlng3);
-				sumArray.push(wsum3);
 			}
 			if (wlat4 != null) {
 				latArray.push(wlat4);
 				lngArray.push(wlng4);
 				positions.push({latlng: new kakao.maps.LatLng(wlat4, wlng4)},);
-				var wsum4 = parseFloat(wlat4) + parseFloat(wlng4);
-				sumArray.push(wsum4);
 			}
 			if (wlat5 != null) {
 				latArray.push(wlat5);
 				lngArray.push(wlng5);
 				positions.push({latlng: new kakao.maps.LatLng(wlat5, wlng5)},);
-				var wsum5 = parseFloat(wlat5) + parseFloat(wlng5);
-				sumArray.push(wsum5);
 			};
 			positions.push({latlng: new kakao.maps.LatLng(elat, elng)});
-			var esum = parseFloat(elat) + parseFloat(elng);
-			sumArray.push(esum);
-			var maxSum = Math.max(...sumArray);
-			var minSum = Math.min(...sumArray);
-			var max;
-			var min;
-			for (var i=0;i<sumArray.length;i++) {
-				if ( sumArray[i] == maxSum ) {
-					max = i
-				} else if ( sumArray[i] == minSum ) {
-					min = i
-				}
-			}
+			var maxLat = Math.max(...latArray),
+				maxLng = Math.max(...lngArray),
+				minLat = Math.min(...latArray),
+				minLng = Math.min(...lngArray);
 			var	bounds = new kakao.maps.LatLngBounds();
-			bounds.extend(new kakao.maps.LatLng(latArray[max], lngArray[max]));
-			bounds.extend(new kakao.maps.LatLng(latArray[min], lngArray[min]));
+			bounds.extend(new kakao.maps.LatLng(maxLat, maxLng));
+			bounds.extend(new kakao.maps.LatLng(minLat, minLng));
 			document.getElementById("day"+index).value = day;
 			latlng = result.latlng;
 			document.getElementById("latlng"+index).value = latlng.toString();
