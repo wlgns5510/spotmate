@@ -49,6 +49,11 @@
 /* 	text-align: center; */
 /* } */
 
+.myPage_topNav {
+	background-color: green;
+    padding-top: 50px;
+}
+
 /*메뉴박스1*/
 .myPage_topNav.myPage_topNav_inner>.box1 {
 	width: 228px;
@@ -270,6 +275,7 @@
 	height: 100%;
 	/*border: 1px solid #ff00ff;*/
 	float: left;
+	padding-bottom: 20px;
 }
 
 /*h3 글자*/
@@ -311,7 +317,6 @@
 	float: left;
 	background: rgba(239, 239, 239, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
-	margin-top: 20px;
 }
 
 /*inputBox*/

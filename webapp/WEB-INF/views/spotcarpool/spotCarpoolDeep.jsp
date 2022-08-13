@@ -60,8 +60,10 @@
 				</span>
 
 			</div>
-
+			
+			<a href="/myReservationUserMain">
 			<button class="rideButton">탑승하기</button>
+			</a>
 		</div>
 	</div>
 
@@ -98,9 +100,11 @@
 		<div class="carpool-top2">
 			<p class="authDriverInfo">
 				SPOTMATE12 드라이버님의 차량 정보
+				<a href="/myQnaMain"> 
 				<button class="qnaButton">
 					<img class="qnaPicto" src="/assets/images/ico_talk.png"> 문의하기
 				</button>
+				</a>
 			</p>
 
 
@@ -294,11 +298,12 @@
 				</li>
 				<li>
 					<p class="recommend-point-list">소요 포인트 3,000P</p>
-					<button>
-						<img class="recommend-List-Picto"
-							src="/assets/images/external.png"> <span
-							class="choose-text">선택</span>
-					</button>
+					<a href="">
+						<button>
+							<img class="recommend-List-Picto" src="/assets/images/external.png"> 
+							<span class="choose-text">선택</span>
+						</button>
+					</a>
 				</li>
 			</ol>
 
@@ -311,11 +316,12 @@
 				</li>
 				<li>
 					<p class="recommend-point-list">소요 포인트 3,000P</p>
-					<button>
-						<img class="recommend-List-Picto"
-							src="/assets/images/external.png"> <span
-							class="choose-text">선택</span>
-					</button>
+					<a href="">
+						<button>
+							<img class="recommend-List-Picto" src="/assets/images/external.png"> 
+							<span class="choose-text">선택</span>
+						</button>
+					</a>
 				</li>
 			</ol>
 
@@ -328,11 +334,12 @@
 				</li>
 				<li>
 					<p class="recommend-point-list">소요 포인트 3,000P</p>
-					<button>
-						<img class="recommend-List-Picto"
-							src="/assets/images/external.png"> <span
-							class="choose-text">선택</span>
-					</button>
+					<a href="">
+						<button>
+							<img class="recommend-List-Picto" src="/assets/images/external.png"> 
+							<span class="choose-text">선택</span>
+						</button>
+					</a>
 				</li>
 			</ol>
 
@@ -345,17 +352,19 @@
 				</li>
 				<li>
 					<p class="recommend-point-list">소요 포인트 3,000P</p>
-					<button>
-						<img class="recommend-List-Picto"
-							src="/assets/images/external.png"> <span
-							class="choose-text">선택</span>
-					</button>
+					<a href="">
+						<button>
+							<img class="recommend-List-Picto" src="/assets/images/external.png"> 
+							<span class="choose-text">선택</span>
+						</button>
+					</a>
 				</li>
 			</ol>
 		</div>
 
-
+		<a href="/spotCarpool">
 		<button class="recommend-button">추천 리스트 더보기 ></button>
+		</a>
 
 	</div>
 

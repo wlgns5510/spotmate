@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CarpoolController {
 	
 	/*@Autowired
-	CarpoolService CarpoolService;*/
+	CarpoolService CarpoolService//;*/
 
 	@RequestMapping(value = "/spotMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotMain() {
