@@ -270,6 +270,7 @@
 	height: 100%;
 	/*border: 1px solid #ff00ff;*/
 	float: left;
+	padding-bottom: 20px;
 }
 
 /*h3 글자*/
@@ -311,7 +312,6 @@
 	float: left;
 	background: rgba(239, 239, 239, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
-	margin-top: 20px;
 }
 
 /*inputBox*/
