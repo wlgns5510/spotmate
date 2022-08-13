@@ -11,7 +11,7 @@ import com.spotmate.service.MypageJService;
 
 
 @Controller
-@RequestMapping(value="/mypage")
+@RequestMapping(value="/mypageJ")
 public class MypageJController {
 	 
 	@Autowired
@@ -22,7 +22,7 @@ public class MypageJController {
 	@RequestMapping(value="/myCouponMain", method={RequestMethod.GET, RequestMethod.POST})
 	public String myCouponMain() {
 		 
-		/*mypageJService.getCouponList();*/
+		mypageJService.getCouponList();
 		
 		return "/mypage/myCouponMain";
 	}

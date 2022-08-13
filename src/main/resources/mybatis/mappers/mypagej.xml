@@ -3,8 +3,15 @@
 
 <mapper namespace="mypagej">
 
-	
 
+	<select id="selectCouponList" resultType="couponVo">
+		select  no,
+		        buyDate,
+		        usePlace,
+		        status
+		from couponUsage
+		order by no desc
+	</select>
 
 	
 
