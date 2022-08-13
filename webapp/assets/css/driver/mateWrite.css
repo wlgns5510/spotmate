@@ -66,17 +66,10 @@
 	height: 50px;
 }
 
-<<<<<<< HEAD
-#s-sec-box {
-	margin: 0px 0px 50px 0px;
-}
-.s-sec #input-div #addTable {
-=======
 
 
 
-.s-sec1 #input-div #addTable1 {
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
+#input-div1 #addTable1 {
 	display: inline;
 }
 
@@ -121,31 +114,31 @@
 	height: 30px;
 }
 
-.s-sec1 .w-time11 {
+.s-sec1 #w-time11 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec1 .w-time12 {
+.s-sec1 #w-time12 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec1 .w-time13 {
+.s-sec1 #w-time13 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec1 .w-time14 {
+.s-sec1 #w-time14 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec1 .w-time15 {
+.s-sec1 #w-time15 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
@@ -157,27 +150,19 @@
 	height: 30px;
 }
 
+
 .s-sec2 {
 	margin: 30px 0px 30px 0px;
-<<<<<<< HEAD
-/* 	position:relative; */
-/* 	height: 220px; */
-}
-.s-sec2 > p {
-/* 	position: absolute; */
-/* 	top: 30px; */
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 }
 .s-sec2 > img {
-<<<<<<< HEAD
-/* 	position: absolute; */
-/* 	top: 100px; */
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	width: 15px;
 	height: 73px;
 }
+
+#input-div2 #addTable2 {
+	display: inline;
+}
+
 .s-sec2 .mate-s-addr2 {
 	margin: 10px 0px 10px 0px;
 	width: 400px;
@@ -217,31 +202,31 @@
 	width: 400px;
 	height: 30px;
 }
-.s-sec2 .w-time21 {
+.s-sec2 #w-time21 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec2 .w-time22 {
+.s-sec2 #w-time22 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec2 .w-time23 {
+.s-sec2 #w-time23 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec2 .w-time24 {
+.s-sec2 #w-time24 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec2 .w-time25 {
+.s-sec2 #w-time25 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
@@ -260,6 +245,9 @@
 .s-sec3 > img {
 	width: 15px;
 	height: 73px;
+}
+#input-div3 #addTable3 {
+	display: inline;
 }
 .s-sec3 .mate-s-addr3 {
 	margin: 10px 0px 10px 0px;
@@ -300,31 +288,31 @@
 	width: 400px;
 	height: 30px;
 }
-.s-sec3 .w-time31 {
+.s-sec3 #w-time31 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec3 .w-time32 {
+.s-sec3 #w-time32 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec3 .w-time33 {
+.s-sec3 #w-time33 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec3 .w-time34 {
+.s-sec3 #w-time34 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec3 .w-time35 {
+.s-sec3 #w-time35 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
@@ -341,6 +329,10 @@
 .s-sec4 > img {
 	width: 15px;
 	height: 73px;
+}
+
+#input-div4 #addTable4 {
+	display: inline;
 }
 .s-sec4 .mate-s-addr4 {
 	margin: 10px 0px 10px 0px;
@@ -384,31 +376,31 @@
 }
 
 
-.s-sec4 .w-time41 {
+.s-sec4 #w-time41 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time42 {
+.s-sec4 #w-time42 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time43 {
+.s-sec4 #w-time43 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time44 {
+.s-sec4 #w-time44 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec4 .w-time45 {
+.s-sec4 #w-time45 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
@@ -421,6 +413,10 @@
 
 .s-sec5 {
 	margin: 30px 0px 30px 0px;
+}
+
+#input-div5 #addTable5 {
+	display: inline;
 }
 .s-sec5 > img {
 	width: 15px;
@@ -467,31 +463,31 @@
 	height: 30px;
 }
 
-.s-sec5 .w-time51 {
+.s-sec5 #w-time51 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time52 {
+.s-sec5 #w-time52 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time53 {
+.s-sec5 #w-time53 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time54 {
+.s-sec5 #w-time54 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;
 }
 
-.s-sec5 .w-time55 {
+.s-sec5 #w-time55 {
 	width: 200px;
 	height: 30px;
 	margin: 0px 0px 0px 10px;

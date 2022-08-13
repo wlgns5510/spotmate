@@ -25,6 +25,31 @@ public class NaviHttpRequest {
 		this.end = end;
 	}
 	
+	private String convertMoney(StringBuffer money) {
+		StringBuffer str = new StringBuffer();
+		str.append(money);
+		if (str.length() > 6) {
+			if (str.length() == 7) {
+				str.insert(1, ",");
+				str.insert(5, ",");
+			} else if (str.length() == 8) {
+				str.insert(2, ",");
+				str.insert(6, ",");
+			}
+		} else if (str.length() <= 6 && str.length() > 3) {
+			if (str.length() == 6) {
+				str.insert(3, ",");
+			} else if (str.length() == 5) {
+				str.insert(2, ",");
+			} else if (str.length() == 4) {
+				str.insert(1, ",");
+			}
+		}
+		str.append("P");
+		
+		return str.toString();
+	}
+	
 	public Map<String, Object> getVer() throws IOException {
 		int totalDur = 0;
 		int totalDis = 0;
@@ -34,12 +59,6 @@ public class NaviHttpRequest {
 
 		httpConn.setRequestProperty("Authorization", "KakaoAK 2b24f06df2137983cc98995c1ddce575");
 
-//		InputStream responseStream = httpConn.getResponseCode() == 200
-//				? httpConn.getInputStream()
-//				: httpConn.getErrorStream();
-//		s = new Scanner(responseStream).useDelimiter("\\A");
-//		String result = s.hasNext() ? s.next() : "";
-//		s.close();
 		BufferedReader br = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
 		String line = "";
 		String result = "";
@@ -60,7 +79,7 @@ public class NaviHttpRequest {
 		section = section.substring(0, section.length()-1);
 		
 		JsonElement jSummary = JsonParser.parseString(summary);
-		String fare = jSummary.getAsJsonObject().get("fare").toString();
+		String Strfare = jSummary.getAsJsonObject().get("fare").toString();
 		String dur = jSummary.getAsJsonObject().get("duration").toString();
 		String dis = jSummary.getAsJsonObject().get("distance").toString();
 		totalDur = Integer.parseInt(dur);
@@ -84,31 +103,37 @@ public class NaviHttpRequest {
 		totalDis1.append(temp4);
 		totalDis1.append("km");
 		
-		JsonElement jFare = JsonParser.parseString(fare);
+		JsonElement jFare = JsonParser.parseString(Strfare);
 		String taxi = jFare.getAsJsonObject().get("taxi").toString();
 		String toll = jFare.getAsJsonObject().get("toll").toString();
-		int totalFare = Integer.parseInt(taxi) + Integer.parseInt(toll);
-		totalFare = (int) (totalFare*0.3);
-		StringBuffer str = new StringBuffer();
-		str.append(totalFare);
-		if (str.length() > 6) {
-			if (str.length() == 7) {
-				str.insert(1, ",");
-				str.insert(5, ",");
-			} else if (str.length() == 8) {
-				str.insert(2, ",");
-				str.insert(6, ",");
-			}
-		} else if (str.length() <= 6 && str.length() > 3) {
-			if (str.length() == 6) {
-				str.insert(3, ",");
-			} else if (str.length() == 5) {
-				str.insert(2, ",");
-			} else if (str.length() == 4) {
-				str.insert(1, ",");
+		int sum = Integer.parseInt(taxi) + Integer.parseInt(toll);
+		
+		int fare = 0;
+		StringBuffer totalFare = new StringBuffer();
+		if ((int) (sum * 0.3) % 10 == 0) {
+			fare = (int) (sum * 0.3);
+		} else {
+			for (int j = 1; j < 10; j++) {
+				if ((int) (sum * 0.3) % 10 == j) {
+					fare = (int) (sum * 0.3) + (10 - j);
+				}
 			}
 		}
-		str.append("P");
+		totalFare.append(fare);
+		String totalFares = convertMoney(totalFare);
+		
+		StringBuffer benefit = new StringBuffer();
+		if ((sum - (int) (sum * 0.3)) % 10 == 0) {
+			fare = sum - (int) (sum * 0.3);
+		} else {
+			for (int j = 1; j < 10; j++) {
+				if ( (sum - (int) (sum * 0.3)) % 10 == j) {
+					fare = (sum - (int) (sum * 0.3)) + (10 - j);
+				}
+			}
+		}
+		benefit.append(fare);
+		String benefits = convertMoney(totalFare);
 
 		JsonElement jRoad = JsonParser.parseString(section);
 		String roads = jRoad.getAsJsonObject().get("roads").toString();
@@ -140,7 +165,8 @@ public class NaviHttpRequest {
 			}
 		}
 		Map<String, Object> totalInfo= new HashMap<String, Object>();
-		totalInfo.put("totalFare", str);
+		totalInfo.put("totalFare", totalFares);
+		totalInfo.put("benefit", benefits);
 		totalInfo.put("totalDur", totalDur1);
 		totalInfo.put("totalDis", totalDis1);
 		totalInfo.put("latlng", latlng);

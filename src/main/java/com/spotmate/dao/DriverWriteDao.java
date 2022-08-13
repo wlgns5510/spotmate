@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.DriverWriteVo;
+import com.spotmate.vo.MateWriteVo;
 
 @Repository
 public class DriverWriteDao {
@@ -17,6 +18,9 @@ public class DriverWriteDao {
 	}
 	public void HitchInsert(DriverWriteVo dwv) {
 		ss.insert("spotmate.hitchinsert", dwv);
+	}
+	public void MateInsert(MateWriteVo mwVo) {
+		ss.insert("spotmate.mateinsert", mwVo);
 	}
 
 }

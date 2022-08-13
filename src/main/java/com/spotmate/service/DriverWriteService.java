@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.spotmate.dao.DriverWriteDao;
 import com.spotmate.vo.DriverWriteVo;
+import com.spotmate.vo.MateWriteVo;
 
 @Service
 public class DriverWriteService {
@@ -18,6 +19,10 @@ public class DriverWriteService {
 	
 	public void HitchRegister(DriverWriteVo dwv) {
 		dwd.HitchInsert(dwv);
+	}
+	
+	public void MateRegister(MateWriteVo mwVo) {
+		dwd.MateInsert(mwVo);
 	}
 
 }
