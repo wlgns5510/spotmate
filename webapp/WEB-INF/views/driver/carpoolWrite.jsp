@@ -25,13 +25,12 @@
 	</div>
 	<div class="mid">
 		<form action="/carpoolWriteOk" method="post">
-		<input type="hidden" name="type" value="1">
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
-				<span>출발 날짜</span><input type="date" name="sdate" value="" id="s-date">
-				<span>출발 시간</span><input type="time" name="stime" value="" id="s-time">
+				<span>출발 날짜</span><input type="date" name="sdate1" value="" id="s-date">
+				<span>출발 시간</span><input type="time" name="stime1" value="" id="s-time">
 				<br>
-				<span>도착 날짜</span><input type="date" name="edate" value="" id="e-date">
+				<span>도착 날짜</span><input type="date" name="edate1" value="" id="e-date">
 			</div>
 			<div class="s-sec">
 				<p>드라이버님의 이동 경로를 입력해주세요*</p>
@@ -40,15 +39,15 @@
 				<img src="assets/images/map_line_02.png">
 				<table>
 					<tr>
-						<td><input autocomplete="off" type="text" name="splace" value="" id="s-addr1" class="s-addr" placeholder="출발지를 입력하세요" onclick="ssp()"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
-						<td><input type="hidden" name="slat" value="" class="s-lat1"></td>
-						<td><input type="hidden" name="slng" value="" class="s-lng1"></td>
+						<td><input autocomplete="off" type="text" name="splace1" value="" id="s-addr1" class="s-addr" placeholder="출발지를 입력하세요" onclick="ssp()"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
+						<td><input type="hidden" name="slat1" value="" class="s-lat1"></td>
+						<td><input type="hidden" name="slng1" value="" class="s-lng1"></td>
 					</tr>
 					<tr>
-					 	<td><input autocomplete="off" type="text" name="eplace" value="" id="e-addr1" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
-						<td><input type="hidden" name="elat" value="" class="e-lat1"></td>
-						<td><input type="hidden" name="elng" value="" class="e-lng1"></td>
-						<td><input type="hidden" name="latlng" value="" id="latlng1"></td>
+					 	<td><input autocomplete="off" type="text" name="eplace1" value="" id="e-addr1" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
+						<td><input type="hidden" name="elat1" value="" class="e-lat1"></td>
+						<td><input type="hidden" name="elng1" value="" class="e-lng1"></td>
+						<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 				</table>
 				<div class='fare'>1인당 적립 포인트:</div>
 				<div class='dur'>예상 소요 시간:</div>
@@ -64,7 +63,7 @@
 				<table class="deepsel">
 					<tr>
 						<td><input type="checkbox" id="nosmoke" name="nosmoke" value="nosmoke"><label for="nosmoke">비흡연자</label></td>
-						<td><input class="td2" type="checkbox" id="phoneCharge" name="phoneCharge" value="phoneCharge"><label for="phoneCharge">핸드폰 충전기 이용 가능</label></td>
+						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge"><label for="phonecharge">핸드폰 충전기 이용 가능</label></td>
 					</tr>
 					<tr>
 						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender">여성 드라이버</label></td>
@@ -75,7 +74,7 @@
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="introduce" name="introduce" readonly></textarea>
+				<textarea class="introduce" name="introduce" readonly>${introduce}</textarea>
 				<p>드라이버님이 하고싶은 말을 적어주세요</p>
 				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 			</div>

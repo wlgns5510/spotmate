@@ -3,19 +3,120 @@
 
 <mapper namespace="spotmate">
 
-	<select id="list" resultType="com.spotmate.vo.UserVo">
-		
+	<select id="selectdriverinfo" resultType="String">
+		select introduce
+		from car
+		where no = 2
 	</select>
 	
 	<select id="select" resultType="DWVo">
 		
 	</select>
 	
-	<insert id="carpoolinsert" parameterType="DWVo">
-			
+	<insert id="carpoolinsert" parameterType="dwVo">
+	
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+				select seq_spotmate_no.nextval from dual 
+			</selectKey>
+
+			insert all
+			into spotmate
+			values (
+				#{no},
+				2,
+				#{sdate1}||' '||#{stime1},
+				#{edate1},
+				#{people},
+				#{type},
+				#{intfare},
+				#{dur},
+				#{dis},
+				#{comments}
+			)
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				3
+			)
+			into place values (
+				seq_place_no.nextval,
+				#{no},
+				'',
+				0,
+				'출발지',
+				#{stime1},
+				#{splace1},
+				#{slat1},
+				#{slng1},
+				#{latlng1}
+			)
+			into place 
+			values (
+				seq_place_no.nextval,
+				#{no},
+				'',
+				6,
+				'도착지',
+				'',
+				#{eplace1},
+				#{elat1},
+				#{elng1},
+				''
+			)
+			select * from dual
 		</insert>
-		<insert id="hitchinsert" parameterType="DWVo">
-		
+		<insert id="hitchinsert" parameterType="dwVo">
+			<selectKey keyProperty="no" resultType="int" order="BEFORE">
+				select seq_spotmate_no.nextval from dual 
+			</selectKey>
+
+			insert all
+			into spotmate
+			values (
+				#{no},
+				2,
+				#{sdate1}||' '||#{stime1},
+				#{sdate1},
+				#{people},
+				#{type},
+				#{intfare},
+				#{dur},
+				#{dis},
+				#{comments}
+			)
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				3
+			)
+			into place values (
+				seq_place_no.nextval,
+				#{no},
+				'',
+				0,
+				'출발지',
+				#{stime1},
+				#{splace1},
+				#{slat1},
+				#{slng1},
+				#{latlng1}
+			)
+			into place 
+			values (
+				seq_place_no.nextval,
+				#{no},
+				'',
+				6,
+				'도착지',
+				'',
+				#{eplace1},
+				#{elat1},
+				#{elng1},
+				''
+			)
+			select * from dual
 		</insert>
 		
 		<insert id="mateinsert" parameterType="mwVo">

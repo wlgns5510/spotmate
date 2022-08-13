@@ -42,7 +42,8 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/carpoolWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String carpool() {
+	public String carpool(Model model) {
+		model.addAttribute("introduce", dws.getDriverInfo());
 		return "/driver/carpoolWrite";
 	}
 
@@ -71,19 +72,22 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/carpoolWriteOk", method = { RequestMethod.GET, RequestMethod.POST })
-	public String carpoolOk(Model model, @ModelAttribute DriverWriteVo dwv) {
-		model.addAttribute("dwv", dwv);
+	public String carpoolOk(Model model, @ModelAttribute DriverWriteVo dwVo) {
+		dwVo.setIntfare(Integer.parseInt(dwVo.getFare().replaceAll("[,P]", "")));
+		model.addAttribute("dwv", dwVo);
 		return "/driver/carpoolWriteOk";
 	}
 
 	@RequestMapping(value = "/carpoolWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String carpoolInsert(@ModelAttribute DriverWriteVo dwv) {
-		dws.CarpoolRegister(dwv);
+	public String carpoolInsert(@ModelAttribute DriverWriteVo dwVo) {
+		System.out.println(dwVo.toString());
+		dws.CarpoolRegister(dwVo);
 		return "redirect:/myReservationDriverMain";
 	}
 
 	@RequestMapping(value = "/hitchWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitch() {
+	public String hitch(Model model) {
+		model.addAttribute("introduce", dws.getDriverInfo());
 		return "/driver/hitchWrite";
 	}
 
@@ -101,7 +105,8 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/mateWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mate() {
+	public String mate(Model model) {
+		model.addAttribute("introduce", dws.getDriverInfo());
 		return "/driver/mateWrite";
 	}
 

@@ -107,7 +107,7 @@
 						</tr>
 					</table>
 					<p>드라이버님을 소개해주세요*</p>
-					<textarea class="introduce" name="introduce" readonly>안녕하세요 저는 이준규입니다.</textarea>
+					<textarea class="introduce" name="introduce" readonly>${introduce}</textarea>
 					<p>드라이버님이 하고싶은 말을 적어주세요</p>
 					<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 				</div>
@@ -221,6 +221,7 @@ function rmv() {
 function insRow(index) {
 	var i = (9*index)+(index+1);
 		if ( document.getElementById("insRowChk").value == "" ) {
+			
 			if ( a > i+5 && $("#w-addr"+a+"").val() == "") {
 				if ( i - a > 5 ) {
 					a = i;
@@ -248,7 +249,7 @@ function insRow(index) {
 			while($("#w-addr"+a+"").val() == "") {
 				a++;
 			}
-			if ( a >= b ) {
+			if ( a > b ) {
 				alert("경유지는 5개 이상 추가할 수 없습니다.");
 				a = b;
 				document.getElementById("insRowChk").value = "";
@@ -260,10 +261,10 @@ function insRow(index) {
 			var oCell = oRow.insertCell();
 			
 			//삽입될 Form Tag
-			var waypoint = '<input type="hidden" name="wtime'+a+'" value="" id="wtime'+a+'"><input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" onclick="setWayTime('+a+')" value="" id="w-time'+a+'"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
+			var waypoint = '<input type="hidden" name="wtime'+a+'" value="" id="wtime'+a+'"><input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" onclick="setWayTime('+a+')" value="" id="w-time'+a+'"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
 			
 			oCell.innerHTML = waypoint;
-			
+			console.log(a);
 			a++;
 		}
 		else {
@@ -291,10 +292,10 @@ function insRow(index) {
 			var oCell = oRow.insertCell();
 			
 			//삽입될 Form Tag
-			var waypoint = '<input type="hidden" name="wtime'+a+'" value="" id="wtime'+a+'"><input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" onclick="setWayTime('+a+')" value="" id="w-time'+a+'"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img style="display:inline;" class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
+			var waypoint = '<input type="hidden" name="wtime'+a+'" value="" id="wtime'+a+'"><input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" onclick="setWayTime('+a+')" value="" id="w-time'+a+'"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
 			
 			oCell.innerHTML = waypoint;
-			
+			console.log(a);
 			a++;
 		}
 }

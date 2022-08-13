@@ -3,7 +3,7 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="DWVo" type="com.spotmate.vo.DriverWriteVo" />
+		<typeAlias alias="dwVo" type="com.spotmate.vo.DriverWriteVo" />
 		<typeAlias alias="mwVo" type="com.spotmate.vo.MateWriteVo" />
 	</typeAliases>
 

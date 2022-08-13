@@ -28,8 +28,8 @@
 		<form action="/hitchWriteOk" method="post">
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
-				<span>출발 날짜</span><input style="width:550px;" type="text" name="sdate" value="" id="s-date" readonly><br>
-				<span>출발 시간</span><input style="width:550px;" type="text" name="stime" value="" id="s-time" readonly>
+				<span>출발 날짜</span><input type="text" name="sdate1" value="" id="hitch-s-date" readonly><br>
+				<span>출발 시간</span><input type="time" name="stime1" value="" id="hitch-s-time">
 			</div>
 			<div class="s-sec">
 				<p>드라이버님의 이동 경로를 입력해주세요*</p>
@@ -38,15 +38,15 @@
 				<img src="assets/images/map_line_02.png">
 				<table>
 					<tr>
-						<td><input type="text" value="" name="splace" id="s-addr" class="s-addr" placeholder="출발지를 입력하세요"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
-						<td><input type="hidden" name="slat" value="" class="s-lat"></td>
-						<td><input type="hidden" name="slng" value="" class="s-lng"></td>
+						<td><input autocomplete="off" type="text" name="splace1" value="" id="s-addr1" class="s-addr" placeholder="출발지를 입력하세요" onclick="ssp()"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
+						<td><input type="hidden" name="slat1" value="" class="s-lat1"></td>
+						<td><input type="hidden" name="slng1" value="" class="s-lng1"></td>
 					</tr>
 					<tr>
-					 	<td><input type="text" value="" name="eplace" id="e-addr" class="e-addr" placeholder="도착지를 입력하세요"><img class="ic-btn" src="assets/images/ico_close.png"></td>
-						<td><input type="hidden" name="elat" value="" class="e-lat"></td>
-						<td><input type="hidden" name="elng" value="" class="e-lng"></td>
-						<td><input type="hidden" name="latlng" value="" id="latlng"></td>
+					 	<td><input autocomplete="off" type="text" name="eplace1" value="" id="e-addr1" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
+						<td><input type="hidden" name="elat1" value="" class="e-lat1"></td>
+						<td><input type="hidden" name="elng1" value="" class="e-lng1"></td>
+						<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 				</table>
 				<div class='fare'>1인당 적립 포인트:</div>
 				<div class='dur'>예상 소요 시간:</div>
@@ -73,7 +73,7 @@
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="introduce" name="introduce" readonly></textarea>
+				<textarea class="introduce" name="introduce" readonly>${introduce}</textarea>
 				<p>드라이버님이 하고싶은 말을 적어주세요</p>
 				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 			</div>
@@ -95,20 +95,20 @@ $(document).ready(function() {
 	    });
 	});
 	
-document.getElementById("s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
-document.getElementById("s-time").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(11, 16);
+document.getElementById("hitch-s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+document.getElementById("hitch-s-time").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(11, 16);
+
 $("#finish").on("click", function() {
-	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {
+	if($(".s-lat1").val() == "" || $(".s-lng1").val() == "" || $(".e-lat1").val() == "" || $(".e-lng1").val() == "") {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
-	var latlng = "";
-	var splace = $(".s-addr").val();
-	var eplace = $(".e-addr").val();
-	var slat = $(".s-lat").val();
-	var slng = $(".s-lng").val();
-	var elat = $(".e-lat").val();
-	var elng = $(".e-lng").val();
+	var splace = $("#s-addr1").val();
+	var eplace = $("#e-addr1").val();
+	var slat = $(".s-lat1").val();
+	var slng = $(".s-lng1").val();
+	var elat = $(".e-lat1").val();
+	var elng = $(".e-lng1").val();
 	$.ajax({
 		
 		url : "${pageContext.request.contextPath}/setPath",		
@@ -130,13 +130,13 @@ $("#finish").on("click", function() {
 			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
 			document.getElementById("input-div").innerHTML += "<div class='dur'>예상 소요 시간:&nbsp; <input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
 			document.getElementById("input-div").innerHTML += "<div class='dis'>예상 거리:&nbsp; <input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
-			document.getElementById("s-addr").value = result.splace;
-			document.getElementById("e-addr").value = result.eplace;
+			document.getElementById("s-addr1").value = result.splace;
+			document.getElementById("e-addr1").value = result.eplace;
 			var bounds = new kakao.maps.LatLngBounds();
 			bounds.extend(new kakao.maps.LatLng(slat, slng));
 			bounds.extend(new kakao.maps.LatLng(elat, elng));
-			latlng = result.latlng;
-			document.getElementById("latlng").value = latlng.toString();
+			var latlng = result.latlng;
+			document.getElementById("latlng1").value = latlng.toString();
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = { 
 			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
@@ -144,18 +144,37 @@ $("#finish").on("click", function() {
 			};  
 			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			map.setBounds(bounds);
-			var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-			imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
-			imageOption = {
-				offset : new kakao.maps.Point(20, 36)
-			};
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-					imageOption)
-			var marker = new kakao.maps.Marker({
-				position: new kakao.maps.LatLng(slat, slng),
-				map: map,
-				image: markerImage
-			})
+			var positions = [
+				{
+					latlng: new kakao.maps.LatLng(slat, slng)
+				},
+				{
+					latlng: new kakao.maps.LatLng(elat, elng)
+				}
+			];
+			var iwContent;
+			for (var i=0;i<2;i++) {
+				if ( i==0 ) {
+					iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">출발지 입니다</div>'; 
+				} else if (i==1){
+					iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">도착지 입니다</div>';
+				}
+				var infowindow = new kakao.maps.InfoWindow({
+				    content : iwContent
+				});
+				var min = Math.ceil(1),
+			    	max = Math.floor(14),
+			    	rnd = Math.floor(Math.random() * (max - min)) + min;
+				var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
+					imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+				var marker = new kakao.maps.Marker({
+					position: positions[i].latlng,
+					map: map,
+					image: markerImage
+				});
+				infowindow.open(map, marker);
+			}
 			
 			//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 			//테스트 결과 json 파싱해서 for문 반복으로 넣어주면 될듯
@@ -177,17 +196,21 @@ $("#finish").on("click", function() {
 				strokeWeight: 5, // 선의 두께 입니다
 				strokeColor: '#4454a1', // 선의 색깔입니다
 				strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-				strokeStyle: 'solid' // 선의 스타일입니다
+// 				strokeStyle: 'shortdashdot', // 선의 스타일입니다
+// 				strokeStyle: 'longdash',
+// 				strokeStyle: 'dashed',
+				strokeStyle: 'solid',
+				map: map
 			});
 			
 			//지도에 선을 표시합니다 
-			polyline.setMap(map); 
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	});
 })
+
 $(".ae-btn").on("click", function() {
 	var saddr = $(".s-addr").val();
 	var slat = $(".s-lat").val();
@@ -207,11 +230,11 @@ $(".ic-btn").on("click", function() {
 	$(".s-addr").val("");
 	$(".e-addr").val("");
 })
-$("#s-addr").on("click", function() {
+function ssp() {
 	window.open("ssp/1", "child", "width=1350, height=820, left=300, top=100");
-})
-$("#e-addr").on("click", function() {
+}
+function sep() {
 	window.open("sep/1", "child", "width=1350, height=820, left=300, top=100");
-})
+}
 </script>
 </html>
