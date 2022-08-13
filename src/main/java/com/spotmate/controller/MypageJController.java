@@ -1,18 +1,32 @@
 package com.spotmate.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.spotmate.service.MypageJService;
 
 
 
 @Controller
+@RequestMapping(value="/mypage")
 public class MypageJController {
 	 
-
+	@Autowired
+	private MypageJService mypageJService;
+	
 	 
+	//쿠폰메인
+	@RequestMapping(value="/myCouponMain", method={RequestMethod.GET, RequestMethod.POST})
+	public String myCouponMain() {
+		 
+		/*mypageJService.getCouponList();*/
+		
+		return "/mypage/myCouponMain";
+	}
+	
 	@RequestMapping(value="/myCouponBuy", method={RequestMethod.GET, RequestMethod.POST})
 	public String myCouponBuy() {
 		return "/mypage/myCouponBuy";
@@ -20,14 +34,6 @@ public class MypageJController {
 	@RequestMapping(value="/myCouponUse", method={RequestMethod.GET, RequestMethod.POST})
 	public String myCouponUse() {
 		return "/mypage/myCouponUse";
-	}
-	  
-	//쿠폰메인
-	@RequestMapping(value="/myCouponMain", method={RequestMethod.GET, RequestMethod.POST})
-	public String myCouponMain() {
-		 
-		
-		return "/mypage/myCouponMain";
 	}
 	
 	@RequestMapping(value="/myInfoChk", method={RequestMethod.GET, RequestMethod.POST})

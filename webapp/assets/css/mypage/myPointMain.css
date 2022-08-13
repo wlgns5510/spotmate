@@ -49,6 +49,11 @@
 /* 	text-align: center; */
 /* } */
 
+.myPage_topNav {
+	background-color: green;
+    padding-top: 50px;
+}
+
 /*메뉴박스1*/
 .myPage_topNav.myPage_topNav_inner>.box1 {
 	width: 228px;

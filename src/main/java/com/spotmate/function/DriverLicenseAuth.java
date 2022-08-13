@@ -17,7 +17,7 @@ public class DriverLicenseAuth {
 		WebDriver driver = new ChromeDriver(options);
 		return driver;
 	}
-
+	
 	public String LicenseAuth(String name, String btd, String serial, String encSerial) {
 		WebDriver driver = setup();
 		driver.get("https://www.safedriving.or.kr/LnrForRtnLicns/LnrForRtnLicnsTruthYn.do");

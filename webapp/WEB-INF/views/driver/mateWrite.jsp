@@ -72,11 +72,6 @@
 									<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 								</tr>
 							</table>
-						<div class='fare'>1인당 적립 포인트:</div>
-				<div class='dur'>예상 소요 시간:</div>
-				<div class='dis'>예상 거리:</div>
-				<div onclick="finish()">설정완료</div>
-				<div id="map"></div>
 						<div class='fare1'>1인당 적립 포인트:</div>
 				<div id="finish1" onclick="setDayPath(1)">설정완료</div>
 				<div id="map1"></div>
@@ -315,7 +310,7 @@ function setDayPath(index) {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
-	var saddr = $(".mate-s-addr"+index).val();
+	var saddr = $(".hide-s-addr"+index).val();
 	var slat = $(".s-lat"+index).val();
 	var slng = $(".s-lng"+index).val();
 	var waddr1 = $("#w-addr"+((9*index)+(index+1))).val();
@@ -333,7 +328,7 @@ function setDayPath(index) {
 	var waddr5 = $("#w-addr"+((9*index)+(index+1)+4)).val();
 	var wlat5 = $(".w-lat"+((9*index)+(index+1)+4)).val();
 	var wlng5 = $(".w-lng"+((9*index)+(index+1)+4)).val();
-	var eaddr = $(".mate-e-addr"+index).val();
+	var eaddr = $(".hide-e-addr"+index).val();
 	var elat = $(".e-lat"+index).val();
 	var elng = $(".e-lng"+index).val();
 	$.ajax({
@@ -366,32 +361,9 @@ function setDayPath(index) {
 
 		dataType : "json",
 		success : function(result){
-			$("#map").attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
-			$(".s-sec2").attr("style","margin:300px 0px 0px 0px;");
-			$(".fare").remove();
-			$(".dur").remove();
-			$(".dis").remove();
-			document.getElementById("s-addr").value = splace;
-			document.getElementById("e-addr").value = eplace;
-			document.getElementById("w-addr2").value = w2p;
-			document.getElementById("w-addr3").value = w3p;
-			document.getElementById("w-addr4").value = w4p;
-			document.getElementById("w-addr5").value = w5p;
-			document.getElementById("w-addr6").value = w6p;
-			var bounds = new kakao.maps.LatLngBounds();
-			bounds.extend(new kakao.maps.LatLng(slat, slng));
-			bounds.extend(new kakao.maps.LatLng(elat, elng));
-			latlng = result;
-			document.getElementById("latlng").value = latlng.toString();
-			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-			mapOption = { 
-			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
-			    level: 4 // 지도의 확대 레벨
-			};  
-			
 			$("#map"+index).attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
 			$(".fare"+index).remove();
-			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare"+index+"' value='"+result.fare+"'>"+result.fare+"</div>";
+			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare"+index+"' value=''></div>";
 			document.getElementById("s-addr"+index).value = saddr;
 			document.getElementById("e-addr"+index).value = eaddr;
 			if (waddr1 != null) {
@@ -434,7 +406,7 @@ function setDayPath(index) {
 				bounds = new kakao.maps.LatLngBounds();
 			bounds.extend(new kakao.maps.LatLng(maxLat, maxLng));
 			bounds.extend(new kakao.maps.LatLng(minLat, minLng));
-			latlng = result.latlng;
+			latlng = result;
 			document.getElementById("latlng"+index).value = latlng.toString();
 			var mapContainer = document.getElementById('map'+index), // 지도를 표시할 div 
 				mapOption = { 
