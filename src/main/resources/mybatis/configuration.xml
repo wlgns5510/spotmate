@@ -6,7 +6,7 @@
 		<typeAlias alias="DWVo" type="com.spotmate.vo.DriverWriteVo" />
 		<typeAlias alias="mwVo" type="com.spotmate.vo.MateWriteVo" />
 	</typeAliases>
- 
+  
 	<mappers> 
 		<mapper resource="mybatis/mappers/spotmate.xml" />
 	</mappers>
