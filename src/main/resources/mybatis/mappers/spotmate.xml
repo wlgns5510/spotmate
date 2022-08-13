@@ -122,7 +122,8 @@
 				#{stime1},
 				#{splace1},
 				#{slat1},
-				#{slng1}
+				#{slng1},
+				#{latlng1}
 			)
 			<if test='wplace11 != null'>
 			into place 
@@ -135,7 +136,8 @@
 				#{wtime11},
 				#{wplace11},
 				#{wlat11},
-				#{wlng11}
+				#{wlng11},
+				''
 			)
 			
 			</if>
@@ -151,7 +153,8 @@
 				#{wtime12},
 				#{wplace12},
 				#{wlat12},
-				#{wlng12}
+				#{wlng12},
+				''
 			)
 			</if>
 			
@@ -166,7 +169,8 @@
 				#{wtime13},
 				#{wplace13},
 				#{wlat13},
-				#{wlng13}
+				#{wlng13},
+				''
 			)
 			</if>
 			
@@ -181,7 +185,8 @@
 				#{wtime14},
 				#{wplace14},
 				#{wlat14},
-				#{wlng14}
+				#{wlng14},
+				''
 			)
 			</if>
 			
@@ -196,7 +201,8 @@
 				#{wtime15},
 				#{wplace15},
 				#{wlat15},
-				#{wlng15}
+				#{wlng15},
+				''
 			)
 			</if>
 			
@@ -210,7 +216,8 @@
 				'',
 				#{eplace1},
 				#{elat1},
-				#{elng1}
+				#{elng1},
+				''
 			)
 			
 			<if test='splace2 != null'>
@@ -224,7 +231,8 @@
 				#{stime2},
 				#{splace2},
 				#{slat2},
-				#{slng2}
+				#{slng2},
+				#{latlng2}
 			)
 			</if>
 			
@@ -239,7 +247,8 @@
 				#{wtime21},
 				#{wplace21},
 				#{wlat21},
-				#{wlng21}
+				#{wlng21},
+				''
 			)
 			</if>
 			
@@ -254,7 +263,8 @@
 				#{wtime22},
 				#{wplace22},
 				#{wlat22},
-				#{wlng22}
+				#{wlng22},
+				''
 			)
 			</if>
 			
@@ -269,7 +279,8 @@
 				#{wtime23},
 				#{wplace23},
 				#{wlat23},
-				#{wlng23}
+				#{wlng23},
+				''
 			)
 			</if>
 			
@@ -284,7 +295,8 @@
 				#{wtime24},
 				#{wplace24},
 				#{wlat24},
-				#{wlng24}
+				#{wlng24},
+				''
 			)
 			</if>
 			
@@ -300,7 +312,8 @@
 				#{wtime25},
 				#{wplace25},
 				#{wlat25},
-				#{wlng25}
+				#{wlng25},
+				''
 			)
 			</if>
 			
@@ -315,7 +328,8 @@
 				'',
 				#{eplace2},
 				#{elat2},
-				#{elng2}
+				#{elng2},
+				''
 			)
 			</if>
 			
@@ -331,7 +345,8 @@
 				#{stime3},
 				#{splace3},
 				#{slat3},
-				#{slng3}
+				#{slng3},
+				#{latlng3}
 			)
 			</if>
 			
@@ -346,7 +361,8 @@
 				#{wtime31},
 				#{wplace31},
 				#{wlat31},
-				#{wlng31}
+				#{wlng31},
+				''
 			)
 			</if>
 			
@@ -361,7 +377,8 @@
 				#{wtime32},
 				#{wplace32},
 				#{wlat32},
-				#{wlng32}
+				#{wlng32},
+				''
 			)
 			</if>
 			
@@ -376,7 +393,8 @@
 				#{wtime33},
 				#{wplace33},
 				#{wlat33},
-				#{wlng33}
+				#{wlng33},
+				''
 			)
 			</if>
 			
@@ -391,7 +409,8 @@
 				#{wtime34},
 				#{wplace34},
 				#{wlat34},
-				#{wlng34}
+				#{wlng34},
+				''
 			)
 			</if>
 			
@@ -406,7 +425,8 @@
 				#{wtime35},
 				#{wplace35},
 				#{wlat35},
-				#{wlng35}
+				#{wlng35},
+				''
 			)
 			</if>
 			
@@ -421,7 +441,8 @@
 				'',
 				#{eplace3},
 				#{elat3},
-				#{elng3}
+				#{elng3},
+				''
 			)
 			</if>
 			
@@ -436,7 +457,8 @@
 				#{stime4},
 				#{splace4},
 				#{slat4},
-				#{slng4}
+				#{slng4},
+				#{latlng4}
 			)
 			</if>
 			
@@ -466,7 +488,8 @@
 				#{wtime42},
 				#{wplace42},
 				#{wlat42},
-				#{wlng42}
+				#{wlng42},
+				''
 			)
 			</if>
 			
@@ -481,7 +504,8 @@
 				#{wtime43},
 				#{wplace43},
 				#{wlat43},
-				#{wlng43}
+				#{wlng43},
+				''
 			)
 			</if>
 			
@@ -497,7 +521,8 @@
 				#{wtime44},
 				#{wplace44},
 				#{wlat44},
-				#{wlng44}
+				#{wlng44},
+				''
 			)
 			</if>
 			
@@ -512,7 +537,8 @@
 				#{wtime45},
 				#{wplace45},
 				#{wlat45},
-				#{wlng45}
+				#{wlng45},
+				''
 			)
 			</if>
 			
@@ -527,7 +553,8 @@
 				'',
 				#{eplace4},
 				#{elat4},
-				#{elng4}
+				#{elng4},
+				''
 			)
 			</if>
 			
@@ -543,7 +570,8 @@
 				#{stime5},
 				#{splace5},
 				#{slat5},
-				#{slng5}
+				#{slng5},
+				#{latlng5}
 			)
 			</if>
 			
@@ -558,7 +586,8 @@
 				#{wtime51},
 				#{wplace51},
 				#{wlat51},
-				#{wlng51}
+				#{wlng51},
+				''
 			)
 			</if>
 			
@@ -574,7 +603,8 @@
 				#{wtime52},
 				#{wplace52},
 				#{wlat52},
-				#{wlng52}
+				#{wlng52},
+				''
 			)
 			</if>
 			
@@ -589,7 +619,8 @@
 				#{wtime53},
 				#{wplace53},
 				#{wlat53},
-				#{wlng53}
+				#{wlng53},
+				''
 			)
 			</if>
 			
@@ -604,7 +635,8 @@
 				#{wtime54},
 				#{wplace54},
 				#{wlat54},
-				#{wlng54}
+				#{wlng54},
+				''
 			)
 			</if>
 			
@@ -619,7 +651,8 @@
 				#{wtime55},
 				#{wplace55},
 				#{wlat55},
-				#{wlng55}
+				#{wlng55},
+				''
 			)
 			</if>
 			
@@ -634,7 +667,8 @@
 				'',
 				#{eplace5},
 				#{elat5},
-				#{elng5}
+				#{elng5},
+				''
 			)
 			</if>
 			
