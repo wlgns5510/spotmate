@@ -54,6 +54,10 @@ public class LatlngHttpRequest {
 		String taxi = jFare.getAsJsonObject().get("taxi").toString();
 		String toll = jFare.getAsJsonObject().get("toll").toString();
 		int totalFare = Integer.parseInt(taxi) + Integer.parseInt(toll);
+		
+		
+		
+		
 		return totalFare;
 	}
 	

@@ -16,13 +16,6 @@
 	float:left; 
 	margin: 0px 30px 0px 0px;
 }
-.inner > .top > .clear > span {
-	position:absolute;
-	top: 170px;
-	left: 1010px;
-	font-size: 16px;
-	color: #4454a1;
-}
 .inner > .top > ul {
 	text-align:left; 
 	color: #4454a1; 

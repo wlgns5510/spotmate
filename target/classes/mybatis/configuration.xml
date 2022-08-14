@@ -3,10 +3,13 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="DWVo" type="com.spotmate.vo.DriverWriteVo" />
+		<typeAlias alias="dwVo" type="com.spotmate.vo.DriverWriteVo" />
+		<typeAlias alias="mwVo" type="com.spotmate.vo.MateWriteVo" />
+		<typeAlias alias="CouponVo" type="com.spotmate.vo.CouponVo" />
 	</typeAliases>
-
-	<mappers>
+  
+	<mappers> 
 		<mapper resource="mybatis/mappers/spotmate.xml" />
+		<mapper resource="mybatis/mappers/mypagej.xml" />
 	</mappers>
 </configuration>
