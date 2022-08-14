@@ -34,7 +34,7 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCh.arge">포인트 충전 ></a>
+					<a href="./myPointCharge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
@@ -96,11 +96,11 @@
 								- </span> <input name="endDate" type="date" value=""> <select
 								name="option1">
 								<option value="">유형</option>
-								<option value="gas">주유권</option>
+								<option value="주유">주유권</option>
 							</select> <select name="option2">
 								<option value="">사용여부</option>
-								<option value="unused">미사용</option>
-								<option value="use">사용완료</option>
+								<option value="미사용">미사용</option>
+								<option value="사용완료">사용완료</option>
 							</select>
 							<div class="btns">
 								<button type="submit" class="myPage_btnB">조회하기</button>
