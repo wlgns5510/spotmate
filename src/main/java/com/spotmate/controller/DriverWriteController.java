@@ -99,7 +99,6 @@ public class DriverWriteController {
 
 	@RequestMapping(value = "/hitchWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String hitchInsert(@ModelAttribute DriverWriteVo dwv) {
-		System.out.println(dwv.toString());
 		dws.HitchRegister(dwv);
 		return "redirect:/myReservationDriverMain";
 	}

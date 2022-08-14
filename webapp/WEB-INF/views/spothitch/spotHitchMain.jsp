@@ -58,14 +58,12 @@
 				</div>
 				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
 					
-				<a class="hitchdeep" href="/spotHitchhikedeep">
-					<button>
+				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
 						상세 조건
-					</button>
 				</a>
-				<button class="rideReq">
+				<a href="/spotHitchhikedeep" class="rideReq">
 					탑승 요청
-				</button>
+				</a>
 			</div>
 			<!-- 요 부분 반복문 -->
 			<div class="driverList">
@@ -85,14 +83,84 @@
 				</div>
 				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
 					
-				<a class="hitchdeep" href="/spotHitchhikedeep">
-					<button>
+				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
 						상세 조건
-					</button>
 				</a>
-				<button class="rideReq">
+				<a href="/spotHitchhikedeep" class="rideReq">
 					탑승 요청
-				</button>
+				</a>
+			</div>
+			<div class="driverList">
+				<div class="start">
+					<p>현재위치</p>
+					<span>대방역 1호선 2번 출구</span>
+				</div>
+				<div class="end">
+					<p>목적지</p>
+					<span>NAVER 본사</span>
+				</div>
+				<div class="num">
+					<span>탑승 인원수</span><p>1명</p>
+				</div>
+				<div class="usePoint">
+					<span>총 결제 포인트</span><p>3,000포인트</p>
+				</div>
+				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
+					
+				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
+						상세 조건
+				</a>
+				<a href="/spotHitchhikedeep" class="rideReq">
+					탑승 요청
+				</a>
+			</div>
+			<div class="driverList">
+				<div class="start">
+					<p>현재위치</p>
+					<span>대방역 1호선 2번 출구</span>
+				</div>
+				<div class="end">
+					<p>목적지</p>
+					<span>NAVER 본사</span>
+				</div>
+				<div class="num">
+					<span>탑승 인원수</span><p>1명</p>
+				</div>
+				<div class="usePoint">
+					<span>총 결제 포인트</span><p>3,000포인트</p>
+				</div>
+				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
+					
+				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
+						상세 조건
+				</a>
+				<a href="/spotHitchhikedeep" class="rideReq">
+					탑승 요청
+				</a>
+			</div>
+			<div class="driverList">
+				<div class="start">
+					<p>현재위치</p>
+					<span>대방역 1호선 2번 출구</span>
+				</div>
+				<div class="end">
+					<p>목적지</p>
+					<span>NAVER 본사</span>
+				</div>
+				<div class="num">
+					<span>탑승 인원수</span><p>1명</p>
+				</div>
+				<div class="usePoint">
+					<span>총 결제 포인트</span><p>3,000포인트</p>
+				</div>
+				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
+					
+				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
+						상세 조건
+				</a>
+				<a href="/spotHitchhikedeep" class="rideReq">
+					탑승 요청
+				</a>
 			</div>
 			<!-- 요 부분 반복문 -->
 		</div>
@@ -152,22 +220,18 @@
 		if (flag) {
 			marker.setMap(null);
 		}
-		var imageSrc = './assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-		imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
-		imageOption = {
-			offset : new kakao.maps.Point(27, 69)
-		};
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-				imageOption)
+		var imageSrc = './assets/images/common/android-icon-48x48.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize)
 		// 마커를 생성합니다
 		marker = new kakao.maps.Marker({
 			position : locPosition,
-			image : markerImage
+			image : markerImage,
+			map : map
 		});
-		marker.setMap(map);
 
 		//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-		var iwContent = '<div class="iw" style="width:250px; padding:10px 25px 10px 25px;">목적지</div> <div style="padding:10px 25px 10px 25px;">NAVER 본사</div> <div style="padding:10px 25px 10px 25px;">드라이버 &nbsp; spotmate12 님</div> <div style="padding:10px 25px 10px 25px;">탑승 가능 인원 수 &nbsp; 1명</div> <a href="/spotHitchhikedeep"><button style="width: 120px; height: 40px; margin: 0px 0px 15px 90px;">상세 보기</button></a>', iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+		var iwContent = '<div style="text-align:center; height:220px;"><div class="iw" style="width:250px; padding:10px 25px 10px 25px;">목적지</div> <div style="padding:10px 25px 10px 25px;">NAVER 본사</div> <div style="padding:10px 25px 10px 25px;">드라이버 &nbsp; spotmate12 님</div> <div style="padding:10px 25px 40px 25px;">탑승 가능 인원 수 &nbsp; 1명</div> <a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>', iwRemoveable = true;
 
 		// 인포윈도우를 생성합니다
 		var infowindow = new kakao.maps.InfoWindow({
@@ -186,7 +250,6 @@
 				data : JSON.stringify(temp),
 				dataType : "json",
 				success : function(result) {
-					console.log("good")
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
