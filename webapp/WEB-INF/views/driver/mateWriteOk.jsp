@@ -438,13 +438,71 @@
 					<p>드라이버님이 하고싶은 말을 적어주세요</p>
 					<textarea class="comments" name="comments" readonly>${mwVo.comments}</textarea>
 					</div>
-					<button>등록하기</button>
-				</form>
+					<p id="btn-modal">등록하기</p>
+    <div id="modal" class="modal-overlay">
+        <div class="modal-window">
+<!--             <div class="title"> -->
+<!--             </div> -->
+            <div class="close-area">X</div>
+            <div class="content">
+                <p>예상 적립 포인트는 +${mwVo.totalFare}입니다.</p>
+                <button id="sub-btn" type="submit">등록하기</button>
+            </div>
+        </div>
+    </div>
+		</form>
 			</div>
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
+const modal = document.getElementById("modal")
+function modalOn() {
+    modal.style.display = "flex"
+}
+function isModalOn() {
+    return modal.style.display === "flex"
+}
+function modalOff() {
+    modal.style.display = "none"
+}
+const btnModal = document.getElementById("btn-modal")
+btnModal.addEventListener("click", e => {
+	  $(".modal-overlay").css({
+          "top": (($(window).height()-$(".modal-overlay").outerHeight())/2+$(window).scrollTop())+"px",
+          "left": (($(window).width()-$(".modal-overlay").outerWidth())/2+$(window).scrollLeft())+"px"
+          //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정
+       }); 
+      
+      $(".modal-window").css("display","block"); //팝업 뒷배경 display block
+      $(".modal-overlay").css("display","block"); //팝업창 display block
+      
+      $("body").css("overflow","hidden");//body 스크롤바 없애기
+      modalOn()
+  	})
+const closeBtn = modal.querySelector(".close-area")
+closeBtn.addEventListener("click", e => {
+	$("body").css("overflow","auto");//body 스크롤바 생성
+    modalOff()
+})
+modal.addEventListener("click", e => {
+    const evTarget = e.target
+    if(evTarget.classList.contains("modal-overlay")) {
+    	$("body").css("overflow","auto");//body 스크롤바 생성
+        modalOff()
+    }
+})
+window.addEventListener("keyup", e => {
+    if(isModalOn() && e.key === "Escape") {
+    	$("body").css("overflow","auto");//body 스크롤바 생성
+        modalOff()
+    }
+})
+
+ 
+
+
+
 $(document).ready(function() {
 	$("input:text").attr("readonly", true);
 });
