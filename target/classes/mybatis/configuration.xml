@@ -6,6 +6,7 @@
 		<typeAlias alias="dwVo" type="com.spotmate.vo.DriverWriteVo" />
 		<typeAlias alias="mwVo" type="com.spotmate.vo.MateWriteVo" />
 		<typeAlias alias="CouponVo" type="com.spotmate.vo.CouponVo" />
+		<typeAlias alias="CouponVo" type="com.spotmate.vo.PointVo" />
 	</typeAliases>
   
 	<mappers> 
