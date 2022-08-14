@@ -4,15 +4,42 @@
 <mapper namespace="mypagej">
 
 
-	<select id="selectCouponList" resultType="couponVo">
-		select  no,
-		        buyDate,
-		        usePlace,
-		        status
-		from couponUsage
-		order by no desc
+	<select id="selectCouponList" parameterType="map" resultType="couponVo">
+		<![CDATA[
+		select  cu.no,
+		        cu.buyDate,
+		        cu.usePlace,
+		        cu.point,
+		        cu.status
+		from category ca, brand br, coupon co, couponUsage cu, users u
+		where u.no = cu.userno
+		and ca.no = br.cateNo
+		and br.no = co.brandno
+		and co.no = cu.couponNo
+		and u.no = '2'
+		]]>
+		
+		<if test="endDate != '' and endDate != null">
+			and #{endDate} >= cu.buyDate  
+		</if>
+		
+		<if test="startDate != '' and startDate != null">
+			and cu.buyDate >= #{startDate} 
+		</if>
+		
+		<if test="option2 != '' and option2 != null">
+			and cu.status = #{option2}
+		</if>
+		
+		<if test="option1 != '' and option1 != null">
+			and ca.name = #{option1}
+		</if>
+		
+		
+		<![CDATA[	
+		order by co.no desc
+		]]>
 	</select>
 
-	
 
 </mapper>
