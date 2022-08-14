@@ -34,7 +34,7 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="./myPointCh.arge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
@@ -91,9 +91,7 @@
 				<article class="myPage_article">
 
 					<div class="inputBox">
-						<form
-							action="${pageContext.request.contextPath }/mypageJ/myCouponMain"
-							method="get">
+						<form action="${pageContext.request.contextPath }/mypageJ/myCouponMain" method="get">
 							<input name="startDate" type="date" value=""> <span>
 								- </span> <input name="endDate" type="date" value=""> <select
 								name="option1">

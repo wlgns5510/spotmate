@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,9 +50,12 @@ public class MypageJController {
 	public String myInfoChk() {
 		return "/mypage/myInfoChk";
 	}
-
+	
+	//포인트충전
 	@RequestMapping(value = "/myPointCharge", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointCharge() {
+	public String myPointCharge(Long point) {
+		System.out.println(point);
+		
 		return "/mypage/myPointCharge";
 	}
 

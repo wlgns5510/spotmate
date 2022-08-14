@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-/*************************myPointCarge**************************/
+/*************************myPointCharge**************************/
 
 /*충전박스*/
-.myPage_article2>.myPage_pointCarge {
+.myPage_article2> .myPage_pointCharge {
 	width: 610px;
-	height: 690px;
+	height: 400px;
 	background: rgba(255, 255, 255, 1);
 	opacity: 1;
 	border-radius: 10px;
@@ -15,7 +15,7 @@
 }
 
 /*충전금액 글자*/
-.myPage_pointCarge>.cargeMoney {
+.myPage_pointCharge>.chargeMoney {
 	color: rgba(68, 65, 80, 1);
 	font-family: Noto Sans;
 	font-weight: Thin Italic;
@@ -24,12 +24,12 @@
 }
 
 /*충전금액 설명*/
-.cargeEx {
+.chargeEx {
 	padding: 20px 0px 45px 0px;
 	margin-left: 30px;
 }
 
-.cargeEx>p {
+.chargeEx>p {
 	color: rgba(68, 65, 80, 1);
 	font-family: Noto Sans;
 	font-weight: Regular;
@@ -38,7 +38,7 @@
 }
 
 /*무통장입금 입금자명 글자*/
-.myPage_pointCarge>p {
+.myPage_pointCharge>p {
 	color: rgba(68, 65, 80, 1);
 	font-family: Noto Sans;
 	font-weight: Thin Italic;
@@ -48,7 +48,7 @@
 }
 
 /*input박스*/
-.myPage_pointCarge>input {
+.myPage_pointCharge>input {
 	width: 551px;
 	height: 63px;
 	background: rgba(255, 255, 255, 1);
@@ -59,7 +59,7 @@
 }
 
 /*충전버튼*/
-.myPage_pointCarge>.myPage_btnB {
+.myPage_pointCharge>.myPage_btnB {
 	width: 553px;
 	height: 63px;
 	font-size: 24px; 
