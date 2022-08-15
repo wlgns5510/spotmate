@@ -128,16 +128,18 @@
 						</tr>
 					</thead>
 			
-					<tbody>				
+					<tbody>
+					<c:forEach items="${cList}" var="cVo">
 						<tr>
 							<td>1</td>
 							<td>카풀 정기권</td>
-							<td>출발지</td>
-							<td>도착지</td>
-							<td>+ 3,000P</td>
+							<td>${cVo.splace}</td>
+							<td>${cVo.eplace}</td>
+							<td>${cVo.point}</td>
 							<td>spotmate123</td>
 							<td><a href="./spotCarpoolDeep"><button class="board">탑승요청</button></a></td>
 						</tr>
+						</c:forEach>
 						<tr>
 							<td>2</td>
 							<td>카풀 정기권</td>

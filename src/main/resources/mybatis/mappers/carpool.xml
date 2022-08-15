@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="carpool">
+
+	
+	
+	<select id="selectslist" resultType="cVo">
+		select s.no no,
+		    place,
+		    people,
+		    point,
+		    wayno,
+		    latlng
+		from spotmate s, place p
+		where s.no = p.mateNo
+		and s.type = 'carpool'
+		and wayno = 0
+	</select>
+	
+	<select id="selectelist" resultType="cVo">
+		select s.no no,
+		    place,
+		    wayno
+		from spotmate s, place p
+		where s.no = p.mateNo
+		and s.type = 'carpool'
+		and wayno = 6
+	</select>
+	
+		
+	
+		
+		
+	
+
+</mapper>
