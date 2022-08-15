@@ -146,7 +146,7 @@
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				$.ajax({
 					type : "GET",
-					url : "${pageContext.request.contextPath }/mypageJ/myPointCharge", //충전 금액값을 보낼 url 설정
+					url : "${pageContext.request.contextPath }/mypageJ/kakaoPaySuccess", //충전 금액값을 보낼 url 설정
 					data : {
 						"point" : money
 					},

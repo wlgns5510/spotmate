@@ -18,19 +18,19 @@
 		and co.no = cu.couponNo
 		and u.no = '2'
 		]]>
-		
+
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= cu.buyDate  
+			and #{endDate} >= cu.buyDate
 		</if>
-		
+
 		<if test="startDate != '' and startDate != null">
-			and cu.buyDate >= #{startDate} 
+			and cu.buyDate >= #{startDate}
 		</if>
-		
+
 		<if test="option2 != '' and option2 != null">
 			and cu.status = #{option2}
 		</if>
-		
+
 		<if test="option1 != '' and option1 != null">
 			and ca.name = #{option1}
 		</if>
@@ -40,6 +40,13 @@
 		order by co.no desc
 		]]>
 	</select>
+
+	<insert id="insertPoint" parameterType="Long">
+		<![CDATA[
+			INSERT INTO pointUsage
+			VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', sysdate, #{point}, #{point})
+		]]>
+	</insert>
 
 
 </mapper>
