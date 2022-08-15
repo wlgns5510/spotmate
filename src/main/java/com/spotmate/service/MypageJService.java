@@ -15,22 +15,28 @@ public class MypageJService {
 
 	@Autowired
 	private MypageJDao mypagejDao;
-	
-	
-	//쿠폰리스트가져오기
+
+	// 쿠폰리스트가져오기
 	public List<CouponVo> getCouponList(String startDate, String endDate, String option1, String option2) {
-		System.out.println("MypageJService > getCouponList");		
-		
+		System.out.println("MypageJService > getCouponList");
+
 		Map<String, Object> pmap = new HashMap<String, Object>();
 		pmap.put("startDate", startDate);
 		pmap.put("endDate", endDate);
 		pmap.put("option1", option1);
 		pmap.put("option2", option2);
-		
-		
+
 		List<CouponVo> couponList = mypagejDao.getCouponList(pmap);
-		
+
 		return couponList;
 
 	}
+
+	// 포인트충전
+	public void chargePoint(Long point) {
+		System.out.println("MypageJService > chargePoint");
+
+		mypagejDao.chargePoint(point);
+	}
+
 }
