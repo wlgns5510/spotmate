@@ -422,27 +422,6 @@
 }
 
 /*페이징*/
-.paging2 {
-	margin: 0px auto;
-	margin-top: 50px;
-	width: 672px;
-	height: 40px;
-	font-family: Noto Sans;
-	font-weight: bold;
-	font-size: 12px;
-}
-
-.paging2 ul>li {
-	float: left;
-	padding: 15px 17px 15px 17px;
-	border: 1px solid rgba(239, 239, 239, 1);
-}
-
-.paging2 .myPage_PagePicto {
-	width: 11px;
-	height: 11px;
-}
-
-.paging2 ul>li>a {
-	color: rgba(75, 75, 75, 1);
+.myPage_article2 .paging ul>li>a.active {
+	font-size: 15px;
 }
