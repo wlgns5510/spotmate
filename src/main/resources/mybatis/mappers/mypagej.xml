@@ -3,50 +3,79 @@
 
 <mapper namespace="mypagej">
 
-
+	<!-- 쿠폰리스트가져오기 -->
 	<select id="selectCouponList" parameterType="map" resultType="couponVo">
 		<![CDATA[
-		select  cu.no,
-		        cu.buyDate,
-		        cu.usePlace,
-		        cu.point,
-		        cu.status
-		from category ca, brand br, coupon co, couponUsage cu, users u
-		where u.no = cu.userno
-		and ca.no = br.cateNo
-		and br.no = co.brandno
-		and co.no = cu.couponNo
-		and u.no = '2'
+			select  ort.rn,
+			        ort.no,
+			        ort.buyDate,
+			        ort.usePlace,
+			        ort.point,
+			        ort.status
+			    from (select  rownum rn,
+			                  ot.no,
+			                  ot.buyDate,
+			                  ot.usePlace,
+			                  ot.point,
+			                  ot.status
+			            from (select  cu.no no,
+			                          to_char(cu.buyDate, 'yy.mm.dd') buyDate,
+			                          cu.usePlace,
+			                          cu.point point,
+			                          cu.status
+			                    from category ca, brand br, coupon co, couponUsage cu, users u
+			                    where u.no = cu.userno
+			                    and ca.no = br.cateNo
+			                    and br.no = co.brandno
+			                    and co.no = cu.couponNo
+			                    and u.no = '3'
+			                    order by cu.no desc)ot
+			              )ort
+			where rn>=#{startRnum}
+			and rn<=#{endRnum}
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= cu.buyDate
+			and #{endDate} >= ort.buyDate
 		</if>
 
 		<if test="startDate != '' and startDate != null">
-			and cu.buyDate >= #{startDate}
+			and ort.buyDate >= #{startDate}
 		</if>
 
 		<if test="option2 != '' and option2 != null">
-			and cu.status = #{option2}
+			and ort.status = #{option2}
 		</if>
 
 		<if test="option1 != '' and option1 != null">
-			and ca.name = #{option1}
+			and ort.name = #{option1}
 		</if>
-		
-		
-		<![CDATA[	
-		order by co.no desc
-		]]>
-	</select>
 
+	</select>
+	
+	
+	<!-- 포인트충전 -->
 	<insert id="insertPoint" parameterType="Long">
 		<![CDATA[
 			INSERT INTO pointUsage
 			VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', sysdate, #{point}, #{point})
 		]]>
 	</insert>
+
+
+	<!-- 쿠폰리스트전체글 갯수 -->
+	<select id="totalCouponCnt" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from category ca, brand br, coupon co, couponUsage cu, users u
+			where u.no = cu.userno
+			and ca.no = br.cateNo
+			and br.no = co.brandno
+			and co.no = cu.couponNo
+			and u.no = '3'
+		]]>
+	
+	</select>
 
 
 </mapper>

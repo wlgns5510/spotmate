@@ -112,7 +112,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${couponList }" var="couponVo">
+							<c:forEach items="${cMap.couponList }" var="couponVo">
 								<tr>
 									<td>${couponVo.no }</td>
 									<td>${couponVo.buyDate }</td>
@@ -125,28 +125,33 @@
 					</table>
 					<div class="paging">
 						<ul>
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
-							</a></li>
+							<c:if test="${cMap.prev}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=1"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+								</a></li>
+							</c:if>
+							<c:if test="${cMap.prev}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								</a></li>
+							</c:if>
 
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
-							</a></li>
-
-							<li><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">4</a></li>
-							<li class="active"><a href="">5</a></li>
-							<li><a href="">6</a></li>
-							<li><a href="">7</a></li>
-							<li><a href="">8</a></li>
-							<li><a href="">9</a></li>
-							<li><a href="">10</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
-							</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
-							</a></li>
+							<c:forEach begin="${cMap.startPageBtnNo}" end="${cMap.endPageBtnNo}" step="1" var="page">
+								<c:choose>
+									<c:when test="${param.crtPage==page}">
+										<li><a class="active" href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${page}">${page}</a></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${page}">${page}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${cMap.next}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.endPageBtnNo+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								</a></li>
+							</c:if>
+							<c:if test="${cMap.next}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.endPageNo}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								</a></li>
+							</c:if>
 						</ul>
 					</div>
 
