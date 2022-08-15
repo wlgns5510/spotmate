@@ -22,4 +22,22 @@ public class MateDao {
 		
 		return mateList;
 	}
+	
+	//메이트 리스트 가져오기(옵션)
+	public List<MateVo> getMateOptionList(){
+		System.out.println("MateDao >> getMateOptionList");
+		
+		List<MateVo> mateOptionList = sqlSession.selectList("mate.selectMateOptionList");
+		
+		return mateOptionList;
+	}
+	
+	//메이트 리스트 가져오기(장소)
+		public List<MateVo> getMatePlaceList(){
+			System.out.println("MateDao >> getMatePlaceList");
+			
+			List<MateVo> matePlaceList = sqlSession.selectList("mate.selectMatePlaceList");
+			
+			return matePlaceList;
+		}
 }

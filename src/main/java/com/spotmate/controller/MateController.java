@@ -32,10 +32,17 @@ public class MateController {
 		
 		// Service를 통해서 getMateList를 가져온다
 		List<MateVo> mateList = mateService.getMateList();
+		List<MateVo> mateOptionList = mateService.getMateOptionList();
+		List<MateVo> matePlaceList = mateService.getMatePlaceList();
+		
 		
 		//ds 데이터보내기 --> request attribute에 넣는다
 		model.addAttribute("mateList", mateList);
+		model.addAttribute("mateOptionList", mateOptionList);
+		model.addAttribute("matePlaceList", matePlaceList);
 		System.out.println(mateList);
+		System.out.println(mateOptionList);
+		System.out.println(matePlaceList);
 		
 		return "/mate/mateMain";
 	}

@@ -71,18 +71,31 @@
 		
 		<div class="mateListAll clear">
 		
-			<c:forEach items="${mateList}" var="mateList">
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver ${mateList.name}</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>	
+			<c:forEach items="${mateList}" var="mateList" varStatus="status">
+				<div class=mateList>
+					<div class="matePicture" onclick="location.href='/mateDeep'">		
+					</div><br>
+					<span class="driverName">Driver ${mateList.name}</span>
+					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
+					<span class="startEnd"> 서울역 → 강릉</span>
+					<img src="/assets/images/car icon.png">
+					<span class="seatNo">${mateList.people}</span>
+					<img src="/assets/images/pet icon.png">
+					
+					
+					<c:choose>						
+						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} == true">
+							<span class="petYN">가능</span>
+						</c:when>
+					
+						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} != true">
+							<span class="petYN">불가</span>
+						</c:when>							
+					</c:choose>
+
+				
+							
+				</div>	
 			</c:forEach>
 			
 						
