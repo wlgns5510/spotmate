@@ -82,6 +82,7 @@ public class MypageJService {
 		//마지막페이지번호
 		int endPageNo = (int)Math.ceil(totalCouponCnt/(double)listCnt);
 		
+		
 		System.out.println(prev + "," + startPageBtnNo + "," + endPageBtnNo + "," + next + "," + endPageNo);
 		
 		Map<String, Object> cMap = new HashMap<String, Object>();
