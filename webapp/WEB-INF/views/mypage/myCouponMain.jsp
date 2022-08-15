@@ -1,13 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<link href="${pageContext.request.contextPath}/assets/css/style.css"
-	rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
 <script src="/assets/js/jquery-1.11.0.min.js"></script>
 
 
@@ -29,8 +27,7 @@
 					<img src="/assets/images/box_user.png">
 				</div>
 				<p>yujieun님</p>
-				<span>Reviews</span><span><img
-					src="/assets/images/ico_star.png">4.5</span>
+				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.5</span>
 			</div>
 			<div class="box2">
 				<p>
@@ -54,22 +51,14 @@
 				<h2>마이페이지</h2>
 				<!-- h2? -->
 				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myDriverForm">드라이버 신청/정보<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myUsageDriverMain">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myReservationDriverMain">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myQnaMain">문의 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointMain">포인트<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myCouponMain">쿠폰<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointRefundMain">환불 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img src="/assets/images/chevron-right-blue.png"></a></li>
 				</ul>
 			</nav>
 
@@ -92,9 +81,7 @@
 
 					<div class="inputBox">
 						<form action="${pageContext.request.contextPath }/mypageJ/myCouponMain" method="get">
-							<input name="startDate" type="date" value=""> <span>
-								- </span> <input name="endDate" type="date" value=""> <select
-								name="option1">
+							<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
 								<option value="">유형</option>
 								<option value="주유">주유권</option>
 							</select> <select name="option2">
@@ -104,8 +91,7 @@
 							</select>
 							<div class="btns">
 								<button type="submit" class="myPage_btnB">조회하기</button>
-								<a href="./myCouponBuy"><button type="button"
-										class="myPage_btnY">쿠폰 구매하기</button></a>
+								<a href="./myCouponBuy"><button type="button" class="myPage_btnY">쿠폰 구매하기</button></a>
 							</div>
 						</form>
 					</div>
@@ -139,12 +125,10 @@
 					</table>
 					<div class="paging">
 						<ul>
-							<li><a href=""> <img class="myPage_PagePicto"
-									src="/assets/images/chevron-double-left.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 							</a></li>
 
-							<li><a href=""> <img class="myPage_PagePicto"
-									src="/assets/images/chevron-left.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
 							</a></li>
 
 							<li><a href="">1</a></li>
@@ -158,12 +142,10 @@
 							<li><a href="">9</a></li>
 							<li><a href="">10</a></li>
 
-							<li><a href=""> <img class="myPage_PagePicto"
-									src="/assets/images/chevron-right.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
 							</a></li>
 
-							<li><a href=""> <img class="myPage_PagePicto"
-									src="/assets/images/chevron-double-right.png">
+							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
 							</a></li>
 						</ul>
 					</div>

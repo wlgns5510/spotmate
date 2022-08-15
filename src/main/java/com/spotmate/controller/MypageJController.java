@@ -17,7 +17,7 @@ import com.spotmate.vo.CouponVo;
 public class MypageJController {
 
 	@Autowired
-	private MypageJService mypageJService;
+	private MypageJService mypagejService;
 
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
@@ -28,7 +28,7 @@ public class MypageJController {
 		System.out.println("MypageJController > myCouponMain");
 		
 		
-		List<CouponVo> couponList = mypageJService.getCouponList(startDate, endDate, option1, option2);
+		List<CouponVo> couponList = mypagejService.getCouponList(startDate, endDate, option1, option2);
 		
 		
 		model.addAttribute("couponList", couponList);
@@ -51,13 +51,22 @@ public class MypageJController {
 		return "/mypage/myInfoChk";
 	}
 	
-	//포인트충전
+
 	@RequestMapping(value = "/myPointCharge", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointCharge(Long point) {
-		System.out.println(point);
+	public String myPointCharge() {
+		System.out.println("MypageJController > myPointCharge");
 		
 		return "/mypage/myPointCharge";
 	}
+	
+	//카카오페이
+	@RequestMapping(value = "/kakaoPaySuccess", method = { RequestMethod.GET, RequestMethod.POST })
+	public void myPointCharge(Long point) {
+		System.out.println("MypageJController > kakaoPaySuccess");
+		
+		mypagejService.chargePoint(point);
+	}
+	
 
 	@RequestMapping(value = "/myPointMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointMain() {
