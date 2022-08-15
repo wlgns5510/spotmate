@@ -9,10 +9,16 @@
 		where no = 2
 	</select>
 	
-	<select id="select" resultType="DWVo">
-		
+	<select id="selecthitchlist" resultType="hVo">
+		select place eplace1,
+		    people,
+		    point
+		from spotmate s, place p
+		where s.no = p.mateNo
+		and p.wayno = 6
+		and type = 'hitchhike'
 	</select>
-	
+		
 	<insert id="carpoolinsert" parameterType="dwVo">
 	
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">

@@ -92,14 +92,15 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/hitchWriteOk", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitchOk(Model model, @ModelAttribute DriverWriteVo dwv) {
-		model.addAttribute("dwv", dwv);
+	public String hitchOk(Model model, @ModelAttribute DriverWriteVo dwVo) {
+		dwVo.setIntfare(Integer.parseInt(dwVo.getFare().replaceAll("[,P]", "")));
+		model.addAttribute("dwv", dwVo);
 		return "/driver/hitchWriteOk";
 	}
 
 	@RequestMapping(value = "/hitchWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitchInsert(@ModelAttribute DriverWriteVo dwv) {
-		dws.HitchRegister(dwv);
+	public String hitchInsert(@ModelAttribute DriverWriteVo dwVo) {
+		dws.HitchRegister(dwVo);
 		return "redirect:/myReservationDriverMain";
 	}
 

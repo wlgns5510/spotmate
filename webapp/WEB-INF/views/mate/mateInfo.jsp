@@ -108,4 +108,22 @@
 </div>
 <!-- //mateInfo_wrap -->
 </body>
+
+<script>
+
+	/* 마우스 휠 이벤트 감지하기 */
+	window.addEventListener('wheel', (e: WheelEvent) => { 
+	  console.log(e.deltaY, e.deltaX);
+	});
+	
+	/* 스크립트로 스크롤 움직이기 */
+	window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+	
+	window.innerHeight; //뷰의 세로 사이즈 알아내기 (픽셀단위)
+	window.innerWidth; //뷰의 가로 사이즈 알아내기 (픽셀단위)
+	console.log(9);
+	
+	
+</script>
+
 </html>
