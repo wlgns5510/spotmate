@@ -35,6 +35,7 @@ public class MateController {
 		
 		//ds 데이터보내기 --> request attribute에 넣는다
 		model.addAttribute("mateList", mateList);
+		System.out.println(mateList);
 		
 		return "/mate/mateMain";
 	}
