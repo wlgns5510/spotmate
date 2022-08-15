@@ -41,6 +41,7 @@
 					<a href="javascript:void(0);" class="btn_a1"></a>
 				</div>
 			</form>
+			<c:forEach items="${hitchList}"  var="hitch">
 			<div class="driverList">
 				<div class="start">
 					<p>현재위치</p>
@@ -48,13 +49,13 @@
 				</div>
 				<div class="end">
 					<p>목적지</p>
-					<span>NAVER 본사</span>
+					<span>${hitch.eplace1}</span>
 				</div>
 				<div class="num">
-					<span>탑승 인원수</span><p>1명</p>
+					<span>탑승 인원수</span><p>${hitch.people}</p>
 				</div>
 				<div class="usePoint">
-					<span>총 결제 포인트</span><p>3,000포인트</p>
+					<span>총 결제 포인트</span><p>${hitch.point}</p>
 				</div>
 				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
 					
@@ -65,8 +66,10 @@
 					탑승 요청
 				</a>
 			</div>
+			</c:forEach>
 			<!-- 요 부분 반복문 -->
-			<div class="driverList">
+			
+			<!-- <div class="driverList">
 				<div class="start">
 					<p>현재위치</p>
 					<span>대방역 1호선 2번 출구</span>
@@ -161,7 +164,8 @@
 				<a href="/spotHitchhikedeep" class="rideReq">
 					탑승 요청
 				</a>
-			</div>
+			</div> -->
+			
 			<!-- 요 부분 반복문 -->
 		</div>
 	</div>

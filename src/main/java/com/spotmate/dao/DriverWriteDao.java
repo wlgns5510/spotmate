@@ -26,5 +26,5 @@ public class DriverWriteDao {
 	public String SelectDriverInfo() {
 		return ss.selectOne("spotmate.selectdriverinfo");
 	}
-
+	
 }
