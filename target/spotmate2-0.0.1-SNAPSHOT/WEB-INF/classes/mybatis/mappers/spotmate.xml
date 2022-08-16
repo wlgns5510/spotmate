@@ -15,16 +15,24 @@
 		from reservation
 		where mateNo = #{mateNo}
 	</select>
-
+	
+	<select id="nowaddr" parameterType="int" resultType="String">
+		select latlng
+		from place
+		where mateNo = #{mateNo}
+		and wayno = 6
+	</select>
 	
 	<select id="selecthitchlist" resultType="hVo">
 		select s.no mateNo,
 		    place eplace1,
 		    r.people people,
-		    r.point point
+		    r.point point,
+		    latlng
 		from reservation r, spotmate s, place p
 		where r.mateNo = s.no
 		and p.mateNo = s.no
+		and wayno = 6
 		order by s.no desc
 	</select>
 	
@@ -43,6 +51,14 @@
 			people = #{canRide}
 		
 		where mateNo = #{mateNo}
+	</update>
+	
+	<update id="watchpos" parameterType="mVo">
+		update place
+		set 
+			latlng = #{lng}||','||#{lat}||','||#{addr}
+		where mateNo = #{mateNo}
+		and wayno = 6
 	</update>
 	
 	
