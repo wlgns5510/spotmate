@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -6,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
 <script src="/assets/js/jquery-1.11.0.min.js"></script>
 
 
@@ -29,11 +31,12 @@
 					<img src="/assets/images/box_user.png">
 				</div>
 				<p>Ryeo-kyoung,kim님</p>
-				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.3</span>
+				<span>Reviews</span><span><img
+					src="/assets/images/ico_star.png">4.3</span>
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="./myPointCharge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
@@ -53,14 +56,22 @@
 				<h2>마이페이지</h2>
 				<!-- h2? -->
 				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myDriverForm">드라이버 신청/정보<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myUsageDriverMain">이용 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myReservationDriverMain">예약 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myQnaMain">문의 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointMain">포인트<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myCouponMain">쿠폰<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointRefundMain">환불 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
 				</ul>
 			</nav>
 			<!-- //section -->
@@ -68,7 +79,8 @@
 				<!-- //section-header -->
 				<header class="myPage_header">
 					<h3>차량 등록하기</h3>
-					<span style="font-weight: bold">유저님의 차량을 등록해 서비스를 이용하실 수 있습니다.</span>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+						style="font-weight: bold">유저님의 차량을 등록해 서비스를 이용하실 수 있습니다.</span>
 					<ul>
 						<li>드라이버 포인트 내역은 주행 완료 후 지급된 포인트입니다.</li>
 						<li>유저 포인트 내역은 다른 드라이버의 차량을 이용 후 사용한 포인트입니다.</li>
@@ -90,27 +102,30 @@
 						<form>
 							<div class="DL_info">
 
+
 								<h5>면허증 정보 입력*</h5>
 								<!-- Driver License -->
 								<table>
 									<tr align="left">
-										<th><label for="username">이름*</label></th>
-										<th><input id="username" placeholder="홍길동" type="text"></th>
+										<td><label for="username">이름*</label></td>
+										<td><input id="username" placeholder="홍길동" type="text"></td>
 
 									</tr>
 
 									<tr align="left">
-										<th><label for="usernum">생년월일*</label></th>
-										<th><input id="usernum" placeholder="19900805" type="text"></th>
-										<th><a class="smallbtn" type="button" href="#"><span>본인인증</span></a></th>
+										<td><label for="usernum">생년월일*</label></td>
+										<td><input id="usernum" placeholder="19900805"
+											type="text"></td>
+										<td><a class="smallbtn" type="button" href="#"><span>본인인증</span></a></td>
 									</tr>
 									<tr align="left">
-										<th><label for="dl">면허등록번호*</label></th>
-										<th><input id="dl" placeholder="면허등록번호입력" type="text"></th>
+										<td><label for="dl">면허등록번호*</label></td>
+										<td><input id="dl" placeholder="면허등록번호입력" type="text"></td>
 									</tr>
 									<tr align="left">
-										<th><label for="dl_Type">종류*</label></th>
-										<th><input id="dl_Type" placeholder="대형 1종" type="text" value=""></th>
+										<td><label for="dl_Type">종류*</label></td>
+										<td><input id="dl_Type" placeholder="대형 1종" type="text"
+											value=""></td>
 									</tr>
 
 								</table>
@@ -120,26 +135,32 @@
 								<h5>차량 정보 입력*</h5>
 								<table>
 									<tr align="left">
-										<th><label for="carnum">차량등록번호*</label></th>
+										<td><label for="carnum">차량등록번호*</label></td>
 										<td><input id="carnum" placeholder="차량등록번호입력" type="text"></td>
-										<td><a class="smallbtn" type="button" href="#"><span style="font-weight: bold">차량인증</span></a></td>
+										<td><a class="smallbtn" type="button" href="#"><span
+												style="font-weight: bold">차량인증</span></a></td>
 									</tr>
 									<tr align="left">
-										<th><label for="c_Model">차량모델명*</label>
-										<th><input id="c_Model" placeholder="테슬라 모델3" type="text"> <input id="c_file" placeholder="파일명(첨부시 자동입력됨)" type="text"></th>
-										<th><a class="smallbtn" type="button" href="#"><span>파일첨부</span></a></th>
+										<td><label for="c_Model">차량모델명*</label></td>
+										<td><input id="c_Model" placeholder="테슬라 모델3" type="text"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input id="c_file" placeholder="파일명(첨부시 자동입력됨)"
+											type="text"></td>
+										<td><a class="smallbtn" type="button" href="#"><span>파일첨부</span></a></td>
 									</tr>
 									<tr align="left">
-										<th><label for="c_num">차량번호*</label></th>
-										<th><input id="c_num" placeholder="770가7777" type="text"></th>
+										<td><label for="c_num">차량번호*</label></td>
+										<td><input id="c_num" placeholder="770가7777" type="text"></td>
 									</tr>
 									<tr align="left">
-										<th><label for="c_color">차량색상*</label></th>
-										<th><input id="c_color" placeholder="화이트" type="text"></th>
+										<td><label for="c_color">차량색상*</label></td>
+										<td><input id="c_color" placeholder="화이트" type="text"></td>
 									</tr>
 									<tr align="left">
-										<th><label for="num_PA">탑승가능인원*</label></th>
-										<th><input id="num_PA" placeholder="2" type="text"></th>
+										<td><label for="num_PA">탑승가능인원*</label></td>
+										<td><input id="num_PA" placeholder="2" type="text"></td>
 									</tr>
 								</table>
 
@@ -151,33 +172,38 @@
 								<table>
 									<!-- input type="radio" name="gender" id="male" value="남자"  -->
 									<tr align="left">
-										<th><input type="checkbox" name="ch_type" id="Dformcheckbox" value="ch_type"> <label for="nonsmoker"> 비흡연자</label></th>
-										<th><input type="checkbox" name="ch_type" id="Dformcheckbox" value="ch_type" checked="checked"> <label for="WD"> 여성드라이버</label></th>
+										<td><input type="checkbox" name="ch_type"
+											id="Dformcheckbox" value="ch_type"><span>비흡연자</span></td>
+										<td><input type="checkbox" name="ch_type"
+											id="Dformcheckbox" value="ch_type" checked="checked">
+											<span>여성드라이버</span></td>
 									</tr>
 									<tr align="left">
-										<th><input type="checkbox" name="ch_type" id="Dformcheckbox" value="ch_type"> <label for="pet"> 반려동물 탑승가능</label></th>
-										<th><input type="checkbox" name="ch_type" id="Dformcheckbox" value="ch_type"> <label for="cell_charger">핸드폰 충전기 보유</label></th>
+										<td><input type="checkbox" name="ch_type"
+											id="Dformcheckbox" value="ch_type"><span> 반려동물
+												탑승가능</span></td>
+										<td><input type="checkbox" name="ch_type"
+											id="Dformcheckbox" value="ch_type"> <span>핸드폰
+												충전기 보유</span></td>
 									</tr>
 									<tr align="left">
-										<th><input type="checkbox" name="ch_type" id="Dformcheckbox" value="ch_type"><label for="pet"> 트렁크 사용 가능여부</label></th>
+										<td><input type="checkbox" name="ch_type"
+											id="Dformcheckbox" value="ch_type"><span> 트렁크
+												사용 가능여부</span></td>
 									</tr>
-
-									<!-- 시간되면 드라이버가 체크박스 추가하는 방향으로 만들어보기  -->
 								</table>
-
-
 							</div>
 
-							<br> <br>
-							<h5>드라이버님을 소개해주세요*</h5>
+
 
 							<div class="memo">
-								<textarea align="left" placeholder="  ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다."></textarea>
-
-								<a type="button" href="./myDriverMain" target="self" alt="등록하기" class="DForm_enrollbtn0"> <span>등록하기</span></a>
-
-
+								<h5>드라이버님을 소개해주세요*</h5>
+								<textarea placeholder="  ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다."></textarea>
 							</div>
+							
+							<a type="button" href="./myDriverMain" target="self" alt="등록하기"
+								class="DForm_enrollbtn0"> <span>등록하기</span></a>
+
 
 
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spotmate.function.ConvertPoint;
 import com.spotmate.function.LatlngHttpRequest;
 import com.spotmate.function.NaviHttpRequest;
 import com.spotmate.service.DriverWriteService;
@@ -30,6 +31,8 @@ public class DriverWriteController {
 
 	@Autowired
 	private DriverWriteService dws;
+	
+	private ConvertPoint cp = new ConvertPoint();
 
 	@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String main() {
@@ -80,7 +83,6 @@ public class DriverWriteController {
 
 	@RequestMapping(value = "/carpoolWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String carpoolInsert(@ModelAttribute DriverWriteVo dwVo) {
-		System.out.println(dwVo.toString());
 		dws.CarpoolRegister(dwVo);
 		return "redirect:/myReservationDriverMain";
 	}
@@ -99,9 +101,10 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/hitchWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitchInsert(@ModelAttribute DriverWriteVo dwVo) {
+	public String hitchInsert(Model model, @ModelAttribute DriverWriteVo dwVo) {
 		dws.HitchRegister(dwVo);
-		return "redirect:/myReservationDriverMain";
+		model.addAttribute("dwVo", dwVo);
+		return "/spothitch/spotHitchDriver";
 	}
 
 	@RequestMapping(value = "/mateWrite", method = { RequestMethod.GET, RequestMethod.POST })
@@ -126,17 +129,15 @@ public class DriverWriteController {
 			fare += Integer.parseInt(mwVo.getFare5().replaceAll("[,P]", ""));
 		}
 		
-		String fares = convertMoney(fare);
+		String fares = cp.convertPoint(fare);
 		mwVo.setTotalFare(fares);
 		mwVo.setIntfare(fare);
-		System.out.println(mwVo.toString());
 		model.addAttribute("mwVo", mwVo);
 		return "/driver/mateWriteOk";
 	}
 	
 	@RequestMapping(value = "/mateWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mateInsert(@ModelAttribute MateWriteVo mwVo) {
-		System.out.println(mwVo.toString());
 		dws.MateRegister(mwVo);
 		return "redirect:/myReservationDriverMain";
 	}
@@ -233,7 +234,7 @@ public class DriverWriteController {
 			}
 		}
 		totalFare.append(fare);
-		String totalFares = convertMoney(totalFare);
+		String totalFares = cp.convertPoint(totalFare);
 		
 		StringBuffer benefit = new StringBuffer();
 		if ((sum - (int) (sum * 0.3)) % 10 == 0) {
@@ -246,62 +247,13 @@ public class DriverWriteController {
 			}
 		}
 		benefit.append(fare);
-		String benefits = convertMoney(totalFare);
+		String benefits = cp.convertPoint(totalFare);
 		
 		totalInfo.put("latlng", mergedRoute);
 		totalInfo.put("fare", totalFares);
 		totalInfo.put("benefit", benefits);
 		
 		return totalInfo;
-	}
-	
-	private String convertMoney(StringBuffer money) {
-		StringBuffer str = new StringBuffer();
-		str.append(money);
-		if (str.length() > 6) {
-			if (str.length() == 7) {
-				str.insert(1, ",");
-				str.insert(5, ",");
-			} else if (str.length() == 8) {
-				str.insert(2, ",");
-				str.insert(6, ",");
-			}
-		} else if (str.length() <= 6 && str.length() > 3) {
-			if (str.length() == 6) {
-				str.insert(3, ",");
-			} else if (str.length() == 5) {
-				str.insert(2, ",");
-			} else if (str.length() == 4) {
-				str.insert(1, ",");
-			}
-		}
-		str.append("P");
-		
-		return str.toString();
-	}
-	private String convertMoney(int money) {
-		StringBuffer str = new StringBuffer();
-		str.append(money);
-		if (str.length() > 6) {
-			if (str.length() == 7) {
-				str.insert(1, ",");
-				str.insert(5, ",");
-			} else if (str.length() == 8) {
-				str.insert(2, ",");
-				str.insert(6, ",");
-			}
-		} else if (str.length() <= 6 && str.length() > 3) {
-			if (str.length() == 6) {
-				str.insert(3, ",");
-			} else if (str.length() == 5) {
-				str.insert(2, ",");
-			} else if (str.length() == 4) {
-				str.insert(1, ",");
-			}
-		}
-		str.append("P");
-		
-		return str.toString();
 	}
 
 }

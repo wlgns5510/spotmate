@@ -31,7 +31,7 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="./myPointCharge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
@@ -80,23 +80,17 @@
 				<article class="myPage_article">
 
 					<div class="inputBox">
-						<form>
-							<input type="date" value="2022-08-02"> <span> - </span> <input type="date" value="2022-08-02">
-
-							<!-- <label for="lecture">유형</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>유형</option>
-								<option value="1">주유권</option>
-							</select>
-
-							<!-- <label for="lecture">사용여부</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>사용여부</option>
-								<option value="1">미사용</option>
-								<option value="2">사용완료</option>
+						<form action="${pageContext.request.contextPath }/mypageJ/myCouponMain" method="get">
+							<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
+								<option value="">유형</option>
+								<option value="주유">주유권</option>
+							</select> <select name="option2">
+								<option value="">사용여부</option>
+								<option value="미사용">미사용</option>
+								<option value="사용완료">사용완료</option>
 							</select>
 							<div class="btns">
-								<button type="button" class="myPage_btnB">조회하기</button>
+								<button type="submit" class="myPage_btnB">조회하기</button>
 								<a href="./myCouponBuy"><button type="button" class="myPage_btnY">쿠폰 구매하기</button></a>
 							</div>
 						</form>
@@ -118,76 +112,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>미사용</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>미사용</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
-							<tr>
-								<td>9</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
-							<tr>
-								<td>10</td>
-								<td>2022.07.26</td>
-								<td>S-oil 에쓰오일 서울대입구역점</td>
-								<td>+3,000P</td>
-								<td>사용완료</td>
-							</tr>
+							<c:forEach items="${couponList }" var="couponVo">
+								<tr>
+									<td>${couponVo.no }</td>
+									<td>${couponVo.buyDate }</td>
+									<td>${couponVo.usePlace }</td>
+									<td>${couponVo.point }</td>
+									<td>${couponVo.status }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div class="paging">

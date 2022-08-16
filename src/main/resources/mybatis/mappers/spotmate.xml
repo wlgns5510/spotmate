@@ -3,25 +3,68 @@
 
 <mapper namespace="spotmate">
 
+
 	<select id="selectdriverinfo" resultType="String">
 		select introduce
 		from car
 		where no = 2
 	</select>
 	
-	<select id="selecthitchlist" resultType="hVo">
-		select place eplace1,
-		    people,
-		    point
-		from spotmate s, place p
-		where s.no = p.mateNo
-		and p.wayno = 6
-		and type = 'hitchhike'
+	<select id="updatepeople" parameterType="int" resultType="int">
+		select people
+		from reservation
+		where mateNo = #{mateNo}
 	</select>
+	
+	<select id="nowaddr" parameterType="int" resultType="String">
+		select latlng
+		from place
+		where mateNo = #{mateNo}
+		and wayno = 6
+	</select>
+	
+	<select id="selecthitchlist" resultType="hVo">
+		select s.no mateNo,
+		    place eplace1,
+		    r.people people,
+		    r.point point,
+		    latlng
+		from reservation r, spotmate s, place p
+		where r.mateNo = s.no
+		and p.mateNo = s.no
+		and wayno = 6
+		order by s.no desc
+	</select>
+	
+	<update id="updatereserv" parameterType="hrVo">
+		update reservation
+		set 
+			people = people - #{people},
+			regDate = sysdate
 		
+		where mateNo = #{mateNo}
+	</update>
+	
+	<update id="recoverreserv" parameterType="hrVo">
+		update reservation
+		set 
+			people = #{canRide}
+		
+		where mateNo = #{mateNo}
+	</update>
+	
+	<update id="watchpos" parameterType="mVo">
+		update place
+		set 
+			latlng = #{lng}||','||#{lat}||','||#{addr}
+		where mateNo = #{mateNo}
+		and wayno = 6
+	</update>
+	
+	
 	<insert id="carpoolinsert" parameterType="dwVo">
 	
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			<selectKey keyProperty="no" resultType="int" order="BEFORE">
 				select seq_spotmate_no.nextval from dual 
 			</selectKey>
 
@@ -39,12 +82,46 @@
 				#{dis},
 				#{comments}
 			)
+			<if test='nosmoke != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				1
+			)
+			</if>
+			<if test='femaledriver != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				2
+			)
+			</if>
+			<if test='pet != null'>
 			into spotmateDetail
 			values (
 				seq_spotmateDetail_no.nextval,
 				#{no},
 				3
 			)
+			</if>
+			<if test='phonecharge != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				4
+			)
+			</if>
+			<if test='trunk != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				5
+			)
+			</if>
 			into place values (
 				seq_place_no.nextval,
 				#{no},
@@ -70,6 +147,17 @@
 				#{elng1},
 				''
 			)
+			into reservation
+			values (
+				seq_reservation_no.nextval,
+				#{no},
+				2,
+				1,
+				sysdate,
+				#{intfare},
+				'open',
+				#{people}				
+			)
 			select * from dual
 		</insert>
 		<insert id="hitchinsert" parameterType="dwVo">
@@ -91,12 +179,57 @@
 				#{dis},
 				#{comments}
 			)
+			into reservation
+			values (
+				seq_reservation_no.nextval,
+				#{no},
+				2,
+				1,
+				sysdate,
+				#{intfare},
+				'open',
+				#{people}				
+			)
+			<if test='nosmoke != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				1
+			)
+			</if>
+			<if test='femaledriver != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				2
+			)
+			</if>
+			<if test='pet != null'>
 			into spotmateDetail
 			values (
 				seq_spotmateDetail_no.nextval,
 				#{no},
 				3
 			)
+			</if>
+			<if test='phonecharge != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				4
+			)
+			</if>
+			<if test='trunk != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				5
+			)
+			</if>
 			into place values (
 				seq_place_no.nextval,
 				#{no},
@@ -146,12 +279,57 @@
 				'',
 				#{comments}
 			)
+			into reservation
+			values (
+				seq_reservation_no.nextval,
+				#{no},
+				2,
+				1,
+				sysdate,
+				#{intfare},
+				'open',
+				#{people}				
+			)
+			<if test='nosmoke != null'>
 			into spotmateDetail
 			values (
 				seq_spotmateDetail_no.nextval,
 				#{no},
 				1
 			)
+			</if>
+			<if test='femaledriver != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				2
+			)
+			</if>
+			<if test='pet != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				3
+			)
+			</if>
+			<if test='phonecharge != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				4
+			)
+			</if>
+			<if test='trunk != null'>
+			into spotmateDetail
+			values (
+				seq_spotmateDetail_no.nextval,
+				#{no},
+				5
+			)
+			</if>
 			into place values (
 				seq_place_no.nextval,
 				#{no},

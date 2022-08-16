@@ -58,7 +58,7 @@
 			<div id="map"></div>
 			<div class="t-sec">
 				<p>탑승 가능한 인원 수*</p>
-				<input name="people" type="number" min=1 placeholder="1명"> 
+				<input id="people" name="people" type="number" min=1 placeholder="1명"> 
 				<p>차량 상세조건</p>
 				<table class="deepsel">
 					<tr>
@@ -66,8 +66,8 @@
 						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge"><label for="phonecharge">핸드폰 충전기 이용 가능</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender">여성 드라이버</label></td>
-						<td><input class="td2" type="checkbox" id="silence" name="silence" value="silence"><label for="silence">조용하게 가는 것을 선호</label></td>
+						<td><input type="checkbox" id="femaledriver" name="femaledriver" value="femaledriver"><label for="femaledriver">여성 드라이버</label></td>
+						<td><input class="td2" type="checkbox" id="trunk" name="trunk" value="trunk"><label for="trunk">트렁크 사용 가능</label></td>
 					</tr>
 					<tr>
 						<td><input class="td2" type="checkbox" id="pet" name="pet" value="pet"><label for="pet">반려동물 탑승 가능</label></td>
@@ -78,7 +78,7 @@
 				<p>드라이버님이 하고싶은 말을 적어주세요</p>
 				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 			</div>
-		<button type="submit">등록하기</button>
+			<button onclick="moveOk()" id="btn" type="button">등록하기</button>
 		</form>
 		
 	</div>
@@ -100,6 +100,15 @@ $(document).ready(function() {
 document.getElementById("s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("e-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("s-time").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(11, 16);
+
+function moveOk() {
+	if( $("#s-addr1").val() == '' || $("#e-addr1").val() == '' || $("#people").val() == '') {
+		alert("필수 항목을 다 채운 후에 시도해주세요");
+		return;
+	}
+	$("#btn").removeAttr()
+	$("#btn").attr("type", "submit")
+}
 
 $("#finish").on("click", function() {
 	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {

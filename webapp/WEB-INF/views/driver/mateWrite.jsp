@@ -83,7 +83,7 @@
 			
 				<div class="t-sec">
 					<p>탑승 가능한 인원 수*</p>
-					<input name="people" type="number" min=1 placeholder="1명">
+					<input id="people" name="people" type="number" min=1 placeholder="1명">
 					<p>차량 상세조건</p>
 					<table>
 						<tr>
@@ -94,12 +94,11 @@
 								for="phonecharge">핸드폰 충전기 이용 가능</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="drivergender"
-								name="drivergender" value="female"><label
-								for="drivergender">여성 드라이버</label></td>
-							<td><input class="td2" type="checkbox" id="silence"
-								name="silence" value="silence"><label for="silence">조용하게
-									가는 것을 선호</label></td>
+							<td><input type="checkbox" id="femaledriver"
+								name="femaledriver" value="femaledriver"><label
+								for="femaledriver">여성 드라이버</label></td>
+							<td><input class="td2" type="checkbox" id="trunk"
+								name="trunk" value="trunk"><label for="trunk">트렁크 사용 가능</label></td>
 						</tr>
 						<tr>
 							<td><input type="checkbox" id="pet" name="pet"
@@ -111,7 +110,7 @@
 					<p>드라이버님이 하고싶은 말을 적어주세요</p>
 					<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 				</div>
-				<button>등록하기</button>
+				<button onclick="moveOk()" id="btn" type="button">등록하기</button>
 			</form>
 
 		</div>
@@ -130,6 +129,15 @@ $(document).ready(function() {
 	});
 document.getElementById("mate-s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("mate-e-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+
+function moveOk() {
+	if( $("#s-addr1").val() == '' || $("#e-addr1").val() == '' || $("#people").val() == '') {
+		alert("필수 항목을 다 채운 후에 시도해주세요");
+		return;
+	}
+	$("#btn").removeAttr()
+	$("#btn").attr("type", "submit")
+}
 
 
 function setTime(index) {
@@ -264,7 +272,6 @@ function insRow(index) {
 			var waypoint = '<input type="hidden" name="wtime'+a+'" value="" id="wtime'+a+'"><input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" onclick="setWayTime('+a+')" value="" id="w-time'+a+'"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
 			
 			oCell.innerHTML = waypoint;
-			console.log(a);
 			a++;
 		}
 		else {
@@ -295,7 +302,6 @@ function insRow(index) {
 			var waypoint = '<input type="hidden" name="wtime'+a+'" value="" id="wtime'+a+'"><input type="hidden" value="" class="mate-w-addr'+a+'"><input type="text" value="" name="wplace'+a+'" onclick="search('+a+')" id="w-addr'+a+'" placeholder="경유지를 입력하세요"><input type="time" onclick="setWayTime('+a+')" value="" id="w-time'+a+'"><input type="hidden" value="" name="wlat'+a+'" class="w-lat'+a+'"><input type="hidden" value="" name="wlng'+a+'" class="w-lng'+a+'"><img class="id-btn" src="assets/images/ico_minus.png" onClick="remove('+index+')">';
 			
 			oCell.innerHTML = waypoint;
-			console.log(a);
 			a++;
 		}
 }
@@ -353,7 +359,21 @@ function sep(index) {
 }
 function setDayPath(index) {
 	var i = (9*index)+(index+1);
-	if( $(".s-lat"+index).val() == "" || $(".s-lng"+index).val() == "" || $(".e-lat"+index).val() == "" || $(".e-lng"+index).val() == "" ) {
+	if( $(".s-lat"+index).val() == "" || $(".s-lng"+index).val() == "" || $(".e-lat"+index).val() == "" || 
+			$(".e-lng"+index).val() == "" || $("#stime"+index).val() == "" ) {
+		alert("검색 후에 시도해주세요");
+		return;
+	} else if ( ($("#w-addr"+i).val() != null && $("#w-addr"+i).val() == "") ||
+			($("#w-addr"+(i+1)).val() != null && $("#w-addr"+(i+1)).val() == "") ||
+			($("#w-addr"+(i+2)).val() != null && $("#w-addr"+(i+2)).val() == "") ||
+			($("#w-addr"+(i+3)).val() != null && $("#w-addr"+(i+3)).val() == "") ||
+			($("#w-addr"+(i+4)).val() != null && $("#w-addr"+(i+4)).val() == "") ||
+			($("#wtime"+i).val() != null && $("#wtime"+i).val() == "") ||
+			($("#wtime"+(i+1)).val() != null && $("#wtime"+(i+1)).val() == "") ||
+			($("#wtime"+(i+2)).val() != null && $("#wtime"+(i+2)).val() == "") ||
+			($("#wtime"+(i+3)).val() != null && $("#wtime"+(i+3)).val() == "") ||
+			($("#wtime"+(i+4)).val() != null && $("#wtime"+(i+4)).val() == "")
+			) {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
@@ -429,7 +449,6 @@ function setDayPath(index) {
 			document.getElementById("e-addr"+index).value = eaddr;
 			if (waddr1 != null) {
 				document.getElementById("w-addr"+i).value = waddr1;
-				console.log(document.getElementById("w-addr"+i).value)
 				document.getElementById("w-time"+i).value = wtime1;
 			} 
 			if (waddr2 != null) {

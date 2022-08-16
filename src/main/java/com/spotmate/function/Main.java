@@ -63,5 +63,11 @@ public class Main {
 		return "/spotcarpool/spotMain";
 	}
 	
+	@RequestMapping(value="/main10", method={RequestMethod.GET, RequestMethod.POST})
+	public String main10() {
+		System.out.println("hi");
+		return "/test/main10";
+	}
+	
 
 }

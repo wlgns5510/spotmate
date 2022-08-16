@@ -15,8 +15,6 @@ public class CarpoolService {
 	private CarpoolDao cD;
 	
 	public List<CarpoolVo> getCarpoolList() {
-		
-		
 		return cD.selectList();
 	}
 

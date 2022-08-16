@@ -31,8 +31,8 @@
 		
 		<div class="content-head">
 		<div class="clear" style="width:1920px; margin:0px auto;">
-			<div class="mate-deep-banner-l-sec">
-			<span>같이 타고 가요</span><p>FIND YOUR MATE</p>
+			<div class="carpool-MainText1">
+			<span>같이 타고 가요</span><p>SPOT CARPOOL</p>
 		</div> <span class="carpool-MainText2"> 이동하는 경로가 비슷한 드라이버를 찾아 <br> 출발지부터 목적지까지 편하게 이동해보세요.
 			</span>
 		</div>
@@ -41,11 +41,12 @@
 		<div id="content" class="clear">
 			<div class="searchForm">
 				
+				<a href="">
 				<button class="search">
 					<img class="carpoolSearchPicto" src="/assets/images/round-search.png">
 					<p>검색하기</p>
 				</button>
-
+				</a>
 
 				<form class="carpoolInput">
 					<input class="input1" type="text" name="departure" value="" placeholder="출발지를 입력하세요">
@@ -127,17 +128,19 @@
 						</tr>
 					</thead>
 			
-					<tbody>				
+					<tbody>
+					<c:forEach items="${cList}" var="cVo">
 						<tr>
 							<td>1</td>
 							<td>카풀 정기권</td>
-							<td>출발지</td>
-							<td>도착지</td>
-							<td>+ 3,000P</td>
+							<td>${cVo.splace}</td>
+							<td>${cVo.eplace}</td>
+							<td>${cVo.point}</td>
 							<td>spotmate123</td>
 							<td><a href="./spotCarpoolDeep"><button class="board">탑승요청</button></a></td>
 						</tr>
-						<tr>
+						</c:forEach>
+						<!-- <tr>
 							<td>2</td>
 							<td>카풀 정기권</td>
 							<td>출발지</td>
@@ -217,7 +220,7 @@
 							<td>+ 3,000P</td>
 							<td>spotmate123</td>
 							<td><a href="./spotCarpoolDeep"><button class="board">탑승요청</button></a></td>
-						</tr>
+						</tr> -->
 					</tbody>
 					
 				</table>
