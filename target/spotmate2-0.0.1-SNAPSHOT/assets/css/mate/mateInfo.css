@@ -160,7 +160,7 @@
 /*   padding: 65px 0px 0px 770px; */
 	width: 1440px;
 	margin: 0px auto;
-	padding: 100px 0px 100px 1000px;
+	padding: 100px 0px 100px 800px;
 }
 .mateInfo_banner2 .mateInfo_page3 h3 {
 /*   width: 350px; */
@@ -198,11 +198,11 @@
 /*   padding: 11px 0px 12px 0px; */
   border-style: none;
 }
-.mateInfo_banner2 .mateMainGo h2 {
+.mateInfo_banner2 .mateMainGo p {
   width: 90px;
   color: rgba(70,84,163,1);
   font-family: Noto Sans;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 17px;
   margin: 0px 0px 0px 12px;
 }

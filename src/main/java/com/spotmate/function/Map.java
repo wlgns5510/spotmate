@@ -33,11 +33,4 @@ public class Map {
 		return 2;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/now", method= {RequestMethod.GET, RequestMethod.POST})
-	public int now(@RequestBody MapVo mVo) {
-		LocalTime now = LocalTime.now();
-		System.out.println(now +": "+mVo);
-		return 1;
-	}
 }

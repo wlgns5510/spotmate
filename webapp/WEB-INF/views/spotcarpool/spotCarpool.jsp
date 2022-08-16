@@ -140,7 +140,7 @@
 							<td><a href="./spotCarpoolDeep"><button class="board">탑승요청</button></a></td>
 						</tr>
 						</c:forEach>
-						<tr>
+						<!-- <tr>
 							<td>2</td>
 							<td>카풀 정기권</td>
 							<td>출발지</td>
@@ -220,7 +220,7 @@
 							<td>+ 3,000P</td>
 							<td>spotmate123</td>
 							<td><a href="./spotCarpoolDeep"><button class="board">탑승요청</button></a></td>
-						</tr>
+						</tr> -->
 					</tbody>
 					
 				</table>

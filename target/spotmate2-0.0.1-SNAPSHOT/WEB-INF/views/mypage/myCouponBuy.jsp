@@ -30,7 +30,7 @@
 				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.5</span>
 			</div>
 			<div class="box2">
-				<p><a href="./myPointCarge">포인트 충전 ></a></p>
+				<p><a href="./myPointCharge">포인트 충전 ></a></p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
 			<div class="box3">
@@ -80,21 +80,21 @@
 							<input type="text" value="" placeholder="금액설정"> <span> - </span> <input type="text" value="" placeholder="금액설정">
 
 							<!-- <label for="lecture">유형</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>유형</option>
+							<select id="option1">
+								<option value="">유형</option>
 								<option value="1">주유권</option>
 
 							</select>
 
 							<!-- <label for="lecture">참여주체</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>브랜드</option>
+							<select id="option1">
+								<option value="">브랜드</option>
 								<option value="1">S-OIL</option>
 								<option value="2">GS-칼텍스</option>
 							</select>
 							<div class="btns">
 								<button type="button" class="myPage_btnB">조회하기</button>
-								<a href="./myPointCarge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
+								<a href="./myPointCharge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
 							</div>
 						</form>
 					</div>
@@ -104,14 +104,15 @@
 				<!-- //section-article2 -->
 				<article class="myPage_article2">
 					<h4>모바일 주유권</h4>
+					<form action="${pageContext.request.contextPath }/mypageJ/couponClick" method="get" >
 					<div class="myCoupon">
-
-						<a href="./myCouponUse"><img src="/assets/images/soil_3.png"></a> <a href="./myCouponUse"><img src="/assets/images/soil_5.png"></a> <a href="./myCouponUse"><img
+						<button type="submit"><img src="/assets/images/soil_3.png"></button> <a href="./myCouponUse"><img src="/assets/images/soil_5.png"></a> <a href="./myCouponUse"><img
 							src="/assets/images/soil_10.png"></a> <a href="./myCouponUse"><img src="/assets/images/soil_30.png"></a> <a href="./myCouponUse"><img src="/assets/images/soil_50.png"></a> <a
 							href="./myCouponUse"><img src="/assets/images/soil_100.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_3.png"></a> <a href="./myCouponUse"><img
 							src="/assets/images/gs_5.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_10.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_30.png"></a> <a
 							href="./myCouponUse"><img src="/assets/images/gs_50.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_100.png"></a>
 					</div>
+					</form>
 				</article>
 			</section>
 		</main>

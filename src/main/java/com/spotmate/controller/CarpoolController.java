@@ -23,7 +23,6 @@ public class CarpoolController {
 
 	@RequestMapping(value = "/spotCarpool", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotCarpool(Model model) {
-		
 		model.addAttribute("cList", cS.getCarpoolList());
 		return "/spotcarpool/spotCarpool";
 	}

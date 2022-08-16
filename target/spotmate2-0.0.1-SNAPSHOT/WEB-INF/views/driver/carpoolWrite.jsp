@@ -25,13 +25,12 @@
 	</div>
 	<div class="mid">
 		<form action="/carpoolWriteOk" method="post">
-		<input type="hidden" name="type" value="1">
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
-				<span>출발 날짜</span><input type="date" name="sdate" value="" id="s-date">
-				<span>출발 시간</span><input type="time" name="stime" value="" id="s-time">
+				<span>출발 날짜</span><input type="date" name="sdate1" value="" id="s-date">
+				<span>출발 시간</span><input type="time" name="stime1" value="" id="s-time">
 				<br>
-				<span>도착 날짜</span><input type="date" name="edate" value="" id="e-date">
+				<span>도착 날짜</span><input type="date" name="edate1" value="" id="e-date">
 			</div>
 			<div class="s-sec">
 				<p>드라이버님의 이동 경로를 입력해주세요*</p>
@@ -40,15 +39,15 @@
 				<img src="assets/images/map_line_02.png">
 				<table>
 					<tr>
-						<td><input autocomplete="off" type="text" name="splace" value="" id="s-addr" class="s-addr" placeholder="출발지를 입력하세요" onclick="ssp()"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
-						<td><input type="hidden" name="slat" value="" class="s-lat"></td>
-						<td><input type="hidden" name="slng" value="" class="s-lng"></td>
+						<td><input autocomplete="off" type="text" name="splace1" value="" id="s-addr1" class="s-addr" placeholder="출발지를 입력하세요" onclick="ssp()"><img class="ae-btn" src="assets/images/arrows_exchange.png"></td>
+						<td><input type="hidden" name="slat1" value="" class="s-lat1"></td>
+						<td><input type="hidden" name="slng1" value="" class="s-lng1"></td>
 					</tr>
 					<tr>
-					 	<td><input autocomplete="off" type="text" name="eplace" value="" id="e-addr" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
-						<td><input type="hidden" name="elat" value="" class="e-lat"></td>
-						<td><input type="hidden" name="elng" value="" class="e-lng"></td>
-						<td><input type="hidden" name="latlng" value="" id="latlng"></td>
+					 	<td><input autocomplete="off" type="text" name="eplace1" value="" id="e-addr1" class="e-addr" placeholder="도착지를 입력하세요" onclick="sep()"><img class="ic-btn" src="assets/images/ico_close.png"></td>
+						<td><input type="hidden" name="elat1" value="" class="e-lat1"></td>
+						<td><input type="hidden" name="elng1" value="" class="e-lng1"></td>
+						<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 				</table>
 				<div class='fare'>1인당 적립 포인트:</div>
 				<div class='dur'>예상 소요 시간:</div>
@@ -59,27 +58,27 @@
 			<div id="map"></div>
 			<div class="t-sec">
 				<p>탑승 가능한 인원 수*</p>
-				<input name="people" type="number" min=1 placeholder="1명"> 
+				<input id="people" name="people" type="number" min=1 placeholder="1명"> 
 				<p>차량 상세조건</p>
 				<table class="deepsel">
 					<tr>
 						<td><input type="checkbox" id="nosmoke" name="nosmoke" value="nosmoke"><label for="nosmoke">비흡연자</label></td>
-						<td><input class="td2" type="checkbox" id="phoneCharge" name="phoneCharge" value="phoneCharge"><label for="phoneCharge">핸드폰 충전기 이용 가능</label></td>
+						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge"><label for="phonecharge">핸드폰 충전기 이용 가능</label></td>
 					</tr>
 					<tr>
-						<td><input type="checkbox" id="drivergender" name="drivergender" value="female"><label for="drivergender">여성 드라이버</label></td>
-						<td><input class="td2" type="checkbox" id="silence" name="silence" value="silence"><label for="silence">조용하게 가는 것을 선호</label></td>
+						<td><input type="checkbox" id="femaledriver" name="femaledriver" value="femaledriver"><label for="femaledriver">여성 드라이버</label></td>
+						<td><input class="td2" type="checkbox" id="trunk" name="trunk" value="trunk"><label for="trunk">트렁크 사용 가능</label></td>
 					</tr>
 					<tr>
 						<td><input class="td2" type="checkbox" id="pet" name="pet" value="pet"><label for="pet">반려동물 탑승 가능</label></td>
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="introduce" name="introduce" readonly></textarea>
+				<textarea class="introduce" name="introduce" readonly>${introduce}</textarea>
 				<p>드라이버님이 하고싶은 말을 적어주세요</p>
 				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 			</div>
-		<button type="submit">등록하기</button>
+			<button onclick="moveOk()" id="btn" type="button">등록하기</button>
 		</form>
 		
 	</div>
@@ -99,20 +98,29 @@ $(document).ready(function() {
 
 
 document.getElementById("s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+document.getElementById("e-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("s-time").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(11, 16);
+
+function moveOk() {
+	if( $("#s-addr1").val() == '' || $("#e-addr1").val() == '' || $("#people").val() == '') {
+		alert("필수 항목을 다 채운 후에 시도해주세요");
+		return;
+	}
+	$("#btn").removeAttr()
+	$("#btn").attr("type", "submit")
+}
 
 $("#finish").on("click", function() {
 	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
-	var latlng = "";
-	var splace = $(".s-addr").val();
-	var eplace = $(".e-addr").val();
-	var slat = $(".s-lat").val();
-	var slng = $(".s-lng").val();
-	var elat = $(".e-lat").val();
-	var elng = $(".e-lng").val();
+	var splace = $("#s-addr1").val();
+	var eplace = $("#e-addr1").val();
+	var slat = $(".s-lat1").val();
+	var slng = $(".s-lng1").val();
+	var elat = $(".e-lat1").val();
+	var elng = $(".e-lng1").val();
 	$.ajax({
 		
 		url : "${pageContext.request.contextPath}/setPath",		
@@ -134,13 +142,13 @@ $("#finish").on("click", function() {
 			document.getElementById("input-div").innerHTML += "<div class='fare'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
 			document.getElementById("input-div").innerHTML += "<div class='dur'>예상 소요 시간:&nbsp; <input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
 			document.getElementById("input-div").innerHTML += "<div class='dis'>예상 거리:&nbsp; <input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
-			document.getElementById("s-addr").value = result.splace;
-			document.getElementById("e-addr").value = result.eplace;
+			document.getElementById("s-addr1").value = result.splace;
+			document.getElementById("e-addr1").value = result.eplace;
 			var bounds = new kakao.maps.LatLngBounds();
 			bounds.extend(new kakao.maps.LatLng(slat, slng));
 			bounds.extend(new kakao.maps.LatLng(elat, elng));
-			latlng = result.latlng;
-			document.getElementById("latlng").value = latlng.toString();
+			var latlng = result.latlng;
+			document.getElementById("latlng1").value = latlng.toString();
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			mapOption = { 
 			    center: new kakao.maps.LatLng(slat, slng), // 지도의 중심좌표
@@ -148,18 +156,37 @@ $("#finish").on("click", function() {
 			};  
 			var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			map.setBounds(bounds);
-			var imageSrc = '/assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-			imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
-			imageOption = {
-				offset : new kakao.maps.Point(20, 36)
-			};
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-					imageOption)
-			var marker = new kakao.maps.Marker({
-				position: new kakao.maps.LatLng(slat, slng),
-				map: map,
-				image: markerImage
-			})
+			var positions = [
+				{
+					latlng: new kakao.maps.LatLng(slat, slng)
+				},
+				{
+					latlng: new kakao.maps.LatLng(elat, elng)
+				}
+			];
+			var iwContent;
+			for (var i=0;i<2;i++) {
+				if ( i==0 ) {
+					iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">출발지 입니다</div>'; 
+				} else if (i==1){
+					iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">도착지 입니다</div>';
+				}
+				var infowindow = new kakao.maps.InfoWindow({
+				    content : iwContent
+				});
+				var min = Math.ceil(1),
+			    	max = Math.floor(14),
+			    	rnd = Math.floor(Math.random() * (max - min)) + min;
+				var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
+					imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+				var marker = new kakao.maps.Marker({
+					position: positions[i].latlng,
+					map: map,
+					image: markerImage
+				});
+				infowindow.open(map, marker);
+			}
 			
 			//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 			//테스트 결과 json 파싱해서 for문 반복으로 넣어주면 될듯
@@ -181,11 +208,14 @@ $("#finish").on("click", function() {
 				strokeWeight: 5, // 선의 두께 입니다
 				strokeColor: '#4454a1', // 선의 색깔입니다
 				strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-				strokeStyle: 'solid' // 선의 스타일입니다
+// 				strokeStyle: 'shortdashdot', // 선의 스타일입니다
+// 				strokeStyle: 'longdash',
+// 				strokeStyle: 'dashed',
+				strokeStyle: 'solid',
+				map: map
 			});
 			
 			//지도에 선을 표시합니다 
-			polyline.setMap(map); 
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -213,10 +243,10 @@ $(".ic-btn").on("click", function() {
 	$(".e-addr").val("");
 })
 function ssp() {
-	window.open("ssp", "child", "width=1350, height=820, left=300, top=100");
+	window.open("ssp/1", "child", "width=1350, height=820, left=300, top=100");
 }
 function sep() {
-	window.open("sep", "child", "width=1350, height=820, left=300, top=100");
+	window.open("sep/1", "child", "width=1350, height=820, left=300, top=100");
 }
 </script>
 </html>

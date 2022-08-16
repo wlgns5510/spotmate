@@ -30,7 +30,14 @@
 		</div>
 	<div class="mid">
 		<form action="/carpoolWriteInsert" method="post">
+		<c:choose>
+		<c:when test="${dwv.sdate1 == dwv.edate1}">
 		<input type="hidden" name="type" value="carpool">
+		</c:when>
+		<c:otherwise>
+		<input type="hidden" name="type" value="seasonTicket">
+		</c:otherwise>
+		</c:choose>
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
 				<span>출발 날짜</span><input type="text" name="sdate1" value="${dwv.sdate1}" id="s-date" >
@@ -75,11 +82,11 @@
 					</c:if>
 					</tr>
 					<tr>
-					<c:if test="${dwv.drivergender != null}">
-						<td><input type="hidden" id="drivergender" name="drivergender" value="female">여성 드라이버</td>
+					<c:if test="${dwv.femaledriver != null}">
+						<td><input type="hidden" id="femaledriver" name="femaledriver" value="femaledriver">여성 드라이버</td>
 					</c:if>
-					<c:if test="${dwv.silence != null}">
-						<td><input class="td2" type="hidden" id="silence" name="silence" value="silence">조용하게 가는 것을 선호</td>
+					<c:if test="${dwv.trunk != null}">
+						<td><input class="td2" type="hidden" id="trunk" name="trunk" value="trunk">트렁크 사용 가능</td>
 					</c:if>
 					</tr>
 					<tr>
@@ -96,8 +103,6 @@
 		<p id="btn-modal">등록하기</p>
     <div id="modal" class="modal-overlay">
         <div class="modal-window">
-<!--             <div class="title"> -->
-<!--             </div> -->
             <div class="close-area">X</div>
             <div class="content">
                 <p>예상 적립 포인트는 +${dwv.fare}입니다.</p>
@@ -112,45 +117,45 @@
 <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
-const modal = document.getElementById("modal")
+var modal = document.getElementById("modal")
 function modalOn() {
+    modal.style.animation = "fade-in 0.5s"
     modal.style.display = "flex"
 }
 function isModalOn() {
     return modal.style.display === "flex"
 }
 function modalOff() {
-    modal.style.display = "none"
+   	modal.style.animation = "fade-out 0.5s"
+	$("body").css("overflow-y","visible");//body 스크롤바 생성
+    setTimeout(function(){modal.style.display = "none"},501);
 }
-const btnModal = document.getElementById("btn-modal")
+var btnModal = document.getElementById("btn-modal")
 btnModal.addEventListener("click", e => {
 	  $(".modal-overlay").css({
           "top": (($(window).height()-$(".modal-overlay").outerHeight())/2+$(window).scrollTop())+"px",
           "left": (($(window).width()-$(".modal-overlay").outerWidth())/2+$(window).scrollLeft())+"px"
           //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정
        }); 
-      
+	  
       $(".modal-window").css("display","block"); //팝업 뒷배경 display block
       $(".modal-overlay").css("display","block"); //팝업창 display block
       
       $("body").css("overflow","hidden");//body 스크롤바 없애기
       modalOn()
   	})
-const closeBtn = modal.querySelector(".close-area")
+var closeBtn = modal.querySelector(".close-area")
 closeBtn.addEventListener("click", e => {
-	$("body").css("overflow","auto");//body 스크롤바 생성
-    modalOff()
+	modalOff()
 })
 modal.addEventListener("click", e => {
     const evTarget = e.target
     if(evTarget.classList.contains("modal-overlay")) {
-    	$("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
 window.addEventListener("keyup", e => {
     if(isModalOn() && e.key === "Escape") {
-    	$("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })

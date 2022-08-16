@@ -8,7 +8,7 @@ public class MateWriteVo {
 	wtime31, wtime32, wtime33, wtime34, wtime35,wtime41, wtime42, wtime43, wtime44, wtime45,wtime51, wtime52, wtime53, wtime54, wtime55,
 	wplace11,wplace12,wplace13,wplace14,wplace15,wplace21,wplace22,wplace23,wplace24,wplace25,
 	wplace31,wplace32,wplace33,wplace34,wplace35,wplace41,wplace42,wplace43,wplace44,wplace45,wplace51,wplace52,wplace53,wplace54,wplace55,
-	introduce, comments, nosmoke, phonecharge, drivergender, silence, pet, totalFare, fare1, fare2, fare3, fare4, fare5,
+	introduce, comments, nosmoke, phonecharge, femaledriver, trunk, pet, totalFare, fare1, fare2, fare3, fare4, fare5,
 	day1, day2, day3, day4, day5, type;
 	
 	private int people, intfare, no;
@@ -29,7 +29,7 @@ public class MateWriteVo {
 			String wtime31, String wtime32, String wtime33, String wtime34, String wtime35,String wtime41, String wtime42, String wtime43, String wtime44, String wtime45,String wtime51, String wtime52, String wtime53, String wtime54, String wtime55,
 			String wplace11,String wplace12,String wplace13,String wplace14,String wplace15,String wplace21,String wplace22,String wplace23,String wplace24,String wplace25,
 			String wplace31,String wplace32,String wplace33,String wplace34,String wplace35,String wplace41,String wplace42,String wplace43,String wplace44,String wplace45,String wplace51,String wplace52,String wplace53,String wplace54,String wplace55,
-			String introduce, String comments, String nosmoke, String phonecharge, String drivergender, String silence, String pet, 
+			String introduce, String comments, String nosmoke, String phonecharge, String femaledriver, String trunk, String pet, 
 			String type, String fare1, String fare2, String fare3, String fare4, String fare5, String day1, String day2, String day3, String day4, String day5, int people,
 			double slat1, double slat2, double slat3, double slat4, double slat5, double slng1, double slng2, double slng3, double slng4, double slng5,
 			double elat1, double elat2, double elat3, double elat4, double elat5, double elng1, double elng2, double elng3, double elng4, double elng5,
@@ -96,8 +96,8 @@ public class MateWriteVo {
 		this.fare5 = fare5;
 		this.nosmoke = nosmoke;
 		this.phonecharge = phonecharge;
-		this.drivergender = drivergender;
-		this.silence = silence;
+		this.femaledriver = femaledriver;
+		this.trunk = trunk;
 		this.pet = pet;
 		this.people = people;
 		this.slat1 = slat1;
@@ -174,7 +174,7 @@ public class MateWriteVo {
 	
 	
 	
-	public String getType() {
+	public String ype() {
 		return type;
 	}
 
@@ -854,20 +854,20 @@ public class MateWriteVo {
 		this.phonecharge = phonecharge;
 	}
 
-	public String getDrivergender() {
-		return drivergender;
+	public String getFemaledriver() {
+		return femaledriver;
 	}
 
-	public void setDrivergender(String drivergender) {
-		this.drivergender = drivergender;
+	public void setFemaledriver(String femaledriver) {
+		this.femaledriver = femaledriver;
 	}
 
-	public String getSilence() {
-		return silence;
+	public String getTrunk() {
+		return trunk;
 	}
 
-	public void setSilence(String silence) {
-		this.silence = silence;
+	public void setTrunk(String trunk) {
+		this.trunk = trunk;
 	}
 
 	public String getPet() {
@@ -1508,7 +1508,7 @@ public class MateWriteVo {
 				+ wplace44 + ", wplace45=" + wplace45 + ", wplace51=" + wplace51 + ", wplace52=" + wplace52
 				+ ", wplace53=" + wplace53 + ", wplace54=" + wplace54 + ", wplace55=" + wplace55 + ", introduce="
 				+ introduce + ", comments=" + comments + ", nosmoke=" + nosmoke + ", phonecharge=" + phonecharge
-				+ ", drivergender=" + drivergender + ", silence=" + silence + ", pet=" + pet + ", totalFare="
+				+ ", femaledriver=" + femaledriver + ", trunk=" + trunk + ", pet=" + pet + ", totalFare="
 				+ totalFare + ", intfare=" + intfare + ", fare1=" + fare1 + ", fare2=" + fare2 + ", fare3=" + fare3
 				+ ", fare4=" + fare4 + ", fare5=" + fare5 + ", day1=" + day1 + ", day2=" + day2 + ", day3=" + day3
 				+ ", day4=" + day4 + ", day5=" + day5 + ", people=" + people + ", slat1=" + slat1 + ", slat2=" + slat2

@@ -74,11 +74,11 @@
 					</c:if>
 					</tr>
 					<tr>
-					<c:if test="${dwv.drivergender != null}">
-						<td><input type="hidden" id="drivergender" name="drivergender" value="female">여성 드라이버</td>
+					<c:if test="${dwv.femaledriver != null}">
+						<td><input type="hidden" id="femaledriver" name="femaledriver" value="femaledriver">여성 드라이버</td>
 					</c:if>
-					<c:if test="${dwv.silence != null}">
-						<td><input class="td2" type="hidden" id="silence" name="silence" value="silence">조용하게 가는 것을 선호</td>
+					<c:if test="${dwv.trunk != null}">
+						<td><input class="td2" type="hidden" id="trunk" name="trunk" value="trunk">트렁크 사용 가능</td>
 					</c:if>
 					</tr>
 					<tr>
@@ -113,13 +113,16 @@
 <script type="text/javascript">
 var modal = document.getElementById("modal")
 function modalOn() {
+    modal.style.animation = "fade-in 0.5s"
     modal.style.display = "flex"
 }
 function isModalOn() {
     return modal.style.display === "flex"
 }
 function modalOff() {
-    modal.style.display = "none"
+   	modal.style.animation = "fade-out 0.5s"
+   		$("body").css("overflow-y","visible");//body 스크롤바 생성
+    setTimeout(function(){modal.style.display = "none"},501);
 }
 var btnModal = document.getElementById("btn-modal")
 btnModal.addEventListener("click", e => {
@@ -128,7 +131,7 @@ btnModal.addEventListener("click", e => {
           "left": (($(window).width()-$(".modal-overlay").outerWidth())/2+$(window).scrollLeft())+"px"
           //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정
        }); 
-      
+	  
       $(".modal-window").css("display","block"); //팝업 뒷배경 display block
       $(".modal-overlay").css("display","block"); //팝업창 display block
       
@@ -137,19 +140,16 @@ btnModal.addEventListener("click", e => {
   	})
 var closeBtn = modal.querySelector(".close-area")
 closeBtn.addEventListener("click", e => {
-	$("body").css("overflow","auto");//body 스크롤바 생성
-    modalOff()
+	modalOff()
 })
 modal.addEventListener("click", e => {
-    var evTarget = e.target
+    const evTarget = e.target
     if(evTarget.classList.contains("modal-overlay")) {
-    	$("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
 window.addEventListener("keyup", e => {
     if(isModalOn() && e.key === "Escape") {
-    	$("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })

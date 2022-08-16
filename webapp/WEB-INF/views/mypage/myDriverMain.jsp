@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -6,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
 <script src="/assets/js/jquery-1.11.0.min.js"></script>
 
 
@@ -28,7 +30,8 @@
 					<img src="/assets/images/box_user.png">
 				</div>
 				<p>Ryeo-kyoung,kim님</p>
-				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.3</span>
+				<span>Reviews</span><span><img
+					src="/assets/images/ico_star.png">4.3</span>
 			</div>
 			<div class="box2">
 				<p>
@@ -53,14 +56,22 @@
 				<h2>마이페이지</h2>
 				<!-- h2? -->
 				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myDriverForm">드라이버 신청/정보<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myUsageDriverMain">이용 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myReservationDriverMain">예약 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myQnaMain">문의 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointMain">포인트<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myCouponMain">쿠폰<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li><a href="./myPointRefundMain">환불 내역<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
+					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
+							src="/assets/images/chevron-right-blue.png"></a></li>
 				</ul>
 			</nav>
 
@@ -68,7 +79,10 @@
 			<section class="myPage_selection">
 				<!-- //section-header -->
 				<header class="myPage_header">
-					<h3>드라이버 정보</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold">유저님의 차량 정보 및 상세 조건을 등록/수정하실 수 있습니다.</span>
+					<h3>드라이버 정보</h3>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+						style="font-weight: bold">유저님의 차량 정보 및 상세 조건을 등록/수정하실 수
+						있습니다.</span>
 					<ul>
 						<li>드라이버 포인트 내역은 주행 완료 후 지급된 포인트입니다.</li>
 						<li>유저 포인트 내역은 다른 드라이버의 차량을 이용 후 사용한 포인트입니다.</li>
@@ -94,7 +108,8 @@
 
 				</article>
 
-				<a type="button" href="./myDriverForm" target="self" alt="등록하기" class="DForm_enrollbtn"> <span>등록하기</span></a>
+				<a type="button" href="./myDriverForm" target="self" alt="등록하기"
+					class="DForm_enrollbtn"> <span>등록하기</span></a>
 
 			</section>
 
