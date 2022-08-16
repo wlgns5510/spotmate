@@ -73,7 +73,6 @@ public class CouponVo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 	
 	//메소드-일반
 	@Override
@@ -81,6 +80,8 @@ public class CouponVo {
 		return "CouponVo [no=" + no + ", userNo=" + userNo + ", buyDate=" + buyDate + ", usePlace=" + usePlace
 				+ ", point=" + point + ", status=" + status + "]";
 	}
+
+	
 	
 	
 	

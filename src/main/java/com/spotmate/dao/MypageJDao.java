@@ -1,6 +1,5 @@
 package com.spotmate.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +16,11 @@ public class MypageJDao {
 	private SqlSession sqlSession;
 
 	// 쿠폰리스트가져오기
-	public List<CouponVo> getCouponList(Map<String, Object> pmap) {
+	public List<CouponVo> getCouponList(Map<String, Object> pMap) {
 		System.out.println("MypageJDao > getCouponList");
 
-		List<CouponVo> couponList = sqlSession.selectList("mypagej.selectCouponList", pmap);
-
+		List<CouponVo> couponList = sqlSession.selectList("mypagej.selectCouponList", pMap);
+ 
 		return couponList;
 	}
 
@@ -32,5 +31,16 @@ public class MypageJDao {
 		int count = sqlSession.insert("mypagej.insertPoint", point);
 		System.out.println(count + "건의 포인트 충전이 완료되었습니다.");
 	}
+	
+	// 쿠폰전체글 갯수
+	public int totalCouponCnt() {
+		System.out.println("MypageJDao > totalCouponCnt");
+		
+		int totalCouponCnt = sqlSession.selectOne("mypagej.totalCouponCnt");
+		
+		return totalCouponCnt;
+	}
+	
+
 
 }
