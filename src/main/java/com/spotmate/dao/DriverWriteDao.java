@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spotmate.vo.DriverLicenseVo;
 import com.spotmate.vo.DriverWriteVo;
 import com.spotmate.vo.MateWriteVo;
 
@@ -25,6 +26,10 @@ public class DriverWriteDao {
 	
 	public String SelectDriverInfo() {
 		return ss.selectOne("spotmate.selectdriverinfo");
+	}
+	public void myDriverInsert(DriverLicenseVo dlvo) {
+		ss.insert("spotmate.myDriverinsert", dlvo);
+		
 	}
 	
 }
