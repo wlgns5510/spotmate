@@ -188,91 +188,42 @@
 
 
 		<div class="inner">
+		
 			<div class="review_banner swiper-container">
 				<ul class="swiper-wrapper">
+				
+				<c:forEach items="${reviewList}" var="carpoolVo">
+				
 					<li class="swiper-slide">
 						<dl class="review_box">
-							<c:forEach items="${reviewList}" var="carpoolVo">
+							
 								<dt class="review_top">
 									<p class="writer_img">
 										<img src="">
 									</p>
 
 									<p class="writer_info">
-										<strong class="name">${carpoolVo.id}</strong> <em class="date">${carpoolVo.star}</em>
+										<strong class="name">유저 ID : ${carpoolVo.id}</strong> 
+										<em class="date">별점 : ${carpoolVo.star}</em>
 									</p>
 
 								</dt>
 								<dd class="review_dec">${carpoolVo.content}</dd>
-							</c:forEach>
+							
 						</dl>
 					</li>
-					<!-- 
-					<li class="swiper-slide"><a href="#">
-							<dl class="review_box">
-								<dt class="review_top">
-									<p class="writer_img">
-										<img src="">
-									</p>
-									<p class="writer_info">
-										<strong class="name">John Doberman</strong> <em class="date">July
-											31 2022</em>
-									</p>
-								</dt>
-								<dd class="review_dec">
-									Lorem ipsum dolor sit amet, consectetur <br /> adipiseing
-									elit, sed do eiusmod tempor incididunt <br /> ut labore et
-									dolore magna aliqua.
-								</dd>
-							</dl>
-					</a></li>
-					<li class="swiper-slide"><a href="#">
-							<dl class="review_box">
-								<dt class="review_top">
-									<p class="writer_img">
-										<img src="">
-									</p>
-									<p class="writer_info">
-										<strong class="name">John Doberman</strong> <em class="date">July
-											31 2022</em>
-									</p>
-								</dt>
-								<dd class="review_dec">
-									Lorem ipsum dolor sit amet, consectetur <br /> adipiseing
-									elit, sed do eiusmod tempor incididunt <br /> ut labore et
-									dolore magna aliqua.
-								</dd>
-							</dl>
-					</a></li>
-					<li class="swiper-slide"><a href="#">
-							<dl class="review_box">
-								<dt class="review_top">
-									<p class="writer_img">
-										<img src="">
-									</p>
-									<p class="writer_info">
-										// 마크업뜻 : strong 강조(dt 대신)
-										<strong class="name">John Doberman</strong>
-										// 마크업뜻 : em 서브강조(dd 대신) 
-										<em class="date">July 31 2022</em>
-									</p>
-								</dt>
-								<dd class="review_dec">
-									Lorem ipsum dolor sit amet, consectetur <br /> adipiseing
-									elit, sed do eiusmod tempor incididunt <br /> ut labore et
-									dolore magna aliqua.
-								</dd>
-							</dl>
-					</a></li>
-	 -->
+					</c:forEach>
+					
 				</ul>
 			</div>
+				
 			<div class="review_banner_btns">
 				<a href="javascript:void(0);"><img class="swiper-button-prev"
 					src="/assets/images/common/ico_arrow_lft.png"></a> <a
 					href="javascript:void(0);"><img class="swiper-button-next"
 					src="/assets/images/common/ico_arrow_rit.png"></a>
 			</div>
+			
 		</div>
 	</div>
 	<!-- //리뷰배너 -->
@@ -284,84 +235,30 @@
 		<h6 class="recommend">차량 추천 리스트</h6>
 
 		<div class="recommendList">
-			<ol>
-				<c:forEach items="${recommendList}" var="carpoolVo">
+			<c:forEach items="${recommendList}" var="carpoolVo" begin="1" end="4" step="1">
+				<ol>
 					<li>
-						<p class="recommend-Driver-list">${carpoolVo.id}</p>
+						<p class="recommend-Driver-list">드라이버 : ${carpoolVo.id}</p>
 					</li>
 					<li>
-						<p class="recommend-start-list">${carpoolVo.startDate}</p>
+						<p class="recommend-start-list">출발일시 : ${carpoolVo.startDate}</p>
 					</li>
 					<li>
-						<p class="recommend-point-list">${carpoolVo.point}</p>
-				</c:forEach>
-				<a href="">
-					<button>
-						<img class="recommend-List-Picto"
-							src="/assets/images/external.png"> <span
-							class="choose-text">선택</span>
-					</button>
-				</a>
-				</li>
-			</ol>
-			<!--  
-			<ol>
-				<li>
-					<p class="recommend-Driver-list">드라이버 : spotmate1234</p>
-				</li>
-				<li>
-					<p class="recommend-start-list">출발일시:2022-07-20</p>
-				</li>
-				<li>
-					<p class="recommend-point-list">소요 포인트 3,000P</p>
-					<a href="/spotCarpoolDeep">
-						<button>
-							<img class="recommend-List-Picto" src="/assets/images/external.png"> 
-							<span class="choose-text">선택</span>
-						</button>
-					</a>
-				</li>
-			</ol>
-
-			<ol>
-				<li>
-					<p class="recommend-Driver-list">드라이버 : spotmate1234</p>
-				</li>
-				<li>
-					<p class="recommend-start-list">출발일시:2022-07-20</p>
-				</li>
-				<li>
-					<p class="recommend-point-list">소요 포인트 3,000P</p>
-					<a href="">
-						<button>
-							<img class="recommend-List-Picto" src="/assets/images/external.png"> 
-							<span class="choose-text">선택</span>
-						</button>
-					</a>
-				</li>
-			</ol>
-
-			<ol>
-				<li>
-					<p class="recommend-Driver-list">드라이버 : spotmate1234</p>
-				</li>
-				<li>
-					<p class="recommend-start-list">출발일시:2022-07-20</p>
-				</li>
-				<li>
-					<p class="recommend-point-list">소요 포인트 3,000P</p>
-					<a href="">
-						<button>
-							<img class="recommend-List-Picto" src="/assets/images/external.png"> 
-							<span class="choose-text">선택</span>
-						</button>
-					</a>
-				</li>
-			</ol>
--->
+						<p class="recommend-point-list">소요 포인트 ${carpoolVo.point}P</p> 
+						<a href="">
+							<button>
+								<img class="recommend-List-Picto"
+									src="/assets/images/external.png"> <span
+									class="choose-text">선택</span>
+							</button>
+						</a>
+					</li>
+				</ol>
+			</c:forEach>
+	
 		</div>
 
-		<a href="/spotCarpool">
+		<a href="/spotCarpool/list">
 			<button class="recommend-button">추천 리스트 더보기 ></button>
 		</a>
 

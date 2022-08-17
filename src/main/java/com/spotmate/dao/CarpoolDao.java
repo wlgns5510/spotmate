@@ -15,7 +15,7 @@ public class CarpoolDao {
 		@Autowired
 		private SqlSession sqlSession;
 		
-		/*
+		
 		// 리스트
 		public List<CarpoolVo> getcarpoolList() {
 			System.out.println("CarpoolDao>list()");
@@ -24,22 +24,9 @@ public class CarpoolDao {
 			System.out.println(carpoolList);
 
 			return carpoolList;
-		}*/
-		
-		/*public List<CarpoolVo> getcarpoolList(String keyword) {			
-			System.out.println("CarpoolDao>list()");
-			
-			List<CarpoolVo> csL = sqlSession.selectList("carpool.selectslist", keyword);
-			List<CarpoolVo> ceL = sqlSession.selectList("carpool.selectelist", keyword);
-			for (int i=0; i<csL.size(); i++) {
-				if (csL.get(i).getNo() == ceL.get(i).getNo()) {
-					csL.get(i).setSplace(csL.get(i).getPlace());
-					csL.get(i).setEplace(ceL.get(i).getPlace());
-				}
-			}
-			return csL;
 		}
-		*/
+		
+	
 		
 		//리뷰 리스트
 		public List<CarpoolVo> getreviewList() {
@@ -50,6 +37,18 @@ public class CarpoolDao {
 
 			return reviewList;
 		}
+		
+		// Deep 차량 추천 리스트 박스
+		public List<CarpoolVo> getrecommendList() {
+			System.out.println("CarpoolDao>list()");
+
+			List<CarpoolVo> recommendList = sqlSession.selectList("carpool.selectRecommendList");
+			
+			System.out.println(recommendList);
+
+			return recommendList;
+		}
+		
 		
 		
 		//드라이버 정보 가져오기

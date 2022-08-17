@@ -154,7 +154,7 @@
 								<td>${carpoolVo.eplace}</td>
 								<td>${carpoolVo.point}</td>
 								<td>${carpoolVo.id}</td>
-								<td><a href="./spotCarpoolDeep"><button class="board">탑승요청</button></a></td>
+								<td><a href="/spotCarpoolDeep"><button class="board">탑승요청</button></a></td>
 	
 							</tr>
 						</c:forEach>

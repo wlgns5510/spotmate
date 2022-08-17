@@ -34,21 +34,20 @@ public class CarpoolController {
 		return "/spotcarpool/spotCarpool";
 	}
 
-	/*
-	//리스트 (탑승 가능 차량 리스트 + 출발지, 도착지 검색)
-	@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model) {
-		System.out.println("CarpoolController>list()");
-
-		List<CarpoolVo> carpoolList = carpoolService.getList();
-
-		model.addAttribute("carpoolList", carpoolList);
-
-		return "/spotCarpool/list";
-
-	}*/
 	
+	@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST }) 
+	public String list(Model model) {
+			  
+			System.out.println("CarpoolController>list()");
+			
+			List<CarpoolVo> carpoolList = carpoolService.getList();
+			  
+			model.addAttribute("carpoolList", carpoolList);
+			  
+			return "/spotcarpool/spotCarpool"; 
+	}
 		
+	
 	@RequestMapping(value = "/spotCarpoolDeep", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotCarpoolDeep() {
 		return "/spotcarpool/spotCarpoolDeep";
@@ -65,10 +64,23 @@ public class CarpoolController {
 
 		model.addAttribute("reviewList", reviewList);
 
-		return "/spotCarpoolDeep/list";
+		return "/spotcarpool/spotCarpoolDeep";
 
 		}
 	
+	// Deep 차량 추천 리스트 박스
+	
+	@RequestMapping(value = "/spotCarpoolDeep/recomlist", method = { RequestMethod.GET, RequestMethod.POST }) 
+	public String list3(Model model) {
+			  
+			System.out.println("CarpoolController>recomlist()");
+			
+			List<CarpoolVo> recommendList = carpoolService.getList3();
+			  
+			model.addAttribute("recommendList", recommendList);
+			  
+			return "/spotcarpool/spotCarpoolDeep"; 
+	}
 	
 	//드라이버 차량 정보 가져오기
 
