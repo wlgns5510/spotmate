@@ -1044,4 +1044,87 @@ sysdate,
 select *
 from reservation;
 
+---------------------- 손님 리뷰 ------------------------
+DROP INDEX PK_userReview;
+
+-- 테이블 삭제
+DROP TABLE userReview 
+	CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_userReview_no;
+
+-- 테이블 생성 : 손님리뷰
+CREATE TABLE userReview (
+	no NUMBER NOT NULL, /* 리뷰번호 */
+	resvNo NUMBER, /* 예약번호 */
+	star NUMBER, /* 별점 */
+	content VARCHAR2(1000) /* 내용 */
+);
+
+-- 시퀀스 생성
+create sequence seq_userReview_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE userReview IS '손님리뷰';
+
+COMMENT ON COLUMN userReview.no IS '리뷰번호';
+
+COMMENT ON COLUMN userReview.resvNo IS '예약번호';
+
+COMMENT ON COLUMN userReview.star IS '별점';
+
+COMMENT ON COLUMN userReview.content IS '내용';
+
+CREATE UNIQUE INDEX PK_userReview
+	ON userReview (
+		no ASC
+	);
+
+ALTER TABLE userReview
+	ADD
+		CONSTRAINT PK_userReview
+		PRIMARY KEY (
+			no
+		);
+
+ALTER TABLE userReview
+	ADD
+		CONSTRAINT FK_reservation_TO_userReview
+		FOREIGN KEY (
+			resvNo
+		)
+		REFERENCES reservation (
+			no
+		);
+
+-- insert 생성
+INSERT INTO userReview values(
+seq_userReview_no.nextval,
+1,
+3,
+'감사합니다'
+);
+
+INSERT INTO userReview values(
+seq_userReview_no.nextval,
+2,
+4,
+'덕분에 편안히 갑니다:)'
+);
+
+INSERT INTO userReview values(
+seq_userReview_no.nextval,
+3,
+2,
+'조용히 가고 싶었는데.....'
+);
+
+-- select
+select *
+from userReview;
+
 
