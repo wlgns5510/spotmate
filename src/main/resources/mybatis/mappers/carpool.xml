@@ -5,7 +5,7 @@
 
 	<!-- 리스트 + 검색 -->
 	
-	<select id="selectslist" parameterType="String" resultType="CarpoolVo">
+	<select id="selectCarpoolList" resultType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
 			select sm.no,
 			       sm.type,
@@ -14,7 +14,10 @@
 			       sm.point,
 			       u.id
 			from spotmate sm, car c, users u,
-			     (select *
+			     (select s.sMateNo,
+			             s.splace,
+			             e.eMateNo,
+			             e.ePlace
 			      from (select p.mateNo sMateNo, p.place sPlace
 			            from place p
 			            where p.wayNo = -1) s,
@@ -24,7 +27,7 @@
 			      where s.sMateNo = e.eMateNo) se
 			where sm.no = se.sMateNo
 			and c.no = sm.carNo
-			and u.no = c.userNo;
+			and u.no = c.userNo
 
 		]]>
 		

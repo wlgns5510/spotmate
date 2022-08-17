@@ -4,25 +4,25 @@ public class CarpoolVo {
 	
 	//필드
 	
-	private int no, wayno, point, people, driverNo, detailNo, star;
-	private String id, startDate, endDate, place, latlng,  
+	private int no, wayNo, point, people, driverNo, detailNo, star;
+	private String id, startDate, endDate, place, splace, eplace, latlng,  
 	type, duration, distance, carName, carPicture,introduce, comments, name, time, content;
 	
 	
 	//생성자
-
+	
 	public CarpoolVo() {
 		
 	}
 
 
-	public CarpoolVo(int no, int wayno, int point, int people, int driverNo, int detailNo, int star, String id,
-			String startDate, String endDate, String place, String latlng, String type, String duration,
-			String distance, String carName, String carPicture, String introduce, String comments, String name,
-			String time, String content) {
+	public CarpoolVo(int no, int wayNo, int point, int people, int driverNo, int detailNo, int star, String id,
+			String startDate, String endDate, String place, String splace, String eplace, String latlng, String type,
+			String duration, String distance, String carName, String carPicture, String introduce, String comments,
+			String name, String time, String content) {
 		super();
 		this.no = no;
-		this.wayno = wayno;
+		this.wayNo = wayNo;
 		this.point = point;
 		this.people = people;
 		this.driverNo = driverNo;
@@ -32,6 +32,8 @@ public class CarpoolVo {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.place = place;
+		this.splace = splace;
+		this.eplace = eplace;
 		this.latlng = latlng;
 		this.type = type;
 		this.duration = duration;
@@ -44,10 +46,8 @@ public class CarpoolVo {
 		this.time = time;
 		this.content = content;
 	}
-	
-	
-	//메서드 getter/setter
-	
+
+
 	public int getNo() {
 		return no;
 	}
@@ -58,13 +58,13 @@ public class CarpoolVo {
 	}
 
 
-	public int getWayno() {
-		return wayno;
+	public int getWayNo() {
+		return wayNo;
 	}
 
 
-	public void setWayno(int wayno) {
-		this.wayno = wayno;
+	public void setWayNo(int wayNo) {
+		this.wayNo = wayNo;
 	}
 
 
@@ -155,6 +155,26 @@ public class CarpoolVo {
 
 	public void setPlace(String place) {
 		this.place = place;
+	}
+
+
+	public String getSplace() {
+		return splace;
+	}
+
+
+	public void setSplace(String splace) {
+		this.splace = splace;
+	}
+
+
+	public String getEplace() {
+		return eplace;
+	}
+
+
+	public void setEplace(String eplace) {
+		this.eplace = eplace;
 	}
 
 
@@ -268,126 +288,18 @@ public class CarpoolVo {
 	}
 
 
-	//메서드 일반
-	
 	@Override
 	public String toString() {
-		return "CarpoolVo [no=" + no + ", wayno=" + wayno + ", point=" + point + ", people=" + people + ", driverNo="
+		return "CarpoolVo [no=" + no + ", wayNo=" + wayNo + ", point=" + point + ", people=" + people + ", driverNo="
 				+ driverNo + ", detailNo=" + detailNo + ", star=" + star + ", id=" + id + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", place=" + place + ", latlng=" + latlng + ", type=" + type + ", duration="
-				+ duration + ", distance=" + distance + ", carName=" + carName + ", carPicture=" + carPicture
-				+ ", introduce=" + introduce + ", comments=" + comments + ", name=" + name + ", time=" + time
-				+ ", content=" + content + "]";
+				+ ", endDate=" + endDate + ", place=" + place + ", splace=" + splace + ", eplace=" + eplace
+				+ ", latlng=" + latlng + ", type=" + type + ", duration=" + duration + ", distance=" + distance
+				+ ", carName=" + carName + ", carPicture=" + carPicture + ", introduce=" + introduce + ", comments="
+				+ comments + ", name=" + name + ", time=" + time + ", content=" + content + "]";
 	}
+	
+	
+	
 	
 	
 }
-	
-	
-	/*
-	//필드
-	
-	private int no;
-	private int mateNo;
-	private String type;
-	private int people;
-	private String place;
-	private int wayNo;
-	private int point;
-	private int driverNo;
-	
-	
-	//생성자
-	
-	public CarpoolVo() {
-
-	}
-	
-	public CarpoolVo(int no, int mateNo, String type, int people, String place, int wayNo, int point, int driverNo) {
-		this.no = no;
-		this.mateNo = mateNo;
-		this.type = type;
-		this.people = people;
-		this.place = place;
-		this.wayNo = wayNo;
-		this.point = point;
-		this.driverNo = driverNo;
-	}
-
-		
-	//메서드 getter,setter
-	
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-
-	public int getMateNo() {
-		return mateNo;
-	}
-
-	public void setMateNo(int mateNo) {
-		this.mateNo = mateNo;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public int getPeople() {
-		return people;
-	}
-
-	public void setPeople(int people) {
-		this.people = people;
-	}
-
-	public String getPlace() {
-		return place;
-	}
-
-	public void setPlace(String place) {
-		this.place = place;
-	}
-
-	public int getWayNo() {
-		return wayNo;
-	}
-
-	public void setWayNo(int wayNo) {
-		this.wayNo = wayNo;
-	}
-
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
-	public int getDriverNo() {
-		return driverNo;
-	}
-
-	public void setDriverNo(int driverNo) {
-		this.driverNo = driverNo;
-	}
-
-		
-	//메서드 일반
-	
-	@Override
-	public String toString() {
-		return "CarpoolVo [no=" + no + ", mateNo=" + mateNo + ", type=" + type + ", people=" + people + ", place="
-				+ place + ", wayNo=" + wayNo + ", point=" + point + ", driverNo=" + driverNo + "]";
-	}
-	
-	*/

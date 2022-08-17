@@ -15,7 +15,7 @@ public class CarpoolService {
 	@Autowired
 	private CarpoolDao carpoolDao;
 	
-	/*
+	
 	// 리스트
 	public List<CarpoolVo> getList() {
 		System.out.println("CarpoolService > getList");
@@ -24,12 +24,12 @@ public class CarpoolService {
 		System.out.println(carpoolList);
 		
 		return carpoolList;
-	}*/
+	}
 	
 	/*
 	// 리스트가져오기
-		public Map<String, Object> getCouponList(String startDate, String endDate, String option1, String option2, int crtPage) {
-			System.out.println("MypageJService > getCouponList");
+		public Map<String, Object> getList() {
+			System.out.println("carpoolService > getcarpoolList");
 			
 			/////////////리스트//////////////
 			

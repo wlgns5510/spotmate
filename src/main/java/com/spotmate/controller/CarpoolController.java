@@ -48,7 +48,19 @@ public class CarpoolController {
 
 	}*/
 	
+	@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST }) 
+	public String list(Model model) {
+			  
+			System.out.println("CarpoolController>list()");
+			
+			List<CarpoolVo> carpoolList = carpoolService.getList();
+			  
+			model.addAttribute("carpoolList", carpoolList);
+			  
+			return "/spotcarpool/spotCarpool"; 
+	}
 		
+	
 	@RequestMapping(value = "/spotCarpoolDeep", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotCarpoolDeep() {
 		return "/spotcarpool/spotCarpoolDeep";
