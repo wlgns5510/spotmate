@@ -604,3 +604,101 @@ values(5, '트렁크 사용 가능');
 select *
 from detailOpt;
 
+---------------------- 차량 ------------------------
+DROP INDEX PK_car;
+
+-- 테이블 삭제
+DROP TABLE car 
+	CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_car_no;
+
+-- 차량 테이블 생성
+CREATE TABLE car (
+   no NUMBER NOT NULL, /* 차량번호 */
+   userNo NUMBER, /* 회원번호 */
+   carName VARCHAR2(100), /* 차모델명 */
+   carPicture VARCHAR2(100), /* 차사진 */
+   carNo VARCHAR2(100), /* 차번호 */
+   carColor VARCHAR2(100), /* 차량색상 */
+   people NUMBER, /* 탑승가능수 */
+   introduce VARCHAR2(1000) /* 소개글 */
+);
+
+-- 시퀀스 생성
+create sequence seq_car_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE car IS '차량';
+
+COMMENT ON COLUMN car.no IS '차량번호';
+
+COMMENT ON COLUMN car.userNo IS '회원번호';
+
+COMMENT ON COLUMN car.carName IS '차모델명';
+
+COMMENT ON COLUMN car.carPicture IS '차사진';
+
+COMMENT ON COLUMN car.carNo IS '차번호';
+
+COMMENT ON COLUMN car.carColor IS '차량색상';
+
+COMMENT ON COLUMN car.people IS '탑승가능수';
+
+COMMENT ON COLUMN car.introduce IS '소개글';
+
+CREATE UNIQUE INDEX PK_car
+   ON car (
+      no ASC
+   );
+
+ALTER TABLE car
+   ADD
+      CONSTRAINT PK_car
+      PRIMARY KEY (
+         no
+      );
+
+ALTER TABLE car
+   ADD
+      CONSTRAINT FK_users_TO_car
+      FOREIGN KEY (
+         userNo
+      )
+      REFERENCES users (
+         no
+      );
+
+-- insert 생성
+insert into car
+values(seq_car_no.nextval,
+        1, 
+        'Benz-glc220d',
+        'image1',
+        '66두 5793',
+        'white',
+        3,
+        '안녕하세요. 저는 조용하고 안전하게 가는 걸 선호합니다. 약속 장소에는 출발 5분 전에 나와주시면
+        감사하겠습니다. 차량 이용 후 내리실 때에는 본인이 소지한 물품 및 쓰레기는 꼭 챙겨 나가 주시길 바랍니다 :)'
+        );        
+
+insert into car
+values(seq_car_no.nextval,
+        2, 
+        'Benz-eclass',
+        'image2',
+        '77라 1328',
+        'black',
+        2,
+        '안녕하세요. 제 차에는 항상 반려동물(강아지)이 타고 있습니다. 그래서 이 부분 괜찮으신 분께서만 이용해 주셨으면 좋겠습니다. 
+        그리고 어떤 사정이 있더라도 약속 시간 이후 5분까지만 기다렸다 출발할 것이니 꼭 시간 준수 부탁드립니다. '
+        );
+
+-- select
+select *
+from car;
+
