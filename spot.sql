@@ -232,3 +232,80 @@ FROM
 select  no
         ,name
 from category;
+
+------------------- 브랜드 ----------------------
+DROP INDEX PK_brand;
+
+-- 테이블 삭제 : 브랜드
+DROP TABLE brand 
+	CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_brand_no;
+
+-- 테이블 생성
+CREATE TABLE brand (
+	no NUMBER NOT NULL, /* 브랜드번호 */
+	cateNo NUMBER, /* 카테고리번호 */
+	name VARCHAR2(100) /* 브랜드명 */
+);
+
+-- 시퀀스 생성
+create sequence seq_brand_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE brand IS '브랜드';
+
+COMMENT ON COLUMN brand.no IS '브랜드번호';
+
+COMMENT ON COLUMN brand.cateNo IS '카테고리번호';
+
+COMMENT ON COLUMN brand.name IS '브랜드명';
+
+CREATE UNIQUE INDEX PK_brand
+   ON brand (
+      no ASC
+   );
+
+ALTER TABLE brand
+   ADD
+      CONSTRAINT PK_brand
+      PRIMARY KEY (
+         no
+      );
+
+ALTER TABLE brand
+   ADD
+      CONSTRAINT FK_category_TO_brand
+      FOREIGN KEY (
+         cateNo
+      )
+      REFERENCES category (
+         no
+      );
+
+-- insert 생성
+insert into brand
+values(seq_brand_no.nextval, 
+        1, 'S-OIL'
+);       
+
+insert into brand
+values(seq_brand_no.nextval, 
+        1, 'GS-칼텍스'
+);  
+
+-- select
+select *
+from brand;
+
+-- select
+select  no
+        ,cateNo
+        ,name
+from brand;
+
+
