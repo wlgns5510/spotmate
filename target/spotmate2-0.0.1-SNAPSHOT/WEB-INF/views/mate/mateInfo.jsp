@@ -79,7 +79,7 @@
 			</p>
 			<button type="button" class="mateMainGo" onclick="location.href='${pageContext.request.contextPath}/mateMain'">			
 				<span class="pictogrem02"></span>	
-				<h2>보러가기</h2>
+				<p>보러가기</p>
 			</button>
 		</div>
 	</div>
@@ -108,4 +108,8 @@
 </div>
 <!-- //mateInfo_wrap -->
 </body>
+
+<script>
+</script>
+
 </html>

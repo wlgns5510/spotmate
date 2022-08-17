@@ -417,13 +417,13 @@
 								</c:if>
 							</tr>
 							<tr>
-							<c:if test="${mwVo.drivergender != null}">
+							<c:if test="${mwVo.femaledriver != null}">
 								<td><div style="background: url(/assets/images/boy.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>여성 드라이버</span></td>
-								<td><input type="hidden" name="drivergender" value="${mwVo.drivergender}"></td>
+								<td><input type="hidden" name="femaledriver" value="${mwVo.femaledriver}"></td>
 								</c:if>
-								<c:if test="${mwVo.silence != null}">
-								<td><div style="background: url(/assets/images/wifi.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>조용하게 가는 것을 선호</span></td>
-								<td><input type="hidden" name="silence" value="${mwVo.silence}"></td>
+								<c:if test="${mwVo.trunk != null}">
+								<td><div style="background: url(/assets/images/wifi.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
+								<td><input type="hidden" name="trunk" value="${mwVo.trunk}"></td>
 								</c:if>
 							</tr>
 							<tr>
@@ -456,49 +456,48 @@
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
-const modal = document.getElementById("modal")
+var modal = document.getElementById("modal")
 function modalOn() {
+    modal.style.animation = "fade-in 0.5s"
     modal.style.display = "flex"
 }
 function isModalOn() {
     return modal.style.display === "flex"
 }
 function modalOff() {
-    modal.style.display = "none"
+   	modal.style.animation = "fade-out 0.5s"
+   		$("body").css("overflow-y","visible");//body 스크롤바 생성
+    setTimeout(function(){modal.style.display = "none"},501);
 }
-const btnModal = document.getElementById("btn-modal")
+var btnModal = document.getElementById("btn-modal")
 btnModal.addEventListener("click", e => {
 	  $(".modal-overlay").css({
           "top": (($(window).height()-$(".modal-overlay").outerHeight())/2+$(window).scrollTop())+"px",
           "left": (($(window).width()-$(".modal-overlay").outerWidth())/2+$(window).scrollLeft())+"px"
           //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정
        }); 
-      
+	  
       $(".modal-window").css("display","block"); //팝업 뒷배경 display block
       $(".modal-overlay").css("display","block"); //팝업창 display block
       
       $("body").css("overflow","hidden");//body 스크롤바 없애기
       modalOn()
   	})
-const closeBtn = modal.querySelector(".close-area")
+var closeBtn = modal.querySelector(".close-area")
 closeBtn.addEventListener("click", e => {
-	$("body").css("overflow","auto");//body 스크롤바 생성
-    modalOff()
+	modalOff()
 })
 modal.addEventListener("click", e => {
     const evTarget = e.target
     if(evTarget.classList.contains("modal-overlay")) {
-    	$("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
 window.addEventListener("keyup", e => {
     if(isModalOn() && e.key === "Escape") {
-    	$("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
-
  
 
 

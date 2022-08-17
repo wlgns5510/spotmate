@@ -32,7 +32,7 @@
 				<div class="searchbox">
 					<input class="place" type="text" name="start" value="" placeholder="출발지"> 
 					<input class="place" type="text" name="end" value="" placeholder="도착지"> 
-					<input class="person " type="number" min="1" name="person" value="1" placeholder="인원수">
+					<input class="people " type="number" min="1" name="people" value="" placeholder="인원수">
 					<button type="submit"><img src="/assets/images/round-search.png"></button>
 				</div>
 				<div class="detail-option">
@@ -41,185 +41,68 @@
 					<a href="javascript:void(0);" class="btn_a1"></a>
 				</div>
 			</form>
-			<c:forEach items="${hitchList}"  var="hitch">
+			<c:forEach items="${hitchList}"  var="hitch" varStatus="status">
 			<div class="driverList">
 				<div class="start">
 					<p>현재위치</p>
-					<span>대방역 1호선 2번 출구</span>
+					<span id="nowpos${hitch.mateNo}">${hitch.nowaddr}</span>
 				</div>
 				<div class="end">
 					<p>목적지</p>
 					<span>${hitch.eplace1}</span>
 				</div>
-				<div class="num">
-					<span>탑승 인원수</span><p>${hitch.people}</p>
+				<div class="num people${status.count}">
+					<span>탑승 가능한 인원수</span><p>${hitch.people}</p>
 				</div>
 				<div class="usePoint">
-					<span>총 결제 포인트</span><p>${hitch.point}</p>
+					<span>총 결제 포인트</span><p>${hitch.convertPoint}</p>
 				</div>
 				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
 					
 				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
 						상세 조건
 				</a>
-				<a href="/spotHitchhikedeep" class="rideReq">
+				<p onclick="rideReq(${status.count})" class="rideReq" id="rideReq${status.count}">
 					탑승 요청
-				</a>
+				</p>
+				<input type="hidden" value="${hitch.mateNo}" id="hitch${status.count}" >
+				<input type="hidden" value="${hitch.people}" id="canRide${status.count}" >
 			</div>
 			</c:forEach>
-			<!-- 요 부분 반복문 -->
-			
-			<!-- <div class="driverList">
-				<div class="start">
-					<p>현재위치</p>
-					<span>대방역 1호선 2번 출구</span>
-				</div>
-				<div class="end">
-					<p>목적지</p>
-					<span>NAVER 본사</span>
-				</div>
-				<div class="num">
-					<span>탑승 인원수</span><p>1명</p>
-				</div>
-				<div class="usePoint">
-					<span>총 결제 포인트</span><p>3,000포인트</p>
-				</div>
-				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
-					
-				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
-						상세 조건
-				</a>
-				<a href="/spotHitchhikedeep" class="rideReq">
-					탑승 요청
-				</a>
-			</div>
-			<div class="driverList">
-				<div class="start">
-					<p>현재위치</p>
-					<span>대방역 1호선 2번 출구</span>
-				</div>
-				<div class="end">
-					<p>목적지</p>
-					<span>NAVER 본사</span>
-				</div>
-				<div class="num">
-					<span>탑승 인원수</span><p>1명</p>
-				</div>
-				<div class="usePoint">
-					<span>총 결제 포인트</span><p>3,000포인트</p>
-				</div>
-				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
-					
-				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
-						상세 조건
-				</a>
-				<a href="/spotHitchhikedeep" class="rideReq">
-					탑승 요청
-				</a>
-			</div>
-			<div class="driverList">
-				<div class="start">
-					<p>현재위치</p>
-					<span>대방역 1호선 2번 출구</span>
-				</div>
-				<div class="end">
-					<p>목적지</p>
-					<span>NAVER 본사</span>
-				</div>
-				<div class="num">
-					<span>탑승 인원수</span><p>1명</p>
-				</div>
-				<div class="usePoint">
-					<span>총 결제 포인트</span><p>3,000포인트</p>
-				</div>
-				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
-					
-				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
-						상세 조건
-				</a>
-				<a href="/spotHitchhikedeep" class="rideReq">
-					탑승 요청
-				</a>
-			</div>
-			<div class="driverList">
-				<div class="start">
-					<p>현재위치</p>
-					<span>대방역 1호선 2번 출구</span>
-				</div>
-				<div class="end">
-					<p>목적지</p>
-					<span>NAVER 본사</span>
-				</div>
-				<div class="num">
-					<span>탑승 인원수</span><p>1명</p>
-				</div>
-				<div class="usePoint">
-					<span>총 결제 포인트</span><p>3,000포인트</p>
-				</div>
-				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
-					
-				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
-						상세 조건
-				</a>
-				<a href="/spotHitchhikedeep" class="rideReq">
-					탑승 요청
-				</a>
-			</div> -->
-			
-			<!-- 요 부분 반복문 -->
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+	
 </body>
 <script>
+	
+	var mateNo = $("#hitch1").val();
+
+	var geocoder = new kakao.maps.services.Geocoder();
 	var mapContainer = document.getElementById('hitch-main-map'), // 지도를 표시할 div 
 	mapOption = {
 		center : new kakao.maps.LatLng(37.48436301061165, 126.9922281879226), // 지도의 중심좌표
-		level : 2
-	// 지도의 확대 레벨 
-	};
-	var map = new kakao.maps.Map(mapContainer, mapOption);
-	var lat, lon = 0;
-	var temp = {};
-	var options = {
+		level : 3
+	},
+	map = new kakao.maps.Map(mapContainer, mapOption);
+
+	var	lat, lng = 0,
+		temp = {},
+		flag = false,
+		marker,
+		options = {
 		enableHighAccuracy : true,
 		timeout : 5000,
 		maximumAge : 0
 	};
-	function success(position) {
-		lat = position.coords.latitude, // 위도
-		lon = position.coords.longitude; // 경도
-		var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		var mVo = {};
-		mVo.lat = lat;
-		mVo.lon = lon;
-		if (mVo != temp) {
-			temp = mVo;
-			$.ajax({
-				url : "${pageContext.request.contextPath}/now",
-				type : "post",
-				contentType : "application/json",
-				data : JSON.stringify(temp),
-				dataType : "json",
-				success : function(result) {
-					console.log("good")
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
-			});
-		}
-		displayMarker(locPosition);
-	};
-	function error(err) {
-		console.log(err);
-	};
+	
 
 	if (navigator.geolocation) {
 		var na = navigator.geolocation.watchPosition(success, error, options);
 	}
-	var marker;
-	var flag = false;
+	
+	
+	
 	function displayMarker(locPosition) {
 		if (flag) {
 			marker.setMap(null);
@@ -247,22 +130,71 @@
 		kakao.maps.event.addListener(marker, 'click', function() {
 			// 마커 위에 인포윈도우를 표시합니다
 			infowindow.open(map, marker);
-			$.ajax({
-				url : "${pageContext.request.contextPath}/now",
-				type : "post",
-				contentType : "application/json",
-				data : JSON.stringify(temp),
-				dataType : "json",
-				success : function(result) {
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
-			});
 		});
 
 		flag = true;
 		map.setCenter(locPosition);
+	}
+	
+	function success(position) {
+		lat = position.coords.latitude, // 위도
+		lng = position.coords.longitude; // 경도
+		var locPosition = new kakao.maps.LatLng(lat, lng); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		/* $.ajax({
+			url : "${pageContext.request.contextPath}/now",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(search),
+			dataType : "json",
+			success : function(result) {
+				console.log(result);
+				$("#nowpos"+mateNo).text(result);
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		}); */
+		
+		displayMarker(locPosition);
+	};
+	
+	function error(err) {
+		console.log(err);
+	};
+	
+	function searchDetailAddrFromCoords(coords, callback) {
+		// 좌표로 법정동 상세 주소 정보를 요청합니다
+		geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+	}
+	
+	function rideReq(index) {
+		if ( $(".people").val() == '' ) {
+			alert("인원 수를 지정한 다음 시도해주세요")
+			return;
+		}
+		var hrVo = {};
+		hrVo.mateNo = $("#hitch"+index).val();
+		hrVo.people = $(".people").val();
+		hrVo.canRide = $("#canRide"+index).val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/rideReq",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(hrVo),
+			dataType : "json",
+			success : function(result) {
+				if (result != -1) {
+					$("#canRide"+index).val(result);
+					$(".people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
+					$("#rideReq"+index).text("신청 완료");
+				} else {
+					alert("탑승 인원 초과입니다.");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 	}
 </script>
 </html>

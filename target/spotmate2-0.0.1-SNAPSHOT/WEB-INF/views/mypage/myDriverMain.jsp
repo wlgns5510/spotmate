@@ -32,7 +32,7 @@
 			</div>
 			<div class="box2">
 				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
+					<a href="./myPointCharge">포인트 충전 ></a>
 				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
@@ -68,8 +68,7 @@
 			<section class="myPage_selection">
 				<!-- //section-header -->
 				<header class="myPage_header">
-					<h3>드라이버 정보</h3>
-					<span style="font-weight: bold">유저님의 차량 정보 및 상세 조건을 등록/수정하실 수 있습니다.</span>
+					<h3>드라이버 정보</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold">유저님의 차량 정보 및 상세 조건을 등록/수정하실 수 있습니다.</span>
 					<ul>
 						<li>드라이버 포인트 내역은 주행 완료 후 지급된 포인트입니다.</li>
 						<li>유저 포인트 내역은 다른 드라이버의 차량을 이용 후 사용한 포인트입니다.</li>
@@ -85,10 +84,9 @@
 
 
 					<br> <br>
-
-					<p width="300px">아직 등록된 정보가 없습니다.</p>
-
-					<p>드라이버 차량 등록을 신청하고 서비스를 이용해보세요.</p>
+					<pre>
+					<p width="300px">                                          아직 등록된 정보가 없습니다.<br>                              드라이버 차량 등록을 신청하고 서비스를 이용해보세요.</p>
+					</pre>
 
 
 

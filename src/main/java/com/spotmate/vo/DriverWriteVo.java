@@ -2,7 +2,7 @@ package com.spotmate.vo;
 
 public class DriverWriteVo {
 
-	private String sdate1, edate1, splace1, eplace1, fare, nosmoke, phonecharge, drivergender, silence, pet, introduce, dur,
+	private String sdate1, edate1, splace1, eplace1, fare, nosmoke, phonecharge, femaledriver, trunk, pet, introduce, dur,
 			dis, latlng1, comments, stime1, type;
 	private int people, intfare, no;
 	private double slat1, slng1, elat1, elng1;
@@ -11,7 +11,7 @@ public class DriverWriteVo {
 	}
 
 	public DriverWriteVo(String sdate, String edate, String splace, String eplace, String fare, String nosmoke,
-			String drivergender, String phonecharge, String silence, String pet, String introduce, int people,
+			String femaledriver, String phonecharge, String trunk, String pet, String introduce, int people,
 			double slat, double slng, double elat, double elng, String latlng, String dur, String dis, String type,
 			String comments, String stime) {
 		this.sdate1 = sdate;
@@ -21,8 +21,8 @@ public class DriverWriteVo {
 		this.fare = fare;
 		this.nosmoke = nosmoke;
 		this.phonecharge = phonecharge;
-		this.drivergender = drivergender;
-		this.silence = silence;
+		this.femaledriver = femaledriver;
+		this.trunk = trunk;
 		this.pet = pet;
 		this.introduce = introduce;
 		this.people = people;
@@ -112,20 +112,20 @@ public class DriverWriteVo {
 		this.nosmoke = nosmoke;
 	}
 
-	public String getDrivergender() {
-		return drivergender;
+	public String getFemaledriver() {
+		return femaledriver;
 	}
 
-	public void setDrivergender(String drivergender) {
-		this.drivergender = drivergender;
+	public void setFemaledriver(String femaledriver) {
+		this.femaledriver = femaledriver;
 	}
 
-	public String getSilence() {
-		return silence;
+	public String getTrunk() {
+		return trunk;
 	}
 
-	public void setSilence(String silence) {
-		this.silence = silence;
+	public void setTrunk(String trunk) {
+		this.trunk = trunk;
 	}
 
 	public String getPet() {
@@ -236,7 +236,7 @@ public class DriverWriteVo {
 	public String toString() {
 		return "DriverWriteVo [sdate1=" + sdate1 + ", edate1=" + edate1 + ", splace1=" + splace1 + ", eplace1="
 				+ eplace1 + ", fare=" + fare + ", nosmoke=" + nosmoke + ", phonecharge=" + phonecharge
-				+ ", drivergender=" + drivergender + ", silence=" + silence + ", pet=" + pet + ", introduce="
+				+ ", femaledriver=" + femaledriver + ", trunk=" + trunk + ", pet=" + pet + ", introduce="
 				+ introduce + ", dur=" + dur + ", dis=" + dis + ", latlng1=" + latlng1 + ", comments=" + comments
 				+ ", stime1=" + stime1 + ", people=" + people + ", type=" + type + ", slat1=" + slat1 + ", slng1="
 				+ slng1 + ", elat1=" + elat1 + ", elng1=" + elng1 + "]";

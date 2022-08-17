@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mate">
+
+	<!-- mateList 가져오기 -->	
+	<select id="selectMateList" resultType="MateVo">
+		<![CDATA[
+				select  u.name,
+       				    c.carName,
+       				    c.carPicture,
+       				    c.carName,
+       				    c.carNo,
+       				    c.introduce,
+       				    s.no mateNo,
+				        to_char(s.startDate,'mm.dd') startDate,
+        				to_char(s.endDate, 'mm.dd') endDate,
+				        s.people,
+				        s.type,
+				        s.point,
+				        s.duration,
+					    s.distance,
+					    s.comments
+				from users u,
+				     car c,
+				     spotmate s
+				where u.no = c.userNo
+				and   c.no = s.carNo
+				and s.type = '메이트'
+		]]>
+	</select>
+	
+	<!-- mateList 가져오기(옵션) -->	
+	<select id="selectMateOptionList" resultType="MateVo">
+		<![CDATA[
+				select d.name optionName,
+					   s.mateNo mateOptionNo,
+					   d.no optionNo
+				from detailOption d,
+				     spotmateDetail s,
+				     spotmate spot
+				where d.no = s.detailNo
+				and spot.no = s.mateNo
+		]]>
+	</select>
+	
+	<!-- mateList 가져오기(장소) -->	
+	<select id="selectMatePlaceList" resultType="MateVo">
+		<![CDATA[
+				select s.no matePlaceNo,
+				       p.day,
+				       p.wayNo,
+				       p.sepplace,
+				       p.time,
+				       p.place,
+				       p.let,
+				       p.lng,
+				       p.latlng
+				from place p, spotmate s
+				where p.mateNo = s.no
+		]]>
+	</select>
+	
+</mapper>
+
+

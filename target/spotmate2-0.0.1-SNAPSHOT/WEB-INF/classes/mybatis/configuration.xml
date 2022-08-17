@@ -3,10 +3,21 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias alias="DWVo" type="com.spotmate.vo.DriverWriteVo" />
+		<typeAlias alias="dwVo" type="com.spotmate.vo.DriverWriteVo" />
+		<typeAlias alias="mwVo" type="com.spotmate.vo.MateWriteVo" />
+		<typeAlias alias="hVo" type="com.spotmate.vo.HitchVo" />
+		<typeAlias alias="hrVo" type="com.spotmate.vo.HitchReservVo" />
+		<typeAlias alias="mVo" type="com.spotmate.vo.MapVo" />
+		<typeAlias alias="CarpoolVo" type="com.spotmate.vo.CarpoolVo" />
+		<typeAlias alias="CouponVo" type="com.spotmate.vo.CouponVo" />
+		<typeAlias alias="PointVo" type="com.spotmate.vo.PointVo" />
+		<typeAlias alias="MateVo" type="com.spotmate.vo.MateVo" />
 	</typeAliases>
-
-	<mappers>
+  
+	<mappers> 
 		<mapper resource="mybatis/mappers/spotmate.xml" />
+		<mapper resource="mybatis/mappers/carpool.xml" />
+		<mapper resource="mybatis/mappers/mypagej.xml" />
+		<mapper resource="mybatis/mappers/mate.xml" />
 	</mappers>
 </configuration>

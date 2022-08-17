@@ -25,7 +25,7 @@
 	<div class="mateMain_content">
 	<div class="seachBox">
 			<h2>FIND YOUR MATE</h2>
-			<div class="inputBox">
+			<div class="mateMain_inputBox">
 				<div class="selBox">
 					<div class="sel1">
 						<label for="Location" class="LocationLabel">Location</label><br>
@@ -70,147 +70,39 @@
 		</div>
 		
 		<div class="mateListAll clear">
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
-			<div class=mateList>
-				<div class="matePicture" onclick="location.href='/mateDeep'">		
-				</div><br>
-				<span class="driverName">Driver Joyunju</span>
-				<span class="schedule">일정 07.25 - 07.26</span><br>
-				<span class="startEnd">서울역 → 강릉</span>
-				<img src="/assets/images/car icon.png">
-				<span class="seatNo">2</span>
-				<img src="/assets/images/pet icon.png">
-				<span class="petYN">가능</span>
-			</div>
+		
+			<c:forEach items="${mateList}" var="mateList" varStatus="status">
+				<div class=mateList>
+					<div class="matePicture" onclick="location.href='/mateDeep'">		
+					</div><br>
+					<span class="driverName">Driver ${mateList.name}</span>
+					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
+					<span class="startEnd"> 서울역 → 강릉</span>
+					<img src="/assets/images/car icon.png">
+					<span class="seatNo">${mateList.people}</span>
+					<img src="/assets/images/pet icon.png">
+					
+					
+					<c:choose>						
+						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} == true">
+							<span class="petYN">가능</span>
+						</c:when>
+					
+						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} != true">
+							<span class="petYN">불가</span>
+						</c:when>							
+					</c:choose>
+
+				
+							
+				</div>	
+			</c:forEach>
 			
-			
-			<button class="mateListBtn">
-				<h2>더보기</h2>
-			</button>
 						
 		</div>
-			
-				
+		<button class="mateListBtn">
+				<h2>더보기</h2>
+		</button>							
 	</div>
 	<!-- //mateMain_content2 -->
 	

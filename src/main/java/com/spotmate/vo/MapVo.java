@@ -2,15 +2,37 @@ package com.spotmate.vo;
 
 public class MapVo {
 	
-	private double lat, lon;
+	private double lat, lng;
+	private int mateNo;
+	private String addr;
 	
 	public MapVo() {
 		
 	}
 	
-	public MapVo(double lat, double lon) {
+	public MapVo(double lat, double lng, int mateNo, String addr) {
 		this.lat = lat;
-		this.lon = lon;
+		this.lng = lng;
+		this.mateNo = mateNo;
+		this.addr = addr;
+	}
+	
+	
+	
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public int getMateNo() {
+		return mateNo;
+	}
+
+	public void setMateNo(int mateNo) {
+		this.mateNo = mateNo;
 	}
 
 	public double getLat() {
@@ -21,19 +43,18 @@ public class MapVo {
 		this.lat = lat;
 	}
 
-	public double getLon() {
-		return lon;
+	public double getLng() {
+		return lng;
 	}
 
-	public void setLon(double lon) {
-		this.lon = lon;
+	public void setLng(double lng) {
+		this.lng = lng;
 	}
 
 	@Override
 	public String toString() {
-		return "MapVo [lat=" + lat + ", lon=" + lon + "]";
+		return "MapVo [lat=" + lat + ", lng=" + lng + ", mateNo=" + mateNo + ", addr=" + addr + "]";
 	}
-	
-	
+
 
 }

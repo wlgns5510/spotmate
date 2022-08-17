@@ -61,7 +61,9 @@
                             <div class="depth2">
                                 <ul>
                                     <li><a href="/driver">GUIDE</a></li>
-                                    <li><a href="/driver">REGISTER</a></li>
+                                    <li><a href="/carpoolWrite">CARPOOL</a></li>
+                                    <li><a href="/hitchWrite">HITCHHIKE</a></li>
+                                    <li><a href="/mateWrite">MATE</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -104,5 +106,4 @@
             </div>
         </header>
         <!-- //header -->
-
-</html>
+</body>

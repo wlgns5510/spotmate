@@ -22,4 +22,22 @@ public class MateService {
 		
 		return mateList;
 	}
+	
+	//메이트 리스트 가져오기(옵션)
+	public List<MateVo> getMateOptionList() {
+		System.out.println("MateService >> getMateOptionList");
+		
+		List<MateVo> mateOptionList = mateDao.getMateOptionList();
+		
+		return mateOptionList;
+	}
+	
+	//메이트 리스트 가져오기(장소)
+		public List<MateVo> getMatePlaceList() {
+			System.out.println("MateService >> getMatePlaceList");
+			
+			List<MateVo> matePlaceList = mateDao.getMatePlaceList();
+			
+			return matePlaceList;
+		}
 }
