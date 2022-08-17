@@ -32,7 +32,7 @@
 				<div class="searchbox">
 					<input class="place" type="text" name="start" value="" placeholder="출발지"> 
 					<input class="place" type="text" name="end" value="" placeholder="도착지"> 
-					<input class="people " type="number" min="1" name="people" value="" placeholder="인원수">
+					<input class="people" type="number" min="1" name="people" value="" placeholder="인원수">
 					<button type="submit"><img src="/assets/images/round-search.png"></button>
 				</div>
 				<div class="detail-option">
@@ -45,13 +45,14 @@
 			<div class="driverList">
 				<div class="start">
 					<p>현재위치</p>
-					<span id="nowpos${hitch.mateNo}">${hitch.nowaddr}</span>
+<%-- 					${hitch.nowaddr} --%>
+					<span id="nowpos${hitch.mateNo}"></span>
 				</div>
 				<div class="end">
 					<p>목적지</p>
 					<span>${hitch.eplace1}</span>
 				</div>
-				<div class="num people${status.count}">
+				<div class="num" id="people${hitch.mateNo}">
 					<span>탑승 가능한 인원수</span><p>${hitch.people}</p>
 				</div>
 				<div class="usePoint">
@@ -76,8 +77,6 @@
 </body>
 <script>
 	
-	var mateNo = $("#hitch1").val();
-
 	var geocoder = new kakao.maps.services.Geocoder();
 	var mapContainer = document.getElementById('hitch-main-map'), // 지도를 표시할 div 
 	mapOption = {
@@ -87,27 +86,30 @@
 	map = new kakao.maps.Map(mapContainer, mapOption);
 
 	var	lat, lng = 0,
-		temp = {},
-		flag = false,
-		marker,
-		options = {
-		enableHighAccuracy : true,
-		timeout : 5000,
-		maximumAge : 0
-	};
+		marker;
 	
-
-	if (navigator.geolocation) {
-		var na = navigator.geolocation.watchPosition(success, error, options);
+	myloca();
+	
+	setInterval(function(){myloca()}, 3000);
+	
+	
+	function myloca() {
+		if (navigator.geolocation) {
+			var na = navigator.geolocation.getCurrentPosition(function(position) {
+				lat = position.coords.latitude, // 위도
+				lng = position.coords.longitude; // 경도
+				var locPosition = new kakao.maps.LatLng(lat, lng); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+				displayMarker(locPosition);
+			})
+		}
 	}
 	
 	
-	
 	function displayMarker(locPosition) {
-		if (flag) {
-			marker.setMap(null);
+		if (marker != null) {
+			marker.setMap(null);	
 		}
-		var imageSrc = './assets/images/common/android-icon-48x48.png', // 마커이미지의 주소입니다    
+		var imageSrc = './assets/images/common/login_people_f50.png', // 마커이미지의 주소입니다    
 		imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize)
 		// 마커를 생성합니다
@@ -131,15 +133,6 @@
 			// 마커 위에 인포윈도우를 표시합니다
 			infowindow.open(map, marker);
 		});
-
-		flag = true;
-		map.setCenter(locPosition);
-	}
-	
-	function success(position) {
-		lat = position.coords.latitude, // 위도
-		lng = position.coords.longitude; // 경도
-		var locPosition = new kakao.maps.LatLng(lat, lng); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 		$.ajax({
 			url : "${pageContext.request.contextPath}/userPos",
 			type : "post",
@@ -150,33 +143,31 @@
 			}),
 			dataType : "json",
 			success : function(result) {
-				console.log(result);
-// 				$("#nowpos"+mateNo).text(result);
+				for(var i=0;i<result.length;i++) {
+					console.log(result[i].mateNo);
+					console.log(result[i].people);
+					$("#nowpos"+result[i].mateNo).text(result[i].latlng.split(",")[2]);
+					$("#people"+result[i].mateNo).html("<span>탑승 가능한 인원수</span><p>"+result[i].people+"</p>");
+				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-		
-		displayMarker(locPosition);
-	};
-	
-	function error(err) {
-		console.log(err);
-	};
-	
-	function searchDetailAddrFromCoords(coords, callback) {
-		// 좌표로 법정동 상세 주소 정보를 요청합니다
-		geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+		map.setCenter(locPosition);
 	}
+
+
+	
 	
 	function rideReq(index) {
-		if ( $(".people").val() == '' ) {
+		if ( $("#people").val() == '' ) {
 			alert("인원 수를 지정한 다음 시도해주세요")
 			return;
 		}
+		var mateNo = $("#hitch"+index).val();
 		var hrVo = {};
-		hrVo.mateNo = $("#hitch"+index).val();
+		hrVo.mateNo = mateNo
 		hrVo.people = $(".people").val();
 		hrVo.canRide = $("#canRide"+index).val();
 		$.ajax({
@@ -188,7 +179,7 @@
 			success : function(result) {
 				if (result != -1) {
 					$("#canRide"+index).val(result);
-					$(".people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
+					$("#people"+mateNo).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
 					$("#rideReq"+index).text("신청 완료");
 				} else {
 					alert("탑승 인원 초과입니다.");

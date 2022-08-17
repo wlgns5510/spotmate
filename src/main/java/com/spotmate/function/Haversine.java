@@ -2,7 +2,7 @@ package com.spotmate.function;
 
 public class Haversine {
 	
-	public double distanceInKilometerByHaversine(double x1, double y1, double x2, double y2) {
+	public double calcByHaversine(double x1, double y1, double x2, double y2) {
 	    double distance;
 	    double radius = 6371; // 지구 반지름(km)
 	    double toRadian = Math.PI / 180;
