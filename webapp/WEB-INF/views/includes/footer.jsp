@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<body>
 <!-- footer -->
 <footer class="footer_wrapper" id="footer">
    <div class="footer_banner swiper-container">
@@ -77,6 +78,7 @@
    </ul>
 </div>
 <!-- 경찰 고정배너  -->
+</body>
 
 <script>
    var swiperFooter = new Swiper('.footer_banner', {
