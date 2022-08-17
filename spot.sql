@@ -1373,4 +1373,75 @@ VALUES (SEQ_POINTUSAGE_NO.nextval, 6, '충전', '2022-08-12', +7000, +7000);
 select *
 from pointUsage;
 
+---------------------- 공지사항 ------------------------
+DROP INDEX PK_ notice;
+
+-- 테이블 삭제 : 공지사항게시판
+DROP TABLE  notice 
+	CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence seq_notice_no;
+
+-- 테이블 생성 : 공지사항게시판
+CREATE TABLE  notice (
+	no NUMBER NOT NULL, /* 글번호 */
+	type VARCHAR2(100), /* 유형 */
+	title VARCHAR2(100), /* 제목 */
+	hit NUMBER, /* 조회수 */
+	regDate DATE, /* 작성날짜 */
+	admin VARCHAR2(100), /* 작성자 */
+	content VARCHAR2(1000) /* 내용 */
+);
+
+-- 시퀀스 생성
+create sequence seq_notice_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE  notice IS '공지사항게시판';
+
+COMMENT ON COLUMN  notice.no IS '글번호';
+
+COMMENT ON COLUMN  notice.type IS '유형';
+
+COMMENT ON COLUMN  notice.title IS '제목';
+
+COMMENT ON COLUMN  notice.hit IS '조회수';
+
+COMMENT ON COLUMN  notice.regDate IS '작성날짜';
+
+COMMENT ON COLUMN  notice.admin IS '작성자';
+
+COMMENT ON COLUMN  notice.content IS '내용';
+
+CREATE UNIQUE INDEX PK_notice
+	ON  notice (
+		no ASC
+	);
+
+ALTER TABLE  notice
+	ADD
+		CONSTRAINT PK_notice
+		PRIMARY KEY (
+			no
+		);
+
+-- insert 생성
+INSERT INTO notice VALUES (
+    seq_notice_no.NEXTVAL,
+    '히치하이크',
+    '히치하이크 이용시 현재 위치를 기준으로 어디까지 차 정보가 나오나요?',
+    12345,
+    sysdate,
+    '운영자',
+    '내용'
+);
+
+-- 확인
+select * from notice;
+
+
 
