@@ -92,7 +92,7 @@ public class MypageJService {
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
 		cMap.put("endPageNo", endPageNo);
-		
+		System.out.println(cMap);
 		
 		return cMap;
 

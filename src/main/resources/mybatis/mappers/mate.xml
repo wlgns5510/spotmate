@@ -47,17 +47,29 @@
 	<!-- mateList 가져오기(장소) -->	
 	<select id="selectMatePlaceList" resultType="MateVo">
 		<![CDATA[
+<<<<<<< HEAD
+				select s.place sPlace,
+				       e.place ePlace,
+				       s.mateNo
+				from place s, place e, spotmate sp
+				where s.mateNo = e.mateNo
+				and sp.no = s.mateNo
+				and s.sepplace = '출발지'
+				and e.sepplace = '도착지'
+				and sp.type = '메이트'
+=======
 				select s.no matePlaceNo,
 				       p.day,
 				       p.wayNo,
 				       p.sepplace,
 				       p.time,
 				       p.place,
-				       p.let,
+				       p.lat,
 				       p.lng,
 				       p.latlng
 				from place p, spotmate s
 				where p.mateNo = s.no
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 		]]>
 	</select>
 	
