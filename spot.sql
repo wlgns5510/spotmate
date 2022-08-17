@@ -1302,6 +1302,22 @@ INSERT INTO spotDetail VALUES (
     4
 );
 
+INSERT INTO spotDetail VALUES (
+    seq_spotDetail_no.NEXTVAL,
+    3,
+    1
+);
+INSERT INTO spotDetail VALUES (
+    seq_spotDetail_no.NEXTVAL,
+    3,
+    2
+);
+INSERT INTO spotDetail VALUES (
+    seq_spotDetail_no.NEXTVAL,
+    3,
+    3
+);
+
 -- select
 select *
 from spotDetail;
