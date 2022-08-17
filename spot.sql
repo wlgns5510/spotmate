@@ -163,7 +163,7 @@ SELECT
     *
 FROM
     users;
-
+    
 ------------------ 카테고리 --------------------
 DROP INDEX PK_category;
 
@@ -435,6 +435,7 @@ values(seq_coupon_no.nextval,
 select *
 from coupon;
 
+
 ------------------ 쿠폰구매내역 테이블 -------------------------
 DROP INDEX PK_couponUsage;
 
@@ -540,6 +541,7 @@ values(seq_couponUsage_no.nextval,
 select *
 from couponUsage;
 
+
 ------------------ 상세조건 -------------------------
 DROP INDEX PK_detailOpt;
 
@@ -603,7 +605,7 @@ values(5, '트렁크 사용 가능');
 -- select
 select *
 from detailOpt;
-
+        
 ---------------------- 차량 ------------------------
 DROP INDEX PK_car;
 
@@ -698,10 +700,22 @@ values(seq_car_no.nextval,
         그리고 어떤 사정이 있더라도 약속 시간 이후 5분까지만 기다렸다 출발할 것이니 꼭 시간 준수 부탁드립니다. '
         );
 
+insert into car
+values(seq_car_no.nextval,
+        3, 
+        'Benz-eclass',
+        'image3',
+        '99라 1328',
+        'blue',
+        2,
+        '안녕하세요. 제 차에는 항상 반려동물(강아지)이 타고 있습니다. 그래서 이 부분 괜찮으신 분께서만 이용해 주셨으면 좋겠습니다. 
+        그리고 어떤 사정이 있더라도 약속 시간 이후 5분까지만 기다렸다 출발할 것이니 꼭 시간 준수 부탁드립니다. '
+        );
+
 -- select
 select *
 from car;
-
+        
 ---------------------- 상세 조건 차량 ------------------------
 DROP INDEX PK_carDetail;
 
@@ -792,7 +806,7 @@ values(seq_carDetail_no.nextval, 2, 5);
 -- select
  select *
  from carDetail;
- 
+
 ---------------------- 스팟 메이트 ------------------------
 DROP INDEX PK_spotmate;
 
@@ -868,8 +882,8 @@ ALTER TABLE spotmate
 			no
 		);
 
-------nextval값을 받아와서 변수에 저장 편의상 no로 칭함
-select seq_spotmate_no.nextval from dual;
+-- nextval값을 받아와서 변수에 저장 편의상 no로 칭함
+-- select seq_spotmate_no.nextval from dual;
 
 -- insert 
 INSERT INTO spotmate VALUES (
@@ -985,15 +999,15 @@ ALTER TABLE reservation
 			no
 		);
 
-ALTER TABLE reservation
-	ADD
-		CONSTRAINT FK_spotmate_TO_reservation
-		FOREIGN KEY (
-			mateNo
-		)
-		REFERENCES spotmate (
-			no
-		);
+--ALTER TABLE reservation
+--	ADD
+--		CONSTRAINT FK_spotmate_TO_reservation
+--		FOREIGN KEY (
+--			mateNo
+--		)
+--		REFERENCES spotmate (
+--			no
+--		);
 
 ALTER TABLE reservation
 	ADD
@@ -1043,6 +1057,7 @@ sysdate,
 -- select문
 select *
 from reservation;
+
 
 ---------------------- 손님 리뷰 ------------------------
 DROP INDEX PK_userReview;
@@ -1128,58 +1143,58 @@ select *
 from userReview;
 
 ---------------------- 드라이버 리뷰 ------------------------
-DROP INDEX PK_driverReivew;
+DROP INDEX PK_driverReview;
 
 -- 테이블 삭제
-DROP TABLE driverReivew 
-	CASCADE CONSTRAINTS;
+DROP TABLE driverReview 
+   CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
-drop sequence seq_driverReivew_no;
+drop sequence seq_driverReview_no;
 
 -- 테이블 생성 : 드라이버리뷰
-CREATE TABLE driverReivew (
-	no NUMBER NOT NULL, /* 리뷰번호 */
-	resvNo NUMBER, /* 예약번호 */
-	star NUMBER /* 별점 */
+CREATE TABLE driverReview (
+   no NUMBER NOT NULL, /* 리뷰번호 */
+   resvNo NUMBER, /* 예약번호 */
+   star NUMBER /* 별점 */
 );
 
 -- 시퀀스 생성
-create sequence seq_driverReivew_no
+create sequence seq_driverReview_no
 increment by 1 
 start with 1
 nocache;
 
 -- comment
-COMMENT ON TABLE driverReivew IS '드라이버리뷰';
+COMMENT ON TABLE driverReview IS '드라이버리뷰';
 
-COMMENT ON COLUMN driverReivew.no IS '리뷰번호';
+COMMENT ON COLUMN driverReview.no IS '리뷰번호';
 
-COMMENT ON COLUMN driverReivew.resvNo IS '예약번호';
+COMMENT ON COLUMN driverReview.resvNo IS '예약번호';
 
-COMMENT ON COLUMN driverReivew.star IS '별점';
+COMMENT ON COLUMN driverReview.star IS '별점';
 
-CREATE UNIQUE INDEX PK_driverReivew
-	ON driverReivew (
-		no ASC
-	);
+CREATE UNIQUE INDEX PK_driverReview
+   ON driverReview (
+      no ASC
+   );
 
-ALTER TABLE driverReivew
-	ADD
-		CONSTRAINT PK_driverReivew
-		PRIMARY KEY (
-			no
-		);
+ALTER TABLE driverReview
+   ADD
+      CONSTRAINT PK_driverReview
+      PRIMARY KEY (
+         no
+      );
 
-ALTER TABLE driverReivew
-	ADD
-		CONSTRAINT FK_reservation_TO_driverReivew
-		FOREIGN KEY (
-			resvNo
-		)
-		REFERENCES reservation (
-			no
-		);
+ALTER TABLE driverReview
+   ADD
+      CONSTRAINT FK_reservation_TO_driverReview
+      FOREIGN KEY (
+         resvNo
+      )
+      REFERENCES reservation (
+         no
+      );
 
 -- insert 생성
 INSERT INTO driverReview values(
@@ -1188,6 +1203,11 @@ seq_driverReview_no.nextval,
 5
 );
 
+INSERT INTO driverReview values(
+seq_driverReview_no.nextval,
+2,
+3
+);
 
 -- select
 select *
@@ -1197,7 +1217,7 @@ from driverReview;
 select  no
         ,resvNo
         ,star
-from driverReivew;
+from driverReview;
 
 ---------------------- 스팟메이트 상세조건 ------------------------
 DROP INDEX PK_spotDetail;
@@ -1231,17 +1251,17 @@ COMMENT ON COLUMN spotDetail.mateNo IS '메이트번호';
 
 COMMENT ON COLUMN spotDetail.detailNo IS '상세조건번호';
 
-CREATE UNIQUE INDEX PK_spotDetail
-	ON spotDetail (
-		no ASC
-	);
-
-ALTER TABLE spotDetail
-	ADD
-		CONSTRAINT PK_spotDetail
-		PRIMARY KEY (
-			no
-		);
+--CREATE UNIQUE INDEX PK_spotDetail
+--	ON spotDetail (
+--		no ASC
+--	);
+--
+--ALTER TABLE spotDetail
+--	ADD
+--		CONSTRAINT PK_spotDetail
+--		PRIMARY KEY (
+--			no
+--		);
 
 --ALTER TABLE spotDetail
 --	ADD
@@ -1442,6 +1462,7 @@ INSERT INTO notice VALUES (
 
 -- 확인
 select * from notice;
+
 
 ---------------------- 장소 ------------------------
 DROP INDEX PK_place;
@@ -1650,12 +1671,11 @@ INSERT INTO place VALUES (
     127.2341234234,
     36.342355436,
     ''
-);   
+);    
 
 -- select
 select *
 from place;
 
-
-
-
+-- 커밋
+commit;
