@@ -912,7 +912,7 @@ INSERT INTO spotmate VALUES (
 );
 
 
--- insert
+-- select
 select *
 from spotmate;
 
