@@ -164,4 +164,71 @@ SELECT
 FROM
     users;
 
----
+------------------ 카테고리 --------------------
+DROP INDEX PK_category;
+
+-- 테이블 삭제
+DROP TABLE category 
+   CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence seq_category_no;
+
+-- 테이블 생성 : 카테고리
+CREATE TABLE category (
+   no NUMBER NOT NULL, /* 카테고리번호 */
+   name VARCHAR2(100) /* 카테고리명(주유,음료,음식) */
+);
+
+-- 시퀀스 생성
+create sequence seq_category_no
+increment by 1 
+start with 1
+nocache;
+
+
+-- comment 
+COMMENT ON TABLE category IS '카테고리';
+
+COMMENT ON COLUMN category.no IS '카테고리번호';
+
+COMMENT ON COLUMN category.name IS '카테고리명(주유,음료,음식)';
+
+CREATE UNIQUE INDEX PK_category
+   ON category (
+      no ASC
+   );
+
+ALTER TABLE category
+   ADD
+      CONSTRAINT PK_category
+      PRIMARY KEY (
+         no
+      );
+
+-- insert 생성
+insert into category
+values(seq_category_no.nextval, 
+        '주유'
+);    
+
+insert into category
+values(seq_category_no.nextval, 
+        '음료'
+);   
+
+insert into category
+values(seq_category_no.nextval, 
+        '음식'
+);    
+
+-- 테이블 확인
+SELECT
+    *
+FROM
+    category;
+    
+-- 테이블 
+select  no
+        ,name
+from category;
