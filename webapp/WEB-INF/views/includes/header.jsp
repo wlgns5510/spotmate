@@ -106,5 +106,4 @@
             </div>
         </header>
         <!-- //header -->
-
-</html>
+</body>
