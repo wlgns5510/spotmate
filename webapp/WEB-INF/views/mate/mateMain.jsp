@@ -78,14 +78,7 @@
 					<span class="driverName">Driver ${mateList.name}</span>
 					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
 					<span class="startEnd">
-						<c:choose>
-							<c:when test="${mateList.mateNo == matePlaceList[status.index].matePlaceNo}">
-								${matePlaceList[status.index].place}
-							</c:when>
-
-							
-							
-						</c:choose> 
+						${matePlaceList[status.index].sPlace} → ${matePlaceList[status.index].ePlace}
 					</span>
 					<img src="/assets/images/car icon.png">
 					<span class="seatNo">${mateList.people}</span>

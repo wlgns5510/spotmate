@@ -34,7 +34,7 @@ public class MateController {
 		List<MateVo> mateList = mateService.getMateList();
 		List<MateVo> mateOptionList = mateService.getMateOptionList();
 		List<MateVo> matePlaceList = mateService.getMatePlaceList();
-		
+
 		
 		//ds 데이터보내기 --> request attribute에 넣는다
 		model.addAttribute("mateList", mateList);
