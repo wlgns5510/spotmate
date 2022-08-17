@@ -140,20 +140,23 @@
 		lat = position.coords.latitude, // 위도
 		lng = position.coords.longitude; // 경도
 		var locPosition = new kakao.maps.LatLng(lat, lng); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		/* $.ajax({
-			url : "${pageContext.request.contextPath}/now",
+		$.ajax({
+			url : "${pageContext.request.contextPath}/userPos",
 			type : "post",
 			contentType : "application/json",
-			data : JSON.stringify(search),
+			data : JSON.stringify({
+					lat: lat,
+					lng: lng
+			}),
 			dataType : "json",
 			success : function(result) {
 				console.log(result);
-				$("#nowpos"+mateNo).text(result);
+// 				$("#nowpos"+mateNo).text(result);
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-		}); */
+		});
 		
 		displayMarker(locPosition);
 	};

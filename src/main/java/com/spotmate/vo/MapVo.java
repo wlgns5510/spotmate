@@ -17,6 +17,11 @@ public class MapVo {
 		this.addr = addr;
 	}
 	
+	public MapVo(double lat, double lng) {
+		this.lat = lat;
+		this.lng = lng;
+	}
+	
 	
 	
 	public String getAddr() {

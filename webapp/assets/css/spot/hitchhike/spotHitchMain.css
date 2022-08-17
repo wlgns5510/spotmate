@@ -9,7 +9,7 @@
 }
 .driver-top-banner .more {
 	font-size: 30px;
-	font-family: Noto Sans Korean;
+/* 	font-family: Noto Sans Korean; */
 	font-weight: 600;
 }
 .driver-top-banner .more3 {
@@ -20,7 +20,7 @@
 .driver-top-banner .more2 {
 	float:right;
 	font-size: 20px;
-	font-family: Noto Sans Korean;
+/* 	font-family: Noto Sans Korean; */
 	font-weight: 600;
 	margin: 100px 300px 0px 0px;
 }
@@ -33,7 +33,7 @@
 }
 
 .info {
-	font-family: Noto Sans Korean;
+/* 	font-family: Noto Sans Korean; */
 	float: left;
 	width: 720px;
 	height:640px;
@@ -46,7 +46,7 @@
 }
 
 .infoTop {
-	font-family: Noto Sans Korean;
+/* 	font-family: Noto Sans Korean; */
 	font-weight: 600;
 	text-align: center;
 	border-bottom: 3px solid #4454a1;
