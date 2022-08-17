@@ -28,10 +28,10 @@ public class MypageRController {
 	}
 
 	@RequestMapping(value = "/myDriverWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myDriverInsert(@ModelAttribute DriverLicenseVo dlvo, @RequestParam("ch_type") List<String> ckList  ) {
+	public String myDriverInsert(@ModelAttribute DriverLicenseVo dlvo, @RequestParam("ch_type") List<String> ckList) {
 		System.out.println("============================================================");
-		System.out.println(dlvo.toString());
-		System.out.println(ckList.toString());
+		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]]
+		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
 		System.out.println("============================================================");
 		//dlvo.myDriverRegister(dlvo);
 		return "redirect:/myDriverMain2";
@@ -44,7 +44,7 @@ public class MypageRController {
 		model.addAttribute("dlvo",DriverLicenseVo);
 		return "/mypage/myDriverMain2";
 	}
-
+	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myQnaMain() {
 		return "/mypage/myQnaMain";
 	}
