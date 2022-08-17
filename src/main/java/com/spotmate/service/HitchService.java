@@ -37,6 +37,9 @@ public class HitchService {
 		hd.watchPos(mVo);
 	}
 	
+	public HitchVo getDriverInfo(int no) {
+		return hd.selectDriverInfo(no);
+	}
 	
 	
 

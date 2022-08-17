@@ -33,31 +33,29 @@
 	<!-- mateList 가져오기(옵션) -->	
 	<select id="selectMateOptionList" resultType="MateVo">
 		<![CDATA[
-				select d.name optionName,
-					   s.mateNo mateOptionNo,
-					   d.no optionNo
-				from detailOption d,
-				     spotmateDetail s,
-				     spotmate spot
-				where d.no = s.detailNo
-				and spot.no = s.mateNo
+				select mateNo mateOptionNo,
+				       s.detailNo,
+				       d.name optionName
+				from spotMateDetail s , detailOption d, spotmate sp
+				where s.detailNo = d.no
+				and sp.no = s.mateNo
+				and sp.type = '메이트'
+				and s.detailno = 3
 		]]>
 	</select>
 	
 	<!-- mateList 가져오기(장소) -->	
 	<select id="selectMatePlaceList" resultType="MateVo">
 		<![CDATA[
-				select s.no matePlaceNo,
-				       p.day,
-				       p.wayNo,
-				       p.sepplace,
-				       p.time,
-				       p.place,
-				       p.let,
-				       p.lng,
-				       p.latlng
-				from place p, spotmate s
-				where p.mateNo = s.no
+				select s.place sPlace,
+				       e.place ePlace,
+				       s.mateNo
+				from place s, place e, spotmate sp
+				where s.mateNo = e.mateNo
+				and sp.no = s.mateNo
+				and s.sepplace = '출발지'
+				and e.sepplace = '도착지'
+				and sp.type = '메이트'
 		]]>
 	</select>
 	

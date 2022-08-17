@@ -39,4 +39,8 @@ public class HitchDao {
 		
 //		String addr = ss.selectOne("spotmate.nowaddr", mVo.getMateNo());
 	}
+	
+	public HitchVo selectDriverInfo(int no) {
+		return ss.selectOne("spotmate.selecthitchdriverinfo", no);
+	}
 }

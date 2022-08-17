@@ -28,6 +28,8 @@ public class MateVo {
 	private int let;
 	private int lng;
 	private long latlng;
+	private String sPlace;
+	private String ePlace;
 	
 	
 	
@@ -58,21 +60,13 @@ public class MateVo {
 		this.optionNo = optionNo;
 	}
 	
-	public MateVo(String matePlaceNo, String day, int wayNo, String sepplace, String time, String place, int let,
-			int lng, long latlng) {
+	public MateVo(String sPlace, String ePlace) {
 		super();
-		this.matePlaceNo = matePlaceNo;
-		this.day = day;
-		this.wayNo = wayNo;
-		this.sepplace = sepplace;
-		this.time = time;
-		this.place = place;
-		this.let = let;
-		this.lng = lng;
-		this.latlng = latlng;
+		this.sPlace = sPlace;
+		this.ePlace = ePlace;
 	}
 
-	//메소드gs
+	//메소드gs	
 	public String getName() {
 		return name;
 	}
@@ -283,6 +277,22 @@ public class MateVo {
 
 	
 
+	public String getsPlace() {
+		return sPlace;
+	}
+
+	public void setsPlace(String sPlace) {
+		this.sPlace = sPlace;
+	}
+
+	public String getePlace() {
+		return ePlace;
+	}
+
+	public void setePlace(String ePlace) {
+		this.ePlace = ePlace;
+	}
+	
 	//메소드일반
 	@Override
 	public String toString() {
@@ -292,6 +302,6 @@ public class MateVo {
 				+ ", comments=" + comments + ", mateNo=" + mateNo + ", optionName=" + optionName + ", mateOptionNo="
 				+ mateOptionNo + ", optionNo=" + optionNo + ", matePlaceNo=" + matePlaceNo + ", day=" + day + ", wayNo="
 				+ wayNo + ", sepplace=" + sepplace + ", time=" + time + ", place=" + place + ", let=" + let + ", lng="
-				+ lng + ", latlng=" + latlng + "]";
+				+ lng + ", latlng=" + latlng + ", sPlace=" + sPlace + ", ePlace=" + ePlace + "]";
 	}
 }
