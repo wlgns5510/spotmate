@@ -702,3 +702,93 @@ values(seq_car_no.nextval,
 select *
 from car;
 
+---------------------- 상세 조건 차량 ------------------------
+DROP INDEX PK_carDetail;
+
+-- 테이블 삭제 : 상세조건차량
+DROP TABLE carDetail 
+	CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_carDetail_no;
+
+-- 테이블 생성 : 상세조건차량
+CREATE TABLE carDetail (
+   no NUMBER NOT NULL, /* 상세조건차량번호 */
+   carNo NUMBER, /* 차량번호 */
+   detailNo NUMBER /* 상세조건번호 */
+);
+
+-- 시퀀스 생성
+create sequence seq_carDetail_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE carDetail IS '상세조건차량';
+
+COMMENT ON COLUMN carDetail.no IS '상세조건차량번호';
+
+COMMENT ON COLUMN carDetail.carNo IS '차량번호';
+
+COMMENT ON COLUMN carDetail.detailNo IS '상세조건번호';
+
+CREATE UNIQUE INDEX PK_carDetail
+   ON carDetail (
+      no ASC
+   );
+
+ALTER TABLE carDetail
+   ADD
+      CONSTRAINT PK_carDetail
+      PRIMARY KEY (
+         no
+      );
+
+ALTER TABLE carDetail
+   ADD
+      CONSTRAINT FK_detailOpt_TO_carDetail
+      FOREIGN KEY (
+         detailNo
+      )
+      REFERENCES detailOpt (
+         no
+      );
+
+ALTER TABLE carDetail
+   ADD
+      CONSTRAINT FK_car_TO_carDetail
+      FOREIGN KEY (
+         carNo
+      )
+      REFERENCES car (
+         no
+      );
+        
+-- insert 생성
+insert into carDetail
+values(seq_carDetail_no.nextval, 1, 1);
+
+insert into carDetail
+values(seq_carDetail_no.nextval, 1, 2);
+
+insert into carDetail
+values(seq_carDetail_no.nextval, 1, 4);
+
+insert into carDetail
+values(seq_carDetail_no.nextval, 2, 1);
+
+insert into carDetail
+values(seq_carDetail_no.nextval, 2, 3);
+
+insert into carDetail
+values(seq_carDetail_no.nextval, 2, 4);
+
+insert into carDetail
+values(seq_carDetail_no.nextval, 2, 5);
+
+
+-- select
+ select *
+ from carDetail;
