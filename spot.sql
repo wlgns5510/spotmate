@@ -434,3 +434,110 @@ values(seq_coupon_no.nextval,
 -- select문
 select *
 from coupon;
+
+------------------ 쿠폰구매내역 테이블 -------------------------
+DROP INDEX PK_couponUsage;
+
+-- 테이블 삭제
+DROP TABLE couponUsage 
+	CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_couponUsage_no;
+
+
+-- 테이블 생성
+CREATE TABLE couponUsage (
+   no NUMBER NOT NULL, /* 쿠폰구매내역번호 */
+   userNo NUMBER, /* 회원번호 */
+   couponNo NUMBER, /* 쿠폰번호 */
+   point NUMBER, /* 사용포인트 */
+   buyDate DATE, /* 구매날짜 */
+   useDate DATE, /* 사용날짜 */
+   usePlace VARCHAR2(1000), /* 사용장소 */
+   status VARCHAR2(1000) /* 상태(미사용, 사용완료) */
+);
+
+-- 시퀀스 생성
+create sequence seq_couponUsage_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE couponUsage IS '쿠폰구매내역';
+
+COMMENT ON COLUMN couponUsage.no IS '쿠폰구매내역번호';
+
+COMMENT ON COLUMN couponUsage.userNo IS '회원번호';
+
+COMMENT ON COLUMN couponUsage.couponNo IS '쿠폰번호';
+
+COMMENT ON COLUMN couponUsage.point IS '사용포인트';
+
+COMMENT ON COLUMN couponUsage.buyDate IS '구매날짜';
+
+COMMENT ON COLUMN couponUsage.useDate IS '사용날짜';
+
+COMMENT ON COLUMN couponUsage.usePlace IS '사용장소';
+
+COMMENT ON COLUMN couponUsage.status IS '상태(미사용, 사용완료)';
+
+CREATE UNIQUE INDEX PK_couponUsage
+   ON couponUsage (
+      no ASC
+   );
+
+ALTER TABLE couponUsage
+   ADD
+      CONSTRAINT PK_couponUsage
+      PRIMARY KEY (
+         no
+      );
+
+ALTER TABLE couponUsage
+   ADD
+      CONSTRAINT FK_users_TO_couponUsage
+      FOREIGN KEY (
+         userNo
+      )
+      REFERENCES users (
+         no
+      );
+
+ALTER TABLE couponUsage
+   ADD
+      CONSTRAINT FK_coupon_TO_couponUsage
+      FOREIGN KEY (
+         couponNo
+      )
+      REFERENCES coupon (
+         no
+      );
+
+-- insert 생성
+insert into couponUsage
+values(seq_couponUsage_no.nextval, 
+       1, 1, '3000', sysdate, '2022-08-14', 'S-OIL 관악시몬주유소 서울특별시 관악구 남부순환로 1753', '사용완료'
+);
+
+insert into couponUsage
+values(seq_couponUsage_no.nextval, 
+       2, 2, '5000', sysdate, '2022-08-14', 'S-OIL 명륜주유소 원주시 명륜동 1753', '미사용'
+);
+
+insert into couponUsage
+values(seq_couponUsage_no.nextval, 
+       2, 8, '5000', sysdate, '2022-08-14', 'GS-칼텍스 여주주유소 여주시 오학동 1753', '사용완료'
+);
+
+insert into couponUsage
+values(seq_couponUsage_no.nextval, 
+       6, 12, '100000', sysdate, '2022-08-14', 'GS-칼텍스 구미주유소 구미시 ', '미사용'
+);
+
+-- select문
+select *
+from couponUsage;
+
+
