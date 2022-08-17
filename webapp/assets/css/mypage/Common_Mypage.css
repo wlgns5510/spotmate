@@ -640,6 +640,42 @@
 .DriverenrollForm h5 {
 	padding-bottom: 10px;
 }
+/***********myDriverForm파일선택************
+.filebox input[type="file"] {
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+/* input style
+.upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    width: 30%;
+    color: #999999;
+}
+
+/* label style 
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 40px;
+    margin-left: 10px;
+}
+
+*/
+
 /*input 모양잡기*/
 .DL_info input {
 	width: 281px;

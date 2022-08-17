@@ -153,11 +153,10 @@
 										<td></td>
 										<td><input type="file" id="input-file" class="file_d"
 											style="display:""none"}}></td>
-										<td><label class="smallbtn" for="input-file">
-												<span>파일선택</span> </label></td>
+										<td><label class="smallbtn" for="input-file"> 
+										<span>파일선택</span>
+										</label></td>
 									</tr>
-
-
 									<tr align="left">
 										<td><label for="c_num">차량번호*</label></td>
 										<td><input name="c_num" id="c_num" placeholder="770가7777"
@@ -237,6 +236,13 @@
 	</div>
 
 </body>
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#file").on('change', function() {
+			var fileName = $("#file").val();
+			$(".upload-name").val(fileName);
+		});
+	});
+</script>
 
 </html>
