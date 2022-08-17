@@ -126,11 +126,11 @@
 					<div class="paging">
 						<ul>
 							<c:if test="${cMap.prev}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=1"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 								</a></li>
 							</c:if>
-							<c:if test="${cMap.prev}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+							<c:if test="${param.crtPage != 1}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
 								</a></li>
 							</c:if>
 
@@ -144,12 +144,12 @@
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
-							<c:if test="${cMap.next}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.endPageBtnNo+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+							<c:if test="${param.crtPage != cMap.endPageNo}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
 								</a></li>
 							</c:if>
 							<c:if test="${cMap.next}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.endPageNo}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.endPageBtnNo+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
 								</a></li>
 							</c:if>
 						</ul>
