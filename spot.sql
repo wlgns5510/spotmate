@@ -915,3 +915,133 @@ INSERT INTO spotmate VALUES (
 -- insert
 select *
 from spotmate;
+
+---------------------- 예약 ------------------------
+DROP INDEX PK_reservation;
+
+-- 테이블 삭제 : 예약
+DROP TABLE reservation 
+	CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_reservation_no;
+
+-- 테이블 생성 : 예약
+CREATE TABLE reservation (
+	no NUMBER NOT NULL, /* 예약번호 */
+	mateNo NUMBER, /* 메이트번호 */
+	userNo NUMBER, /* 유저(손님) */
+	driverNo NUMBER, /* 드라이버 */
+	regDate DATE, /* 날짜 */
+	point NUMBER, /* 사용포인트 */
+	status VARCHAR2(100), /* 상태(대기, 완료, 취소)   */
+	people NUMBER /* 인원 */
+);
+
+-- 시퀀스 생성
+create sequence seq_reservation_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE reservation IS '예약';
+
+COMMENT ON COLUMN reservation.no IS '예약번호';
+
+COMMENT ON COLUMN reservation.mateNo IS '메이트번호';
+
+COMMENT ON COLUMN reservation.userNo IS '유저(손님)';
+
+COMMENT ON COLUMN reservation.driverNo IS '드라이버';
+
+COMMENT ON COLUMN reservation.regDate IS '날짜';
+
+COMMENT ON COLUMN reservation.point IS '사용포인트';
+
+COMMENT ON COLUMN reservation.status IS '상태(대기, 완료, 취소)  ';
+
+COMMENT ON COLUMN reservation.people IS '인원';
+
+CREATE UNIQUE INDEX PK_reservation
+	ON reservation (
+		no ASC
+	);
+
+ALTER TABLE reservation
+	ADD
+		CONSTRAINT PK_reservation
+		PRIMARY KEY (
+			no
+		);
+
+ALTER TABLE reservation
+	ADD
+		CONSTRAINT FK_users_TO_reservation
+		FOREIGN KEY (
+			userNo
+		)
+		REFERENCES users (
+			no
+		);
+
+ALTER TABLE reservation
+	ADD
+		CONSTRAINT FK_spotmate_TO_reservation
+		FOREIGN KEY (
+			mateNo
+		)
+		REFERENCES spotmate (
+			no
+		);
+
+ALTER TABLE reservation
+	ADD
+		CONSTRAINT FK_users_TO_reservation2
+		FOREIGN KEY (
+			driverNo
+		)
+		REFERENCES users (
+			no
+		);
+
+-- insert 생성
+INSERT INTO reservation values(
+seq_reservation_no.nextval,
+1,
+1,
+1,
+sysdate,
+3000,
+'대기',
+1
+);
+
+INSERT INTO reservation values(
+seq_reservation_no.nextval,
+2,
+2,
+2,
+sysdate,
+3000,
+'대기',
+1
+);
+
+INSERT INTO reservation values(
+seq_reservation_no.nextval,
+3,
+3,
+3,
+sysdate,
+3000,
+'대기',
+1
+);
+
+
+-- select문
+select *
+from reservation;
+
+
