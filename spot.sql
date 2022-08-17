@@ -792,3 +792,126 @@ values(seq_carDetail_no.nextval, 2, 5);
 -- select
  select *
  from carDetail;
+ 
+---------------------- 스팟 메이트 ------------------------
+DROP INDEX PK_spotmate;
+
+-- 테이블 삭제 : spotmate
+DROP TABLE spotmate 
+	CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence seq_spotmate_no;
+
+-- 테이블 생성 : spotmate
+CREATE TABLE spotmate (
+	no NUMBER NOT NULL, /* 메이트번호 */
+	carNo NUMBER, /* 차량번호 */
+	startDate DATE, /* 출발날짜 */
+	endDate DATE, /* 도착날짜 */
+	people NUMBER, /* 인원수 */
+	type VARCHAR2(100), /* 유형 */
+	point NUMBER, /* 포인트 */
+	duration VARCHAR2(1000), /* 총 소요시간 */
+	distance VARCHAR2(1000), /* 총 거리 */
+	comments VARCHAR2(1000) /* 코멘트 */
+);
+
+-- 시퀀스 생성
+create sequence seq_spotmate_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE spotmate IS '스팟메이트';
+
+COMMENT ON COLUMN spotmate.no IS '메이트번호';
+
+COMMENT ON COLUMN spotmate.carNo IS '차량번호';
+
+COMMENT ON COLUMN spotmate.startDate IS '출발날짜';
+
+COMMENT ON COLUMN spotmate.endDate IS '도착날짜';
+
+COMMENT ON COLUMN spotmate.people IS '인원수';
+
+COMMENT ON COLUMN spotmate.type IS '유형';
+
+COMMENT ON COLUMN spotmate.point IS '포인트';
+
+COMMENT ON COLUMN spotmate.duration IS '총 소요시간';
+
+COMMENT ON COLUMN spotmate.distance IS '총 거리';
+
+COMMENT ON COLUMN spotmate.comments IS '코멘트';
+
+CREATE UNIQUE INDEX PK_spotmate
+	ON spotmate (
+		no ASC
+	);
+
+ALTER TABLE spotmate
+	ADD
+		CONSTRAINT PK_spotmate
+		PRIMARY KEY (
+			no
+		);
+
+ALTER TABLE spotmate
+	ADD
+		CONSTRAINT FK_car_TO_spotmate
+		FOREIGN KEY (
+			carNo
+		)
+		REFERENCES car (
+			no
+		);
+
+------nextval값을 받아와서 변수에 저장 편의상 no로 칭함
+select seq_spotmate_no.nextval from dual;
+
+-- insert 
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    1,
+    SYSDATE,
+    SYSDATE,
+    1,
+    '카풀',
+    3000,
+    '28분',
+    '12.2km',
+    '카풀 합니다'
+);
+
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    2,
+    SYSDATE,
+    SYSDATE,
+    2,
+    '히치하이크',
+    5000,
+    '40분',
+    '20.45km',
+    '히치하이크 합니다'
+);
+
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    3,
+    SYSDATE,
+    SYSDATE,
+    5,
+    '메이트',
+    50000,
+    null,
+    null,
+    '강릉 메이트구합니다'
+);
+
+
+-- insert
+select *
+from spotmate;
