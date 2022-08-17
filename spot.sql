@@ -1285,3 +1285,92 @@ INSERT INTO spotDetail VALUES (
 -- select
 select *
 from spotDetail;
+
+---------------------- 포인트 내역 ------------------------
+DROP INDEX PK_pointUsage;
+
+-- 테이블 삭제
+DROP TABLE pointUsage 
+	CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence seq_pointUsage_no;
+
+-- 테이블 생성 : 포인트내역
+CREATE TABLE pointUsage (
+	no NUMBER NOT NULL, /* 포인트번호 */
+	userNo NUMBER, /* 회원번호 */
+	type VARCHAR2(100), /* 유형(충전,예약,완료) */
+	regDate DATE, /* 입금날짜,사용날짜,입금날짜 */
+	agent NUMBER, /* 입금돈(현금,충전) */
+	point NUMBER /* 사용,입금 포인트 */
+);
+
+-- 시퀀스 생성
+create sequence seq_pointUsage_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE pointUsage IS '포인트내역';
+
+COMMENT ON COLUMN pointUsage.no IS '포인트번호';
+
+COMMENT ON COLUMN pointUsage.userNo IS '회원번호';
+
+COMMENT ON COLUMN pointUsage.type IS '유형(충전,예약,완료)';
+
+COMMENT ON COLUMN pointUsage.regDate IS '입금날짜,사용날짜,입금날짜';
+
+COMMENT ON COLUMN pointUsage.agent IS '입금돈(현금,충전)';
+
+COMMENT ON COLUMN pointUsage.point IS '사용,입금 포인트';
+
+CREATE UNIQUE INDEX PK_pointUsage
+	ON pointUsage (
+		no ASC
+	);
+
+ALTER TABLE pointUsage
+	ADD
+		CONSTRAINT PK_pointUsage
+		PRIMARY KEY (
+			no
+		);
+
+ALTER TABLE pointUsage
+	ADD
+		CONSTRAINT FK_users_TO_pointUsage
+		FOREIGN KEY (
+			userNo
+		)
+		REFERENCES users (
+			no
+		);
+
+
+--insert
+INSERT INTO pointUsage
+VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', '2022-08-12', +5000, +5000);
+
+INSERT INTO pointUsage
+VALUES (SEQ_POINTUSAGE_NO.nextval, 2, '예약', '2022-08-13', 0, -3000);
+
+INSERT INTO pointUsage
+VALUES (SEQ_POINTUSAGE_NO.nextval, 3, '완료', '2022-08-14', 0, 0);
+
+INSERT INTO pointUsage
+VALUES (SEQ_POINTUSAGE_NO.nextval, 4, '완료', '2022-08-15', 0, 0);
+
+INSERT INTO pointUsage
+VALUES (SEQ_POINTUSAGE_NO.nextval, 5, '예약', '2022-08-16', 0, -4000);
+
+INSERT INTO pointUsage
+VALUES (SEQ_POINTUSAGE_NO.nextval, 6, '충전', '2022-08-12', +7000, +7000);
+
+-- select
+select *
+from pointUsage;
+
+
