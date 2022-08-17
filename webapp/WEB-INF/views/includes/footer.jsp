@@ -78,9 +78,6 @@
 </div>
 <!-- 경찰 고정배너  -->
 
-</body>
-<!-- //body -->
-
 <script>
    var swiperFooter = new Swiper('.footer_banner', {
       slidesPerView : 1,
