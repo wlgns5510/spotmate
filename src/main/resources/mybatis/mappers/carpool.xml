@@ -3,7 +3,7 @@
 
 <mapper namespace="carpool">
 
-	<!-- 리스트 + 검색 -->
+	<!-- 탑승 가능 차량 리스트 -->
 	
 	<select id="selectCarpoolList" resultType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
@@ -49,6 +49,36 @@
 		
 	</select>
 	
+	<!-- Deep 차량 추천 리스트 박스  -->
+	
+	<select id="selectRecommendList" resultType="com.spotmate.vo.CarpoolVo">
+		<![CDATA[
+			select u.id,
+			       sm.startDate,
+			       sm.point
+			     
+			from spotmate sm, car c, users u,
+			     (select s.sMateNo,
+			             s.splace,
+			             e.eMateNo,
+			             e.ePlace
+			      from (select p.mateNo sMateNo, p.place sPlace
+			            from place p
+			            where p.wayNo = -1) s,
+			           (select p.mateNo eMateNo, p.place ePlace
+			            from place p
+			            where p.wayNo = 0) e
+			      where s.sMateNo = e.eMateNo) se
+			where sm.no = se.sMateNo
+			and c.no = sm.carNo
+			and u.no = c.userNo
+
+
+		]]>
+		
+	</select>
+	
+	
 	
 	<!-- 드라이버 차량 정보 가져오기 -->
 	
@@ -61,7 +91,7 @@
 				c.introduce,
 				s.comments,
 				o.name
-			from users u, car c, spotmate s, spotmateDetail d, detailOption o
+			from users u, car c, spotmate s, spotDetail d, detailOption o
 			where u.no = c.userNo
 			and c.no = s.carNo 	
 			and s.no = d.mateNo
@@ -84,21 +114,5 @@
 	</select>
 	 -->
 
-	<!-- 
-	<select id="selectCarpoolList" resultType="CarpoolVo">
-	<![CDATA[
-		select s.no,
-			   s.type,
-			   s.point,
-    		   p.place,
-               p.wayNo,
-               c.userNo
-        from spotmate s, place p, car c
-        where s.no = p.mateNo
-        and c.no = s.carNo
-        and s.type = '카풀1회성';
-
-	]]>
-	</select>
-	 -->
+	
 </mapper>	

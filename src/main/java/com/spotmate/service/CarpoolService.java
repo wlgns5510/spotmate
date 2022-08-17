@@ -26,6 +26,28 @@ public class CarpoolService {
 		return carpoolList;
 	}
 	
+	//리뷰 리스트
+		public List<CarpoolVo> getList2() {
+			System.out.println("ReviewService > getList2");
+
+			List<CarpoolVo> reviewList = carpoolDao.getreviewList();
+			System.out.println(reviewList);
+			
+			return reviewList;
+		}
+		
+	// Deep 차량 추천 리스트 박스
+		public List<CarpoolVo> getList3() {
+			System.out.println("CarpoolService > getList3");
+
+			List<CarpoolVo> recommendList = carpoolDao.getrecommendList();
+			System.out.println(recommendList);
+			
+			return recommendList;
+		}
+		
+	
+		
 	/*
 	// 리스트가져오기
 		public Map<String, Object> getList() {
@@ -110,15 +132,7 @@ public class CarpoolService {
 		}
 		*/
 		
-	//리뷰 리스트
-	public List<CarpoolVo> getList2() {
-		System.out.println("ReviewService > getList");
-
-		List<CarpoolVo> reviewList = carpoolDao.getreviewList();
-		System.out.println(reviewList);
-		
-		return reviewList;
-	}
+	
 	
 	//드라이버 차량 정보 가져오기
 	public CarpoolVo read(int no) {

@@ -435,7 +435,7 @@
 }
 	
 .recommendList ol{
-	display:inline-block;
+	/*display:inline-block;*/
 	width: 310px;
     height: 130px;
     background: rgba(255,255,255,1);
@@ -446,6 +446,7 @@
     box-shadow: 0px 0px 8px rgb(1 1 1 / 50%);
     margin:10px 46px 0px 0px;
     position:relative;
+ 	float: left;
   	
 }
 
@@ -490,7 +491,7 @@
 }
 
 .recommend-start-list{
-	width: 150px;
+	width: 250px;
     color: rgba(154,154,154,1);
     font-family: Noto Sans;
     font-weight: 600;
