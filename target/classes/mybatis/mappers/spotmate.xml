@@ -23,6 +23,10 @@
 		and wayno = 6
 	</select>
 	
+	<select id="selecthitchdriverinfo" parameterType="int" resultType="hVo">
+		select
+	</select>
+	
 	<select id="selecthitchlist" resultType="hVo">
 		select s.no mateNo,
 		    place eplace1,
@@ -73,7 +77,7 @@
 			values (
 				#{no},
 				2,
-				#{sdate1}||' '||#{stime1},
+				#{sdate1},
 				#{edate1},
 				#{people},
 				#{type},
@@ -83,41 +87,41 @@
 				#{comments}
 			)
 			<if test='nosmoke != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				1
 			)
 			</if>
 			<if test='femaledriver != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				2
 			)
 			</if>
 			<if test='pet != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				3
 			)
 			</if>
 			<if test='phonecharge != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				4
 			)
 			</if>
 			<if test='trunk != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				5
 			)
@@ -170,7 +174,7 @@
 			values (
 				#{no},
 				2,
-				#{sdate1}||' '||#{stime1},
+				#{sdate1},
 				#{sdate1},
 				#{people},
 				#{type},
@@ -191,41 +195,41 @@
 				#{people}				
 			)
 			<if test='nosmoke != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				1
 			)
 			</if>
 			<if test='femaledriver != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				2
 			)
 			</if>
 			<if test='pet != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				3
 			)
 			</if>
 			<if test='phonecharge != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				4
 			)
 			</if>
 			<if test='trunk != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				5
 			)
@@ -270,7 +274,7 @@
 			values (
 				#{no},
 				1,
-				#{sdate1}||' '||#{stime1},
+				#{sdate1},
 				#{edate1},
 				#{people},
 				#{type},
@@ -291,41 +295,41 @@
 				#{people}				
 			)
 			<if test='nosmoke != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				1
 			)
 			</if>
 			<if test='femaledriver != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				2
 			)
 			</if>
 			<if test='pet != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				3
 			)
 			</if>
 			<if test='phonecharge != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				4
 			)
 			</if>
 			<if test='trunk != null'>
-			into spotmateDetail
+			into spotDetail
 			values (
-				seq_spotmateDetail_no.nextval,
+				seq_spotDetail_no.nextval,
 				#{no},
 				5
 			)

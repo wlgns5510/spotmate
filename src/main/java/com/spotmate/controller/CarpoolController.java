@@ -21,11 +21,11 @@ public class CarpoolController {
 		return "/spotcarpool/spotMain";
 	}
 
-	@RequestMapping(value = "/spotCarpool", method = { RequestMethod.GET, RequestMethod.POST })
-	public String spotCarpool(Model model) {
-		model.addAttribute("cList", cS.getCarpoolList());
-		return "/spotcarpool/spotCarpool";
-	}
+//	@RequestMapping(value = "/spotCarpool", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String spotCarpool(Model model) {
+//		model.addAttribute("cList", cS.getCarpoolList());
+//		return "/spotcarpool/spotCarpool";
+//	}
 
 	@RequestMapping(value = "/spotCarpoolDeep", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotCarpoolDeep() {

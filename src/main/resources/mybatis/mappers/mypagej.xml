@@ -11,24 +11,27 @@
 			        ort.buyDate,
 			        ort.usePlace,
 			        ort.point,
+			        ort.name,
 			        ort.status
 			    from (select  rownum rn,
 			                  ot.no,
 			                  ot.buyDate,
 			                  ot.usePlace,
 			                  ot.point,
+			                  ot.name,
 			                  ot.status
 			            from (select  cu.no no,
 			                          to_char(cu.buyDate, 'yy.mm.dd') buyDate,
 			                          cu.usePlace,
 			                          cu.point point,
+			                          ca.name,
 			                          cu.status
 			                    from category ca, brand br, coupon co, couponUsage cu, users u
 			                    where u.no = cu.userno
 			                    and ca.no = br.cateNo
 			                    and br.no = co.brandno
 			                    and co.no = cu.couponNo
-			                    and u.no = '3'
+			                    and u.no = '2'
 			                    order by cu.no desc)ot
 			              )ort
 			where rn>=#{startRnum}
@@ -72,7 +75,7 @@
 			and ca.no = br.cateNo
 			and br.no = co.brandno
 			and co.no = cu.couponNo
-			and u.no = '3'
+			and u.no = '2'
 		]]>
 	
 	</select>
