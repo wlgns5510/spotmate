@@ -36,7 +36,7 @@
 				select mateNo mateOptionNo,
 				       s.detailNo,
 				       d.name optionName
-				from spotMateDetail s , detailOption d, spotmate sp
+				from spotDetail s , detailOption d, spotmate sp
 				where s.detailNo = d.no
 				and sp.no = s.mateNo
 				and sp.type = '메이트'
