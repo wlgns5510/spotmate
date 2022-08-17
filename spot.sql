@@ -308,4 +308,129 @@ select  no
         ,name
 from brand;
 
+------------------ 쿠폰 테이블 -------------------------
+DROP INDEX PK_coupon;
 
+-- 테이블 삭제 : 쿠폰
+DROP TABLE coupon 
+	CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_coupon_no;
+
+-- 테이블 생성 : 쿠폰
+CREATE TABLE coupon (
+   no NUMBER NOT NULL, /* 쿠폰번호 */
+   brandNo NUMBER, /* 브랜드번호 */
+   point NUMBER, /* 포인트 */
+   regDate DATE, /* 등록일 */
+   imgSrc VARCHAR2(1000) /* 이미지경로 */
+);
+-- 시퀀스 생성
+create sequence seq_coupon_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE coupon IS '쿠폰';
+
+COMMENT ON COLUMN coupon.no IS '쿠폰번호';
+
+COMMENT ON COLUMN coupon.brandNo IS '브랜드번호';
+
+COMMENT ON COLUMN coupon.point IS '포인트';
+
+COMMENT ON COLUMN coupon.regDate IS '등록일';
+
+COMMENT ON COLUMN coupon.imgSrc IS '이미지경로';
+
+CREATE UNIQUE INDEX PK_coupon
+   ON coupon (
+      no ASC
+   );
+
+ALTER TABLE coupon
+   ADD
+      CONSTRAINT PK_coupon
+      PRIMARY KEY (
+         no
+      );
+
+ALTER TABLE coupon
+   ADD
+      CONSTRAINT FK_brand_TO_coupon
+      FOREIGN KEY (
+         brandNo
+      )
+      REFERENCES brand (
+         no
+      );
+
+-- insert 생성
+-- S-OIL
+insert into coupon
+values(seq_coupon_no.nextval, 
+        1, 3000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        1, 5000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        1, 10000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        1, 30000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        1, 50000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        1, 100000, sysdate, ''
+);
+
+
+--GS-칼텍스
+insert into coupon
+values(seq_coupon_no.nextval, 
+        2, 3000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        2, 5000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        2, 10000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        2, 30000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        2, 50000, sysdate, ''
+);
+
+insert into coupon
+values(seq_coupon_no.nextval, 
+        2, 100000, sysdate, ''
+);
+
+-- select문
+select *
+from coupon;
