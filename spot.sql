@@ -1127,4 +1127,74 @@ seq_userReview_no.nextval,
 select *
 from userReview;
 
+---------------------- 드라이버 리뷰 ------------------------
+DROP INDEX PK_driverReivew;
 
+-- 테이블 삭제
+DROP TABLE driverReivew 
+	CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence seq_driverReivew_no;
+
+-- 테이블 생성 : 드라이버리뷰
+CREATE TABLE driverReivew (
+	no NUMBER NOT NULL, /* 리뷰번호 */
+	resvNo NUMBER, /* 예약번호 */
+	star NUMBER /* 별점 */
+);
+
+-- 시퀀스 생성
+create sequence seq_driverReivew_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE driverReivew IS '드라이버리뷰';
+
+COMMENT ON COLUMN driverReivew.no IS '리뷰번호';
+
+COMMENT ON COLUMN driverReivew.resvNo IS '예약번호';
+
+COMMENT ON COLUMN driverReivew.star IS '별점';
+
+CREATE UNIQUE INDEX PK_driverReivew
+	ON driverReivew (
+		no ASC
+	);
+
+ALTER TABLE driverReivew
+	ADD
+		CONSTRAINT PK_driverReivew
+		PRIMARY KEY (
+			no
+		);
+
+ALTER TABLE driverReivew
+	ADD
+		CONSTRAINT FK_reservation_TO_driverReivew
+		FOREIGN KEY (
+			resvNo
+		)
+		REFERENCES reservation (
+			no
+		);
+
+-- insert 생성
+INSERT INTO driverReview values(
+seq_driverReview_no.nextval,
+1,
+5
+);
+
+
+-- select
+select *
+from driverReview;
+
+-- select
+select  no
+        ,resvNo
+        ,star
+from driverReivew;
