@@ -84,19 +84,16 @@
 					<span class="seatNo">${mateList.people}</span>
 					<img src="/assets/images/pet icon.png">
 					
-					
-					<c:choose>						
-						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} == true">
-							<span class="petYN">가능</span>
+					<c:choose>
+						<c:when test="${mateOptionList[status.index].optionName != null}">
+								<span class="petYN">가능</span>
 						</c:when>
-					
-						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} != true">
-							<span class="petYN">불가</span>
-						</c:when>							
-					</c:choose>
-
-				
-							
+						
+						<c:when test="${mateOptionList[status.index].optionName == null}">
+								<span class="petYN">불가</span>
+						</c:when>
+															
+					</c:choose>				
 				</div>	
 			</c:forEach>
 			
