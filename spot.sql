@@ -540,4 +540,67 @@ values(seq_couponUsage_no.nextval,
 select *
 from couponUsage;
 
+------------------ 상세조건 -------------------------
+DROP INDEX PK_detailOpt;
+
+-- 테이블 삭제
+DROP TABLE detailOpt 
+   CASCADE CONSTRAINTS;
+    
+-- 시퀀스 삭제
+drop sequence seq_detailOpt_no;
+
+-- 테이블 생성
+CREATE TABLE detailOpt (
+	no NUMBER NOT NULL, /* 상세조건번호 */
+	name VARCHAR2(100) /* 조건명 */
+);
+
+-- 시퀀스 생성
+create sequence seq_detailOpt_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE detailOpt IS '상세조건';
+
+COMMENT ON COLUMN detailOpt.no IS '상세조건번호';
+
+COMMENT ON COLUMN detailOpt.name IS '조건명';
+
+CREATE UNIQUE INDEX PK_detailOpt
+   ON detailOpt (
+      no ASC
+   );
+
+ALTER TABLE detailOpt
+   ADD
+      CONSTRAINT PK_detailOpt
+      PRIMARY KEY (
+         no
+      );
+
+-- insert 생성
+insert into detailOpt
+values(1, '비흡연자');
+
+insert into detailOpt
+values(2, '여성드라이버');
+
+
+insert into detailOpt
+values(3, '반려동물');
+
+
+insert into detailOpt
+values(4, '충전기 사용 가능');
+
+
+insert into detailOpt
+values(5, '트렁크 사용 가능');
+
+-- select
+select *
+from detailOpt;
 
