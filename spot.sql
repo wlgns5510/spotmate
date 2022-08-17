@@ -1198,3 +1198,90 @@ select  no
         ,resvNo
         ,star
 from driverReivew;
+
+---------------------- 스팟메이트 상세조건 ------------------------
+DROP INDEX PK_spotDetail;
+
+-- 테이블 삭제 : 스팟메이트상세조건
+DROP TABLE spotDetail 
+	CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence seq_spotDetail_no;
+
+-- 테이블 생성 : 스팟메이트상세조건
+CREATE TABLE spotDetail (
+	no NUMBER NOT NULL, /* 메이트상세조건번호 */
+	mateNo NUMBER, /* 메이트번호 */
+	detailNo NUMBER /* 상세조건번호 */
+);
+
+-- 시퀀스 생성
+create sequence seq_spotDetail_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE spotDetail IS '스팟메이트상세조건';
+
+COMMENT ON COLUMN spotDetail.no IS '메이트상세조건번호';
+
+COMMENT ON COLUMN spotDetail.mateNo IS '메이트번호';
+
+COMMENT ON COLUMN spotDetail.detailNo IS '상세조건번호';
+
+CREATE UNIQUE INDEX PK_spotDetail
+	ON spotDetail (
+		no ASC
+	);
+
+ALTER TABLE spotDetail
+	ADD
+		CONSTRAINT PK_spotDetail
+		PRIMARY KEY (
+			no
+		);
+
+--ALTER TABLE spotDetail
+--	ADD
+--		CONSTRAINT FK_spotmate_TO_spotDetail
+--		FOREIGN KEY (
+--			mateNo
+--		)
+--		REFERENCES spotmate (
+--			no
+--		);
+
+ALTER TABLE spotDetail
+	ADD
+		CONSTRAINT FK_detailOpt_TO_spotDetail
+		FOREIGN KEY (
+			detailNo
+		)
+		REFERENCES detailOpt (
+			no
+		);
+
+-- insert 생성
+INSERT INTO spotDetail VALUES (
+    seq_spotDetail_no.NEXTVAL,
+    1,
+    1
+);
+
+INSERT INTO spotDetail VALUES (
+    seq_spotDetail_no.NEXTVAL,
+    1,
+    2
+);
+
+INSERT INTO spotDetail VALUES (
+    seq_spotDetail_no.NEXTVAL,
+    1,
+    4
+);
+
+-- select
+select *
+from spotDetail;
