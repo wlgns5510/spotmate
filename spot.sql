@@ -1469,23 +1469,23 @@ DROP INDEX PK_place;
 
 -- 테이블 삭제 : 장소
 DROP TABLE place 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
 drop sequence seq_place_no;
 
 -- 테이블 생성 : 장소
 CREATE TABLE place (
-	no NUMBER NOT NULL, /* 장소번호 */
-	mateNo NUMBER, /* 메이트번호 */
-	day VARCHAR2(1000), /* 일차(1일차) */
-	wayNo NUMBER, /* 경유지순서 */
-	sepPlace VARCHAR2(1000), /* 구분(출, 경, 도, 현) */
-	-- ymd DATE, /* 년월일 */
-	time varchar2(30), /* 시간(도착일때없음) */
-	place VARCHAR2(1000), /* 장소 */
-	lat NUMBER, /* 위도 */
-	lng NUMBER, /* 경도 */
+    no NUMBER NOT NULL, /* 장소번호 */
+    mateNo NUMBER, /* 메이트번호 */
+    day VARCHAR2(1000), /* 일차(1일차) */
+    wayNo NUMBER, /* 경유지순서 */
+    sepPlace VARCHAR2(1000), /* 구분(출, 경, 도, 현) */
+    -- ymd DATE, /* 년월일 */
+    time varchar2(30), /* 시간(도착일때없음) */
+    place VARCHAR2(1000), /* 장소 */
+    lat NUMBER, /* 위도 */
+    lng NUMBER, /* 경도 */
     latlng LONG /* 경로 */
 );
 
@@ -1521,33 +1521,33 @@ COMMENT ON COLUMN place.lng IS '경도';
 COMMENT ON COLUMN place.latlng  IS '경로';
 
 --CREATE UNIQUE INDEX PK_place
---	ON place (
---		no ASC
---	);
+--   ON place (
+--      no ASC
+--   );
 --
 --ALTER TABLE place
---	ADD
---		CONSTRAINT PK_place
---		PRIMARY KEY (
---			no
---		);
+--   ADD
+--      CONSTRAINT PK_place
+--      PRIMARY KEY (
+--         no
+--      );
 
 --ALTER TABLE place
---	ADD
---		CONSTRAINT FK_spotmate_TO_place
---		FOREIGN KEY (
---			mateNo
---		)
---		REFERENCES spotmate (
---			no
---		);
+--   ADD
+--      CONSTRAINT FK_spotmate_TO_place
+--      FOREIGN KEY (
+--         mateNo
+--      )
+--      REFERENCES spotmate (
+--         no
+--      );
 
 -- insert
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     1,
     NULL,
-    NULL,
+    -1,
     '출발지',
     '2022-08-13 오후 11:54',
     '건대입구역',
@@ -1560,7 +1560,7 @@ INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     1,
     NULL,
-    NULL,
+    0,
     '도착지',
     '2022-08-13',
     '홍대입구역',
@@ -1573,7 +1573,7 @@ INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     2,
     NULL,
-    NULL,
+    -1,
     '출발지',
     '2022-08-15 오전 11:12',
     '방배역',
@@ -1586,7 +1586,7 @@ INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     2,
     NULL,
-    NULL,
+    0,
     '도착지',
     '2022-08-15',
     '신림역',
@@ -1598,24 +1598,23 @@ INSERT INTO place VALUES (
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     3,
-    '1일차',
-    NULL,
+    1,
+    -1,
     '출발지',
-    '2022-08-18 오전 11:12',
+    '2022-08-17 오전 08:30',
     '서울역',
     127.2341234234,
     36.342355436,
     ''
 );
-
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     3,
-    '1일차',
+    1,
     1,
     '경유지',
-    '2022-08-18 오후 01:12',
-    '테라로사',
+    '2022-08-17 오전 11:30',
+    '문경',
     127.2341234234,
     36.342355436,
     ''
@@ -1624,54 +1623,77 @@ INSERT INTO place VALUES (
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     3,
-    '1일차',
-    NULL,
+    1,
+    2,
+    '경유지',
+    '2022-08-17 오후 02:20',
+    '울산',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    3,
+    1,
+    0,
+    '도착지',
+    '2022-08-17',
+    '부산',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    3,
+    2,
+    -1,
+    '출발지',
+    '2022-08-18 오전 10:00',
+    '부산',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    3,
+    2,
+    1,
+    '경유지',
+    '2022-08-18 오후 02:30',
+    '주문진',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    3,
+    2,
+    2,
+    '경유지',
+    '2022-08-18 오후 04:30',
+    '강릉',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    3,
+    2,
+    0,
     '도착지',
     '2022-08-18',
-    '강릉',
+    '서울',
     127.2341234234,
     36.342355436,
     ''
 );
-
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    3,
-    '2일차',
-    NULL,
-    '출발지',
-    '2022-08-19 오전 09:00',
-    '강릉',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    3,
-    '2일차',
-    1,
-    '경유지',
-    '2022-08-19 오전 12:00',
-    '대전',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    3,
-    '2일차',
-    NULL,
-    '도착지',
-    '08:19',
-    '서울역',
-    127.2341234234,
-    36.342355436,
-    ''
-);    
+    
 
 -- select
 select *
