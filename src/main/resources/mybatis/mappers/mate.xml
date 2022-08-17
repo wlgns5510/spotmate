@@ -53,7 +53,7 @@
 				       p.sepplace,
 				       p.time,
 				       p.place,
-				       p.let,
+				       p.lat,
 				       p.lng,
 				       p.latlng
 				from place p, spotmate s

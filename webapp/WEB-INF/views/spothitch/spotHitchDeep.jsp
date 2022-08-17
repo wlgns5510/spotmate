@@ -28,12 +28,12 @@
 	<div class="inner clear">
 		<div class="hitch-deep-infoTop clear">
 			<div class="markImg"></div>
-			<span>드라이버 spotmate 12 님</span> <a href="#">탑승 요청</a>
+			<span>드라이버 ${mateNo} 님</span> <a href="#">탑승 요청</a>
 		</div>
 		<div class="data">
 			<table>
 				<tr>
-					<td class="waypoint">경유지</td>
+					<td class="waypoint">출발지</td>
 					<td class="tname">강남역 2번 출구</td>
 					<td class="destination">목적지</td>
 					<td class="tname">대방역 1호선 2번 출구</td>

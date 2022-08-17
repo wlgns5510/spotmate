@@ -33,6 +33,7 @@
 }
 
 .info {
+	font-family: Noto Sans Korean;
 	float: left;
 	width: 720px;
 	height:640px;
@@ -45,6 +46,8 @@
 }
 
 .infoTop {
+	font-family: Noto Sans Korean;
+	font-weight: 600;
 	text-align: center;
 	border-bottom: 3px solid #4454a1;
 	padding: 20px 0;
@@ -73,6 +76,7 @@
 .detail-option {
 	position:relative;
 	border-bottom: 1px solid #e8e7e7;
+	font-weight: 600;
 }
 .info > form > .detail-option > input{
 	margin: 10px 0px 10px 30px;
@@ -149,6 +153,7 @@
 	background-color: #4454a1; 
 	color:white; 
 	border-radius: 10px;
+	font-weight: 600;
 }
 
 .driverList > .rideReq {
@@ -162,4 +167,5 @@
 	background-color: #4454a1; 
 	color:white; 
 	border-radius: 10px;
+	font-weight: 600;
 }

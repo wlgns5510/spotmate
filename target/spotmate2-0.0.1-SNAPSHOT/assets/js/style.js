@@ -5,6 +5,7 @@ Content Java Script Jquery
 Version : 1.0
 Author : JYJ
 First update : 2022. 08. 04.
+
 -------------------------------------------------
 -------------------------------------------------
 */
@@ -37,7 +38,7 @@ $(document).ready(function(){
 
 // login 셀렉트 드롭다운
 $(document).ready(function(){
-    $('.loginafter').children('li').children('a').click(function(){
+    $('.loginafter').children('li').children('.btn_a1').click(function(){
         $('.loginafter').removeClass('active');
         $('.loginafter').find('.down').slideUp(300);
         if(!$(this).next().is(':visible')) {
@@ -66,19 +67,19 @@ $(document).ready(function(){
 });
 
 // 경찰 고정배너
-$(document).ready(function() {
+// $(document).ready(function() {
 
-	var scrollPosition = parseInt($("#scrollbanner").css('top'));
+// 	var scrollPosition = parseInt($("#scrollbanner").css('top'));
 
-	$(window).scroll(function() {
-		var scrollTop = $(window).scrollTop();
-		var newPosition = scrollTop + scrollPosition + "px";
+// 	$(window).scroll(function() {
+// 		var scrollTop = $(window).scrollTop();
+// 		var newPosition = scrollTop + scrollPosition + "px";
 
-		$("#scrollbanner").stop().animate({
-			"top" : newPosition
-		}, 500);
+// 		$("#scrollbanner").stop().animate({
+// 			"top" : newPosition
+// 		}, 500);
 
-	}).scroll();
+// 	}).scroll();
 
-});
+// });
 

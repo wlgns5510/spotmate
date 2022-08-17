@@ -59,7 +59,7 @@
 				</div>
 				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
 					
-				<a href="/spotHitchhikedeep" class="hitchdeep" href="/spotHitchhikedeep">
+				<a href="/spotHitchhikedeep/${hitch.mateNo}" class="hitchdeep" href="/spotHitchhikedeep">
 						상세 조건
 				</a>
 				<p onclick="rideReq(${status.count})" class="rideReq" id="rideReq${status.count}">

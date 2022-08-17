@@ -93,7 +93,8 @@
 					<h4>드라이버/차량정보</h4>
 
 					<div class="DriverenrollForm">
-						<form>
+						<form action="${pageContext.request.contextPath }/mypage/myDriverForm" method="get">
+					
 
 
 							<div class="DL_info">
@@ -104,22 +105,22 @@
 								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input id="username" placeholder="홍길동" type="text"></td>
+										<td><input value="${dlvo.username}" id="username" placeholder="홍길동" type="text"></td>
 
 									</tr>
 
 									<tr align="left">
 										<td><label for="usernum">생년월일*</label></td>
-										<td><input id="usernum" placeholder="19900805"
+										<td><input value="${dlvo.usernum}" id="usernum" placeholder="19900805"
 											type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
-										<td><input id="dl" placeholder="면허등록번호입력" type="text"></td>
+										<td><input value="${dlvo.dl}" id="dl" placeholder="면허등록번호입력" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl_Type">종류*</label></td>
-										<td><input id="dl_Type" placeholder="대형 1종" type="text"
+										<td><input value="${dlvo.dl_Type}" id="dl_Type" placeholder="대형 1종" type="text"
 											value=""></td>
 									</tr>
 
@@ -138,23 +139,23 @@
 								<table>
 									<tr align="left">
 										<td><label for="carnum">차량등록번호*</label></td>
-										<td><input id="carnum" placeholder="차량등록번호입력" type="text"></td>
+										<td><input value="${dlvo.carnum}" id="carnum" placeholder="차량등록번호입력" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_Model">차량모델명*</label></td>
-										<td><input id="c_Model" placeholder="테슬라 모델3" type="text"></td>
+										<td><input value="${dlvo.c_Model}" id="c_Model" placeholder="테슬라 모델3" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_num">차량번호*</label></td>
-										<td><input id="c_num" placeholder="770가7777" type="text"></td>
+										<td><input value="${dlvo.c_num}" id="c_num" placeholder="770가7777" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
-										<td><input id="c_color" placeholder="화이트" type="text"></td>
+										<td><input value="${dlvo.c_color}" id="c_color" placeholder="화이트" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="num_PA">탑승가능인원*</label></td>
-										<td><input id="num_PA" placeholder="2" type="text"></td>
+										<td><input value="${dlvo.num_PA}" id="num_PA" placeholder="2" type="text"></td>
 									</tr>
 								</table>
 
@@ -167,22 +168,22 @@
 									<!-- input type="radio" name="gender" id="male" value="남자"  -->
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"><span>비흡연자</span></td>
+											id="Dformcheckbox" value="${dlvo.ch_type}"><span>비흡연자</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type" checked="checked">
+											id="Dformcheckbox" value="${dlvo.ch_type}" checked="checked">
 											<span>여성드라이버</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"><span> 반려동물
+											id="Dformcheckbox" value="${dlvo.ch_type}"><span> 반려동물
 												탑승가능</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"> <span>핸드폰
+											id="Dformcheckbox" value="${dlvo.ch_type}"> <span>핸드폰
 												충전기 보유</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"><span> 트렁크
+											id="Dformcheckbox" value="${dlvo.ch_type}"><span> 트렁크
 												사용 가능여부</span></td>
 									</tr>
 								</table>
@@ -195,7 +196,7 @@
 								<textarea placeholder="  ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다."></textarea>
 							</div>
 
-							<a type="button" href="./myDriverMain" target="self" alt="수정하기"
+							<a type="button" href="./myDriverMain2" target="self" alt="수정하기"
 								class="DForm_enrollbtn"> <span>수정하기</span></a>
 
 
