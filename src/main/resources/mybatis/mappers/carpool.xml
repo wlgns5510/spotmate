@@ -1,37 +1,118 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="carpool">
 
+	<!-- 탑승 가능 차량 리스트 -->
 	
-	
-<!-- 	<select id="selectslist" resultType="carpoolVo"> -->
-<!-- 		select s.no no, -->
-<!-- 		    place, -->
-<!-- 		    people, -->
-<!-- 		    point, -->
-<!-- 		    wayno, -->
-<!-- 		    latlng -->
-<!-- 		from spotmate s, place p -->
-<!-- 		where s.no = p.mateNo -->
-<!-- 		and s.type = 'carpool' -->
-<!-- 		and wayno = 0 -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="selectelist" resultType="carpoolVo"> -->
-<!-- 		select s.no no, -->
-<!-- 		    place, -->
-<!-- 		    wayno -->
-<!-- 		from spotmate s, place p -->
-<!-- 		where s.no = p.mateNo -->
-<!-- 		and s.type = 'carpool' -->
-<!-- 		and wayno = 6 -->
-<!-- 	</select> -->
-	
-		
-	
-		
-		
-	
+	<select id="selectCarpoolList" resultType="com.spotmate.vo.CarpoolVo">
+		<![CDATA[
+			select sm.no,
+			       sm.type,
+			       se.splace,
+			       se.eplace,
+			       sm.point,
+			       u.id
+			from spotmate sm, car c, users u,
+			     (select s.sMateNo,
+			             s.splace,
+			             e.eMateNo,
+			             e.ePlace
+			      from (select p.mateNo sMateNo, p.place sPlace
+			            from place p
+			            where p.wayNo = -1) s,
+			           (select p.mateNo eMateNo, p.place ePlace
+			            from place p
+			            where p.wayNo = 0) e
+			      where s.sMateNo = e.eMateNo) se
+			where sm.no = se.sMateNo
+			and c.no = sm.carNo
+			and u.no = c.userNo
 
-</mapper>
+		]]>
+		
+	</select>
+	
+		
+	<!-- 리뷰 리스트 -->
+	
+	<select id="selectReviewlist" resultType="CarpoolVo">
+		<![CDATA[
+			select 
+				u.id,
+				w.star,
+				w.content
+			from users u, reservation r, userReview w
+			where u.no = r.driverNo
+			and r.no = w.resvNo 			
+		]]>
+		
+	</select>
+	
+	<!-- Deep 차량 추천 리스트 박스  -->
+	
+	<select id="selectRecommendList" resultType="com.spotmate.vo.CarpoolVo">
+		<![CDATA[
+			select u.id,
+			       sm.startDate,
+			       sm.point
+			     
+			from spotmate sm, car c, users u,
+			     (select s.sMateNo,
+			             s.splace,
+			             e.eMateNo,
+			             e.ePlace
+			      from (select p.mateNo sMateNo, p.place sPlace
+			            from place p
+			            where p.wayNo = -1) s,
+			           (select p.mateNo eMateNo, p.place ePlace
+			            from place p
+			            where p.wayNo = 0) e
+			      where s.sMateNo = e.eMateNo) se
+			where sm.no = se.sMateNo
+			and c.no = sm.carNo
+			and u.no = c.userNo
+
+
+		]]>
+		
+	</select>
+	
+	
+	
+	<!-- 드라이버 차량 정보 가져오기 -->
+	
+	<select id="selectDriverInfo" resultType="CarpoolVo">
+		<![CDATA[
+			select 
+				u.id,
+				c.carName,
+				c.carPicture,
+				c.introduce,
+				s.comments,
+				o.name
+			from users u, car c, spotmate s, spotDetail d, detailOption o
+			where u.no = c.userNo
+			and c.no = s.carNo 	
+			and s.no = d.mateNo
+			and o.no = d.detailNo	
+			and u.no = #{no}	
+		]]>
+		
+	</select>
+	
+	
+	
+	
+	<!-- 전체 글갯수 구하기
+	<select id="selectTotalCnt" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from 
+		]]>
+
+	</select>
+	 -->
+
+	
+</mapper>	

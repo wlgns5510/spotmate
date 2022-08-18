@@ -26,6 +26,7 @@ public class HitchhikeController {
 	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitch(Model model) {
+		System.out.println(hs.getHitchList().toString());
 		model.addAttribute("hitchList", hs.getHitchList());
 		return "/spothitch/spotHitchMain";
 	}
