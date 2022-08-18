@@ -99,7 +99,7 @@
 					</div>
 
 					<div class="DriverenrollForm">
-						<form method="post" action="./myDriverWriteInsert">
+						<form method="post" action="${pageContext.request.contextPath }/myDriverWriteInsert">
 							<div class="DL_info">
 
 
@@ -125,8 +125,8 @@
 											type="text"></td>
 									</tr>
 									<tr align="left">
-										<td><label for="dl_Type">종류*</label></td>
-										<td><input name="dl_Type" id="dl_Type"
+										<td><label for="licensetype">종류*</label></td>
+										<td><input name="licensetype" id="licensetype"
 											placeholder="대형 1종" type="text" placeholder=""></td>
 									</tr>
 

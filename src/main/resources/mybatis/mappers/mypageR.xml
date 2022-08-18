@@ -7,9 +7,9 @@
 	<![CDATA[
 		insert into car
 		values(seq_car_no.nextval,
-		        4, 
+		        6,
 		        #{c_Model},
-		        #{c_file},
+		        '',
 		        #{carnum},
 		        #{c_color},
 		        #{num_PA},
@@ -17,6 +17,17 @@
 		        ) 
 
 		]]>
-
 	</insert>
+	
+	
+	<update id="myDriverUpdate" parameterType="dlvo">
+	<![CDATA[
+		update  users
+	 	set 
+	 		licenseNo = #{dl},
+	 		licenseType = #{licensetype}
+	 	where no = 4 
+		]]>
+	</update>
+
 </mapper>

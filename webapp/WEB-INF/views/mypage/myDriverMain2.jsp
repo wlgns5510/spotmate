@@ -139,23 +139,23 @@
 								<table>
 									<tr align="left">
 										<td><label for="carnum">차량등록번호*</label></td>
-										<td><input value="${dlvo.carnum}" id="carnum" placeholder="차량등록번호입력" type="text"></td>
+										<td><input value="" id="carnum" placeholder="차량등록번호입력" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_Model">차량모델명*</label></td>
-										<td><input value="${dlvo.c_Model}" id="c_Model" placeholder="테슬라 모델3" type="text"></td>
+										<td><input value="" id="c_Model" placeholder="테슬라 모델3" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_num">차량번호*</label></td>
-										<td><input value="${dlvo.c_num}" id="c_num" placeholder="770가7777" type="text"></td>
+										<td><input value="" id="c_num" placeholder="770가7777" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
-										<td><input value="${dlvo.c_color}" id="c_color" placeholder="화이트" type="text"></td>
+										<td><input value="" id="c_color" placeholder="화이트" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="num_PA">탑승가능인원*</label></td>
-										<td><input value="${dlvo.num_PA}" id="num_PA" placeholder="2" type="text"></td>
+										<td><input value="" id="num_PA" placeholder="2" type="text"></td>
 									</tr>
 								</table>
 
@@ -168,22 +168,22 @@
 									<!-- input type="radio" name="gender" id="male" value="남자"  -->
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="${dlvo.ch_type}"><span>비흡연자</span></td>
+											id="Dformcheckbox" value=""><span>비흡연자</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="${dlvo.ch_type}" checked="checked">
+											id="Dformcheckbox" value="" checked="checked">
 											<span>여성드라이버</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="${dlvo.ch_type}"><span> 반려동물
+											id="Dformcheckbox" value=""><span> 반려동물
 												탑승가능</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="${dlvo.ch_type}"> <span>핸드폰
+											id="Dformcheckbox" value=""> <span>핸드폰
 												충전기 보유</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="${dlvo.ch_type}"><span> 트렁크
+											id="Dformcheckbox" value=""><span> 트렁크
 												사용 가능여부</span></td>
 									</tr>
 								</table>
