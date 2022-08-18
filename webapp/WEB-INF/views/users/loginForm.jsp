@@ -42,7 +42,7 @@
         <meta name="theme-color" content="#ffffff">
         <!-- css, js 연결 -->
         <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
-		<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
+		<script src="/assets/js/jquery-1.11.0.min.js"></script>
     </head>
 
     <!-- body -->
