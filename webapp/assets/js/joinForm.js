@@ -73,12 +73,11 @@ $(document).ready(function(){
         // month 목록 생성되지 않았을 때 (최초 클릭 시)
         if(!isDayOptionExisted) {
             isDayOptionExisted = true
-            for(var i = 1; i <= 12; i++) {
+            for(var i = 1; i <= 31; i++) {
             // option element 생성
             const DayOption = document.createElement('option')
             DayOption.setAttribute('value', i)
             DayOption.innerText = i
-            // MonthOption.innerText = i + '월'
             // birthMonthEl의 자식 요소로 추가
             this.appendChild(DayOption);
             $("#birth-day").css("color", "#4454A1");
