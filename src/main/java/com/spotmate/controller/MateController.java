@@ -18,7 +18,7 @@ public class MateController {
 	private MateService mateService;
 
 	//메이트인포 이동
-	@RequestMapping(value = "/mateInfo", method = { RequestMethod.GET})
+	@RequestMapping(value = "/mateInfo", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mateInfo() {
 		System.out.println("MateController >> mateInfo");
 		
@@ -26,7 +26,7 @@ public class MateController {
 	}
 
 	//메이트메인 이동 + 메이트 리스트 가져오기
-	@RequestMapping(value = "/mateMain", method = { RequestMethod.GET})
+	@RequestMapping(value = "/mateMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mateMain(Model model) {
 		System.out.println("MateController >> mateMain");
 		
@@ -48,7 +48,7 @@ public class MateController {
 	}
 
 	//메이트딥 이동
-	@RequestMapping(value = "/mateDeep", method = { RequestMethod.GET})
+	@RequestMapping(value = "/mateDeep", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mateDeep() {
 		System.out.println("MateController >> mateDeep");
 		return "/mate/mateDeep";

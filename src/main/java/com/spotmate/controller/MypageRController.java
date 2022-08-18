@@ -1,7 +1,9 @@
 package com.spotmate.controller;
 
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,11 +40,11 @@ public class MypageRController {
 	@RequestMapping(value = "/myDriverWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverInsert(@ModelAttribute DriverLicenseVo dlvo, 
 			@RequestParam("ch_type") List<String> ckList) {
-		System.out.println("============================================================");
-		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]]
+		System.out.println("=====================, =======================================");
+		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]
 		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
 		System.out.println("============================================================");
-		//dlvo.myDriverRegister(dlvo);
+		dls.myDriverRegister(dlvo);
 		return "redirect:/myDriverMain2";
 	}
 	

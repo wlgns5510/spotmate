@@ -20,11 +20,69 @@
 		select latlng
 		from place
 		where mateNo = #{mateNo}
-		and wayno = 6
+		and wayno = 0
+	</select>
+	
+	<select id="selectnear" parameterType="int" resultType="hVo">
+		select latlng,
+			s.no mateNo,
+			r.people
+		from place p, reservation r, spotmate s
+		where wayno = 0
+		and p.mateno = r.mateno
+        and s.no = p.mateno
+        and s.no = r.mateno
+		and status = 'open'
+        and type = 'hitchhike'
+        order by s.no desc
 	</select>
 	
 	<select id="selecthitchdriverinfo" parameterType="int" resultType="hVo">
-		select
+		select LISTAGG(place, ',') within group (order by place asc) as fullPlace,
+		    r.point point,
+		    comments,
+		    round(star, 1) star,
+		    name,
+		    detailOpt
+		from spotmate s, place p, reservation r, 
+		(select dn.driverno,
+			avg(star) star
+		from reservation r, (select 
+		                        resvno,
+		                        avg(star) star
+	                        from userreview
+	                        group by resvno
+	                        order by resvno asc) re, ( select driverNo
+														from reservation
+														where mateNo = #{mateNo} ) dn
+		where r.no = re.resvno
+		and dn.driverno = r.driverno
+		group by r.driverno, dn.driverno) dn, ( select LISTAGG(name, ',') within group (order by name asc) as detailopt
+					                            from spotdetail sd, detailopt d
+					                            where mateNo = #{mateNo}
+					                            and sd.detailno = d.no ) , ( select name
+																			from users u, reservation r
+																			where u.no = r.driverNo
+																			and r.mateNo = 10 )
+		where s.no = #{mateNo}
+		and s.no = p.mateNo
+		and r.mateNo = s.no
+		group by r.point, comments, detailopt, dn.driverNo, star, name
+	</select>
+	
+	
+	<select id="selecthitchdriverinfonowpos" parameterType="int" resultType="String">
+		select latlng
+		from place
+		where mateNo = #{mateNo}
+	</select>
+	
+	<select id="selectDriverPos" parameterType="mVo" resultType="mVo">
+		select latlng addr,
+		mateNo
+		from place
+		where mateNo = #{mateNo}
+		and wayno = 0
 	</select>
 	
 	<select id="selecthitchlist" resultType="hVo">
@@ -36,7 +94,7 @@
 		from reservation r, spotmate s, place p
 		where r.mateNo = s.no
 		and p.mateNo = s.no
-		and wayno = 6
+		and wayno = 0
 		order by s.no desc
 	</select>
 	
@@ -62,7 +120,7 @@
 		set 
 			latlng = #{lng}||','||#{lat}||','||#{addr}
 		where mateNo = #{mateNo}
-		and wayno = 6
+		and wayno = 0
 	</update>
 	
 	
@@ -130,7 +188,7 @@
 				seq_place_no.nextval,
 				#{no},
 				'',
-				0,
+				-1,
 				'출발지',
 				#{stime1},
 				#{splace1},
@@ -143,7 +201,7 @@
 				seq_place_no.nextval,
 				#{no},
 				'',
-				6,
+				0,
 				'도착지',
 				'',
 				#{eplace1},
@@ -238,7 +296,7 @@
 				seq_place_no.nextval,
 				#{no},
 				'',
-				0,
+				-1,
 				'출발지',
 				#{stime1},
 				#{splace1},
@@ -251,7 +309,7 @@
 				seq_place_no.nextval,
 				#{no},
 				'',
-				6,
+				0,
 				'도착지',
 				'',
 				#{eplace1},
@@ -338,7 +396,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day1},
-				0,
+				-1,
 				'출발지1',
 				#{stime1},
 				#{splace1},
@@ -432,7 +490,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day1},
-				6,
+				0,
 				'도착지1',
 				'',
 				#{eplace1},
@@ -447,7 +505,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day2},
-				0,
+				-1,
 				'출발지2',
 				#{stime2},
 				#{splace2},
@@ -544,7 +602,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day2},
-				6,
+				0,
 				'도착지2',
 				'',
 				#{eplace2},
@@ -561,7 +619,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day3},
-				0,
+				-1,
 				'출발지3',
 				#{stime3},
 				#{splace3},
@@ -657,7 +715,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day3},
-				6,
+				0,
 				'도착지3',
 				'',
 				#{eplace3},
@@ -673,7 +731,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day4},
-				0,
+				-1,
 				'출발지4',
 				#{stime4},
 				#{splace4},
@@ -770,7 +828,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day4},
-				6,
+				0,
 				'도착지4',
 				'',
 				#{eplace4},
@@ -787,7 +845,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day5},
-				0,
+				-1,
 				'출발지5',
 				#{stime5},
 				#{splace5},
@@ -884,7 +942,7 @@
 				seq_place_no.nextval,
 				#{no},
 				#{day5},
-				6,
+				0,
 				'도착지5',
 				'',
 				#{eplace5},

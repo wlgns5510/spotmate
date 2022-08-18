@@ -1,5 +1,7 @@
 package com.spotmate.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,14 @@ public class DriverLicenseService {
 	 * System.out.println("DriverLicenseService/getReply"); DriverLicenseVo
 	 * myDriverMain2 = null; return myDriverMain2;
 	 */
+
+	//등록
+	public void myDriverRegister(DriverLicenseVo dlvo) {
+		mrDao.myDriverInsert(dlvo);
+		//System.out.println("END");
+		
+	}
+
 
 	// 수정폼
 	public DriverLicenseVo getUser() {
@@ -40,7 +50,7 @@ public class DriverLicenseService {
 		return count;
 	}
 
-
+	
 	
 
 }

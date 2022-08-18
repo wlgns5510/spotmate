@@ -4,8 +4,17 @@
 @import url("font.css");
 @import url("main.css");
 
-/*이준규*/
+/* 조윤주 */
+@import url("index.css");
+@import url("./community/notice.css");
+@import url("./community/faq.css");
+@import url("./community/event.css");
+@import url("./users/login.css");
+@import url("./users/join.css");
+@import url("./brand/aboutus.css");
+@import url("./brand/forearth.css");
 
+/*이준규*/
 @import url("./spot/hitchhike/spotHitchMain.css");
 @import url("./spot/hitchhike/spotHitchDeep.css");
 @import url("./spot/hitchhike/spotHitchDriver.css");
@@ -23,7 +32,7 @@
 @import url("./spot/carpool/spotCarpoolDeep.css");
 
 
-/*  양지훈 */
+/* 양지훈 */
 @import url("./mate/mateInfo.css");
 @import url("./mate/mateMain.css");
 @import url("./mate/mateDeep.css");
@@ -36,3 +45,5 @@
 @import url("./mypage/myPointCharge.css");
 @import url("./mypage/myPointMain.css");
 @import url("./mypage/myPointRefundMain.css");
+
+

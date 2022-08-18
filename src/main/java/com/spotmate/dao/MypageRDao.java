@@ -1,5 +1,7 @@
 package com.spotmate.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,10 +19,15 @@ public class MypageRDao {
 
 	//등록 
 	public void myDriverInsert(DriverLicenseVo dlvo) {
-		ss.insert("spotmate.myDriverinsert", dlvo);
+		int count= ss.insert("mypageR.myDriverinsert", dlvo);
+		System.out.println(dlvo);
+		System.out.println(count + "건 등록되었습니다.");
+		
+		return;
 		
 	}
-	
+
+
 	//수정폼 
 	public DriverLicenseVo getUser() {
 		System.out.println("DriverLicenseService>getUser()");
@@ -35,8 +42,15 @@ public class MypageRDao {
 		ss.update("mypageR.update",dlvo);
 		
 		return 0;
+
+
+		
+	}
+
+
+
 	}
 
 	
 
-}
+

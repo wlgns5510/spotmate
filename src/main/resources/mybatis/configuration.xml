@@ -12,6 +12,7 @@
 		<typeAlias alias="CouponVo" type="com.spotmate.vo.CouponVo" />
 		<typeAlias alias="PointVo" type="com.spotmate.vo.PointVo" />
 		<typeAlias alias="MateVo" type="com.spotmate.vo.MateVo" />
+		<typeAlias alias="dlvo" type="com.spotmate.vo.DriverLicenseVo" />
 	</typeAliases>
 
 
@@ -20,5 +21,6 @@
 		<mapper resource="mybatis/mappers/carpool.xml" />
 		<mapper resource="mybatis/mappers/mypagej.xml" />
 		<mapper resource="mybatis/mappers/mate.xml" />
+		<mapper resource="mybatis/mappers/mypageR.xml" />
 	</mappers>
 </configuration>
