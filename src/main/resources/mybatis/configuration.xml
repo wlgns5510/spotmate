@@ -14,7 +14,8 @@
 		<typeAlias alias="MateVo" type="com.spotmate.vo.MateVo" />
 		<typeAlias alias="dlvo" type="com.spotmate.vo.DriverLicenseVo" />
 	</typeAliases>
-  
+
+
 	<mappers> 
 		<mapper resource="mybatis/mappers/spotmate.xml" />
 		<mapper resource="mybatis/mappers/carpool.xml" />

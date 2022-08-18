@@ -14,9 +14,15 @@ public class UserController {
    @Autowired
    private UserService uService;
    //localhost/loginForm
+   
    @RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
-   public String users(Model model) {
+   public String login(Model model) {
       return "/users/loginForm";
+   }
+   
+   @RequestMapping(value = "/joinForm", method = { RequestMethod.GET, RequestMethod.POST })
+   public String join(Model model) {
+      return "/users/joinForm";
    }
 
 }
