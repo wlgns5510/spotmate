@@ -4,6 +4,16 @@
 @import url("font.css");
 @import url("main.css");
 
+/* 조윤주 */
+@import url("index.css");
+@import url("./community/notice.css");
+@import url("./community/faq.css");
+@import url("./community/event.css");
+@import url("./users/login.css");
+@import url("./users/join.css");
+@import url("./brand/aboutus.css");
+@import url("./brand/forearth.css");
+
 /*이준규*/
 @import url("./spot/hitchhike/spotHitchMain.css");
 @import url("./spot/hitchhike/spotHitchDeep.css");
@@ -36,13 +46,4 @@
 @import url("./mypage/myPointMain.css");
 @import url("./mypage/myPointRefundMain.css");
 
-/* 조윤주 */
-@import url("./community/notice.css");
-@import url("./community/faq.css");
-@import url("./community/event.css");
-@import url("./community/index.css");
-@import url("./community/login.css");
-@import url("./community/join.css");
-@import url("./community/aboutus.css");
-@import url("./community/forearth.css");
 
