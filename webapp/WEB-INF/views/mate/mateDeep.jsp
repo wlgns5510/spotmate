@@ -38,21 +38,25 @@
 			<div class="carpoolDeep-aside">
 				<div class="aside">
 					<form class="confirmForm">
-						출발지<br> <input class="confirm" type="text" name="departure"
-							value="대방역 1호선 2번 출구"> 목적지<br> <input
-							class="confirm" type="text" name="destination" value="NAVER 본사">
-						탑승 인원 수<br> <input class="confirm" type="text" name="number"
-							value="1명"> 탑승 시간<br> <input class="confirm"
-							type="text" name="startTime" value="오전 08:00"> 처음 탑승일<br>
-						<input class="confirm" type="text" name="startDay"
-							value="2022.07.25.월요일"> 마지막 탑승일<br> <input
-							class="confirm" type="text" name="endDay" value="2022.08.25.화요일">
+						출발지<br> 
+						<input class="confirm" type="text" name="departure" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.place}</c:if></c:forEach>"> 
+						목적지<br> 
+						<input class="confirm" type="text" name="destination" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == 0 && matePlaceList.day == '1'}">${matePlaceList.place}</c:if></c:forEach>">
+						탑승 인원 수<br> 
+						<input class="confirm" type="text" name="number" value="${mateVo.people}명"> 
+						탑승 시간<br> 
+						<input class="confirm" type="text" name="startTime" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.time}</c:if></c:forEach>"> 
+						처음 탑승일<br>
+						<input class="confirm" type="text" name="startDay" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.startDate}</c:if></c:forEach>"> 
+						마지막 탑승일<br> 
+						<input class="confirm" type="text" name="endDay" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.endDate}</c:if></c:forEach>">
 
 					</form>
 
 					<div class="point">
 						총 결제 포인트<br> <input class="pointConfirm" type="text"
-							name="point" value="3,000 포인트"><br> <br> <span
+							name="point" value="${mateVo.point} 포인트"><br> <br> 
+						<span
 							class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
 						</span>
 
@@ -67,7 +71,7 @@
 
 				<div class="mateDeep_today">
 					<div class="mateDeep_dayBox">
-						<p>1일차</p>
+						<p><c:forEach items="${matePlaceList}" var="matePlaceList">${matePlaceList.day}</c:forEach>일차</p>
 					</div>
 					<div class="mateDeep_float">
 						<div class="mateDeep_start">START</div>
@@ -97,37 +101,7 @@
 					</div>
 				</div>
 
-				<div class="mateDeep_today">
-					<div class="mateDeep_dayBox">
-						<p>2일차</p>
-					</div>
-					<div class="mateDeep_float">
-						<div class="mateDeep_start">START</div>
-						<div class="mateDeep_time">08 : 00 AM</div>
-						<div class="mateDeep_spot">서울역</div>
-					</div>
-					<img class="mateDeep_float"
-						src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-					<div class="mateDeep_float">
-						<div class="mateDeep_start">SPOT 1</div>
-						<div class="mateDeep_time">08 : 00 AM</div>
-						<div class="mateDeep_spot">서울역</div>
-					</div>
-					<img class="mateDeep_float"
-						src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-					<div class="mateDeep_float">
-						<div class="mateDeep_start">SPOT 2</div>
-						<div class="mateDeep_time">08 : 00 AM</div>
-						<div class="mateDeep_spot">서울역</div>
-					</div>
-					<img class="mateDeep_float"
-						src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-					<div class="mateDeep_float">
-						<div class="mateDeep_start">SPOT 3</div>
-						<div class="mateDeep_time">08 : 00 AM</div>
-						<div class="mateDeep_spot">서울역</div>
-					</div>
-				</div>
+				
 
 				<div class="mateDeep_titleFont2">주변 장소 추천</div>
 				<div class="mateDeep_map"></div>

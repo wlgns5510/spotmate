@@ -79,17 +79,20 @@
 	<!-- mateNo에 맞는 데이터값 가져오기 -->
 	<select id="deepPlaceRead" resultType="MateVo" parameterType="int">
 		<![CDATA[
-				select mateNo,
-				       day,
-				       wayNo,
-				       sepplace,
-				       time,
-				       place,
-				       lat,
-				       lng,
-				       latlng
-				from place
-				where mateNo = #{mateNo}
+				select p.mateNo,
+				       p.day,
+				       p.wayNo,
+				       p.sepplace,
+				       p.time,
+				       p.place,
+				       p.lat,
+				       p.lng,
+				       p.latlng,
+				       to_char(s.startDate, 'yyyy.mm.dd day') startDate,
+				       to_char(s.endDate, 'yyyy.mm.dd day') endDate
+				from place p, spotmate s
+				where s.no = p.mateNo
+				and p.mateNo = #{mateNo}
 		]]>
 	</select>
 	
