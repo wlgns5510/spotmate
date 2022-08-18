@@ -41,11 +41,8 @@
         <meta name="msapplication-TileImage" content="/assets/images/common/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <!-- css, js 연결 -->
-        <link rel="stylesheet" href="../common/css/swiper-bundle.min.css">
-        <link rel="stylesheet" href="../common/css/style.css">
-        <script src="../common/js/jquery-1.11.0.min.js"></script>
-        <script src="../common/js/swiper.min.js"></script>
-        <script src="../common/js/style.js"></script>
+        <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+		<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
     </head>
 
     <!-- body -->
