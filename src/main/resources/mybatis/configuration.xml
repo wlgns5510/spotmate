@@ -13,6 +13,7 @@
 		<typeAlias alias="PointVo" type="com.spotmate.vo.PointVo" />
 		<typeAlias alias="MateVo" type="com.spotmate.vo.MateVo" />
 		<typeAlias alias="dlvo" type="com.spotmate.vo.DriverLicenseVo" />
+		<typeAlias alias="userVo" type="com.spotmate.vo.UserVo" />
 	</typeAliases>
 
 
@@ -22,5 +23,6 @@
 		<mapper resource="mybatis/mappers/mypagej.xml" />
 		<mapper resource="mybatis/mappers/mate.xml" />
 		<mapper resource="mybatis/mappers/mypageR.xml" />
+		<mapper resource="mybatis/mappers/users.xml" />
 	</mappers>
 </configuration>
