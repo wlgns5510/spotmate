@@ -38,6 +38,18 @@ public class CarpoolDao {
 			return reviewList;
 		}
 		
+		// Deep 차량 추천 리스트 박스
+		public List<CarpoolVo> getrecommendList() {
+			System.out.println("CarpoolDao>list()");
+
+			List<CarpoolVo> recommendList = sqlSession.selectList("carpool.selectRecommendList");
+			
+			System.out.println(recommendList);
+
+			return recommendList;
+		}
+		
+		
 		
 		//드라이버 정보 가져오기
 		public CarpoolVo read(int no) {

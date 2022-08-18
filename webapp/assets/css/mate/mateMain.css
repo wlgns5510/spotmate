@@ -251,8 +251,9 @@ input[type=checkbox] {
   width: 135px;
   color: rgba(72,72,72,1);
   font-family: Noto Sans;
-  font-weight: Regular;
+  font-weight: 400;
   font-size: 16px;
+  float: right;
 }
 .mateMain_content2 .mateList .startEnd {
   width: 150px;
@@ -260,8 +261,11 @@ input[type=checkbox] {
   font-family: Noto Sans;
   font-weight: Bold;
   font-size: 20px;
-  margin: 10px 73px 0px 0px;
+  margin: 10px 0px 0px 0px;
  float: left;
+}
+.mateMain_listBox {
+	float: right;
 }
 .mateMain_content2 .mateList img {
 	margin: 5px 0px 3px 0px;
@@ -272,7 +276,7 @@ input[type=checkbox] {
   font-family: Montserrat;
   font-weight: 600;
   font-size: 16px;
-  margin: 7px 14px 0px 0px;
+  margin: 7px 27px 0px 0px;
 }
 .mateMain_content2 .mateList .petYN {
   width: 50px;
@@ -280,6 +284,7 @@ input[type=checkbox] {
   font-family: Montserrat;
   font-weight: Bold;
   font-size: 16px;
+  padding: 5px 0px 0px 0px;
 }
 .mateMain_content2 .mateListBtn {
   width: 310px;
