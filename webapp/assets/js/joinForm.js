@@ -11,17 +11,6 @@ First update : 2022. 08. 04.
 */
 
 
-// gnb 드롭다운
-// $(document).ready(function(){
-//     $('.gnb').children('li').children('a').mouseover(function(){
-//         $('.gnb').find('.depth2').slideUp(300);
-//         $(this).next('.depth2').slideDown(300);
-//     });
-//     $('.header_wrapper').mouseleave(function(){
-//         $('.gnb').find('.depth2').slideUp(300);
-//     });
-// });
-
 // '출생 연도' 셀렉트 박스 option 목록 동적 생성
 $(document).ready(function(){
     const birthYearEl = document.querySelector('#birth-year')

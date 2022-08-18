@@ -13,10 +13,10 @@ public class UserController {
    
    @Autowired
    private UserService uService;
-   //localhost/loginForm
    
+   //localhost/loginForm
    @RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
-   public String login(Model model) {
+   public String users(Model model) {
       return "/users/loginForm";
    }
    
@@ -26,4 +26,3 @@ public class UserController {
    }
 
 }
-
