@@ -115,7 +115,7 @@
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
-										<td><input name="userBD" id="usernum"
+										<td><input name="userBD" id="userBD"
 											placeholder="19900805" type="text"></td>
 										<td><a class="smallbtn" type="button" href="#"><span>본인인증</span></a></td>
 									</tr>
@@ -127,7 +127,7 @@
 									<tr align="left">
 										<td><label for="dl_Type">종류*</label></td>
 										<td><input name="dl_Type" id="dl_Type"
-											placeholder="대형 1종" type="text" value=""></td>
+											placeholder="대형 1종" type="text" placeholder=""></td>
 									</tr>
 
 								</table>
@@ -152,7 +152,7 @@
 									<tr>
 										<td></td>
 										<td><input type="file" id="input-file" class="file_d"
-											style="display:""none"}}></td>
+											></td>
 										<td><label class="smallbtn" for="input-file"> 
 										<span>파일선택</span>
 										</label></td>
@@ -169,7 +169,7 @@
 									</tr>
 									<tr align="left">
 										<td><label for="num_PA">탑승가능인원*</label></td>
-										<td><input name="numPA" id="num_PA" placeholder="2"
+										<td><input name="num_PA" id="num_PA" placeholder="2"
 											type="text"></td>
 									</tr>
 								</table>
@@ -180,7 +180,7 @@
 							<div class="DC_etc">
 								<h5>차량 상세조건</h5>
 								<table>
-									<!-- input type="radio" name="gender" id="male" value="남자"  -->
+									<!-- input type="radio" name="gender" id="male" placeholder="남자"  -->
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
 											id="Dformcheckbox" value="ch_type1"><span>비흡연자</span></td>
@@ -208,10 +208,10 @@
 
 							<div class="memo">
 								<h5>드라이버님을 소개해주세요*</h5>
-								<textarea placeholder="  ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다."></textarea>
+								<textarea placeholder="ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다." name="introduce" id="introduce"></textarea>
 							</div>
 
-							<input type="submit" value="등록하기" class="DForm_enrollbtn0">
+							<input type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
 
 
 

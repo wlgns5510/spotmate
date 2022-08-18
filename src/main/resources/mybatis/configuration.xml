@@ -19,5 +19,6 @@
 		<mapper resource="mybatis/mappers/carpool.xml" />
 		<mapper resource="mybatis/mappers/mypagej.xml" />
 		<mapper resource="mybatis/mappers/mate.xml" />
+		<mapper resource="mybatis/mappers/mypageR.xml" />
 	</mappers>
 </configuration>
