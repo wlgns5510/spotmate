@@ -23,9 +23,12 @@ public class DriverLicenseService {
 	//등록
 	public void myDriverRegister(DriverLicenseVo dlvo) {
 		//System.out.println("DriverLicenseService>myDriverRegister()");
-		mrDao.myDriverInsert(dlvo);
-		mrDao.update(dlvo);
-		System.out.println("update");
+		int icount = mrDao.myDriverInsert(dlvo);
+		int ucount = mrDao.update(dlvo);
+		
+		System.out.println(icount + "건 등록되었습니다(car)");
+		System.out.println(ucount + "건 등록되었습니다(users)");
+		return ;
 		
 	}
 
