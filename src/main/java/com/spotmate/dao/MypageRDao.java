@@ -16,20 +16,20 @@ public class MypageRDao {
 	private SqlSession ss;
 
 	// 등록
-	public void myDriverInsert(DriverLicenseVo dlvo) {
+	public int myDriverInsert(DriverLicenseVo dlvo) {
 		int count = ss.insert("mypageR.myDriverinsert", dlvo);
 		System.out.println(dlvo);
 		System.out.println(count + "건 등록되었습니다.");
 		
-		return;
+		return count;
 
 	}
 
-	public void update(DriverLicenseVo dlvo) {
+	public int update(DriverLicenseVo dlvo) {
 		int count = ss.update("mypageR.myDriverUpdate", dlvo);
 		System.out.println(dlvo);
 		System.out.println(count + "건 업데이트 되었습니다.");
-		return;
+		return count;
 
 	}
 
