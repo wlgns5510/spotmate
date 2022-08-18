@@ -3,18 +3,20 @@
 
 <mapper namespace="carpool">
 
-	<!-- 탑승 가능 차량 리스트 -->
+	<!-- 탑승 가능 차량 리스트 (추가:탑승가능인원수에 맞게 리스트 체킹, 페이징 css 가운데 정렬,  )-->
 	
-	<select id="selectCarpoolList" resultType="com.spotmate.vo.CarpoolVo">
+	<select id="selectCarpoolList" parameterType="map" resultType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
-			select sm.no,
+			select se.rn,
+				   sm.no,
 			       sm.type,
 			       se.splace,
 			       se.eplace,
 			       sm.point,
 			       u.id
 			from spotmate sm, car c, users u,
-			     (select s.sMateNo,
+			     (select rownum rn,
+			     	     s.sMateNo,
 			             s.splace,
 			             e.eMateNo,
 			             e.ePlace
@@ -28,13 +30,54 @@
 			where sm.no = se.sMateNo
 			and c.no = sm.carNo
 			and u.no = c.userNo
-
-		]]>
+			and rn>=#{startRnum}
+			and rn<=#{endRnum}
 		
+		]]>	
+		
+		<if test="value != ''  and  value != null ">
+			and splace like '%'||#{value}||'%'
+		</if>	
+		
+		<if test="value != ''  and  value != null ">
+			and eplace like '%'||#{value}||'%'
+		</if>	
+		
+			
+		<![CDATA[	
+			order by sm.no asc
+		]]>
+					
 	</select>
 	
 		
-	<!-- 리뷰 리스트 -->
+	
+	<!-- 차량 리스트 전체 글 갯수 -->
+	<select id="totalCarpoolCnt" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from spotmate sm, car c, users u,
+				 (select rownum rn,
+			     	     s.sMateNo,
+			             s.splace,
+			             e.eMateNo,
+			             e.ePlace
+			      from (select p.mateNo sMateNo, p.place sPlace
+			            from place p
+			            where p.wayNo = -1) s,
+			           (select p.mateNo eMateNo, p.place ePlace
+			            from place p
+			            where p.wayNo = 0) e
+			      where s.sMateNo = e.eMateNo) se
+			where sm.no = se.sMateNo
+			and c.no = sm.carNo
+			and u.no = c.userNo
+		]]>
+	
+	</select>
+	
+		
+	<!-- 리뷰 리스트 (추가: 드라이버의 평균 별점 계산)-->
 	
 	<select id="selectReviewlist" resultType="CarpoolVo">
 		<![CDATA[
@@ -49,12 +92,16 @@
 		
 	</select>
 	
+	<!--  SELECT PRODUCT_NO, ROUND(AVG(REPLY_STAR),1)
+FROM REPLY 
+GROUP BY PRODUCT_NO;-->
+	
 	<!-- Deep 차량 추천 리스트 박스  -->
 	
 	<select id="selectRecommendList" resultType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
 			select u.id,
-			       sm.startDate,
+			       to_char(sm.startDate, 'yyyy-mm-dd') startDate,
 			       sm.point
 			     
 			from spotmate sm, car c, users u,
@@ -99,20 +146,8 @@
 			and u.no = #{no}	
 		]]>
 		
+		
 	</select>
 	
-	
-	
-	
-	<!-- 전체 글갯수 구하기
-	<select id="selectTotalCnt" resultType="int">
-		<![CDATA[
-			select count(*) count
-			from 
-		]]>
-
-	</select>
-	 -->
-
 	
 </mapper>	

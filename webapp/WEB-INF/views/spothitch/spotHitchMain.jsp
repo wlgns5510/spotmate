@@ -24,8 +24,8 @@
 	</div>
 	<div class="inner clear">
 		<div id="hitch-main-map"></div>
-		<div class="info">
-			<ul class="infoTop">
+		<div class="spot-hitch-info">
+			<ul class="spot-hitch-infoTop">
 				<li><span>탑승 가능 차량리스트</span></li>
 			</ul>
 			<form action="../" method="get">
@@ -126,7 +126,7 @@
 		var iwContent = '<div style="text-align:center; height:220px;"><div class="iw" style="width:250px; padding:10px 25px 10px 25px;">목적지</div> <div style="padding:10px 25px 10px 25px;">NAVER 본사</div> <div style="padding:10px 25px 10px 25px;">드라이버 &nbsp; spotmate12 님</div> <div style="padding:10px 25px 40px 25px;">탑승 가능 인원 수 &nbsp; 1명</div> <a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>',
 			iwRemoveable = true;
 
-		var infowindow = new kakao.maps.InfoWindow({
+		var infowindow = new kakao.maps.infowindow({
 			content : iwContent,
 			removable : iwRemoveable
 		});
@@ -163,9 +163,9 @@
 							image : markerImage,
 							map : map
 						});
-					var iwContent = '<div style="text-align:center; height:220px;"><div class="hitchdeepinfo">목적지</div><div>NAVER 본사</div> <div>드라이버 &nbsp; spotmate12 님</div><div>탑승 가능 인원 수 &nbsp; 1명</div><a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>';
-// 					var iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+result[i].latlng.split(",")[2]+'</div>';
-						infowindows[i] = new kakao.maps.InfoWindow({
+					var iwContent = '<div style="text-align:center; height:220px;"><div class="hitchdeepspot-hitch-info">목적지</div><div>NAVER 본사</div> <div>드라이버 &nbsp; spotmate12 님</div><div>탑승 가능 인원 수 &nbsp; 1명</div><a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>';
+// 					var iwContent = '<div class="hitchdeepspot-hitch-info"">현재위치 입니다<br>'+result[i].latlng.split(",")[2]+'</div>';
+						infowindows[i] = new kakao.maps.infowindow({
 					    content : iwContent,
 					    removable : true
 					});

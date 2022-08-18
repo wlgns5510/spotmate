@@ -2,6 +2,7 @@ package com.spotmate.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,31 @@ public class CarpoolController {
 	}
 
 	
+	// 차량 리스트
+		@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST })
+		public String list(Model model,
+				@RequestParam(value = "splace", required = false, defaultValue = "") String splace,
+				@RequestParam(value = "eplace", required = false, defaultValue = "") String eplace,
+				@RequestParam(value = "time", required = false, defaultValue = "") String time,
+				@RequestParam(value = "people", required = false, defaultValue = "1") int people,
+				@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
+				@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
+				//@RequestParam("ch_type") List<String> ckList,  
+				@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) 
+				{
+
+			System.out.println("CarpoolController>list()");
+			//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5] 
+
+
+			Map<String, Object> cMap = carpoolService.getList(splace, eplace, time, people, startDate, endDate, crtPage);
+
+			model.addAttribute("cMap", cMap);
+
+			return "/spotcarpool/spotCarpool";
+		}
+
+	/*
 	@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST }) 
 	public String list(Model model) {
 			  
@@ -45,7 +71,7 @@ public class CarpoolController {
 			model.addAttribute("carpoolList", carpoolList);
 			  
 			return "/spotcarpool/spotCarpool"; 
-	}
+	}*/
 		
 	
 	@RequestMapping(value = "/spotCarpoolDeep", method = { RequestMethod.GET, RequestMethod.POST })
@@ -93,7 +119,7 @@ public class CarpoolController {
 
 		model.addAttribute("carpoolVo", carpoolVo);
 
-		return "/spotCarpoolDeep/driverInfoRead";
+		return "/spotcarpool/spotCarpoolDeep";
 
 	}
 }
