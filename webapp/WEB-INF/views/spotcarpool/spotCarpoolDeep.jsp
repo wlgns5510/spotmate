@@ -40,22 +40,19 @@
 	<div class="carpoolDeep-aside">
 		<div class="aside">
 			<form class="confirmForm">
-				출발지<br> <input class="confirm" type="text" name="departure"
-					value="대방역 1호선 2번 출구"> 목적지<br> <input class="confirm"
-					type="text" name="destination" value="NAVER 본사"> 탑승 인원수<br>
-				<input class="confirm" type="text" name="number" value="1명">
-				탑승 시간<br> <input class="confirm" type="text" name="startTime"
-					value="오전 08:00"> 처음 탑승일<br> <input class="confirm"
-					type="text" name="startDay" value="2022.07.25 월요일"> 마지막 탑승일<br>
-				<input class="confirm" type="text" name="endDay"
-					value="2022.08.25 화요일">
+				출발지<br> <input class="confirm" type="text" name="splace" value="${carpoolVo.splace}"> 
+				목적지<br> <input class="confirm" type="text" name="eplace" value="${carpoolVo.eplace}"> 
+				탑승 인원수<br> <input class="confirm" type="text" name="people" value="${carpoolVo.people}">
+				탑승 시간<br> <input class="confirm" type="text" name="time" value="${carpoolVo.time}"> 
+				처음 탑승일<br> <input class="confirm" type="text" name="startDate" value="${carpoolVo.startDate}"> 
+				마지막 탑승일<br> <input class="confirm" type="text" name="endDate" value="${carpoolVo.endDate}">
 
 			</form>
 
 			<div class="point">
-				총 결제 포인트<br> <input class="pointConfirm" type="text"
-					name="point" value="3,000 포인트"><br> <br> <span
-					class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
+				총 결제 포인트<br> 
+				<input class="pointConfirm" type="text" name="point" value="${carpoolVo.point}"><br> <br> 
+				<span class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
 				</span>
 
 			</div>
@@ -112,7 +109,7 @@
 					<a href=""> <img src="/assets/images/car_tesla.png" alt="hover">
 						<!-- 질문: 이미지 안에 연결 -->
 						<h3>
-							<span>${carpoolVo.carName} </span>
+							<span> ${carpoolVo.carName} </span>
 						</h3>
 					</a>
 				</div>
@@ -130,13 +127,17 @@
 				드라이버 소개
 			</div>
 
-			<div class="introduceText">${carpoolVo.introduce}</div>
+			<div class="introduceText">${carpoolVo.introduce}안녕하세요. 저는 조용하고 안전하게 가는 걸 선호합니다.<br> 약속 장소에는 출발 5분 전에 나와주시면
+				좋겠습니다.<br> 차량에 탑승하신 후에는 비치되어 있는 손 소독제를 꼭 사용 부탁드립니다:)</div>
 
-			<div class="driverComments">${carpoolVo.comments}</div>
+			<div class="driverComments">COMMENTS</div>
+			
+			<div class="introduceText">${carpoolVo.comments}안녕하세요. 저는 조용하고 안전하게 가는 걸 선호합니다.<br> 약속 장소에는 출발 5분 전에 나와주시면
+				좋겠습니다.<br> 차량에 탑승하신 후에는 비치되어 있는 손 소독제를 꼭 사용 부탁드립니다:)</div>
 
 			<!-- <div class="introduceText">
 				안녕하세요. 저는 조용하고 안전하게 가는 걸 선호합니다.<br> 약속 장소에는 출발 5분 전에 나와주시면
-				좋겠습니다.<br> 차량에 탑승하신 후에는 비치되어 있는 손 소독제를 꼭 사용 부탁드립니다:) -->
+				좋겠습니다.<br> 차량에 탑승하신 후에는 비치되어 있는 손 소독제를 꼭 사용 부탁드립니다:)  -->
 
 
 		</div>
@@ -173,7 +174,7 @@
 
 
 		</div>
-		<!-- 리뷰배너 -->
+		<!-- 리뷰배너 *****평균 별점 계산!!!!!-->
 		<p class="review">Reviews ★ 4.5</p>
 
 	</div>
