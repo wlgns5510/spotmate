@@ -45,8 +45,7 @@
 			<div class="driverList">
 				<div class="start">
 					<p>현재위치</p>
-<%-- 					${hitch.nowaddr} --%>
-					<span id="nowpos${hitch.mateNo}"></span>
+					<span id="nowpos${hitch.mateNo}">${hitch.nowaddr}</span>
 				</div>
 				<div class="end">
 					<p>목적지</p>
@@ -66,8 +65,8 @@
 				<p onclick="rideReq(${status.count})" class="rideReq" id="rideReq${status.count}">
 					탑승 요청
 				</p>
-				<input type="hidden" value="${hitch.mateNo}" id="hitch${status.count}" >
-				<input type="hidden" value="${hitch.people}" id="canRide${status.count}" >
+				<input type="hidden" value="${hitch.mateNo}" id="hitch${status.count}">
+				<input type="hidden" value="${hitch.people}" id="canRide${status.count}">
 			</div>
 			</c:forEach>
 		</div>
@@ -76,7 +75,6 @@
 	
 </body>
 <script>
-	
 	var geocoder = new kakao.maps.services.Geocoder();
 	var mapContainer = document.getElementById('hitch-main-map'), // 지도를 표시할 div 
 	mapOption = {
@@ -84,9 +82,12 @@
 		level : 3
 	},
 	map = new kakao.maps.Map(mapContainer, mapOption);
-
 	var	lat, lng = 0,
-		marker;
+		marker,
+		infowindow,
+		markers = [],
+		infowindows = [],
+		temp = {};
 	
 	myloca();
 	
@@ -108,31 +109,32 @@
 	function displayMarker(locPosition) {
 		if (marker != null) {
 			marker.setMap(null);	
+		} else if(locPosition != temp ) {
+			map.setCenter(locPosition);
+			temp = locPosition;
 		}
 		var imageSrc = './assets/images/common/login_people_f50.png', // 마커이미지의 주소입니다    
-		imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+			imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize)
-		// 마커를 생성합니다
 		marker = new kakao.maps.Marker({
 			position : locPosition,
 			image : markerImage,
 			map : map
 		});
-
+			
 		//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-		var iwContent = '<div style="text-align:center; height:220px;"><div class="iw" style="width:250px; padding:10px 25px 10px 25px;">목적지</div> <div style="padding:10px 25px 10px 25px;">NAVER 본사</div> <div style="padding:10px 25px 10px 25px;">드라이버 &nbsp; spotmate12 님</div> <div style="padding:10px 25px 40px 25px;">탑승 가능 인원 수 &nbsp; 1명</div> <a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>', iwRemoveable = true;
+		var iwContent = '<div style="text-align:center; height:220px;"><div class="iw" style="width:250px; padding:10px 25px 10px 25px;">목적지</div> <div style="padding:10px 25px 10px 25px;">NAVER 본사</div> <div style="padding:10px 25px 10px 25px;">드라이버 &nbsp; spotmate12 님</div> <div style="padding:10px 25px 40px 25px;">탑승 가능 인원 수 &nbsp; 1명</div> <a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>',
+			iwRemoveable = true;
 
-		// 인포윈도우를 생성합니다
 		var infowindow = new kakao.maps.InfoWindow({
 			content : iwContent,
 			removable : iwRemoveable
 		});
-
-		// 마커에 클릭이벤트를 등록합니다
+		
 		kakao.maps.event.addListener(marker, 'click', function() {
-			// 마커 위에 인포윈도우를 표시합니다
 			infowindow.open(map, marker);
 		});
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/userPos",
 			type : "post",
@@ -144,17 +146,42 @@
 			dataType : "json",
 			success : function(result) {
 				for(var i=0;i<result.length;i++) {
-					console.log(result[i].mateNo);
-					console.log(result[i].people);
 					$("#nowpos"+result[i].mateNo).text(result[i].latlng.split(",")[2]);
-					$("#people"+result[i].mateNo).html("<span>탑승 가능한 인원수</span><p>"+result[i].people+"</p>");
-				}
+					$("#people"+result[i].mateNo).html("<span>탑승 가능한 인원수</span><p>"+result[i].people+"</p>")
+					var marker, infowindow;
+					markers.push(marker);
+					infowindows.push(infowindow);
+					var latlng = new kakao.maps.LatLng(result[i].latlng.split(",")[1], result[i].latlng.split(",")[0]);
+					var min = Math.ceil(1),
+				    	max = Math.floor(14),
+				    	rnd = Math.floor(Math.random() * (max - min)) + min;
+					var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
+						imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+						markers[i] = new kakao.maps.Marker({
+							position : latlng,
+							image : markerImage,
+							map : map
+						});
+					var iwContent = '<div style="text-align:center; height:220px;"><div class="hitchdeepinfo">목적지</div><div>NAVER 본사</div> <div>드라이버 &nbsp; spotmate12 님</div><div>탑승 가능 인원 수 &nbsp; 1명</div><a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>';
+// 					var iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+result[i].latlng.split(",")[2]+'</div>';
+						infowindows[i] = new kakao.maps.InfoWindow({
+					    content : iwContent,
+					    removable : true
+					});
+					kakao.maps.event.addListener(markers[i], 'click', function() {
+						infowindows[i].open(map, markers[i]);
+					});
+					if (markers.length == 8) {
+						markers = [],
+						infowindows = []
+					}
+					}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-		map.setCenter(locPosition);
 	}
 
 
