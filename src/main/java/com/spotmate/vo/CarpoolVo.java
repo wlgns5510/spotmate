@@ -1,5 +1,7 @@
 package com.spotmate.vo;
 
+import java.util.List;
+
 public class CarpoolVo {
 	
 	//필드
@@ -7,7 +9,7 @@ public class CarpoolVo {
 	private int no, wayNo, point, people, driverNo, detailNo, star;
 	private String id, startDate, endDate, place, splace, eplace, latlng,  
 	type, duration, distance, carName, carPicture,introduce, comments, name, time, content;
-	
+	private List<String> ch_type;
 	
 	//생성자
 	
