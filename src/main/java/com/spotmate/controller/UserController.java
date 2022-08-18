@@ -10,14 +10,14 @@ import com.spotmate.service.UserService;
 
 @Controller
 public class UserController {
-	
-	@Autowired
-	private UserService uService;
-	
-	
-	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String users(Model model) {
-		return "/users/loginForm";
-	}
+   
+   @Autowired
+   private UserService uService;
+   //localhost/loginForm
+   @RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
+   public String users(Model model) {
+      return "/users/loginForm";
+   }
 
 }
+
