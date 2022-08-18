@@ -68,18 +68,18 @@
                     <p>*필수 입력사항</p>
 
                     <div class="join_form">
-                        <form action="" method="">
+                        <form action="/joinOk" method="get">
                             <!-- 아이디 -->
                             <div class="join_group topborder">
                                 <label class="" for="">아이디*</label> 
-                                <input type="text" id="join_uid" name="" value="" placeholder="7자미만의 영문 혹은 영문과 숫자를 조합하여 작성해주세요">
+                                <input type="text" id="join_uid" name="id" value="" placeholder="7자미만의 영문 혹은 영문과 숫자를 조합하여 작성해주세요">
                                 <button type="button" id="id_check">중복확인</button>
                             </div>
 
                             <!-- 비밀번호 -->
                             <div class="join_group">
                                 <label class="" for="">비밀번호*</label> 
-                                <input type="text" id="join_pass" name="" value="" placeholder="비밀번호를 입력해주세요">
+                                <input type="text" id="join_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
                             </div>
                             <!-- 비밀번호 확인 -->
                             <div class="join_group">
@@ -90,19 +90,19 @@
                             <!-- 이름 -->
                             <div class="join_group">
                                 <label class="" for="">이름*</label> 
-                                <input type="text" id="join_name" name="" value="" placeholder="이름을 입력해주세요">
+                                <input type="text" id="join_name" name="name" value="" placeholder="이름을 입력해주세요">
                             </div>
 
                             <!-- 이메일 -->
                             <div class="join_group">
                                 <label class="" for="">이메일*</label> 
-                                <input type="email" id="join_emil" name="" value="" placeholder="예: spotmate_official@spotmate.com">
+                                <input type="email" id="join_emil" name="email" value="" placeholder="예: spotmate_official@spotmate.com">
                             </div>
 
                             <!-- 휴대폰 -->
                             <div class="join_group">
                                 <label class="" for="">휴대폰*</label> 
-                                <input type="text" id="join_phone" name="" value="" placeholder="숫자만 입력해주세요">
+                                <input type="text" id="join_phone" name="phone" value="" placeholder="숫자만 입력해주세요">
                                 <button type="button" id="id_check">본인인증</button>
                             </div>
 
@@ -116,22 +116,22 @@
                             <!-- 성별 -->
                             <div class="join_checkbox">
                                 <label class="joingender" for="">성별*</label> 
-                                <input id="join_male" type="checkbox" >
+                                <input id="join_male" type="checkbox" name="gender" value="male">
                                 <label class="jointext" for="">남자</label> 
-                                <input id="join_female" type="checkbox">
+                                <input id="join_female" type="checkbox" name="gender" value="female">
                                 <label class="jointext" for="">여자</label>
                             </div>
 
                             <!-- 생년월일 -->
                             <div class="join_group info" id="info_birth">
                                 <label class="" for="">생년월일*</label> 
-                                <select class="info_box" id="birth-year">
+                                <select class="info_box" id="birth-year" name="year" >
                                     <option disabled selected>출생연도</option>
                                 </select>
-                                <select class="info_box" id="birth-month">
+                                <select class="info_box" id="birth-month" name="month" >
                                     <option disabled selected>월</option>
                                 </select>
-                                <select class="info_box" id="birth-day">
+                                <select class="info_box" id="birth-day" name="day" >
                                     <option disabled selected>일</option>
                                 </select>
                             </div>
