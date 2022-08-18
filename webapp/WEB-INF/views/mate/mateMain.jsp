@@ -73,8 +73,10 @@
 		
 			<c:forEach items="${mateList}" var="mateList" varStatus="status">
 				<div class=mateList>
-					<div class="matePicture" onclick="location.href='/mateDeep'">		
-					</div><br>
+				<a href="/mateDeep/${mateList.mateNo}">
+					<div class="matePicture">							
+					</div>
+				</a><br>
 					<span class="driverName">Driver ${mateList.name}</span>
 					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
 					<span class="startEnd">

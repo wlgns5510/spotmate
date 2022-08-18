@@ -67,8 +67,14 @@ public class MypageJController {
 		mypagejService.chargePoint(point);
 	}
 
+	// 포인트메인
 	@RequestMapping(value = "/myPointMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointMain() {
+	public String myPointMain(@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
+			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
+			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
+			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
+		System.out.println("MypageJController > myPointMain");
+
 		return "/mypage/myPointMain";
 	}
 
