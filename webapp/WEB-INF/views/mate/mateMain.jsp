@@ -80,22 +80,20 @@
 					<span class="startEnd">
 						${matePlaceList[status.index].sPlace} → ${matePlaceList[status.index].ePlace}
 					</span>
-					<img src="/assets/images/car icon.png">
-					<span class="seatNo">${mateList.people}</span>
-					<img src="/assets/images/pet icon.png">
-					
-					
-					<c:choose>						
-						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} == true">
-							<span class="petYN">가능</span>
-						</c:when>
-					
-						<c:when test="${mateList.mateNo == mateOptionList[status.index].mateOptionNo && mateOptionList[status.index].contain(3)} != true">
-							<span class="petYN">불가</span>
-						</c:when>							
-					</c:choose>
-
-				
+					<div class="mateMain_listBox">
+						<img src="/assets/images/car icon.png">
+						<span class="seatNo">${mateList.people}</span>
+						<img src="/assets/images/pet icon.png">
+						
+						<c:choose>
+							<c:when test="${mateOptionList[status.index].optionName != null}">
+									<span class="petYN">가능</span>
+							</c:when>				
+							<c:when test="${mateOptionList[status.index].optionName == null}">
+									<span class="petYN">불가</span>
+							</c:when>														
+						</c:choose>		
+					</div>
 							
 				</div>	
 			</c:forEach>

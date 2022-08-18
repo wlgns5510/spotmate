@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypageR">
+
+	<insert id="myDriverinsert" parameterType="dlvo">
+	<![CDATA[
+		insert into car
+		values(seq_car_no.nextval,
+		        6,
+		        #{c_Model},
+		        '',
+		        #{carnum},
+		        #{c_color},
+		        #{num_PA},
+		        #{introduce}
+		        ) 
+
+		]]>
+	</insert>
+	
+	
+	<update id="myDriverUpdate" parameterType="dlvo">
+	<![CDATA[
+		update  users
+	 	set 
+	 		licenseNo = #{dl},
+	 		licenseType = #{licensetype}
+	 	where no = 4 
+		]]>
+	</update>
+
+</mapper>

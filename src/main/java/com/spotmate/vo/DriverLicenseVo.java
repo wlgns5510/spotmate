@@ -5,19 +5,34 @@ import java.util.List;
 public class DriverLicenseVo {
 
 	// 필드
-	private String username, dl_Type, nosmoke, phoneCharge, drivergender, silence, pet, introduce, c_Model, c_file,
-			carnum, c_color;
-	private int usernum, dl, c_num, num_PA;
+	private String username, licensetype, carnum, c_Model, c_file, c_color, introduce;
+
+	private int userBD, dl, c_num, num_PA;
 
 	private List<String> ch_type;
+
 	
+
 	// 생성자
-	
-
-
-
 	public DriverLicenseVo() {
+		
+	}
+
+	public DriverLicenseVo(String username, String licensetype, String carnum, String c_Model, String c_file,
+			String c_color, String introduce, int userBD, int dl, int c_num, int num_PA, List<String> ch_type) {
 		super();
+		this.username = username;
+		this.licensetype = licensetype;
+		this.carnum = carnum;
+		this.c_Model = c_Model;
+		this.c_file = c_file;
+		this.c_color = c_color;
+		this.introduce = introduce;
+		this.userBD = userBD;
+		this.dl = dl;
+		this.c_num = c_num;
+		this.num_PA = num_PA;
+		this.ch_type = ch_type;
 	}
 
 	public String getUsername() {
@@ -28,60 +43,20 @@ public class DriverLicenseVo {
 		this.username = username;
 	}
 
-	public String getDl_Type() {
-		return dl_Type;
+	public String getLicensetype() {
+		return licensetype;
 	}
 
-	public void setDl_Type(String dl_Type) {
-		this.dl_Type = dl_Type;
+	public void setLicensetype(String licensetype) {
+		this.licensetype = licensetype;
 	}
 
-	public String getNosmoke() {
-		return nosmoke;
+	public String getCarnum() {
+		return carnum;
 	}
 
-	public void setNosmoke(String nosmoke) {
-		this.nosmoke = nosmoke;
-	}
-
-	public String getPhoneCharge() {
-		return phoneCharge;
-	}
-
-	public void setPhoneCharge(String phoneCharge) {
-		this.phoneCharge = phoneCharge;
-	}
-
-	public String getDrivergender() {
-		return drivergender;
-	}
-
-	public void setDrivergender(String drivergender) {
-		this.drivergender = drivergender;
-	}
-
-	public String getSilence() {
-		return silence;
-	}
-
-	public void setSilence(String silence) {
-		this.silence = silence;
-	}
-
-	public String getPet() {
-		return pet;
-	}
-
-	public void setPet(String pet) {
-		this.pet = pet;
-	}
-
-	public String getIntroduce() {
-		return introduce;
-	}
-
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
+	public void setCarnum(String carnum) {
+		this.carnum = carnum;
 	}
 
 	public String getC_Model() {
@@ -100,14 +75,6 @@ public class DriverLicenseVo {
 		this.c_file = c_file;
 	}
 
-	public String getCarnum() {
-		return carnum;
-	}
-
-	public void setCarnum(String carnum) {
-		this.carnum = carnum;
-	}
-
 	public String getC_color() {
 		return c_color;
 	}
@@ -116,12 +83,20 @@ public class DriverLicenseVo {
 		this.c_color = c_color;
 	}
 
-	public int getUsernum() {
-		return usernum;
+	public String getIntroduce() {
+		return introduce;
 	}
 
-	public void setUsernum(int usernum) {
-		this.usernum = usernum;
+	public void setIntroduce(String introduce) {
+		this.introduce = introduce;
+	}
+
+	public int getUserBD() {
+		return userBD;
+	}
+
+	public void setUserBD(int userBD) {
+		this.userBD = userBD;
 	}
 
 	public int getDl() {
@@ -148,8 +123,6 @@ public class DriverLicenseVo {
 		this.num_PA = num_PA;
 	}
 
-	
-
 	public List<String> getCh_type() {
 		return ch_type;
 	}
@@ -160,13 +133,11 @@ public class DriverLicenseVo {
 
 	@Override
 	public String toString() {
-		return "DriverLicenseVo [username=" + username + ", dl_Type=" + dl_Type + ", nosmoke=" + nosmoke
-				+ ", phoneCharge=" + phoneCharge + ", drivergender=" + drivergender + ", silence=" + silence + ", pet="
-				+ pet + ", introduce=" + introduce + ", c_Model=" + c_Model + ", c_file=" + c_file + ", carnum="
-				+ carnum + ", c_color=" + c_color + ", usernum=" + usernum + ", dl=" + dl + ", c_num=" + c_num
-				+ ", num_PA=" + num_PA + ", ch_type=" + ch_type + "]";
+		return "DriverLicenseVo [username=" + username + ", licensetype=" + licensetype + ", carnum=" + carnum
+				+ ", c_Model=" + c_Model + ", c_file=" + c_file + ", c_color=" + c_color + ", introduce=" + introduce
+				+ ", userBD=" + userBD + ", dl=" + dl + ", c_num=" + c_num + ", num_PA=" + num_PA + ", ch_type="
+				+ ch_type + "]";
 	}
 
-	
-	
+
 }

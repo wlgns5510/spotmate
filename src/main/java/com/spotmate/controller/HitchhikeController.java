@@ -1,6 +1,8 @@
 package com.spotmate.controller;
 
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spotmate.function.Haversine;
 import com.spotmate.service.HitchService;
 import com.spotmate.vo.HitchReservVo;
+import com.spotmate.vo.HitchVo;
 import com.spotmate.vo.MapVo;
 
 @Controller
@@ -29,14 +31,19 @@ public class HitchhikeController {
 	}
 	@RequestMapping(value="/spotHitchhikedeep/{no}", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitchdeep(@PathVariable("no") int no, Model model) {
-		hs.getDriverInfo(no);
-		model.addAttribute("mateNo", no);
+		Map<String, Object> hMap = hs.getDriverInfo(no);
+		hMap.put("mateNo", no);
+		model.addAttribute("hMap", hMap);
 		return "/spothitch/spotHitchDeep";
 	}
-//	@RequestMapping(value="/spotHitchDriver", method={RequestMethod.GET, RequestMethod.POST})
-//	public String hitchdriver() {
-//		return "/spothitch/spotHitchDriver";
-//	}
+	
+	@ResponseBody
+	@RequestMapping(value="/updateDriverPos", method= {RequestMethod.GET, RequestMethod.POST})
+	public MapVo updateDriverPos(@RequestBody MapVo mVo) {
+		System.out.println(hs.updateDriverPos(mVo).toString());
+		return hs.updateDriverPos(mVo);
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/rideReq", method={RequestMethod.GET, RequestMethod.POST})
@@ -60,13 +67,9 @@ public class HitchhikeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/userPos", method= {RequestMethod.GET, RequestMethod.POST})
-	public int userPos(@RequestBody MapVo mVo) {
+	public List<HitchVo> userPos(@RequestBody MapVo mVo) {
 		LocalTime now = LocalTime.now();
-		
-		Haversine haver = new Haversine();
-		System.out.println(haver.distanceInKilometerByHaversine(mVo.getLat(), mVo.getLng(), 37.483895867939694, 126.93118843611504));
-		
 		System.out.println(now +": "+mVo);
-		return 1;
+		return hs.getNear(mVo);
 	}
 }
