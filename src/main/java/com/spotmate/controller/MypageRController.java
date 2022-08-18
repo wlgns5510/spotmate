@@ -39,7 +39,7 @@ public class MypageRController {
 	public String myDriverInsert(@ModelAttribute DriverLicenseVo dlvo, 
 			@RequestParam("ch_type") List<String> ckList) {
 		System.out.println("============================================================");
-		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]]
+		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]
 		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
 		System.out.println("============================================================");
 		//dlvo.myDriverRegister(dlvo);
