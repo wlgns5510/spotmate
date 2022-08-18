@@ -37,11 +37,13 @@
 				</div>
 				<div class="detail-option">
 					<input type="checkbox" value="femaleDriver">여성 드라이버 
+					<input type="checkbox" value="nosmoke">비흡연자
 					<input type="checkbox" checked="checked" value="pet">반려동물 탑승 가능
-					<a href="javascript:void(0);" class="btn_a1"></a>
+					<input type="checkbox" value="phonecharge">충전기 사용 가능
+					<input type="checkbox" value="trunk">트렁크 사용 가능
 				</div>
 			</form>
-			<c:forEach items="${hitchList}"  var="hitch" varStatus="status">
+			<%-- <c:forEach items="${hitchList}"  var="hitch" varStatus="status">
 			<div class="driverList">
 				<div class="start">
 					<p>현재위치</p>
@@ -57,7 +59,7 @@
 				<div class="usePoint">
 					<span>총 결제 포인트</span><p>${hitch.convertPoint}</p>
 				</div>
-				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
+				<img onclick="carPos(${status.count})" class="carPos" src="/assets/images/ico_spot.png">
 					
 				<a href="/spotHitchhikedeep/${hitch.mateNo}" class="hitchdeep" href="/spotHitchhikedeep">
 						상세 조건
@@ -67,14 +69,16 @@
 				</p>
 				<input type="hidden" value="${hitch.mateNo}" id="hitch${status.count}">
 				<input type="hidden" value="${hitch.people}" id="canRide${status.count}">
+				<input type="hidden" value="" id="latlng${hitch.mateNo}">
 			</div>
-			</c:forEach>
+			</c:forEach> --%>
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 	
 </body>
 <script>
+
 	var geocoder = new kakao.maps.services.Geocoder();
 	var mapContainer = document.getElementById('hitch-main-map'), // 지도를 표시할 div 
 	mapOption = {
@@ -83,15 +87,44 @@
 	},
 	map = new kakao.maps.Map(mapContainer, mapOption);
 	var	lat, lng = 0,
-		marker,
-		infowindow,
 		markers = [],
-		infowindows = [],
-		temp = {};
+		infowindows = [];
+	var imageSrc = './assets/images/common/login_people_f50.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(50, 50), // 마커이미지의 크기입니다
+		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+		marker = new kakao.maps.Marker({
+			image : markerImage,
+		});
+	
+	if(navigator.geolocation) {
+		var na = navigator.geolocation.getCurrentPosition(function(position) {
+			lat = position.coords.latitude,
+			lng = position.coords.longitude;
+			$.ajax({
+				url : "${pageContext.request.contextPath}/nearHitchList",
+				type : "post",
+				contentType : "application/json",
+				data : JSON.stringify({
+						lat: lat,
+						lng: lng
+				}),
+				dataType : "json",
+				success : function(result) {
+					for(var i=0;i<result.length;i++) {
+						$(".spot-hitch-info").append('<div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+i+')" class="carPos" src="/assets/images/ico_spot.png"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+i+')" class="rideReq" id="rideReq'+i+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+i+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+i+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"></div>');
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		})
+	}
+	
 	
 	myloca();
 	
-	setInterval(function(){myloca()}, 3000);
+	setInterval(function(){myloca()}, 5000);
 	
 	
 	function myloca() {
@@ -107,33 +140,13 @@
 	
 	
 	function displayMarker(locPosition) {
-		if (marker != null) {
-			marker.setMap(null);	
-		} else if(locPosition != temp ) {
-			map.setCenter(locPosition);
-			temp = locPosition;
-		}
-		var imageSrc = './assets/images/common/login_people_f50.png', // 마커이미지의 주소입니다    
-			imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize)
-		marker = new kakao.maps.Marker({
-			position : locPosition,
-			image : markerImage,
-			map : map
-		});
-			
-		//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-		var iwContent = '<div style="text-align:center; height:220px;"><div class="iw" style="width:250px; padding:10px 25px 10px 25px;">목적지</div> <div style="padding:10px 25px 10px 25px;">NAVER 본사</div> <div style="padding:10px 25px 10px 25px;">드라이버 &nbsp; spotmate12 님</div> <div style="padding:10px 25px 40px 25px;">탑승 가능 인원 수 &nbsp; 1명</div> <a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>',
-			iwRemoveable = true;
-
-		var infowindow = new kakao.maps.infowindow({
-			content : iwContent,
-			removable : iwRemoveable
-		});
+		// 왜 해결됨?
+// 		if (marker != null) {
+// 			marker.setMap(null);	
+// 		}
 		
-		kakao.maps.event.addListener(marker, 'click', function() {
-			infowindow.open(map, marker);
-		});
+		marker.setPosition(locPosition);
+		marker.setMap(map);
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/userPos",
@@ -145,17 +158,42 @@
 			}),
 			dataType : "json",
 			success : function(result) {
+				var hVo = {};
 				for(var i=0;i<result.length;i++) {
-					$("#nowpos"+result[i].mateNo).text(result[i].latlng.split(",")[2]);
-					$("#people"+result[i].mateNo).html("<span>탑승 가능한 인원수</span><p>"+result[i].people+"</p>")
+					$.ajax({
+						url : "${pageContext.request.contextPath}/updateInfo",
+						type : "post",
+						contentType : "application/json",
+						async: false,
+						data : JSON.stringify({
+								nowaddr: result[i].latlng.split(",")[2],
+								people: result[i].people,
+								mateNo: result[i].mateNo
+						}),
+						dataType : "json",
+						success : function(result) {
+							hVo = result.hVo;
+							$("#nowpos"+result.hiVo.mateNo).text(result.hiVo.nowaddr);
+							$("#people"+result.hiVo.mateNo).html("<span>탑승 가능한 인원수</span><p>"+result.hiVo.people+"</p>");
+						},
+						error : function(XHR, status, error) {
+							console.error(status + " : " + error);
+						}
+					});
+					if (markers.length == result.length) {
+						continue;
+					}
+					
 					var marker, infowindow;
 					markers.push(marker);
 					infowindows.push(infowindow);
+					
 					var latlng = new kakao.maps.LatLng(result[i].latlng.split(",")[1], result[i].latlng.split(",")[0]);
+					$("#latlng"+result[i].mateNo).val(latlng.toString());
 					var min = Math.ceil(1),
 				    	max = Math.floor(14),
 				    	rnd = Math.floor(Math.random() * (max - min)) + min;
-					var imageSrc = '/assets/images/pin_'+j+'.png', // 마커이미지의 주소입니다    
+					var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
 						imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
 					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 						markers[i] = new kakao.maps.Marker({
@@ -163,20 +201,15 @@
 							image : markerImage,
 							map : map
 						});
-					var iwContent = '<div style="text-align:center; height:220px;"><div class="hitchdeepspot-hitch-info">목적지</div><div>NAVER 본사</div> <div>드라이버 &nbsp; spotmate12 님</div><div>탑승 가능 인원 수 &nbsp; 1명</div><a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>';
-// 					var iwContent = '<div class="hitchdeepspot-hitch-info"">현재위치 입니다<br>'+result[i].latlng.split(",")[2]+'</div>';
-						infowindows[i] = new kakao.maps.infowindow({
-					    content : iwContent,
-					    removable : true
-					});
-					kakao.maps.event.addListener(markers[i], 'click', function() {
-						infowindows[i].open(map, markers[i]);
-					});
-					if (markers.length == 8) {
-						markers = [],
-						infowindows = []
-					}
-					}
+					var iwContent = '<div style="text-align:center; height:300px;"><div class="hitchdeepinfotop">목적지</div><div class="hitchdeepinfo">'+hVo.eplace1+'</div><div class="hitchdeepinfo">드라이버 &nbsp; '+hVo.name+' 님</div><div class="hitchdeepinfo">탑승 가능 인원 수 &nbsp; '+hVo.people+'명</div><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeepinfo hitchdeepinfobtn">상세 보기</a></div>';
+						infowindows[i] = new kakao.maps.InfoWindow({
+						    content : iwContent,
+						    removable : true
+						});
+					kakao.maps.event.addListener(markers[i], 'click', clickMarker(map, markers[i], infowindows[i]));
+					map.setCenter(locPosition);					
+					
+				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -185,10 +218,15 @@
 	}
 
 
-	
+	function clickMarker(map, marker, infowindow) {
+		return function() {
+			infowindow.open(map, marker);  
+		}
+	}
 	
 	function rideReq(index) {
-		if ( $("#people").val() == '' ) {
+		console.log(this);
+		if ( $(".people").val() == '' ) {
 			alert("인원 수를 지정한 다음 시도해주세요")
 			return;
 		}
@@ -216,6 +254,15 @@
 				console.error(status + " : " + error);
 			}
 		});
+	}
+	
+	function carPos(index) {
+		var mateNo = $("#hitch"+index).val(),
+			Strlatlng = $("#latlng"+mateNo).val()
+			latlngList = Strlatlng.split(",");
+		var	latlng = new kakao.maps.LatLng(latlngList[0], latlngList[1]);
+		
+		map.setCenter(latlng);
 	}
 </script>
 </html>

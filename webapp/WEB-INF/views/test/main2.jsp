@@ -22,7 +22,7 @@
 	        
 	        $.ajax({
 					type : 'POST',
-					url : '/certifications/confirm',
+					url : '/main212',
 					dataType : 'json',
 					data : {
 						imp_uid : rsp.imp_uid
