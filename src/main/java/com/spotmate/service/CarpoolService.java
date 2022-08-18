@@ -1,6 +1,8 @@
 package com.spotmate.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ public class CarpoolService {
 	@Autowired
 	private CarpoolDao carpoolDao;
 	
-	
+	/*
 	// 리스트
 	public List<CarpoolVo> getList() {
 		System.out.println("CarpoolService > getList");
@@ -24,7 +26,7 @@ public class CarpoolService {
 		System.out.println(carpoolList);
 		
 		return carpoolList;
-	}
+	}*/
 	
 	//리뷰 리스트
 		public List<CarpoolVo> getList2() {
@@ -48,9 +50,9 @@ public class CarpoolService {
 		
 	
 		
-	/*
-	// 리스트가져오기
-		public Map<String, Object> getList() {
+	
+	// 차량 리스트 가져오기
+		public Map<String, Object> getList(String splace, String eplace, String time, int people, String startDate, String endDate, int crtPage) {
 			System.out.println("carpoolService > getcarpoolList");
 			
 			/////////////리스트//////////////
@@ -67,22 +69,23 @@ public class CarpoolService {
 			//끝글번호
 			int endRnum = (startRnum + listCnt) - 1;
 			
-			
 			Map<String, Object> pMap = new HashMap<String, Object>();
+			pMap.put("splace", splace);
+			pMap.put("eplace", eplace);
+			pMap.put("time", time);
+			pMap.put("people", people);
 			pMap.put("startDate", startDate);
 			pMap.put("endDate", endDate);
-			pMap.put("option1", option1);
-			pMap.put("option2", option2);
 			pMap.put("startRnum", startRnum);
 			pMap.put("endRnum", endRnum);
 
-			List<CouponVo> couponList = mypagejDao.getCouponList(pMap);
+			List<CarpoolVo> carpoolList = carpoolDao.getCarpoolList(pMap);
 
-			/////////////페이징계산//////////////
+			/////////////페이징 계산//////////////
 			
 			//전체글갯수
-			int totalCouponCnt = mypagejDao.totalCouponCnt();
-			System.out.println(totalCouponCnt);
+			int totalCarpoolCnt = carpoolDao.totalCarpoolCnt();
+			System.out.println(totalCarpoolCnt);
 			
 			//페이지당 버튼 갯수
 			int pageBtnCount = 10;
@@ -97,11 +100,11 @@ public class CarpoolService {
 			
 			//다음 화살표 유무
 			boolean next = false;
-			if(listCnt * endPageBtnNo < totalCouponCnt) {
+			if(listCnt * endPageBtnNo < totalCarpoolCnt) {
 				next = true;
 			
 			}else {
-				endPageBtnNo = (int)Math.ceil(totalCouponCnt/(double)listCnt);
+				endPageBtnNo = (int)Math.ceil(totalCarpoolCnt/(double)listCnt);
 			
 			}
 			
@@ -113,13 +116,13 @@ public class CarpoolService {
 			}
 			
 			//마지막페이지번호
-			int endPageNo = (int)Math.ceil(totalCouponCnt/(double)listCnt);
+			int endPageNo = (int)Math.ceil(totalCarpoolCnt/(double)listCnt);
 			
 			
 			System.out.println(prev + "," + startPageBtnNo + "," + endPageBtnNo + "," + next + "," + endPageNo);
 			
 			Map<String, Object> cMap = new HashMap<String, Object>();
-			cMap.put("couponList", couponList);
+			cMap.put("carpoolList", carpoolList);
 			cMap.put("prev", prev);
 			cMap.put("next", next);
 			cMap.put("endPageBtnNo", endPageBtnNo);
@@ -130,7 +133,7 @@ public class CarpoolService {
 			return cMap;
 
 		}
-		*/
+		
 		
 	
 	

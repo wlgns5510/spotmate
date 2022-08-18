@@ -9,7 +9,6 @@
 }
 .driver-top-banner .more {
 	font-size: 30px;
-/* 	font-family: Noto Sans Korean; */
 	font-weight: 600;
 }
 .driver-top-banner .more3 {
@@ -20,7 +19,6 @@
 .driver-top-banner .more2 {
 	float:right;
 	font-size: 20px;
-/* 	font-family: Noto Sans Korean; */
 	font-weight: 600;
 	margin: 100px 300px 0px 0px;
 }
@@ -32,8 +30,7 @@
 	margin: 150px 0px 500px 0px;
 }
 
-.info {
-/* 	font-family: Noto Sans Korean; */
+.spot-hitch-info {
 	float: left;
 	width: 720px;
 	height:640px;
@@ -45,8 +42,7 @@
 	margin: 150px 0px 500px 30px;
 }
 
-.infoTop {
-/* 	font-family: Noto Sans Korean; */
+.spot-hitch-infoTop {
 	font-weight: 600;
 	text-align: center;
 	border-bottom: 3px solid #4454a1;
@@ -78,14 +74,14 @@
 	border-bottom: 1px solid #e8e7e7;
 	font-weight: 600;
 }
-.info > form > .detail-option > input{
+.spot-hitch-info > form > .detail-option > input{
 	margin: 10px 0px 10px 30px;
 }
-.info .detail-option .btn_a1:hover {
+.spot-hitch-info .detail-option .btn_a1:hover {
 	cursor: pointer;
 }
-.info .detail-option .btn_a1:before{display:block; position:absolute; top:50%; right:20px; transform:translateY(-50%); width:15px; height:9px; content:""; background:url(/assets/images/common/ico_select_down.png)no-repeat center center; transition:all .3s;}
-.info .detail-option.after .btn_a1:before{transform:translateY(-50%) rotate(180deg);}
+.spot-hitch-info .detail-option .btn_a1:before{display:block; position:absolute; top:50%; right:20px; transform:translateY(-50%); width:15px; height:9px; content:""; background:url(/assets/images/common/ico_select_down.png)no-repeat center center; transition:all .3s;}
+.spot-hitch-info .detail-option.after .btn_a1:before{transform:translateY(-50%) rotate(180deg);}
 
 .driverList {
 	border-bottom: 1px solid #e8e7e7;

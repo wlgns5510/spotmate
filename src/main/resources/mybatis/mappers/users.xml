@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="users">
+
+
+<!-- 	<select id="selectdriverinfo" resultType="String"> -->
+<!-- 		select introduce -->
+<!-- 		from car -->
+<!-- 		where no = 2 -->
+<!-- 	</select> -->
+	<insert id="joinUser" parameterType="userVo">
+		insert into users
+		values(seq_users_no.nextval, 
+		        #{id}, 
+		        #{pw},
+		        #{name},
+		        #{email},
+		        #{phone},
+		        'address',
+		        #{gender},
+		        #{birth},
+		        '',
+		        ''
+		)
+	</insert>
+
+</mapper>
