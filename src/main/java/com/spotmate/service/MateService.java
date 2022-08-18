@@ -33,11 +33,25 @@ public class MateService {
 	}
 	
 	//메이트 리스트 가져오기(장소)
-		public List<MateVo> getMatePlaceList() {
-			System.out.println("MateService >> getMatePlaceList");
-			
-			List<MateVo> matePlaceList = mateDao.getMatePlaceList();
-			
-			return matePlaceList;
-		}
+	public List<MateVo> getMatePlaceList() {
+		System.out.println("MateService >> getMatePlaceList");
+		
+		List<MateVo> matePlaceList = mateDao.getMatePlaceList();
+		
+		return matePlaceList;
+	}
+	
+	//해당 mate의 정보가져오기
+	public MateVo deepMateRead(int mateNo) {
+		System.out.println("MateService >> deepMateRead");
+		
+		return mateDao.deepMateRead(mateNo);
+	}
+	
+	//해당 mate의 place정보가져오기
+	public List<MateVo> deepPlaceRead(int mateNo) {
+		System.out.println("MateService >> deepPlaceRead");
+		
+		return mateDao.deepPlaceRead(mateNo);
+	}
 }

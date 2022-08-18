@@ -79,26 +79,19 @@
 				<article class="myPage_article">
 
 					<div class="inputBox">
-						<form>
-							<input type="date" value="2022-08-02"> <span> - </span> <input type="date" value="2022-08-02">
-
-							<!-- <label for="lecture">유형</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>유형</option>
-								<option value="1">카풀정기권</option>
-								<option value="2">히치하이크</option>
-								<option value="3">메이트</option>
-								<option value="4">카풀1회성</option>
-							</select>
-
-							<!-- <label for="lecture">참여주체</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>참여주체</option>
-								<option value="1">드라이버</option>
-								<option value="2">탑승자</option>
+						<form action="${pageContext.request.contextPath }/mypageJ/myPointMain" method="get">
+							<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
+								<option value="">유형</option>
+								<option value="카풀">카풀정기권</option>
+								<option value="히치하이크">히치하이크</option>
+								<option value="메이트">메이트</option>
+							</select> <select name="option2">
+								<option value="">참여주체</option>
+								<option value="드라이버">드라이버</option>
+								<option value="유저">유저</option>
 							</select>
 							<div class="btns">
-								<button type="button" class="myPage_btnB">조회하기</button>
+								<button type="submit" class="myPage_btnB">조회하기</button>
 								<a href="./myPointCharge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
 							</div>
 						</form>

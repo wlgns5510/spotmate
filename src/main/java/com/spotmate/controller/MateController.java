@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -40,17 +41,20 @@ public class MateController {
 		model.addAttribute("mateList", mateList);
 		model.addAttribute("mateOptionList", mateOptionList);
 		model.addAttribute("matePlaceList", matePlaceList);
-		System.out.println(mateList);
-		System.out.println(mateOptionList);
-		System.out.println(matePlaceList);
 		
 		return "/mate/mateMain";
 	}
 
-	//메이트딥 이동
-	@RequestMapping(value = "/mateDeep", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateDeep() {
+	//mateNo에 해당하는 메이트딥 이동
+	@RequestMapping(value = "/mateDeep/{mateNo}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String mateDeep(@PathVariable("mateNo") int mateNo, Model model) {
 		System.out.println("MateController >> mateDeep");
+		
+		MateVo mateVo = mateService.deepMateRead(mateNo);
+		List<MateVo> matePlaceList = mateService.deepPlaceRead(mateNo);
+		model.addAttribute("mateVo", mateVo);
+		model.addAttribute("matePlaceVo", matePlaceList);
+		
 		return "/mate/mateDeep";
 	}
 

@@ -61,6 +61,38 @@
 		]]>
 	</select>
 	
+	<!-- mateNo에 맞는 데이터값 가져오기 -->
+	<select id="deepMateRead" resultType="MateVo" parameterType="int">
+		<![CDATA[
+				select no mateNo,
+				       carNo,
+				       startDate,
+				       people,
+				       endDate,
+				       point,
+				       comments
+				from spotmate
+				where no = #{mateNo}
+		]]>
+	</select>
+	
+	<!-- mateNo에 맞는 데이터값 가져오기 -->
+	<select id="deepPlaceRead" resultType="MateVo" parameterType="int">
+		<![CDATA[
+				select mateNo,
+				       day,
+				       wayNo,
+				       sepplace,
+				       time,
+				       place,
+				       lat,
+				       lng,
+				       latlng
+				from place
+				where mateNo = #{mateNo}
+		]]>
+	</select>
+	
 </mapper>
 
 
