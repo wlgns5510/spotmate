@@ -155,7 +155,7 @@
 					var min = Math.ceil(1),
 				    	max = Math.floor(14),
 				    	rnd = Math.floor(Math.random() * (max - min)) + min;
-					var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
+					var imageSrc = '/assets/images/pin_'+j+'.png', // 마커이미지의 주소입니다    
 						imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
 					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 						markers[i] = new kakao.maps.Marker({
