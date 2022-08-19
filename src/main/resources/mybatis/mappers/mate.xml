@@ -76,7 +76,7 @@
 		]]>
 	</select>
 	
-	<!-- mateNo에 맞는 데이터값 가져오기 -->
+	<!-- mateNo에 맞는 장소값 가져오기 -->
 	<select id="deepPlaceRead" resultType="MateVo" parameterType="int">
 		<![CDATA[
 				select p.mateNo,

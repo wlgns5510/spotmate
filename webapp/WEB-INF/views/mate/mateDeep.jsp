@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -55,7 +56,7 @@
 
 					<div class="point">
 						총 결제 포인트<br> 
-						<div class="pointConfirm">${mateVo.point} 포인트</div><br> <br> 
+						<div class="pointConfirm"><fmt:formatNumber value="${mateVo.point}" pattern="#,###" />포인트</div><br> <br> 
 						<span
 							class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
 						</span>

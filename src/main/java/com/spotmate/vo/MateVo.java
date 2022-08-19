@@ -25,9 +25,9 @@ public class MateVo {
 	private String sepplace;
 	private String time;
 	private String place;
-	private int let;
-	private int lng;
-	private long latlng;
+	private double let;
+	private double lng;
+	private double latlng;
 	private String sPlace;
 	private String ePlace;
 	
@@ -36,15 +36,17 @@ public class MateVo {
 	//생성자
 	public MateVo() {}
 	
-	public MateVo(String name, String carPicture, String carName, String carNo, String introduce, int mateNo, String startDate,
-			String endDate, int people, String type, int point, String duration, String distance, String comments) {
+	
+	public MateVo(String name, String carPicture, String carName, String carNo, String introduce, String startDate,
+			String endDate, int people, String type, int point, String duration, String distance, String comments,
+			int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, String day, int wayNo,
+			String sepplace, String time, String place, long let, long lng, double latlng, String sPlace, String ePlace) {
 		super();
 		this.name = name;
 		this.carPicture = carPicture;
 		this.carName = carName;
 		this.carNo = carNo;
 		this.introduce = introduce;
-		this.mateNo = mateNo;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.people = people;
@@ -53,18 +55,23 @@ public class MateVo {
 		this.duration = duration;
 		this.distance = distance;
 		this.comments = comments;
-	}
-	public MateVo(String optionName, int mateOptionNo, int optionNo) {
+		this.mateNo = mateNo;
 		this.optionName = optionName;
 		this.mateOptionNo = mateOptionNo;
 		this.optionNo = optionNo;
-	}
-	
-	public MateVo(String sPlace, String ePlace) {
-		super();
+		this.matePlaceNo = matePlaceNo;
+		this.day = day;
+		this.wayNo = wayNo;
+		this.sepplace = sepplace;
+		this.time = time;
+		this.place = place;
+		this.let = let;
+		this.lng = lng;
+		this.latlng = latlng;
 		this.sPlace = sPlace;
 		this.ePlace = ePlace;
 	}
+
 
 	//메소드gs	
 	public String getName() {
@@ -251,27 +258,27 @@ public class MateVo {
 		this.place = place;
 	}
 
-	public int getLet() {
+	public double getLet() {
 		return let;
 	}
 
-	public void setLet(int let) {
+	public void setLet(double let) {
 		this.let = let;
 	}
 
-	public int getLng() {
+	public double getLng() {
 		return lng;
 	}
 
-	public void setLng(int lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
 
-	public long getLatlng() {
+	public double getLatlng() {
 		return latlng;
 	}
 
-	public void setLatlng(long latlng) {
+	public void setLatlng(double latlng) {
 		this.latlng = latlng;
 	}
 
