@@ -80,7 +80,7 @@ public class UserController {
 	  System.out.println(userVo.toString());
 	  
 	  uService.joinUser(userVo);
-	  return "/users/joinOK";
+	  return "/users/joinOk";
       //return "redirect:/driver";
    }
 
