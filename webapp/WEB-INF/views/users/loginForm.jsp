@@ -63,7 +63,7 @@
                             <a href="javascript:void(0);">비밀번호 찾기</a>
                         </span>
                         <span class="signup">
-                            <a href="javascript:void(0);">회원가입</a>
+                            <a href="/joinForm">회원가입</a>
                         </span>
                     </div>
                     
