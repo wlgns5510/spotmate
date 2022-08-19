@@ -159,8 +159,7 @@
 				infowindow1 = new kakao.maps.InfoWindow({
 				    content : iwContent
 				});
-			} 
-			else if (i==2) {
+			} else if (i==2) {
 				iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+nowAddr+'</div>';
 				infowindow2 = new kakao.maps.InfoWindow({
 				    content : iwContent

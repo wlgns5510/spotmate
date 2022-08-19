@@ -136,6 +136,7 @@
 	position: absolute;
 	top: 0px;
 	left: 650px;
+	cursor: pointer;
 }
 
 .driverList > .hitchdeep {
@@ -144,7 +145,7 @@
 	position: absolute;
 	top: 160px;
 	left: 500px;
-	cursor:pointer;
+	cursor: pointer;
 	padding: 10px; 
 	background-color: #4454a1; 
 	color:white; 

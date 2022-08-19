@@ -4,9 +4,17 @@
 <mapper namespace="mypageR">
 
 	<insert id="myDriverinsert" parameterType="dlvo">
+	
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_car_no.nextval from dual
+		</selectKey>
+		
 	<![CDATA[
-		insert into car
-		values(seq_car_no.nextval,
+	
+		insert all
+		into car
+		values(
+				#{no}
 		        6,
 		        #{c_Model},
 		        '',
@@ -17,9 +25,55 @@
 		        ) 
 
 		]]>
+		 <if test='ch_type1 != null'>
+			into carDetail
+			values (
+				seq_carDetail_no.nextval,
+				#{no},
+				1
+			)
+		</if>
+			<if test='ch_type2 != null'>
+			into carDetail
+			values (
+				seq_carDetail_no.nextval,
+				#{no},
+				2
+			)
+			</if>
+			<if test='ch_type3 != null'>
+			into carDetail
+			values (
+				seq_carDetail_no.nextval,
+				#{no},
+				3
+			)
+			</if>
+			<if test='ch_type4 != null'>
+			into carDetail
+			values (
+				seq_carDetail_no.nextval,
+				#{no},
+				4
+			)
+			</if>
+			<if test='ch_type5 != null'>
+			into carDetail
+			values (
+				seq_carDetail_no.nextval,
+				#{no},
+				5
+			)
+			</if> 
+			
 	</insert>
-	
-	
+		
+			
+			
+			
+			
+			
+
 	<update id="myDriverUpdate" parameterType="dlvo">
 	<![CDATA[
 		update  users
@@ -29,5 +83,7 @@
 	 	where no = 4 
 		]]>
 	</update>
+
+
 
 </mapper>

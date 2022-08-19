@@ -1,4 +1,4 @@
-package com.spotmate.function;
+package com.spotmate.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,8 +7,12 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.spotmate.function.NaviHttpRequest;
 
 @Controller
 public class Main {
@@ -57,6 +61,16 @@ public class Main {
 	@RequestMapping(value="/main6", method={RequestMethod.GET, RequestMethod.POST})
 	public String main6() throws IOException {
 		return "/main6";
+	}
+	@RequestMapping(value="/main2", method={RequestMethod.GET, RequestMethod.POST})
+	public String main2() throws IOException {
+		return "/test/main2";
+	}
+	@ResponseBody
+	@RequestMapping(value="/main212", method={RequestMethod.GET, RequestMethod.POST})
+	public int main212(@RequestBody String str) {
+		System.out.println(str);
+		return 1;
 	}
 	@RequestMapping(value="/spot", method={RequestMethod.GET, RequestMethod.POST})
 	public String test() throws IOException {

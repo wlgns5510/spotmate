@@ -27,16 +27,25 @@ public class CarpoolService {
 		
 		return carpoolList;
 	}*/
+	/*
+	//드라이버 별점 평균 ★★★☆☆
+	public int avgStar(int no) {
+		System.out.println("carpoolService > avgStar");
+
+		int avgStar = carpoolDao.avgStar(no);
+
+		return avgStar;
+	}*/
 	
 	//리뷰 리스트
-		public List<CarpoolVo> getList2() {
-			System.out.println("ReviewService > getList2");
+	public List<CarpoolVo> getList2() {
+		System.out.println("ReviewService > getList2");
 
-			List<CarpoolVo> reviewList = carpoolDao.getreviewList();
-			System.out.println(reviewList);
-			
-			return reviewList;
-		}
+		List<CarpoolVo> reviewList = carpoolDao.getreviewList();
+		System.out.println(reviewList);
+
+		return reviewList;
+	}
 		
 	// Deep 차량 추천 리스트 박스
 		public List<CarpoolVo> getList3() {

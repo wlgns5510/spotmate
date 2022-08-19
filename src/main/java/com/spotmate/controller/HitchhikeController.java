@@ -1,8 +1,11 @@
 package com.spotmate.controller;
 
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,24 +17,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.service.HitchService;
+import com.spotmate.vo.HitchInfoVo;
 import com.spotmate.vo.HitchReservVo;
 import com.spotmate.vo.HitchVo;
 import com.spotmate.vo.MapVo;
+import com.spotmate.vo.UserVo;
 
 @Controller
 public class HitchhikeController {
 	
 	@Autowired
-	private HitchService hs;
+	private HitchService hService;
 	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
-	public String hitch(Model model) {
-		model.addAttribute("hitchList", hs.getHitchList());
+	public String hitch() {
 		return "/spothitch/spotHitchMain";
 	}
+	
+	@RequestMapping(value="/spotHitchDriver", method={RequestMethod.GET, RequestMethod.POST})
+	public String hitchDriver(HttpSession session) {
+		UserVo uVo = (UserVo) session.getAttribute("authUser");
+		hService.getDriverInfo(uVo.getNo());
+		return "/spothitch/spotHitchDriver";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/nearHitchList", method= {RequestMethod.GET, RequestMethod.POST})
+	public List<HitchVo> nearHitchList(@RequestBody MapVo mVo) {
+		return hService.getHitchList(mVo);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/updateInfo", method= {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, Object> updateInfo(@RequestBody HitchInfoVo hiVo) {
+		Map<String, Object> hMap = new HashMap<>();
+		hMap.put("hVo", hService.getSummaryInfo(hiVo.getMateNo()));
+		hMap.put("hiVo", hiVo);
+		return hMap;
+	}
+	
 	@RequestMapping(value="/spotHitchhikedeep/{no}", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitchdeep(@PathVariable("no") int no, Model model) {
-		Map<String, Object> hMap = hs.getDriverInfo(no);
+		Map<String, Object> hMap = hService.getDriverInfo(no);
 		hMap.put("mateNo", no);
 		model.addAttribute("hMap", hMap);
 		return "/spothitch/spotHitchDeep";
@@ -40,16 +67,14 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/updateDriverPos", method= {RequestMethod.GET, RequestMethod.POST})
 	public MapVo updateDriverPos(@RequestBody MapVo mVo) {
-		System.out.println(hs.updateDriverPos(mVo).toString());
-		return hs.updateDriverPos(mVo);
+		return hService.updateDriverPos(mVo);
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping(value="/rideReq", method={RequestMethod.GET, RequestMethod.POST})
 	public int rideReq(@RequestBody HitchReservVo hrVo) {
-		System.out.println(hrVo.toString());
-		int people = hs.makeReserv(hrVo);
+		int people = hService.makeReserv(hrVo);
 		if(people == -1) {
 			return -1;
 		}
@@ -61,7 +86,7 @@ public class HitchhikeController {
 	public int now(@RequestBody MapVo mVo) {
 		LocalTime now = LocalTime.now();
 		System.out.println(now +": "+mVo);
-		hs.watchPos(mVo);
+		hService.watchPos(mVo);
 		return 1;
 	}
 	
@@ -70,6 +95,6 @@ public class HitchhikeController {
 	public List<HitchVo> userPos(@RequestBody MapVo mVo) {
 		LocalTime now = LocalTime.now();
 		System.out.println(now +": "+mVo);
-		return hs.getNear(mVo);
+		return hService.getNear(mVo);
 	}
 }
