@@ -46,12 +46,21 @@ public class CarpoolDao {
 			
 			return totalCarpoolCnt;
 		}
+		/*
+		//드라이버 별점 평균 ★★★☆☆
+		public int avgStar(int no) {
+			System.out.println("CarpoolDao > avgStar");
+			
+			int avgStar = sqlSession.selectOne("carpool.avgStar",no);
+			
+			return avgStar;
+		}*/
 		
 		//리뷰 리스트
 		public List<CarpoolVo> getreviewList() {
 			System.out.println("CarpoolDao>list()");
 
-			List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewlist");
+			List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewList");
 			System.out.println(reviewList);
 
 			return reviewList;

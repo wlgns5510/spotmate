@@ -30,7 +30,7 @@ public class UserController {
       
 	   String url = request.getHeader("Referer");
 	   
-	   if(url !=null && !url.contains("/login")) {
+	   if(url !=null && !url.contains("/login") && !url.contains("/join")) {
 		   request.getSession().setAttribute("prevPage", url);
 	   }
 	   
@@ -80,7 +80,8 @@ public class UserController {
 	  System.out.println(userVo.toString());
 	  
 	  uService.joinUser(userVo);
-      return "/users/joinOk";
+	  return "/users/joinOK";
+      //return "redirect:/driver";
    }
 
 }
