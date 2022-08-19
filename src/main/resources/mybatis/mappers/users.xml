@@ -3,12 +3,6 @@
 
 <mapper namespace="users">
 
-
-<!-- 	<select id="selectdriverinfo" resultType="String"> -->
-<!-- 		select introduce -->
-<!-- 		from car -->
-<!-- 		where no = 2 -->
-<!-- 	</select> -->
 	<insert id="joinUser" parameterType="userVo">
 		insert into users
 		values(seq_users_no.nextval, 
@@ -24,5 +18,13 @@
 		        ''
 		)
 	</insert>
+	
+	<select id="loginOk" parameterType="userVo" resultType="userVo">
+		select no
+			   ,name
+		from users
+		where id = #{id}
+		and pw = #{pw}		
+	</select>
 
 </mapper>
