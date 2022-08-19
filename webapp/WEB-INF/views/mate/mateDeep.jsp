@@ -39,23 +39,23 @@
 				<div class="aside">
 					<form class="confirmForm">
 						출발지<br> 
-						<input class="confirm" type="text" name="departure" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.place}</c:if></c:forEach>"> 
+						<div class="confirm"><c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.place}</c:if></c:forEach></div>
 						목적지<br> 
-						<input class="confirm" type="text" name="destination" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == 0 && matePlaceList.day == '1'}">${matePlaceList.place}</c:if></c:forEach>">
+						<div class="confirm"><c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == 0 && matePlaceList.day == '1'}">${matePlaceList.place}</c:if></c:forEach></div>
 						탑승 인원 수<br> 
-						<input class="confirm" type="text" name="number" value="${mateVo.people}명"> 
+						<div class="confirm">${mateVo.people}명</div> 
 						탑승 시간<br> 
-						<input class="confirm" type="text" name="startTime" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.time}</c:if></c:forEach>"> 
+						<div class="confirm"><c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.time}</c:if></c:forEach></div>
 						처음 탑승일<br>
-						<input class="confirm" type="text" name="startDay" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.startDate}</c:if></c:forEach>"> 
+						<div class="confirm"><c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.startDate}</c:if></c:forEach></div>
 						마지막 탑승일<br> 
-						<input class="confirm" type="text" name="endDay" value="<c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.endDate}</c:if></c:forEach>">
+						<div class="confirm"><c:forEach items="${matePlaceList}" var="matePlaceList"><c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">${matePlaceList.endDate}</c:if></c:forEach></div>
 
 					</form>
 
 					<div class="point">
-						총 결제 포인트<br> <input class="pointConfirm" type="text"
-							name="point" value="${mateVo.point} 포인트"><br> <br> 
+						총 결제 포인트<br> 
+						<div class="pointConfirm">${mateVo.point} 포인트</div><br> <br> 
 						<span
 							class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
 						</span>
