@@ -163,6 +163,21 @@ SELECT
     *
 FROM
     users;
+-- 
+SELECT
+    no,
+    name
+FROM
+    users
+WHERE
+        id = 'aa11'
+    AND pw = 'aaaa1111';
+
+-- delete
+DELETE FROM users
+WHERE no = 9;
+
+commit;
     
 ------------------ 카테고리 --------------------
 DROP INDEX PK_category;
