@@ -49,14 +49,14 @@ public class UserController {
 		   return "redirect:"+url;
 	   }else if(authUser!=null) {
 		   session.setAttribute("authUser", authUser);
-		   return "redirect:/driver";
-		   //return "redirect:/index";
+		   //return "redirect:/driver";
+		   return "redirect:/index";
 	   }
 	   
 	   //model.addAttribute("authUser", uService.loginOk(userVo));
 	   //session.setAttribute("authUser", uService.loginOk(userVo));
-	   return "redirect:/driver";
-	   //return "redirect:/index";
+	   //return "redirect:/driver";
+	   return "redirect:/index";
    }
    
    // 로그아웃
@@ -80,7 +80,7 @@ public class UserController {
 	  System.out.println(userVo.toString());
 	  
 	  uService.joinUser(userVo);
-	  return "/users/joinOK";
+	  return "/users/joinOk";
       //return "redirect:/driver";
    }
 
