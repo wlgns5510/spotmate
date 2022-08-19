@@ -7,7 +7,7 @@ public class MateVo {
 	private String carName;
 	private String carNo;
 	private String introduce;
-	private String StartDate;
+	private String startDate;
 	private String endDate;
 	private int people;
 	private String type;
@@ -45,7 +45,7 @@ public class MateVo {
 		this.carNo = carNo;
 		this.introduce = introduce;
 		this.mateNo = mateNo;
-		this.StartDate = startDate;
+		this.startDate = startDate;
 		this.endDate = endDate;
 		this.people = people;
 		this.type = type;
@@ -107,12 +107,12 @@ public class MateVo {
 		this.introduce = introduce;
 	}
 
-	public String getStartDate() {
-		return StartDate;
+	public String getstartDate() {
+		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
-		StartDate = startDate;
+	public void setstartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
 	public String getEndDate() {
@@ -297,7 +297,7 @@ public class MateVo {
 	@Override
 	public String toString() {
 		return "MateVo [name=" + name + ", carPicture=" + carPicture + ", carName=" + carName + ", carNo=" + carNo
-				+ ", introduce=" + introduce + ", StartDate=" + StartDate + ", endDate=" + endDate + ", people="
+				+ ", introduce=" + introduce + ", startDate=" + startDate + ", endDate=" + endDate + ", people="
 				+ people + ", type=" + type + ", point=" + point + ", duration=" + duration + ", distance=" + distance
 				+ ", comments=" + comments + ", mateNo=" + mateNo + ", optionName=" + optionName + ", mateOptionNo="
 				+ mateOptionNo + ", optionNo=" + optionNo + ", matePlaceNo=" + matePlaceNo + ", day=" + day + ", wayNo="

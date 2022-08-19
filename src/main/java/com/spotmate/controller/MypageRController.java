@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spotmate.service.DriverLicenseService;
 import com.spotmate.vo.DriverLicenseVo;
 
+
 @Controller
 public class MypageRController {
 
@@ -45,22 +46,24 @@ public class MypageRController {
 		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
 		System.out.println("============================================================");
 		dls.myDriverRegister(dlvo);
-		return "redirect:/myDriverMain2";
+		return "/mypage/myDriverMain2";
 	}
 	
-	//수정폼
+	/*//수정폼
 	@RequestMapping(value = "/myDriverMain2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myDriverMain2(Model model, @RequestParam("no") int no) {
+	public String myDriverMain2() {
 		System.out.println("MypageRController>myDriverMain2()");
 		/*
 		DriverLicenseVo authUser = (DriverLicenseVo)hs.getAttribute("authUser");
 		int no = authUser.getNo();*/
+		/*
 		DriverLicenseVo dlvo = dls.getUser();
-		model.addAttribute("dlvo",DriverLicenseVo);
+		model.addAttribute("dlvo",dlvo);
+		
 		return "redirect:/myDriverMain2";
-	}
+	}*/
 	
-	//수정
+	/*//수정
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute DriverLicenseVo dlvo) {
 		System.out.println("MypageRController>modify()");
@@ -68,7 +71,7 @@ public class MypageRController {
 		dls.modify(dlvo);
 		
 		return "redirect:/myDriverMain2";
-	}
+	}*/
 	
 	
 	
