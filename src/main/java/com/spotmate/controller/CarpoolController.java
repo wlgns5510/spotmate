@@ -56,6 +56,8 @@ public class CarpoolController {
 			Map<String, Object> cMap = carpoolService.getList(splace, eplace, time, people, startDate, endDate, crtPage);
 
 			model.addAttribute("cMap", cMap);
+			
+			//String[] ckList = .getParameterValues("ch_type");
 
 			return "/spotcarpool/spotCarpool";
 		}
@@ -78,7 +80,18 @@ public class CarpoolController {
 	public String spotCarpoolDeep() {
 		return "/spotcarpool/spotCarpoolDeep";
 	}
-	
+	/*
+	//드라이버 별점 평균 ★★★☆☆
+	@RequestMapping(value = "/spotCarpoolDeep/star", method = { RequestMethod.GET, RequestMethod.POST })
+	public String avgStar(Model model, @RequestParam("no") int no) {
+		System.out.println("CarpoolController > avgStar");
+
+		CarpoolVo carpoolVo = carpoolService.read(no);
+
+		model.addAttribute("carpoolVo", carpoolVo);
+
+		return "/spotcarpool/spotCarpoolDeep";
+		}*/
 	
 	//리뷰 리스트 
 	
@@ -111,10 +124,10 @@ public class CarpoolController {
 	//드라이버 차량 정보 가져오기
 
 	@RequestMapping(value = "/spotCarpoolDeep/driverInfoRead", method = { RequestMethod.GET, RequestMethod.POST })
-	public String read(Model model, @RequestParam("no") int no) {
+	public String read(Model model, @RequestParam(value = "", defaultValue = "") int no) {
 		System.out.println("CarpoolController>read()");
 
-
+		
 		CarpoolVo carpoolVo = carpoolService.read(no);
 
 		model.addAttribute("carpoolVo", carpoolVo);

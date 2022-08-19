@@ -33,7 +33,7 @@
   font-size: 32px;
   text-align: left;
   float: left;
-  margin: 120px 0px 0px 220px;
+  margin: 120px 0px 0px 210px;
 }
 
 .carpool-MainText2 {
@@ -361,7 +361,7 @@
     
 }
 
-.carpool-top2 table {
+.carpool_detail table {
     width: 700px;
     color: rgba(72,72,72,1);
 	border-collapse: collapse;
@@ -373,11 +373,11 @@
     
         	
 }
-.carpool-top2 tr {
+.carpool_detail tr {
 	width : 300px;
 }
 
-.carpool-top2 td {
+.carpool_detail td {
 	 padding: 5px 0px 5px 0px;	 
 	
 }
