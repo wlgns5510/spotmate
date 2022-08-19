@@ -71,7 +71,7 @@
 
 				<div class="mateDeep_today">
 					<div class="mateDeep_dayBox">
-						<p><c:forEach items="${matePlaceList}" var="matePlaceList">${matePlaceList.day}</c:forEach>일차</p>
+						<p>1일차</p>
 					</div>
 					<div class="mateDeep_float">
 						<div class="mateDeep_start">START</div>
