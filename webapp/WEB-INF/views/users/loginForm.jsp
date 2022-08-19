@@ -28,15 +28,15 @@
                     </p>
 
                     <div class="form_text">
-                        <form action="" method="">
+                        <form action="/loginOk" method="get">
                             <!-- 아이디 -->
                             <div class="form_group">
-                                <input type="text" id="input_uid" name="" value="" placeholder="아이디를 입력해주세요">
+                                <input type="text" id="input_uid" name="id" value="" placeholder="아이디를 입력해주세요">
                             </div>
 
                             <!-- 비밀번호 -->
                             <div class="form_group">
-                                <input type="text" id="input_pass" name="" value="" placeholder="비밀번호를 입력해주세요">
+                                <input type="text" id="input_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
                             </div>
                             
 
