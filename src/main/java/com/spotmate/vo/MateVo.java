@@ -20,12 +20,12 @@ public class MateVo {
 	private int mateOptionNo;
 	private int optionNo;
 	private String matePlaceNo;
-	private String day;
+	private int day;
 	private int wayNo;
 	private String sepplace;
 	private String time;
 	private String place;
-	private double let;
+	private double lat;
 	private double lng;
 	private double latlng;
 	private String sPlace;
@@ -35,12 +35,11 @@ public class MateVo {
 	
 	//생성자
 	public MateVo() {}
-	
-	
+		
 	public MateVo(String name, String carPicture, String carName, String carNo, String introduce, String startDate,
 			String endDate, int people, String type, int point, String duration, String distance, String comments,
-			int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, String day, int wayNo,
-			String sepplace, String time, String place, long let, long lng, double latlng, String sPlace, String ePlace) {
+			int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day, int wayNo,
+			String sepplace, String time, String place, long lat, long lng, double latlng, String sPlace, String ePlace) {
 		super();
 		this.name = name;
 		this.carPicture = carPicture;
@@ -65,14 +64,13 @@ public class MateVo {
 		this.sepplace = sepplace;
 		this.time = time;
 		this.place = place;
-		this.let = let;
+		this.lat = lat;
 		this.lng = lng;
 		this.latlng = latlng;
 		this.sPlace = sPlace;
 		this.ePlace = ePlace;
 	}
-
-
+	
 	//메소드gs	
 	public String getName() {
 		return name;
@@ -218,11 +216,11 @@ public class MateVo {
 		this.matePlaceNo = matePlaceNo;
 	}
 
-	public String getDay() {
+	public int getDay() {
 		return day;
 	}
 
-	public void setDay(String day) {
+	public void setDay(int day) {
 		this.day = day;
 	}
 
@@ -258,12 +256,12 @@ public class MateVo {
 		this.place = place;
 	}
 
-	public double getLet() {
-		return let;
+	public double getLat() {
+		return lat;
 	}
 
-	public void setLet(double let) {
-		this.let = let;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
 
 	public double getLng() {
@@ -308,7 +306,7 @@ public class MateVo {
 				+ people + ", type=" + type + ", point=" + point + ", duration=" + duration + ", distance=" + distance
 				+ ", comments=" + comments + ", mateNo=" + mateNo + ", optionName=" + optionName + ", mateOptionNo="
 				+ mateOptionNo + ", optionNo=" + optionNo + ", matePlaceNo=" + matePlaceNo + ", day=" + day + ", wayNo="
-				+ wayNo + ", sepplace=" + sepplace + ", time=" + time + ", place=" + place + ", let=" + let + ", lng="
+				+ wayNo + ", sepplace=" + sepplace + ", time=" + time + ", place=" + place + ", lat=" + lat + ", lng="
 				+ lng + ", latlng=" + latlng + ", sPlace=" + sPlace + ", ePlace=" + ePlace + "]";
 	}
 }

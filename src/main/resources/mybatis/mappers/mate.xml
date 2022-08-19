@@ -81,7 +81,7 @@
 		<![CDATA[
 				select p.mateNo,
 				       p.day,
-				       p.wayNo,
+				       p.wayNo wayNo,
 				       p.sepplace,
 				       p.time,
 				       p.place,
