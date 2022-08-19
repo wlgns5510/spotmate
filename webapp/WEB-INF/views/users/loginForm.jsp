@@ -38,6 +38,7 @@
                             <div class="form_group">
                                 <input type="text" id="input_pass" name="" value="" placeholder="비밀번호를 입력해주세요">
                             </div>
+                            
 
                             <!-- 아이디 저장 -->
                             <div class="login_checkbox">
