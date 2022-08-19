@@ -43,9 +43,9 @@ public class HitchDao {
 //		String addr = ss.selectOne("spotmate.nowaddr", mVo.getMateNo());
 	}
 	
-	public Map<String, Object> selectDriverInfo(int no) {
-		HitchVo hVo = ss.selectOne("spotmate.selecthitchdriverinfo", no);
-		List<String> nowPos = ss.selectList("spotmate.selecthitchdriverinfonowpos", no);
+	public Map<String, Object> selectDriverInfo(int mateNo) {
+		HitchVo hVo = ss.selectOne("spotmate.selecthitchdriverinfo", mateNo);
+		List<String> nowPos = ss.selectList("spotmate.selecthitchdriverinfonowpos", mateNo);
 		Map<String, Object> hMap = new HashMap<>();
 		hMap.put("hVo", hVo);
 		List<Double> nowLatlng = new ArrayList<>();
@@ -55,6 +55,10 @@ public class HitchDao {
 		hMap.put("nowAddr", nowPos.get(1).split(",")[2]);
 		hMap.put("latlng", nowPos.get(0));
 		return hMap;
+	}
+	
+	public HitchVo selectSummaryInfo(int mateNo) {
+		return ss.selectOne("spotmate.selectsummarydriverinfo", mateNo);
 	}
 	
 	public List<HitchVo> getNear() {

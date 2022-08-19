@@ -1,8 +1,10 @@
 package com.spotmate.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,19 +18,64 @@ public class UserController {
    @Autowired
    private UserService uService;
    
-   //localhost/loginForm
-   @RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
-   public String users(Model model) {
-      return "/users/loginForm";
+   @RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
+   public String index() {
+      return "/index";
    }
    
+   //localhost/loginForm
+   // 로그인
+   @RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
+   public String users(HttpServletRequest request) {
+      
+	   String url = request.getHeader("Referer");
+	   
+	   if(url !=null && !url.contains("/login")) {
+		   request.getSession().setAttribute("prevPage", url);
+	   }
+	   
+	   return "/users/loginForm";
+   }
+   
+   @RequestMapping(value = "/loginOk", method = { RequestMethod.GET, RequestMethod.POST })
+   //public String loginOk(Model model, @ModelAttribute UserVo userVo) {
+   public String loginOk(@ModelAttribute UserVo userVo, HttpSession session) {
+	   
+	   UserVo authUser = uService.loginOk(userVo);
+	   String url = (String)session.getAttribute("prevPage");
+	   
+	   if(authUser !=null && url !=null) {
+		   session.setAttribute("authUser", authUser);
+		   return "redirect:"+url;
+	   }else if(authUser!=null) {
+		   session.setAttribute("authUser", authUser);
+		   return "redirect:/driver";
+		   //return "redirect:/index";
+	   }
+	   
+	   //model.addAttribute("authUser", uService.loginOk(userVo));
+	   //session.setAttribute("authUser", uService.loginOk(userVo));
+	   return "redirect:/driver";
+	   //return "redirect:/index";
+   }
+   
+   // 로그아웃
+   @RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+   public String logout(HttpSession session) {
+	   
+	   session.removeAttribute("authUser");
+	   
+	   return "redirect:/index";
+   }
+   
+   // 회원가입
    @RequestMapping(value = "/joinForm", method = { RequestMethod.GET, RequestMethod.POST })
-   public String join(Model model) {
+   public String join() {
       return "/users/joinForm";
    }
    
    @RequestMapping(value = "/joinOk", method = { RequestMethod.GET, RequestMethod.POST })
-   public String joinOk(Model model, @ModelAttribute UserVo userVo) {
+   public String joinOk(@ModelAttribute UserVo userVo) {
 	  
 	  System.out.println(userVo.toString());
 	  

@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="selecthitchdriverinfo" parameterType="int" resultType="hVo">
-		select LISTAGG(place, ',') within group (order by place asc) as fullPlace,
+		select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 		    r.point point,
 		    comments,
 		    round(star, 1) star,
@@ -63,11 +63,25 @@
 					                            and sd.detailno = d.no ) , ( select name
 																			from users u, reservation r
 																			where u.no = r.driverNo
-																			and r.mateNo = 10 )
+																			and r.mateNo = #{mateNo} )
 		where s.no = #{mateNo}
 		and s.no = p.mateNo
 		and r.mateNo = s.no
 		group by r.point, comments, detailopt, dn.driverNo, star, name
+	</select>
+	
+	<select id="selectsummarydriverinfo" parameterType="int" resultType="hVo">
+		select place eplace1,
+	        name,
+	        r.people people
+		from spotmate s, place p, reservation r, ( select name
+		                                            from users u, reservation r
+		                                            where u.no = r.driverNo
+		                                            and r.mateNo = #{mateNo} )
+		where s.no = #{mateNo}
+		and s.no = p.mateNo
+		and r.mateNo = s.no
+		and wayno = 0
 	</select>
 	
 	

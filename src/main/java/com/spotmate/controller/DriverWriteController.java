@@ -101,10 +101,10 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/hitchWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitchInsert(Model model, @ModelAttribute DriverWriteVo dwVo) {
+	public String hitchInsert(@ModelAttribute DriverWriteVo dwVo) {
 		dws.HitchRegister(dwVo);
-		model.addAttribute("dwVo", dwVo);
-		return "/spothitch/spotHitchDriver";
+//		model.addAttribute("dwVo", dwVo);
+		return "redirect:/spotHitchDriver";
 	}
 
 	@RequestMapping(value = "/mateWrite", method = { RequestMethod.GET, RequestMethod.POST })
