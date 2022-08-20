@@ -34,6 +34,7 @@
         and s.no = r.mateno
 		and status = 'open'
         and type = 'hitchhike'
+        and r.people > 0
         order by s.no desc
 	</select>
 	
@@ -82,6 +83,7 @@
 		and s.no = p.mateNo
 		and r.mateNo = s.no
 		and wayno = 0
+		and r.people > 0
 	</select>
 	
 	
@@ -109,6 +111,7 @@
 		where r.mateNo = s.no
 		and p.mateNo = s.no
 		and wayno = 0
+		and r.people > 0
 		order by s.no desc
 	</select>
 	
