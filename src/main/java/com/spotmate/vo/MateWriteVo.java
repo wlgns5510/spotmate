@@ -8,10 +8,9 @@ public class MateWriteVo {
 	wtime31, wtime32, wtime33, wtime34, wtime35,wtime41, wtime42, wtime43, wtime44, wtime45,wtime51, wtime52, wtime53, wtime54, wtime55,
 	wplace11,wplace12,wplace13,wplace14,wplace15,wplace21,wplace22,wplace23,wplace24,wplace25,
 	wplace31,wplace32,wplace33,wplace34,wplace35,wplace41,wplace42,wplace43,wplace44,wplace45,wplace51,wplace52,wplace53,wplace54,wplace55,
-	introduce, comments, nosmoke, phonecharge, femaledriver, trunk, pet, totalFare, fare1, fare2, fare3, fare4, fare5,
-	day1, day2, day3, day4, day5, type;
+	introduce, comments, nosmoke, phonecharge, femaledriver, trunk, pet, totalFare, fare1, fare2, fare3, fare4, fare5, type;
 	
-	private int people, intfare, no;
+	private int people, intfare, no, day1, day2, day3, day4, day5;
 
 	private double slat1, slat2, slat3, slat4, slat5, slng1, slng2, slng3, slng4, slng5, elat1, elat2, elat3, elat4, elat5,elng1, elng2, elng3, elng4, elng5,
 	wlat11,wlat12,wlat13,wlat14,wlat15,wlng11,wlng12,wlng13,wlng14,wlng15,
@@ -30,7 +29,7 @@ public class MateWriteVo {
 			String wplace11,String wplace12,String wplace13,String wplace14,String wplace15,String wplace21,String wplace22,String wplace23,String wplace24,String wplace25,
 			String wplace31,String wplace32,String wplace33,String wplace34,String wplace35,String wplace41,String wplace42,String wplace43,String wplace44,String wplace45,String wplace51,String wplace52,String wplace53,String wplace54,String wplace55,
 			String introduce, String comments, String nosmoke, String phonecharge, String femaledriver, String trunk, String pet, 
-			String type, String fare1, String fare2, String fare3, String fare4, String fare5, String day1, String day2, String day3, String day4, String day5, int people,
+			String type, String fare1, String fare2, String fare3, String fare4, String fare5, int day1, int day2, int day3, int day4, int day5, int people,
 			double slat1, double slat2, double slat3, double slat4, double slat5, double slng1, double slng2, double slng3, double slng4, double slng5,
 			double elat1, double elat2, double elat3, double elat4, double elat5, double elng1, double elng2, double elng3, double elng4, double elng5,
 			double wlat11, double wlat12, double wlat13, double wlat14, double wlat15, double wlng11, double wlng12, double wlng13, double wlng14, double wlng15, 
@@ -198,43 +197,43 @@ public class MateWriteVo {
 		this.intfare = intfare;
 	}
 
-	public String getDay1() {
+	public int getDay1() {
 		return day1;
 	}
 
-	public void setDay1(String day1) {
+	public void setDay1(int day1) {
 		this.day1 = day1;
 	}
 
-	public String getDay2() {
+	public int getDay2() {
 		return day2;
 	}
 
-	public void setDay2(String day2) {
+	public void setDay2(int day2) {
 		this.day2 = day2;
 	}
 
-	public String getDay3() {
+	public int getDay3() {
 		return day3;
 	}
 
-	public void setDay3(String day3) {
+	public void setDay3(int day3) {
 		this.day3 = day3;
 	}
 
-	public String getDay4() {
+	public int getDay4() {
 		return day4;
 	}
 
-	public void setDay4(String day4) {
+	public void setDay4(int day4) {
 		this.day4 = day4;
 	}
 
-	public String getDay5() {
+	public int getDay5() {
 		return day5;
 	}
 
-	public void setDay5(String day5) {
+	public void setDay5(int day5) {
 		this.day5 = day5;
 	}
 

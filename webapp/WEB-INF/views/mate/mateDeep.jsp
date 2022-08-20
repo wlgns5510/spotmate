@@ -106,39 +106,43 @@
 				<div class="mateDeep_titleFont1">이동 스케줄</div> 
 				
 
-				<%--<c:forEach items="${matePlaceList}" var="matePlaceList" varStatus="status">
-				<c:set var="${matePlaceList.day}" value="${matePlaceList.day + 1}"> --%>
-						<div class="mateDeep_today">
-							<div class="mateDeep_dayBox">
-								<p>1일차</p>
+				<c:forEach items="${matePlaceList}" var="matePlaceList">
+					<c:choose>
+						<c:when test="${matePlaceList.wayNo == -1}">
+							<div class="mateDeep_today">
+								<div class="mateDeep_dayBox">															
+									<p><c:out value="${matePlaceList.day}일차"/></p>								
+								</div>
+								<div class="mateDeep_float">
+									<div class="mateDeep_start">START</div>
+									<div class="mateDeep_time">08 : 00 AM</div>
+									<div class="mateDeep_spot">서울역</div>
+								</div>
+								<img class="mateDeep_float"
+									src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
+								<div class="mateDeep_float">
+									<div class="mateDeep_start">SPOT 1</div>
+									<div class="mateDeep_time">01 : 30 PM</div>
+									<div class="mateDeep_spot">강릉 안목해변</div>
+								</div>
+								<img class="mateDeep_float"
+									src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
+								<div class="mateDeep_float">
+									<div class="mateDeep_start">SPOT 2</div>
+									<div class="mateDeep_time">04 : 20 PM</div>
+									<div class="mateDeep_spot">테라로사 카페</div>
+								</div>
+								<img class="mateDeep_float"
+									src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
+								<div class="mateDeep_float">
+									<div class="mateDeep_start">SPOT 3</div>
+									<div class="mateDeep_time">07 : 20 PM</div>
+									<div class="mateDeep_spot">강릉 주문진</div>
+								</div>
 							</div>
-							<div class="mateDeep_float">
-								<div class="mateDeep_start">START</div>
-								<div class="mateDeep_time">08 : 00 AM</div>
-								<div class="mateDeep_spot">서울역</div>
-							</div>
-							<img class="mateDeep_float"
-								src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-							<div class="mateDeep_float">
-								<div class="mateDeep_start">SPOT 1</div>
-								<div class="mateDeep_time">01 : 30 PM</div>
-								<div class="mateDeep_spot">강릉 안목해변</div>
-							</div>
-							<img class="mateDeep_float"
-								src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-							<div class="mateDeep_float">
-								<div class="mateDeep_start">SPOT 2</div>
-								<div class="mateDeep_time">04 : 20 PM</div>
-								<div class="mateDeep_spot">테라로사 카페</div>
-							</div>
-							<img class="mateDeep_float"
-								src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-							<div class="mateDeep_float">
-								<div class="mateDeep_start">SPOT 3</div>
-								<div class="mateDeep_time">07 : 20 PM</div>
-								<div class="mateDeep_spot">강릉 주문진</div>
-							</div>
-						</div>
+						</c:when>
+					</c:choose>
+				</c:forEach>
 				
 
 				<div class="mateDeep_titleFont2">주변 장소 추천</div>
