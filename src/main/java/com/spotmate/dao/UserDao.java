@@ -16,6 +16,8 @@ public class UserDao {
 		ss.insert("users.joinUser", userVo);
 	}
 	
-	
+	public UserVo loginOk(UserVo userVo) {
+		return ss.selectOne("users.loginOk", userVo);
+	}
 
 }

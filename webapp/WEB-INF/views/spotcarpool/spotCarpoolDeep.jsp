@@ -143,12 +143,11 @@
 		</div>
 
 
-		<div>
+		<div class="carpool_detail">
 			<p class="driverInfo">드라이버 차량 정보</p>
 
 
 			<table>
-				<c:forEach items="${detailOptList}" var="carpoolVo">
 					<tr>
 						<td><img class="infoPicto" src="/assets/images/danger.png">
 							비흡연자</td>
@@ -169,13 +168,12 @@
 
 						<td></td>
 					</tr>
-				</c:forEach>
 			</table>
 
 
 		</div>
-		<!-- 리뷰배너 *****평균 별점 계산!!!!!-->
-		<p class="review">Reviews ★ 4.5</p>
+		<!-- 리뷰배너 -->
+		<p class="review">Reviews ★ </p>
 
 	</div>
 
@@ -193,7 +191,7 @@
 			<div class="review_banner swiper-container">
 				<ul class="swiper-wrapper">
 				
-				<c:forEach items="${reviewList}" var="carpoolVo">
+			<c:forEach items="${reviewList}" var="carpoolVo">
 				
 					<li class="swiper-slide">
 						<dl class="review_box">
@@ -214,7 +212,6 @@
 						</dl>
 					</li>
 					</c:forEach>
-					
 				</ul>
 			</div>
 				

@@ -41,14 +41,14 @@ public class MateDao {
 		return matePlaceList;
 	}
 	
-	//해당 mate의 정보가져오기
+	//해당 mate의 spotmateDB정보가져오기
 	public MateVo deepMateRead(int mateNo) {
 		System.out.println("MateDao >> deepMateRead");
 		
 		return sqlSession.selectOne("mate.deepMateRead", mateNo);
 	}
 	
-	//해당 mate의 place정보가져오기
+	//해당 mate의 placeDB정보가져오기
 	public List<MateVo> deepPlaceRead(int mateNo) {
 		System.out.println("MateDao >> deepPlaceRead");
 		

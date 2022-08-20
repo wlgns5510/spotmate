@@ -163,6 +163,21 @@ SELECT
     *
 FROM
     users;
+-- 
+SELECT
+    no,
+    name
+FROM
+    users
+WHERE
+        id = 'aa11'
+    AND pw = 'aaaa1111';
+
+-- delete
+DELETE FROM users
+WHERE no = 9;
+
+commit;
     
 ------------------ 카테고리 --------------------
 DROP INDEX PK_category;
@@ -1339,7 +1354,8 @@ CREATE TABLE pointUsage (
 	type VARCHAR2(100), /* 유형(충전,예약,완료) */
 	regDate DATE, /* 입금날짜,사용날짜,입금날짜 */
 	agent NUMBER, /* 입금돈(현금,충전) */
-	point NUMBER /* 사용,입금 포인트 */
+	point NUMBER, /* 사용,입금 포인트 */
+    reNo NUMBER /* 예약번호 */
 );
 
 -- 시퀀스 생성
@@ -1363,6 +1379,8 @@ COMMENT ON COLUMN pointUsage.agent IS '입금돈(현금,충전)';
 
 COMMENT ON COLUMN pointUsage.point IS '사용,입금 포인트';
 
+COMMENT ON COLUMN pointUsage.reNo IS '예약번호';
+
 CREATE UNIQUE INDEX PK_pointUsage
 	ON pointUsage (
 		no ASC
@@ -1384,26 +1402,34 @@ ALTER TABLE pointUsage
 		REFERENCES users (
 			no
 		);
-
+ALTER TABLE pointUsage
+   ADD
+      CONSTRAINT FK_reservation_TO_pointUsage
+      FOREIGN KEY (
+         reNo
+      )
+      REFERENCES reservation (
+         no
+      );
 
 --insert
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', '2022-08-12', +5000, +5000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', '2022-08-12', +5000, +5000, 1);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 2, '예약', '2022-08-13', 0, -3000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 2, '예약', '2022-08-13', 0, -3000, 2);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 3, '완료', '2022-08-14', 0, 0);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 3, '완료', '2022-08-14', 0, 0, 3);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 4, '완료', '2022-08-15', 0, 0);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 4, '완료', '2022-08-15', 0, 0, 1);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 5, '예약', '2022-08-16', 0, -4000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 5, '예약', '2022-08-16', 0, -4000, 2);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 6, '충전', '2022-08-12', +7000, +7000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 6, '충전', '2022-08-12', +7000, +7000, 3);
 
 -- select
 select *

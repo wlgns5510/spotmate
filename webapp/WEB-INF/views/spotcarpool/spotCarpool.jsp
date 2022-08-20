@@ -48,59 +48,58 @@
 				
 
 				<div class="carpoolInput">
-					<input class="input1" type="text" name="splace" value="${carpoolVo.splace}" placeholder="출발지를 입력하세요">
-					<button>
+					<input class="input1" type="text" name="splace" value="" placeholder="출발지를 입력하세요">
+					<!--<button>
 						<img class="carpoolInput1Picto" src="/assets/images/arrows_exchange02.png">
-					</button>
+					</button>  -->
 				</div>
 
-				<input class="input2" type="text" name="eplace" value="${carpoolVo.eplace}" placeholder="도착지를 입력하세요">
+				<input class="input2" type="text" name="eplace" value="" placeholder="도착지를 입력하세요">
 				
-				<input class="input3" type="time" name="time" value="${carpoolVo.time}" placeholder="출발시간">
+				<input class="input3" type="time" name="time" value="" placeholder="출발시간">
 				
 				<div class="carpoolInput">
-					<input class="input4" type="number" name="people" value="${carpoolVo.people}" placeholder="인원수">
-					<button>
+					<input class="input4" type="number" name="people" value="" placeholder="인원수">
+					<!-- <button>
 						<img class="carpoolInput4Picto" src="/assets/images/ico_updown.png">
-					</button>
+					</button> -->
 				</div>
 				
 				<div class="carpoolInput"> 
-					<input  class="input5" type="date" name="startDate" value="${carpoolVo.startDate}" placeholder="이용 출발 날짜">
-					<button>
+					<input  class="input5" type="date" name="startDate" value="" placeholder="이용 출발 날짜">
+					<!--<button>
 						<img class="carpoolInput5Picto" src="/assets/images/regularcalendar.png">
 					
-					</button>
+					</button>  -->
 				</div>
 				
 				<div class="carpoolInput">
-					<input class="input6" type="date" name="endDate" value="${carpoolVo.endDate}" placeholder="이용 도착 날짜"> 
-					<button>
+					<input class="input6" type="date" name="endDate" value="" placeholder="이용 도착 날짜"> 
+					<!--<button>
 						<img class="carpoolInput6Picto" src="/assets/images/regularcalendar.png">
-					</button>
+					</button>  -->
 				</div>
 
 		
 
 				<div class="detail">
+					<input class="detail_ckbox" type="checkbox" name="ch_type" value="nonSmoke">
+					<label class="detailtext">&nbsp;&nbsp;비흡연자</label>
+					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="nonSmoke">&nbsp;&nbsp;비흡연자</span>
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="femaleDriver">&nbsp;&nbsp;여성드라이버</span>
 					</label>
 					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="femaleDriver">&nbsp;&nbsp;여성드라이버</span>
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="pet">&nbsp;&nbsp;반려동물</span> 
 					</label>
 					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="pet">&nbsp;&nbsp;반려동물</span> 
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="phoneCharger">&nbsp;&nbsp;충전기 사용 가능</span>
 					</label>
 					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="phoneCharger">&nbsp;&nbsp;충전기 사용 가능</span>
-					</label>
-					
-					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="handWash">&nbsp;&nbsp;트렁크 사용 가능</span>
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="handWash">&nbsp;&nbsp;트렁크 사용 가능</span>
 					</label>
 				
 				</div>
@@ -210,6 +209,12 @@
 
 	
 </body>
+<script>
+
+</script>
+
+
+
 
 
 </html>

@@ -12,9 +12,18 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	
 	public void joinUser(UserVo userVo) {
 		userVo.setBirth(userVo.getYear() +"/"+ userVo.getMonth() +"/"+ userVo.getDay());
 		userDao.joinUser(userVo);
+	}
+	
+	public UserVo loginOk(UserVo userVo) {
+		
+		if(userDao.loginOk(userVo)==null) {
+			return null;
+		}
+		
+		return userDao.loginOk(userVo);
+		
 	}
 }
