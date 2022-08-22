@@ -57,6 +57,10 @@ public class HitchDao {
 		return hMap;
 	}
 	
+	public HitchVo getHdriverPage(int driverNo) {
+		return ss.selectOne("spotmate.gethdriverpage", driverNo);
+	}
+	
 	public HitchVo selectSummaryInfo(int mateNo) {
 		return ss.selectOne("spotmate.selectsummarydriverinfo", mateNo);
 	}
