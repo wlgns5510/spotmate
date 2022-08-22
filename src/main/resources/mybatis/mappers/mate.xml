@@ -83,7 +83,7 @@
 				       p.day,
 				       p.wayNo wayNo,
 				       p.sepplace,
-				       p.time,
+				       to_char(p.time, 'AM HH:MI') time,
 				       p.place,
 				       p.lat,
 				       p.lng,

@@ -107,65 +107,98 @@
 				
 
 				<c:forEach items="${matePlaceList}" var="matePlaceList">
+				<div class="mateDeep_today">
 					<c:choose>
-						<c:when test="${matePlaceList.wayNo == -1}">
-							<div class="mateDeep_today">
+						<c:when test="${matePlaceList.day == 1}">
+							
 								<div class="mateDeep_dayBox">															
 									<p><c:out value="${matePlaceList.day}일차"/></p>								
 								</div>
 								<div class="mateDeep_float">
-									<div class="mateDeep_start">
-										<c:choose>
-											<c:when test="${matePlaceList.wayNo == -1}">										
+									<c:choose>
+										<c:when test="${matePlaceList.wayNo == -1}">
+											<div class="mateDeep_start">										
 												START
-											</c:when>
-											<c:when test="${matePlaceList.wayNo == 0}">										
+											</div>
+											<div class="mateDeep_time">
+												${matePlaceList.time}
+											</div>
+											<div class="mateDeep_spot">
+												${matePlaceList.place}
+											</div>																								
+										</c:when>
+										<c:when test="${matePlaceList.wayNo == 0}">
+											<div class="mateDeep_start">									
 												END
-											</c:when>
-											<c:when test="${matePlaceList.wayNo == 1}">										
+											</div>
+											<div class="mateDeep_time">
+												<br>
+											</div>
+											<div class="mateDeep_spot">
+												${matePlaceList.place}
+											</div>		
+										</c:when>
+										<c:when test="${matePlaceList.wayNo == 1}">
+											<div class="mateDeep_start">									
 												SPOT 1
-											</c:when>
-											<c:when test="${matePlaceList.wayNo == 2}">										
+											</div>
+											<div class="mateDeep_time">
+												${matePlaceList.time}
+											</div>
+											<div class="mateDeep_spot">
+												${matePlaceList.place}
+											</div>		
+										</c:when>
+										<c:when test="${matePlaceList.wayNo == 2}">										
+											<div class="mateDeep_start">
 												SPOT 2
-											</c:when>
-											<c:when test="${matePlaceList.wayNo == 3}">										
+											</div>
+											<div class="mateDeep_time">
+												${matePlaceList.time}
+											</div>
+											<div class="mateDeep_spot">
+												${matePlaceList.place}
+											</div>		
+										</c:when>
+										<c:when test="${matePlaceList.wayNo == 3}">										
+											<div class="mateDeep_start">
 												SPOT 3
-											</c:when>
-											<c:when test="${matePlaceList.wayNo == 4}">										
+											</div>
+											<div class="mateDeep_time">
+												${matePlaceList.time}
+											</div>
+											<div class="mateDeep_spot">
+												${matePlaceList.place}
+											</div>		
+										</c:when>
+										<c:when test="${matePlaceList.wayNo == 4}">										
+											<div class="mateDeep_start">
 												SPOT 4
-											</c:when>
-											<c:when test="${matePlaceList.wayNo == 5}">										
+											</div>
+											<div class="mateDeep_time">
+												${matePlaceList.time}
+											</div>
+											<div class="mateDeep_spot">
+												${matePlaceList.place}
+											</div>		
+										</c:when>
+										<c:when test="${matePlaceList.wayNo == 5}">										
+											<div class="mateDeep_start">
 												SPOT 5
-											</c:when>
-										</c:choose>										
-									</div>
-									<div class="mateDeep_time">08 : 00 AM</div>
-									<div class="mateDeep_spot">서울역</div>
-								</div>
-								<img class="mateDeep_float"
-									src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-								<div class="mateDeep_float">
-									<div class="mateDeep_start">SPOT 1</div>
-									<div class="mateDeep_time">01 : 30 PM</div>
-									<div class="mateDeep_spot">강릉 안목해변</div>
-								</div>
-								<img class="mateDeep_float"
-									src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-								<div class="mateDeep_float">
-									<div class="mateDeep_start">SPOT 2</div>
-									<div class="mateDeep_time">04 : 20 PM</div>
-									<div class="mateDeep_spot">테라로사 카페</div>
-								</div>
-								<img class="mateDeep_float"
-									src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-								<div class="mateDeep_float">
-									<div class="mateDeep_start">SPOT 3</div>
-									<div class="mateDeep_time">07 : 20 PM</div>
-									<div class="mateDeep_spot">강릉 주문진</div>
-								</div>
-							</div>
+											</div>
+											<div class="mateDeep_time">
+												${matePlaceList.time}
+											</div>
+											<div class="mateDeep_spot">
+												${matePlaceList.place}
+											</div>		
+										</c:when>
+									</c:choose>											
+								</div>								
+							
 						</c:when>
 					</c:choose>
+					</div>
 				</c:forEach>
 				
 
