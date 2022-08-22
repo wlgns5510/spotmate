@@ -45,6 +45,10 @@ public class HitchService {
 		hDao.watchPos(mVo);
 	}
 	
+	public HitchVo getHdriverPage(int driverNo) {
+		return hDao.getHdriverPage(driverNo);
+	}
+	
 	public Map<String, Object> getDriverInfo(int no) {
 		ConvertPoint cp = new ConvertPoint();
 		Map<String, Object> hMap = hDao.selectDriverInfo(no);

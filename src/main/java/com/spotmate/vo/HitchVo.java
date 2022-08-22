@@ -27,7 +27,6 @@ public class HitchVo {
 	}
 	
 	
-	
 	public String getConvertFare() {
 		return convertFare;
 	}

@@ -4,14 +4,14 @@ public class DriverWriteVo {
 
 	private String sdate1, edate1, splace1, eplace1, fare, nosmoke, phonecharge, femaledriver, trunk, pet, introduce, dur,
 			dis, latlng1, comments, stime1, type;
-	private int people, intfare, no;
+	private int people, intfare, no, userNo, carNo;
 	private double slat1, slng1, elat1, elng1;
 
 	public DriverWriteVo() {
 	}
 
 	public DriverWriteVo(String sdate, String edate, String splace, String eplace, String fare, String nosmoke,
-			String femaledriver, String phonecharge, String trunk, String pet, String introduce, int people,
+			String femaledriver, String phonecharge, String trunk, String pet, String introduce, int people, int userNo, int carNo,
 			double slat, double slng, double elat, double elng, String latlng, String dur, String dis, String type,
 			String comments, String stime) {
 		this.sdate1 = sdate;
@@ -19,6 +19,7 @@ public class DriverWriteVo {
 		this.splace1 = splace;
 		this.eplace1 = eplace;
 		this.fare = fare;
+		this.userNo = userNo;
 		this.nosmoke = nosmoke;
 		this.phonecharge = phonecharge;
 		this.femaledriver = femaledriver;
@@ -40,6 +41,22 @@ public class DriverWriteVo {
 	
 	
 	
+	public int getCarNo() {
+		return carNo;
+	}
+
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 	public String getPhonecharge() {
 		return phonecharge;
 	}
@@ -236,10 +253,11 @@ public class DriverWriteVo {
 	public String toString() {
 		return "DriverWriteVo [sdate1=" + sdate1 + ", edate1=" + edate1 + ", splace1=" + splace1 + ", eplace1="
 				+ eplace1 + ", fare=" + fare + ", nosmoke=" + nosmoke + ", phonecharge=" + phonecharge
-				+ ", femaledriver=" + femaledriver + ", trunk=" + trunk + ", pet=" + pet + ", introduce="
-				+ introduce + ", dur=" + dur + ", dis=" + dis + ", latlng1=" + latlng1 + ", comments=" + comments
-				+ ", stime1=" + stime1 + ", people=" + people + ", type=" + type + ", slat1=" + slat1 + ", slng1="
-				+ slng1 + ", elat1=" + elat1 + ", elng1=" + elng1 + "]";
+				+ ", femaledriver=" + femaledriver + ", trunk=" + trunk + ", pet=" + pet + ", introduce=" + introduce
+				+ ", dur=" + dur + ", dis=" + dis + ", latlng1=" + latlng1 + ", comments=" + comments + ", stime1="
+				+ stime1 + ", type=" + type + ", people=" + people + ", intfare=" + intfare + ", no=" + no + ", userNo="
+				+ userNo + ", carNo=" + carNo + ", slat1=" + slat1 + ", slng1=" + slng1 + ", elat1=" + elat1
+				+ ", elng1=" + elng1 + "]";
 	}
 
 	

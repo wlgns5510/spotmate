@@ -31,7 +31,7 @@
 			                    and ca.no = br.cateNo
 			                    and br.no = co.brandno
 			                    and co.no = cu.couponNo
-			                    and u.no = '2'
+			                    and u.no = #{userNo}
 			                    order by cu.no desc)ot
 			              )ort
 			where rn>=#{startRnum}
@@ -67,7 +67,7 @@
 
 
 	<!-- 쿠폰리스트전체글 갯수 -->
-	<select id="totalCouponCnt" resultType="int">
+	<select id="totalCouponCnt" parameterType="int" resultType="int">
 		<![CDATA[
 			select count(*) count
 			from category ca, brand br, coupon co, couponUsage cu, users u
@@ -75,7 +75,7 @@
 			and ca.no = br.cateNo
 			and br.no = co.brandno
 			and co.no = cu.couponNo
-			and u.no = '2'
+			and u.no = #{userNo}
 		]]>
 	
 	</select>

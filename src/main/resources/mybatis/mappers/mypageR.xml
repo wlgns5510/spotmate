@@ -3,87 +3,96 @@
 
 <mapper namespace="mypageR">
 
+
+	<!-- car정보 등록 -->
 	<insert id="myDriverinsert" parameterType="dlvo">
-	
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+
+		<selectKey keyProperty="carNo" resultType="int"
+			order="BEFORE">
 			select seq_car_no.nextval from dual
 		</selectKey>
 		
-	<![CDATA[
-	
-		insert all
-		into car
-		values(
-				#{no}
-		        6,
-		        #{c_Model},
-		        '',
-		        #{carnum},
-		        #{c_color},
-		        #{num_PA},
-		        #{introduce}
-		        ) 
-
-		]]>
-		 <if test='ch_type1 != null'>
-			into carDetail
-			values (
-				seq_carDetail_no.nextval,
-				#{no},
-				1
-			)
-		</if>
-			<if test='ch_type2 != null'>
-			into carDetail
-			values (
-				seq_carDetail_no.nextval,
-				#{no},
-				2
-			)
-			</if>
-			<if test='ch_type3 != null'>
-			into carDetail
-			values (
-				seq_carDetail_no.nextval,
-				#{no},
-				3
-			)
-			</if>
-			<if test='ch_type4 != null'>
-			into carDetail
-			values (
-				seq_carDetail_no.nextval,
-				#{no},
-				4
-			)
-			</if>
-			<if test='ch_type5 != null'>
-			into carDetail
-			values (
-				seq_carDetail_no.nextval,
-				#{no},
-				5
-			)
-			</if> 
-			
-	</insert>
+		<![CDATA[
 		
-			
-			
-			
-			
-			
+			insert into car
+			values(
+			    #{carNo},
+			    #{userNo},
+			    #{c_Model},
+			    '',
+			    #{c_num},
+			    #{c_color},
+			    #{num_PA},
+			    #{introduce}
+			) 
+	
+		]]>
 
+	</insert>
+
+
+	<!-- 카등록시 회원정보업데이트 -->
 	<update id="myDriverUpdate" parameterType="dlvo">
 	<![CDATA[
 		update  users
 	 	set 
 	 		licenseNo = #{dl},
 	 		licenseType = #{licensetype}
-	 	where no = 4 
+	 	where no = #{userNo}
 		]]>
 	</update>
 
 
 
+	<!-- 카 옵션등록 -->
+	<insert id="carDetailInsert" parameterType="map">
+		<![CDATA[
+		
+			insert into carDetail
+			values(
+			    seq_carDetail_no.nextval,
+			    #{carNo},
+			    #{detailNo}
+			) 
+	
+		]]>
+
+	</insert>
+
+
+	<select id="getCarInfo" parameterType="int" resultType="dlvo">
+		<![CDATA[
+			select  c.no AS carNo,
+					c.userNo,
+					c.carName AS c_Model,
+			        c.carNo as c_num,
+			        c.carColor AS c_color,
+			        c.people as num_PA,
+			        c.introduce,
+			        u.name as username,
+			        u.birth as userBD,
+			        u.licenseNo AS dl,
+			        u.licenseType
+			from users u, car c
+			where u.no = c.userno
+			and u.no = #{userNo}
+			              
+		]]>
+	</select>
+	
+	
+	<!-- 유저정보수정 -->
+	<update id="userUpdate" parameterType="dlvo">
+	<![CDATA[
+		update  users
+	 	set 
+	 		name = #{username},
+	 		birth = #{userBD},
+	 		licenseNo = #{dl},
+	 		licenseType = #{licensetype}
+	 	where no = #{userNo}
+		]]>
+	</update>
+	
+	
 </mapper>

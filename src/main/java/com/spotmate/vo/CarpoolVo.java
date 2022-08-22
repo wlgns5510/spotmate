@@ -1,7 +1,5 @@
 package com.spotmate.vo;
 
-import java.util.List;
-
 public class CarpoolVo {
 	
 	//필드

@@ -10,7 +10,7 @@ public class MateWriteVo {
 	wplace31,wplace32,wplace33,wplace34,wplace35,wplace41,wplace42,wplace43,wplace44,wplace45,wplace51,wplace52,wplace53,wplace54,wplace55,
 	introduce, comments, nosmoke, phonecharge, femaledriver, trunk, pet, totalFare, fare1, fare2, fare3, fare4, fare5, type;
 	
-	private int people, intfare, no, day1, day2, day3, day4, day5;
+	private int people, intfare, no, day1, day2, day3, day4, day5, userNo, carNo;
 
 	private double slat1, slat2, slat3, slat4, slat5, slng1, slng2, slng3, slng4, slng5, elat1, elat2, elat3, elat4, elat5,elng1, elng2, elng3, elng4, elng5,
 	wlat11,wlat12,wlat13,wlat14,wlat15,wlng11,wlng12,wlng13,wlng14,wlng15,
@@ -173,6 +173,27 @@ public class MateWriteVo {
 	
 	
 	
+	
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+	public int getCarNo() {
+		return carNo;
+	}
+
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
+
+	public String getType() {
+		return type;
+	}
+
 	public String ype() {
 		return type;
 	}
@@ -1507,26 +1528,28 @@ public class MateWriteVo {
 				+ wplace44 + ", wplace45=" + wplace45 + ", wplace51=" + wplace51 + ", wplace52=" + wplace52
 				+ ", wplace53=" + wplace53 + ", wplace54=" + wplace54 + ", wplace55=" + wplace55 + ", introduce="
 				+ introduce + ", comments=" + comments + ", nosmoke=" + nosmoke + ", phonecharge=" + phonecharge
-				+ ", femaledriver=" + femaledriver + ", trunk=" + trunk + ", pet=" + pet + ", totalFare="
-				+ totalFare + ", intfare=" + intfare + ", fare1=" + fare1 + ", fare2=" + fare2 + ", fare3=" + fare3
-				+ ", fare4=" + fare4 + ", fare5=" + fare5 + ", day1=" + day1 + ", day2=" + day2 + ", day3=" + day3
-				+ ", day4=" + day4 + ", day5=" + day5 + ", people=" + people + ", slat1=" + slat1 + ", slat2=" + slat2
-				+ ", slat3=" + slat3 + ", slat4=" + slat4 + ", slat5=" + slat5 + ", slng1=" + slng1 + ", slng2=" + slng2
-				+ ", slng3=" + slng3 + ", slng4=" + slng4 + ", slng5=" + slng5 + ", elat1=" + elat1 + ", elat2=" + elat2
-				+ ", elat3=" + elat3 + ", elat4=" + elat4 + ", elat5=" + elat5 + ", elng1=" + elng1 + ", elng2=" + elng2
-				+ ", elng3=" + elng3 + ", elng4=" + elng4 + ", elng5=" + elng5 + ", wlat11=" + wlat11 + ", wlat12="
-				+ wlat12 + ", wlat13=" + wlat13 + ", wlat14=" + wlat14 + ", wlat15=" + wlat15 + ", wlng11=" + wlng11
-				+ ", wlng12=" + wlng12 + ", wlng13=" + wlng13 + ", wlng14=" + wlng14 + ", wlng15=" + wlng15
-				+ ", wlat21=" + wlat21 + ", wlat22=" + wlat22 + ", wlat23=" + wlat23 + ", wlat24=" + wlat24
-				+ ", wlat25=" + wlat25 + ", wlng21=" + wlng21 + ", wlng22=" + wlng22 + ", wlng23=" + wlng23
-				+ ", wlng24=" + wlng24 + ", wlng25=" + wlng25 + ", wlat31=" + wlat31 + ", wlat32=" + wlat32
-				+ ", wlat33=" + wlat33 + ", wlat34=" + wlat34 + ", wlat35=" + wlat35 + ", wlng31=" + wlng31
-				+ ", wlng32=" + wlng32 + ", wlng33=" + wlng33 + ", wlng34=" + wlng34 + ", wlng35=" + wlng35
-				+ ", wlat41=" + wlat41 + ", wlat42=" + wlat42 + ", wlat43=" + wlat43 + ", wlat44=" + wlat44
-				+ ", wlat45=" + wlat45 + ", wlng41=" + wlng41 + ", wlng42=" + wlng42 + ", wlng43=" + wlng43
-				+ ", wlng44=" + wlng44 + ", wlng45=" + wlng45 + ", wlat51=" + wlat51 + ", wlat52=" + wlat52
-				+ ", wlat53=" + wlat53 + ", wlat54=" + wlat54 + ", wlat55=" + wlat55 + ", wlng51=" + wlng51
-				+ ", wlng52=" + wlng52 + ", wlng53=" + wlng53 + ", wlng54=" + wlng54 + ", wlng55=" + wlng55 + "]";
+				+ ", femaledriver=" + femaledriver + ", trunk=" + trunk + ", pet=" + pet + ", totalFare=" + totalFare
+				+ ", fare1=" + fare1 + ", fare2=" + fare2 + ", fare3=" + fare3 + ", fare4=" + fare4 + ", fare5=" + fare5
+				+ ", type=" + type + ", people=" + people + ", intfare=" + intfare + ", no=" + no + ", day1=" + day1
+				+ ", day2=" + day2 + ", day3=" + day3 + ", day4=" + day4 + ", day5=" + day5 + ", userNo=" + userNo
+				+ ", carNo=" + carNo + ", slat1=" + slat1 + ", slat2=" + slat2 + ", slat3=" + slat3 + ", slat4=" + slat4
+				+ ", slat5=" + slat5 + ", slng1=" + slng1 + ", slng2=" + slng2 + ", slng3=" + slng3 + ", slng4=" + slng4
+				+ ", slng5=" + slng5 + ", elat1=" + elat1 + ", elat2=" + elat2 + ", elat3=" + elat3 + ", elat4=" + elat4
+				+ ", elat5=" + elat5 + ", elng1=" + elng1 + ", elng2=" + elng2 + ", elng3=" + elng3 + ", elng4=" + elng4
+				+ ", elng5=" + elng5 + ", wlat11=" + wlat11 + ", wlat12=" + wlat12 + ", wlat13=" + wlat13 + ", wlat14="
+				+ wlat14 + ", wlat15=" + wlat15 + ", wlng11=" + wlng11 + ", wlng12=" + wlng12 + ", wlng13=" + wlng13
+				+ ", wlng14=" + wlng14 + ", wlng15=" + wlng15 + ", wlat21=" + wlat21 + ", wlat22=" + wlat22
+				+ ", wlat23=" + wlat23 + ", wlat24=" + wlat24 + ", wlat25=" + wlat25 + ", wlng21=" + wlng21
+				+ ", wlng22=" + wlng22 + ", wlng23=" + wlng23 + ", wlng24=" + wlng24 + ", wlng25=" + wlng25
+				+ ", wlat31=" + wlat31 + ", wlat32=" + wlat32 + ", wlat33=" + wlat33 + ", wlat34=" + wlat34
+				+ ", wlat35=" + wlat35 + ", wlng31=" + wlng31 + ", wlng32=" + wlng32 + ", wlng33=" + wlng33
+				+ ", wlng34=" + wlng34 + ", wlng35=" + wlng35 + ", wlat41=" + wlat41 + ", wlat42=" + wlat42
+				+ ", wlat43=" + wlat43 + ", wlat44=" + wlat44 + ", wlat45=" + wlat45 + ", wlng41=" + wlng41
+				+ ", wlng42=" + wlng42 + ", wlng43=" + wlng43 + ", wlng44=" + wlng44 + ", wlng45=" + wlng45
+				+ ", wlat51=" + wlat51 + ", wlat52=" + wlat52 + ", wlat53=" + wlat53 + ", wlat54=" + wlat54
+				+ ", wlat55=" + wlat55 + ", wlng51=" + wlng51 + ", wlng52=" + wlng52 + ", wlng53=" + wlng53
+				+ ", wlng54=" + wlng54 + ", wlng55=" + wlng55 + "]";
 	}
+
 	
 }

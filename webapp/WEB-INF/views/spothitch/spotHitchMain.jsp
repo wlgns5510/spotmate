@@ -176,9 +176,12 @@
 						}),
 						dataType : "json",
 						success : function(result) {
+							//전체 mateNo리스트
 							if ( !temp.includes(result.hiVo.mateNo) ) {
 								temp.push(result.hiVo.mateNo);
-							} else if ( temp.length > chkTemp.length) {
+							} 
+							//people = 0이 됬을 때 갱신된 mateNo리스트
+							else if ( temp.length >= chkTemp.length) {
 								chkTemp.push(result.hiVo.mateNo);
 								if ( i == atl ) {
 									var dif = temp.filter(x => !chkTemp.includes(x));
@@ -187,6 +190,7 @@
 									}
 								}
 							}
+							
 							
 							hVo = result.hVo;
 							$("#nowpos"+result.hiVo.mateNo).text(result.hiVo.nowaddr);
