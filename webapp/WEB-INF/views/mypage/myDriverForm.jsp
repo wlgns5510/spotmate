@@ -102,7 +102,7 @@
 
 					<div class="DriverenrollForm">
 						<form method="post"
-							action="${pageContext.request.contextPath }/myDriverMain2">
+							action="${pageContext.request.contextPath }/myDriverWriteInsert">
 							<div class="DL_info">
 								<!-- -->
 
@@ -120,7 +120,7 @@
 										<td><label for="userBD">생년월일*</label></td>
 										<td><input name="userBD" id="userBD"
 											placeholder="19900805" type="text"></td>
-										<td><a class="smallbtn" type="button" href="#"><span>본인인증</span></a></td>
+										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
@@ -156,8 +156,7 @@
 										<td><label for="c_num">차량등록번호*</label></td>
 										<td><input name="c_num" id="c_num" placeholder="770가7777"
 											type="text"></td>
-										<td><a class="smallbtn" type="button" href="#"><span
-												style="font-weight: bold">차량인증</span></a></td>
+										<td><button type="button" style="font-weight: bold" class="smallbtn" id="carAuth">차량인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
@@ -231,6 +230,7 @@
 	</div>
 
 </body>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#file").on('change', function() {
@@ -238,6 +238,69 @@
 			$(".upload-name").val(fileName);
 		});
 	});
+	
+	$("#carAuth").on("click", function() {
+		var name = $("#username").val();
+		var cnum = $("#c_num").val();
+		
+		console.log(name)
+		console.log(cnum)
+		$.ajax({
+			url : "${pageContext.request.contextPath}/carAuth",
+			type : "post",
+			contentType : "application/json",
+			async: false,
+			data : JSON.stringify({
+					name: name,
+					cnum: cnum
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log("result,",result)
+				if ( result == -1 ) {
+					alert("틀렸습니다");
+				} else {
+					alert("성공했습니다");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
+	
+	$("#liau").on("click", function() {
+		var name2 = $("#username").val();
+		var btd2 = $("#userBD").val();
+		var serial2 = $("#dl").val();
+		if(serial2.length != 22) {
+			alert("형식에 맞게 값을 넣어주세요");
+			return;
+		}
+		$.ajax({
+			url : "${pageContext.request.contextPath}/driverAuth",
+			type : "post",
+			contentType : "application/json",
+			async: false,
+			data : JSON.stringify({
+					name: name2,
+					btd: btd2,
+					serial: serial2
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log("result,",result)
+				if ( result == -1 ) {
+					alert("틀렸습니다");
+				} else {
+					alert("성공했습니다");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
 </script>
 
 </html>
