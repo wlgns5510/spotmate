@@ -16,12 +16,12 @@ public class MypageJDao {
 	private SqlSession sqlSession;
 
 	// 쿠폰리스트가져오기
-	public List<CouponVo> getCouponList(Map<String, Object> pMap) {
-		System.out.println("MypageJDao > getCouponList");
+	public List<CouponVo> getCouponBList(Map<String, Object> pMap) {
+		System.out.println("MypageJDao > getCouponBList");
 
-		List<CouponVo> couponList = sqlSession.selectList("mypagej.selectCouponList", pMap);
+		List<CouponVo> couponBList = sqlSession.selectList("mypagej.selectCouponBList", pMap);
  
-		return couponList;
+		return couponBList;
 	}
 
 	// 포인트충전
@@ -41,6 +41,21 @@ public class MypageJDao {
 		return totalCouponCnt;
 	}
 	
+	//쿠폰상품리스트
+	public List<CouponVo> getCouponList() {
+		System.out.println("MypageJService > getCouponList");
+		
+		List<CouponVo> couponList= sqlSession.selectList("mypagej.selectCouponList");
+		
+		return couponList;
+	}
 
-
+	//쿠폰이미지가져오기
+	public String getCouponImg(int couponNo) {
+		System.out.println("MypageJService > getCouponImg");
+		
+		String couponImg = sqlSession.selectOne("mypagej.selectCouponImg", couponNo);
+		
+		return couponImg;
+	};
 }

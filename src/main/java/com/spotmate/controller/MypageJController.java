@@ -1,5 +1,6 @@
 package com.spotmate.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -7,11 +8,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spotmate.service.MypageJService;
+import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.UserVo;
 
 @Controller
@@ -34,9 +37,8 @@ public class MypageJController {
 		
 		UserVo authUser= (UserVo)session.getAttribute("authUser");
 		int userNo = authUser.getNo();
-		System.out.println(userNo);
 		
-		Map<String, Object> cMap = mypagejService.getCouponList(startDate, endDate, option1, option2, crtPage, userNo);
+		Map<String, Object> cMap = mypagejService.getCouponBList(startDate, endDate, option1, option2, crtPage, userNo);
 
 		model.addAttribute("cMap", cMap);
 
@@ -44,12 +46,26 @@ public class MypageJController {
 	}
 
 	@RequestMapping(value = "/myCouponBuy", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponBuy() {
+	public String myCouponBuy(Model model) {
+		System.out.println("MypageJController > myCouponBuy");
+		
+	
+		List<CouponVo> couponList= mypagejService.getCouponList();
+		
+		model.addAttribute("couponList", couponList);
+		
 		return "/mypage/myCouponBuy";
 	}
-
-	@RequestMapping(value = "/myCouponUse", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponUse() {
+	
+	//쿠폰클릭
+	@RequestMapping(value = "/myCouponUse/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myCouponUse(@PathVariable("no") int couponNo, Model model) {
+		System.out.println("MypageJController > myCouponUse");
+		
+		String couponImg = mypagejService.getCouponImg(couponNo);
+		
+		model.addAttribute("couponImg", couponImg);
+		
 		return "/mypage/myCouponUse";
 	}
 
