@@ -52,7 +52,9 @@ public class MateController {
 		
 		MateVo mateVo = mateService.deepMateRead(mateNo);
 		List<MateVo> matePlaceList = mateService.deepPlaceRead(mateNo);
+		
 		System.out.println("matePlaceList:" + matePlaceList);
+		
 		model.addAttribute("mateVo", mateVo);
 		model.addAttribute("matePlaceList", matePlaceList);
 		

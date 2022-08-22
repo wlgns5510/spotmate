@@ -7,6 +7,8 @@
 <title>mateInfo</title>
 
 <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="/assets/js/jquery-1.11.0.min.js"></script>
 
 </head>
@@ -36,22 +38,22 @@
 
 	<!-- mateInfo_content -->
 	<div class="mateInfo_content clearfix">
-		<div class="picture1">
-		</div>
+			<div class="picture1" data-aos="fade-right">
+			</div>
+			
+			<div class="mateInfo_page1" data-aos="fade-right">
+				<h2>01</h2>
+				<h3>장거리 이동도 쉽게</h3>			
+				<p>
+				운전에 대한 고민없이, 거리에 대한 걱정없이<br>
+				출발의 부담없이 어디든지 자유롭게 이동할 수 있다면?<br><br>
+				드라이버님들의 일정을 확인하고 함께 떠나보세요.
+				</p>
+			</div>
 		
-		<div class="mateInfo_page1">
-			<h2>01</h2>
-			<h3>장거리 이동도 쉽게</h3>			
-			<p>
-			운전에 대한 고민없이, 거리에 대한 걱정없이<br>
-			출발의 부담없이 어디든지 자유롭게 이동할 수 있다면?<br><br>
-			드라이버님들의 일정을 확인하고 함께 떠나보세요.
-			</p>
-		</div>
+		<div class="picture2" data-aos="fade-left"></div>
 		
-		<div class="picture2"></div>
-		
-		<div class="mateInfo_page2">
+		<div class="mateInfo_page2" data-aos="fade-left">
 			<h2>02</h2>
 			<h3>이동이 자유로운 여행</h3>
 			
@@ -69,7 +71,7 @@
 	
 	<!-- mateInfo_banner2 -->
 	<div class="mateInfo_banner2">
-		<div class="mateInfo_page3">
+		<div class="mateInfo_page3" data-aos="fade-right">
 			<h2>03</h2>
 			<h3>누구나 자유롭게 이동</h3>
 			<p>
@@ -87,7 +89,7 @@
 	
 	<!-- mateInfo_content2 -->
 	<div class="mateInfo_content2">
-		<p class="mateInfo_page4">
+		<p class="mateInfo_page4" data-aos="fade-botton">
 		택시를 부르기 어려운 곳이여도,<br>
 		운전을 오래 하지 않아 렌트가 부담스러울 때<br><br>
 		같이 이동할 수 있는 메이트만 있다면,<br>
@@ -110,6 +112,7 @@
 </body>
 
 <script>
+	AOS.init();
 </script>
 
 </html>
