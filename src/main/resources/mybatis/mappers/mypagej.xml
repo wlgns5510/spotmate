@@ -170,7 +170,7 @@
 			                   and u.no = #{userNo}
 			                   and pu.type = '완료'
 			                
-			                   union
+			                   union 
 			                
 			                   select  userno no,
 			                           type,
