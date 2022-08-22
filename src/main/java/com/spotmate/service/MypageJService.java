@@ -17,8 +17,8 @@ public class MypageJService {
 	private MypageJDao mypagejDao;
 
 	// 쿠폰리스트가져오기
-	public Map<String, Object> getCouponList(String startDate, String endDate, String option1, String option2, int crtPage, int userNo) {
-		System.out.println("MypageJService > getCouponList");
+	public Map<String, Object> getCouponBList(String startDate, String endDate, String option1, String option2, int crtPage, int userNo) {
+		System.out.println("MypageJService > getCouponBList");
 		
 		/////////////리스트//////////////
 		
@@ -44,7 +44,7 @@ public class MypageJService {
 		pMap.put("endRnum", endRnum);
 		pMap.put("userNo", userNo);
 
-		List<CouponVo> couponList = mypagejDao.getCouponList(pMap);
+		List<CouponVo> couponBList = mypagejDao.getCouponBList(pMap);
 
 		/////////////페이징계산//////////////
 		
@@ -87,7 +87,7 @@ public class MypageJService {
 		System.out.println(prev + "," + startPageBtnNo + "," + endPageBtnNo + "," + next + "," + endPageNo);
 		
 		Map<String, Object> cMap = new HashMap<String, Object>();
-		cMap.put("couponList", couponList);
+		cMap.put("couponBList", couponBList);
 		cMap.put("prev", prev);
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
@@ -106,8 +106,24 @@ public class MypageJService {
 		mypagejDao.chargePoint(point);
 	}
 	
-
+	//쿠폰상품리스트
+	
+	public List<CouponVo> getCouponList() {
+		System.out.println("MypageJService > getCouponList");
 		
+		List<CouponVo> couponList= mypagejDao.getCouponList();
+		
+		return couponList;
+	}
+	
+	//쿠폰이미지가져오기
+	public String getCouponImg(int couponNo) {
+		System.out.println("MypageJService > getCouponImg");
+		
+		String couponImg = mypagejDao.getCouponImg(couponNo);
+		
+		return couponImg;
+	};
 	
 
 }

@@ -4,7 +4,7 @@
 <mapper namespace="mypagej">
 
 	<!-- 쿠폰리스트가져오기 -->
-	<select id="selectCouponList" parameterType="map" resultType="couponVo">
+	<select id="selectCouponBList" parameterType="map" resultType="couponVo">
 		<![CDATA[
 			select  ort.rn,
 			        ort.no,
@@ -79,6 +79,23 @@
 		]]>
 	
 	</select>
-
-
+	
+	<!-- 쿠폰상품리스트 -->
+	<select id="selectCouponList" resultType="CouponVo">
+		<![CDATA[
+			select  no couponNo,
+       			    imgsrc
+			from coupon
+		]]>
+	</select>
+	
+	<!-- 쿠폰이미지가져오기 -->
+		<select id="selectCouponImg" parameterType="int" resultType="String">
+		<![CDATA[
+			select imgsrc
+			from coupon
+			where no = #{couponNo}
+		]]>
+	</select>
+	
 </mapper>

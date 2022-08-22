@@ -111,7 +111,7 @@
 				<article class="myPage_article2">
 					<h4>모바일 주유권</h4>
 					<div class="myPage_couponUse">
-						<div class="myPage_coupon"></div>
+							<img class="myPage_coupon" src="${couponImg}">
 						<div class="myPage_couponEx">
 							<div>
 								<p>상품설명</p>
