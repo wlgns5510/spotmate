@@ -4,6 +4,9 @@ rollback;
 -- 커밋
 commit;
 
+-- -- SYSTIMESTAMP 출력형식 변경
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+
 ------------------ 회원 --------------------
 DROP INDEX PK_users;
 
