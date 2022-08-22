@@ -78,10 +78,10 @@
 				<!-- //section-article2 -->
 				<article class="myPage_article2">
 					<h4>환불내역</h4>
-					<div class="myPage_pointCarge">
-						<p class="cargeMoney">환불 신청금액*</p>
+					<div class="myPage_pointCharge">
+						<p class="chargeMoney">환불 신청금액*</p>
 						<input type="text" placeholder="ex)30000">
-						<div class="cargeEx">
+						<div class="chargeEx">
 							<p>1원 = 1Point입니다.</p>
 							<p>포인트는 5,000P부터 1,000P 단위로 환불이 가능합니다.</p>
 						</div>

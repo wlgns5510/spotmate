@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spotmate.service.MypageJService;
 import com.spotmate.vo.CouponVo;
+import com.spotmate.vo.PointVo;
 import com.spotmate.vo.UserVo;
 
 @Controller
@@ -26,18 +27,17 @@ public class MypageJController {
 
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponMain(Model model,
-			HttpSession session,
+	public String myCouponMain(Model model, HttpSession session,
 			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
 			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
 			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
 			@RequestParam(value = "option2", required = false, defaultValue = "") String option2,
 			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
 		System.out.println("MypageJController > myCouponMain");
-		
-		UserVo authUser= (UserVo)session.getAttribute("authUser");
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		int userNo = authUser.getNo();
-		
+
 		Map<String, Object> cMap = mypagejService.getCouponBList(startDate, endDate, option1, option2, crtPage, userNo);
 
 		model.addAttribute("cMap", cMap);
@@ -48,24 +48,23 @@ public class MypageJController {
 	@RequestMapping(value = "/myCouponBuy", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myCouponBuy(Model model) {
 		System.out.println("MypageJController > myCouponBuy");
-		
-	
-		List<CouponVo> couponList= mypagejService.getCouponList();
-		
+
+		List<CouponVo> couponList = mypagejService.getCouponList();
+
 		model.addAttribute("couponList", couponList);
-		
+
 		return "/mypage/myCouponBuy";
 	}
-	
-	//쿠폰클릭
+
+	// 쿠폰클릭
 	@RequestMapping(value = "/myCouponUse/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myCouponUse(@PathVariable("no") int couponNo, Model model) {
 		System.out.println("MypageJController > myCouponUse");
-		
+
 		String couponImg = mypagejService.getCouponImg(couponNo);
-		
+
 		model.addAttribute("couponImg", couponImg);
-		
+
 		return "/mypage/myCouponUse";
 	}
 
@@ -83,19 +82,33 @@ public class MypageJController {
 
 	// 카카오페이
 	@RequestMapping(value = "/kakaoPaySuccess", method = { RequestMethod.GET, RequestMethod.POST })
-	public void myPointCharge(Long point) {
+	public void myPointCharge(Long point, HttpSession session) {
 		System.out.println("MypageJController > kakaoPaySuccess");
-
-		mypagejService.chargePoint(point);
+		
+		UserVo authUser= (UserVo)session.getAttribute("authUser");
+		
+		int userNo = authUser.getNo();
+		
+		mypagejService.chargePoint(point, userNo);
+		
 	}
 
 	// 포인트메인
 	@RequestMapping(value = "/myPointMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointMain(@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
+	public String myPointMain(Model model, HttpSession session,
+			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
 			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
 			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
 			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
 		System.out.println("MypageJController > myPointMain");
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
+
+		List<PointVo> pointList = mypagejService.getPointList(userNo);
+
+		model.addAttribute("pointList", pointList);
 
 		return "/mypage/myPointMain";
 	}
