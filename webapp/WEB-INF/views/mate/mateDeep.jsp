@@ -114,7 +114,31 @@
 									<p><c:out value="${matePlaceList.day}일차"/></p>								
 								</div>
 								<div class="mateDeep_float">
-									<div class="mateDeep_start">START</div>
+									<div class="mateDeep_start">
+										<c:choose>
+											<c:when test="${matePlaceList.wayNo == -1}">										
+												START
+											</c:when>
+											<c:when test="${matePlaceList.wayNo == 0}">										
+												END
+											</c:when>
+											<c:when test="${matePlaceList.wayNo == 1}">										
+												SPOT 1
+											</c:when>
+											<c:when test="${matePlaceList.wayNo == 2}">										
+												SPOT 2
+											</c:when>
+											<c:when test="${matePlaceList.wayNo == 3}">										
+												SPOT 3
+											</c:when>
+											<c:when test="${matePlaceList.wayNo == 4}">										
+												SPOT 4
+											</c:when>
+											<c:when test="${matePlaceList.wayNo == 5}">										
+												SPOT 5
+											</c:when>
+										</c:choose>										
+									</div>
 									<div class="mateDeep_time">08 : 00 AM</div>
 									<div class="mateDeep_spot">서울역</div>
 								</div>
