@@ -17,7 +17,7 @@ public class MypageJService {
 	private MypageJDao mypagejDao;
 
 	// 쿠폰리스트가져오기
-	public Map<String, Object> getCouponList(String startDate, String endDate, String option1, String option2, int crtPage) {
+	public Map<String, Object> getCouponList(String startDate, String endDate, String option1, String option2, int crtPage, int userNo) {
 		System.out.println("MypageJService > getCouponList");
 		
 		/////////////리스트//////////////
@@ -42,13 +42,14 @@ public class MypageJService {
 		pMap.put("option2", option2);
 		pMap.put("startRnum", startRnum);
 		pMap.put("endRnum", endRnum);
+		pMap.put("userNo", userNo);
 
 		List<CouponVo> couponList = mypagejDao.getCouponList(pMap);
 
 		/////////////페이징계산//////////////
 		
 		//전체글갯수
-		int totalCouponCnt = mypagejDao.totalCouponCnt();
+		int totalCouponCnt = mypagejDao.totalCouponCnt(userNo);
 		System.out.println(totalCouponCnt);
 		
 		//페이지당 버튼 갯수

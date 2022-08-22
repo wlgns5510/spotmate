@@ -33,10 +33,10 @@ public class MypageJDao {
 	}
 	
 	// 쿠폰전체글 갯수
-	public int totalCouponCnt() {
+	public int totalCouponCnt(int userNo) {
 		System.out.println("MypageJDao > totalCouponCnt");
 		
-		int totalCouponCnt = sqlSession.selectOne("mypagej.totalCouponCnt");
+		int totalCouponCnt = sqlSession.selectOne("mypagej.totalCouponCnt", userNo);
 		
 		return totalCouponCnt;
 	}
