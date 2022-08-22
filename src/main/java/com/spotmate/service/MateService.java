@@ -52,6 +52,7 @@ public class MateService {
 	public List<MateVo> deepPlaceRead(int mateNo) {
 		System.out.println("MateService >> deepPlaceRead");
 		
+		System.out.println(mateDao.deepPlaceRead(mateNo));
 		return mateDao.deepPlaceRead(mateNo);
 	}
 }

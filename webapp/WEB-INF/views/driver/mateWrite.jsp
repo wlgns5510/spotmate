@@ -377,7 +377,7 @@ function setDayPath(index) {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
-	var day = index+"일차";
+	var day = index;
 	var saddr = $(".mate-s-addr"+index).val();
 	var stime = $("#stime"+index).val();
 	var slat = $(".s-lat"+index).val();
