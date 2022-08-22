@@ -10,7 +10,7 @@ public class DriverLicenseAuth {
 	
 		
 	private WebDriver setup() {
-		System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "/chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("disable-gpu", "lang=ko_KR", "headless",
 				"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36\r\n");
@@ -18,7 +18,7 @@ public class DriverLicenseAuth {
 		return driver;
 	}
 	
-	public String LicenseAuth(String name, String btd, String serial, String encSerial) {
+	public int LicenseAuth(String name, String btd, String serial) {
 		WebDriver driver = setup();
 		driver.get("https://www.safedriving.or.kr/LnrForRtnLicns/LnrForRtnLicnsTruthYn.do");
 		String[] arr = serial.split("-");
@@ -82,14 +82,14 @@ public class DriverLicenseAuth {
 		driver.findElement(By.id("licence02")).sendKeys(arr[1]);
 		driver.findElement(By.id("licence03")).sendKeys(arr[2]);
 		driver.findElement(By.id("licence04")).sendKeys(arr[3]);
-		driver.findElement(By.id("serialnum")).sendKeys(encSerial);
+		driver.findElement(By.id("serialnum")).sendKeys(arr[4]);
 		driver.findElement(By.xpath("//*[@id=\"resultform\"]/div/div[3]/a")).sendKeys(Keys.RETURN);
 		String str = driver.findElement(By.className("ul_list")).getText();
 		driver.quit();
-		if (str.contains("일치하지 않습니다.")|| str.contains("잘못")) {
-			return "fail";
+		if (str.contains("일치하지 않습니다.") || str.contains("잘못")) {
+			return -1;
 		}else {
-			return "success";
+			return 0;
 		}
 	}
 }

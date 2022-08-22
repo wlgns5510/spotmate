@@ -23,8 +23,8 @@
 		</div>
 	</div>
 	<div class="inner">
-	<input type="hidden" id="latlng" name="latlng" value="${dwVo.latlng1}">
-		<div data-mateno="45" id="hitch-driver-map"></div>
+	<input type="hidden" id="latlng" name="latlng" value="${hVo.latlng}">
+		<div data-mateno="${hVo.mateNo}" id="hitch-driver-map"></div>
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 	

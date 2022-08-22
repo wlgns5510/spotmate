@@ -509,7 +509,7 @@ $(document).ready(function() {
 for (var j=1;j<6;j++) {
 	var i = (9*j)+(j+1);
 	
-	var day = j+"일차";
+	var day = j;
 	var slat = $(".s-lat"+j).val();
 	if (slat == null) {
 		break;

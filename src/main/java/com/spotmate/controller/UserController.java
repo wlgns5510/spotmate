@@ -43,7 +43,7 @@ public class UserController {
 	   
 	   UserVo authUser = uService.loginOk(userVo);
 	   String url = (String)session.getAttribute("prevPage");
-	   
+	   System.out.println(authUser.toString());
 	   if(authUser !=null && url !=null) {
 		   session.setAttribute("authUser", authUser);
 		   return "redirect:"+url;

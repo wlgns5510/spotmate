@@ -4,8 +4,12 @@
 <mapper namespace="users">
 
 	<insert id="joinUser" parameterType="userVo">
-		insert into users
-		values(seq_users_no.nextval, 
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+				select seq_users_no.nextval from dual 
+		</selectKey>
+		insert all
+		into users
+		values(	#{no}, 
 		        #{id}, 
 		        #{pw},
 		        #{name},
@@ -17,14 +21,28 @@
 		        '',
 		        ''
 		)
+		into car
+		values (
+			seq_car_no.nextval,
+			#{no},
+			'',
+			'',
+			'',
+			'',
+			'',
+			''
+		)
+		select * from dual
 	</insert>
 	
 	<select id="loginOk" parameterType="userVo" resultType="userVo">
-		select no
-			   ,name
-		from users
-		where id = #{id}
-		and pw = #{pw}		
+		select u.no no
+			   ,u.name name
+			   ,c.no carNo
+		from users u, car c
+		where u.no = c.userNo
+		and id = #{id}
+		and pw = #{pw}
 	</select>
 
 </mapper>

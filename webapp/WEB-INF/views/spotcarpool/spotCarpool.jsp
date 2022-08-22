@@ -83,25 +83,23 @@
 		
 
 				<div class="detail">
-				
+					<input class="detail_ckbox" type="checkbox" name="ch_type" value="nonSmoke">
+					<label class="detailtext">&nbsp;&nbsp;비흡연자</label>
+					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="nonSmoke">&nbsp;&nbsp;비흡연자</span>
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="femaleDriver">&nbsp;&nbsp;여성드라이버</span>
 					</label>
 					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="femaleDriver">&nbsp;&nbsp;여성드라이버</span>
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="pet">&nbsp;&nbsp;반려동물</span> 
 					</label>
 					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="pet">&nbsp;&nbsp;반려동물</span> 
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="phoneCharger">&nbsp;&nbsp;충전기 사용 가능</span>
 					</label>
 					
 					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="phoneCharger">&nbsp;&nbsp;충전기 사용 가능</span>
-					</label>
-					
-					<label>
-					<span class="detailtext"><input type="checkbox" name="ch_type" value="handWash">&nbsp;&nbsp;트렁크 사용 가능</span>
+					<span class="detailtext"><input class="detail_ckbox" type="checkbox" name="ch_type" value="handWash">&nbsp;&nbsp;트렁크 사용 가능</span>
 					</label>
 				
 				</div>
@@ -211,6 +209,12 @@
 
 	
 </body>
+<script>
+
+</script>
+
+
+
 
 
 </html>

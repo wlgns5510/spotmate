@@ -86,9 +86,11 @@
 		level : 3
 	},
 	map = new kakao.maps.Map(mapContainer, mapOption);
-	var	lat, lng = 0,
+	var	lat, lng, atl = 0,
 		markers = [],
-		infowindows = [];
+		infowindows = [],
+		temp =[];
+	
 	var imageSrc = './assets/images/common/login_people_f50.png', // 마커이미지의 주소입니다    
 		imageSize = new kakao.maps.Size(50, 50), // 마커이미지의 크기입니다
 		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
@@ -111,7 +113,7 @@
 				dataType : "json",
 				success : function(result) {
 					for(var i=0;i<result.length;i++) {
-						$(".spot-hitch-info").append('<div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+i+')" class="carPos" src="/assets/images/ico_spot.png"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+i+')" class="rideReq" id="rideReq'+i+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+i+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+i+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"></div>');
+						$(".spot-hitch-info").append('<div class="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+i+')" class="carPos" src="/assets/images/ico_spot.png"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+i+')" class="rideReq" id="rideReq'+i+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+i+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+i+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"></div></div>');
 					}
 				},
 				error : function(XHR, status, error) {
@@ -158,8 +160,10 @@
 			}),
 			dataType : "json",
 			success : function(result) {
-				var hVo = {};
+				var hVo = {},
+					chkTemp = [];
 				for(var i=0;i<result.length;i++) {
+					atl = result.length - 1;
 					$.ajax({
 						url : "${pageContext.request.contextPath}/updateInfo",
 						type : "post",
@@ -172,6 +176,22 @@
 						}),
 						dataType : "json",
 						success : function(result) {
+							//전체 mateNo리스트
+							if ( !temp.includes(result.hiVo.mateNo) ) {
+								temp.push(result.hiVo.mateNo);
+							} 
+							//people = 0이 됬을 때 갱신된 mateNo리스트
+							else if ( temp.length >= chkTemp.length) {
+								chkTemp.push(result.hiVo.mateNo);
+								if ( i == atl ) {
+									var dif = temp.filter(x => !chkTemp.includes(x));
+									for( var k=0;k<dif.length;k++ ) {
+										$(".box"+dif[k]).remove();
+									}
+								}
+							}
+							
+							
 							hVo = result.hVo;
 							$("#nowpos"+result.hiVo.mateNo).text(result.hiVo.nowaddr);
 							$("#people"+result.hiVo.mateNo).html("<span>탑승 가능한 인원수</span><p>"+result.hiVo.people+"</p>");

@@ -5,25 +5,23 @@ import java.util.List;
 public class DriverLicenseVo {
 
 	// 필드
-	private String username, licensetype, carnum, c_Model, c_file, c_color, introduce;
+	private String username, licensetype, c_Model, c_file, c_color, introduce, userBD, dl, c_num;
 
-	private int userBD, dl, c_num, num_PA;
+	private int carNo, userNo, num_PA;
 
-	private List<String> ch_type;
-
-	
+	private List<Integer> ch_type;
 
 	// 생성자
 	public DriverLicenseVo() {
-		
+
 	}
 
-	public DriverLicenseVo(String username, String licensetype, String carnum, String c_Model, String c_file,
-			String c_color, String introduce, int userBD, int dl, int c_num, int num_PA, List<String> ch_type) {
+	public DriverLicenseVo(String username, String licensetype, String c_Model, String c_file, String c_color,
+			String introduce, String userBD, String dl, String c_num, int carNo, int userNo, int num_PA,
+			List<Integer> ch_type) {
 		super();
 		this.username = username;
 		this.licensetype = licensetype;
-		this.carnum = carnum;
 		this.c_Model = c_Model;
 		this.c_file = c_file;
 		this.c_color = c_color;
@@ -31,6 +29,8 @@ public class DriverLicenseVo {
 		this.userBD = userBD;
 		this.dl = dl;
 		this.c_num = c_num;
+		this.carNo = carNo;
+		this.userNo = userNo;
 		this.num_PA = num_PA;
 		this.ch_type = ch_type;
 	}
@@ -49,14 +49,6 @@ public class DriverLicenseVo {
 
 	public void setLicensetype(String licensetype) {
 		this.licensetype = licensetype;
-	}
-
-	public String getCarnum() {
-		return carnum;
-	}
-
-	public void setCarnum(String carnum) {
-		this.carnum = carnum;
 	}
 
 	public String getC_Model() {
@@ -91,28 +83,44 @@ public class DriverLicenseVo {
 		this.introduce = introduce;
 	}
 
-	public int getUserBD() {
+	public String getUserBD() {
 		return userBD;
 	}
 
-	public void setUserBD(int userBD) {
+	public void setUserBD(String userBD) {
 		this.userBD = userBD;
 	}
 
-	public int getDl() {
+	public String getDl() {
 		return dl;
 	}
 
-	public void setDl(int dl) {
+	public void setDl(String dl) {
 		this.dl = dl;
 	}
 
-	public int getC_num() {
+	public String getC_num() {
 		return c_num;
 	}
 
-	public void setC_num(int c_num) {
+	public void setC_num(String c_num) {
 		this.c_num = c_num;
+	}
+
+	public int getCarNo() {
+		return carNo;
+	}
+
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public int getNum_PA() {
@@ -123,21 +131,20 @@ public class DriverLicenseVo {
 		this.num_PA = num_PA;
 	}
 
-	public List<String> getCh_type() {
+	public List<Integer> getCh_type() {
 		return ch_type;
 	}
 
-	public void setCh_type(List<String> ch_type) {
+	public void setCh_type(List<Integer> ch_type) {
 		this.ch_type = ch_type;
 	}
 
 	@Override
 	public String toString() {
-		return "DriverLicenseVo [username=" + username + ", licensetype=" + licensetype + ", carnum=" + carnum
-				+ ", c_Model=" + c_Model + ", c_file=" + c_file + ", c_color=" + c_color + ", introduce=" + introduce
-				+ ", userBD=" + userBD + ", dl=" + dl + ", c_num=" + c_num + ", num_PA=" + num_PA + ", ch_type="
-				+ ch_type + "]";
+		return "DriverLicenseVo [username=" + username + ", licensetype=" + licensetype + ", c_Model=" + c_Model
+				+ ", c_file=" + c_file + ", c_color=" + c_color + ", introduce=" + introduce + ", userBD=" + userBD
+				+ ", dl=" + dl + ", c_num=" + c_num + ", carNo=" + carNo + ", userNo=" + userNo + ", num_PA=" + num_PA
+				+ ", ch_type=" + ch_type + "]";
 	}
-
 
 }
