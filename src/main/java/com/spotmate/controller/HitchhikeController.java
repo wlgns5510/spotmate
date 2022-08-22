@@ -35,9 +35,9 @@ public class HitchhikeController {
 	}
 	
 	@RequestMapping(value="/spotHitchDriver", method={RequestMethod.GET, RequestMethod.POST})
-	public String hitchDriver(HttpSession session) {
-		UserVo uVo = (UserVo) session.getAttribute("authUser");
-		hService.getDriverInfo(uVo.getNo());
+	public String hitchDriver(Model model, HttpSession session) {
+		UserVo authVo = (UserVo) session.getAttribute("authUser");
+		model.addAttribute("hVo", hService.getHdriverPage(authVo.getNo()));
 		return "/spothitch/spotHitchDriver";
 	}
 	

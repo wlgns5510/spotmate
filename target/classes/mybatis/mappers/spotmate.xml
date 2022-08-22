@@ -34,6 +34,7 @@
         and s.no = r.mateno
 		and status = 'open'
         and type = 'hitchhike'
+        and r.people > 0
         order by s.no desc
 	</select>
 	
@@ -82,6 +83,7 @@
 		and s.no = p.mateNo
 		and r.mateNo = s.no
 		and wayno = 0
+		and r.people > 0
 	</select>
 	
 	
@@ -89,6 +91,19 @@
 		select latlng
 		from place
 		where mateNo = #{mateNo}
+	</select>
+	
+	<select id="gethdriverpage" parameterType="int" resultType="hVo">
+		select s.no mateNo,
+			latlng
+		from reservation r, users u, spotmate s, place p
+		where r.driverNo = u.no
+		and p.mateNo = s.no
+		and s.no = r.mateNo
+		and type='hitchhike'
+		and wayno=-1
+		and status='open'
+		and u.no = #{no}
 	</select>
 	
 	<select id="selectDriverPos" parameterType="mVo" resultType="mVo">
@@ -109,6 +124,7 @@
 		where r.mateNo = s.no
 		and p.mateNo = s.no
 		and wayno = 0
+		and r.people > 0
 		order by s.no desc
 	</select>
 	
@@ -137,6 +153,104 @@
 		and wayno = 0
 	</update>
 	
+	<insert id="hitchinsert" parameterType="dwVo">
+			<selectKey keyProperty="no" resultType="int" order="BEFORE">
+				select seq_spotmate_no.nextval from dual 
+			</selectKey>
+
+			insert all
+			into spotmate
+			values (
+				#{no},
+				#{carNo},
+				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
+				#{sdate1},
+				#{people},
+				#{type},
+				#{intfare},
+				#{dur},
+				#{dis},
+				#{comments}
+			)
+			into reservation
+			values (
+				seq_reservation_no.nextval,
+				#{no},
+				#{userNo},
+				#{userNo},
+				sysdate,
+				#{intfare},
+				'open',
+				#{people} 
+			)
+			<if test='nosmoke != null'>
+			into spotDetail
+			values (
+				seq_spotDetail_no.nextval,
+				#{no},
+				1
+			)
+			</if>
+			<if test='femaledriver != null'>
+			into spotDetail
+			values (
+				seq_spotDetail_no.nextval,
+				#{no},
+				2
+			)
+			</if>
+			<if test='pet != null'>
+			into spotDetail
+			values (
+				seq_spotDetail_no.nextval,
+				#{no},
+				3
+			)
+			</if>
+			<if test='phonecharge != null'>
+			into spotDetail
+			values (
+				seq_spotDetail_no.nextval,
+				#{no},
+				4
+			)
+			</if>
+			<if test='trunk != null'>
+			into spotDetail
+			values (
+				seq_spotDetail_no.nextval,
+				#{no},
+				5
+			)
+			</if>
+			into place values (
+				seq_place_no.nextval,
+				#{no},
+				'',
+				-1,
+				'출발지',
+				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
+				#{splace1},
+				#{slat1},
+				#{slng1},
+				#{latlng1}
+			)
+			into place 
+			values (
+				seq_place_no.nextval,
+				#{no},
+				'',
+				0,
+				'도착지',
+				'',
+				#{eplace1},
+				#{elat1},
+				#{elng1},
+				''
+			)
+			select * from dual
+		</insert>
+	
 	
 	<insert id="carpoolinsert" parameterType="dwVo">
 	
@@ -148,8 +262,8 @@
 			into spotmate
 			values (
 				#{no},
-				2,
-				#{sdate1},
+				#{carNo},
+				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 				#{edate1},
 				#{people},
 				#{type},
@@ -204,7 +318,7 @@
 				'',
 				-1,
 				'출발지',
-				#{stime1},
+				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 				#{splace1},
 				#{slat1},
 				#{slng1},
@@ -227,8 +341,8 @@
 			values (
 				seq_reservation_no.nextval,
 				#{no},
-				2,
-				1,
+				#{userNo},
+				#{carNo},
 				sysdate,
 				#{intfare},
 				'open',
@@ -236,103 +350,7 @@
 			)
 			select * from dual
 		</insert>
-		<insert id="hitchinsert" parameterType="dwVo">
-			<selectKey keyProperty="no" resultType="int" order="BEFORE">
-				select seq_spotmate_no.nextval from dual 
-			</selectKey>
-
-			insert all
-			into spotmate
-			values (
-				#{no},
-				2,
-				#{sdate1},
-				#{sdate1},
-				#{people},
-				#{type},
-				#{intfare},
-				#{dur},
-				#{dis},
-				#{comments}
-			)
-			into reservation
-			values (
-				seq_reservation_no.nextval,
-				#{no},
-				2,
-				1,
-				sysdate,
-				#{intfare},
-				'open',
-				#{people}				
-			)
-			<if test='nosmoke != null'>
-			into spotDetail
-			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				1
-			)
-			</if>
-			<if test='femaledriver != null'>
-			into spotDetail
-			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				2
-			)
-			</if>
-			<if test='pet != null'>
-			into spotDetail
-			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				3
-			)
-			</if>
-			<if test='phonecharge != null'>
-			into spotDetail
-			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				4
-			)
-			</if>
-			<if test='trunk != null'>
-			into spotDetail
-			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				5
-			)
-			</if>
-			into place values (
-				seq_place_no.nextval,
-				#{no},
-				'',
-				-1,
-				'출발지',
-				#{stime1},
-				#{splace1},
-				#{slat1},
-				#{slng1},
-				#{latlng1}
-			)
-			into place 
-			values (
-				seq_place_no.nextval,
-				#{no},
-				'',
-				0,
-				'도착지',
-				'',
-				#{eplace1},
-				#{elat1},
-				#{elng1},
-				''
-			)
-			select * from dual
-		</insert>
+		
 		
 		<insert id="mateinsert" parameterType="mwVo">
 		
@@ -345,8 +363,8 @@
 			into spotmate
 			values (
 				#{no},
-				1,
-				#{sdate1},
+				#{carNo},
+				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 				#{edate1},
 				#{people},
 				#{type},
@@ -359,8 +377,8 @@
 			values (
 				seq_reservation_no.nextval,
 				#{no},
-				2,
-				1,
+				#{userNo},
+				#{carNo},
 				sysdate,
 				#{intfare},
 				'open',
@@ -411,8 +429,8 @@
 				#{no},
 				#{day1},
 				-1,
-				'출발지1',
-				#{stime1},
+				'출발지',
+				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 				#{splace1},
 				#{slat1},
 				#{slng1},
@@ -425,8 +443,8 @@
 				#{no},
 				#{day1},
 				1,
-				'1번 경유지',
-				#{wtime11},
+				'경유지',
+				to_date(#{sdate1}||#{wtime11}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace11},
 				#{wlat11},
 				#{wlng11},
@@ -442,8 +460,8 @@
 				#{no},
 				#{day1},
 				2,
-				'2번 경유지',
-				#{wtime12},
+				'경유지',
+				to_date(#{sdate1}||#{wtime12}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace12},
 				#{wlat12},
 				#{wlng12},
@@ -458,8 +476,8 @@
 				#{no},
 				#{day1},
 				3,
-				'3번 경유지',
-				#{wtime13},
+				'경유지',
+				to_date(#{sdate1}||#{wtime13}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace13},
 				#{wlat13},
 				#{wlng13},
@@ -474,8 +492,8 @@
 				#{no},
 				#{day1},
 				4,
-				'4번 경유지',
-				#{wtime14},
+				'경유지',
+				to_date(#{sdate1}||#{wtime14}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace14},
 				#{wlat14},
 				#{wlng14},
@@ -490,8 +508,8 @@
 				#{no},
 				#{day1},
 				5,
-				'5번 경유지',
-				#{wtime15},
+				'경유지',
+				to_date(#{sdate1}||#{wtime15}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace15},
 				#{wlat15},
 				#{wlng15},
@@ -505,7 +523,7 @@
 				#{no},
 				#{day1},
 				0,
-				'도착지1',
+				'도착지',
 				'',
 				#{eplace1},
 				#{elat1},
@@ -520,8 +538,8 @@
 				#{no},
 				#{day2},
 				-1,
-				'출발지2',
-				#{stime2},
+				'출발지',
+				to_date(#{sdate1}||#{stime2}, 'yyyy-mm-dd hh24:mi'),
 				#{splace2},
 				#{slat2},
 				#{slng2},
@@ -536,8 +554,8 @@
 				#{no},
 				#{day2},
 				1,
-				'1번 경유지',
-				#{wtime21},
+				'경유지',
+				to_date(#{sdate1}||#{wtime21}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace21},
 				#{wlat21},
 				#{wlng21},
@@ -552,8 +570,8 @@
 				#{no},
 				#{day2},
 				2,
-				'2번 경유지',
-				#{wtime22},
+				'경유지',
+				to_date(#{sdate1}||#{wtime22}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace22},
 				#{wlat22},
 				#{wlng22},
@@ -568,8 +586,8 @@
 				#{no},
 				#{day2},
 				3,
-				'3번 경유지',
-				#{wtime23},
+				'경유지',
+				to_date(#{sdate1}||#{wtime23}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace23},
 				#{wlat23},
 				#{wlng23},
@@ -584,8 +602,8 @@
 				#{no},
 				#{day2},
 				4,
-				'4번 경유지',
-				#{wtime24},
+				'경유지',
+				to_date(#{sdate1}||#{wtime24}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace24},
 				#{wlat24},
 				#{wlng24},
@@ -601,8 +619,8 @@
 				#{no},
 				#{day2},
 				5,
-				'5번 경유지',
-				#{wtime25},
+				'경유지',
+				to_date(#{sdate1}||#{wtime25}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace25},
 				#{wlat25},
 				#{wlng25},
@@ -617,7 +635,7 @@
 				#{no},
 				#{day2},
 				0,
-				'도착지2',
+				'도착지',
 				'',
 				#{eplace2},
 				#{elat2},
@@ -634,8 +652,8 @@
 				#{no},
 				#{day3},
 				-1,
-				'출발지3',
-				#{stime3},
+				'출발지',
+				to_date(#{sdate1}||#{stime3}, 'yyyy-mm-dd hh24:mi'),
 				#{splace3},
 				#{slat3},
 				#{slng3},
@@ -650,8 +668,8 @@
 				#{no},
 				#{day3},
 				1,
-				'1번 경유지',
-				#{wtime31},
+				'경유지',
+				to_date(#{sdate1}||#{wtime31}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace31},
 				#{wlat31},
 				#{wlng31},
@@ -666,8 +684,8 @@
 				#{no},
 				#{day3},
 				2,
-				'2번 경유지',
-				#{wtime32},
+				'경유지',
+				to_date(#{sdate1}||#{wtime32}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace32},
 				#{wlat32},
 				#{wlng32},
@@ -682,8 +700,8 @@
 				#{no},
 				#{day3},
 				3,
-				'3번 경유지',
-				#{wtime33},
+				'경유지',
+				to_date(#{sdate1}||#{wtime33}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace33},
 				#{wlat33},
 				#{wlng33},
@@ -698,8 +716,8 @@
 				#{no},
 				#{day3},
 				4,
-				'4번 경유지',
-				#{wtime34},
+				'경유지',
+				to_date(#{sdate1}||#{wtime34}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace34},
 				#{wlat34},
 				#{wlng34},
@@ -714,8 +732,8 @@
 				#{no},
 				#{day3},
 				5,
-				'5번 경유지',
-				#{wtime35},
+				'경유지',
+				to_date(#{sdate1}||#{wtime35}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace35},
 				#{wlat35},
 				#{wlng35},
@@ -730,7 +748,7 @@
 				#{no},
 				#{day3},
 				0,
-				'도착지3',
+				'도착지',
 				'',
 				#{eplace3},
 				#{elat3},
@@ -746,8 +764,8 @@
 				#{no},
 				#{day4},
 				-1,
-				'출발지4',
-				#{stime4},
+				'출발지',
+				to_date(#{sdate1}||#{stime4}, 'yyyy-mm-dd hh24:mi'),
 				#{splace4},
 				#{slat4},
 				#{slng4},
@@ -762,8 +780,8 @@
 				#{no},
 				#{day4},
 				1,
-				'1번 경유지',
-				#{wtime41},
+				'경유지',
+				to_date(#{sdate1}||#{wtime41}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace41},
 				#{wlat41},
 				#{wlng41},
@@ -778,8 +796,8 @@
 				#{no},
 				#{day4},
 				2,
-				'2번 경유지',
-				#{wtime42},
+				'경유지',
+				to_date(#{sdate1}||#{wtime42}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace42},
 				#{wlat42},
 				#{wlng42},
@@ -794,8 +812,8 @@
 				#{no},
 				#{day4},
 				3,
-				'3번 경유지',
-				#{wtime43},
+				'경유지',
+				to_date(#{sdate1}||#{wtime43}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace43},
 				#{wlat43},
 				#{wlng43},
@@ -811,8 +829,8 @@
 				#{no},
 				#{day4},
 				4,
-				'4번 경유지',
-				#{wtime44},
+				'경유지',
+				to_date(#{sdate1}||#{wtime44}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace44},
 				#{wlat44},
 				#{wlng44},
@@ -827,8 +845,8 @@
 				#{no},
 				#{day4},
 				5,
-				'5번 경유지',
-				#{wtime45},
+				'경유지',
+				to_date(#{sdate1}||#{wtime45}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace45},
 				#{wlat45},
 				#{wlng45},
@@ -843,7 +861,7 @@
 				#{no},
 				#{day4},
 				0,
-				'도착지4',
+				'도착지',
 				'',
 				#{eplace4},
 				#{elat4},
@@ -860,8 +878,8 @@
 				#{no},
 				#{day5},
 				-1,
-				'출발지5',
-				#{stime5},
+				'출발지',
+				to_date(#{sdate1}||#{stime5}, 'yyyy-mm-dd hh24:mi'),
 				#{splace5},
 				#{slat5},
 				#{slng5},
@@ -876,8 +894,8 @@
 				#{no},
 				#{day5},
 				1,
-				'1번 경유지',
-				#{wtime51},
+				'경유지',
+				to_date(#{sdate1}||#{wtime51}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace51},
 				#{wlat51},
 				#{wlng51},
@@ -893,8 +911,8 @@
 				#{no},
 				#{day5},
 				2,
-				'2번 경유지',
-				#{wtime52},
+				'경유지',
+				to_date(#{sdate1}||#{wtime52}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace52},
 				#{wlat52},
 				#{wlng52},
@@ -909,8 +927,8 @@
 				#{no},
 				#{day5},
 				3,
-				'3번 경유지',
-				#{wtime53},
+				'경유지',
+				to_date(#{sdate1}||#{wtime53}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace53},
 				#{wlat53},
 				#{wlng53},
@@ -925,8 +943,8 @@
 				#{no},
 				#{day5},
 				4,
-				'4번 경유지',
-				#{wtime54},
+				'경유지',
+				to_date(#{sdate1}||#{wtime54}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace54},
 				#{wlat54},
 				#{wlng54},
@@ -941,8 +959,8 @@
 				#{no},
 				#{day5},
 				5,
-				'5번 경유지',
-				#{wtime55},
+				'경유지',
+				to_date(#{sdate1}||#{wtime55}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace55},
 				#{wlat55},
 				#{wlng55},
@@ -957,7 +975,7 @@
 				#{no},
 				#{day5},
 				0,
-				'도착지5',
+				'도착지',
 				'',
 				#{eplace5},
 				#{elat5},

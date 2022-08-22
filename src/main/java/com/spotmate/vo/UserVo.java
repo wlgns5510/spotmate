@@ -2,7 +2,7 @@ package com.spotmate.vo;
 
 public class UserVo {
 	
-	private int no;
+	private int no, carNo;
 	private String id, pw, name, email, phone, address, gender, birth, licenseNo, licenseType, year, month, day;
 	
 	public UserVo() {
@@ -61,6 +61,22 @@ public class UserVo {
 	      this.month = month;
 	      this.day = day;
 	  }
+	
+	public UserVo(int no, String name, int carNo) {
+		this.no = no;
+		this.name = name;
+		this.carNo = carNo;
+	}
+	
+	
+	public int getCarNo() {
+		return carNo;
+	}
+
+	public void setCarNo(int carNo) {
+		this.carNo = carNo;
+	}
+
 	public int getNo() {
 		return no;
 	}
@@ -145,15 +161,13 @@ public class UserVo {
 	public void setDay(String day) {
 		this.day = day;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "UserVo [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", phone="
-				+ phone + ", address=" + address + ", gender=" + gender + ", birth=" + birth + ", licenseNo="
-				+ licenseNo + ", licenseType=" + licenseType + ", year=" + year + ", month=" + month + ", day=" + day
-				+ "]";
+		return "UserVo [no=" + no + ", carNo=" + carNo + ", id=" + id + ", pw=" + pw + ", name=" + name + ", email="
+				+ email + ", phone=" + phone + ", address=" + address + ", gender=" + gender + ", birth=" + birth
+				+ ", licenseNo=" + licenseNo + ", licenseType=" + licenseType + ", year=" + year + ", month=" + month
+				+ ", day=" + day + "]";
 	}
-	
 	
 }
