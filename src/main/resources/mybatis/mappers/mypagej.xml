@@ -58,10 +58,10 @@
 	
 	
 	<!-- 포인트충전 -->
-	<insert id="insertPoint" parameterType="Long">
+	<insert id="insertPoint" parameterType="pointVo">
 		<![CDATA[
 			INSERT INTO pointUsage
-			VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', sysdate, #{point}, #{point})
+			VALUES (SEQ_POINTUSAGE_NO.nextval, #{userNo}, '충전', sysdate, #{point}, #{point}, null)
 		]]>
 	</insert>
 
@@ -90,12 +90,105 @@
 	</select>
 	
 	<!-- 쿠폰이미지가져오기 -->
-		<select id="selectCouponImg" parameterType="int" resultType="String">
+	<select id="selectCouponImg" parameterType="int" resultType="String">
 		<![CDATA[
 			select imgsrc
 			from coupon
 			where no = #{couponNo}
 		]]>
+	</select>
+	
+	<!-- 포인트리스트가져오기 -->
+	<select id="selectPointList" parameterType="int" resultType="PointVo">
+		<![CDATA[
+			select  ort.rn,
+			        ort.no,
+			        ort.type,
+			        to_char(ort.regDate, 'yy.mm.dd') regDate,
+			        ort.splace,
+			        ort.eplace,
+			        ort.point
+			from (select rownum rn,
+			             ot.no,
+			             ot.type,
+			             ot.regdate,
+			             ot.splace,
+			             ot.eplace,
+			             ot.point
+			      from (select  no,
+			                    type,
+			                    regDate,
+			                    splace,
+			                    eplace,
+			                    point
+			            from  (select  u.no no,
+			                           sp.type,
+			                           pu.regDate,
+			                           pu.type ptype,
+			                           se.splace,
+			                           se.eplace,
+			                           pu.point
+			                   from spotmate sp, reservation re, pointUsage pu, users u,
+			                        (select sno,
+			                                smateno,
+			                                sday,
+			                                splace,
+			                                eno,
+			                                emateno,
+			                                eday,
+			                                eplace
+			                         from (select p.no sNo,
+			                                      mp.mateNo sMateNo,
+			                                      p.day sDay,
+			                                      p.place sPlace
+			                               from place p,
+			                                    (select mateNo, min(day) minDay
+			                                     from place
+			                                     where wayNo = -1 
+			                                     group by mateNo) mp
+			                                where p.mateno = mp.mateno
+			                                and p.day = mp.minDay
+			                                and p.wayNo= -1) s, 
+			                              
+			                                (select p.no eNo,
+			                                        mp.mateNo eMateNo,
+			                                        p.day eDay,
+			                                        p.place ePlace
+			                                 from place p,
+			                                     (select mateNo, max(day) maxDay
+			                                      from place
+			                                      where wayNo = 0 
+			                                      group by mateNo) mp
+			                                 where p.mateno = mp.mateno
+			                                 and p.day = mp.maxDay
+			                                 and p.wayNo =0) e
+			                         where s.sMateNo = e.eMateNo)se
+			                   where sp.no = se.sMateNo
+			                   and re.mateno = sp.no
+			                   and pu.reno = re.no
+			                   and u.no = pu.userno
+			                   and u.no = #{userNo}
+			                   and pu.type = '완료'
+			                
+			                   union 
+			                
+			                   select  userno no,
+			                           type,
+			                           regdate,
+			                           null ptype,
+			                           null splace,
+			                           null eplace,
+			                           point        
+			                   from pointUsage
+			                   where userno = #{userNo}
+			                   and (type = '충전' or type='환불' or type='구매')
+			                   )
+			            order by regDate desc)ot
+			        )ort
+		]]>
+
+
+
 	</select>
 	
 </mapper>
