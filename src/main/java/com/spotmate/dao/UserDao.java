@@ -12,10 +12,12 @@ public class UserDao {
 	@Autowired
 	private SqlSession ss;
 	
-	public UserVo getUserInfo() {
-		return ss.selectOne("spotmate.list");
+	public void joinUser(UserVo userVo) {
+		ss.insert("users.joinUser", userVo);
 	}
 	
-	
+	public UserVo loginOk(UserVo userVo) {
+		return ss.selectOne("users.loginOk", userVo);
+	}
 
 }

@@ -28,106 +28,204 @@
 	<div class="inner clear">
 		<div class="hitch-deep-infoTop clear">
 			<div class="markImg"></div>
-			<span>드라이버 ${mateNo} 님</span> <a href="#">탑승 요청</a>
+			<span>드라이버 ${hMap.hVo.name}님</span> <a href="#">탑승 요청</a>
 		</div>
 		<div class="data">
 			<table>
 				<tr>
 					<td class="waypoint">출발지</td>
-					<td class="tname">강남역 2번 출구</td>
+					<td id="splace1" class="tname">${hMap.hVo.splace1}</td>
 					<td class="destination">목적지</td>
-					<td class="tname">대방역 1호선 2번 출구</td>
+					<td id="eplace1" class="tname">${hMap.hVo.eplace1}</td>
 				</tr>
 				<tr>
 					<td class="waypoint">상세조건</td>
-					<td colspan="3" class="tname">여성드라이버, 반려동물 탑승가능, 차량 와이파이 이용 가능</td>
+					<td colspan="3" class="tname">${hMap.hVo.detailOpt} 이용 가능</td>
 				</tr>
 				<tr>
 					<td class="waypoint">탑승후기</td>
-					<td class="tname">4.5</td>
+					<td class="tname">
+					<c:choose>
+						<c:when test="${hMap.hVo.star==0.0}">
+						첫 운행입니다
+						</c:when>
+						<c:otherwise>
+						${hMap.hVo.star}
+						</c:otherwise>
+					</c:choose></td>
 					<td class="destination">탑승 시 사용 포인트</td>
-					<td class="tname">3,000Point</td>
+					<td class="tname">${hMap.hVo.convertFare}</td>
 				</tr>
 				<tr>
 					<td class="waypoint">요청사항</td>
-					<td colspan="3" class="tname">경유지에서만 탑승 가능합니다</td>
+					<td colspan="3" class="tname">${hMap.hVo.comments}</td>
 				</tr>
 			</table>
 		</div>
 		<div id="hitch-deep-map"></div>
 		<a class="back" href="/spotHitchhike">목록보기</a>
+		<input type="hidden" id="latlng" value="${hMap.latlng}">
+		<input type="hidden" id="nowLatlng" value="${hMap.nowLatlng}">
+		<input type="hidden" id="nowAddr" value="${hMap.nowAddr}">
+		<input type="hidden" id="mateNo" value="${hMap.mateNo}">  
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
 </body>
 <script>
 	var mapContainer = document.getElementById('hitch-deep-map'), // 지도를 표시할 div 
-	mapOption = {
-		center : new kakao.maps.LatLng(37.48436301061165, 126.9922281879226), // 지도의 중심좌표
-		level : 2
-	// 지도의 확대 레벨 
-	};
-	var map = new kakao.maps.Map(mapContainer, mapOption);
-	var lat, lon = 0;
-	var temp = {};
-	var options = {
-		enableHighAccuracy : true,
-		timeout : 5000,
-		maximumAge : 0
-	};
-	function success(position) {
-		lat = position.coords.latitude, // 위도
-		lon = position.coords.longitude; // 경도
-		var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-		var mVo = {};
-		mVo.lat = lat;
-		mVo.lon = lon;
-		if (mVo != temp) {
-			temp = mVo;
-			$.ajax({
-				url : "${pageContext.request.contextPath}/now",
-				type : "post",
-				contentType : "application/json",
-				data : JSON.stringify(temp),
-				dataType : "json",
-				success : function(result) {
-					console.log("good")
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
+		mapOption = {
+			center : new kakao.maps.LatLng(37.48436301061165, 126.9922281879226), // 지도의 중심좌표
+			level : 2
+		},
+		map = new kakao.maps.Map(mapContainer, mapOption);
+	var Strlatlng = $("#latlng").val(),
+		mateNo = $("#mateNo").val(),
+		latlng = Strlatlng.split(","),
+		splace = $("#splace1").text(),
+		eplace = $("#eplace1").text(),
+		nowAddr = $("#nowAddr").val(),
+		nowLatlng = $("#nowLatlng").val().replace('[', '').replace(']','').split(","),
+		marker0,
+		marker1,
+		marker2,
+		infowindow0,
+		infowindow1,
+		infowindow2,
+		iwContent;
+		
+		firstSet();
+		setInterval(function(){nowPos()}, 3000);
+		
+		
+	function nowPos() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/updateDriverPos",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify({
+				addr: nowAddr,
+				mateNo: mateNo
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log(result);
+				console.log("before:",map);
+				if (result.lat == 0) {
+					console.log("same place");
+					return;
 				}
-			});
-		}
-		displayMarker(locPosition);
-	};
-	function error(err) {
-		console.log(err);
-	};
-
-	if (navigator.geolocation) {
-		var na = navigator.geolocation.watchPosition(success, error, options);
-	}
-	var marker;
-	var flag = false;
-	function displayMarker(locPosition) {
-		if (flag) {
-			marker.setMap(null);
-		}
-		var imageSrc = './assets/images/common/android-icon-36x36.png', // 마커이미지의 주소입니다    
-		imageSize = new kakao.maps.Size(36, 36), // 마커이미지의 크기입니다
-		imageOption = {
-			offset : new kakao.maps.Point(27, 69)
-		};
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-				imageOption)
-		// 마커를 생성합니다
-		marker = new kakao.maps.Marker({
-			position : locPosition,
-			image : markerImage
+				console.log("after:",map);
+				marker2.setMap(null);
+				infowindow2.close();
+				iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+result.addr+'</div>';
+				infowindow2 = new kakao.maps.InfoWindow({
+				    content : iwContent
+				});
+				var newPos = new kakao.maps.LatLng(result.lat, result.lng);
+				var imageSrc = '/assets/images/pin_'+1+'.png', // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+				marker2 = new kakao.maps.Marker({
+					position: newPos,
+					map: map,
+					image: markerImage
+				});
+				infowindow2.open(map, marker2);
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
 		});
-		marker.setMap(map);
-		flag = true;
-		map.setCenter(locPosition);
+	}
+		
+	function firstSet() {
+		var bounds = new kakao.maps.LatLngBounds();
+		bounds.extend(new kakao.maps.LatLng(latlng[1], latlng[0]));
+		bounds.extend(new kakao.maps.LatLng(latlng[latlng.length-1], latlng[latlng.length-2]));
+		map.setBounds(bounds);
+		
+		var positions = [
+			{
+				latlng: new kakao.maps.LatLng(latlng[1], latlng[0])
+			},
+			{
+				latlng: new kakao.maps.LatLng(latlng[latlng.length-1], latlng[latlng.length-2])
+			},
+			{
+				latlng: new kakao.maps.LatLng(nowLatlng[1], nowLatlng[0])
+			}
+		];
+		for (var i=0;i<3;i++) {
+			if ( i==0 ) {
+				iwContent = '<div class="hitchdeepinfo">출발지 입니다<br>'+splace+'</div>'; 
+				infowindow0 = new kakao.maps.InfoWindow({
+				    content : iwContent
+				});
+			} else if (i==1){
+				iwContent = '<div class="hitchdeepinfo"">도착지 입니다<br>'+eplace+'</div>';
+				infowindow1 = new kakao.maps.InfoWindow({
+				    content : iwContent
+				});
+			} else if (i==2) {
+				iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+nowAddr+'</div>';
+				infowindow2 = new kakao.maps.InfoWindow({
+				    content : iwContent
+				});
+			}
+			var min = Math.ceil(1),
+		    	max = Math.floor(14),
+		    	rnd = Math.floor(Math.random() * (max - min)) + min;
+			var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
+				imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+			if (i==0) { 
+				marker0 = new kakao.maps.Marker({
+					position: positions[i].latlng,
+					map: map,
+					image: markerImage
+				});
+				infowindow0.open(map, marker0);
+			} else if (i==1) {
+				marker1 = new kakao.maps.Marker({
+					position: positions[i].latlng,
+					map: map,
+					image: markerImage
+				});
+				infowindow1.open(map, marker1);
+			} else if (i==2) {
+				marker2 = new kakao.maps.Marker({
+					position: positions[i].latlng,
+					map: map,
+					image: markerImage
+				});
+				infowindow2.open(map, marker2);
+			}
+			
+		}
+		//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+		//테스트 결과 json 파싱해서 for문 반복으로 넣어주면 될듯
+		var linePath = [
+			new kakao.maps.LatLng(latlng[1], latlng[0]),
+			];
+		for (var i=0; i<latlng.length; i++) {
+				if (i == latlng.length) {
+					linePath.push(new kakao.maps.LatLng(latlng[latlng.length-1], latlng[latlng.length-2]));
+					break;
+				}
+				linePath.push(new kakao.maps.LatLng(latlng[i+1],latlng[i]),);
+				i++;
+			};
+		
+		//지도에 표시할 선을 생성합니다
+		var polyline = new kakao.maps.Polyline({
+			path: linePath, // 선을 구성하는 좌표배열 입니다
+			strokeWeight: 5, // 선의 두께 입니다
+			strokeColor: '#4454a1', // 선의 색깔입니다
+			strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			strokeStyle: 'solid', // 선의 스타일입니다
+			map: map
+		});
 	}
 </script>
 </html>

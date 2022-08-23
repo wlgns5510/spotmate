@@ -10,10 +10,20 @@ import com.spotmate.vo.UserVo;
 public class UserService {
 	
 	@Autowired
-	private UserDao ud;
+	private UserDao userDao;
 	
-	public UserVo getInfo() {
-		return ud.getUserInfo();
+	public void joinUser(UserVo userVo) {
+		userVo.setBirth(userVo.getYear() +"/"+ userVo.getMonth() +"/"+ userVo.getDay());
+		userDao.joinUser(userVo);
 	}
-
+	
+	public UserVo loginOk(UserVo userVo) {
+		
+		if(userDao.loginOk(userVo)==null) {
+			return null;
+		}
+		
+		return userDao.loginOk(userVo);
+		
+	}
 }

@@ -33,7 +33,7 @@
 	padding: 0px 0px 0px 0px;
 	/* 	display: block; */
 	float: right;
-	margin: 0px 55px 0px 0px;
+	margin: 0px 54px 0px 0px;
 	height: 40px;
 }
 
@@ -55,10 +55,11 @@
 	border: 2px solid rgba(217, 217, 217, 1);
 	border-right: none;
 	width: 140px;
-	padding: 8px 35px 7px 25px;
+	height: 40px;
+	padding: 0px 35px 0px 25px;
 	margin: 0px 0px 0px 0px;
 	font-family: Noto Sans;
-	font-weight: 400px;
+	font-weight: 400;
 	color: rgba(102, 102, 102, 1);
 }
 
@@ -322,7 +323,7 @@
 	text-align: left;
 	margin: 0px 0px 30px 0px;
 }
-/*********************** contnet > schedule *************************/
+/*********************** content > schedule *************************/
 .mateDeep_content .mateDeep_dayBox {
 	width: 90px;
 	height: 40px;
@@ -362,10 +363,12 @@
 
 .mateDeep_today .mateDeep_float {
 	float: left;
+	margin: 0px 0px 50px 0px;
 }
 
-.mateDeep_today img {
-	margin: 60px 50px 0px 10px;
+.mateDeep_today .mateDeep_lineImg {
+	float: left;
+	margin: 60px 60px 0px 20px;
 }
 
 .mateDeep_time {

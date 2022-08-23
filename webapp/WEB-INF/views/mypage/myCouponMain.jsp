@@ -84,7 +84,8 @@
 							<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
 								<option value="">유형</option>
 								<option value="주유">주유권</option>
-							</select> <select name="option2">
+							</select> 
+							<select name="option2">
 								<option value="">사용여부</option>
 								<option value="미사용">미사용</option>
 								<option value="사용완료">사용완료</option>
@@ -112,7 +113,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${cMap.couponList }" var="couponVo">
+							<c:forEach items="${cMap.couponBList }" var="couponVo">
 								<tr>
 									<td>${couponVo.no }</td>
 									<td>${couponVo.buyDate }</td>

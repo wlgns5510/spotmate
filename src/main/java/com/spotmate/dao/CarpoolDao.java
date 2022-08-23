@@ -1,6 +1,7 @@
 package com.spotmate.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class CarpoolDao {
 		@Autowired
 		private SqlSession sqlSession;
 		
-		
+		/*
 		// 리스트
 		public List<CarpoolVo> getcarpoolList() {
 			System.out.println("CarpoolDao>list()");
@@ -24,15 +25,42 @@ public class CarpoolDao {
 			System.out.println(carpoolList);
 
 			return carpoolList;
-		}
+		}*/
 		
-	
+		
+		// 차량 리스트 가져오기
+		public List<CarpoolVo> getCarpoolList(Map<String, Object> pMap) {
+			System.out.println("CarpoolDao > list()");
+
+			List<CarpoolVo> carpoolList = sqlSession.selectList("carpool.selectCarpoolList", pMap);
+	 
+			return carpoolList;
+		}
+
+		
+		// 쿠폰전체글 갯수
+		public int totalCarpoolCnt() {
+			System.out.println("CarpoolDao > totalCarpoolCnt");
+			
+			int totalCarpoolCnt = sqlSession.selectOne("carpool.totalCarpoolCnt");
+			
+			return totalCarpoolCnt;
+		}
+		/*
+		//드라이버 별점 평균 ★★★☆☆
+		public int avgStar(int no) {
+			System.out.println("CarpoolDao > avgStar");
+			
+			int avgStar = sqlSession.selectOne("carpool.avgStar",no);
+			
+			return avgStar;
+		}*/
 		
 		//리뷰 리스트
 		public List<CarpoolVo> getreviewList() {
 			System.out.println("CarpoolDao>list()");
 
-			List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewlist");
+			List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewList");
 			System.out.println(reviewList);
 
 			return reviewList;

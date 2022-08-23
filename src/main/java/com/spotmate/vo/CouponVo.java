@@ -9,80 +9,117 @@ public class CouponVo {
 	private String usePlace;
 	private int point;
 	private String status;
+	private int couponNo;
+	private String imgsrc;
 
 	
 	//생성자
 	public CouponVo() {
 	}
-	
-	public CouponVo(int no, int userNo, String buyDate, String usePlace, int point, String status) {
+
+
+	public CouponVo(int no, int userNo, String buyDate, String usePlace, int point, String status, int couponNo,
+			String imgsrc) {
+		super();
 		this.no = no;
 		this.userNo = userNo;
 		this.buyDate = buyDate;
 		this.usePlace = usePlace;
 		this.point = point;
 		this.status = status;
+		this.couponNo = couponNo;
+		this.imgsrc = imgsrc;
 	}
 
 
 	//메소드-gs
+	
 	public int getNo() {
 		return no;
 	}
+
 
 	public void setNo(int no) {
 		this.no = no;
 	}
 
+
 	public int getUserNo() {
 		return userNo;
 	}
+
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
 
+
 	public String getBuyDate() {
 		return buyDate;
 	}
+
 
 	public void setBuyDate(String buyDate) {
 		this.buyDate = buyDate;
 	}
 
+
 	public String getUsePlace() {
 		return usePlace;
 	}
+
 
 	public void setUsePlace(String usePlace) {
 		this.usePlace = usePlace;
 	}
 
+
 	public int getPoint() {
 		return point;
 	}
+
 
 	public void setPoint(int point) {
 		this.point = point;
 	}
 
+
 	public String getStatus() {
 		return status;
 	}
 
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
+
+	public int getCouponNo() {
+		return couponNo;
+	}
+
+
+	public void setCouponNo(int couponNo) {
+		this.couponNo = couponNo;
+	}
+
+
+	public String getImgsrc() {
+		return imgsrc;
+	}
+
+
+	public void setImgsrc(String imgsrc) {
+		this.imgsrc = imgsrc;
+	}
+
+
 	//메소드-일반
 	@Override
 	public String toString() {
 		return "CouponVo [no=" + no + ", userNo=" + userNo + ", buyDate=" + buyDate + ", usePlace=" + usePlace
-				+ ", point=" + point + ", status=" + status + "]";
+				+ ", point=" + point + ", status=" + status + ", couponNo=" + couponNo + ", imgsrc=" + imgsrc + "]";
 	}
 
-	
-	
-	
-	
+
 }

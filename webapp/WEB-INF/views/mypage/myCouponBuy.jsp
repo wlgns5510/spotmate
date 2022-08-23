@@ -30,11 +30,15 @@
 				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.5</span>
 			</div>
 			<div class="box2">
-				<p><a href="./myPointCharge">포인트 충전 ></a></p>
+				<p>
+					<a href="./myPointCharge">포인트 충전 ></a>
+				</p>
 				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
 			</div>
 			<div class="box3">
-				<p><a href="./myCouponMain">쿠폰 사용 ></a></p>
+				<p>
+					<a href="./myCouponMain">쿠폰 사용 ></a>
+				</p>
 				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
 			</div>
 		</nav>
@@ -104,15 +108,13 @@
 				<!-- //section-article2 -->
 				<article class="myPage_article2">
 					<h4>모바일 주유권</h4>
-					<form action="${pageContext.request.contextPath }/mypageJ/couponClick" method="get" >
-					<div class="myCoupon">
-						<button type="submit"><img src="/assets/images/soil_3.png"></button> <a href="./myCouponUse"><img src="/assets/images/soil_5.png"></a> <a href="./myCouponUse"><img
-							src="/assets/images/soil_10.png"></a> <a href="./myCouponUse"><img src="/assets/images/soil_30.png"></a> <a href="./myCouponUse"><img src="/assets/images/soil_50.png"></a> <a
-							href="./myCouponUse"><img src="/assets/images/soil_100.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_3.png"></a> <a href="./myCouponUse"><img
-							src="/assets/images/gs_5.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_10.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_30.png"></a> <a
-							href="./myCouponUse"><img src="/assets/images/gs_50.png"></a> <a href="./myCouponUse"><img src="/assets/images/gs_100.png"></a>
-					</div>
-					</form>
+						<div class="myCoupon">
+							<c:forEach items="${couponList }" var="couponVo">
+								<a href="./myCouponUse/${couponVo.couponNo }">
+									<img src="${couponVo.imgsrc }">
+								</a>
+							</c:forEach>
+						</div>
 				</article>
 			</section>
 		</main>

@@ -3,15 +3,20 @@ package com.spotmate.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spotmate.service.MypageJService;
 import com.spotmate.vo.CouponVo;
+import com.spotmate.vo.PointVo;
+import com.spotmate.vo.UserVo;
 
 @Controller
 @RequestMapping(value = "/mypageJ")
@@ -22,7 +27,7 @@ public class MypageJController {
 
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponMain(Model model,
+	public String myCouponMain(Model model, HttpSession session,
 			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
 			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
 			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
@@ -30,7 +35,10 @@ public class MypageJController {
 			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
 		System.out.println("MypageJController > myCouponMain");
 
-		Map<String, Object> cMap = mypagejService.getCouponList(startDate, endDate, option1, option2, crtPage);
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		int userNo = authUser.getNo();
+
+		Map<String, Object> cMap = mypagejService.getCouponBList(startDate, endDate, option1, option2, crtPage, userNo);
 
 		model.addAttribute("cMap", cMap);
 
@@ -38,12 +46,25 @@ public class MypageJController {
 	}
 
 	@RequestMapping(value = "/myCouponBuy", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponBuy() {
+	public String myCouponBuy(Model model) {
+		System.out.println("MypageJController > myCouponBuy");
+
+		List<CouponVo> couponList = mypagejService.getCouponList();
+
+		model.addAttribute("couponList", couponList);
+
 		return "/mypage/myCouponBuy";
 	}
 
-	@RequestMapping(value = "/myCouponUse", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponUse() {
+	// 쿠폰클릭
+	@RequestMapping(value = "/myCouponUse/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myCouponUse(@PathVariable("no") int couponNo, Model model) {
+		System.out.println("MypageJController > myCouponUse");
+
+		String couponImg = mypagejService.getCouponImg(couponNo);
+
+		model.addAttribute("couponImg", couponImg);
+
 		return "/mypage/myCouponUse";
 	}
 
@@ -61,14 +82,34 @@ public class MypageJController {
 
 	// 카카오페이
 	@RequestMapping(value = "/kakaoPaySuccess", method = { RequestMethod.GET, RequestMethod.POST })
-	public void myPointCharge(Long point) {
+	public void myPointCharge(Long point, HttpSession session) {
 		System.out.println("MypageJController > kakaoPaySuccess");
-
-		mypagejService.chargePoint(point);
+		
+		UserVo authUser= (UserVo)session.getAttribute("authUser");
+		
+		int userNo = authUser.getNo();
+		
+		mypagejService.chargePoint(point, userNo);
+		
 	}
 
+	// 포인트메인
 	@RequestMapping(value = "/myPointMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointMain() {
+	public String myPointMain(Model model, HttpSession session,
+			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
+			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
+			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
+			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
+		System.out.println("MypageJController > myPointMain");
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
+
+		List<PointVo> pointList = mypagejService.getPointList(userNo);
+
+		model.addAttribute("pointList", pointList);
+
 		return "/mypage/myPointMain";
 	}
 

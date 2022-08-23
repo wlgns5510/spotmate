@@ -4,6 +4,9 @@ rollback;
 -- 커밋
 commit;
 
+-- -- SYSTIMESTAMP 출력형식 변경
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS';
+
 ------------------ 회원 --------------------
 DROP INDEX PK_users;
 
@@ -163,6 +166,21 @@ SELECT
     *
 FROM
     users;
+-- 
+SELECT
+    no,
+    name
+FROM
+    users
+WHERE
+        id = 'aa11'
+    AND pw = 'aaaa1111';
+
+-- delete
+DELETE FROM users
+WHERE no = 9;
+
+commit;
     
 ------------------ 카테고리 --------------------
 DROP INDEX PK_category;
@@ -1339,7 +1357,8 @@ CREATE TABLE pointUsage (
 	type VARCHAR2(100), /* 유형(충전,예약,완료) */
 	regDate DATE, /* 입금날짜,사용날짜,입금날짜 */
 	agent NUMBER, /* 입금돈(현금,충전) */
-	point NUMBER /* 사용,입금 포인트 */
+	point NUMBER, /* 사용,입금 포인트 */
+    reNo NUMBER /* 예약번호 */
 );
 
 -- 시퀀스 생성
@@ -1363,6 +1382,8 @@ COMMENT ON COLUMN pointUsage.agent IS '입금돈(현금,충전)';
 
 COMMENT ON COLUMN pointUsage.point IS '사용,입금 포인트';
 
+COMMENT ON COLUMN pointUsage.reNo IS '예약번호';
+
 CREATE UNIQUE INDEX PK_pointUsage
 	ON pointUsage (
 		no ASC
@@ -1384,26 +1405,34 @@ ALTER TABLE pointUsage
 		REFERENCES users (
 			no
 		);
-
+ALTER TABLE pointUsage
+   ADD
+      CONSTRAINT FK_reservation_TO_pointUsage
+      FOREIGN KEY (
+         reNo
+      )
+      REFERENCES reservation (
+         no
+      );
 
 --insert
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', '2022-08-12', +5000, +5000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 1, '충전', '2022-08-12', +5000, +5000, 1);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 2, '예약', '2022-08-13', 0, -3000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 2, '예약', '2022-08-13', 0, -3000, 2);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 3, '완료', '2022-08-14', 0, 0);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 3, '완료', '2022-08-14', 0, 0, 3);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 4, '완료', '2022-08-15', 0, 0);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 4, '완료', '2022-08-15', 0, 0, 1);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 5, '예약', '2022-08-16', 0, -4000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 5, '예약', '2022-08-16', 0, -4000, 2);
 
 INSERT INTO pointUsage
-VALUES (SEQ_POINTUSAGE_NO.nextval, 6, '충전', '2022-08-12', +7000, +7000);
+VALUES (SEQ_POINTUSAGE_NO.nextval, 6, '충전', '2022-08-12', +7000, +7000, 3);
 
 -- select
 select *
@@ -1492,16 +1521,16 @@ drop sequence seq_place_no;
 
 -- 테이블 생성 : 장소
 CREATE TABLE place (
-    no NUMBER NOT NULL, /* 장소번호 */
-    mateNo NUMBER, /* 메이트번호 */
-    day VARCHAR2(1000), /* 일차(1일차) */
-    wayNo NUMBER, /* 경유지순서 */
-    sepPlace VARCHAR2(1000), /* 구분(출, 경, 도, 현) */
-    -- ymd DATE, /* 년월일 */
-    time varchar2(30), /* 시간(도착일때없음) */
-    place VARCHAR2(1000), /* 장소 */
-    lat NUMBER, /* 위도 */
-    lng NUMBER, /* 경도 */
+   no NUMBER NOT NULL, /* 장소번호 */
+   mateNo NUMBER, /* 메이트번호 */
+   day number, /* 일차(1일차) */
+   wayNo NUMBER, /* 경유지순서 */
+   sepPlace VARCHAR2(1000), /* 구분(출, 경, 도, 현) */
+   -- ymd DATE, /* 년월일 */
+   time date, /* 시간(도착일때없음) */
+   place VARCHAR2(1000), /* 장소 */
+   lat NUMBER, /* 위도 */
+   lng NUMBER, /* 경도 */
     latlng LONG /* 경로 */
 );
 
@@ -1565,7 +1594,7 @@ INSERT INTO place VALUES (
     NULL,
     -1,
     '출발지',
-    '2022-08-13 오후 11:54',
+    to_date('오전 11:54', 'AM HH:MI'),
     '건대입구역',
     127.2341234234,
     36.342355436,
@@ -1578,7 +1607,7 @@ INSERT INTO place VALUES (
     NULL,
     0,
     '도착지',
-    '2022-08-13',
+    null,
     '홍대입구역',
     127.2341234234,
     36.342355436,
@@ -1591,7 +1620,7 @@ INSERT INTO place VALUES (
     NULL,
     -1,
     '출발지',
-    '2022-08-15 오전 11:12',
+    to_date('오전 11:12', 'AM HH:MI'),
     '방배역',
     127.2341234234,
     36.342355436,
@@ -1604,7 +1633,7 @@ INSERT INTO place VALUES (
     NULL,
     0,
     '도착지',
-    '2022-08-15',
+    null,
     '신림역',
     127.2341234234,
     36.342355436,
@@ -1617,7 +1646,7 @@ INSERT INTO place VALUES (
     1,
     -1,
     '출발지',
-    '2022-08-17 오전 08:30',
+    to_date('오전 08:30', 'AM HH:MI'),
     '서울역',
     127.2341234234,
     36.342355436,
@@ -1629,7 +1658,7 @@ INSERT INTO place VALUES (
     1,
     1,
     '경유지',
-    '2022-08-17 오전 11:30',
+    to_date('오전 11:30', 'AM HH:MI'),
     '문경',
     127.2341234234,
     36.342355436,
@@ -1642,7 +1671,7 @@ INSERT INTO place VALUES (
     1,
     2,
     '경유지',
-    '2022-08-17 오후 02:20',
+    to_date('오후 02:20', 'AM HH:MI'),
     '울산',
     127.2341234234,
     36.342355436,
@@ -1654,7 +1683,7 @@ INSERT INTO place VALUES (
     1,
     0,
     '도착지',
-    '2022-08-17',
+    null,
     '부산',
     127.2341234234,
     36.342355436,
@@ -1667,7 +1696,7 @@ INSERT INTO place VALUES (
     2,
     -1,
     '출발지',
-    '2022-08-18 오전 10:00',
+    to_date('오전 10:00', 'AM HH:MI'),
     '부산',
     127.2341234234,
     36.342355436,
@@ -1679,7 +1708,7 @@ INSERT INTO place VALUES (
     2,
     1,
     '경유지',
-    '2022-08-18 오후 02:30',
+    to_date('오후 02:30', 'AM HH:MI'),
     '주문진',
     127.2341234234,
     36.342355436,
@@ -1691,7 +1720,7 @@ INSERT INTO place VALUES (
     2,
     2,
     '경유지',
-    '2022-08-18 오후 04:30',
+    to_date('오후 04:30', 'AM HH:MI'),
     '강릉',
     127.2341234234,
     36.342355436,
@@ -1703,17 +1732,88 @@ INSERT INTO place VALUES (
     2,
     0,
     '도착지',
-    '2022-08-18',
+    null,
     '서울',
     127.2341234234,
     36.342355436,
     ''
 );
-    
-
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    4,
+    1,
+    -1,
+    '출발지',
+    to_date('오전 08:00', 'AM HH:MI'),
+    '서울',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    4,
+    1,
+    1,
+    '경유지',
+    to_date('오전 09:30', 'AM HH:MI'),
+    '춘천',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    4,
+    1,
+    0,
+    '도착지',
+    null,
+    '강릉',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    4,
+    2,
+    -1,
+    '출발지',
+    to_date('오전 09:30', 'AM HH:MI'),
+    '강릉',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    4,
+    2,
+    1,
+    '경유지',
+    to_date('오후 12:30', 'AM HH:MI'),
+    '고양',
+    127.2341234234,
+    36.342355436,
+    ''
+);
+INSERT INTO place VALUES (
+    seq_place_no.NEXTVAL,
+    4,
+    2,
+    0,
+    '도착지',
+    null,
+    '서울',
+    127.2341234234,
+    36.342355436,
+    ''
+);
 -- select
 select *
 from place;
+
 
 -- 커밋
 commit;

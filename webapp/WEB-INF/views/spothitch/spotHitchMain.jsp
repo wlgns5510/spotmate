@@ -24,24 +24,24 @@
 	</div>
 	<div class="inner clear">
 		<div id="hitch-main-map"></div>
-		<div class="info">
-			<ul class="infoTop">
+		<div class="spot-hitch-info">
+			<ul class="spot-hitch-infoTop">
 				<li><span>탑승 가능 차량리스트</span></li>
 			</ul>
-			<form action="../" method="get">
 				<div class="searchbox">
 					<input class="place" type="text" name="start" value="" placeholder="출발지"> 
 					<input class="place" type="text" name="end" value="" placeholder="도착지"> 
-					<input class="people " type="number" min="1" name="people" value="" placeholder="인원수">
-					<button type="submit"><img src="/assets/images/round-search.png"></button>
+					<input class="people" type="number" min="1" name="people" value="" placeholder="인원수">
+					<button onclick="search()" type="button"><img src="/assets/images/round-search.png"></button>
 				</div>
 				<div class="detail-option">
-					<input type="checkbox" value="femaleDriver">여성 드라이버 
-					<input type="checkbox" checked="checked" value="pet">반려동물 탑승 가능
-					<a href="javascript:void(0);" class="btn_a1"></a>
+					<input class="chkitem" type="checkbox" value="femaleDriver">여성 드라이버 
+					<input class="chkitem" type="checkbox" value="nosmoke">비흡연자
+					<input class="chkitem" type="checkbox" value="pet">반려동물 탑승 가능
+					<input class="chkitem" type="checkbox" value="phonecharge">충전기 사용 가능
+					<input class="chkitem" type="checkbox" value="trunk">트렁크 사용 가능
 				</div>
-			</form>
-			<c:forEach items="${hitchList}"  var="hitch" varStatus="status">
+			<%-- <c:forEach items="${hitchList}"  var="hitch" varStatus="status">
 			<div class="driverList">
 				<div class="start">
 					<p>현재위치</p>
@@ -51,13 +51,13 @@
 					<p>목적지</p>
 					<span>${hitch.eplace1}</span>
 				</div>
-				<div class="num people${status.count}">
+				<div class="num" id="people${hitch.mateNo}">
 					<span>탑승 가능한 인원수</span><p>${hitch.people}</p>
 				</div>
 				<div class="usePoint">
 					<span>총 결제 포인트</span><p>${hitch.convertPoint}</p>
 				</div>
-				<a class="carPos"><img src="/assets/images/ico_spot.png"></a>
+				<img onclick="carPos(${status.count})" class="carPos" src="/assets/images/ico_spot.png">
 					
 				<a href="/spotHitchhikedeep/${hitch.mateNo}" class="hitchdeep" href="/spotHitchhikedeep">
 						상세 조건
@@ -65,18 +65,17 @@
 				<p onclick="rideReq(${status.count})" class="rideReq" id="rideReq${status.count}">
 					탑승 요청
 				</p>
-				<input type="hidden" value="${hitch.mateNo}" id="hitch${status.count}" >
-				<input type="hidden" value="${hitch.people}" id="canRide${status.count}" >
+				<input type="hidden" value="${hitch.mateNo}" id="hitch${status.count}">
+				<input type="hidden" value="${hitch.people}" id="canRide${status.count}">
+				<input type="hidden" value="" id="latlng${hitch.mateNo}">
 			</div>
-			</c:forEach>
+			</c:forEach> --%>
 		</div>
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 	
 </body>
 <script>
-	
-	var mateNo = $("#hitch1").val();
 
 	var geocoder = new kakao.maps.services.Geocoder();
 	var mapContainer = document.getElementById('hitch-main-map'), // 지도를 표시할 div 
@@ -85,61 +84,70 @@
 		level : 3
 	},
 	map = new kakao.maps.Map(mapContainer, mapOption);
-
-	var	lat, lng = 0,
-		temp = {},
-		flag = false,
-		marker,
-		options = {
-		enableHighAccuracy : true,
-		timeout : 5000,
-		maximumAge : 0
-	};
+	var	lat, lng, atl = 0,
+		markers = [],
+		infowindows = [],
+		temp =[];
 	
-
-	if (navigator.geolocation) {
-		var na = navigator.geolocation.watchPosition(success, error, options);
+	var imageSrc = './assets/images/common/login_people_f50.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(50, 50), // 마커이미지의 크기입니다
+		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+		marker = new kakao.maps.Marker({
+			image : markerImage,
+		});
+	
+	if(navigator.geolocation) {
+		var na = navigator.geolocation.getCurrentPosition(function(position) {
+			lat = position.coords.latitude,
+			lng = position.coords.longitude;
+			$.ajax({
+				url : "${pageContext.request.contextPath}/nearHitchList",
+				type : "post",
+				contentType : "application/json",
+				data : JSON.stringify({
+						lat: lat,
+						lng: lng
+				}),
+				dataType : "json",
+				success : function(result) {
+					for(var i=0;i<result.length;i++) {
+						$(".spot-hitch-info").append('<div class="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+i+')" class="carPos" src="/assets/images/ico_spot.png"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+i+')" class="rideReq" id="rideReq'+i+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+i+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+i+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"></div></div>');
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		})
 	}
 	
+	
+	myloca();
+	
+	setInterval(function(){myloca()}, 5000);
+	
+	
+	function myloca() {
+		if (navigator.geolocation) {
+			var na = navigator.geolocation.getCurrentPosition(function(position) {
+				lat = position.coords.latitude, // 위도
+				lng = position.coords.longitude; // 경도
+				var locPosition = new kakao.maps.LatLng(lat, lng); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+				displayMarker(locPosition);
+			})
+		}
+	}
 	
 	
 	function displayMarker(locPosition) {
-		if (flag) {
-			marker.setMap(null);
-		}
-		var imageSrc = './assets/images/common/android-icon-48x48.png', // 마커이미지의 주소입니다    
-		imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize)
-		// 마커를 생성합니다
-		marker = new kakao.maps.Marker({
-			position : locPosition,
-			image : markerImage,
-			map : map
-		});
-
-		//마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
-		var iwContent = '<div style="text-align:center; height:220px;"><div class="iw" style="width:250px; padding:10px 25px 10px 25px;">목적지</div> <div style="padding:10px 25px 10px 25px;">NAVER 본사</div> <div style="padding:10px 25px 10px 25px;">드라이버 &nbsp; spotmate12 님</div> <div style="padding:10px 25px 40px 25px;">탑승 가능 인원 수 &nbsp; 1명</div> <a href="/spotHitchhikedeep" style="padding: 10px; background-color: #4454a1; color:white; border-radius: 10px;" >상세 보기</a></div>', iwRemoveable = true;
-
-		// 인포윈도우를 생성합니다
-		var infowindow = new kakao.maps.InfoWindow({
-			content : iwContent,
-			removable : iwRemoveable
-		});
-
-		// 마커에 클릭이벤트를 등록합니다
-		kakao.maps.event.addListener(marker, 'click', function() {
-			// 마커 위에 인포윈도우를 표시합니다
-			infowindow.open(map, marker);
-		});
-
-		flag = true;
-		map.setCenter(locPosition);
-	}
-	
-	function success(position) {
-		lat = position.coords.latitude, // 위도
-		lng = position.coords.longitude; // 경도
-		var locPosition = new kakao.maps.LatLng(lat, lng); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+		// 왜 해결됨?
+// 		if (marker != null) {
+// 			marker.setMap(null);	
+// 		}
+		
+		marker.setPosition(locPosition);
+		marker.setMap(map);
+		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/userPos",
 			type : "post",
@@ -150,33 +158,99 @@
 			}),
 			dataType : "json",
 			success : function(result) {
-				console.log(result);
-// 				$("#nowpos"+mateNo).text(result);
+				var hVo = {},
+					chkTemp = [];
+				for(var i=0;i<result.length;i++) {
+					atl = result.length - 1;
+					$.ajax({
+						url : "${pageContext.request.contextPath}/updateInfo",
+						type : "post",
+						contentType : "application/json",
+						async: false,
+						data : JSON.stringify({
+								nowaddr: result[i].latlng.split(",")[2],
+								people: result[i].people,
+								mateNo: result[i].mateNo
+						}),
+						dataType : "json",
+						success : function(result) {
+							//전체 mateNo리스트
+							if ( !temp.includes(result.hiVo.mateNo) ) {
+								temp.push(result.hiVo.mateNo);
+							} 
+							//people = 0이 됬을 때 갱신된 mateNo리스트
+							else if ( temp.length >= chkTemp.length) {
+								chkTemp.push(result.hiVo.mateNo);
+								if ( i == atl ) {
+									var dif = temp.filter(x => !chkTemp.includes(x));
+									for( var k=0;k<dif.length;k++ ) {
+										$(".box"+dif[k]).remove();
+									}
+								}
+							}
+							
+							
+							hVo = result.hVo;
+							$("#nowpos"+result.hiVo.mateNo).text(result.hiVo.nowaddr);
+							$("#people"+result.hiVo.mateNo).html("<span>탑승 가능한 인원수</span><p>"+result.hiVo.people+"</p>");
+						},
+						error : function(XHR, status, error) {
+							console.error(status + " : " + error);
+						}
+					});
+					if (markers.length == result.length) {
+						continue;
+					}
+					
+					var marker, infowindow;
+					markers.push(marker);
+					infowindows.push(infowindow);
+					
+					var latlng = new kakao.maps.LatLng(result[i].latlng.split(",")[1], result[i].latlng.split(",")[0]);
+					$("#latlng"+result[i].mateNo).val(latlng.toString());
+					var min = Math.ceil(1),
+				    	max = Math.floor(14),
+				    	rnd = Math.floor(Math.random() * (max - min)) + min;
+					var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
+						imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+						markers[i] = new kakao.maps.Marker({
+							position : latlng,
+							image : markerImage,
+							map : map
+						});
+					var iwContent = '<div style="text-align:center; height:300px;"><div class="hitchdeepinfotop">목적지</div><div class="hitchdeepinfo">'+hVo.eplace1+'</div><div class="hitchdeepinfo">드라이버 &nbsp; '+hVo.name+' 님</div><div class="hitchdeepinfo">탑승 가능 인원 수 &nbsp; '+hVo.people+'명</div><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeepinfo hitchdeepinfobtn">상세 보기</a></div>';
+						infowindows[i] = new kakao.maps.InfoWindow({
+						    content : iwContent,
+						    removable : true
+						});
+					kakao.maps.event.addListener(markers[i], 'click', clickMarker(map, markers[i], infowindows[i]));
+					map.setCenter(locPosition);					
+					
+				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-		
-		displayMarker(locPosition);
-	};
-	
-	function error(err) {
-		console.log(err);
-	};
-	
-	function searchDetailAddrFromCoords(coords, callback) {
-		// 좌표로 법정동 상세 주소 정보를 요청합니다
-		geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+	}
+
+
+	function clickMarker(map, marker, infowindow) {
+		return function() {
+			infowindow.open(map, marker);  
+		}
 	}
 	
 	function rideReq(index) {
+		console.log(this);
 		if ( $(".people").val() == '' ) {
 			alert("인원 수를 지정한 다음 시도해주세요")
 			return;
 		}
+		var mateNo = $("#hitch"+index).val();
 		var hrVo = {};
-		hrVo.mateNo = $("#hitch"+index).val();
+		hrVo.mateNo = mateNo
 		hrVo.people = $(".people").val();
 		hrVo.canRide = $("#canRide"+index).val();
 		$.ajax({
@@ -188,7 +262,7 @@
 			success : function(result) {
 				if (result != -1) {
 					$("#canRide"+index).val(result);
-					$(".people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
+					$("#people"+mateNo).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
 					$("#rideReq"+index).text("신청 완료");
 				} else {
 					alert("탑승 인원 초과입니다.");
@@ -199,5 +273,38 @@
 			}
 		});
 	}
+	
+	function carPos(index) {
+		var mateNo = $("#hitch"+index).val(),
+			Strlatlng = $("#latlng"+mateNo).val()
+			latlngList = Strlatlng.split(",");
+		var	latlng = new kakao.maps.LatLng(latlngList[0], latlngList[1]);
+		map.setCenter(latlng);
+	}
+	
+	function search() {
+		var detailOpt = $('.chkitem:checked').map(function(){ return $(this).val();}).get().join(",");
+		var place = $('.place').map(function(){ return $(this).val();}).get().join(",");
+		var people =  $('.people').val();
+		var searchVo = {
+				detailOpt: detailOpt,
+				place: place,
+				people: people
+		};
+		$.ajax({
+			url : "${pageContext.request.contextPath}/search",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(searchVo),
+			dataType : "json",
+			success : function(result) {
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
 </script>
 </html>

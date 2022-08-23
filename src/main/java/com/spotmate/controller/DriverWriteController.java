@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,7 @@ import com.spotmate.vo.DriverWriteVo;
 import com.spotmate.vo.LatlngVo;
 import com.spotmate.vo.MateWriteVo;
 import com.spotmate.vo.SearchVo;
+import com.spotmate.vo.UserVo;
 
 @Controller
 public class DriverWriteController {
@@ -45,8 +48,12 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/carpoolWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String carpool(Model model) {
-		model.addAttribute("introduce", dws.getDriverInfo());
+	public String carpool(Model model, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if ( authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("introduce", dws.getDriverInfo(authUser.getNo()));
 		return "/driver/carpoolWrite";
 	}
 
@@ -82,14 +89,21 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/carpoolWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String carpoolInsert(@ModelAttribute DriverWriteVo dwVo) {
+	public String carpoolInsert(@ModelAttribute DriverWriteVo dwVo, HttpSession ss) {
+		UserVo authVo = (UserVo)ss.getAttribute("authUser");
+		dwVo.setUserNo(authVo.getNo());
+		dwVo.setCarNo(authVo.getCarNo());
 		dws.CarpoolRegister(dwVo);
 		return "redirect:/myReservationDriverMain";
 	}
 
 	@RequestMapping(value = "/hitchWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitch(Model model) {
-		model.addAttribute("introduce", dws.getDriverInfo());
+	public String hitch(Model model, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if ( authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("introduce", dws.getDriverInfo(authUser.getNo()));
 		return "/driver/hitchWrite";
 	}
 
@@ -101,15 +115,21 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/hitchWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitchInsert(Model model, @ModelAttribute DriverWriteVo dwVo) {
+	public String hitchInsert(@ModelAttribute DriverWriteVo dwVo, HttpSession ss) {
+		UserVo authVo = (UserVo)ss.getAttribute("authUser");
+		dwVo.setUserNo(authVo.getNo());
+		dwVo.setCarNo(authVo.getCarNo());
 		dws.HitchRegister(dwVo);
-		model.addAttribute("dwVo", dwVo);
-		return "/spothitch/spotHitchDriver";
+		return "redirect:/spotHitchDriver";
 	}
 
 	@RequestMapping(value = "/mateWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mate(Model model) {
-		model.addAttribute("introduce", dws.getDriverInfo());
+	public String mate(Model model, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if ( authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("introduce", dws.getDriverInfo(authUser.getNo()));
 		return "/driver/mateWrite";
 	}
 
@@ -137,7 +157,10 @@ public class DriverWriteController {
 	}
 	
 	@RequestMapping(value = "/mateWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateInsert(@ModelAttribute MateWriteVo mwVo) {
+	public String mateInsert(@ModelAttribute MateWriteVo mwVo, HttpSession ss) {
+		UserVo authVo = (UserVo)ss.getAttribute("authUser");
+		mwVo.setUserNo(authVo.getNo());
+		mwVo.setCarNo(authVo.getCarNo());
 		dws.MateRegister(mwVo);
 		return "redirect:/myReservationDriverMain";
 	}

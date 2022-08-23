@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,9 +101,10 @@
 					</div>
 
 					<div class="DriverenrollForm">
-						<form method="post" action="./myDriverWriteInsert">
+						<form method="post"
+							action="${pageContext.request.contextPath }/myDriverWriteInsert">
 							<div class="DL_info">
-
+								<!-- -->
 
 								<h5>면허증 정보 입력*</h5>
 								<!-- Driver License -->
@@ -117,7 +120,7 @@
 										<td><label for="userBD">생년월일*</label></td>
 										<td><input name="userBD" id="userBD"
 											placeholder="19900805" type="text"></td>
-										<td><a class="smallbtn" type="button" href="#"><span>본인인증</span></a></td>
+										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
@@ -125,8 +128,8 @@
 											type="text"></td>
 									</tr>
 									<tr align="left">
-										<td><label for="dl_Type">종류*</label></td>
-										<td><input name="dl_Type" id="dl_Type"
+										<td><label for="licensetype">종류*</label></td>
+										<td><input name="licensetype" id="licensetype"
 											placeholder="대형 1종" type="text" placeholder=""></td>
 									</tr>
 
@@ -136,13 +139,7 @@
 							<div class="DC_info">
 								<h5>차량 정보 입력*</h5>
 								<table>
-									<tr align="left">
-										<td><label for="carnum">차량등록번호*</label></td>
-										<td><input name="carnum" id="carnum"
-											placeholder="차량등록번호입력" type="text"></td>
-										<td><a class="smallbtn" type="button" href="#"><span
-												style="font-weight: bold">차량인증</span></a></td>
-									</tr>
+									
 									<tr align="left">
 										<td><label for="c_Model">차량모델명*</label></td>
 										<td><input name="c_Model" id="c_Model"
@@ -151,16 +148,15 @@
 
 									<tr>
 										<td></td>
-										<td><input type="file" id="input-file" class="file_d"
-											></td>
-										<td><label class="smallbtn" for="input-file"> 
-										<span>파일선택</span>
+										<td><input type="file" id="input-file" class="file_d"></td>
+										<td><label class="smallbtn" for="input-file"> <span>파일선택</span>
 										</label></td>
 									</tr>
 									<tr align="left">
-										<td><label for="c_num">차량번호*</label></td>
+										<td><label for="c_num">차량등록번호*</label></td>
 										<td><input name="c_num" id="c_num" placeholder="770가7777"
 											type="text"></td>
+										<td><button type="button" style="font-weight: bold" class="smallbtn" id="carAuth">차량인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
@@ -183,23 +179,20 @@
 									<!-- input type="radio" name="gender" id="male" placeholder="남자"  -->
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type1"><span>비흡연자</span></td>
+											id="Dformcheckbox" value="1"><span>비흡연자</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type2" checked="checked">
-											<span>여성드라이버</span></td>
+											id="Dformcheckbox" value="2" checked="checked"> <span>여성드라이버</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type3"><span>
-												반려동물 탑승가능</span></td>
+											id="Dformcheckbox" value="3"><span> 반려동물 탑승가능</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type4"> <span>핸드폰
-												충전기 보유</span></td>
+											id="Dformcheckbox" value="4"> <span>핸드폰 충전기 보유</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type5"><span> 트렁크
-												사용 가능여부</span></td>
+											id="Dformcheckbox" value="5"><span> 트렁크 사용
+												가능여부</span></td>
 									</tr>
 								</table>
 							</div>
@@ -208,7 +201,8 @@
 
 							<div class="memo">
 								<h5>드라이버님을 소개해주세요*</h5>
-								<textarea placeholder="ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다." name="introduce" id="introduce"></textarea>
+								<textarea placeholder="ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다."
+									name="introduce" id="introduce"></textarea>
 							</div>
 
 							<input type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
@@ -236,6 +230,7 @@
 	</div>
 
 </body>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#file").on('change', function() {
@@ -243,6 +238,69 @@
 			$(".upload-name").val(fileName);
 		});
 	});
+	
+	$("#carAuth").on("click", function() {
+		var name = $("#username").val();
+		var cnum = $("#c_num").val();
+		
+		console.log(name)
+		console.log(cnum)
+		$.ajax({
+			url : "${pageContext.request.contextPath}/carAuth",
+			type : "post",
+			contentType : "application/json",
+			async: false,
+			data : JSON.stringify({
+					name: name,
+					cnum: cnum
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log("result,",result)
+				if ( result == -1 ) {
+					alert("틀렸습니다");
+				} else {
+					alert("성공했습니다");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
+	
+	$("#liau").on("click", function() {
+		var name2 = $("#username").val();
+		var btd2 = $("#userBD").val();
+		var serial2 = $("#dl").val();
+		if(serial2.length != 22) {
+			alert("형식에 맞게 값을 넣어주세요");
+			return;
+		}
+		$.ajax({
+			url : "${pageContext.request.contextPath}/driverAuth",
+			type : "post",
+			contentType : "application/json",
+			async: false,
+			data : JSON.stringify({
+					name: name2,
+					btd: btd2,
+					serial: serial2
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log("result,",result)
+				if ( result == -1 ) {
+					alert("틀렸습니다");
+				} else {
+					alert("성공했습니다");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
 </script>
 
 </html>

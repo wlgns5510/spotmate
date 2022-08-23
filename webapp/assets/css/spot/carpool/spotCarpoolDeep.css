@@ -33,7 +33,7 @@
   font-size: 32px;
   text-align: left;
   float: left;
-  margin: 120px 0px 0px 220px;
+  margin: 120px 0px 0px 210px;
 }
 
 .carpool-MainText2 {
@@ -273,10 +273,10 @@
     transition: all 0.2s linear;
 }
 
-.carpool-picture-image > a:hover img{
+/*.carpool-picture-image > a:hover img{
     transform: scale(1.1);
 }
-
+*/
 
 .carpool-picture-image > a > h3 {
     width: 1000px;
@@ -351,7 +351,7 @@
 /*****************드라이버 차량 정보**********/
 
 .driverInfo{
-	width: 1000px;
+	width: 100%;
     color: rgba(72,72,72,1);
     font-family: Noto Sans Korean;
     font-weight: 700;
@@ -361,7 +361,7 @@
     
 }
 
-.carpool-top2 table {
+.carpool_detail table {
     width: 700px;
     color: rgba(72,72,72,1);
 	border-collapse: collapse;
@@ -373,11 +373,11 @@
     
         	
 }
-.carpool-top2 tr {
+.carpool_detail tr {
 	width : 300px;
 }
 
-.carpool-top2 td {
+.carpool_detail td {
 	 padding: 5px 0px 5px 0px;	 
 	
 }

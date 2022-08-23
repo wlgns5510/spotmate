@@ -32,7 +32,7 @@
   font-size: 32px;
   text-align: left;
   float: left;
-  margin: 120px 0px 0px 220px;
+  margin: 120px 0px 0px 210px;
    
 }
 
@@ -82,12 +82,12 @@
 
 }
 
-.carpoolInput1Picto{
+/*.carpoolInput1Picto{
 	top:62px;
 	left:300px;
 	position: absolute;
 	cursor : pointer;
-}
+}*/
 
 .input2 {
   width: 310px;
@@ -234,18 +234,20 @@
 }
 
 .detailtext{
-	float:left;
+	/*float:left;*/
 	padding: 0px 15px 0px 15px;
 	margin:18px 0px 0px 0px;
 	cursor:pointer;
 
 }
 
-input[type=checkbox] {
+.detail_ckbox {
     accent-color: rgba(73,85,159,1);
     -webkit-transform: scale(1.6); /* Safari and Chrome */
    	padding: 10px;
 }
+
+
 
 /***********************************************************************************************************************/
     
@@ -345,7 +347,7 @@ input[type=checkbox] {
     font-family: Montserrat;
   	font-weight: 700;
   	font-size: 16px;
-  
+ 
     
 }
 
