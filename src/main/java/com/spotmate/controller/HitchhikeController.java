@@ -41,6 +41,12 @@ public class HitchhikeController {
 		return "/spothitch/spotHitchDriver";
 	}
 	
+//	@ResponseBody
+//	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
+//	public List<HitchVo> search (@RequestBody sVo) {
+//		return hService.getsearchList(sVo);
+//	}
+	
 	@ResponseBody
 	@RequestMapping(value="/nearHitchList", method= {RequestMethod.GET, RequestMethod.POST})
 	public List<HitchVo> nearHitchList(@RequestBody MapVo mVo) {

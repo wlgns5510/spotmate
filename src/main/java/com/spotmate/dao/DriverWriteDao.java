@@ -23,8 +23,8 @@ public class DriverWriteDao {
 		ss.insert("spotmate.mateinsert", mwVo);
 	}
 	
-	public String SelectDriverInfo() {
-		return ss.selectOne("spotmate.selectdriverinfo");
+	public String SelectDriverInfo(int userNo) {
+		return ss.selectOne("spotmate.selectdriverinfo", userNo);
 	}
 	
 }
