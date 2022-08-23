@@ -66,9 +66,10 @@
 		<![CDATA[
 				select no mateNo,
 				       carNo,
-				       startDate,
+				       to_char(startDate, 'yyyy.mm.dd day') startDate,
 				       people,
-				       endDate,
+				       to_char(endDate, 'yyyy.mm.dd day') endDate,
+				       endDate - startDate allDay,
 				       point,
 				       comments
 				from spotmate
@@ -83,7 +84,7 @@
 				       p.day,
 				       p.wayNo wayNo,
 				       p.sepplace,
-				       p.time,
+				       to_char(p.time, 'AM HH:MI') time,
 				       p.place,
 				       p.lat,
 				       p.lng,

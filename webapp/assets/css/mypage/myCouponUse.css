@@ -15,11 +15,11 @@
 .myPage_coupon {
 	width: 366px;
 	height: 230px;
-	background: url(/assets/images/soil_3.png);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
 	margin: auto;
+	margin-left:300px;
 	margin-top: 30px;
 	margin-bottom: 30px;
 }

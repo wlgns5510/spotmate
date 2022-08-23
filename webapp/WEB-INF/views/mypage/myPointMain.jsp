@@ -83,8 +83,12 @@
 							<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
 								<option value="">유형</option>
 								<option value="카풀">카풀정기권</option>
+								<option value="카풀">카풀1회성</option>
 								<option value="히치하이크">히치하이크</option>
 								<option value="메이트">메이트</option>
+								<option value="충전">충전</option>
+								<option value="구매">구매</option>
+								<option value="환불">환불</option>
 							</select> <select name="option2">
 								<option value="">참여주체</option>
 								<option value="드라이버">드라이버</option>
@@ -115,96 +119,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>9</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
-							<tr>
-								<td>10</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>드라이버</td>
-								<td>+3000</td>
-							</tr>
+							<c:forEach items="${pointList }" var="pointVo">
+								<tr>
+									<td>1</td>
+									<td>${pointVo.type }</td>
+									<td>${pointVo.regDate }</td>
+									<td>${pointVo.splace }</td>
+									<td>${pointVo.eplace }</td>
+									<td>${pointVo.pType }</td>
+									<td><c:if test="${pointVo.point>0}">+</c:if>${pointVo.point }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div class="paging">

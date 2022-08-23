@@ -113,7 +113,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${cMap.couponList }" var="couponVo">
+							<c:forEach items="${cMap.couponBList }" var="couponVo">
 								<tr>
 									<td>${couponVo.no }</td>
 									<td>${couponVo.buyDate }</td>
