@@ -28,21 +28,19 @@
 			<ul class="spot-hitch-infoTop">
 				<li><span>탑승 가능 차량리스트</span></li>
 			</ul>
-			<form action="../" method="get">
 				<div class="searchbox">
 					<input class="place" type="text" name="start" value="" placeholder="출발지"> 
 					<input class="place" type="text" name="end" value="" placeholder="도착지"> 
 					<input class="people" type="number" min="1" name="people" value="" placeholder="인원수">
-					<button type="submit"><img src="/assets/images/round-search.png"></button>
+					<button onclick="search()" type="button"><img src="/assets/images/round-search.png"></button>
 				</div>
 				<div class="detail-option">
-					<input type="checkbox" value="femaleDriver">여성 드라이버 
-					<input type="checkbox" value="nosmoke">비흡연자
-					<input type="checkbox" checked="checked" value="pet">반려동물 탑승 가능
-					<input type="checkbox" value="phonecharge">충전기 사용 가능
-					<input type="checkbox" value="trunk">트렁크 사용 가능
+					<input class="chkitem" type="checkbox" value="femaleDriver">여성 드라이버 
+					<input class="chkitem" type="checkbox" value="nosmoke">비흡연자
+					<input class="chkitem" type="checkbox" value="pet">반려동물 탑승 가능
+					<input class="chkitem" type="checkbox" value="phonecharge">충전기 사용 가능
+					<input class="chkitem" type="checkbox" value="trunk">트렁크 사용 가능
 				</div>
-			</form>
 			<%-- <c:forEach items="${hitchList}"  var="hitch" varStatus="status">
 			<div class="driverList">
 				<div class="start">
@@ -281,8 +279,32 @@
 			Strlatlng = $("#latlng"+mateNo).val()
 			latlngList = Strlatlng.split(",");
 		var	latlng = new kakao.maps.LatLng(latlngList[0], latlngList[1]);
-		
 		map.setCenter(latlng);
 	}
+	
+	function search() {
+		var detailOpt = $('.chkitem:checked').map(function(){ return $(this).val();}).get().join(",");
+		var place = $('.place').map(function(){ return $(this).val();}).get().join(",");
+		var people =  $('.people').val();
+		var searchVo = {
+				detailOpt: detailOpt,
+				place: place,
+				people: people
+		};
+		$.ajax({
+			url : "${pageContext.request.contextPath}/search",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(searchVo),
+			dataType : "json",
+			success : function(result) {
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
 </script>
 </html>

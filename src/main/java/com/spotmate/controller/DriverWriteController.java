@@ -48,8 +48,12 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/carpoolWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String carpool(Model model) {
-		model.addAttribute("introduce", dws.getDriverInfo());
+	public String carpool(Model model, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if ( authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("introduce", dws.getDriverInfo(authUser.getNo()));
 		return "/driver/carpoolWrite";
 	}
 
@@ -94,8 +98,12 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/hitchWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String hitch(Model model) {
-		model.addAttribute("introduce", dws.getDriverInfo());
+	public String hitch(Model model, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if ( authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("introduce", dws.getDriverInfo(authUser.getNo()));
 		return "/driver/hitchWrite";
 	}
 
@@ -116,8 +124,12 @@ public class DriverWriteController {
 	}
 
 	@RequestMapping(value = "/mateWrite", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mate(Model model) {
-		model.addAttribute("introduce", dws.getDriverInfo());
+	public String mate(Model model, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if ( authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("introduce", dws.getDriverInfo(authUser.getNo()));
 		return "/driver/mateWrite";
 	}
 

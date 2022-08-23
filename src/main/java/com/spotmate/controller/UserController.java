@@ -30,7 +30,7 @@ public class UserController {
       
 	   String url = request.getHeader("Referer");
 	   
-	   if(url !=null && !url.contains("/login") && !url.contains("/join")) {
+	   if(url !=null && !url.contains("/login") && !url.contains("/join") && !url.contains("write")) {
 		   request.getSession().setAttribute("prevPage", url);
 	   }
 	   

@@ -4,10 +4,10 @@
 <mapper namespace="spotmate">
 
 
-	<select id="selectdriverinfo" resultType="String">
+	<select id="selectdriverinfo" parameterType="int" resultType="String">
 		select introduce
 		from car
-		where no = 2
+		where no = #{userNo}
 	</select>
 	
 	<select id="updatepeople" parameterType="int" resultType="int">
@@ -69,6 +69,31 @@
 		and s.no = p.mateNo
 		and r.mateNo = s.no
 		group by r.point, comments, detailopt, dn.driverNo, star, name
+	</select>
+	
+	<select id="selecthitchdriverinfonoreview" parameterType="int" resultType="hVo">
+		select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+		    r.point point,
+		    comments,
+		    name,
+		    detailOpt
+		from spotmate s, place p, reservation r, 
+		(select dn.driverno
+		from reservation r, ( select driverNo
+                            from reservation
+                            where mateNo = #{mateNo} ) dn
+		where dn.driverno = r.driverno
+		group by r.driverno, dn.driverno) dn, ( select LISTAGG(name, ',') within group (order by name asc) as detailopt
+					                            from spotdetail sd, detailopt d
+					                            where mateNo = #{mateNo}
+					                            and sd.detailno = d.no ) , ( select name
+																			from users u, reservation r
+																			where u.no = r.driverNo
+																			and r.mateNo = #{mateNo} )
+		where s.no = #{mateNo}
+		and s.no = p.mateNo
+		and r.mateNo = s.no
+		group by r.point, comments, detailopt, dn.driverNo, name
 	</select>
 	
 	<select id="selectsummarydriverinfo" parameterType="int" resultType="hVo">
@@ -228,7 +253,7 @@
 				#{no},
 				'',
 				-1,
-				'출발지',
+				'start',
 				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 				#{splace1},
 				#{slat1},
@@ -241,7 +266,7 @@
 				#{no},
 				'',
 				0,
-				'도착지',
+				'end',
 				'',
 				#{eplace1},
 				#{elat1},
@@ -317,7 +342,7 @@
 				#{no},
 				'',
 				-1,
-				'출발지',
+				'start',
 				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 				#{splace1},
 				#{slat1},
@@ -330,7 +355,7 @@
 				#{no},
 				'',
 				0,
-				'도착지',
+				'end',
 				'',
 				#{eplace1},
 				#{elat1},
@@ -429,7 +454,7 @@
 				#{no},
 				#{day1},
 				-1,
-				'출발지',
+				'start',
 				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 				#{splace1},
 				#{slat1},
@@ -443,7 +468,7 @@
 				#{no},
 				#{day1},
 				1,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime11}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace11},
 				#{wlat11},
@@ -460,7 +485,7 @@
 				#{no},
 				#{day1},
 				2,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime12}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace12},
 				#{wlat12},
@@ -476,7 +501,7 @@
 				#{no},
 				#{day1},
 				3,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime13}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace13},
 				#{wlat13},
@@ -492,7 +517,7 @@
 				#{no},
 				#{day1},
 				4,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime14}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace14},
 				#{wlat14},
@@ -508,7 +533,7 @@
 				#{no},
 				#{day1},
 				5,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime15}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace15},
 				#{wlat15},
@@ -523,7 +548,7 @@
 				#{no},
 				#{day1},
 				0,
-				'도착지',
+				'end',
 				'',
 				#{eplace1},
 				#{elat1},
@@ -538,7 +563,7 @@
 				#{no},
 				#{day2},
 				-1,
-				'출발지',
+				'start',
 				to_date(#{sdate1}||#{stime2}, 'yyyy-mm-dd hh24:mi'),
 				#{splace2},
 				#{slat2},
@@ -554,7 +579,7 @@
 				#{no},
 				#{day2},
 				1,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime21}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace21},
 				#{wlat21},
@@ -570,7 +595,7 @@
 				#{no},
 				#{day2},
 				2,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime22}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace22},
 				#{wlat22},
@@ -586,7 +611,7 @@
 				#{no},
 				#{day2},
 				3,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime23}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace23},
 				#{wlat23},
@@ -602,7 +627,7 @@
 				#{no},
 				#{day2},
 				4,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime24}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace24},
 				#{wlat24},
@@ -619,7 +644,7 @@
 				#{no},
 				#{day2},
 				5,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime25}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace25},
 				#{wlat25},
@@ -635,7 +660,7 @@
 				#{no},
 				#{day2},
 				0,
-				'도착지',
+				'end',
 				'',
 				#{eplace2},
 				#{elat2},
@@ -652,7 +677,7 @@
 				#{no},
 				#{day3},
 				-1,
-				'출발지',
+				'start',
 				to_date(#{sdate1}||#{stime3}, 'yyyy-mm-dd hh24:mi'),
 				#{splace3},
 				#{slat3},
@@ -668,7 +693,7 @@
 				#{no},
 				#{day3},
 				1,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime31}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace31},
 				#{wlat31},
@@ -684,7 +709,7 @@
 				#{no},
 				#{day3},
 				2,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime32}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace32},
 				#{wlat32},
@@ -700,7 +725,7 @@
 				#{no},
 				#{day3},
 				3,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime33}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace33},
 				#{wlat33},
@@ -716,7 +741,7 @@
 				#{no},
 				#{day3},
 				4,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime34}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace34},
 				#{wlat34},
@@ -732,7 +757,7 @@
 				#{no},
 				#{day3},
 				5,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime35}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace35},
 				#{wlat35},
@@ -748,7 +773,7 @@
 				#{no},
 				#{day3},
 				0,
-				'도착지',
+				'end',
 				'',
 				#{eplace3},
 				#{elat3},
@@ -764,7 +789,7 @@
 				#{no},
 				#{day4},
 				-1,
-				'출발지',
+				'start',
 				to_date(#{sdate1}||#{stime4}, 'yyyy-mm-dd hh24:mi'),
 				#{splace4},
 				#{slat4},
@@ -780,7 +805,7 @@
 				#{no},
 				#{day4},
 				1,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime41}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace41},
 				#{wlat41},
@@ -796,7 +821,7 @@
 				#{no},
 				#{day4},
 				2,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime42}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace42},
 				#{wlat42},
@@ -812,7 +837,7 @@
 				#{no},
 				#{day4},
 				3,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime43}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace43},
 				#{wlat43},
@@ -829,7 +854,7 @@
 				#{no},
 				#{day4},
 				4,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime44}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace44},
 				#{wlat44},
@@ -845,7 +870,7 @@
 				#{no},
 				#{day4},
 				5,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime45}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace45},
 				#{wlat45},
@@ -861,7 +886,7 @@
 				#{no},
 				#{day4},
 				0,
-				'도착지',
+				'end',
 				'',
 				#{eplace4},
 				#{elat4},
@@ -878,7 +903,7 @@
 				#{no},
 				#{day5},
 				-1,
-				'출발지',
+				'start',
 				to_date(#{sdate1}||#{stime5}, 'yyyy-mm-dd hh24:mi'),
 				#{splace5},
 				#{slat5},
@@ -894,7 +919,7 @@
 				#{no},
 				#{day5},
 				1,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime51}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace51},
 				#{wlat51},
@@ -911,7 +936,7 @@
 				#{no},
 				#{day5},
 				2,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime52}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace52},
 				#{wlat52},
@@ -927,7 +952,7 @@
 				#{no},
 				#{day5},
 				3,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime53}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace53},
 				#{wlat53},
@@ -943,7 +968,7 @@
 				#{no},
 				#{day5},
 				4,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime54}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace54},
 				#{wlat54},
@@ -959,7 +984,7 @@
 				#{no},
 				#{day5},
 				5,
-				'경유지',
+				'waypoint',
 				to_date(#{sdate1}||#{wtime55}, 'yyyy-mm-dd hh24:mi'),
 				#{wplace55},
 				#{wlat55},
@@ -975,7 +1000,7 @@
 				#{no},
 				#{day5},
 				0,
-				'도착지',
+				'end',
 				'',
 				#{eplace5},
 				#{elat5},
