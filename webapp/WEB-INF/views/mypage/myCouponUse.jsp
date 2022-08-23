@@ -81,26 +81,23 @@
 				<article class="myPage_article">
 
 					<div class="inputBox">
-						<form>
-							<input type="text" value="" placeholder="금액설정"> <span> - </span> <input type="text" value="" placeholder="금액설정">
+						<form action="${pageContext.request.contextPath }/mypageJ/myCouponBuy" method="get">
+							<input name="maxValue" type="number" value="" placeholder="최대금액설정"> <span> - </span> <input name="minValue" type="number" value="" placeholder="최소금액설정">
 
-							<!-- <label for="lecture">유형</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>유형</option>
-								<option value="1">주유권</option>
+							<select name="option1">
+								<option value="">유형</option>
+								<option value="주유">주유권</option>
 
 							</select>
 
-							<!-- <label for="lecture">참여주체</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>브랜드</option>
-								<option value="1">S-OiL</option>
-								<option value="2">GS-칼텍스</option>
+							<select name="option2">
+								<option value="">브랜드</option>
+								<option value="S-OIL">S-OIL</option>
+								<option value="GS-칼텍스">GS-칼텍스</option>
 							</select>
 							<div class="btns">
-								<a href="./myCouponBuy">
-									<button type="button" class="myPage_btnB">조회하기</button>
-								</a> <a href="./myPointCarge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
+								<button type="submit" class="myPage_btnB">조회하기</button>
+								<a href="./myPointCharge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
 							</div>
 						</form>
 					</div>
@@ -126,7 +123,7 @@
 							<div class="myPage_mapPicto"></div>
 							<span>지도로 이용가능한 매장 찾기</span>
 						</div>
-						<div class="myPage_map"></div>
+						<div id="map" class="myPage_map"></div>
 						<div class="myPage_mapAddress">
 							<p class="myPage_mapAddress1">주유소</p>
 							<p class="myPage_mapAddress2">관악시몬주유소</p>
@@ -148,7 +145,16 @@
 	</div>
 
 </body>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8e7c67039e0100811551e543e8f330e8"></script>
+	<script>
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			level: 3
+		};
 
+		var map = new kakao.maps.Map(container, options);
+</script>
 
 </html>
 
