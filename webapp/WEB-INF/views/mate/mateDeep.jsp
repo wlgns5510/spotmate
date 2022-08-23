@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
@@ -189,8 +190,8 @@
 				
 				
 				<div class="mateDeep_today">
-						<div class="mateDeep_dayBox">							
-							<p>3일차</p>							
+						<div class="mateDeep_dayBox">						
+							<p>3일차</p>						
 						</div>			
 						<c:forEach items="${matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 3}">

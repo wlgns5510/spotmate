@@ -90,7 +90,8 @@
 				       p.lng,
 				       p.latlng,
 				       to_char(s.startDate, 'yyyy.mm.dd day') startDate,
-				       to_char(s.endDate, 'yyyy.mm.dd day') endDate
+				       to_char(s.endDate, 'yyyy.mm.dd day') endDate,
+				       endDate - startDate allDay
 				from place p, spotmate s
 				where s.no = p.mateNo
 				and p.mateNo = #{mateNo}
