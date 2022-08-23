@@ -44,12 +44,17 @@ public class MypageJController {
 
 		return "/mypage/myCouponMain";
 	}
-
+	
+	//쿠폰상품
 	@RequestMapping(value = "/myCouponBuy", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponBuy(Model model) {
+	public String myCouponBuy(Model model,
+			@RequestParam(value = "minValue", required = false, defaultValue = "") String minValue,
+			@RequestParam(value = "maxValue", required = false, defaultValue = "") String maxValue,
+			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
+			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
 		System.out.println("MypageJController > myCouponBuy");
-
-		List<CouponVo> couponList = mypagejService.getCouponList();
+		
+		List<CouponVo> couponList = mypagejService.getCouponList(minValue, maxValue, option1, option2);
 
 		model.addAttribute("couponList", couponList);
 

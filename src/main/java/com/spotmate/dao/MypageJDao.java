@@ -43,10 +43,10 @@ public class MypageJDao {
 	}
 
 	// 쿠폰상품리스트
-	public List<CouponVo> getCouponList() {
+	public List<CouponVo> getCouponList(Map<String, Object> cMap) {
 		System.out.println("MypageJService > getCouponList");
 
-		List<CouponVo> couponList = sqlSession.selectList("mypagej.selectCouponList");
+		List<CouponVo> couponList = sqlSession.selectList("mypagej.selectCouponList", cMap);
 
 		return couponList;
 	}

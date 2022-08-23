@@ -113,11 +113,22 @@ public class MypageJService {
 
 	// 쿠폰상품리스트
 
-	public List<CouponVo> getCouponList() {
+	public List<CouponVo> getCouponList(String minValue, String maxValue, String option1, String option2) {
 		System.out.println("MypageJService > getCouponList");
+		
+		Map<String, Object> cMap = new HashMap<String, Object>();
+		
+		cMap.put("minValue", minValue);
+		cMap.put("maxValue", maxValue);
+		cMap.put("option1", option1);
+		cMap.put("option2", option2);
 
-		List<CouponVo> couponList = mypagejDao.getCouponList();
+		List<CouponVo> couponList = mypagejDao.getCouponList(cMap);
+		
+		System.out.println(cMap);
 
+		System.out.println(couponList);
+		
 		return couponList;
 	}
 
@@ -126,7 +137,7 @@ public class MypageJService {
 		System.out.println("MypageJService > getCouponImg");
 
 		String couponImg = mypagejDao.getCouponImg(couponNo);
-
+		
 		return couponImg;
 	};
 

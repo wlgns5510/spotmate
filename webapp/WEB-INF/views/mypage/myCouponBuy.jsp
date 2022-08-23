@@ -80,24 +80,22 @@
 				<article class="myPage_article">
 
 					<div class="inputBox">
-						<form>
-							<input type="text" value="" placeholder="금액설정"> <span> - </span> <input type="text" value="" placeholder="금액설정">
+						<form action="${pageContext.request.contextPath }/mypageJ/myCouponBuy" method="get">
+							<input name="maxValue" type="number" value="" placeholder="최대금액설정"> <span> - </span> <input name="minValue" type="number" value="" placeholder="최소금액설정">
 
-							<!-- <label for="lecture">유형</label> -->
-							<select id="option1">
+							<select name="option1">
 								<option value="">유형</option>
-								<option value="1">주유권</option>
+								<option value="주유">주유권</option>
 
 							</select>
 
-							<!-- <label for="lecture">참여주체</label> -->
-							<select id="option1">
+							<select name="option2">
 								<option value="">브랜드</option>
-								<option value="1">S-OIL</option>
-								<option value="2">GS-칼텍스</option>
+								<option value="S-OIL">S-OIL</option>
+								<option value="GS-칼텍스">GS-칼텍스</option>
 							</select>
 							<div class="btns">
-								<button type="button" class="myPage_btnB">조회하기</button>
+								<button type="submit" class="myPage_btnB">조회하기</button>
 								<a href="./myPointCharge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
 							</div>
 						</form>
