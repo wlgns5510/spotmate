@@ -85,7 +85,7 @@
 					<div class="mateMain_listBox">
 						<img src="/assets/images/car icon.png">
 						<span class="seatNo">${mateList.people}</span>
-						<img src="/assets/images/pet icon.png">
+						<%-- <img src="/assets/images/pet icon.png">
 						
 						<c:choose>
 							<c:when test="${mateOptionList[status.index].optionName != null}">
@@ -94,7 +94,7 @@
 							<c:when test="${mateOptionList[status.index].optionName == null}">
 									<span class="petYN">불가</span>
 							</c:when>														
-						</c:choose>		
+						</c:choose>	 --%>	
 					</div>
 							
 				</div>	
