@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+/*
+-------------------------------------------------
+-------------------------------------------------
+Content Style Sheet
+Version : 1.0
+Author : JYJ
+First update : 2022. 08. 24.
+Last update : 2022. 08. 00.
+-------------------------------------------------
+-------------------------------------------------
+*/
+
+/* .inner{display:block; width:1440px; margin:0 auto;} */
+
+
+/*content*/
+.content {
+	min-height: 400px;
+	position : relative;
+}
+.content:after {
+	content : "";
+	display : block;
+	clear : both;
+}
+
+/* .inner {
+    background-color: burlywood;
+} */
+
+/*배너*/
+.banner {
+	width : 100%;
+	height : 210px;
+	position : relative;
+    /* background-color: aquamarine; */
+}
+.login_banner {
+	width : 100%;
+	height : 210px;
+}
+.login_banner>p {
+	position : absolute;
+	width : 100%;
+	height : 210px;
+	background-image : url("../../images/content_banner_login.png");
+	/* background-size: 100% 100%; */
+	background-position : center center;
+}
+/*로그인*/
+/* .header_cover {
+	position : relative;
+} */
+/**********  회원가입 완료 **********/
+
+.joinOk {
+	width : 708px;
+    /* background-color: pink; */
+    margin: 0px auto;
+    padding: 100px 0px 300px 0px;
+    box-sizing: border-box;
+    
+}
+.joinOk > p {
+    width : 120px;
+    height: 120px;
+    margin: 0px auto;
+	background-image : url("../../images/icon_joinOk2.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+
+/********** // 회원가입 **********/
+
+/********** 회원가입 완료 박스 **********/
+.joinOk_box {
+    /* border: 1px solid red; */
+    margin: 20px 0px 20px 0px;
+    padding: 50px 10px 50px 10px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #DEE2E6;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 20px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+.joinOk_box2 {
+    margin: 0px auto;
+    width: 500px;
+}
+.joinOk_box2 .joinOk_gift {
+    /* border : 1px solid red; */
+    float: left;
+    width : 70px;
+    height: 70px;
+    background-color: #F5F5F5;
+    border-radius: 8px;
+	background-image : url("../../images/icon_joinOkbox.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+.joinOk_box2 > h3 {
+    /* border : 1px solid red; */
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+    text-align: center;
+    /* color: #54595E; */
+    color: rgba(30, 30, 30, 0.9);
+    box-sizing: border-box;
+    padding: 5px 0px 0px 0px;
+}
+
+.joinOk_box > p {
+    margin : 30px 0px 0px 0px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(84, 89, 94, 1);
+}
+/********** // 회원가입 완료 박스 **********/
+
+/********** 완료 버튼 **********/
+.button_area {    
+    text-align : center;
+    cursor: pointer;
+}
+#btn_joinOk {
+    box-sizing: border-box;
+    width: 500px;
+    height : 45px;
+    border-radius: 6px;
+    margin: 30px 0px 10px 0px;
+    background-color: #4F4F4F;
+    color:#fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/********** // 가입 버튼 **********/
+
+/********** 드라이버 배너 **********/
+.joinOk_banner {
+    width : 100%;
+	height : 400px;
+    /* background: brown; */
+    position: relative;
+}
+.joinOk_banner>p {
+	width : 100%;
+	height : 100%;
+	background-image : url("../../images/driverbanner.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+.joinOk_batext {
+    color: #fff;
+    position: absolute;
+    top : 90px;
+    left: 245px;
+    width: 1440px;
+    /* border : 1px solid #fff; */
+    box-sizing: border-box;
+    padding: 20px 0px 20px 20px;
+}
+.joinOk_batext > h4 {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 35px;
+    margin: 0px 0px 30px 0px;
+}
+.joinOk_batext > p {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+
+}
+.btn_driverlink {
+    border : 1px solid #fff;
+    width: 280px;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 18px 40px 15px 50px;
+    margin: 30px 0px 0px 0px;
+}
+.btn_driverlink > .btn_ico1 {
+    /* position: absolute; 
+    top: 30%; left: 20%;*/
+    display: block;
+    float: left;
+    width: 28px;
+    height: 22px;
+    /* border : 1px solid red; */
+	background-image : url("../../images/ico_joinOkCar.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+.btn_driverlink > a {
+    display: block;
+    float: left;
+    color : #fff;
+    box-sizing: border-box;
+    margin: 1px 30px 0px 20px;
+    /* border : 1px solid yellow; */
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 20px;
+}
+.btn_driverlink > .btn_ico2 {
+    display: block;
+    float: left;
+    width: 10px;
+    height: 13px;
+    margin: 5px 0px 0px 0px;
+	background-image : url("../../images/ico_joinOk_right.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+/********** // 드라이버 배너 **********/
