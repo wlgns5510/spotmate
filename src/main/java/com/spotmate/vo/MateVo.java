@@ -72,6 +72,13 @@ public class MateVo {
 		this.allDay = allDay;
 	}
 	
+	
+	public MateVo(double lat, double lng) {
+		super();
+		this.lat = lat;
+		this.lng = lng;
+	}
+	//메소드 gs
 	public String getName() {
 		return name;
 	}

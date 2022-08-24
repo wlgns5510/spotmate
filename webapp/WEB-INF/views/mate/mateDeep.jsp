@@ -23,8 +23,7 @@
 	#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
 	#category li .bank {background-position: -10px 0;}
 	#category li .mart {background-position: -10px -36px;}
-	#category li .pharmacy {background-position: -10px -72px;}
-	#category li .oil {background-position: -10px -108px;}
+	#category li .attraction {background-position: -10px -72px;}
 	#category li .cafe {background-position: -10px -144px;}
 	#category li .store {background-position: -10px -180px;}
 	#category li.on .category_bg {background-position-x:-46px;}
@@ -141,7 +140,7 @@
 						</div>
 						<c:forEach items="${matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 1}">
-								<div class="mateDeep_float">
+								<div class="mateDeep_spotBox">
 									<div class="mateDeep_start">
 									<c:if test="${matePlaceList.wayNo == -1}">
 										START
@@ -177,12 +176,14 @@
 				
 				
 				<div class="mateDeep_today">
+					<c:if test="${mateVo.allDay == 1}">
 						<div class="mateDeep_dayBox">							
 							<p>2일차</p>							
 						</div>
+					</c:if>
 					<c:forEach items="${matePlaceList}" var="matePlaceList">
 						<c:if test="${matePlaceList.day == 2}">
-							<div class="mateDeep_float">
+							<div class="mateDeep_spotBox">
 								<div class="mateDeep_start">
 								<c:if test="${matePlaceList.wayNo == -1}">
 									START
@@ -218,12 +219,14 @@
 				
 				
 				<div class="mateDeep_today">
-						<div class="mateDeep_dayBox">						
-							<p>3일차</p>						
-						</div>			
+					<c:if test="${mateVo.allDay == 2}">	
+						<div class="mateDeep_dayBox">										
+							<p>3일차</p>													
+						</div>
+					</c:if>		
 						<c:forEach items="${matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 3}">
-								<div class="mateDeep_float">
+								<div class="mateDeep_spotBox">
 									<div class="mateDeep_start">
 									<c:if test="${matePlaceList.wayNo == -1}">
 										START
@@ -248,7 +251,7 @@
 									</c:if>
 									</div>
 									<div class="mateDeep_time">${matePlaceList.time}</div>
-									<div class="mateDeep_spot">${matePlaceList.place}</div>
+									<div class="mateDeep_spot">${matePlaceList.place}<input id="lat" type="hidden" value="${matePlaceList.lat}"><input id="ing" type="hidden" value="${matePlaceList.lng}"></div>
 								</div>
 								<c:if test="${matePlaceList.wayNo != 0}">					
 									<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
@@ -273,15 +276,12 @@
 				        <li id="MT1" data-order="1"> 
 				            <span class="category_bg mart"></span>
 				            마트
-				        </li>  
-				        <li id="PM9" data-order="2"> 
-				            <span class="category_bg pharmacy"></span>
-				            약국
-				        </li>  
-				        <li id="OL7" data-order="3"> 
-				            <span class="category_bg oil"></span>
-				            주유소
-				        </li>  
+				        </li> 
+				        <li id="AT4" data-order="2"> 
+				            <span class="category_bg attraction"></span>
+				            관광명소
+				        </li>
+				        
 				        <li id="CE7" data-order="4"> 
 				            <span class="category_bg cafe"></span>
 				            카페
@@ -302,9 +302,7 @@
 					<button class="beforeBtn" type="button"><img src="/assets/images/common/ico_arrow_lft.png"></button>
 					<div class="mateDeep_recommendList"></div>
 					<div class="mateDeep_recommendList"></div>
-					<div class="mateDeep_recommendList"></div>
-					
-					
+					<div class="mateDeep_recommendList"></div>	
 					<button class="nextBtn" type="button"><img src="/assets/images/common/ico_arrow_rit.png"></button>
 				</div>
 
@@ -340,9 +338,16 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
  
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.48686695952834, 126.9682952225164), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
-    };  
+    };
+    
+$(".mateDeep_spotBox").on("click", function()){
+	console.log("mateDeep_spotBox클릭");
+}
+/* var lat = $("#lat").val();
+var lng = $("#lng").val(); */
+
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
