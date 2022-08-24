@@ -39,7 +39,7 @@
                      <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">양지훈</a></li>
                      <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">유지은</a></li>
                      <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">이준규</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
+                     <li><a href="https://github.com/joyunju" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
                   </ul>
                </div>
             </div>
