@@ -150,7 +150,7 @@ public class MypageJController {
 	//포인트환불
 	@RequestMapping(value = "/myPointRefund", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointRefund(RefundVo refundVo) {
-		
+		 
 		System.out.println(refundVo);
 		
 		return "redirect:/mypageJ/myPointRefundMain";
