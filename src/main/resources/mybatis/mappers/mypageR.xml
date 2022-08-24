@@ -94,16 +94,6 @@
 		]]>
 	</update>
 	
-		<update id="userUpdate" parameterType="dlvo">
-	<![CDATA[
-		update  car
-	 	set 
-	 		carName = #{username},
-	 		carNo = #{userBD},
-	 	where no = #{userNo}
-	 	and no = 1 
-		]]>
-	</update>
 	
 	
 </mapper>
