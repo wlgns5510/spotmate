@@ -126,7 +126,7 @@ font-size : 32px;
 .footer_wrapper .cen_sec{display:inline-block; vertical-align:middle;}
 .footer_wrapper .rit_sec{display:inline-block; float:right; position:relative; vertical-align:middle;}
 
-.footer_wrapper .footer_tit{display:block; position:relative; margin-bottom:20px; text-align:left; color:#1e1e1e; font-size:20px; font-weight:700; letter-spacing:-0.25px; line-height:30px;}
+.footer_wrapper .footer_tit{display:block; position:relative; margin-bottom:20px; text-align:left; color:#1e1e1e; font-family: 'Montserrat'; font-size:20px; font-weight:700; letter-spacing:-0.25px; line-height:30px;}
 
 .footer_wrapper .footer_logo{display:block; position:relative;}
 .footer_wrapper .footer_logo a{display:block; position:relative;}
@@ -136,27 +136,27 @@ font-size : 32px;
 .footer_wrapper .footer_menu{display:block;}
 .footer_wrapper .footer_menu li{display:inline-block; float:left; position:relative; margin:0 40px;}
 .footer_wrapper .footer_menu li:first-of-type{margin-left:0;}
-.footer_wrapper .footer_menu li a{display:block; position:relative; color:#1e1e1e; font-size:16px; font-weight:400; letter-spacing:-0.25px; line-height:50px;}
-.footer_wrapper .footer_menu li a:hover{color:#4454A1; font-weight:600;}
+.footer_wrapper .footer_menu li a{display:block; position:relative; color:#1e1e1e; font-family: 'Montserrat'; font-size:16px; font-weight:400; letter-spacing:-0.25px; line-height:50px;}
+.footer_wrapper .footer_menu li a:hover{font-family: 'Montserrat'; color:#4454A1; font-weight:600;}
 /* text-decoration:underline; */
 
 .footer_wrapper .portfolio{display:inline-block; position:relative;}
-.footer_wrapper .portfolio > a{display:block; position:relative; width:240px; height:50px; padding-left:60px; border:1px solid #c9c9c9; box-sizing:border-box; background:#fff url(/assets/images/common/ico_portfolio.png)no-repeat left 15px center; text-align:left; color:#1e1e1e; font-size:16px; font-weight:500; letter-spacing:-0.25px; line-height:48px;}
+.footer_wrapper .portfolio > a{display:block; position:relative; width:240px; height:50px; padding-left:60px; border:1px solid #c9c9c9; box-sizing:border-box; background:#fff url(/assets/images/common/ico_portfolio.png)no-repeat left 15px center; text-align:left; color:#1e1e1e; font-family: 'Montserrat'; font-size:16px; font-weight:500; letter-spacing:-0.25px; line-height:48px;}
 .footer_wrapper .portfolio > a:before{display:block; position:absolute; top:50%; right:10px; width:15px; height:9px; transform:translateY(-50%); content:""; background:url(/assets/images/common/ico_select_down.png)no-repeat center center; transition:all .3s;}
 .footer_wrapper .portfolio.active > a:before{transform:translateY(-50%) rotate(180deg);}
 /* .footer_wrapper .portfolio > .down{display:none; position:absolute; z-index:1000; top:100%; left:0; width:100%;} */
 .footer_wrapper .portfolio > .down{display:none; position:absolute; z-index:1000; bottom:100%; left:0; width:100%;}
 .footer_wrapper .portfolio > .down ul{display:block; position:relative; width:100%; margin-top:5px; border:1px solid #c9c9c9; box-sizing:border-box; background:#fff;}
 .footer_wrapper .portfolio > .down ul li{display:block; position:relative;}
-.footer_wrapper .portfolio > .down ul li a{display:block; position:relative; padding-left:30px; box-sizing:border-box; text-align:left; color:#666; font-size:16px; font-weight:500; letter-spacing:-0.25px; line-height:50px;}
-.footer_wrapper .portfolio > .down ul li a:hover{background:#f9fafb; color:#4454A1;}
-.footer_wrapper .portfolio > .down ul li:first-of-type a{color:#1e1e1e; cursor:default;}
-.footer_wrapper .portfolio > .down ul li:first-of-type a:hover{background:none; color:#1e1e1e;}
+.footer_wrapper .portfolio > .down ul li a{display:block; position:relative; padding-left:30px; box-sizing:border-box; text-align:left; color:#666; font-family: 'Montserrat'; font-size:16px; font-weight:500; letter-spacing:-0.25px; line-height:50px;}
+.footer_wrapper .portfolio > .down ul li a:hover{background:#f9fafb; font-family: 'Montserrat'; color:#4454A1;}
+.footer_wrapper .portfolio > .down ul li:first-of-type a{font-family: 'Montserrat'; color:#1e1e1e; cursor:default;}
+.footer_wrapper .portfolio > .down ul li:first-of-type a:hover{background:none; font-family: 'Montserrat'; color:#1e1e1e;}
 
 .footer_wrapper .footer_link{display:flex; position:absolute; z-index:2; top:40px; left:0;}
 .footer_wrapper .footer_link li{display:block; position:relative;}
-.footer_wrapper .footer_link li a{display:block; position:relative; padding:0 10px; color:#1e1e1e; font-size:14px; font-weight:400; letter-spacing:-0.25px; line-height:30px;}
-.footer_wrapper .footer_link li a:hover{color:#4454A1; font-weight:600;}
+.footer_wrapper .footer_link li a{display:block; position:relative; padding:0 10px; color:#1e1e1e; font-family: 'Montserrat'; font-size:14px; font-weight:400; letter-spacing:-0.25px; line-height:30px;}
+.footer_wrapper .footer_link li a:hover{font-family: 'Montserrat'; color:#4454A1; font-weight:700;}
 .footer_wrapper .footer_link li + li a:before{display:block; position:absolute; top:50%; left:0; width:1px; height:60%; transform:translateY(-50%); content:""; background:#1e1e1e;}
 
 .footer_wrapper .copy{display:block; position:relative; padding-left:425px; text-align:left; color:#333; font-size:12px; font-weight:400; letter-spacing:-0.25px; line-height:30px;}

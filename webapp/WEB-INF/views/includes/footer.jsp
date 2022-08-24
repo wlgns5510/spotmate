@@ -34,12 +34,12 @@
                <div class="down">
                   <ul>
                      <li><a href="javascript:void(0);">GITHUB</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">이정화</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">김려경</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">양지훈</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">유지은</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">이준규</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
+                     <li><a href="https://github.com/LJH0716" target="_blank" rel="noopenner noreferrer">이정화</a></li>
+                     <li><a href="https://github.com/Ryeokyoung" target="_blank" rel="noopenner noreferrer">김려경</a></li>
+                     <li><a href="https://github.com/wlgns5510" target="_blank" rel="noopenner noreferrer">양지훈</a></li>
+                     <li><a href="https://github.com/ujiun" target="_blank" rel="noopenner noreferrer">유지은</a></li>
+                     <li><a href="https://github.com/ljk0071" target="_blank" rel="noopenner noreferrer">이준규</a></li>
+                     <li><a href="https://github.com/joyunju" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
                   </ul>
                </div>
             </div>
