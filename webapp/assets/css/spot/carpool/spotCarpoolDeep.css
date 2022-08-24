@@ -249,10 +249,7 @@
 	transition: all 0.2s linear;
 }
 
-/*.carpool-picture-image > a:hover img{
-    transform: scale(1.1);
-}
-*/
+
 .carpool-picture-image>a>h3 {
 	width: 1000px;
 	height: 350px;
@@ -407,7 +404,7 @@
 	background-image: url("/assets/images/common/login_image_100_01.png");
 	background-position: center center;
 }
-/*.review_box .review_top .writer_img img{}*/
+
 .review_box .review_top .writer_info {
 	display: inline-block;
 	position: relative;
@@ -514,7 +511,7 @@
 }
 
 .recommendList ol {
-	/*display:inline-block;*/
+	
 	width: 310px;
 	height: 130px;
 	background: rgba(255, 255, 255, 1);

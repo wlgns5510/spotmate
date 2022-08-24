@@ -95,12 +95,7 @@ public class CarpoolService {
 
 		// 기본정보
 		CarpoolVo cVo = carpoolDao.read(no);
-		/*
-		 * CarpoolVo star = carpoolDao.avgStar(no); int avgStar = star.getAvgStar();
-		 * cVo.setAvgStar(avgStar);
-		 * 
-		 * cvoList.add(cVo);
-		 */
+		
 		// 기본정보 (상세조건)
 		List<SpotDetailVo> spotDetailList = carpoolDao.read2(no);
 

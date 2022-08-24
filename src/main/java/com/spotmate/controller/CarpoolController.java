@@ -46,22 +46,10 @@ public class CarpoolController {
 		System.out.println("====================================");
 		System.out.println(cMap);
 		System.out.println("====================================");
+		
 		return "/spotcarpool/spotCarpool";
 	}
 
-	/*
-	@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST }) 
-	public String list(Model model) {
-			  
-			System.out.println("CarpoolController>list()");
-			
-			List<CarpoolVo> carpoolList = carpoolService.getList();
-			  
-			model.addAttribute("carpoolList", carpoolList);
-			  
-			return "/spotcarpool/spotCarpool"; 
-	}*/
-		
 	
 	//드라이버 차량 정보 가져오기
 	

@@ -97,6 +97,7 @@
 
 
 	<!-- 차량 리스트 전체 글 갯수 -->
+	
 	<select id="totalCarpoolCnt" parameterType="com.spotmate.vo.CarpoolVo" resultType="int">
 		<![CDATA[	
 		select count(*) totCnt
@@ -154,25 +155,7 @@
 		</if>
 	</select>
 
-
-	<!-- 드라이버 별점 평균 ★★★☆☆ -->
-
-	<select id="avgStar" parameterType="int" resultType="com.spotmate.vo.CarpoolVo">
-		<![CDATA[
-			select round(avg(star),1) avgStar 
-			from users u, car c, reservation r, userReview w, spotmate sm
-			where u.no = c.userNo
-			and c.no = sm.carNo
-			and sm.no = r.mateNo
-			and u.no = r.driverNo
-			and r.no = w.resvNo
-			and u.no = #{no}			
-		]]>
-
-	</select>
-
-
-	<!-- 리뷰 배너(리스트) -->
+	<!-- 리뷰 배너(리스트) *******쿼리문 수정하기-->
 
 	<select id="selectReviewList" resultType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
@@ -189,92 +172,7 @@
 	</select>
 
 
-	<!-- Deep 차량 추천 리스트 (***2페이지 리스트와 조건값 동일해야함) -->
-
-	<select id="selectRecommendList" resultType="com.spotmate.vo.CarpoolVo">
-		<![CDATA[
-			select us.id,
-			       to_char(sm.startDate, 'yyyy-mm-dd') startDate,
-			       sm.point
-				
-			from
-			   (select rownum rn,
-			           ot.spotMateNo, ot.startDate, ot.endDate, ot.type, ot.smPeople, ot.point,
-			           ot.userNo, ot.id, ot.userName,
-			           ot.carNo, ot.carNumber,
-			           ot.sPlaceNo, ot.sPlace, ot.sWayNo, ot.sSepPlace, ot.sLat, ot.sLng, ot.sTime,
-			           ot.eMateNo, ot.ePlaceNo, ot.ePlace, ot.eWayNo, ot.eSepPlace, ot.eLat, ot.eLng,
-			           ot.opts
-			    from
-			        (select sm.no spotMateNo, sm.startDate, sm.endDate, sm.type, sm.people smPeople, sm.point,
-			                us.no userNo, us.id, us.name userName,
-			                ca.no carNo, ca.carNo carNumber,
-			                se.sPlaceNo, se.sPlace, se.sWayNo, se.sSepPlace, se.sLat, se.sLng, se.sTime,
-			                se.eMateNo, se.ePlaceNo, se.ePlace, se.eWayNo, se.eSepPlace, se.eLat, se.eLng,
-			                pt.opts
-			         from spotMate sm, car ca, users us,   
-			              (select sMateNo, sPlaceNo, sPlace, sWayNo, sSepPlace, sLat, sLng, sTime,
-			                      eMateNo, ePlaceNo, ePlace, eWayNo, eSepPlace, eLat, eLng
-			               from (select p.mateNo sMateNo, p.no sPlaceNo, p.place sPlace, p.wayNo sWayNo, 
-			                            p.sepPlace sSepPlace, p.lat sLat, p.lng sLng, p.time sTime
-			                     from place p
-			                     where p.wayNo = -1) s,  
-			                    (select p.mateNo eMateNo, p.no ePlaceNo, p.place ePlace, p.wayNo eWayNo, 
-			                            p.sepPlace eSepPlace, p.lat eLat, p.lng eLng
-			                     from place p
-			                     where p.wayNo = 0) e    
-			               where s.sMateNo = e.eMateNo) se,  
-			              (select mateNo,
-			                      LISTAGG(detailNo, ',') within group (order by detailNo asc) opts
-					       from spotDetail
-					       group by mateNo) pt 
-			         where sm.no = se.sMateNo
-			         and ca.no = sm.carNo
-			         and ca.userNo = us.no  
-			         and sm.no = pt.mateNo(+) 
-			     
-			]]>
-		<if test="splace != ''  and  splace != null ">
-			and se.sPlace like '%'||#{splace}||'%'
-		</if>
-
-		<if test="eplace != ''  and  eplace != null ">
-			and se.ePlace like '%'||#{eplace}||'%'
-		</if>
-
-		<if test="sTime != ''  and  sTime != null ">
-			and se.sTime = #{sTime}
-		</if>
-
-		<if test="smPeople != ''  and  smPeople != null ">
-			and sm.people = #{smPeople}
-		</if>
-
-		<if test="startDate != ''  and  startDate != null ">
-			and sm.startDate = #{startDate}
-		</if>
-
-		<if test="endDate != ''  and  endDate != null ">
-			and sm.endDate = #{endDate}
-		</if>
-
-		<if test="ch_type != ''  and  ch_type != null ">
-			<foreach item="item" collection="ch_type">
-				and pt.opts like '%'||#{item}||'%'
-			</foreach>
-		</if>	
-			     
-			<![CDATA[	     
-			         order by sm.no desc
-			        )ot 
-			    )ort 
-			where rn>=1
-			and rn<=4
 	
-			]]>
-
-	</select>
-
 
 
 	<!-- 드라이버 차량 정보 가져오기 -->
@@ -321,6 +219,7 @@
 	</select>
 
 	<!-- DEEP드라이버 정보 가져오기(상세조건) -->
+	
 	<select id="selectDetailInfo" parameterType="int" resultType="com.spotmate.vo.SpotDetailVo">
 		<![CDATA[
 		select do.no spotDetailNo,
@@ -333,8 +232,8 @@
 
 
 
-
 	<!-- user예약내역 DB저장 -->
+	
 	<insert id="insertUserCarpoolInfo" parameterType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
 		insert into reservation
