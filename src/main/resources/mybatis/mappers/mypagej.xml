@@ -39,7 +39,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= buyDate
+			and #{endDate} >= buyDate-1
 		</if>
 
 		<if test="startDate != '' and startDate != null">

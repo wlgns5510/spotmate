@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spotmate.service.MypageJService;
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
+import com.spotmate.vo.RefundVo;
 import com.spotmate.vo.UserVo;
 
 @Controller
@@ -144,6 +145,15 @@ public class MypageJController {
 	@RequestMapping(value = "/myPointRefundForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointRefundForm() {
 		return "/mypage/myPointRefundForm";
+	}
+	
+	//포인트환불
+	@RequestMapping(value = "/myPointRefund", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myPointRefund(RefundVo refundVo) {
+		
+		System.out.println(refundVo);
+		
+		return "redirect:/mypageJ/myPointRefundMain";
 	}
 
 }
