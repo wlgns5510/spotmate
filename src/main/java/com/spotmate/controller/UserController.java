@@ -30,7 +30,7 @@ public class UserController {
       
 	   String url = request.getHeader("Referer");
 	   
-	   if(url !=null && !url.contains("/login") && !url.contains("/join")) {
+	   if(url !=null && !url.contains("/login") && !url.contains("/join") && !url.contains("write")) {
 		   request.getSession().setAttribute("prevPage", url);
 	   }
 	   
@@ -43,7 +43,7 @@ public class UserController {
 	   
 	   UserVo authUser = uService.loginOk(userVo);
 	   String url = (String)session.getAttribute("prevPage");
-	   
+	   System.out.println(authUser.toString());
 	   if(authUser !=null && url !=null) {
 		   session.setAttribute("authUser", authUser);
 		   return "redirect:"+url;

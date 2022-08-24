@@ -31,7 +31,6 @@ public class CarpoolController {
 	@RequestMapping(value = "/spotCarpool", method = { RequestMethod.GET, RequestMethod.POST })
 
 	public String spotCarpool() {
-		
 		return "/spotcarpool/spotCarpool";
 	}
 

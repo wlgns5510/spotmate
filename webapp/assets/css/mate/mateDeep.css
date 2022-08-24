@@ -25,20 +25,22 @@
 }
 
 .mateDeep_img1 {
-	margin: 0px 0px 0px 0px;
+	margin: 40px 0px 0px 0px;
+	float: left;
 }
 
 .mateDeep_img2 {
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	/* 	display: block; */
-	float: right;
-	margin: 0px 54px 0px 0px;
+	/* float: right; */
+	margin: 50px 54px 0px 0px;
 	height: 40px;
 }
 
 .mateDeep_placeRecommend {
-	margin: 0px 0px 0px 545px;
+	/* margin: 0px 0px 0px 545px; */
+	/* float: right; */
 }
 
 .mateDeep_placeAround {
@@ -46,10 +48,11 @@
 	font-family: Noto Sans;
 	font-weight: 400;
 	font-size: 18px;
-	margin: 10px 10px 10px 10px;
+	margin: 50px 10px 10px 10px;
+	float: left;
 }
 
-.mateDeep_placeRecommend select {
+.mateDeep_content select {
 	background: url('/assets/images/regularcaret-down.png') no-repeat 97%
 		50%/15px auto;
 	border: 2px solid rgba(217, 217, 217, 1);
@@ -57,10 +60,11 @@
 	width: 140px;
 	height: 40px;
 	padding: 0px 35px 0px 25px;
-	margin: 0px 0px 0px 0px;
+	margin: 50px 0px 0px 0px;
 	font-family: Noto Sans;
 	font-weight: 400;
 	color: rgba(102, 102, 102, 1);
+	
 }
 
 .mateDeep_banner1 {
@@ -323,7 +327,7 @@
 	text-align: left;
 	margin: 0px 0px 30px 0px;
 }
-/*********************** contnet > schedule *************************/
+/*********************** content > schedule *************************/
 .mateDeep_content .mateDeep_dayBox {
 	width: 90px;
 	height: 40px;
@@ -363,10 +367,12 @@
 
 .mateDeep_today .mateDeep_float {
 	float: left;
+	margin: 0px 0px 50px 0px;
 }
 
-.mateDeep_today img {
-	margin: 60px 50px 0px 10px;
+.mateDeep_today .mateDeep_lineImg {
+	float: left;
+	margin: 60px 60px 0px 20px;
 }
 
 .mateDeep_time {
@@ -403,7 +409,10 @@
 	background: rgba(245, 245, 245, 1);
 	margin: 0px 0px 21px 0px;
 }
-
+.mateDeep_recommendBox {
+	width:900px;
+	height: 200px;
+}
 .mateDeep_recommendListBox {
 	width: 900px;
 	height: 200px;

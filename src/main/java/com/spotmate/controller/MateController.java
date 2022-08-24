@@ -33,7 +33,7 @@ public class MateController {
 		
 		// Service를 통해서 getMateList를 가져온다
 		List<MateVo> mateList = mateService.getMateList();
-		List<MateVo> mateOptionList = mateService.getMateOptionList();
+		List<MateVo> mateOptionList = mateService.getMateOptionList(); //해당 메이트가 반려동물가능여부를 체크했는지 확인
 		List<MateVo> matePlaceList = mateService.getMatePlaceList();
 
 		
@@ -52,7 +52,9 @@ public class MateController {
 		
 		MateVo mateVo = mateService.deepMateRead(mateNo);
 		List<MateVo> matePlaceList = mateService.deepPlaceRead(mateNo);
+		
 		System.out.println("matePlaceList:" + matePlaceList);
+		
 		model.addAttribute("mateVo", mateVo);
 		model.addAttribute("matePlaceList", matePlaceList);
 		

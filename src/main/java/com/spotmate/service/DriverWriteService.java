@@ -25,8 +25,8 @@ public class DriverWriteService {
 		dwd.MateInsert(mwVo);
 	}
 	
-	public String getDriverInfo() {
-		return dwd.SelectDriverInfo();
+	public String getDriverInfo(int userNo) {
+		return dwd.SelectDriverInfo(userNo);
 	}
 	
 
