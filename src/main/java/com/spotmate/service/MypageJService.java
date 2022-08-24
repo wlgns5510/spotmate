@@ -173,4 +173,19 @@ public class MypageJService {
 		
 		return pointList;
 	}
+	
+	//쿠폰구매
+	public void couponPurchase(int userNo, CouponVo couponVo) {
+		System.out.println("MypageJService > couponPurchase");
+		
+		couponVo.setUserNo(userNo);
+		
+		System.out.println(couponVo);
+		int count = mypagejDao.insertCouponUsage(couponVo);
+		
+		int count2 = mypagejDao.insertpointUsage(couponVo);
+		
+		System.out.println(count + "건 등록" + count2 + "건등록");
+	
+	}
 }

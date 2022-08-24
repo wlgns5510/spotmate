@@ -44,8 +44,8 @@ public class MypageJController {
 
 		return "/mypage/myCouponMain";
 	}
-	
-	//쿠폰상품
+
+	// 쿠폰상품
 	@RequestMapping(value = "/myCouponBuy", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myCouponBuy(Model model,
 			@RequestParam(value = "minValue", required = false, defaultValue = "") String minValue,
@@ -53,7 +53,7 @@ public class MypageJController {
 			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
 			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
 		System.out.println("MypageJController > myCouponBuy");
-		
+
 		List<CouponVo> couponList = mypagejService.getCouponList(minValue, maxValue, option1, option2);
 
 		model.addAttribute("couponList", couponList);
@@ -65,26 +65,32 @@ public class MypageJController {
 	@RequestMapping(value = "/myCouponUse/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myCouponUse(@PathVariable("no") int couponNo, Model model, HttpSession session) {
 		System.out.println("MypageJController > myCouponUse");
-		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
 		int userNo = authUser.getNo();
-		
+
 		Map<String, Object> cuMap = mypagejService.getCouponUseMain(couponNo, userNo);
 
 		model.addAttribute("cuMap", cuMap);
 
 		return "/mypage/myCouponUse";
 	}
-	
+
 	// 쿠폰구매
-	@RequestMapping(value = "/myCouponPurchase", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponPurchase() {
+	@RequestMapping(value = "/couponPurchase", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myCouponPurchase(CouponVo couponVo, HttpSession session) {
 		System.out.println("MypageJController > myCouponPurchase");
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
 		
+		mypagejService.couponPurchase(userNo, couponVo);
+
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myInfoChk() {
 		return "/mypage/myInfoChk";
@@ -101,13 +107,13 @@ public class MypageJController {
 	@RequestMapping(value = "/kakaoPaySuccess", method = { RequestMethod.GET, RequestMethod.POST })
 	public void myPointCharge(Long point, HttpSession session) {
 		System.out.println("MypageJController > kakaoPaySuccess");
-		
-		UserVo authUser= (UserVo)session.getAttribute("authUser");
-		
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
 		int userNo = authUser.getNo();
-		
+
 		mypagejService.chargePoint(point, userNo);
-		
+
 	}
 
 	// 포인트메인
