@@ -45,6 +45,10 @@ public class HitchDao {
 	
 	public Map<String, Object> selectDriverInfo(int mateNo) {
 		HitchVo hVo = ss.selectOne("spotmate.selecthitchdriverinfo", mateNo);
+		if (hVo == null) {
+			hVo = ss.selectOne("spotmate.selecthitchdriverinfonoreview", mateNo);
+			hVo.setStar(0.0);
+		}
 		List<String> nowPos = ss.selectList("spotmate.selecthitchdriverinfonowpos", mateNo);
 		Map<String, Object> hMap = new HashMap<>();
 		hMap.put("hVo", hVo);

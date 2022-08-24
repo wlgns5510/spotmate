@@ -23,7 +23,7 @@ public class MateService {
 		return mateList;
 	}
 	
-	//메이트 리스트 가져오기(옵션)
+	//해당 메이트가 반려동물가능여부를 체크했는지 확인
 	public List<MateVo> getMateOptionList() {
 		System.out.println("MateService >> getMateOptionList");
 		

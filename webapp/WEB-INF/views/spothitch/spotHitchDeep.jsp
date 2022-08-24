@@ -44,7 +44,15 @@
 				</tr>
 				<tr>
 					<td class="waypoint">탑승후기</td>
-					<td class="tname">${hMap.hVo.star}</td>
+					<td class="tname">
+					<c:choose>
+						<c:when test="${hMap.hVo.star==0.0}">
+						첫 운행입니다
+						</c:when>
+						<c:otherwise>
+						${hMap.hVo.star}
+						</c:otherwise>
+					</c:choose></td>
 					<td class="destination">탑승 시 사용 포인트</td>
 					<td class="tname">${hMap.hVo.convertFare}</td>
 				</tr>
