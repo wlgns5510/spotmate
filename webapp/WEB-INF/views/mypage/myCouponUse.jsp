@@ -61,46 +61,13 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 
 		<!-- //topNav -->
-		<nav class="myPage_topNav">
-			<div class="box1">
-				<div class="box1_box">
-					<img src="/assets/images/box_user.png">
-				</div>
-				<p>yujieun님</p>
-				<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.5</span>
-			</div>
-			<div class="box2">
-				<p>
-					<a href="./myPointCarge">포인트 충전 ></a>
-				</p>
-				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
-			</div>
-			<div class="box3">
-				<p>
-					<a href="./myCouponMain">쿠폰 사용 ></a>
-				</p>
-				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
-			</div>
-		</nav>
+		<c:import url="/WEB-INF/views/includes/myPageTopNav.jsp"></c:import>
 
 		<!-- //myPage main contents -->
 		<main class="contents">
 
 			<!-- //sideNav  -->
-			<nav class="myPage_sideNav">
-				<h2>마이페이지</h2>
-				<!-- h2? -->
-				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img src="/assets/images/chevron-right-blue.png"></a></li>
-				</ul>
-			</nav>
+			<c:import url="/WEB-INF/views/includes/myPageSideNav.jsp"></c:import>
 
 
 			<!-- //section -->
@@ -132,7 +99,7 @@
 							</select>
 							<div class="btns">
 								<button type="submit" class="myPage_btnB">조회하기</button>
-								<a href="./myPointCharge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
+								<a href="${pageContext.request.contextPath }/mypageJ/myPointCharge"><button type="button" class="myPage_btnY">포인트 충전하기</button></a>
 							</div>
 						</form>
 					</div>
@@ -173,7 +140,7 @@
 										<div class="content">
 											<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
 												<p>
-													쿠폰을 구매하시겠습니까? <br>해당 금액만큼 포인트에서 차감됩니다.
+													해당 금액만큼 포인트에서 차감됩니다.<br>쿠폰을 구매하시겠습니까?
 												</p>
 												<button id="sub-btn" type="submit">구매하기</button>
 											</c:if>
@@ -202,6 +169,7 @@
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8e7c67039e0100811551e543e8f330e8"></script>
 <script>
+	//카카오지도API
 	var container = document.getElementById('map');
 	var options = {
 		center : new kakao.maps.LatLng(33.450701, 126.570667),
