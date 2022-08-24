@@ -44,12 +44,17 @@ public class MypageJController {
 
 		return "/mypage/myCouponMain";
 	}
-
+	
+	//쿠폰상품
 	@RequestMapping(value = "/myCouponBuy", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponBuy(Model model) {
+	public String myCouponBuy(Model model,
+			@RequestParam(value = "minValue", required = false, defaultValue = "") String minValue,
+			@RequestParam(value = "maxValue", required = false, defaultValue = "") String maxValue,
+			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
+			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
 		System.out.println("MypageJController > myCouponBuy");
-
-		List<CouponVo> couponList = mypagejService.getCouponList();
+		
+		List<CouponVo> couponList = mypagejService.getCouponList(minValue, maxValue, option1, option2);
 
 		model.addAttribute("couponList", couponList);
 
@@ -58,16 +63,28 @@ public class MypageJController {
 
 	// 쿠폰클릭
 	@RequestMapping(value = "/myCouponUse/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponUse(@PathVariable("no") int couponNo, Model model) {
+	public String myCouponUse(@PathVariable("no") int couponNo, Model model, HttpSession session) {
 		System.out.println("MypageJController > myCouponUse");
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		
+		int userNo = authUser.getNo();
+		
+		Map<String, Object> cuMap = mypagejService.getCouponUseMain(couponNo, userNo);
 
-		String couponImg = mypagejService.getCouponImg(couponNo);
-
-		model.addAttribute("couponImg", couponImg);
+		model.addAttribute("cuMap", cuMap);
 
 		return "/mypage/myCouponUse";
 	}
-
+	
+	// 쿠폰구매
+	@RequestMapping(value = "/myCouponPurchase", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myCouponPurchase() {
+		System.out.println("MypageJController > myCouponPurchase");
+		
+		return null;
+	}
+	
 	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myInfoChk() {
 		return "/mypage/myInfoChk";
