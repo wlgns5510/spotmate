@@ -9,149 +9,133 @@ import org.springframework.stereotype.Service;
 
 import com.spotmate.dao.CarpoolDao;
 import com.spotmate.vo.CarpoolVo;
+import com.spotmate.vo.SpotDetailVo;
 
 @Service
 public class CarpoolService {
-	
 
 	@Autowired
 	private CarpoolDao carpoolDao;
-	
-	/*
-	// 리스트
-	public List<CarpoolVo> getList() {
-		System.out.println("CarpoolService > getList");
 
-		List<CarpoolVo> carpoolList = carpoolDao.getcarpoolList();
-		System.out.println(carpoolList);
-		
-		return carpoolList;
-	}*/
-	/*
-	//드라이버 별점 평균 ★★★☆☆
-	public int avgStar(int no) {
-		System.out.println("carpoolService > avgStar");
-
-		int avgStar = carpoolDao.avgStar(no);
-
-		return avgStar;
-	}*/
-	
-	//리뷰 리스트
-	public List<CarpoolVo> getList2() {
-		System.out.println("ReviewService > getList2");
-
-		List<CarpoolVo> reviewList = carpoolDao.getreviewList();
-		System.out.println(reviewList);
-
-		return reviewList;
-	}
-		
-	// Deep 차량 추천 리스트 박스
-		public List<CarpoolVo> getList3() {
-			System.out.println("CarpoolService > getList3");
-
-			List<CarpoolVo> recommendList = carpoolDao.getrecommendList();
-			System.out.println(recommendList);
-			
-			return recommendList;
-		}
-		
-	
-		
-	
 	// 차량 리스트 가져오기
-		public Map<String, Object> getList(String splace, String eplace, String time, int people, String startDate, String endDate, int crtPage) {
-			System.out.println("carpoolService > getcarpoolList");
-			
-			/////////////리스트//////////////
-			
-			//페이지당 글갯수
-			int listCnt = 10;
-			
-			//전체페이지
-			crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
-			
-			//시작글번호
-			int startRnum = (crtPage - 1)*listCnt + 1;
-			
-			//끝글번호
-			int endRnum = (startRnum + listCnt) - 1;
-			
-			Map<String, Object> pMap = new HashMap<String, Object>();
-			pMap.put("splace", splace);
-			pMap.put("eplace", eplace);
-			pMap.put("time", time);
-			pMap.put("people", people);
-			pMap.put("startDate", startDate);
-			pMap.put("endDate", endDate);
-			pMap.put("startRnum", startRnum);
-			pMap.put("endRnum", endRnum);
+	public Map<String, Object> getList(CarpoolVo carpoolVo) {
+		System.out.println("carpoolService > getcarpoolList");
+		System.out.println(carpoolVo);
 
-			List<CarpoolVo> carpoolList = carpoolDao.getCarpoolList(pMap);
+		int crtPage = carpoolVo.getCrtPage();
 
-			/////////////페이징 계산//////////////
-			
-			//전체글갯수
-			int totalCarpoolCnt = carpoolDao.totalCarpoolCnt();
-			System.out.println(totalCarpoolCnt);
-			
-			//페이지당 버튼 갯수
-			int pageBtnCount = 10;
-			
-			//마지막 버튼 번호
-			int endPageBtnNo = (int)Math.ceil(crtPage/(double)pageBtnCount)*pageBtnCount;
-			
-			//시작 버튼 번호
-			int startPageBtnNo = (endPageBtnNo - pageBtnCount) + 1;
-			
-			System.out.println(crtPage + "," + startPageBtnNo + "," + endPageBtnNo);
-			
-			//다음 화살표 유무
-			boolean next = false;
-			if(listCnt * endPageBtnNo < totalCarpoolCnt) {
-				next = true;
-			
-			}else {
-				endPageBtnNo = (int)Math.ceil(totalCarpoolCnt/(double)listCnt);
-			
-			}
-			
-			//이전 화살표 유무
-			boolean prev = false;
-			if(startPageBtnNo !=1) {
-				prev = true;
-				
-			}
-			
-			//마지막페이지번호
-			int endPageNo = (int)Math.ceil(totalCarpoolCnt/(double)listCnt);
-			
-			
-			System.out.println(prev + "," + startPageBtnNo + "," + endPageBtnNo + "," + next + "," + endPageNo);
-			
-			Map<String, Object> cMap = new HashMap<String, Object>();
-			cMap.put("carpoolList", carpoolList);
-			cMap.put("prev", prev);
-			cMap.put("next", next);
-			cMap.put("endPageBtnNo", endPageBtnNo);
-			cMap.put("startPageBtnNo", startPageBtnNo);
-			cMap.put("endPageNo", endPageNo);
-			
-			
-			return cMap;
+		/////////////////////////////////////////////
+		// 리스트가져오기
+		/////////////////////////////////////////////
+		// 페이지당 글갯수
+		int listCnt = 5;
 
+		// 현재페이지
+		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
+
+		// 시작글번호
+		int startRnum = (crtPage - 1) * listCnt + 1;
+
+		// 끝글번호
+		int endRnum = (startRnum + listCnt) - 1;
+
+		// 시작글번호 끝글번호 대입
+		carpoolVo.setStartRnum(startRnum);
+		carpoolVo.setEndRnum(endRnum);
+
+		// 리스트 요청
+		List<CarpoolVo> carpoolList = carpoolDao.getCarpoolList(carpoolVo);
+		System.out.println(carpoolList);
+
+		//////////////////////////////////////////////
+		// 페이징 계산
+		//////////////////////////////////////////////
+		int totalCarpoolCnt = carpoolDao.totalCarpoolCnt(carpoolVo);
+		System.out.println(totalCarpoolCnt);
+
+		// 페이지당 버튼 갯수
+		int pageBtnCount = 5;
+
+		// 마지막 버튼 번호
+		int endPageBtnNo = (int) Math.ceil(crtPage / (double) pageBtnCount) * pageBtnCount;
+
+		// 시작 버튼 번호
+		int startPageBtnNo = (endPageBtnNo - pageBtnCount) + 1;
+
+		// 다음 화살표 유무
+		boolean next = false;
+		if ((listCnt * endPageBtnNo) < totalCarpoolCnt) {
+			next = true;
+
+		} else {
+			endPageBtnNo = (int) Math.ceil(totalCarpoolCnt / (double) listCnt);
 		}
-		
-		
-	
-	
-	//드라이버 차량 정보 가져오기
-	public CarpoolVo read(int no) {
 
-		System.out.println("CarpoolService>read()");
-		
-		return carpoolDao.read(no);
+		// 이전 화살표 유무
+		boolean prev = false;
+		if (startPageBtnNo != 1) {
+			prev = true;
+		}
+
+		Map<String, Object> cMap = new HashMap<String, Object>();
+		cMap.put("carpoolList", carpoolList);
+
+		cMap.put("prev", prev);
+		cMap.put("next", next);
+		cMap.put("startPageBtnNo", startPageBtnNo);
+		cMap.put("endPageBtnNo", endPageBtnNo);
+
+		return cMap;
+
 	}
-	
+
+	// 드라이버 차량 정보 가져오기
+	public Map<String, Object> read(int no) {
+		System.out.println("CarpoolService>read()");
+
+		// 기본정보
+		CarpoolVo cVo = carpoolDao.read(no);
+		/*
+		 * CarpoolVo star = carpoolDao.avgStar(no); int avgStar = star.getAvgStar();
+		 * cVo.setAvgStar(avgStar);
+		 * 
+		 * cvoList.add(cVo);
+		 */
+		// 기본정보 (상세조건)
+		List<SpotDetailVo> spotDetailList = carpoolDao.read2(no);
+
+		// 리뷰 리스트*
+		List<CarpoolVo> reviewList = carpoolDao.getreviewList();
+
+		// Deep 차량 추천 리스트 박스
+		CarpoolVo carPoolVo = new CarpoolVo();
+		carPoolVo.setStartRnum(1);
+		carPoolVo.setEndRnum(4);
+
+		List<CarpoolVo> recommendList = carpoolDao.getCarpoolList(carPoolVo);
+
+		Map<String, Object> driverMap = new HashMap<String, Object>();
+		driverMap.put("cVo", cVo);
+		driverMap.put("spotDetailList", spotDetailList);
+		driverMap.put("reviewList", reviewList);
+		driverMap.put("recommendList", recommendList);
+
+		System.out.println("===========================================");
+		System.out.println(driverMap);
+		System.out.println("===========================================");
+
+		return driverMap;
+	}
+
+	// user예약내역 DB저장
+	public void saveCarpool(int userNo) {
+		System.out.println("CarpoolService > saveCarpool");
+
+		CarpoolVo carpoolVo = new CarpoolVo();
+
+		carpoolVo.setUserNo(userNo);
+
+		carpoolDao.saveCarpool(carpoolVo);
+	}
+
 }
