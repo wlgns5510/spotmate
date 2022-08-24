@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>SPOTMATE</title>
@@ -21,6 +22,7 @@
 	<meta property="og:author" content="">
 	<meta property="kakao:title" content="">
 	<meta property="kakao:description" content="">
+	
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
@@ -43,9 +45,14 @@
 	<meta name="theme-color" content="#ffffff">
 	
 	<!-- css, js 연결 -->
+	<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
+	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-<title>SPOTMATE</title>
-
+	<title>joinOk</title>
+	
 </head>
 
 <body>
@@ -108,7 +115,5 @@
     <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
     <!-- //footer -->
     
-    
-
 </body>
 </html>

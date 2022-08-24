@@ -176,7 +176,7 @@ Last update : 2022. 08. 00.
 .joinOk_batext > p {
     font-family: 'Montserrat';
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 22px;
 
 }
@@ -185,7 +185,7 @@ Last update : 2022. 08. 00.
     width: 280px;
     height: 60px;
     box-sizing: border-box;
-    padding: 18px 40px 15px 60px;
+    padding: 18px 40px 15px 50px;
     margin: 30px 0px 0px 0px;
 }
 .btn_driverlink > .btn_ico1 {
@@ -205,7 +205,7 @@ Last update : 2022. 08. 00.
     float: left;
     color : #fff;
     box-sizing: border-box;
-    margin: 1px 45px 0px 20px;
+    margin: 1px 30px 0px 20px;
     /* border : 1px solid yellow; */
     font-family: 'Montserrat';
     font-weight: 600;
