@@ -967,7 +967,8 @@ CREATE TABLE reservation (
 	regDate DATE, /* 날짜 */
 	point NUMBER, /* 사용포인트 */
 	status VARCHAR2(100), /* 상태(대기, 완료, 취소)   */
-	people NUMBER /* 인원 */
+	people NUMBER, /* 인원 */
+	rideUser LONG /* 탑승자 */
 );
 
 -- 시퀀스 생성
@@ -994,6 +995,8 @@ COMMENT ON COLUMN reservation.point IS '사용포인트';
 COMMENT ON COLUMN reservation.status IS '상태(대기, 완료, 취소)  ';
 
 COMMENT ON COLUMN reservation.people IS '인원';
+
+COMMENT ON COLUMN reservation.rideUser IS '탑승자';
 
 CREATE UNIQUE INDEX PK_reservation
 	ON reservation (
@@ -1046,7 +1049,8 @@ seq_reservation_no.nextval,
 sysdate,
 3000,
 '대기',
-1
+1,
+''
 );
 
 INSERT INTO reservation values(
@@ -1068,7 +1072,8 @@ seq_reservation_no.nextval,
 sysdate,
 3000,
 '대기',
-1
+1,
+''
 );
 
 
