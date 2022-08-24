@@ -425,3 +425,16 @@
 .myPage_article2 .paging ul>li>a.active {
 	font-size: 15px;
 }
+
+
+
+/*inputBox 수정*/
+.style2 > input {
+	width: 220px;
+}
+
+.style2 > select {
+	width: 170px;
+}
+
+

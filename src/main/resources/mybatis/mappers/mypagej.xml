@@ -55,8 +55,8 @@
 		</if>
 
 	</select>
-	
-	
+
+
 	<!-- 포인트충전 -->
 	<insert id="insertPoint" parameterType="pointVo">
 		<![CDATA[
@@ -77,27 +77,48 @@
 			and co.no = cu.couponNo
 			and u.no = #{userNo}
 		]]>
-	
+
 	</select>
-	
+
 	<!-- 쿠폰상품리스트 -->
-	<select id="selectCouponList" resultType="CouponVo">
+	<select id="selectCouponList" parameterType="map" resultType="CouponVo">
+		<![CDATA[
+			select co.no couponNo,
+                   imgsrc
+			from category ca, brand br, coupon co
+			where  ca.no = br.cateNo
+			and br.no = co.brandno
+		]]>
+		
+		<if test="maxValue != '' and maxValue != null">
+		and #{maxValue} >= point
+		</if>
+		
+		<if test="minValue != '' and minValue != null">
+		and point >= #{minValue}
+		</if>
+		
+		<if test="option1 != '' and option1 != null">
+			and ca.name = #{option1}
+		</if>
+		
+		<if test="option2 != '' and option2 != null">
+		and br.name = #{option2}
+		</if>
+		
+	</select>
+
+	<!-- 쿠폰이미지가져오기 -->
+	<select id="selectCouponImg" parameterType="int" resultType="CouponVo">
 		<![CDATA[
 			select  no couponNo,
-       			    imgsrc
-			from coupon
-		]]>
-	</select>
-	
-	<!-- 쿠폰이미지가져오기 -->
-	<select id="selectCouponImg" parameterType="int" resultType="String">
-		<![CDATA[
-			select imgsrc
+      				point,
+      				imgsrc
 			from coupon
 			where no = #{couponNo}
 		]]>
 	</select>
-	
+
 	<!-- 포인트리스트가져오기 -->
 	<select id="selectPointList" parameterType="int" resultType="PointVo">
 		<![CDATA[
@@ -187,8 +208,17 @@
 			        )ort
 		]]>
 
-
-
 	</select>
 	
+	<!-- 총 포인트 가져오기 -->
+	
+	<select id="selectTotalPoint" parameterType="int" resultType="int">
+		<![CDATA[
+			select sum(point)
+			from pointUsage
+			where userno = #{userNo}
+		]]>
+	
+	</select>
+
 </mapper>
