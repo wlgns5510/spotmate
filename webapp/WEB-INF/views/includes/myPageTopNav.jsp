@@ -6,7 +6,7 @@
 		<div class="box1_box">
 			<img src="/assets/images/box_user.png">
 		</div>
-		<p>yujieun님</p>
+		<p>${authUser.name}님</p>
 		<span>Reviews</span><span><img src="/assets/images/ico_star.png">4.5</span>
 	</div>
 	<div class="box2">
