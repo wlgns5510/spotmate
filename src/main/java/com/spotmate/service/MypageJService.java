@@ -132,13 +132,21 @@ public class MypageJService {
 		return couponList;
 	}
 
-	// 쿠폰이미지가져오기
-	public String getCouponImg(int couponNo) {
-		System.out.println("MypageJService > getCouponImg");
+	// CouponUseMain
+	public Map<String, Object> getCouponUseMain(int couponNo, int userNo) {
+		System.out.println("MypageJService > getCouponUseMain");
 
-		String couponImg = mypagejDao.getCouponImg(couponNo);
+		CouponVo couponVo = mypagejDao.getCouponImg(couponNo);
 		
-		return couponImg;
+		int totalPoint = mypagejDao.getTotalPoint(userNo);
+		
+		Map<String, Object> cuMap = new HashMap<String, Object>();
+		
+		cuMap.put("couponVo", couponVo);
+		cuMap.put("totalPoint", totalPoint);
+		System.out.println(totalPoint);
+		
+		return cuMap;
 	};
 
 	// 포인트리스트가져오기

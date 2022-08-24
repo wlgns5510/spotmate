@@ -109,9 +109,11 @@
 	</select>
 
 	<!-- 쿠폰이미지가져오기 -->
-	<select id="selectCouponImg" parameterType="int" resultType="String">
+	<select id="selectCouponImg" parameterType="int" resultType="CouponVo">
 		<![CDATA[
-			select  imgsrc
+			select  no couponNo,
+      				point,
+      				imgsrc
 			from coupon
 			where no = #{couponNo}
 		]]>
@@ -206,6 +208,17 @@
 			        )ort
 		]]>
 
+	</select>
+	
+	<!-- 총 포인트 가져오기 -->
+	
+	<select id="selectTotalPoint" parameterType="int" resultType="int">
+		<![CDATA[
+			select sum(point)
+			from pointUsage
+			where userno = #{userNo}
+		]]>
+	
 	</select>
 
 </mapper>
