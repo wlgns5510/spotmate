@@ -23,7 +23,8 @@ public class MypageJService {
 		System.out.println("MypageJService > getCouponBList");
 
 		///////////// 리스트//////////////
-
+		System.out.println(startDate + "달력시작");
+		System.out.println(endDate + "달력끝");
 		// 페이지당 글갯수
 		int listCnt = 10;
 

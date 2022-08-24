@@ -8,7 +8,7 @@
 		<![CDATA[
 			select  ort.rn,
 			        ort.no,
-			        ort.buyDate,
+			        to_char(ort.buyDate, 'yy.mm.dd') buyDate,
 			        ort.usePlace,
 			        ort.point,
 			        ort.name cateName,
@@ -21,7 +21,7 @@
 			                  ot.name,
 			                  ot.status
 			            from (select  cu.no no,
-			                          to_char(cu.buyDate, 'yy.mm.dd') buyDate,
+			                          cu.buyDate,
 			                          cu.usePlace,
 			                          cu.point point,
 			                          ca.name,
@@ -39,11 +39,11 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= ort.buyDate
+			and #{endDate} >= buyDate
 		</if>
 
 		<if test="startDate != '' and startDate != null">
-			and ort.buyDate >= #{startDate}
+			and buyDate >= #{startDate}
 		</if>
 
 		<if test="option2 != '' and option2 != null">

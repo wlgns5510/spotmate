@@ -88,7 +88,7 @@ public class MypageJController {
 		
 		mypagejService.couponPurchase(userNo, couponVo);
 
-		return null;
+		return "redirect:/mypageJ/myCouponMain";
 	}
 
 	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
