@@ -23,7 +23,8 @@ public class MypageJService {
 		System.out.println("MypageJService > getCouponBList");
 
 		///////////// 리스트//////////////
-
+		System.out.println(startDate + "달력시작");
+		System.out.println(endDate + "달력끝");
 		// 페이지당 글갯수
 		int listCnt = 10;
 
@@ -172,5 +173,20 @@ public class MypageJService {
 		System.out.println(pointList);
 		
 		return pointList;
+	}
+	
+	//쿠폰구매
+	public void couponPurchase(int userNo, CouponVo couponVo) {
+		System.out.println("MypageJService > couponPurchase");
+		
+		couponVo.setUserNo(userNo);
+		
+		System.out.println(couponVo);
+		int count = mypagejDao.insertCouponUsage(couponVo);
+		
+		int count2 = mypagejDao.insertpointUsage(couponVo);
+		
+		System.out.println(count + "건 등록" + count2 + "건등록");
+	
 	}
 }

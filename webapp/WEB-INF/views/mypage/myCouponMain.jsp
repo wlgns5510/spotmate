@@ -112,7 +112,8 @@
 							<tr>
 								<th>번호</th>
 								<th>구매날짜</th>
-								<th>사용내역</th>
+								<th>유형</th>
+								<th>사용장소</th>
 								<th>쿠폰금액</th>
 								<th>사용여부</th>
 							</tr>
@@ -122,6 +123,7 @@
 								<tr>
 									<td>${couponVo.no }</td>
 									<td>${couponVo.buyDate }</td>
+									<td>${couponVo.cateName }</td>
 									<td>${couponVo.usePlace }</td>
 									<td>${couponVo.point }</td>
 									<td>${couponVo.status }</td>
