@@ -4,7 +4,7 @@
     
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<meta charset="UTF-8">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -22,6 +22,7 @@
 	<meta property="og:author" content="">
 	<meta property="kakao:title" content="">
 	<meta property="kakao:description" content="">
+	
 	<!-- favicon -->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
@@ -52,7 +53,7 @@
 	
 	<title>joinOk</title>
 	
-	</head>
+</head>
 
 <body>
 	<!-- header -->
@@ -114,7 +115,5 @@
     <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
     <!-- //footer -->
     
-    
-
 </body>
 </html>
