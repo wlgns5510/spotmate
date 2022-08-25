@@ -128,6 +128,7 @@
 		r.mateNo = s.no
 		and wayno = 0
 		and s.people > 0
+		group by driverNo, place, name, s.people
 	</select>
 
 
@@ -167,37 +168,49 @@
 	<select id="selecthitchlist" resultType="hVo">
 		select s.no mateNo,
 		place eplace1,
-		slat.lat,
-		slat.lng,
+		slatlng.lat,
+		slatlng.lng,
 		s.people people,
-		r.point point,
-		p.latlng
-		from reservation r, spotmate s, place p, (select lat,
-		lng,
-		s.no no
-		from spotmate s, place p
-		where s.no = p.mateNo
-		and wayno = -1) slat
-		where r.mateNo = s.no
-		and p.mateNo = s.no
-		and slat.no =
-		s.no
+		s.point point,
+        latlng
+		from spotmate s, place p, (select lat,
+                                                lng,
+                                                s.no no
+                                                from spotmate s, place p
+                                                where s.no = p.mateNo
+                                                and wayno = -1) slatlng
+		where p.mateNo = s.no
+		and slatlng.no = s.no
 		and wayno = 0
 		and s.people > 0
-		order by s.no desc
+		and s.type = 'hitchhike'
+        order by s.no desc
 	</select>
 
-	<update id="updatereserv" parameterType="hrVo">
-	
-		update reservation 
+	<insert id="makereserv" parameterType="hrVo">
+		<selectKey keyProperty="driverNo" resultType="int" order="BEFORE">
+				select
+					driverNo
+				from reservation
+				where mateNo = #{mateNo}
+				group by driverNo
+		</selectKey>
 			
-		set 
-			regDate = sysdate,
-			rideUser = #{lat}||','||#{lng}
+		insert into reservation 
 			
-			where mateNo = #{mateNo}
-	
-	</update>
+		values(
+			seq_reservation_no.nextval,
+			#{mateNo},
+			#{userNo},
+			#{driverNo},
+			sysdate,
+			#{point},
+			'open',
+			#{people},
+			#{lat}||','||#{lng}
+		)
+			
+	</insert>
 	
 	<update id="updatereservpeople" parameterType="hrVo">
 	
@@ -276,7 +289,7 @@
 		values (
 		#{no},
 		#{carNo},
-		to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
+		to_date(#{sdate1}||' '||#{stime1}, 'yyyy-mm-dd hh24:mi'),
 		#{sdate1},
 		#{people},
 		#{type},

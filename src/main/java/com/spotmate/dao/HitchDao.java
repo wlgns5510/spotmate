@@ -25,7 +25,7 @@ public class HitchDao {
 	}
 	
 	public int updateReserv(HitchReservVo hrVo) {
-		ss.update("spotmate.updatereserv", hrVo);
+		ss.update("spotmate.makereserv", hrVo);
 		ss.update("spotmate.updatereservpeople", hrVo);
 		int people = ss.selectOne("spotmate.updatepeople", hrVo.getMateNo());
 		if(people < 0) {
@@ -39,9 +39,10 @@ public class HitchDao {
 		Map<String, Object> nMap = new HashMap<String, Object>();
 		nMap.put("userNo", userNo);
 		nMap.put("mateNo", mateNo);
-		int cnt = ss.update("spotmate.cancelreserv", nMap);
-		cnt += ss.delete("spotmate.deletecancelreserv", nMap);
-		return cnt;
+		ss.update("spotmate.cancelreserv", nMap);
+		ss.delete("spotmate.deletecancelreserv", nMap);
+		int people = ss.selectOne("spotmate.updatepeople", mateNo);
+		return people;
 	}
 	
 	public HitchReservVo watchPos(MapVo mVo) {
