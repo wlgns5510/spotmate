@@ -34,11 +34,54 @@ public class MateVo {
 	
 
 	//생성자
+	public MateVo() {}
+	public MateVo(String name, String carPicture, String carName, String carNo, String introduce, String startDate,
+			String endDate, int people, String type, int point, String duration, String distance, String comments,
+			int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day, int wayNo,
+			String sepplace, String time, String place, double lat, double lng, double latlng, String sPlace,
+			String ePlace, int allDay) {
+		super();
+		this.name = name;
+		this.carPicture = carPicture;
+		this.carName = carName;
+		this.carNo = carNo;
+		this.introduce = introduce;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.people = people;
+		this.type = type;
+		this.point = point;
+		this.duration = duration;
+		this.distance = distance;
+		this.comments = comments;
+		this.mateNo = mateNo;
+		this.optionName = optionName;
+		this.mateOptionNo = mateOptionNo;
+		this.optionNo = optionNo;
+		this.matePlaceNo = matePlaceNo;
+		this.day = day;
+		this.wayNo = wayNo;
+		this.sepplace = sepplace;
+		this.time = time;
+		this.place = place;
+		this.lat = lat;
+		this.lng = lng;
+		this.latlng = latlng;
+		this.sPlace = sPlace;
+		this.ePlace = ePlace;
+		this.allDay = allDay;
+	}
+	
+	
+	public MateVo(double lat, double lng) {
+		super();
+		this.lat = lat;
+		this.lng = lng;
+	}
+	//메소드 gs
 	public String getName() {
 		return name;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;

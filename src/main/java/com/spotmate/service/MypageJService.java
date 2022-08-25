@@ -23,7 +23,8 @@ public class MypageJService {
 		System.out.println("MypageJService > getCouponBList");
 
 		///////////// 리스트//////////////
-
+		System.out.println(startDate + "달력시작");
+		System.out.println(endDate + "달력끝");
 		// 페이지당 글갯수
 		int listCnt = 10;
 
@@ -113,21 +114,40 @@ public class MypageJService {
 
 	// 쿠폰상품리스트
 
-	public List<CouponVo> getCouponList() {
+	public List<CouponVo> getCouponList(String minValue, String maxValue, String option1, String option2) {
 		System.out.println("MypageJService > getCouponList");
+		
+		Map<String, Object> cMap = new HashMap<String, Object>();
+		
+		cMap.put("minValue", minValue);
+		cMap.put("maxValue", maxValue);
+		cMap.put("option1", option1);
+		cMap.put("option2", option2);
 
-		List<CouponVo> couponList = mypagejDao.getCouponList();
+		List<CouponVo> couponList = mypagejDao.getCouponList(cMap);
+		
+		System.out.println(cMap);
 
+		System.out.println(couponList);
+		
 		return couponList;
 	}
 
-	// 쿠폰이미지가져오기
-	public String getCouponImg(int couponNo) {
-		System.out.println("MypageJService > getCouponImg");
+	// CouponUseMain
+	public Map<String, Object> getCouponUseMain(int couponNo, int userNo) {
+		System.out.println("MypageJService > getCouponUseMain");
 
-		String couponImg = mypagejDao.getCouponImg(couponNo);
-
-		return couponImg;
+		CouponVo couponVo = mypagejDao.getCouponImg(couponNo);
+		
+		int totalPoint = mypagejDao.getTotalPoint(userNo);
+		
+		Map<String, Object> cuMap = new HashMap<String, Object>();
+		
+		cuMap.put("couponVo", couponVo);
+		cuMap.put("totalPoint", totalPoint);
+		System.out.println(totalPoint);
+		
+		return cuMap;
 	};
 
 	// 포인트리스트가져오기
@@ -153,5 +173,20 @@ public class MypageJService {
 		System.out.println(pointList);
 		
 		return pointList;
+	}
+	
+	//쿠폰구매
+	public void couponPurchase(int userNo, CouponVo couponVo) {
+		System.out.println("MypageJService > couponPurchase");
+		
+		couponVo.setUserNo(userNo);
+		
+		System.out.println(couponVo);
+		int count = mypagejDao.insertCouponUsage(couponVo);
+		
+		int count2 = mypagejDao.insertpointUsage(couponVo);
+		
+		System.out.println(count + "건 등록" + count2 + "건등록");
+	
 	}
 }

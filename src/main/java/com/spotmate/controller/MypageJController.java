@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spotmate.service.MypageJService;
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
+import com.spotmate.vo.RefundVo;
 import com.spotmate.vo.UserVo;
 
 @Controller
@@ -45,11 +46,16 @@ public class MypageJController {
 		return "/mypage/myCouponMain";
 	}
 
+	// 쿠폰상품
 	@RequestMapping(value = "/myCouponBuy", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponBuy(Model model) {
+	public String myCouponBuy(Model model,
+			@RequestParam(value = "minValue", required = false, defaultValue = "") String minValue,
+			@RequestParam(value = "maxValue", required = false, defaultValue = "") String maxValue,
+			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
+			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
 		System.out.println("MypageJController > myCouponBuy");
 
-		List<CouponVo> couponList = mypagejService.getCouponList();
+		List<CouponVo> couponList = mypagejService.getCouponList(minValue, maxValue, option1, option2);
 
 		model.addAttribute("couponList", couponList);
 
@@ -58,14 +64,32 @@ public class MypageJController {
 
 	// 쿠폰클릭
 	@RequestMapping(value = "/myCouponUse/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponUse(@PathVariable("no") int couponNo, Model model) {
+	public String myCouponUse(@PathVariable("no") int couponNo, Model model, HttpSession session) {
 		System.out.println("MypageJController > myCouponUse");
 
-		String couponImg = mypagejService.getCouponImg(couponNo);
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		model.addAttribute("couponImg", couponImg);
+		int userNo = authUser.getNo();
+
+		Map<String, Object> cuMap = mypagejService.getCouponUseMain(couponNo, userNo);
+
+		model.addAttribute("cuMap", cuMap);
 
 		return "/mypage/myCouponUse";
+	}
+
+	// 쿠폰구매
+	@RequestMapping(value = "/couponPurchase", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myCouponPurchase(CouponVo couponVo, HttpSession session) {
+		System.out.println("MypageJController > myCouponPurchase");
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
+		
+		mypagejService.couponPurchase(userNo, couponVo);
+
+		return "redirect:/mypageJ/myCouponMain";
 	}
 
 	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
@@ -84,13 +108,13 @@ public class MypageJController {
 	@RequestMapping(value = "/kakaoPaySuccess", method = { RequestMethod.GET, RequestMethod.POST })
 	public void myPointCharge(Long point, HttpSession session) {
 		System.out.println("MypageJController > kakaoPaySuccess");
-		
-		UserVo authUser= (UserVo)session.getAttribute("authUser");
-		
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
 		int userNo = authUser.getNo();
-		
+
 		mypagejService.chargePoint(point, userNo);
-		
+
 	}
 
 	// 포인트메인
@@ -121,6 +145,15 @@ public class MypageJController {
 	@RequestMapping(value = "/myPointRefundForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointRefundForm() {
 		return "/mypage/myPointRefundForm";
+	}
+	
+	//포인트환불
+	@RequestMapping(value = "/myPointRefund", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myPointRefund(RefundVo refundVo) {
+		 
+		System.out.println(refundVo);
+		
+		return "redirect:/mypageJ/myPointRefundMain";
 	}
 
 }

@@ -43,21 +43,21 @@ public class MypageJDao {
 	}
 
 	// 쿠폰상품리스트
-	public List<CouponVo> getCouponList() {
+	public List<CouponVo> getCouponList(Map<String, Object> cMap) {
 		System.out.println("MypageJService > getCouponList");
 
-		List<CouponVo> couponList = sqlSession.selectList("mypagej.selectCouponList");
+		List<CouponVo> couponList = sqlSession.selectList("mypagej.selectCouponList", cMap);
 
 		return couponList;
 	}
 
 	// 쿠폰이미지가져오기
-	public String getCouponImg(int couponNo) {
+	public CouponVo getCouponImg(int couponNo) {
 		System.out.println("MypageJService > getCouponImg");
 
-		String couponImg = sqlSession.selectOne("mypagej.selectCouponImg", couponNo);
+		CouponVo couponVo = sqlSession.selectOne("mypagej.selectCouponImg", couponNo);
 
-		return couponImg;
+		return couponVo;
 	};
 
 	// 포인트리스트가져오기
@@ -68,5 +68,32 @@ public class MypageJDao {
 		
 		return pointList;
 	}
-
+	
+	// 총포인트가져오기
+	public int getTotalPoint(int userNo) {
+		System.out.println("MypageJService > getTotalPoint");
+		
+		int totalPoint= sqlSession.selectOne("mypagej.selectTotalPoint", userNo);
+		
+		return totalPoint;
+	}
+	
+	//쿠폰구매insert(CouponUsage)
+	public int insertCouponUsage(CouponVo couponVo) {
+		System.out.println("MypageJService > insertCouponUsage");
+		
+		int count = sqlSession.insert("mypagej.insertCouponUsage", couponVo);
+		
+		return count;
+	}
+	
+	////쿠폰구매insert(pointUsage)
+	public int insertpointUsage(CouponVo couponVo) {
+		System.out.println("MypageJService > insertpointUsage");
+		
+		int count = sqlSession.insert("mypagej.insertpointUsage", couponVo);
+		
+		return count;
+	}
+	
 }

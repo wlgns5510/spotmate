@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
-<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
-
 <!-- footer -->
 <footer class="footer_wrapper" id="footer">
    <div class="footer_banner swiper-container">
@@ -38,12 +34,12 @@
                <div class="down">
                   <ul>
                      <li><a href="javascript:void(0);">GITHUB</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">이정화</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">김려경</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">양지훈</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">유지은</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">이준규</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
+                     <li><a href="https://github.com/LJH0716" target="_blank" rel="noopenner noreferrer">이정화</a></li>
+                     <li><a href="https://github.com/Ryeokyoung" target="_blank" rel="noopenner noreferrer">김려경</a></li>
+                     <li><a href="https://github.com/wlgns5510" target="_blank" rel="noopenner noreferrer">양지훈</a></li>
+                     <li><a href="https://github.com/ujiun" target="_blank" rel="noopenner noreferrer">유지은</a></li>
+                     <li><a href="https://github.com/ljk0071" target="_blank" rel="noopenner noreferrer">이준규</a></li>
+                     <li><a href="https://github.com/joyunju" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
                   </ul>
                </div>
             </div>
