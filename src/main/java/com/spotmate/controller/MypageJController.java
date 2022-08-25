@@ -118,7 +118,7 @@ public class MypageJController {
 	@RequestMapping(value = "/myPointMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointMain(Model model, @ModelAttribute PointVo pointVo, HttpSession session) {
 		System.out.println("MypageJController > myPointMain");
-		System.out.println(pointVo.getOption1() + "테스트");
+		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
@@ -128,9 +128,19 @@ public class MypageJController {
 
 		return "/mypage/myPointMain";
 	}
-
+	
+	//포인트환불메인
 	@RequestMapping(value = "/myPointRefundMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointRefundMain() {
+	public String myPointRefundMain(Model model, @ModelAttribute RefundVo RefundVo, HttpSession session) {
+		System.out.println("MypageJController > myPointRefundMain");
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
+		
+		Map<String, Object> cMap= mypagejService.getRefundList(RefundVo, userNo);
+		model.addAttribute("cMap", cMap);
+		
 		return "/mypage/myPointRefundMain";
 	}
 
@@ -141,9 +151,13 @@ public class MypageJController {
 
 	// 포인트환불
 	@RequestMapping(value = "/myPointRefund", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointRefund(RefundVo refundVo) {
+	public String myPointRefund(@ModelAttribute RefundVo refundVo, HttpSession session) {
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-		System.out.println(refundVo);
+		int userNo = authUser.getNo();
+		
+		mypagejService.refundPoint(refundVo, userNo);
 
 		return "redirect:/mypageJ/myPointRefundMain";
 	}

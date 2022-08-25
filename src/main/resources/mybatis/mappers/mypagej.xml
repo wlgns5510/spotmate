@@ -60,16 +60,6 @@
 		]]>
 	</select>
 
-
-	<!-- 포인트충전 -->
-	<insert id="insertPoint" parameterType="pointVo">
-		<![CDATA[
-			INSERT INTO pointUsage
-			VALUES (SEQ_POINTUSAGE_NO.nextval, #{userNo}, '충전', sysdate, #{point}, #{point}, null)
-		]]>
-	</insert>
-
-
 	<!-- 쿠폰리스트전체글 갯수 -->
 	<select id="totalCouponCnt" parameterType="couponVo" resultType="int">
 		<![CDATA[
@@ -138,6 +128,22 @@
 			where no = #{couponNo}
 		]]>
 	</select>
+
+	<!-- 구매쿠폰등록(CouponUsage) -->
+	<insert id="insertCouponUsage" parameterType="couponVo">
+		<![CDATA[
+			insert into couponUsage
+			values(seq_couponUsage_no.nextval, #{userNo}, #{couponNo}, #{point}, sysdate, null, null, '미사용')
+		]]>
+	</insert>
+
+	<!-- 구매쿠폰등록(PointUsage) -->
+	<insert id="insertpointUsage" parameterType="couponVo">
+		<![CDATA[
+			INSERT INTO pointUsage
+			VALUES (SEQ_POINTUSAGE_NO.nextval, #{userNo}, '구매', sysdate, null, -#{point}, null)
+		]]>
+	</insert>
 
 	<!-- 포인트리스트가져오기 -->
 	<select id="selectPointList" parameterType="pointVo" resultType="PointVo">
@@ -231,7 +237,7 @@
 			                   where userno = #{userNo}
 			                   and (type = '충전' or type='환불' or type='구매')
 		]]>
-		
+
 		<if test="option1 != '' and option1 != null">
 			and type = #{option1}
 		</if>
@@ -277,6 +283,14 @@
 
 	</select>
 
+	<!-- 포인트충전 -->
+	<insert id="insertPoint" parameterType="pointVo">
+		<![CDATA[
+			INSERT INTO pointUsage
+			VALUES (SEQ_POINTUSAGE_NO.nextval, #{userNo}, '충전', sysdate, #{point}, #{point}, null)
+		]]>
+	</insert>
+
 	<!-- 총 포인트 가져오기 -->
 
 	<select id="selectTotalPoint" parameterType="int" resultType="int">
@@ -288,20 +302,80 @@
 
 	</select>
 
-	<!-- 구매쿠폰등록(CouponUsage) -->
-	<insert id="insertCouponUsage" parameterType="couponVo">
+	<!-- 포인트환불(RefundPoint) -->
+	<insert id="insertRefundPoint" parameterType="com.spotmate.vo.RefundVo">
 		<![CDATA[
-			insert into couponUsage
-			values(seq_couponUsage_no.nextval, #{userNo}, #{couponNo}, #{point}, sysdate, null, null, '미사용')
+			insert into pointrefund
+            values(seq_pointrefund_no.nextval, #{userNo}, sysdate, #{accountNum}, #{name}, '환불대기', #{point})
 		]]>
 	</insert>
+	
+	<!-- 환불리스트가져오기 -->
+	<select id="selectrefundList" parameterType="com.spotmate.vo.RefundVo" resultType="com.spotmate.vo.RefundVo">
+		<![CDATA[
+			select  ort.rn,
+			        to_char(ort.regDate, 'yy.mm.dd') regDate,
+			        ort.accountNum,
+			        ort.status,
+			        ort.point
+			    from (select  rownum rn,
+			                  ot.regDate,
+			                  ot.accountNum,
+			                  ot.status,
+			                  ot.point
+			            from (select  regDate,
+								      accountNum,
+								      status,
+								      point
+						      from pointrefund pr, users u
+							  where pr.userNo = u.no
+							  and u.no = #{userNo}
 
-	<!-- 구매쿠폰등록(PointUsage) -->
-	<insert id="insertpointUsage" parameterType="couponVo">
-		<![CDATA[
-			INSERT INTO pointUsage
-			VALUES (SEQ_POINTUSAGE_NO.nextval, #{userNo}, '구매', sysdate, null, -#{point}, null)
 		]]>
-	</insert>
+
+		<if test="endDate != '' and endDate != null">
+			and #{endDate} >= regDate-1
+		</if>
+
+		<if test="startDate != '' and startDate != null">
+			and regDate >= #{startDate}
+		</if>
+
+		<if test="option1 != '' and option1 != null">
+			and status = #{option1}
+		</if>
+	
+		<![CDATA[
+				 order by regDate desc
+				 )ot
+			    )ort
+			where rn>=#{startRnum}
+			and rn<=#{endRnum}
+		]]>
+	</select>
+	
+	<!-- 환불리스트전체글 갯수 -->
+	<select id="totalRefundCnt" parameterType="com.spotmate.vo.RefundVo" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from pointrefund pr, users u
+			where pr.userNo = u.no
+			and u.no = #{userNo}
+		]]>
+
+		<if test="endDate != '' and endDate != null">
+			and #{endDate} >= status
+		</if>
+
+		<if test="startDate != '' and startDate != null">
+			and regDate >= #{startDate}
+		</if>
+
+		<if test="option1 != '' and option1 != null">
+			and status = #{option1}
+		</if>
+	</select>
+	
+
 
 </mapper>
