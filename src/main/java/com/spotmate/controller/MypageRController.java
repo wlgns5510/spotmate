@@ -32,15 +32,19 @@ public class MypageRController {
 	private UserVo uVo;
 
 	@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myDriverForm(HttpSession ss) {
+	public String myDriverForm(Model model, HttpSession ss) {
 		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		
-		if(dls.getCarInfo(authUser.getNo()) == null) {
+
+		int userNo = authUser.getNo();
+		if(dls.getCarInfo(userNo) == null) {
 			return "/mypage/myDriverForm";
 		}
+		System.out.println(authUser);
 		
-//		return "/mypage/myDriverForm";
+		DriverLicenseVo dlvo = dls.getCarInfo(userNo);
+		
+		model.addAttribute("dlvo", dlvo);
 		return "/mypage/myDriverMain2";
 	}
 
@@ -117,10 +121,13 @@ public class MypageRController {
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute DriverLicenseVo dlvo, HttpSession ss) {
 		System.out.println("MypageRController>modify()");
+
+		System.out.println(dlvo.toString());
 		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		
 		int userNo = authUser.getNo();
+		
 		
 		dlvo.setUserNo(userNo);
 	    

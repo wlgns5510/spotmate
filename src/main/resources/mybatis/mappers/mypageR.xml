@@ -76,6 +76,7 @@
 			from users u, car c
 			where u.no = c.userno
 			and u.no = #{userNo}
+			order by c.no desc
 			              
 		]]>
 	</select>
@@ -94,6 +95,26 @@
 		]]>
 	</update>
 	
+	<!-- 유저정보수정 -->
+	<update id="carUpdate" parameterType="dlvo">
+	<![CDATA[
+		update  car
+	 	set 
+	 		carname = #{c_Model},
+	 		carno = #{c_num},
+	 		carcolor = #{c_color},
+	 		people = #{num_PA},
+	 		introduce = #{introduce}
+	 	where userno = #{userNo}
+		]]>
+	</update>
+	
+	<update id="carDetailDelete" parameterType="dlvo">
+	<![CDATA[
+		delete from cardetail
+	 	where carno = (select no from car where userno = #{userNo})
+		]]>
+	</update>
 	
 	
 </mapper>

@@ -178,19 +178,19 @@
 								
 									<tr align="left">
 										<td><label for="c_Model">차량모델명*</label></td>
-										<td><input value="${dlvo.c_Model}" id="c_Model" placeholder="테슬라 모델3" type="text"></td>
+										<td><input value="${dlvo.c_Model}" name="c_Model" id="c_Model" placeholder="테슬라 모델3" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_num">차량등록번호*</label></td>
-										<td><input value="${dlvo.c_num}" id="c_num" placeholder="770가7777" type="text"></td>
+										<td><input value="${dlvo.c_num}" name="c_num" id="c_num" placeholder="770가7777" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
-										<td><input value="${dlvo.c_color}" id="c_color" placeholder="화이트" type="text"></td>
+										<td><input value="${dlvo.c_color}" name="c_color" id="c_color" placeholder="화이트" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="num_PA">탑승가능인원*</label></td>
-										<td><input value="${dlvo.num_PA}" id="num_PA" placeholder="2" type="text"></td>
+										<td><input value="${dlvo.num_PA}" name="num_PA" id="num_PA" placeholder="2" type="text"></td>
 									</tr>
 								</table>
 
@@ -228,7 +228,7 @@
 
 							<div class="memo">
 								<h5>드라이버님을 소개해주세요*</h5>
-								<textarea name="introduce"></textarea>
+								<textarea name="introduce">${dlvo.introduce}</textarea>
 							</div>
 
 							<input type="submit" placeholder="수정하기" class="DForm_enrollbtn">

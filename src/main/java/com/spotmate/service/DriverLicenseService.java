@@ -61,6 +61,17 @@ public class DriverLicenseService {
 		int count= mrDao.userUpdate(dlvo);
 		System.out.println(count + "건 유저정보 수정");
 		
+		count = mrDao.carUpdate(dlvo);
+		System.out.println(count + "건 차정보 수정");
+
+		List<Integer> chType = dlvo.getCh_type();  
+		for (int i = 0; i < chType.size(); i++) {
+
+			Map<String, Integer> carDetailMap = new HashMap<String, Integer>();
+			carDetailMap.put("carNo", dlvo.getCarNo());
+			carDetailMap.put("detailNo", chType.get(i));
+			mrDao.carDetailUpdate(dlvo, carDetailMap);
+		}
 		
 	}
 
