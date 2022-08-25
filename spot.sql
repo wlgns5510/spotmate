@@ -1032,6 +1032,19 @@ INSERT INTO spotmate VALUES (
     '카풀 합니다'
 );
 
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    2,
+    '2022-08-28',
+    '2022-08-29',
+    2,
+    'mate',
+    85000,
+    '600분',
+    '360km',
+    '메이트 구합니다'
+);
+
 
 -- select
 select *
@@ -1803,22 +1816,9 @@ INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
     1,
     NULL,
-    -1,
-    '출발지',
-    '2022-08-13 오후 11:54',
-    '건대입구역',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    1,
-    NULL,
     0,
-    '도착지',
-    '2022-08-13',
+    'end',
+    null,
     '홍대입구역',
     127.2341234234,
     36.342355436,
@@ -1830,8 +1830,8 @@ INSERT INTO place VALUES (
     2,
     NULL,
     -1,
-    '출발지',
-    '2022-08-15 오전 11:12',
+    'start',
+    '오전 11:12',
     '방배역',
     127.2341234234,
     36.342355436,
@@ -1843,8 +1843,8 @@ INSERT INTO place VALUES (
     2,
     NULL,
     0,
-    '도착지',
-    '2022-08-15',
+    'end',
+    null,
     '신림역',
     127.2341234234,
     36.342355436,
@@ -1853,11 +1853,11 @@ INSERT INTO place VALUES (
 
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     -1,
-    '출발지',
-    '2022-08-17 오전 08:30',
+    'start',
+    '오전 08:30',
     '서울역',
     127.2341234234,
     36.342355436,
@@ -1865,11 +1865,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     1,
-    '경유지',
-    '2022-08-17 오전 11:30',
+    'waypoint',
+    '오전 11:30',
     '문경',
     127.2341234234,
     36.342355436,
@@ -1878,11 +1878,11 @@ INSERT INTO place VALUES (
 
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     2,
-    '경유지',
-    '2022-08-17 오후 02:20',
+    'waypoint',
+    '오후 02:20',
     '울산',
     127.2341234234,
     36.342355436,
@@ -1890,11 +1890,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     0,
-    '도착지',
-    '2022-08-17',
+    'end',
+    null,
     '부산',
     127.2341234234,
     36.342355436,
@@ -1903,11 +1903,11 @@ INSERT INTO place VALUES (
 
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     -1,
-    '출발지',
-    '2022-08-18 오전 10:00',
+    'start',
+    '오전 10:00',
     '부산',
     127.2341234234,
     36.342355436,
@@ -1915,11 +1915,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     1,
-    '경유지',
-    '2022-08-18 오후 02:30',
+    'waypoint',
+    '오후 02:30',
     '주문진',
     127.2341234234,
     36.342355436,
@@ -1927,11 +1927,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     2,
-    '경유지',
-    '2022-08-18 오후 04:30',
+    'waypoint',
+    '오후 04:30',
     '강릉',
     127.2341234234,
     36.342355436,
@@ -1939,11 +1939,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     0,
-    '도착지',
-    '2022-08-18',
+    'end',
+    null,
     '서울',
     127.2341234234,
     36.342355436,
@@ -1951,9 +1951,9 @@ INSERT INTO place VALUES (
 );
     
 
--- select
+— select
 select *
 from place;
 
--- 커밋
+— 커밋
 commit;

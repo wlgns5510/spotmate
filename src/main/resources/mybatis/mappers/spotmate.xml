@@ -142,15 +142,14 @@
 	<select id="gethdriverpage" parameterType="int" resultType="hVo">
 		select s.no mateNo,
 		p.latlng,
-		rideUser
+		r.lat lat,
+		r.lng lng
 		from reservation r, users u, spotmate s, place p
-		where r.driverNo =
-		u.no
+		where r.driverNo = u.no
 		and p.mateNo = s.no
 		and s.no = r.mateNo
-		and type='hitchhike'
-		and
-		wayno=-1
+		and type = 'hitchhike'
+		and wayno = -1
 		and status='open'
 		and u.no = #{no}
 	</select>
@@ -207,7 +206,8 @@
 			#{point},
 			'open',
 			#{people},
-			#{lat}||','||#{lng}
+			#{lat},
+			#{lng}
 		)
 			
 	</insert>
@@ -250,33 +250,36 @@
 
 
 
-
-
-
-	<update id="recoverreserv" parameterType="hrVo">
+	<insert id="recoverreserv" parameterType="hrVo">
+	
+		<selectKey keyProperty="people" resultType="int" order="BEFORE">
+				select
+					people
+				from spotmate
+				where no = #{mateNo}
+		</selectKey>
+		
 		update spotmate
 		set
-		people = #{canRide}
+		people = #{people}
 
 		where no = #{mateNo}
-	</update>
+	</insert>
 
-	<select id="selectrideuser" parameterType="int"
-		resultType="hrVo">
-		select rideUser
+	<select id="selectrideuser" parameterType="int" resultType="hrVo">
+		select lat rlat,
+			lng rlng
 		from reservation r, spotmate s
-		where r.mateNo
-		= s.no
+		where r.mateNo = s.no
 		and mateNo = #{mateNo}
 	</select>
 
 	<update id="watchpos" parameterType="mVo">
 		update place
 		set
-		latlng = #{lng}||','||#{lat}||','||#{addr}
+			latlng = #{lng}||','||#{lat}||','||#{addr}
 		where mateNo = #{mateNo}
-		and wayno
-		= 0
+		and wayno = 0
 	</update>
 
 	<insert id="hitchinsert" parameterType="dwVo">
@@ -308,6 +311,7 @@
 		#{intfare},
 		'open',
 		#{people},
+		'',
 		''
 		)
 		<if test='nosmoke != null'>
@@ -474,6 +478,7 @@
 		#{intfare},
 		'open',
 		#{people},
+		'',
 		''
 		)
 		select * from dual
@@ -511,6 +516,7 @@
 		#{intfare},
 		'open',
 		#{people},
+		'',
 		''
 		)
 		<if test='nosmoke != null'>
