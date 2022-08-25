@@ -373,6 +373,7 @@
 				$("#canRide"+index).val(result);
 				$("#people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
 				$("#rideReq"+index).text("탑승 신청");
+				$("#cancel"+index).remove();
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);

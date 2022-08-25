@@ -30,8 +30,7 @@ public class MypageJController {
 
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo, HttpSession session
-			) {
+	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo, HttpSession session) {
 		System.out.println("MypageJController > myCouponMain");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -84,7 +83,7 @@ public class MypageJController {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
-		
+
 		mypagejService.couponPurchase(userNo, couponVo);
 
 		return "redirect:/mypageJ/myCouponMain";
@@ -117,26 +116,31 @@ public class MypageJController {
 
 	// 포인트메인
 	@RequestMapping(value = "/myPointMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointMain(Model model, HttpSession session,
-			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
-			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
-			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
-			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
+	public String myPointMain(Model model, @ModelAttribute PointVo pointVo, HttpSession session) {
 		System.out.println("MypageJController > myPointMain");
-
+		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
 
-		List<PointVo> pointList = mypagejService.getPointList(userNo);
-
-		model.addAttribute("pointList", pointList);
+		Map<String, Object> cMap = mypagejService.getPointList(pointVo, userNo);
+		model.addAttribute("cMap", cMap);
 
 		return "/mypage/myPointMain";
 	}
-
+	
+	//포인트환불메인
 	@RequestMapping(value = "/myPointRefundMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointRefundMain() {
+	public String myPointRefundMain(Model model, @ModelAttribute RefundVo RefundVo, HttpSession session) {
+		System.out.println("MypageJController > myPointRefundMain");
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
+		
+		Map<String, Object> cMap= mypagejService.getRefundList(RefundVo, userNo);
+		model.addAttribute("cMap", cMap);
+		
 		return "/mypage/myPointRefundMain";
 	}
 
@@ -144,13 +148,17 @@ public class MypageJController {
 	public String myPointRefundForm() {
 		return "/mypage/myPointRefundForm";
 	}
-	
-	//포인트환불
+
+	// 포인트환불
 	@RequestMapping(value = "/myPointRefund", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointRefund(RefundVo refundVo) {
-		 
-		System.out.println(refundVo);
+	public String myPointRefund(@ModelAttribute RefundVo refundVo, HttpSession session) {
 		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
+		
+		mypagejService.refundPoint(refundVo, userNo);
+
 		return "redirect:/mypageJ/myPointRefundMain";
 	}
 

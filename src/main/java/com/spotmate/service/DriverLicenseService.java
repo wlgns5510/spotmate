@@ -46,7 +46,7 @@ public class DriverLicenseService {
 		}
 	}
 
-	
+	//sidenav in
 	public DriverLicenseVo getCarInfo(int userNo) {
 		
 		DriverLicenseVo dlvo = mrDao.getCarInfo(userNo);
@@ -74,6 +74,8 @@ public class DriverLicenseService {
 		}
 		
 	}
+
+	
 
 	/*
 	 * //수정 public int modify(DriverLicenseVo dlvo) {

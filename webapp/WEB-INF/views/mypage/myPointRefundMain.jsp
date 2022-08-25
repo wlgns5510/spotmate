@@ -86,27 +86,17 @@
 				<article class="myPage_article">
 
 					<div class="inputBox">
-						<form>
-							<input type="date" value="2022-08-02"> <span> - </span> <input type="date" value="2022-08-02">
-
-							<!-- <label for="lecture">유형</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>유형</option>
-								<option value="1">카풀정기권</option>
-								<option value="2">히치하이크</option>
-								<option value="3">메이트</option>
-								<option value="4">카풀1회성</option>
-							</select>
-
-							<!-- <label for="lecture">참여주체</label> -->
-							<select id="option1" class="form-select" aria-label="Default select example">
-								<option value=selected>처리상태</option>
-								<option value="1">환불대기</option>
-								<option value="2">환불완료</option>
-							</select>
-							<div class="btns">
-								<button type="button" class="myPage_btnB">조회하기</button>
-								<a href="./myPointRefundForm"><button type="button" class="myPage_btnY">환불 신청하기</button></a>
+						<form action="${pageContext.request.contextPath }/mypageJ/myPointRefundMain" method="get">
+							<div class="style2">
+								<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
+									<option value="">처리상태</option>
+									<option value="환불대기">환불대기</option>
+									<option value="환불완료">환불완료</option>
+								</select>
+								<div class="btns">
+									<button type="submit" class="myPage_btnB">조회하기</button>
+									<a href="./myPointRefundForm"><button type="button" class="myPage_btnY">환불 신청하기</button></a>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -120,7 +110,6 @@
 						<thead>
 							<tr>
 								<th>번호</th>
-								<th>유형</th>
 								<th>날짜</th>
 								<th>입금받으실 계좌번호</th>
 								<th>처리상태</th>
@@ -129,122 +118,40 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불완료</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불완료</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>9</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
-							<tr>
-								<td>10</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>카카오뱅크 1002-***-222256</td>
-								<td>환불대기</td>
-								<td>3,000P</td>
-								<td><a class="myPage_RefundAsk"><span>문의</span></a></td>
-							</tr>
+							<c:forEach items="${cMap.refundList }" var="refundVo">
+								<tr>
+									<td>1</td>
+									<td>${refundVo.regDate }</td>
+									<td>${refundVo.accountNum }</td>
+									<td>${refundVo.status }</td>
+									<td>${refundVo.point }</td>
+									<td><a href="${pageContext.request.contextPath }/myQnaWriteForm" class="myPage_RefundAsk"><span>문의</span></a></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<div class="paging">
 						<ul>
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
-							</a></li>
+							<c:if test="${cMap.prev}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointRefundMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+								</a></li>
+							</c:if>
+							<c:if test="${cMap.prev}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointRefundMain?crtPage=${param.crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								</a></li>
+							</c:if>
 
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
-							</a></li>
-
-							<li><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">4</a></li>
-							<li class="active"><a href="">5</a></li>
-							<li><a href="">6</a></li>
-							<li><a href="">7</a></li>
-							<li><a href="">8</a></li>
-							<li><a href="">9</a></li>
-							<li><a href="">10</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
-							</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
-							</a></li>
+							<c:forEach begin="${cMap.startPageBtnNo}" end="${cMap.endPageBtnNo}" step="1" var="page">
+								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if> href="${pageContext.request.contextPath}/mypageJ/myPointRefundMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}"> ${page} </a></li>
+							</c:forEach>
+							<c:if test="${cMap.next}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointRefundMain?crtPage=${param.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								</a></li>
+							</c:if>
+							<c:if test="${cMap.next}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointRefundMain?crtPage=${cMap.endPageBtnNo+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</article>
