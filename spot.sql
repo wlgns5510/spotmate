@@ -256,16 +256,16 @@ DROP INDEX PK_brand;
 
 -- 테이블 삭제 : 브랜드
 DROP TABLE brand 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
     
 -- 시퀀스 삭제
 drop sequence seq_brand_no;
 
 -- 테이블 생성
 CREATE TABLE brand (
-	no NUMBER NOT NULL, /* 브랜드번호 */
-	cateNo NUMBER, /* 카테고리번호 */
-	name VARCHAR2(100) /* 브랜드명 */
+   no NUMBER NOT NULL, /* 브랜드번호 */
+   cateNo NUMBER, /* 카테고리번호 */
+   name VARCHAR2(100) /* 브랜드명 */
 );
 
 -- 시퀀스 생성
@@ -331,7 +331,7 @@ DROP INDEX PK_coupon;
 
 -- 테이블 삭제 : 쿠폰
 DROP TABLE coupon 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
     
 -- 시퀀스 삭제
 drop sequence seq_coupon_no;
@@ -459,7 +459,7 @@ DROP INDEX PK_couponUsage;
 
 -- 테이블 삭제
 DROP TABLE couponUsage 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
     
 -- 시퀀스 삭제
 drop sequence seq_couponUsage_no;
@@ -559,7 +559,7 @@ values(seq_couponUsage_no.nextval,
 select *
 from couponUsage;
 
-
+commit;
 ------------------ 상세조건 -------------------------
 DROP INDEX PK_detailOpt;
 
@@ -572,8 +572,8 @@ drop sequence seq_detailOpt_no;
 
 -- 테이블 생성
 CREATE TABLE detailOpt (
-	no NUMBER NOT NULL, /* 상세조건번호 */
-	name VARCHAR2(100) /* 조건명 */
+   no NUMBER NOT NULL, /* 상세조건번호 */
+   name VARCHAR2(100) /* 조건명 */
 );
 
 -- 시퀀스 생성
@@ -629,7 +629,7 @@ DROP INDEX PK_car;
 
 -- 테이블 삭제
 DROP TABLE car 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
     
 -- 시퀀스 삭제
 drop sequence seq_car_no;
@@ -730,16 +730,53 @@ values(seq_car_no.nextval,
         그리고 어떤 사정이 있더라도 약속 시간 이후 5분까지만 기다렸다 출발할 것이니 꼭 시간 준수 부탁드립니다. '
         );
 
+insert into car
+values(seq_car_no.nextval,
+        4, 
+        'Benz-glc220d',
+        'image1',
+        '66두 5793',
+        'white',
+        3,
+        '안녕하세요. 저는 조용하고 안전하게 가는 걸 선호합니다. 약속 장소에는 출발 5분 전에 나와주시면
+        감사하겠습니다. 차량 이용 후 내리실 때에는 본인이 소지한 물품 및 쓰레기는 꼭 챙겨 나가 주시길 바랍니다 :)'
+        );        
+
+insert into car
+values(seq_car_no.nextval,
+        5, 
+        'Benz-eclass',
+        'image2',
+        '77라 1328',
+        'black',
+        2,
+        '안녕하세요. 제 차에는 항상 반려동물(강아지)이 타고 있습니다. 그래서 이 부분 괜찮으신 분께서만 이용해 주셨으면 좋겠습니다. 
+        그리고 어떤 사정이 있더라도 약속 시간 이후 5분까지만 기다렸다 출발할 것이니 꼭 시간 준수 부탁드립니다. '
+        );
+
+insert into car
+values(seq_car_no.nextval,
+        6, 
+        'Benz-eclass',
+        'image3',
+        '99라 1328',
+        'blue',
+        2,
+        '안녕하세요. 제 차에는 항상 반려동물(강아지)이 타고 있습니다. 그래서 이 부분 괜찮으신 분께서만 이용해 주셨으면 좋겠습니다. 
+        그리고 어떤 사정이 있더라도 약속 시간 이후 5분까지만 기다렸다 출발할 것이니 꼭 시간 준수 부탁드립니다. '
+        );        
+
 -- select
 select *
 from car;
-        
+
+commit;
 ---------------------- 상세 조건 차량 ------------------------
 DROP INDEX PK_carDetail;
 
 -- 테이블 삭제 : 상세조건차량
 DROP TABLE carDetail 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
     
 -- 시퀀스 삭제
 drop sequence seq_carDetail_no;
@@ -830,23 +867,23 @@ DROP INDEX PK_spotmate;
 
 -- 테이블 삭제 : spotmate
 DROP TABLE spotmate 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
 drop sequence seq_spotmate_no;
 
 -- 테이블 생성 : spotmate
 CREATE TABLE spotmate (
-	no NUMBER NOT NULL, /* 메이트번호 */
-	carNo NUMBER, /* 차량번호 */
-	startDate DATE, /* 출발날짜 */
-	endDate DATE, /* 도착날짜 */
-	people NUMBER, /* 인원수 */
-	type VARCHAR2(100), /* 유형 */
-	point NUMBER, /* 포인트 */
-	duration VARCHAR2(1000), /* 총 소요시간 */
-	distance VARCHAR2(1000), /* 총 거리 */
-	comments VARCHAR2(1000) /* 코멘트 */
+   no NUMBER NOT NULL, /* 메이트번호 */
+   carNo NUMBER, /* 차량번호 */
+   startDate DATE, /* 출발날짜 */
+   endDate DATE, /* 도착날짜 */
+   people NUMBER, /* 인원수 */
+   type VARCHAR2(100), /* 유형 */
+   point NUMBER, /* 포인트 */
+   duration VARCHAR2(1000), /* 총 소요시간 */
+   distance VARCHAR2(1000), /* 총 거리 */
+   comments VARCHAR2(1000) /* 코멘트 */
 );
 
 -- 시퀀스 생성
@@ -879,26 +916,26 @@ COMMENT ON COLUMN spotmate.distance IS '총 거리';
 COMMENT ON COLUMN spotmate.comments IS '코멘트';
 
 CREATE UNIQUE INDEX PK_spotmate
-	ON spotmate (
-		no ASC
-	);
+   ON spotmate (
+      no ASC
+   );
 
 ALTER TABLE spotmate
-	ADD
-		CONSTRAINT PK_spotmate
-		PRIMARY KEY (
-			no
-		);
+   ADD
+      CONSTRAINT PK_spotmate
+      PRIMARY KEY (
+         no
+      );
 
 ALTER TABLE spotmate
-	ADD
-		CONSTRAINT FK_car_TO_spotmate
-		FOREIGN KEY (
-			carNo
-		)
-		REFERENCES car (
-			no
-		);
+   ADD
+      CONSTRAINT FK_car_TO_spotmate
+      FOREIGN KEY (
+         carNo
+      )
+      REFERENCES car (
+         no
+      );
 
 -- nextval값을 받아와서 변수에 저장 편의상 no로 칭함
 -- select seq_spotmate_no.nextval from dual;
@@ -907,10 +944,10 @@ ALTER TABLE spotmate
 INSERT INTO spotmate VALUES (
     seq_spotmate_no.nextval,
     1,
-    SYSDATE,
-    SYSDATE,
+    '2022-08-15',
+    '2022-08-15',
     1,
-    '카풀',
+    'carpool',
     3000,
     '28분',
     '12.2km',
@@ -920,27 +957,92 @@ INSERT INTO spotmate VALUES (
 INSERT INTO spotmate VALUES (
     seq_spotmate_no.nextval,
     2,
-    SYSDATE,
-    SYSDATE,
+    '2022-08-15',
+    '2022-08-15',
+    1,
+    'carpool',
+    3000,
+    '28분',
+    '12.2km',
+    '카풀 합니다'
+);
+
+
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
     2,
-    '히치하이크',
+    '2022-08-15',
+    '2022-08-15',
+    2,
+    'carpool',
     5000,
     '40분',
-    '20.45km',
-    '히치하이크 합니다'
+    '16km',
+    '카풀 합니다'
+);
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    2,
+    '2022-08-22',
+    '2022-08-22',
+    1,
+    'carpool',
+    5000,
+    '40분',
+    '16km',
+    '카풀 합니다'
 );
 
 INSERT INTO spotmate VALUES (
     seq_spotmate_no.nextval,
-    3,
-    SYSDATE,
-    SYSDATE,
-    5,
-    '메이트',
-    50000,
-    null,
-    null,
-    '강릉 메이트구합니다'
+    1,
+    '2022-08-15',
+    '2022-09-15',
+    1,
+    'seasonTicket',
+    90000,
+    '600분',
+    '360km',
+    '카풀 합니다'
+);
+
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    2,
+    '2022-08-15',
+    '2022-09-15',
+    1,
+    'seasonTicket',
+    90000,
+    '600분',
+    '360km',
+    '카풀 합니다'
+);
+
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    2,
+    '2022-08-15',
+    '2022-10-15',
+    2,
+    'seasonTicket',
+    90000,
+    '600분',
+    '360km',
+    '카풀 합니다'
+);
+
+INSERT INTO spotmate VALUES (
+    seq_spotmate_no.nextval,
+    2,
+    '2022-08-28',
+    '2022-08-29',
+    2,
+    'mate',
+    85000,
+    '600분',
+    '360km',
+    '메이트 구합니다'
 );
 
 
@@ -951,24 +1053,25 @@ from spotmate;
 ---------------------- 예약 ------------------------
 DROP INDEX PK_reservation;
 
--- 테이블 삭제 : 예약
+-- 테이블 삭제
 DROP TABLE reservation 
-	CASCADE CONSTRAINTS;
-    
+   CASCADE CONSTRAINTS;
+   
 -- 시퀀스 삭제
 drop sequence seq_reservation_no;
 
--- 테이블 생성 : 예약
+-- 테이블 생성 :  예약
 CREATE TABLE reservation (
-	no NUMBER NOT NULL, /* 예약번호 */
-	mateNo NUMBER, /* 메이트번호 */
-	userNo NUMBER, /* 유저(손님) */
-	driverNo NUMBER, /* 드라이버 */
-	regDate DATE, /* 날짜 */
-	point NUMBER, /* 사용포인트 */
-	status VARCHAR2(100), /* 상태(대기, 완료, 취소)   */
-	people NUMBER, /* 인원 */
-	rideUser LONG /* 탑승자 */
+   no NUMBER NOT NULL, /* 예약번호 */
+   mateNo NUMBER, /* 메이트번호 */
+   userNo NUMBER, /* 유저(손님) */
+   driverNo NUMBER, /* 드라이버 */
+   regDate DATE, /* 날짜 */
+   point NUMBER, /* 사용포인트 */
+   status VARCHAR2(100), /* 상태(대기, 완료, 취소)   */
+   people NUMBER, /* 인원 */
+   lat NUMBER, /* 탑승자 위도 */
+   lng NUMBER /* 탑승자 경도 */
 );
 
 -- 시퀀스 생성
@@ -996,49 +1099,63 @@ COMMENT ON COLUMN reservation.status IS '상태(대기, 완료, 취소)  ';
 
 COMMENT ON COLUMN reservation.people IS '인원';
 
-COMMENT ON COLUMN reservation.rideUser IS '탑승자';
+COMMENT ON COLUMN reservation.lat IS '탑승자 위도';
+
+COMMENT ON COLUMN reservation.lng IS '탑승자 경도';
 
 CREATE UNIQUE INDEX PK_reservation
-	ON reservation (
-		no ASC
-	);
+   ON reservation (
+      no ASC
+   );
 
 ALTER TABLE reservation
-	ADD
-		CONSTRAINT PK_reservation
-		PRIMARY KEY (
-			no
-		);
+   ADD
+      CONSTRAINT PK_reservation
+      PRIMARY KEY (
+         no
+      );
 
 ALTER TABLE reservation
-	ADD
-		CONSTRAINT FK_users_TO_reservation
-		FOREIGN KEY (
-			userNo
-		)
-		REFERENCES users (
-			no
-		);
+   ADD
+      CONSTRAINT FK_users_TO_reservation
+      FOREIGN KEY (
+         userNo
+      )
+      REFERENCES users (
+         no
+      );
 
 --ALTER TABLE reservation
---	ADD
---		CONSTRAINT FK_spotmate_TO_reservation
---		FOREIGN KEY (
---			mateNo
---		)
---		REFERENCES spotmate (
---			no
---		);
+--   ADD
+--      CONSTRAINT FK_spotmate_TO_reservation
+--      FOREIGN KEY (
+--         mateNo
+--      )
+--      REFERENCES spotmate (
+--         no
+--      );
 
 ALTER TABLE reservation
-	ADD
-		CONSTRAINT FK_users_TO_reservation2
-		FOREIGN KEY (
-			driverNo
-		)
-		REFERENCES users (
-			no
-		);
+   ADD
+      CONSTRAINT FK_users_TO_reservation2
+      FOREIGN KEY (
+         driverNo
+      )
+      REFERENCES users (
+         no
+      );
+CREATE TABLE reservation (
+   no NUMBER NOT NULL, /* 예약번호 */
+   mateNo NUMBER, /* 메이트번호 */
+   userNo NUMBER, /* 유저(손님) */
+   driverNo NUMBER, /* 드라이버 */
+   regDate DATE, /* 날짜 */
+   point NUMBER, /* 사용포인트 */
+   status VARCHAR2(100), /* 상태(대기, 완료, 취소)   */
+   people NUMBER, /* 인원 */
+   lat NUMBER, /* 탑승자 위도 */
+   lng NUMBER /* 탑승자 경도 */
+);
 
 -- insert 생성
 INSERT INTO reservation values(
@@ -1050,7 +1167,8 @@ sysdate,
 3000,
 '대기',
 1,
-''
+127.2341234234,
+36.342355436
 );
 
 INSERT INTO reservation values(
@@ -1061,7 +1179,9 @@ seq_reservation_no.nextval,
 sysdate,
 3000,
 '대기',
-1
+1,
+127.2341234234,
+36.342355436
 );
 
 INSERT INTO reservation values(
@@ -1073,7 +1193,8 @@ sysdate,
 3000,
 '대기',
 1,
-''
+127.2341234234,
+36.342355436
 );
 
 
@@ -1087,17 +1208,17 @@ DROP INDEX PK_userReview;
 
 -- 테이블 삭제
 DROP TABLE userReview 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
     
 -- 시퀀스 삭제
 drop sequence seq_userReview_no;
 
 -- 테이블 생성 : 손님리뷰
 CREATE TABLE userReview (
-	no NUMBER NOT NULL, /* 리뷰번호 */
-	resvNo NUMBER, /* 예약번호 */
-	star NUMBER, /* 별점 */
-	content VARCHAR2(1000) /* 내용 */
+   no NUMBER NOT NULL, /* 리뷰번호 */
+   resvNo NUMBER, /* 예약번호 */
+   star NUMBER, /* 별점 */
+   content VARCHAR2(1000) /* 내용 */
 );
 
 -- 시퀀스 생성
@@ -1118,26 +1239,26 @@ COMMENT ON COLUMN userReview.star IS '별점';
 COMMENT ON COLUMN userReview.content IS '내용';
 
 CREATE UNIQUE INDEX PK_userReview
-	ON userReview (
-		no ASC
-	);
+   ON userReview (
+      no ASC
+   );
 
 ALTER TABLE userReview
-	ADD
-		CONSTRAINT PK_userReview
-		PRIMARY KEY (
-			no
-		);
+   ADD
+      CONSTRAINT PK_userReview
+      PRIMARY KEY (
+         no
+      );
 
 ALTER TABLE userReview
-	ADD
-		CONSTRAINT FK_reservation_TO_userReview
-		FOREIGN KEY (
-			resvNo
-		)
-		REFERENCES reservation (
-			no
-		);
+   ADD
+      CONSTRAINT FK_reservation_TO_userReview
+      FOREIGN KEY (
+         resvNo
+      )
+      REFERENCES reservation (
+         no
+      );
 
 -- insert 생성
 INSERT INTO userReview values(
@@ -1247,16 +1368,16 @@ DROP INDEX PK_spotDetail;
 
 -- 테이블 삭제 : 스팟메이트상세조건
 DROP TABLE spotDetail 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
 drop sequence seq_spotDetail_no;
 
 -- 테이블 생성 : 스팟메이트상세조건
 CREATE TABLE spotDetail (
-	no NUMBER NOT NULL, /* 메이트상세조건번호 */
-	mateNo NUMBER, /* 메이트번호 */
-	detailNo NUMBER /* 상세조건번호 */
+   no NUMBER NOT NULL, /* 메이트상세조건번호 */
+   mateNo NUMBER, /* 메이트번호 */
+   detailNo NUMBER /* 상세조건번호 */
 );
 
 -- 시퀀스 생성
@@ -1275,36 +1396,36 @@ COMMENT ON COLUMN spotDetail.mateNo IS '메이트번호';
 COMMENT ON COLUMN spotDetail.detailNo IS '상세조건번호';
 
 --CREATE UNIQUE INDEX PK_spotDetail
---	ON spotDetail (
---		no ASC
---	);
+--   ON spotDetail (
+--      no ASC
+--   );
 --
 --ALTER TABLE spotDetail
---	ADD
---		CONSTRAINT PK_spotDetail
---		PRIMARY KEY (
---			no
---		);
+--   ADD
+--      CONSTRAINT PK_spotDetail
+--      PRIMARY KEY (
+--         no
+--      );
 
 --ALTER TABLE spotDetail
---	ADD
---		CONSTRAINT FK_spotmate_TO_spotDetail
---		FOREIGN KEY (
---			mateNo
---		)
---		REFERENCES spotmate (
---			no
---		);
+--   ADD
+--      CONSTRAINT FK_spotmate_TO_spotDetail
+--      FOREIGN KEY (
+--         mateNo
+--      )
+--      REFERENCES spotmate (
+--         no
+--      );
 
 ALTER TABLE spotDetail
-	ADD
-		CONSTRAINT FK_detailOpt_TO_spotDetail
-		FOREIGN KEY (
-			detailNo
-		)
-		REFERENCES detailOpt (
-			no
-		);
+   ADD
+      CONSTRAINT FK_detailOpt_TO_spotDetail
+      FOREIGN KEY (
+         detailNo
+      )
+      REFERENCES detailOpt (
+         no
+      );
 
 -- insert 생성
 INSERT INTO spotDetail VALUES (
@@ -1324,7 +1445,6 @@ INSERT INTO spotDetail VALUES (
     1,
     4
 );
-
 INSERT INTO spotDetail VALUES (
     seq_spotDetail_no.NEXTVAL,
     3,
@@ -1350,19 +1470,19 @@ DROP INDEX PK_pointUsage;
 
 -- 테이블 삭제
 DROP TABLE pointUsage 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
 drop sequence seq_pointUsage_no;
 
 -- 테이블 생성 : 포인트내역
 CREATE TABLE pointUsage (
-	no NUMBER NOT NULL, /* 포인트번호 */
-	userNo NUMBER, /* 회원번호 */
-	type VARCHAR2(100), /* 유형(충전,예약,완료) */
-	regDate DATE, /* 입금날짜,사용날짜,입금날짜 */
-	agent NUMBER, /* 입금돈(현금,충전) */
-	point NUMBER, /* 사용,입금 포인트 */
+   no NUMBER NOT NULL, /* 포인트번호 */
+   userNo NUMBER, /* 회원번호 */
+   type VARCHAR2(100), /* 유형(충전,예약,완료) */
+   regDate DATE, /* 입금날짜,사용날짜,입금날짜 */
+   agent NUMBER, /* 입금돈(현금,충전) */
+   point NUMBER, /* 사용,입금 포인트 */
     reNo NUMBER /* 예약번호 */
 );
 
@@ -1390,26 +1510,26 @@ COMMENT ON COLUMN pointUsage.point IS '사용,입금 포인트';
 COMMENT ON COLUMN pointUsage.reNo IS '예약번호';
 
 CREATE UNIQUE INDEX PK_pointUsage
-	ON pointUsage (
-		no ASC
-	);
+   ON pointUsage (
+      no ASC
+   );
 
 ALTER TABLE pointUsage
-	ADD
-		CONSTRAINT PK_pointUsage
-		PRIMARY KEY (
-			no
-		);
+   ADD
+      CONSTRAINT PK_pointUsage
+      PRIMARY KEY (
+         no
+      );
 
 ALTER TABLE pointUsage
-	ADD
-		CONSTRAINT FK_users_TO_pointUsage
-		FOREIGN KEY (
-			userNo
-		)
-		REFERENCES users (
-			no
-		);
+   ADD
+      CONSTRAINT FK_users_TO_pointUsage
+      FOREIGN KEY (
+         userNo
+      )
+      REFERENCES users (
+         no
+      );
 ALTER TABLE pointUsage
    ADD
       CONSTRAINT FK_reservation_TO_pointUsage
@@ -1443,25 +1563,111 @@ VALUES (SEQ_POINTUSAGE_NO.nextval, 6, '충전', '2022-08-12', +7000, +7000, 3);
 select *
 from pointUsage;
 
+---------------------- 포인트 환불 ------------------------
+DROP INDEX PK_pointRefund;
+
+-- 테이블 삭제
+DROP TABLE pointRefund 
+   CASCADE CONSTRAINTS;
+
+-- 시퀀스 삭제
+drop sequence seq_pointRefund_no;
+
+-- 테이블 생성 : 포인트환불
+CREATE TABLE pointRefund (
+   no NUMBER NOT NULL, /* 포인트환불번호 */
+   userNo NUMBER, /* 회원번호 */
+   regDate DATE, /* 날짜 */
+   accountNum VARCHAR2(100), /* 계좌번호 */
+   name VARCHAR2(100), /* 예금주명 */
+   status VARCHAR2(100), /* 상태(환불대기, 환불완료) */
+   point NUMBER /* 포인트 */
+);
+
+-- 시퀀스 생성
+create sequence seq_pointRefund_no
+increment by 1 
+start with 1
+nocache;
+
+-- comment
+COMMENT ON TABLE pointRefund IS '포인트환불';
+
+COMMENT ON COLUMN pointRefund.no IS '포인트환불번호';
+
+COMMENT ON COLUMN pointRefund.userNo IS '회원번호';
+
+COMMENT ON COLUMN pointRefund.regDate IS '날짜';
+
+COMMENT ON COLUMN pointRefund.accountNum IS '계좌번호';
+
+COMMENT ON COLUMN pointRefund.name IS '예금주명';
+
+COMMENT ON COLUMN pointRefund.status IS '상태(환불대기, 환불완료)';
+
+COMMENT ON COLUMN pointRefund.point IS '포인트';
+
+CREATE UNIQUE INDEX PK_pointRefund
+   ON pointRefund (
+      no ASC
+   );
+
+ALTER TABLE pointRefund
+   ADD
+      CONSTRAINT PK_pointRefund
+      PRIMARY KEY (
+         no
+      );
+
+ALTER TABLE pointRefund
+   ADD
+      CONSTRAINT FK_users_TO_pointRefund
+      FOREIGN KEY (
+         userNo
+      )
+      REFERENCES users (
+         no
+      );
+
+--insert
+INSERT INTO pointrefund VALUES (
+    seq_pointrefund_no.NEXTVAL,
+    3,
+    sysdate,
+    '테스트계좌',
+    '유지은',
+    '환불대기',
+    3000
+);
+
+insert into pointrefund
+values(seq_pointrefund_no.nextval, 2, sysdate, '테스트계좌', '양지훈', '환불대기', 3000);
+
+
+
+-- select
+select *
+from pointRefund;
+
 ---------------------- 공지사항 ------------------------
 DROP INDEX PK_ notice;
 
 -- 테이블 삭제 : 공지사항게시판
 DROP TABLE  notice 
-	CASCADE CONSTRAINTS;
+   CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
 drop sequence seq_notice_no;
 
 -- 테이블 생성 : 공지사항게시판
 CREATE TABLE  notice (
-	no NUMBER NOT NULL, /* 글번호 */
-	type VARCHAR2(100), /* 유형 */
-	title VARCHAR2(100), /* 제목 */
-	hit NUMBER, /* 조회수 */
-	regDate DATE, /* 작성날짜 */
-	admin VARCHAR2(100), /* 작성자 */
-	content VARCHAR2(1000) /* 내용 */
+   no NUMBER NOT NULL, /* 글번호 */
+   type VARCHAR2(100), /* 유형 */
+   title VARCHAR2(100), /* 제목 */
+   hit NUMBER, /* 조회수 */
+   regDate DATE, /* 작성날짜 */
+   admin VARCHAR2(100), /* 작성자 */
+   content VARCHAR2(1000) /* 내용 */
 );
 
 -- 시퀀스 생성
@@ -1488,16 +1694,16 @@ COMMENT ON COLUMN  notice.admin IS '작성자';
 COMMENT ON COLUMN  notice.content IS '내용';
 
 CREATE UNIQUE INDEX PK_notice
-	ON  notice (
-		no ASC
-	);
+   ON  notice (
+      no ASC
+   );
 
 ALTER TABLE  notice
-	ADD
-		CONSTRAINT PK_notice
-		PRIMARY KEY (
-			no
-		);
+   ADD
+      CONSTRAINT PK_notice
+      PRIMARY KEY (
+         no
+      );
 
 -- insert 생성
 INSERT INTO notice VALUES (
@@ -1526,16 +1732,16 @@ drop sequence seq_place_no;
 
 -- 테이블 생성 : 장소
 CREATE TABLE place (
-   no NUMBER NOT NULL, /* 장소번호 */
-   mateNo NUMBER, /* 메이트번호 */
-   day number, /* 일차(1일차) */
-   wayNo NUMBER, /* 경유지순서 */
-   sepPlace VARCHAR2(1000), /* 구분(출, 경, 도, 현) */
-   -- ymd DATE, /* 년월일 */
-   time date, /* 시간(도착일때없음) */
-   place VARCHAR2(1000), /* 장소 */
-   lat NUMBER, /* 위도 */
-   lng NUMBER, /* 경도 */
+    no NUMBER NOT NULL, /* 장소번호 */
+    mateNo NUMBER, /* 메이트번호 */
+    day VARCHAR2(1000), /* 일차(1일차) */
+    wayNo NUMBER, /* 경유지순서 */
+    sepPlace VARCHAR2(1000), /* 구분(출, 경, 도, 현) */
+    -- ymd DATE, /* 년월일 */
+    time varchar2(30), /* 시간(도착일때없음) */
+    place VARCHAR2(1000), /* 장소 */
+    lat NUMBER, /* 위도 */
+    lng NUMBER, /* 경도 */
     latlng LONG /* 경로 */
 );
 
@@ -1598,8 +1804,8 @@ INSERT INTO place VALUES (
     1,
     NULL,
     -1,
-    '출발지',
-    to_date('오전 11:54', 'AM HH:MI'),
+    'start',
+    '오전 11:54',
     '건대입구역',
     127.2341234234,
     36.342355436,
@@ -1611,7 +1817,7 @@ INSERT INTO place VALUES (
     1,
     NULL,
     0,
-    '도착지',
+    'end',
     null,
     '홍대입구역',
     127.2341234234,
@@ -1624,8 +1830,8 @@ INSERT INTO place VALUES (
     2,
     NULL,
     -1,
-    '출발지',
-    to_date('오전 11:12', 'AM HH:MI'),
+    'start',
+    '오전 11:12',
     '방배역',
     127.2341234234,
     36.342355436,
@@ -1637,7 +1843,7 @@ INSERT INTO place VALUES (
     2,
     NULL,
     0,
-    '도착지',
+    'end',
     null,
     '신림역',
     127.2341234234,
@@ -1647,11 +1853,11 @@ INSERT INTO place VALUES (
 
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     -1,
-    '출발지',
-    to_date('오전 08:30', 'AM HH:MI'),
+    'start',
+    '오전 08:30',
     '서울역',
     127.2341234234,
     36.342355436,
@@ -1659,11 +1865,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     1,
-    '경유지',
-    to_date('오전 11:30', 'AM HH:MI'),
+    'waypoint',
+    '오전 11:30',
     '문경',
     127.2341234234,
     36.342355436,
@@ -1672,11 +1878,11 @@ INSERT INTO place VALUES (
 
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     2,
-    '경유지',
-    to_date('오후 02:20', 'AM HH:MI'),
+    'waypoint',
+    '오후 02:20',
     '울산',
     127.2341234234,
     36.342355436,
@@ -1684,10 +1890,10 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     1,
     0,
-    '도착지',
+    'end',
     null,
     '부산',
     127.2341234234,
@@ -1697,11 +1903,11 @@ INSERT INTO place VALUES (
 
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     -1,
-    '출발지',
-    to_date('오전 10:00', 'AM HH:MI'),
+    'start',
+    '오전 10:00',
     '부산',
     127.2341234234,
     36.342355436,
@@ -1709,11 +1915,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     1,
-    '경유지',
-    to_date('오후 02:30', 'AM HH:MI'),
+    'waypoint',
+    '오후 02:30',
     '주문진',
     127.2341234234,
     36.342355436,
@@ -1721,11 +1927,11 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     2,
-    '경유지',
-    to_date('오후 04:30', 'AM HH:MI'),
+    'waypoint',
+    '오후 04:30',
     '강릉',
     127.2341234234,
     36.342355436,
@@ -1733,92 +1939,21 @@ INSERT INTO place VALUES (
 );
 INSERT INTO place VALUES (
     seq_place_no.NEXTVAL,
-    3,
+    8,
     2,
     0,
-    '도착지',
+    'end',
     null,
     '서울',
     127.2341234234,
     36.342355436,
     ''
 );
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    4,
-    1,
-    -1,
-    '출발지',
-    to_date('오전 08:00', 'AM HH:MI'),
-    '서울',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    4,
-    1,
-    1,
-    '경유지',
-    to_date('오전 09:30', 'AM HH:MI'),
-    '춘천',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    4,
-    1,
-    0,
-    '도착지',
-    null,
-    '강릉',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    4,
-    2,
-    -1,
-    '출발지',
-    to_date('오전 09:30', 'AM HH:MI'),
-    '강릉',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    4,
-    2,
-    1,
-    '경유지',
-    to_date('오후 12:30', 'AM HH:MI'),
-    '고양',
-    127.2341234234,
-    36.342355436,
-    ''
-);
-INSERT INTO place VALUES (
-    seq_place_no.NEXTVAL,
-    4,
-    2,
-    0,
-    '도착지',
-    null,
-    '서울',
-    127.2341234234,
-    36.342355436,
-    ''
-);
--- select
+    
+
+— select
 select *
 from place;
 
-
--- 커밋
+— 커밋
 commit;

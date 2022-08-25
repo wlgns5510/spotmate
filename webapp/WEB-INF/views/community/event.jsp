@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
+    
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,21 +50,69 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>SPOTMATE</title>
-	
+	<title>EVENT</title>
+
 </head>
 
 <body>
 	<!-- header -->
-	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-	<!-- //header -->
-	
-	<p>잘 보이고 있는건데 디자인을 안했음</p>
-	
+    <c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+    <!-- // header -->
+    
+	<!-- content -->
+    <section class="contents_wrapper content">
+        <h2 class="hidden">content</h2>
+            <section class="banner">
+                <h2 class="hidden">banner</h2>
+                <div class="login_banner">
+                    <p></p>
+                </div>
+                <div class="banner_text clear">
+                    <div class="text_lft">
+                        <h2>이벤트</h2>
+                        <h2>COMMUNITY EVENT</h2>
+                    </div>
+                    <div class="text_rit">
+                        <h3>스팟메이트는 고객님께 받은 사랑으로</h3>
+                        <h3>매월 다양한 혜택과 새로운 이벤트를 진행하고있습니다.</h3>
+                    </div>
+                </div>
+                
+    </section>
+    <section class="sub_wrap">
+        <div class="sub_nav clear">
+            <ul>
+                <li><a href="javascript:void(0);">NOTICE</a></li>
+                <li><a href="javascript:void(0);">FAQ</a></li>
+                <li class="sub_event"><a href="javascript:void(0);">EVENT</a></li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="inner">
+            <div class="event_cover">
+                <div class="event_banner">
+                    <a class="event_b1" href="javascript:void(0);"></a>
+                </div>
+                <div class="event_banner">
+                    <a class="event_b2" href="javascript:void(0);"></a>
+                </div>
+                <div class="event_banner">
+                    <a class="event_b3" href="javascript:void(0);"></a>
+                </div>
+                <div class="event_banner">
+                    <a class="event_b4" href="javascript:void(0);"></a>
+                </div>
+                <div class="event_banner">
+                    <a class="event_b5" href="javascript:void(0);"></a>
+                </div>
+        </div>
+
+    </section>
+	<!-- //content -->
+
 	<!-- footer -->
-	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-	<!-- //footer -->
+    <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+    <!-- footer -->
 </body>
 </html>
-
-

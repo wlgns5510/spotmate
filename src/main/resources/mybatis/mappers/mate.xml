@@ -82,9 +82,9 @@
 		<![CDATA[
 				select p.mateNo,
 				       p.day,
-				       p.wayNo wayNo,
+				       p.wayNo,
 				       p.sepplace,
-				       to_char(p.time, 'AM HH:MI') time,
+				       p.time,
 				       p.place,
 				       p.lat,
 				       p.lng,
