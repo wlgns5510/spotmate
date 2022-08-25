@@ -6,11 +6,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>mateDeep</title>
+	<meta charset="UTF-8">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SPOTMATE</title>
+	<meta name="title" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="">
+	<meta property="og:image" content="">
+	<meta property="og:author" content="">
+	<meta property="kakao:title" content="">
+	<meta property="kakao:description" content="">
+	
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="57x57" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="${pageContext.request.contextPath}/assets/images/common/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="${pageContext.request.contextPath}/assets/images/common/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="${pageContext.request.contextPath}/assets/images/common/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/assets/images/common/favicon-16x16.png">
+	<link rel="manifest" href="${pageContext.request.contextPath}/assets/images/common/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="${pageContext.request.contextPath}/assets/images/common/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	
+	<!-- css, js 연결 -->
+	<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
+	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
-<script src="/assets/js/jquery-1.11.0.min.js"></script>
+	<title>mateDeep</title>
+
+</head>
+
 <style>
 	.map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 	.map_wrap {position:relative;width:100%;height:350px;}
@@ -23,8 +68,7 @@
 	#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
 	#category li .bank {background-position: -10px 0;}
 	#category li .mart {background-position: -10px -36px;}
-	#category li .pharmacy {background-position: -10px -72px;}
-	#category li .oil {background-position: -10px -108px;}
+	#category li .attraction {background-position: -10px -72px;}
 	#category li .cafe {background-position: -10px -144px;}
 	#category li .store {background-position: -10px -180px;}
 	#category li.on .category_bg {background-position-x:-46px;}
@@ -40,15 +84,12 @@
 	.placeinfo .jibun {color:#999;font-size:11px;margin-top:0;}
 </style>
 
-</head>
 <body>
 	<!-- mateDeep_wrap -->
 	<div class="mateDeep_wrap">
 
-		<!-- header -->
-		<header>
-			<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-		</header>
+		<!-- header -->		
+			<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>		
 		<!-- //header -->
 
 		<!-- mateDeep_banner1 -->
@@ -141,7 +182,7 @@
 						</div>
 						<c:forEach items="${matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 1}">
-								<div class="mateDeep_float">
+								<div class="mateDeep_spotBox">
 									<div class="mateDeep_start">
 									<c:if test="${matePlaceList.wayNo == -1}">
 										START
@@ -177,12 +218,14 @@
 				
 				
 				<div class="mateDeep_today">
+					<c:if test="${mateVo.allDay == 1}">
 						<div class="mateDeep_dayBox">							
 							<p>2일차</p>							
 						</div>
+					</c:if>
 					<c:forEach items="${matePlaceList}" var="matePlaceList">
 						<c:if test="${matePlaceList.day == 2}">
-							<div class="mateDeep_float">
+							<div class="mateDeep_spotBox">
 								<div class="mateDeep_start">
 								<c:if test="${matePlaceList.wayNo == -1}">
 									START
@@ -218,12 +261,14 @@
 				
 				
 				<div class="mateDeep_today">
-						<div class="mateDeep_dayBox">						
-							<p>3일차</p>						
-						</div>			
+					<c:if test="${mateVo.allDay == 2}">	
+						<div class="mateDeep_dayBox">										
+							<p>3일차</p>													
+						</div>
+					</c:if>		
 						<c:forEach items="${matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 3}">
-								<div class="mateDeep_float">
+								<div class="mateDeep_spotBox">
 									<div class="mateDeep_start">
 									<c:if test="${matePlaceList.wayNo == -1}">
 										START
@@ -273,15 +318,12 @@
 				        <li id="MT1" data-order="1"> 
 				            <span class="category_bg mart"></span>
 				            마트
-				        </li>  
-				        <li id="PM9" data-order="2"> 
-				            <span class="category_bg pharmacy"></span>
-				            약국
-				        </li>  
-				        <li id="OL7" data-order="3"> 
-				            <span class="category_bg oil"></span>
-				            주유소
-				        </li>  
+				        </li> 
+				        <li id="AT4" data-order="2"> 
+				            <span class="category_bg attraction"></span>
+				            관광명소
+				        </li>
+				        
 				        <li id="CE7" data-order="4"> 
 				            <span class="category_bg cafe"></span>
 				            카페
@@ -302,9 +344,7 @@
 					<button class="beforeBtn" type="button"><img src="/assets/images/common/ico_arrow_lft.png"></button>
 					<div class="mateDeep_recommendList"></div>
 					<div class="mateDeep_recommendList"></div>
-					<div class="mateDeep_recommendList"></div>
-					
-					
+					<div class="mateDeep_recommendList"></div>	
 					<button class="nextBtn" type="button"><img src="/assets/images/common/ico_arrow_rit.png"></button>
 				</div>
 
@@ -321,15 +361,17 @@
 		<!-- //mateDeep_content -->
 
 
+
+		<button id="btn" data-x="37.39572153931866" data-y="127.81839375449049">버튼</button>
 		<!-- footer -->
-		<header>
 			<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-		</header>
+
 		<!-- //footer -->
 
 	</div>
 	<!-- //mateDeep_wrap -->
 </body>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=561e1db0e63f28d3a51cc33103bd74d6&libraries=services"></script>
 <script>
 //마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
@@ -340,9 +382,10 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
  
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.48686695952834, 126.9682952225164), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
-    };  
+    };
+    
 
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -522,7 +565,23 @@ function changeCategoryClass(el) {
     if (el) {
         el.className = 'on';
     } 
-}  
+} 
+
+
+function setCenter(a,b) {            
+    // 이동할 위도 경도 위치를 생성합니다 
+    var moveLatLon = new kakao.maps.LatLng(a, b);
+    
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
+}
+
+$("#btn").on("click", function() {
+	console.log("버튼클릭");
+	var x =$(this).data("x");
+	var y =$(this).data("y");
+	setCenter(x, y);
+})
 </script>
 
 

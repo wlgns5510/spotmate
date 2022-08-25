@@ -36,9 +36,10 @@
 	height:640px;
 	overflow: scroll;
 	overflow-x:hidden;
-	border-top: 1px solid #e8e7e7;
-	border-right: 1px solid #e8e7e7;
-	border-left: 1px solid #e8e7e7;
+	border: 1px solid #e8e7e7;
+/* 	border-top: 1px solid #e8e7e7; */
+/* 	border-right: 1px solid #e8e7e7; */
+/* 	border-left: 1px solid #e8e7e7; */
 	margin: 150px 0px 500px 30px;
 }
 
@@ -138,13 +139,12 @@
 	left: 650px;
 	cursor: pointer;
 }
-
 .driverList > .hitchdeep {
+	top: 160px;
+	left: 500px;
 	text-align:center;
 	width: 77px;
 	position: absolute;
-	top: 160px;
-	left: 500px;
 	cursor: pointer;
 	padding: 10px; 
 	background-color: #4454a1; 
@@ -154,11 +154,25 @@
 }
 
 .driverList > .rideReq {
+	top: 160px;
+	left: 605px;
 	text-align:center;
 	width: 77px;
 	position: absolute;
-	top: 160px;
+	cursor:pointer;
+	padding: 10px; 
+	background-color: #4454a1; 
+	color:white; 
+	border-radius: 10px;
+	font-weight: 600;
+}
+
+.driverList .cancel {
+	top: 110px;
 	left: 605px;
+	text-align:center;
+	width: 77px;
+	position: absolute;
 	cursor:pointer;
 	padding: 10px; 
 	background-color: #4454a1; 

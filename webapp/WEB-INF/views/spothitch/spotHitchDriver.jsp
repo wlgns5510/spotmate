@@ -43,7 +43,7 @@
 
 	var	lat, lng = 0,
 		flag = false,
-		marker,
+		driverMarker,
 		options = {
 		enableHighAccuracy : true,
 		timeout : 5000,
@@ -96,13 +96,13 @@
 	    	rnd = Math.floor(Math.random() * (max - min)) + min;
 		var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
 			imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-		var marker = new kakao.maps.Marker({
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+		startendMarker = new kakao.maps.Marker({
 			position: positions[i].latlng,
 			map: map,
 			image: markerImage
 		});
-		infowindow.open(map, marker);
+		infowindow.open(map, startendMarker);
 	}
 
 	if (navigator.geolocation) {
@@ -111,25 +111,6 @@
 	
 	
 	
-	function displayMarker(locPosition) {
-		
-		if (flag) {
-			marker.setMap(null);
-		}
-		var imageSrc = './assets/images/common/android-icon-48x48.png', // 마커이미지의 주소입니다    
-		imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize)
-		// 마커를 생성합니다
-		marker = new kakao.maps.Marker({
-			position : locPosition,
-			image : markerImage,
-			map : map
-		});
-
-
-		flag = true;
-		map.setCenter(locPosition);
-	}
 	
 	function success(position) {
 		lat = position.coords.latitude, // 위도
@@ -148,7 +129,22 @@
 					contentType : "application/json",
 					data : JSON.stringify(search),
 					dataType : "json",
-					success : function() {
+					success : function(result) {
+						console.log(result)
+						if (result != null) {
+							var latlng = result.rideUser.split(",");
+							var rideUser = new kakao.maps.LatLng(latlng[0], latlng[1]);
+							
+							var imageSrc = './assets/images/common/login_image_50_01.png', // 마커이미지의 주소입니다    
+							imageSize = new kakao.maps.Size(50, 50); // 마커이미지의 크기입니다
+							var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
+							// 마커를 생성합니다
+							userMarker = new kakao.maps.Marker({
+								position : rideUser,
+								image : markerImage,
+								map : map
+							});
+						}
 					},
 					error : function(XHR, status, error) {
 						console.error(status + " : " + error);
@@ -160,6 +156,27 @@
 		displayMarker(locPosition);
 	};
 	
+	function displayMarker(locPosition) {
+		
+		if (flag) {
+			driverMarker.setMap(null);
+		}
+		
+		var imageSrc = './assets/images/common/android-icon-48x48.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		// 마커를 생성합니다
+		driverMarker = new kakao.maps.Marker({
+			position : locPosition,
+			image : markerImage,
+			map : map
+		});
+
+
+		flag = true;
+		map.setCenter(locPosition);
+	}
+	
 	function error(err) {
 		console.log(err);
 	};
@@ -168,6 +185,8 @@
 		// 좌표로 법정동 상세 주소 정보를 요청합니다
 		geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 	}
+	
+	
 	
 </script>
 </html>
