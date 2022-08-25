@@ -123,18 +123,14 @@ $(".myPage_InfoChk").on("submit", function(){
 		return false;
 	}
 	
-	if(id != userId) {
-		alert("아이디가 일치하지 않습니다.");
-		return false;
-	}
 	
 	if(pw == "" || pw == null) {
 		alert("비밀번호를 입력해주세요.");
 		return false;
 	}
 	
-	if(pw != userPw) {
-		alert("비밀번호가 일치하지 않습니다.");
+	if(id != userId || pw != userPw) {
+		alert("아이디와 비밀번호가 일치하지 않습니다.");
 		return false;
 	}
 	
