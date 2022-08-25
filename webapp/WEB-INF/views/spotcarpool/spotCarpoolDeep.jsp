@@ -96,10 +96,18 @@
 				</span>
 
 			</div>
-
-			<a href="/myReservationUserMain">
-				<button type=button class="rideButton">탑승하기</button>
-			</a>
+			
+			<c:choose>
+				<c:when test="${authUser != null}">
+					<a href="/myReservationUserMain">
+						<button type="submit" class="rideButton">탑승하기</button>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
+				</c:otherwise>
+			</c:choose>
+								
 		</div>
 	</div>
 
@@ -131,14 +139,11 @@
 
 
 
-		<div class="carpool-top2">
+		<div class="carpool-top2"> 
 			<p class="authDriverInfo">
-				${cVoMap.cVo.id} 드라이버님의 차량 정보 <a href="/myQnaMain">
-					<button class="qnaButton">
-						<img class="qnaPicto" src="/assets/images/ico_talk.png">
-						문의하기
-					</button>
-				</a>
+				${cVoMap.cVo.id} 드라이버님의 차량 정보 
+					
+				
 			</p>
 
 
@@ -171,10 +176,6 @@
 			<div class="driverComments">COMMENTS</div>
 			
 			<div class="introduceText">${cVoMap.cVo.comments}</div>
-
-			<!-- <div class="introduceText">
-				안녕하세요. 저는 조용하고 안전하게 가는 걸 선호합니다.<br> 약속 장소에는 출발 5분 전에 나와주시면
-				좋겠습니다.<br> 차량에 탑승하신 후에는 비치되어 있는 손 소독제를 꼭 사용 부탁드립니다:)  -->
 
 
 		</div>
@@ -233,6 +234,7 @@
 
 
 		</div>
+		
 		<!-- 리뷰배너 -->
 		<p class="review">Reviews ★ ${cVoMap.cVo.avgStar}</p>
 
