@@ -81,7 +81,10 @@ public class HitchhikeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/rideReq", method={RequestMethod.GET, RequestMethod.POST})
-	public int rideReq(@RequestBody HitchReservVo hrVo) {
+	public int rideReq(@RequestBody HitchReservVo hrVo, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		hrVo.setUserNo(authUser.getNo());
+		System.out.println(hrVo.toString());
 		int people = hService.makeReserv(hrVo);
 		if(people == -1) {
 			return -1;
