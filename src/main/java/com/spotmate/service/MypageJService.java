@@ -18,15 +18,17 @@ public class MypageJService {
 	private MypageJDao mypagejDao;
 
 	// 쿠폰리스트가져오기
-	public Map<String, Object> getCouponBList(String startDate, String endDate, String option1, String option2,
-			int crtPage, int userNo) {
+	public Map<String, Object> getCouponBList(CouponVo couponVo, int userNo) {
 		System.out.println("MypageJService > getCouponBList");
-
+		
+		couponVo.setUserNo(userNo);
+		
+		int crtPage = couponVo.getCrtPage();
+		
 		///////////// 리스트//////////////
-		System.out.println(startDate + "달력시작");
-		System.out.println(endDate + "달력끝");
+
 		// 페이지당 글갯수
-		int listCnt = 10;
+		int listCnt = 5;
 
 		// 전체페이지
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
@@ -36,26 +38,21 @@ public class MypageJService {
 
 		// 끝글번호
 		int endRnum = (startRnum + listCnt) - 1;
-
-		Map<String, Object> pMap = new HashMap<String, Object>();
-		pMap.put("startDate", startDate);
-		pMap.put("endDate", endDate);
-		pMap.put("option1", option1);
-		pMap.put("option2", option2);
-		pMap.put("startRnum", startRnum);
-		pMap.put("endRnum", endRnum);
-		pMap.put("userNo", userNo);
-
-		List<CouponVo> couponBList = mypagejDao.getCouponBList(pMap);
+		
+		// 시작글번호 끝글번호 대입
+		couponVo.setStartRnum(startRnum);
+		couponVo.setEndRnum(endRnum);
+		
+		List<CouponVo> couponBList = mypagejDao.getCouponBList(couponVo);
 
 		///////////// 페이징계산//////////////
 
 		// 전체글갯수
-		int totalCouponCnt = mypagejDao.totalCouponCnt(userNo);
+		int totalCouponCnt = mypagejDao.totalCouponCnt(couponVo);
 		System.out.println(totalCouponCnt);
 
 		// 페이지당 버튼 갯수
-		int pageBtnCount = 10;
+		int pageBtnCount = 5;
 
 		// 마지막 버튼 번호
 		int endPageBtnNo = (int) Math.ceil(crtPage / (double) pageBtnCount) * pageBtnCount;
@@ -82,19 +79,12 @@ public class MypageJService {
 
 		}
 
-		// 마지막페이지번호
-		int endPageNo = (int) Math.ceil(totalCouponCnt / (double) listCnt);
-
-		System.out.println(prev + "," + startPageBtnNo + "," + endPageBtnNo + "," + next + "," + endPageNo);
-
 		Map<String, Object> cMap = new HashMap<String, Object>();
 		cMap.put("couponBList", couponBList);
 		cMap.put("prev", prev);
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
-		cMap.put("endPageNo", endPageNo);
-		System.out.println(cMap);
 
 		return cMap;
 

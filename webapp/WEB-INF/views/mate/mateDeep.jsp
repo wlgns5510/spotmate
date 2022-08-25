@@ -66,8 +66,8 @@
 	#category li:last-child{margin-right:0;border-right:0;}
 	#category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
 	#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
-	#category li .bank {background-position: -10px 0;}
-	#category li .mart {background-position: -10px -36px;}
+	#category li .lodging {background-position: -10px 0;}
+	#category li .food {background-position: -10px -36px;}
 	#category li .attraction {background-position: -10px -72px;}
 	#category li .cafe {background-position: -10px -144px;}
 	#category li .store {background-position: -10px -180px;}
@@ -182,7 +182,7 @@
 						</div>
 						<c:forEach items="${matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 1}">
-								<div class="mateDeep_spotBox">
+								<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
 									<div class="mateDeep_start">
 									<c:if test="${matePlaceList.wayNo == -1}">
 										START
@@ -225,7 +225,7 @@
 					</c:if>
 					<c:forEach items="${matePlaceList}" var="matePlaceList">
 						<c:if test="${matePlaceList.day == 2}">
-							<div class="mateDeep_spotBox">
+							<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
 								<div class="mateDeep_start">
 								<c:if test="${matePlaceList.wayNo == -1}">
 									START
@@ -268,7 +268,7 @@
 					</c:if>		
 						<c:forEach items="${matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 3}">
-								<div class="mateDeep_spotBox">
+								<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
 									<div class="mateDeep_start">
 									<c:if test="${matePlaceList.wayNo == -1}">
 										START
@@ -311,13 +311,13 @@
 				<div class="map_wrap">
 				    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 				    <ul id="category">
-				        <li id="BK9" data-order="0"> 
-				            <span class="category_bg bank"></span>
-				            은행
+				        <li id="AD5" data-order="0"> 
+				            <span class="category_bg lodging"></span>
+				            숙박
 				        </li>       
-				        <li id="MT1" data-order="1"> 
-				            <span class="category_bg mart"></span>
-				            마트
+				        <li id="FD6" data-order="1"> 
+				            <span class="category_bg food"></span>
+				            음식점
 				        </li> 
 				        <li id="AT4" data-order="2"> 
 				            <span class="category_bg attraction"></span>
@@ -336,7 +336,7 @@
 				</div>
 				<div class="mateDeep_recommendBox clear">
 					<img class="mateDeep_img1" src="/assets/images/ico_spot.png">
-					<span class="mateDeep_placeAround">송정동 주변 4km</span> 
+					<span class="mateDeep_placeAround" id="mateDeep_placeAround">송정동 주변 4km</span> 
 					
 				</div>
 				
@@ -360,9 +360,6 @@
 		</div>
 		<!-- //mateDeep_content -->
 
-
-
-		<button id="btn" data-x="37.39572153931866" data-y="127.81839375449049">버튼</button>
 		<!-- footer -->
 			<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
@@ -566,8 +563,19 @@ function changeCategoryClass(el) {
         el.className = 'on';
     } 
 } 
+//mateDeep_spotBox클릭 시 해당 장소의 위도,경도,지역이름을 x,y,place에 담아줌
+$(".mateDeep_spotBox").on("click", function() {
+	var x =$(this).data("lat");
+	var y =$(this).data("lng");
+	setCenter(x, y);
+	
+	var place = $(this).data("place");
+	console.log(place);
+	//mateDeep_placeAround에 place정보를 넣어줌
+	document.getElementById("mateDeep_placeAround").innerHTML(place);
+})
 
-
+//a,b의 위치로 지도 이동
 function setCenter(a,b) {            
     // 이동할 위도 경도 위치를 생성합니다 
     var moveLatLon = new kakao.maps.LatLng(a, b);
@@ -576,12 +584,9 @@ function setCenter(a,b) {
     map.setCenter(moveLatLon);
 }
 
-$("#btn").on("click", function() {
-	console.log("버튼클릭");
-	var x =$(this).data("x");
-	var y =$(this).data("y");
-	setCenter(x, y);
-})
+
+
+
 </script>
 
 
