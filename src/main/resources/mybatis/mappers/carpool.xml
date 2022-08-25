@@ -250,7 +250,7 @@
 	<insert id="insertUserCarpoolInfo" parameterType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
 		insert into reservation
-		values (seq_reservation_no, #{mateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, '', #{people}, '')
+		values (seq_reservation_no, #{mateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, '', #{people}, '', '')
 		]]>
 	</insert>
 

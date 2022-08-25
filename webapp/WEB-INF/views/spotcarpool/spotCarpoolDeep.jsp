@@ -96,10 +96,18 @@
 				</span>
 
 			</div>
-
-			<a href="/myReservationUserMain">
-				<button type="submit" class="rideButton">탑승하기</button>
-			</a>
+			
+			<c:choose>
+				<c:when test="${authUser != null}">
+					<a href="/myReservationUserMain">
+						<button type="submit" class="rideButton">탑승하기</button>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
+				</c:otherwise>
+			</c:choose>
+								
 		</div>
 	</div>
 
@@ -131,7 +139,7 @@
 
 
 
-		<div class="carpool-top2">
+		<div class="carpool-top2"> 
 			<p class="authDriverInfo">
 				${cVoMap.cVo.id} 드라이버님의 차량 정보 
 					
