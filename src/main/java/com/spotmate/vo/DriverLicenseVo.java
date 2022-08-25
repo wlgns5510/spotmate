@@ -7,17 +7,17 @@ public class DriverLicenseVo {
 	// 필드
 	private String username, licensetype, c_Model, c_file, c_color, introduce, userBD, dl, c_num;
 
-	private int carNo, userNo, num_PA;
+	private int carNo, userNo, num_PA, detailNo;
 
 	private List<Integer> ch_type;
-
+	
 	// 생성자
 	public DriverLicenseVo() {
-
+		
 	}
 
 	public DriverLicenseVo(String username, String licensetype, String c_Model, String c_file, String c_color,
-			String introduce, String userBD, String dl, String c_num, int carNo, int userNo, int num_PA,
+			String introduce, String userBD, String dl, String c_num, int carNo, int userNo, int num_PA, int detailNo,
 			List<Integer> ch_type) {
 		super();
 		this.username = username;
@@ -32,7 +32,10 @@ public class DriverLicenseVo {
 		this.carNo = carNo;
 		this.userNo = userNo;
 		this.num_PA = num_PA;
+		this.detailNo = detailNo;
 		this.ch_type = ch_type;
+		
+		
 	}
 
 	public String getUsername() {
@@ -131,6 +134,14 @@ public class DriverLicenseVo {
 		this.num_PA = num_PA;
 	}
 
+	public int getDetailNo() {
+		return detailNo;
+	}
+
+	public void setDetailNo(int detailNo) {
+		this.detailNo = detailNo;
+	}
+
 	public List<Integer> getCh_type() {
 		return ch_type;
 	}
@@ -144,7 +155,9 @@ public class DriverLicenseVo {
 		return "DriverLicenseVo [username=" + username + ", licensetype=" + licensetype + ", c_Model=" + c_Model
 				+ ", c_file=" + c_file + ", c_color=" + c_color + ", introduce=" + introduce + ", userBD=" + userBD
 				+ ", dl=" + dl + ", c_num=" + c_num + ", carNo=" + carNo + ", userNo=" + userNo + ", num_PA=" + num_PA
-				+ ", ch_type=" + ch_type + "]";
+				+ ", detailNo=" + detailNo + ", ch_type=" + ch_type + "]";
+	}
 	}
 
-}
+	
+	

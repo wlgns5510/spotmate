@@ -44,7 +44,7 @@ public class MypageRDao {
 
 	
 	
-	/////////// 
+
 	public DriverLicenseVo getCarInfo(int userNo) {
 		DriverLicenseVo dlvo = ss.selectOne("mypageR.getCarInfo", userNo);
 		

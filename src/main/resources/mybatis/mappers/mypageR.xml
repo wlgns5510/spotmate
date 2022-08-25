@@ -112,7 +112,8 @@
 	<update id="carDetailDelete" parameterType="dlvo">
 	<![CDATA[
 		delete from cardetail
-	 	where carno = (select no from car where userno = #{userNo})
+	 	where carno = (select no from car where userno = #{userNo}
+	 	#{detailNo})
 		]]>
 	</update>
 	

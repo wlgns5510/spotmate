@@ -37,7 +37,9 @@ public class MypageRController {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
-		if(dls.getCarInfo(userNo) == null) {
+		DriverLicenseVo carInfo = dls.getCarInfo(userNo);
+		System.out.println(carInfo);
+		if(carInfo == null) {
 			return "/mypage/myDriverForm";
 		}
 		System.out.println(authUser);
