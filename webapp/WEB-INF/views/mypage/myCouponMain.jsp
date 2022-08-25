@@ -137,22 +137,17 @@
 								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 								</a></li>
 							</c:if>
-							<c:if test="${param.crtPage != 1}">
+							<c:if test="${cMap.prev}">
 								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
 								</a></li>
 							</c:if>
 
 							<c:forEach begin="${cMap.startPageBtnNo}" end="${cMap.endPageBtnNo}" step="1" var="page">
-								<c:choose>
-									<c:when test="${param.crtPage==page}">
-										<li><a class="active" href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${page}">${page}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${page}">${page}</a></li>
-									</c:otherwise>
-								</c:choose>
+								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if>
+									href="${pageContext.request.contextPath}/mypageJ/myCouponMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"
+								> ${page} </a></li>
 							</c:forEach>
-							<c:if test="${param.crtPage != cMap.endPageNo}">
+							<c:if test="${cMap.next}">
 								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
 								</a></li>
 							</c:if>

@@ -8,12 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spotmate.service.MypageJService;
+import com.spotmate.vo.CarpoolVo;
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
 import com.spotmate.vo.RefundVo;
@@ -28,18 +30,14 @@ public class MypageJController {
 
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponMain(Model model, HttpSession session,
-			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
-			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
-			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
-			@RequestParam(value = "option2", required = false, defaultValue = "") String option2,
-			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
+	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo, HttpSession session
+			) {
 		System.out.println("MypageJController > myCouponMain");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		int userNo = authUser.getNo();
 
-		Map<String, Object> cMap = mypagejService.getCouponBList(startDate, endDate, option1, option2, crtPage, userNo);
+		Map<String, Object> cMap = mypagejService.getCouponBList(couponVo, userNo);
 
 		model.addAttribute("cMap", cMap);
 

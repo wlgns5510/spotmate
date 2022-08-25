@@ -17,10 +17,10 @@ public class MypageJDao {
 	private SqlSession sqlSession;
 
 	// 쿠폰리스트가져오기
-	public List<CouponVo> getCouponBList(Map<String, Object> pMap) {
+	public List<CouponVo> getCouponBList(CouponVo couponVo) {
 		System.out.println("MypageJDao > getCouponBList");
 
-		List<CouponVo> couponBList = sqlSession.selectList("mypagej.selectCouponBList", pMap);
+		List<CouponVo> couponBList = sqlSession.selectList("mypagej.selectCouponBList", couponVo);
 
 		return couponBList;
 	}
@@ -34,10 +34,10 @@ public class MypageJDao {
 	}
 
 	// 쿠폰전체글 갯수
-	public int totalCouponCnt(int userNo) {
+	public int totalCouponCnt(CouponVo couponVo) {
 		System.out.println("MypageJDao > totalCouponCnt");
 
-		int totalCouponCnt = sqlSession.selectOne("mypagej.totalCouponCnt", userNo);
+		int totalCouponCnt = sqlSession.selectOne("mypagej.totalCouponCnt", couponVo);
 
 		return totalCouponCnt;
 	}
