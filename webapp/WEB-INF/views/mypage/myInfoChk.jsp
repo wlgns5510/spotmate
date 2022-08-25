@@ -74,22 +74,24 @@
 					<div class="myPage_InfoChkEx">
 						<h4>비밀번호 재확인</h4>
 						<p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.
+						<input type="hidden"  id="userId" value="${userVo.id }">
+						<input type="hidden" id="userPw"value="${userVo.pw }">
 					</div>
 				</header>
 
 				<!-- //section-article2 -->
 				<article class="myPage_article2">
-					<form action="" class="myPage_InfoChk">
+					<form action="${pageContext.request.contextPath }/mypageJ/myInfoForm" class="myPage_InfoChk" method="get">
 						<div class="myPage_InfoChkPass">
 							<table class="myPage_InfoChkForm">
 								<tbody>
 									<tr>
 										<th><label>아이디*</label></th>
-										<td><input type="text"></td>
+										<td><input id="input-uid" type="text"></td>
 										</tr>
 										<tr>
 										<th><label>패스워드*</label>
-										<td><input type="password"></td>
+										<td><input id="input-upw" type="password"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -106,4 +108,35 @@
 
 	</div>
 </body>
+<script type="text/javascript">
+
+$(".myPage_InfoChk").on("submit", function(){	
+	
+	var id = $("#input-uid").val();
+	var pw = $("#input-upw").val();
+	var userId = $("#userId").val();
+	var userPw = $("#userPw").val();
+	
+	if(id == "" || id == null) {
+		alert("아이디를 입력해주세요.");
+		return false;
+	}
+	
+	
+	if(pw == "" || pw == null) {
+		alert("비밀번호를 입력해주세요.");
+		return false;
+	}
+	
+	if(id != userId || pw != userPw) {
+		alert("아이디와 비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	
+	
+});
+
+
+</script>
+
 </html>

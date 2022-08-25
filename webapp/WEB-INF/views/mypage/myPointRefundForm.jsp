@@ -83,7 +83,7 @@
 				</header>
 
 				<!-- //section-article2 -->
-				<form action="${pageContext.request.contextPath }/mypageJ/myPointRefund" method="post">
+				<form action="${pageContext.request.contextPath }/mypageJ/myPointRefund" id="myPointRefund" method="post">
 					<article class="myPage_article2">
 						<h4>환불내역</h4>
 						<div class="myPage_pointCharge">
@@ -111,7 +111,44 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+$("#myPointRefund").on("submit", function(){
+ 
+	var point = $('input[name=point]').val();
+	var accountNum = $('input[name=accountNum]').val();
+	var name = $('input[name=name]').val();
+	
+	if(point == "" || point == null) {
+		alert("환불 금액을 입력해주세요.");
+		return false;
+	}
+	
+	if(point == "" || point == null || point < 5000){
+		alert("포인트는 5,000P부터 환불이 가능합니다.");
+		return false;
+	}
+	
+	if(point%1000 != 0){
+		alert("포인트는 1,000P 단위로 환불이 가능합니다.");
+		return false;
+	}
+	
+	if(accountNum == "" || accountNum == null) {
+		alert("계좌번호를 입력해주세요.");
+		return false;
+	}
+	
+	if(name == "" || name == null) {
+		alert("예금주명을 입력해주세요.");
+		return false;
+	}
+	
+});
 
+
+
+
+</script>
 
 </html>
 

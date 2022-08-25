@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
 import com.spotmate.vo.RefundVo;
+import com.spotmate.vo.UserVo;
 
 @Repository
 public class MypageJDao {
@@ -133,5 +134,23 @@ public class MypageJDao {
 		return totalRefundCnt;
 	}
 
+	//유저정보가져오기
+	public UserVo getUser(int userNo) {
+		System.out.println("MypageJDao > getUser");
+		
+		UserVo userVo = sqlSession.selectOne("mypagej.getUser", userNo);
+		
+		return userVo;
+	}
+	
+	//개인정보수정
+	public int updateUser(UserVo userVo) {
+		System.out.println("MypageJService > updateUser");
+		
+		System.out.println(userVo + "수정테스트");
+		int count = sqlSession.update("mypagej.updateUser", userVo);
+		
+		return count;
+	}
 	
 }
