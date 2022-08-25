@@ -41,11 +41,13 @@ public class HitchhikeController {
 		return "/spothitch/spotHitchDriver";
 	}
 	
+	
 //	@ResponseBody
 //	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
 //	public List<HitchVo> search (@RequestBody sVo) {
 //		return hService.getsearchList(sVo);
 //	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/nearHitchList", method= {RequestMethod.GET, RequestMethod.POST})
@@ -88,19 +90,25 @@ public class HitchhikeController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="/cancel", method={RequestMethod.GET, RequestMethod.POST})
+	public int cancel(@RequestBody int mateNo, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		return hService.cancelReserv(authUser.getNo(), mateNo);
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="/now", method= {RequestMethod.GET, RequestMethod.POST})
-	public int now(@RequestBody MapVo mVo) {
+	public HitchReservVo now(@RequestBody MapVo mVo) {
 		LocalTime now = LocalTime.now();
 		System.out.println(now +": "+mVo);
-		hService.watchPos(mVo);
-		return 1;
+		return hService.watchPos(mVo);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/userPos", method= {RequestMethod.GET, RequestMethod.POST})
 	public List<HitchVo> userPos(@RequestBody MapVo mVo) {
 		LocalTime now = LocalTime.now();
-		System.out.println(now +": "+mVo);
+//		System.out.println(now +": "+mVo);
 		return hService.getNear(mVo);
 	}
 }

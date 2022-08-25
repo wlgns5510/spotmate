@@ -58,6 +58,17 @@ public class MypageRDao {
 		return count;
 	}
 	
+	public int carUpdate(DriverLicenseVo dlvo) {
+		int count = ss.update("mypageR.carUpdate", dlvo);
+		return count;
+	}
+	
+	public int carDetailUpdate(DriverLicenseVo dlvo, Map<String, Integer> carDetailMap) {
+		ss.delete("mypageR.carDetailDelete", dlvo);
+		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
+		return count;
+	}
+	
 	
 	//카정보수정
 	

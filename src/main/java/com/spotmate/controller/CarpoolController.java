@@ -1,18 +1,21 @@
 package com.spotmate.controller;
 
 
-import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spotmate.service.CarpoolService;
 import com.spotmate.vo.CarpoolVo;
+import com.spotmate.vo.UserVo;
 
 @Controller
 public class CarpoolController {
@@ -28,111 +31,55 @@ public class CarpoolController {
 		return "/spotcarpool/spotMain";
 	}
 
+	
+	// 차량 리스트
+	
 	@RequestMapping(value = "/spotCarpool", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list(Model model, @ModelAttribute CarpoolVo carpoolVo) {
 
-	public String spotCarpool() {
+		System.out.println("CarpoolController>list()");
+		System.out.println(carpoolVo.toString());
+		Map<String, Object> cMap = carpoolService.getList(carpoolVo);
+		
+		
+		model.addAttribute("cMap", cMap);
+
+		System.out.println("====================================");
+		System.out.println(cMap);
+		System.out.println("====================================");
+		
 		return "/spotcarpool/spotCarpool";
 	}
 
 	
-	// 차량 리스트
-		@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST })
-		public String list(Model model,
-				@RequestParam(value = "splace", required = false, defaultValue = "") String splace,
-				@RequestParam(value = "eplace", required = false, defaultValue = "") String eplace,
-				@RequestParam(value = "time", required = false, defaultValue = "") String time,
-				@RequestParam(value = "people", required = false, defaultValue = "1") int people,
-				@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
-				@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
-				//@RequestParam("ch_type") List<String> ckList,  
-				@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) 
-				{
-
-			System.out.println("CarpoolController>list()");
-			//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5] 
-
-
-			Map<String, Object> cMap = carpoolService.getList(splace, eplace, time, people, startDate, endDate, crtPage);
-
-			model.addAttribute("cMap", cMap);
-			
-			//String[] ckList = .getParameterValues("ch_type");
-
-			return "/spotcarpool/spotCarpool";
-		}
-
-	/*
-	@RequestMapping(value = "/spotCarpool/list", method = { RequestMethod.GET, RequestMethod.POST }) 
-	public String list(Model model) {
-			  
-			System.out.println("CarpoolController>list()");
-			
-			List<CarpoolVo> carpoolList = carpoolService.getList();
-			  
-			model.addAttribute("carpoolList", carpoolList);
-			  
-			return "/spotcarpool/spotCarpool"; 
-	}*/
+	//드라이버 차량 정보 가져오기 (기본, 상세조건, 리뷰, 추천 리스트)
+	
+	@RequestMapping(value = "/spotCarpoolDeep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String spotCarpoolDeep(Model model, @PathVariable("no") int mateNo) {
 		
-	
-	@RequestMapping(value = "/spotCarpoolDeep", method = { RequestMethod.GET, RequestMethod.POST })
-	public String spotCarpoolDeep() {
-		return "/spotcarpool/spotCarpoolDeep";
-	}
-	/*
-	//드라이버 별점 평균 ★★★☆☆
-	@RequestMapping(value = "/spotCarpoolDeep/star", method = { RequestMethod.GET, RequestMethod.POST })
-	public String avgStar(Model model, @RequestParam("no") int no) {
-		System.out.println("CarpoolController > avgStar");
-
-		CarpoolVo carpoolVo = carpoolService.read(no);
-
-		model.addAttribute("carpoolVo", carpoolVo);
-
-		return "/spotcarpool/spotCarpoolDeep";
-		}*/
-	
-	//리뷰 리스트 
-	
-	@RequestMapping(value = "/spotCarpoolDeep/list", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list2(Model model) {
-		System.out.println("CarpoolController>list()");
-
-		List<CarpoolVo> reviewList = carpoolService.getList2();
-
-		model.addAttribute("reviewList", reviewList);
-
-		return "/spotcarpool/spotCarpoolDeep";
-
-		}
-	
-	// Deep 차량 추천 리스트 박스
-	
-	@RequestMapping(value = "/spotCarpoolDeep/recomlist", method = { RequestMethod.GET, RequestMethod.POST }) 
-	public String list3(Model model) {
-			  
-			System.out.println("CarpoolController>recomlist()");
-			
-			List<CarpoolVo> recommendList = carpoolService.getList3();
-			  
-			model.addAttribute("recommendList", recommendList);
-			  
-			return "/spotcarpool/spotCarpoolDeep"; 
-	}
-	
-	//드라이버 차량 정보 가져오기
-
-	@RequestMapping(value = "/spotCarpoolDeep/driverInfoRead", method = { RequestMethod.GET, RequestMethod.POST })
-	public String read(Model model, @RequestParam(value = "", defaultValue = "") int no) {
-		System.out.println("CarpoolController>read()");
-
+		Map<String,Object> cVoMap = carpoolService.read(mateNo);
 		
-		CarpoolVo carpoolVo = carpoolService.read(no);
-
-		model.addAttribute("carpoolVo", carpoolVo);
-
+		model.addAttribute("cVoMap", cVoMap);
+		
 		return "/spotcarpool/spotCarpoolDeep";
-
 	}
+	
+	
+	//user 예약내역 DB 저장
+	@RequestMapping(value = "/saveCarpool", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myPointCharge(@ModelAttribute CarpoolVo carpoolVo, HttpSession session) {
+		
+		System.out.println("CarpoolController > saveCarpool");
+		
+		UserVo authUser= (UserVo)session.getAttribute("authUser");
+		
+		int userNo = authUser.getNo();
+		
+		carpoolService.saveCarpool(userNo);
+		
+		return "/mypage/myReservationUserMain";
+	}
+	
+	
+	
 }
-

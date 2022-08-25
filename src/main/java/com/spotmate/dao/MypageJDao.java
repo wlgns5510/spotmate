@@ -78,4 +78,22 @@ public class MypageJDao {
 		return totalPoint;
 	}
 	
+	//쿠폰구매insert(CouponUsage)
+	public int insertCouponUsage(CouponVo couponVo) {
+		System.out.println("MypageJService > insertCouponUsage");
+		
+		int count = sqlSession.insert("mypagej.insertCouponUsage", couponVo);
+		
+		return count;
+	}
+	
+	////쿠폰구매insert(pointUsage)
+	public int insertpointUsage(CouponVo couponVo) {
+		System.out.println("MypageJService > insertpointUsage");
+		
+		int count = sqlSession.insert("mypagej.insertpointUsage", couponVo);
+		
+		return count;
+	}
+	
 }
