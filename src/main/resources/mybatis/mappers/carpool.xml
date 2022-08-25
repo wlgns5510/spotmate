@@ -175,7 +175,7 @@
 	
 
 
-	<!-- 드라이버 차량 정보 가져오기 -->
+	<!-- 드라이버 차량 정보 가져오기 (기본 정보) -->
 
 	<select id="selectDriverInfo" parameterType="int" resultType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
@@ -218,7 +218,7 @@
 
 	</select>
 
-	<!-- DEEP드라이버 정보 가져오기(상세조건) -->
+	<!-- 드라이버 차량 정보 가져오기 (상세조건) -->
 	
 	<select id="selectDetailInfo" parameterType="int" resultType="com.spotmate.vo.SpotDetailVo">
 		<![CDATA[

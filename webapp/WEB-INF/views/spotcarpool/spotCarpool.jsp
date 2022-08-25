@@ -178,7 +178,7 @@
 								<td>${carpoolVo.splace}</td>
 								<td>${carpoolVo.eplace}</td>
 								<td>${carpoolVo.point}</td>
-								<td>${carpoolVo.id} = ${carpoolVo.opts}</td>
+								<td>${carpoolVo.id}</td>
 								<td><a href="${pageContext.request.contextPath}/spotCarpoolDeep/${carpoolVo.spotMateNo}"><button class="board">탑승요청</button></a></td>
 	
 							</tr>

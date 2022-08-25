@@ -33,6 +33,7 @@ public class CarpoolController {
 
 	
 	// 차량 리스트
+	
 	@RequestMapping(value = "/spotCarpool", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model, @ModelAttribute CarpoolVo carpoolVo) {
 
@@ -51,7 +52,7 @@ public class CarpoolController {
 	}
 
 	
-	//드라이버 차량 정보 가져오기
+	//드라이버 차량 정보 가져오기 (기본, 상세조건, 리뷰, 추천 리스트)
 	
 	@RequestMapping(value = "/spotCarpoolDeep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotCarpoolDeep(Model model, @PathVariable("no") int mateNo) {
@@ -64,7 +65,7 @@ public class CarpoolController {
 	}
 	
 	
-	//user예약내역 DB저장
+	//user 예약내역 DB 저장
 	@RequestMapping(value = "/saveCarpool", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointCharge(@ModelAttribute CarpoolVo carpoolVo, HttpSession session) {
 		

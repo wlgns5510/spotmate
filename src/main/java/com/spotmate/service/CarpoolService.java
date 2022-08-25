@@ -88,8 +88,10 @@ public class CarpoolService {
 		return cMap;
 
 	}
+	
 
 	// 드라이버 차량 정보 가져오기
+	
 	public Map<String, Object> read(int no) {
 		System.out.println("CarpoolService>read()");
 
@@ -99,7 +101,7 @@ public class CarpoolService {
 		// 기본정보 (상세조건)
 		List<SpotDetailVo> spotDetailList = carpoolDao.read2(no);
 
-		// 리뷰 리스트*
+		// 리뷰 배너
 		List<CarpoolVo> reviewList = carpoolDao.getreviewList();
 
 		// Deep 차량 추천 리스트 박스
@@ -122,7 +124,7 @@ public class CarpoolService {
 		return driverMap;
 	}
 
-	// user예약내역 DB저장
+	// user예약내역 DB 저장
 	public void saveCarpool(int userNo) {
 		System.out.println("CarpoolService > saveCarpool");
 
