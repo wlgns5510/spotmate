@@ -140,7 +140,7 @@
 	</select>
 
 	<!-- 포인트리스트가져오기 -->
-	<select id="selectPointList" parameterType="int" resultType="PointVo">
+	<select id="selectPointList" parameterType="pointVo" resultType="PointVo">
 		<![CDATA[
 			select  ort.rn,
 			        ort.no,
@@ -209,8 +209,15 @@
 			                   and pu.reno = re.no
 			                   and u.no = pu.userno
 			                   and u.no = #{userNo}
-			                   and pu.type = '완료'
-			                
+			                   and pu.type= '완료'
+		]]>
+
+		<if test="option1 != '' and option1 != null">
+			and sp.type = #{option1}
+		</if>
+		
+		
+		<![CDATA[  
 			                   union 
 			                
 			                   select  userno no,
@@ -223,10 +230,50 @@
 			                   from pointUsage
 			                   where userno = #{userNo}
 			                   and (type = '충전' or type='환불' or type='구매')
-			                   )
-			            order by regDate desc)ot
-			        )ort
 		]]>
+		
+		<if test="option1 != '' and option1 != null">
+			and type = #{option1}
+		</if>
+
+		<if test="endDate != '' and endDate != null">
+			and #{endDate} >= regDate-1
+		</if>
+
+		<if test="startDate != '' and startDate != null">
+			and regDate >= #{startDate}
+		</if>
+		
+		<![CDATA[
+			         )order by regDate desc
+			        )ot
+			       )ort
+			where rn>=#{startRnum}
+			and rn<=#{endRnum}
+		]]>
+
+	</select>
+
+	<!-- 포인트리스트전체글 갯수 -->
+	<select id="totalPointCnt" parameterType="pointVo" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from pointUsage p, users u
+			where p.userNo = u.no
+			and u.no= #{userNo}
+		]]>
+
+		<if test="endDate != '' and endDate != null">
+			and #{endDate} >= regDate-1
+		</if>
+
+		<if test="startDate != '' and startDate != null">
+			and regDate >= #{startDate}
+		</if>
+
+		<if test="option1 != '' and option1 != null">
+			and p.type = #{option1}
+		</if>
 
 	</select>
 
@@ -248,13 +295,13 @@
 			values(seq_couponUsage_no.nextval, #{userNo}, #{couponNo}, #{point}, sysdate, null, null, '미사용')
 		]]>
 	</insert>
-	
-		<!-- 구매쿠폰등록(PointUsage) -->
+
+	<!-- 구매쿠폰등록(PointUsage) -->
 	<insert id="insertpointUsage" parameterType="couponVo">
 		<![CDATA[
 			INSERT INTO pointUsage
 			VALUES (SEQ_POINTUSAGE_NO.nextval, #{userNo}, '구매', sysdate, null, -#{point}, null)
 		]]>
 	</insert>
-	
+
 </mapper>

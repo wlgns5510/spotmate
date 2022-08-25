@@ -30,8 +30,7 @@ public class MypageJController {
 
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo, HttpSession session
-			) {
+	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo, HttpSession session) {
 		System.out.println("MypageJController > myCouponMain");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
@@ -84,7 +83,7 @@ public class MypageJController {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
-		
+
 		mypagejService.couponPurchase(userNo, couponVo);
 
 		return "redirect:/mypageJ/myCouponMain";
@@ -117,20 +116,15 @@ public class MypageJController {
 
 	// 포인트메인
 	@RequestMapping(value = "/myPointMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointMain(Model model, HttpSession session,
-			@RequestParam(value = "startDate", required = false, defaultValue = "") String startDate,
-			@RequestParam(value = "endDate", required = false, defaultValue = "") String endDate,
-			@RequestParam(value = "option1", required = false, defaultValue = "") String option1,
-			@RequestParam(value = "option2", required = false, defaultValue = "") String option2) {
+	public String myPointMain(Model model, @ModelAttribute PointVo pointVo, HttpSession session) {
 		System.out.println("MypageJController > myPointMain");
-
+		System.out.println(pointVo.getOption1() + "테스트");
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
 
-		List<PointVo> pointList = mypagejService.getPointList(userNo);
-
-		model.addAttribute("pointList", pointList);
+		Map<String, Object> cMap = mypagejService.getPointList(pointVo, userNo);
+		model.addAttribute("cMap", cMap);
 
 		return "/mypage/myPointMain";
 	}
@@ -144,13 +138,13 @@ public class MypageJController {
 	public String myPointRefundForm() {
 		return "/mypage/myPointRefundForm";
 	}
-	
-	//포인트환불
+
+	// 포인트환불
 	@RequestMapping(value = "/myPointRefund", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointRefund(RefundVo refundVo) {
-		 
+
 		System.out.println(refundVo);
-		
+
 		return "redirect:/mypageJ/myPointRefundMain";
 	}
 

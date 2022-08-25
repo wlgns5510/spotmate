@@ -61,12 +61,21 @@ public class MypageJDao {
 	};
 
 	// 포인트리스트가져오기
-	public List<PointVo> getPointList(int userNo) {
+	public List<PointVo> getPointList(PointVo pointVo) {
 		System.out.println("MypageJService > getPointList");
 		
-		List<PointVo> pointList= sqlSession.selectList("mypagej.selectPointList", userNo);
+		List<PointVo> pointList= sqlSession.selectList("mypagej.selectPointList", pointVo);
 		
 		return pointList;
+	}
+	
+	// 포인트전체글 갯수
+	public int totalPointCnt(PointVo pointVo) {
+		System.out.println("MypageJDao > totalPointCnt");
+
+		int totalPointCnt = sqlSession.selectOne("mypagej.totalPointCnt", pointVo);
+
+		return totalPointCnt;
 	}
 	
 	// 총포인트가져오기

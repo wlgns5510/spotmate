@@ -89,8 +89,8 @@
 							<div class="style2">
 								<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
 									<option value="">유형</option>
-									<option value="카풀">카풀정기권</option>
-									<option value="카풀">카풀1회성</option>
+									<option value="카풀정기권">카풀정기권</option>
+									<option value="카풀1회성">카풀1회성</option>
 									<option value="히치하이크">히치하이크</option>
 									<option value="메이트">메이트</option>
 									<option value="충전">충전</option>
@@ -129,9 +129,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${pointList }" var="pointVo">
+							<c:forEach items="${cMap.pointList }" var="pointVo">
 								<tr>
-									<td>1</td>
+									<td>${pointVo.no }</td>
 									<td>${pointVo.type }</td>
 									<td>${pointVo.regDate }</td>
 									<td>${pointVo.splace }</td>
@@ -144,28 +144,28 @@
 					</table>
 					<div class="paging">
 						<ul>
-							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-double-left.png">
-							</a></li>
+							<c:if test="${cMap.prev}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+								</a></li>
+							</c:if>
+							<c:if test="${cMap.prev}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${param.crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								</a></li>
+							</c:if>
 
-							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-left.png">
-							</a></li>
-
-							<li><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">4</a></li>
-							<li class="active"><a href="">5</a></li>
-							<li><a href="">6</a></li>
-							<li><a href="">7</a></li>
-							<li><a href="">8</a></li>
-							<li><a href="">9</a></li>
-							<li><a href="">10</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-right.png">
-							</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="${pageContext.request.contextPath }/assets/images/chevron-double-right.png">
-							</a></li>
+							<c:forEach begin="${cMap.startPageBtnNo}" end="${cMap.endPageBtnNo}" step="1" var="page">
+								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if>
+									href="${pageContext.request.contextPath}/mypageJ/myPointMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"
+								> ${page} </a></li>
+							</c:forEach>
+							<c:if test="${cMap.next}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${param.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								</a></li>
+							</c:if>
+							<c:if test="${cMap.next}">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${cMap.endPageBtnNo+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</article>
