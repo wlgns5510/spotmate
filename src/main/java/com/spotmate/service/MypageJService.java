@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.spotmate.dao.MypageJDao;
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
+import com.spotmate.vo.RefundVo;
 
 @Service
 public class MypageJService {
@@ -243,5 +244,89 @@ public class MypageJService {
 
 		System.out.println(count + "건 등록" + count2 + "건등록");
 
+	}
+	
+	//환불리스트가져오기
+	public Map<String, Object> getRefundList(RefundVo refundVo, int userNo) {
+		System.out.println("MypageJService > getRefundList");
+
+		refundVo.setUserNo(userNo);
+
+		int crtPage = refundVo.getCrtPage();
+
+		///////////// 리스트//////////////
+
+		// 페이지당 글갯수
+		int listCnt = 5;
+
+		// 전체페이지
+		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
+
+		// 시작글번호
+		int startRnum = (crtPage - 1) * listCnt + 1;
+
+		// 끝글번호
+		int endRnum = (startRnum + listCnt) - 1;
+
+		// 시작글번호 끝글번호 대입
+		refundVo.setStartRnum(startRnum);
+		refundVo.setEndRnum(endRnum);
+
+		List<RefundVo> refundList = mypagejDao.getRefundList(refundVo);
+
+		///////////// 페이징계산//////////////
+
+		// 전체글갯수
+		int totalRefundCnt = mypagejDao.totalRefundCnt(refundVo);
+
+		// 페이지당 버튼 갯수
+		int pageBtnCount = 5;
+
+		// 마지막 버튼 번호
+		int endPageBtnNo = (int) Math.ceil(crtPage / (double) pageBtnCount) * pageBtnCount;
+
+		// 시작 버튼 번호
+		int startPageBtnNo = (endPageBtnNo - pageBtnCount) + 1;
+
+
+		// 다음 화살표 유무
+		boolean next = false;
+		if (listCnt * endPageBtnNo < totalRefundCnt) {
+			next = true;
+
+		} else {
+			endPageBtnNo = (int) Math.ceil(totalRefundCnt / (double) listCnt);
+
+		}
+
+		// 이전 화살표 유무
+		boolean prev = false;
+		if (startPageBtnNo != 1) {
+			prev = true;
+
+		}
+
+		Map<String, Object> cMap = new HashMap<String, Object>();
+		cMap.put("refundList", refundList);
+		cMap.put("prev", prev);
+		cMap.put("next", next);
+		cMap.put("endPageBtnNo", endPageBtnNo);
+		cMap.put("startPageBtnNo", startPageBtnNo);
+		
+		return cMap;
+
+	}
+	
+	
+	//포인트 환불
+	public void refundPoint(RefundVo refundVo, int userNo) {
+		System.out.println("MypageJService > refundPoint");
+		
+		refundVo.setUserNo(userNo);
+		
+		int count = mypagejDao.insertRefundPoint(refundVo);
+		
+		System.out.println(count + "건 환불신청이 완료되었습니다.");
+		
 	}
 }

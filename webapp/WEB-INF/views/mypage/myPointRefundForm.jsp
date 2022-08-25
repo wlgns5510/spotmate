@@ -88,13 +88,13 @@
 						<h4>환불내역</h4>
 						<div class="myPage_pointCharge">
 							<p class="chargeMoney">환불 신청금액*</p>
-							<input type="text" name="point" placeholder="ex)30000">
+							<input name="point" value="" placeholder="ex)30000">
 							<div class="chargeEx">
 								<p>1원 = 1Point입니다.</p>
 								<p>포인트는 5,000P부터 1,000P 단위로 환불이 가능합니다.</p>
 							</div>
 							<p>환불 입금 받으실 계좌번호*</p>
-							<input type="text" name="accountNum" placeholder="우리은행:1002-234-000087">
+							<input type="text" name="accountNum" placeholder="우리은행 1002-234-000087">
 							<p>예금주명</p>
 							<input type="text" name="name" placeholder="ex)환불받는 분의 성함을 적어주세요">
 							<button type="submit" class="myPage_btnB">환불 신청하기</button>
