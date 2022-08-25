@@ -76,7 +76,7 @@
 					<form action="/joinOk" method="get">
 						<!-- 아이디 -->
 						<div class="join_group topborder">
-							<label class="" for="">아이디*</label> <input type="text" id="join_uid" value="">
+							<label class="" for="">아이디*</label> <label class="myPageInfo_uid">fdssd</label>
 						</div>
 
 						<!-- 새비밀번호 -->
@@ -117,18 +117,11 @@
 
 						<!-- 생년월일 -->
 						<div class="join_group info" id="info_birth">
-							<label class="" for="">생년월일*</label> <select class="info_box" id="birth-year" name="year">
-								<option disabled selected>출생연도</option>
-							</select> <select class="info_box" id="birth-month" name="month">
-								<option disabled selected>월</option>
-							</select> <select class="info_box" id="birth-day" name="day">
-								<option disabled selected>일</option>
-							</select>
+							<label for="">생년월일*</label> <label class="myPageInfo_birth">fdsfds</label>
 						</div>
-						
-						<div class="myInfoForm_border">
-						</div>
-						
+
+						<div class="myInfoForm_border"></div>
+
 						<!-- 버튼영역 -->
 						<div class="button_area">
 							<button type="submit" id="btn_submit">수정하기</button>
