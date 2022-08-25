@@ -103,6 +103,17 @@
 		]]>
 	</select>
 	
+	<!-- 해당 메이트의 출발지, 경유지, 도착지정보 -->
+	<select id="deepDetailRead" resultType="MateVo" parameterType="int">
+		<![CDATA[
+				select d.no mateOptionNo,
+       				   d.name optionName
+				from spotDetail s, detailOpt d
+				where s.detailNo = d.no
+				and s.mateNo = #{no}
+		]]>
+	</select>
+	
 </mapper>
 
 

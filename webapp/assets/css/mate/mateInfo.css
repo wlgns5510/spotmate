@@ -55,7 +55,9 @@
   width: 710px;
   height: 760px;
   background: url("/assets/images/common/hover.png");
+  background-repeat: no-repeat;
   background-position: center center;
+  background-size: cover;
   float: left;  
 }
 .mateInfo_content2 {

@@ -62,5 +62,10 @@ public class MateDao {
 		return sqlSession.selectList("mate.deepPlaceRead", no);
 	}
 	
-	
+	//해당 메이트의 운전자가 설정한 상세조건
+	public List<MateVo> deepDetailRead(int no) {
+		System.out.println("MateDao >> deepDetailRead");
+		
+		return sqlSession.selectList("mate.deepDetailRead", no);
+	}
 }
