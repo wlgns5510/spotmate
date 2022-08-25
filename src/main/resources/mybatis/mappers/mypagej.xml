@@ -376,6 +376,33 @@
 		</if>
 	</select>
 	
+	<!-- 유저정보 가져오기 -->
+	<select id="getUser" parameterType="int" resultType="userVo">
+		<![CDATA[
+			select  id,
+			        name,
+			        email,
+			        phone,
+			        address,
+			        gender,
+			        birth
+			from users
+			where no = #{no}
+		]]>
 
+	</select>
+	
+	<!-- 유저정보 업데이트 -->
+	<update id="updateUser" parameterType="userVo">
+		<![CDATA[
+			update users
+			set  name = #{name},
+			     email = #{email},
+			     phone = #{phone},
+			     address = #{address},
+			     gender = #{gender}
+			where no = #{no}
+		]]>
+	</update>
 
 </mapper>

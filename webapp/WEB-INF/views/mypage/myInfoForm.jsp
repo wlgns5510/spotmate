@@ -73,10 +73,10 @@
 					<h3>개인정보 수정</h3>
 				</header>
 				<article class="myPage_InfoArticle">
-					<form action="/joinOk" method="get">
+					<form action="${pageContext.request.contextPath }/mypageJ/myInfoModify" method="post">
 						<!-- 아이디 -->
 						<div class="join_group topborder">
-							<label class="" for="">아이디*</label> <label class="myPageInfo_uid">fdssd</label>
+							<label class="" for="">아이디*</label> <label class="myPageInfo_uid">${userVo.id }</label>
 						</div>
 
 						<!-- 새비밀번호 -->
@@ -90,34 +90,46 @@
 
 						<!-- 이름 -->
 						<div class="join_group">
-							<label class="" for="">이름*</label> <input type="text" id="join_name" name="name" value="">
+							<label class="" for="">이름*</label> <input type="text" id="join_name" name="name" value="${userVo.name }">
 						</div>
 
 						<!-- 이메일 -->
 						<div class="join_group">
-							<label class="" for="">이메일*</label> <input type="email" id="join_emil" name="email" value="">
+							<label class="" for="">이메일*</label> <input type="email" id="join_emil" name="email" value="${userVo.email }">
 						</div>
 
 						<!-- 휴대폰 -->
 						<div class="join_group">
-							<label class="" for="">휴대폰*</label> <input type="text" id="join_phone" name="phone" value="">
+							<label class="" for="">휴대폰*</label> <input type="text" id="join_phone" name="phone" value="${userVo.phone }">
 							<button type="button" id="id_check">본인인증</button>
 						</div>
 
 						<!-- 주소 -->
 						<div class="join_group">
-							<label class="" for="">주소*</label> <input type="text" id="join_address" name="address" value="">
+							<label class="" for="">주소*</label> <input type="text" id="join_address" name="address" value="${userVo.address }">
 							<button type="button" id="address_check" onclick="location.href='javascript:void(0);' ">주소 검색</button>
 						</div>
 
 						<!-- 성별 -->
 						<div class="join_checkbox">
-							<label class="joingender" for="">성별*</label> <input id="join_male" type="checkbox" name="gender" value="male"> <label class="jointext" for="">남자</label> <input id="join_female" type="checkbox" name="gender" value="female"> <label class="jointext" for="">여자</label>
+							<label class="joingender" for="">성별*</label>
+							<c:if test="${userVo.gender == 'male'}">
+								<input type="radio" id="join_male" checked="checked" name="gender" value="male">
+								<label class="jointext" for="">남자</label>
+								<input type="radio" id="join_female" name="gender" value="female">
+								<label class="jointext" for="">여자</label>
+							</c:if>
+							<c:if test="${userVo.gender == 'female'}">
+								<input type="radio" id="join_male"  name="gender" value="male">
+								<label class="jointext" for="">남자</label>
+								<input type="radio" id="join_female"  checked="checked" name="gender" value="female">
+								<label class="jointext" for="">여자</label>
+							</c:if>
 						</div>
 
 						<!-- 생년월일 -->
 						<div class="join_group info" id="info_birth">
-							<label for="">생년월일*</label> <label class="myPageInfo_birth">fdsfds</label>
+							<label for="">생년월일*</label> <label class="myPageInfo_birth">${userVo.birth}</label>
 						</div>
 
 						<div class="myInfoForm_border"></div>

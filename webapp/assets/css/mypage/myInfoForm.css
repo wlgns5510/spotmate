@@ -47,3 +47,15 @@
 	display: inline-block;
 	padding-top:13px;
 }
+
+
+.myPage_InfoArticle  input[type="radio"] {
+	accent-color: rgba(73,85,159,1);
+    padding: 10px;
+    margin: 0px 3px 0px 0px;
+    box-sizing: border-box;
+    -webkit-transform: scale(1.6);
+    width: 15px;
+    height: 15px;
+    border: 1px solid #D9D9D9;
+}

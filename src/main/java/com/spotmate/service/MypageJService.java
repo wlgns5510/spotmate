@@ -11,6 +11,7 @@ import com.spotmate.dao.MypageJDao;
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
 import com.spotmate.vo.RefundVo;
+import com.spotmate.vo.UserVo;
 
 @Service
 public class MypageJService {
@@ -328,5 +329,25 @@ public class MypageJService {
 		
 		System.out.println(count + "건 환불신청이 완료되었습니다.");
 		
+	}
+	
+	//유저정보가져오기
+	public UserVo getUser(int userNo) {
+		System.out.println("MypageJService > getUser");
+		
+		UserVo userVo = mypagejDao.getUser(userNo);
+		
+		return userVo;
+	}
+	
+	//개인정보수정
+	public void userModify(UserVo userVo, int userNo) {
+		System.out.println("MypageJService > userModify");
+		
+		userVo.setNo(userNo);
+		
+		int count = mypagejDao.updateUser(userVo);
+		
+		System.out.println(count + "건 수정되었습니다.");
 	}
 }
