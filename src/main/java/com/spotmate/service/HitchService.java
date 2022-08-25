@@ -27,13 +27,15 @@ public class HitchService {
 		for( int i=0;i<hDao.SelectHitchList().size();i++ ) {
 			if( hL.get(i).getLatlng() != null ) {
 				Haversine haver = new Haversine();
-				if ( haver.calcByHaversine(mVo.getLat(), mVo.getLng(), Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0])) < 5) {
+				if (haver.calcByHaversine(mVo.getLat(), mVo.getLng(), Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0])) < 5) {
 					hL.get(i).setConvertPoint(cp.convertPoint(hDao.SelectHitchList().get(i).getPoint()));
 					hL.get(i).setNowaddr(hL.get(i).getLatlng().split(",")[2]);
 					nhL.add(hL.get(i));
 				}
 			}
 		}
+		// 출발지에서부터 유저와 드라이버의 거리 재기
+//		haver.calcByHaversine(mVo.getLat(), mVo.getLng(), hL.get(i).getLat(), hL.get(i).getLng()) > haver.calcByHaversine(Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0]), hL.get(i).getLat(), hL.get(i).getLng()) && 
 		return nhL;
 	}
 	
@@ -41,8 +43,12 @@ public class HitchService {
 		return hDao.updateReserv(hrVo);
 	}
 	
-	public void watchPos(MapVo mVo) {
-		hDao.watchPos(mVo);
+	public int cancelReserv(int userNo, int mateNo) {
+		return hDao.cancelReserv(userNo, mateNo);
+	}
+	
+	public HitchReservVo watchPos(MapVo mVo) {
+		return hDao.watchPos(mVo);
 	}
 	
 	public HitchVo getHdriverPage(int driverNo) {
