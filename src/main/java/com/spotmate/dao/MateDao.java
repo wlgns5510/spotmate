@@ -41,17 +41,26 @@ public class MateDao {
 		return matePlaceList;
 	}
 	
-	//해당 mate의 spotmateDB정보가져오기
-	public MateVo deepMateRead(int mateNo) {
+	//해당 메이트에 관한 정보
+	public MateVo deepMateRead(int no) {
 		System.out.println("MateDao >> deepMateRead");
 		
-		return sqlSession.selectOne("mate.deepMateRead", mateNo);
+		return sqlSession.selectOne("mate.deepMateRead", no);
 	}
 	
-	//해당 mate의 placeDB정보가져오기
-	public List<MateVo> deepPlaceRead(int mateNo) {
+	//해당 메이트의 운전자,차량정보
+	public MateVo deepMateDriverRead(int no) {
+		System.out.println("MateDao >> deepMateDriverRead");
+		
+		return sqlSession.selectOne("mate.deepMateDriverRead", no);
+	}
+	
+	//해당 메이트의 출발지, 경유지, 도착지정보
+	public List<MateVo> deepPlaceRead(int no) {
 		System.out.println("MateDao >> deepPlaceRead");
 		
-		return sqlSession.selectList("mate.deepPlaceRead", mateNo);
+		return sqlSession.selectList("mate.deepPlaceRead", no);
 	}
+	
+	
 }

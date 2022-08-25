@@ -2,6 +2,7 @@ package com.spotmate.vo;
 
 public class MateVo {
 	//필드
+	private String id;
 	private String name;
 	private String carPicture;
 	private String carName;
@@ -35,12 +36,13 @@ public class MateVo {
 
 	//생성자
 	public MateVo() {}
-	public MateVo(String name, String carPicture, String carName, String carNo, String introduce, String startDate,
-			String endDate, int people, String type, int point, String duration, String distance, String comments,
-			int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day, int wayNo,
-			String sepplace, String time, String place, double lat, double lng, double latlng, String sPlace,
+	public MateVo(String id, String name, String carPicture, String carName, String carNo, String introduce,
+			String startDate, String endDate, int people, String type, int point, String duration, String distance,
+			String comments, int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day,
+			int wayNo, String sepplace, String time, String place, double lat, double lng, double latlng, String sPlace,
 			String ePlace, int allDay) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.carPicture = carPicture;
 		this.carName = carName;
@@ -78,10 +80,22 @@ public class MateVo {
 		this.lat = lat;
 		this.lng = lng;
 	}
+	
 	//메소드 gs
+	
 	public String getName() {
 		return name;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 
 	public void setName(String name) {
 		this.name = name;
@@ -423,15 +437,19 @@ public class MateVo {
 		this.allDay = allDay;
 	}
 
+
+	
+
 	//메소드일반
 	@Override
 	public String toString() {
-		return "MateVo [name=" + name + ", carPicture=" + carPicture + ", carName=" + carName + ", carNo=" + carNo
-				+ ", introduce=" + introduce + ", startDate=" + startDate + ", endDate=" + endDate + ", people="
-				+ people + ", type=" + type + ", point=" + point + ", duration=" + duration + ", distance=" + distance
-				+ ", comments=" + comments + ", mateNo=" + mateNo + ", optionName=" + optionName + ", mateOptionNo="
-				+ mateOptionNo + ", optionNo=" + optionNo + ", matePlaceNo=" + matePlaceNo + ", day=" + day + ", wayNo="
-				+ wayNo + ", sepplace=" + sepplace + ", time=" + time + ", place=" + place + ", lat=" + lat + ", lng="
-				+ lng + ", latlng=" + latlng + ", sPlace=" + sPlace + ", ePlace=" + ePlace + ", allDay=" + allDay + "]";
+		return "MateVo [id=" + id + ", name=" + name + ", carPicture=" + carPicture + ", carName=" + carName
+				+ ", carNo=" + carNo + ", introduce=" + introduce + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", people=" + people + ", type=" + type + ", point=" + point + ", duration=" + duration
+				+ ", distance=" + distance + ", comments=" + comments + ", mateNo=" + mateNo + ", optionName="
+				+ optionName + ", mateOptionNo=" + mateOptionNo + ", optionNo=" + optionNo + ", matePlaceNo="
+				+ matePlaceNo + ", day=" + day + ", wayNo=" + wayNo + ", sepplace=" + sepplace + ", time=" + time
+				+ ", place=" + place + ", lat=" + lat + ", lng=" + lng + ", latlng=" + latlng + ", sPlace=" + sPlace
+				+ ", ePlace=" + ePlace + ", allDay=" + allDay + "]";
 	}
 }
