@@ -5,28 +5,66 @@ public class HitchVo {
 	
 	private String splace1, eplace1, convertPoint, nowaddr, latlng, fullPlace, detailOpt, comments, name, convertFare;
 	private int people, point, mateNo;
-	private double star;
+	private double star, lat, lng;
 	
 	public HitchVo() {}
 	
-	public HitchVo(int mateNo, String eplace1, int people, int point, String latlng) {
-		this.mateNo = mateNo;
-		this.eplace1 = eplace1;
-		this.people = people;
-		this.point = point;
-		this.latlng = latlng;
-	}
+//	public HitchVo(int mateNo, String eplace1, int people, int point, String latlng) {
+//		this.mateNo = mateNo;
+//		this.eplace1 = eplace1;
+//		this.people = people;
+//		this.point = point;
+//		this.latlng = latlng;
+//	}
+//	
+//	public HitchVo(String fullPlace, String detailOpt, String comments, double star, String name, int point) {
+//		this.fullPlace = fullPlace;
+//		this.detailOpt = detailOpt;
+//		this.comments = comments;
+//		this.point = point;
+//		this.star = star;
+//		this.name = name;
+//	}
+//	
+//	
 	
-	public HitchVo(String fullPlace, String detailOpt, String comments, double star, String name, int point) {
+	public HitchVo(String splace1, String eplace1, String convertPoint, String nowaddr, String latlng, String fullPlace,
+			String detailOpt, String comments, String name, String convertFare, int people, int point, int mateNo,
+			double star, double lat, double lng) {
+		this.splace1 = splace1;
+		this.eplace1 = eplace1;
+		this.convertPoint = convertPoint;
+		this.nowaddr = nowaddr;
+		this.latlng = latlng;
 		this.fullPlace = fullPlace;
 		this.detailOpt = detailOpt;
 		this.comments = comments;
-		this.point = point;
-		this.star = star;
 		this.name = name;
+		this.convertFare = convertFare;
+		this.people = people;
+		this.point = point;
+		this.mateNo = mateNo;
+		this.star = star;
+		this.lat = lat;
+		this.lng = lng;
 	}
-	
-	
+
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
 	public String getConvertFare() {
 		return convertFare;
 	}
@@ -142,9 +180,10 @@ public class HitchVo {
 
 	@Override
 	public String toString() {
-		return "HitchVo [eplace1=" + eplace1 + ", convertPoint=" + convertPoint + ", nowaddr=" + nowaddr + ", latlng="
-				+ latlng + ", fullPlace=" + fullPlace + ", detailOpt=" + detailOpt + ", comments=" + comments
-				+ ", star=" + star + ", name=" + name + ", people=" + people + ", point=" + point + ", mateNo=" + mateNo
-				+ "]";
+		return "HitchVo [splace1=" + splace1 + ", eplace1=" + eplace1 + ", convertPoint=" + convertPoint + ", nowaddr="
+				+ nowaddr + ", latlng=" + latlng + ", fullPlace=" + fullPlace + ", detailOpt=" + detailOpt
+				+ ", comments=" + comments + ", name=" + name + ", convertFare=" + convertFare + ", people=" + people
+				+ ", point=" + point + ", mateNo=" + mateNo + ", star=" + star + ", lat=" + lat + ", lng=" + lng + "]";
 	}
+
 }

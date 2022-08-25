@@ -4,9 +4,50 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="/assets/js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
-<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SPOTMATE</title>
+	<meta name="title" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="">
+	<meta property="og:image" content="">
+	<meta property="og:author" content="">
+	<meta property="kakao:title" content="">
+	<meta property="kakao:description" content="">
+	
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="57x57" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="${pageContext.request.contextPath}/assets/images/common/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="${pageContext.request.contextPath}/assets/images/common/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="${pageContext.request.contextPath}/assets/images/common/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/assets/images/common/favicon-16x16.png">
+	<link rel="manifest" href="${pageContext.request.contextPath}/assets/images/common/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="${pageContext.request.contextPath}/assets/images/common/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	
+	<!-- css, js 연결 -->
+	<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
+	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
 <title>스팟 히치하이크 메인</title>
 </head>
 <body>
@@ -35,11 +76,14 @@
 					<button onclick="search()" type="button"><img src="/assets/images/round-search.png"></button>
 				</div>
 				<div class="detail-option">
-					<input class="chkitem" type="checkbox" value="femaleDriver">여성 드라이버 
+					<input class="chkitem" type="checkbox" value="femaleDriver">여성 드라이버
 					<input class="chkitem" type="checkbox" value="nosmoke">비흡연자
 					<input class="chkitem" type="checkbox" value="pet">반려동물 탑승 가능
 					<input class="chkitem" type="checkbox" value="phonecharge">충전기 사용 가능
 					<input class="chkitem" type="checkbox" value="trunk">트렁크 사용 가능
+				</div>
+				<div id="hitch-list">
+				
 				</div>
 			<%-- <c:forEach items="${hitchList}"  var="hitch" varStatus="status">
 			<div class="driverList">
@@ -99,7 +143,8 @@
 	if(navigator.geolocation) {
 		var na = navigator.geolocation.getCurrentPosition(function(position) {
 			lat = position.coords.latitude,
-			lng = position.coords.longitude;
+			lng = position.coords.longitude,
+			locPosition = new kakao.maps.LatLng(lat, lng);
 			$.ajax({
 				url : "${pageContext.request.contextPath}/nearHitchList",
 				type : "post",
@@ -111,13 +156,14 @@
 				dataType : "json",
 				success : function(result) {
 					for(var i=0;i<result.length;i++) {
-						$(".spot-hitch-info").append('<div class="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+i+')" class="carPos" src="/assets/images/ico_spot.png"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+i+')" class="rideReq" id="rideReq'+i+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+i+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+i+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"></div></div>');
+						$("#hitch-list").append('<div class="box-hitch-info" id="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+result[i].mateNo+')" class="carPos" src="/assets/images/ico_spot.png"><div class="btn'+result[i].mateNo+'"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+result[i].mateNo+')" class="rideReq" id="rideReq'+result[i].mateNo+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+result[i].mateNo+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+result[i].mateNo+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"><input type="hidden" id="point'+result[i].mateNo+'" value="'+result[i].point+'"</div></div></div>');
 					}
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
 				}
 			});
+			map.setCenter(locPosition);
 		})
 	}
 	
@@ -158,6 +204,13 @@
 			}),
 			dataType : "json",
 			success : function(result) {
+				if(result.length == 0) {
+					$("body > div > div > .box-hitch-info").remove();
+					for(var n=0;n<markers.length;n++) {
+						markers[n].setMap(null);
+					}
+					markers = [];
+				}
 				var hVo = {},
 					chkTemp = [];
 				for(var i=0;i<result.length;i++) {
@@ -184,12 +237,11 @@
 								if ( i == atl ) {
 									var dif = temp.filter(x => !chkTemp.includes(x));
 									for( var k=0;k<dif.length;k++ ) {
-										$(".box"+dif[k]).remove();
+										$("#box"+dif[k]).remove();
+										markers[k].setMap(null);
 									}
 								}
 							}
-							
-							
 							hVo = result.hVo;
 							$("#nowpos"+result.hiVo.mateNo).text(result.hiVo.nowaddr);
 							$("#people"+result.hiVo.mateNo).html("<span>탑승 가능한 인원수</span><p>"+result.hiVo.people+"</p>");
@@ -198,9 +250,37 @@
 							console.error(status + " : " + error);
 						}
 					});
-					if (markers.length == result.length) {
+					if (markers.length >= result.length) {
+							if(navigator.geolocation) {
+								var na = navigator.geolocation.getCurrentPosition(function(position) {
+									lat = position.coords.latitude,
+									lng = position.coords.longitude;
+									$.ajax({
+										url : "${pageContext.request.contextPath}/nearHitchList",
+										type : "post",
+										contentType : "application/json",
+										data : JSON.stringify({
+												lat: lat,
+												lng: lng
+										}),
+										dataType : "json",
+										success : function(result) {
+											for(var i=0;i<result.length;i++) {
+												if(!$("#box"+result[i].mateNo).hasClass("box-hitch-info")) {
+													$("#hitch-list").prepend('<div class="box-hitch-info" id="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+result[i].mateNo+')" class="carPos" src="/assets/images/ico_spot.png"><div class="btn'+result[i].mateNo+'"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+result[i].mateNo+')" class="rideReq" id="rideReq'+result[i].mateNo+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+result[i].mateNo+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+result[i].mateNo+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"></div></div></div>');
+													markers[i].setMap(map);
+												}
+											}
+										},
+										error : function(XHR, status, error) {
+											console.error(status + " : " + error);
+										}
+									});
+								})
+							}
 						continue;
 					}
+					
 					
 					var marker, infowindow;
 					markers.push(marker);
@@ -225,7 +305,7 @@
 						    removable : true
 						});
 					kakao.maps.event.addListener(markers[i], 'click', clickMarker(map, markers[i], infowindows[i]));
-					map.setCenter(locPosition);					
+// 					map.setCenter(locPosition);					
 					
 				}
 			},
@@ -243,16 +323,22 @@
 	}
 	
 	function rideReq(index) {
-		console.log(this);
 		if ( $(".people").val() == '' ) {
 			alert("인원 수를 지정한 다음 시도해주세요")
 			return;
 		}
-		var mateNo = $("#hitch"+index).val();
 		var hrVo = {};
-		hrVo.mateNo = mateNo
+		hrVo.mateNo = $("#hitch"+index).val();
 		hrVo.people = $(".people").val();
 		hrVo.canRide = $("#canRide"+index).val();
+		console.log($("#point"+index).val());
+		hrVo.point = $("#point"+index).val();
+		navigator.geolocation.getCurrentPosition(function(position) {
+			lat = position.coords.latitude, // 위도
+			lng = position.coords.longitude; // 경도
+		})
+		hrVo.lat = lat;
+		hrVo.lng = lng;
 		$.ajax({
 			url : "${pageContext.request.contextPath}/rideReq",
 			type : "post",
@@ -260,13 +346,33 @@
 			data : JSON.stringify(hrVo),
 			dataType : "json",
 			success : function(result) {
+				console.log(result);
 				if (result != -1) {
 					$("#canRide"+index).val(result);
-					$("#people"+mateNo).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
+					$("#people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
 					$("#rideReq"+index).text("신청 완료");
+					$(".btn"+index).append('<p onclick="cancel('+index+')" class="cancel" id="cancel'+index+'">취소</p>');
 				} else {
 					alert("탑승 인원 초과입니다.");
 				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
+	function cancel(index) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/cancel",
+			type : "post",
+			contentType : "application/json",
+			dataType : "json",
+			data : JSON.stringify($("#hitch"+index).val()),
+			success : function(result) {
+				$("#canRide"+index).val(result);
+				$("#people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
+				$("#rideReq"+index).text("탑승 신청");
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -279,6 +385,7 @@
 			Strlatlng = $("#latlng"+mateNo).val()
 			latlngList = Strlatlng.split(",");
 		var	latlng = new kakao.maps.LatLng(latlngList[0], latlngList[1]);
+		console.log(latlng);
 		map.setCenter(latlng);
 	}
 	

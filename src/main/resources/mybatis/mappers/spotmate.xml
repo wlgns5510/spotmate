@@ -4,1021 +4,1125 @@
 <mapper namespace="spotmate">
 
 
-	<select id="selectdriverinfo" parameterType="int" resultType="String">
+	<select id="selectdriverinfo" parameterType="int"
+		resultType="String">
 		select introduce
 		from car
 		where no = #{userNo}
 	</select>
-	
+
 	<select id="updatepeople" parameterType="int" resultType="int">
-		select people
-		from reservation
-		where mateNo = #{mateNo}
+		select
+		people
+		from spotmate
+		where no = #{mateNo}
 	</select>
-	
+
 	<select id="nowaddr" parameterType="int" resultType="String">
-		select latlng
+		select
+		latlng
 		from place
 		where mateNo = #{mateNo}
 		and wayno = 0
 	</select>
-	
+
 	<select id="selectnear" parameterType="int" resultType="hVo">
-		select latlng,
-			s.no mateNo,
-			r.people
+		select
+		p.latlng,
+		s.no mateNo,
+		s.people
 		from place p, reservation r, spotmate s
 		where wayno = 0
-		and p.mateno = r.mateno
-        and s.no = p.mateno
-        and s.no = r.mateno
+		and p.mateno =
+		r.mateno
+		and s.no = p.mateno
+		and s.no = r.mateno
 		and status = 'open'
-        and type = 'hitchhike'
-        and r.people > 0
-        order by s.no desc
+		and type = 'hitchhike'
+		and s.people > 0
+		order by s.no desc
 	</select>
-	
-	<select id="selecthitchdriverinfo" parameterType="int" resultType="hVo">
-		select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
-		    r.point point,
-		    comments,
-		    round(star, 1) star,
-		    name,
-		    detailOpt
-		from spotmate s, place p, reservation r, 
+
+	<select id="selecthitchdriverinfo" parameterType="int"
+		resultType="hVo">
+		select LISTAGG(place, ',') within group (order by wayno
+		asc) as fullPlace,
+		r.point point,
+		comments,
+		round(star, 1) star,
+		name,
+		detailOpt
+		from spotmate s, place p, reservation r,
 		(select dn.driverno,
-			avg(star) star
-		from reservation r, (select 
-		                        resvno,
-		                        avg(star) star
-	                        from userreview
-	                        group by resvno
-	                        order by resvno asc) re, ( select driverNo
-														from reservation
-														where mateNo = #{mateNo} ) dn
+		avg(star) star
+		from reservation r, (select
+		resvno,
+		avg(star) star
+		from userreview
+		group by resvno
+		order by resvno asc) re, ( select driverNo
+		from reservation
+		where mateNo = #{mateNo} ) dn
 		where r.no = re.resvno
-		and dn.driverno = r.driverno
-		group by r.driverno, dn.driverno) dn, ( select LISTAGG(name, ',') within group (order by name asc) as detailopt
-					                            from spotdetail sd, detailopt d
-					                            where mateNo = #{mateNo}
-					                            and sd.detailno = d.no ) , ( select name
-																			from users u, reservation r
-																			where u.no = r.driverNo
-																			and r.mateNo = #{mateNo} )
+		and dn.driverno =
+		r.driverno
+		group by r.driverno, dn.driverno) dn, ( select LISTAGG(name,
+		',') within group (order by name asc) as detailopt
+		from spotdetail sd, detailopt d
+		where mateNo = #{mateNo}
+		and sd.detailno = d.no ) , ( select name
+		from users u, reservation r
+		where u.no = r.driverNo
+		and r.mateNo = #{mateNo} )
 		where s.no = #{mateNo}
 		and s.no = p.mateNo
-		and r.mateNo = s.no
-		group by r.point, comments, detailopt, dn.driverNo, star, name
+		and
+		r.mateNo = s.no
+		group by r.point, comments, detailopt, dn.driverNo,
+		star, name
 	</select>
-	
-	<select id="selecthitchdriverinfonoreview" parameterType="int" resultType="hVo">
-		select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
-		    r.point point,
-		    comments,
-		    name,
-		    detailOpt
-		from spotmate s, place p, reservation r, 
+
+	<select id="selecthitchdriverinfonoreview" parameterType="int"
+		resultType="hVo">
+		select LISTAGG(place, ',') within group (order by wayno
+		asc) as fullPlace,
+		r.point point,
+		comments,
+		name,
+		detailOpt
+		from spotmate s, place p, reservation r,
 		(select dn.driverno
 		from reservation r, ( select driverNo
-                            from reservation
-                            where mateNo = #{mateNo} ) dn
+		from reservation
+		where mateNo = #{mateNo} ) dn
 		where dn.driverno = r.driverno
-		group by r.driverno, dn.driverno) dn, ( select LISTAGG(name, ',') within group (order by name asc) as detailopt
-					                            from spotdetail sd, detailopt d
-					                            where mateNo = #{mateNo}
-					                            and sd.detailno = d.no ) , ( select name
-																			from users u, reservation r
-																			where u.no = r.driverNo
-																			and r.mateNo = #{mateNo} )
+		group by
+		r.driverno, dn.driverno) dn, ( select LISTAGG(name, ',') within group
+		(order by name asc) as detailopt
+		from spotdetail sd, detailopt d
+		where mateNo = #{mateNo}
+		and sd.detailno = d.no ) , ( select name
+		from users u, reservation r
+		where u.no = r.driverNo
+		and r.mateNo = #{mateNo} )
 		where s.no = #{mateNo}
 		and s.no = p.mateNo
-		and r.mateNo = s.no
-		group by r.point, comments, detailopt, dn.driverNo, name
+		and
+		r.mateNo = s.no
+		group by r.point, comments, detailopt, dn.driverNo,
+		name
 	</select>
-	
-	<select id="selectsummarydriverinfo" parameterType="int" resultType="hVo">
+
+	<select id="selectsummarydriverinfo" parameterType="int"
+		resultType="hVo">
 		select place eplace1,
-	        name,
-	        r.people people
+		name,
+		s.people people
 		from spotmate s, place p, reservation r, ( select name
-		                                            from users u, reservation r
-		                                            where u.no = r.driverNo
-		                                            and r.mateNo = #{mateNo} )
+		from users u, reservation r
+		where u.no = r.driverNo
+		and r.mateNo = #{mateNo} )
 		where s.no = #{mateNo}
 		and s.no = p.mateNo
-		and r.mateNo = s.no
+		and
+		r.mateNo = s.no
 		and wayno = 0
-		and r.people > 0
+		and s.people > 0
+		group by driverNo, place, name, s.people
 	</select>
-	
-	
-	<select id="selecthitchdriverinfonowpos" parameterType="int" resultType="String">
+
+
+	<select id="selecthitchdriverinfonowpos" parameterType="int"
+		resultType="String">
 		select latlng
 		from place
 		where mateNo = #{mateNo}
 	</select>
-	
+
 	<select id="gethdriverpage" parameterType="int" resultType="hVo">
 		select s.no mateNo,
-			latlng
+		p.latlng,
+		rideUser
 		from reservation r, users u, spotmate s, place p
-		where r.driverNo = u.no
+		where r.driverNo =
+		u.no
 		and p.mateNo = s.no
 		and s.no = r.mateNo
 		and type='hitchhike'
-		and wayno=-1
+		and
+		wayno=-1
 		and status='open'
 		and u.no = #{no}
 	</select>
-	
-	<select id="selectDriverPos" parameterType="mVo" resultType="mVo">
-		select latlng addr,
+
+	<select id="selectDriverPos" parameterType="mVo"
+		resultType="mVo">
+		select p.latlng addr,
 		mateNo
 		from place
-		where mateNo = #{mateNo}
+		where mateNo =
+		#{mateNo}
 		and wayno = 0
 	</select>
-	
+
 	<select id="selecthitchlist" resultType="hVo">
 		select s.no mateNo,
-		    place eplace1,
-		    r.people people,
-		    r.point point,
-		    latlng
-		from reservation r, spotmate s, place p
-		where r.mateNo = s.no
-		and p.mateNo = s.no
+		place eplace1,
+		slatlng.lat,
+		slatlng.lng,
+		s.people people,
+		s.point point,
+        latlng
+		from spotmate s, place p, (select lat,
+                                                lng,
+                                                s.no no
+                                                from spotmate s, place p
+                                                where s.no = p.mateNo
+                                                and wayno = -1) slatlng
+		where p.mateNo = s.no
+		and slatlng.no = s.no
 		and wayno = 0
-		and r.people > 0
-		order by s.no desc
+		and s.people > 0
+		and s.type = 'hitchhike'
+        order by s.no desc
 	</select>
+
+	<insert id="makereserv" parameterType="hrVo">
+		<selectKey keyProperty="driverNo" resultType="int" order="BEFORE">
+				select
+					driverNo
+				from reservation
+				where mateNo = #{mateNo}
+				group by driverNo
+		</selectKey>
+			
+		insert into reservation 
+			
+		values(
+			seq_reservation_no.nextval,
+			#{mateNo},
+			#{userNo},
+			#{driverNo},
+			sysdate,
+			#{point},
+			'open',
+			#{people},
+			#{lat}||','||#{lng}
+		)
+			
+	</insert>
 	
-	<update id="updatereserv" parameterType="hrVo">
-		update reservation
-		set 
-			people = people - #{people},
-			regDate = sysdate
+	<update id="updatereservpeople" parameterType="hrVo">
+	
+		update spotmate 
+		set people = people - #{people}
 		
-		where mateNo = #{mateNo}
-	</update>
+		where no = #{mateNo} 
 	
+	</update>
+
+
+	
+	<insert id="cancelreserv" parameterType="map">
+	
+			<selectKey keyProperty="no" resultType="int" order="BEFORE">
+				select
+					people
+				from reservation
+				where mateNo = #{mateNo}
+				and userNo = #{userNo}
+			</selectKey>
+		
+		update spotmate
+		set
+			people = people + #{no}
+		where no = #{mateNo}
+		
+	</insert>
+	
+	
+	<delete id="deletecancelreserv" parameterType="map">
+		delete from
+		reservation
+		where mateNo = #{mateNo}
+		and userNo = #{userNo}
+	</delete>
+
+
+
+
+
+
 	<update id="recoverreserv" parameterType="hrVo">
-		update reservation
-		set 
-			people = #{canRide}
-		
-		where mateNo = #{mateNo}
+		update spotmate
+		set
+		people = #{canRide}
+
+		where no = #{mateNo}
 	</update>
-	
+
+	<select id="selectrideuser" parameterType="int"
+		resultType="hrVo">
+		select rideUser
+		from reservation r, spotmate s
+		where r.mateNo
+		= s.no
+		and mateNo = #{mateNo}
+	</select>
+
 	<update id="watchpos" parameterType="mVo">
 		update place
-		set 
-			latlng = #{lng}||','||#{lat}||','||#{addr}
+		set
+		latlng = #{lng}||','||#{lat}||','||#{addr}
 		where mateNo = #{mateNo}
-		and wayno = 0
+		and wayno
+		= 0
 	</update>
-	
+
 	<insert id="hitchinsert" parameterType="dwVo">
-			<selectKey keyProperty="no" resultType="int" order="BEFORE">
-				select seq_spotmate_no.nextval from dual 
-			</selectKey>
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_spotmate_no.nextval from dual
+		</selectKey>
 
-			insert all
-			into spotmate
-			values (
-				#{no},
-				#{carNo},
-				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
-				#{sdate1},
-				#{people},
-				#{type},
-				#{intfare},
-				#{dur},
-				#{dis},
-				#{comments}
-			)
-			into reservation
-			values (
-				seq_reservation_no.nextval,
-				#{no},
-				#{userNo},
-				#{userNo},
-				sysdate,
-				#{intfare},
-				'open',
-				#{people} 
-			)
-			<if test='nosmoke != null'>
+		insert all
+		into spotmate
+		values (
+		#{no},
+		#{carNo},
+		to_date(#{sdate1}||' '||#{stime1}, 'yyyy-mm-dd hh24:mi'),
+		#{sdate1},
+		#{people},
+		#{type},
+		#{intfare},
+		#{dur},
+		#{dis},
+		#{comments}
+		)
+		into reservation
+		values (
+		seq_reservation_no.nextval,
+		#{no},
+		#{userNo},
+		#{userNo},
+		sysdate,
+		#{intfare},
+		'open',
+		#{people},
+		''
+		)
+		<if test='nosmoke != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				1
+			seq_spotDetail_no.nextval,
+			#{no},
+			1
 			)
-			</if>
-			<if test='femaledriver != null'>
+		</if>
+		<if test='femaledriver != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				2
+			seq_spotDetail_no.nextval,
+			#{no},
+			2
 			)
-			</if>
-			<if test='pet != null'>
+		</if>
+		<if test='pet != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				3
+			seq_spotDetail_no.nextval,
+			#{no},
+			3
 			)
-			</if>
-			<if test='phonecharge != null'>
+		</if>
+		<if test='phonecharge != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				4
+			seq_spotDetail_no.nextval,
+			#{no},
+			4
 			)
-			</if>
-			<if test='trunk != null'>
+		</if>
+		<if test='trunk != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				5
+			seq_spotDetail_no.nextval,
+			#{no},
+			5
 			)
-			</if>
-			into place values (
-				seq_place_no.nextval,
-				#{no},
-				'',
-				-1,
-				'start',
-				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
-				#{splace1},
-				#{slat1},
-				#{slng1},
-				#{latlng1}
-			)
-			into place 
-			values (
-				seq_place_no.nextval,
-				#{no},
-				'',
-				0,
-				'end',
-				'',
-				#{eplace1},
-				#{elat1},
-				#{elng1},
-				''
-			)
-			select * from dual
-		</insert>
-	
-	
+		</if>
+		into place values (
+		seq_place_no.nextval,
+		#{no},
+		'',
+		-1,
+		'start',
+		#{stime1},
+		#{splace1},
+		#{slat1},
+		#{slng1},
+		#{latlng1}
+		)
+		into place
+		values (
+		seq_place_no.nextval,
+		#{no},
+		'',
+		0,
+		'end',
+		'',
+		#{eplace1},
+		#{elat1},
+		#{elng1},
+		''
+		)
+		select * from dual
+	</insert>
+
+
 	<insert id="carpoolinsert" parameterType="dwVo">
-	
-			<selectKey keyProperty="no" resultType="int" order="BEFORE">
-				select seq_spotmate_no.nextval from dual 
-			</selectKey>
 
-			insert all
-			into spotmate
-			values (
-				#{no},
-				#{carNo},
-				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
-				#{edate1},
-				#{people},
-				#{type},
-				#{intfare},
-				#{dur},
-				#{dis},
-				#{comments}
-			)
-			<if test='nosmoke != null'>
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_spotmate_no.nextval from dual
+		</selectKey>
+
+		insert all
+		into spotmate
+		values (
+		#{no},
+		#{carNo},
+		to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
+		#{edate1},
+		#{people},
+		#{type},
+		#{intfare},
+		#{dur},
+		#{dis},
+		#{comments}
+		)
+		<if test='nosmoke != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				1
+			seq_spotDetail_no.nextval,
+			#{no},
+			1
 			)
-			</if>
-			<if test='femaledriver != null'>
+		</if>
+		<if test='femaledriver != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				2
+			seq_spotDetail_no.nextval,
+			#{no},
+			2
 			)
-			</if>
-			<if test='pet != null'>
+		</if>
+		<if test='pet != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				3
+			seq_spotDetail_no.nextval,
+			#{no},
+			3
 			)
-			</if>
-			<if test='phonecharge != null'>
+		</if>
+		<if test='phonecharge != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				4
+			seq_spotDetail_no.nextval,
+			#{no},
+			4
 			)
-			</if>
-			<if test='trunk != null'>
+		</if>
+		<if test='trunk != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				5
+			seq_spotDetail_no.nextval,
+			#{no},
+			5
 			)
-			</if>
-			into place values (
-				seq_place_no.nextval,
-				#{no},
-				'',
-				-1,
-				'start',
-				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
-				#{splace1},
-				#{slat1},
-				#{slng1},
-				#{latlng1}
-			)
-			into place 
-			values (
-				seq_place_no.nextval,
-				#{no},
-				'',
-				0,
-				'end',
-				'',
-				#{eplace1},
-				#{elat1},
-				#{elng1},
-				''
-			)
-			into reservation
-			values (
-				seq_reservation_no.nextval,
-				#{no},
-				#{userNo},
-				#{carNo},
-				sysdate,
-				#{intfare},
-				'open',
-				#{people}				
-			)
-			select * from dual
-		</insert>
-		
-		
-		<insert id="mateinsert" parameterType="mwVo">
-		
-			<selectKey keyProperty="no" resultType="int" order="BEFORE">
-				select seq_spotmate_no.nextval from dual 
-			</selectKey>
-			
-			insert all
-			
-			into spotmate
-			values (
-				#{no},
-				#{carNo},
-				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
-				#{edate1},
-				#{people},
-				#{type},
-				#{intfare},
-				'',
-				'',
-				#{comments}
-			)
-			into reservation
-			values (
-				seq_reservation_no.nextval,
-				#{no},
-				#{userNo},
-				#{carNo},
-				sysdate,
-				#{intfare},
-				'open',
-				#{people}				
-			)
-			<if test='nosmoke != null'>
+		</if>
+		into place values (
+		seq_place_no.nextval,
+		#{no},
+		'',
+		-1,
+		'start',
+		#{stime1},
+		#{splace1},
+		#{slat1},
+		#{slng1},
+		#{latlng1}
+		)
+		into place
+		values (
+		seq_place_no.nextval,
+		#{no},
+		'',
+		0,
+		'end',
+		'',
+		#{eplace1},
+		#{elat1},
+		#{elng1},
+		''
+		)
+		into reservation
+		values (
+		seq_reservation_no.nextval,
+		#{no},
+		#{userNo},
+		#{carNo},
+		sysdate,
+		#{intfare},
+		'open',
+		#{people},
+		''
+		)
+		select * from dual
+	</insert>
+
+
+	<insert id="mateinsert" parameterType="mwVo">
+
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_spotmate_no.nextval from dual
+		</selectKey>
+
+		insert all
+
+		into spotmate
+		values (
+		#{no},
+		#{carNo},
+		to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
+		#{edate1},
+		#{people},
+		#{type},
+		#{intfare},
+		'',
+		'',
+		#{comments}
+		)
+		into reservation
+		values (
+		seq_reservation_no.nextval,
+		#{no},
+		#{userNo},
+		#{carNo},
+		sysdate,
+		#{intfare},
+		'open',
+		#{people},
+		''
+		)
+		<if test='nosmoke != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				1
+			seq_spotDetail_no.nextval,
+			#{no},
+			1
 			)
-			</if>
-			<if test='femaledriver != null'>
+		</if>
+		<if test='femaledriver != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				2
+			seq_spotDetail_no.nextval,
+			#{no},
+			2
 			)
-			</if>
-			<if test='pet != null'>
+		</if>
+		<if test='pet != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				3
+			seq_spotDetail_no.nextval,
+			#{no},
+			3
 			)
-			</if>
-			<if test='phonecharge != null'>
+		</if>
+		<if test='phonecharge != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				4
+			seq_spotDetail_no.nextval,
+			#{no},
+			4
 			)
-			</if>
-			<if test='trunk != null'>
+		</if>
+		<if test='trunk != null'>
 			into spotDetail
 			values (
-				seq_spotDetail_no.nextval,
-				#{no},
-				5
+			seq_spotDetail_no.nextval,
+			#{no},
+			5
 			)
-			</if>
-			into place values (
-				seq_place_no.nextval,
-				#{no},
-				#{day1},
-				-1,
-				'start',
-				to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
-				#{splace1},
-				#{slat1},
-				#{slng1},
-				#{latlng1}
-			)
-			<if test='wplace11 != null'>
-			into place 
+		</if>
+		into place values (
+		seq_place_no.nextval,
+		#{no},
+		#{day1},
+		-1,
+		'start',
+		#{stime1},
+		#{splace1},
+		#{slat1},
+		#{slng1},
+		#{latlng1}
+		)
+		<if test='wplace11 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day1},
-				1,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime11}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace11},
-				#{wlat11},
-				#{wlng11},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day1},
+			1,
+			'waypoint',
+			#{wtime11},
+			#{wplace11},
+			#{wlat11},
+			#{wlng11},
+			''
 			)
-			
-			</if>
-			
-			<if test='wplace12 != null'>
-			into place 
+
+		</if>
+
+		<if test='wplace12 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day1},
-				2,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime12}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace12},
-				#{wlat12},
-				#{wlng12},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day1},
+			2,
+			'waypoint',
+			#{wtime12},
+			#{wplace12},
+			#{wlat12},
+			#{wlng12},
+			''
 			)
-			</if>
-			
-			<if test='wplace13 != null'>
-			into place 
+		</if>
+
+		<if test='wplace13 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day1},
-				3,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime13}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace13},
-				#{wlat13},
-				#{wlng13},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day1},
+			3,
+			'waypoint',
+			#{wtime13},
+			#{wplace13},
+			#{wlat13},
+			#{wlng13},
+			''
 			)
-			</if>
-			
-			<if test='wplace14 != null'>
-			into place 
+		</if>
+
+		<if test='wplace14 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day1},
-				4,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime14}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace14},
-				#{wlat14},
-				#{wlng14},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day1},
+			4,
+			'waypoint',
+			#{wtime14},
+			#{wplace14},
+			#{wlat14},
+			#{wlng14},
+			''
 			)
-			</if>
-			
-			<if test='wplace15 != null'>
-			into place 
+		</if>
+
+		<if test='wplace15 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day1},
-				5,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime15}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace15},
-				#{wlat15},
-				#{wlng15},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day1},
+			5,
+			'waypoint',
+			#{wtime15},
+			#{wplace15},
+			#{wlat15},
+			#{wlng15},
+			''
 			)
-			</if>
-			
-			into place 
+		</if>
+
+		into place
+		values (
+		seq_place_no.nextval,
+		#{no},
+		#{day1},
+		0,
+		'end',
+		'',
+		#{eplace1},
+		#{elat1},
+		#{elng1},
+		''
+		)
+
+		<if test='splace2 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day1},
-				0,
-				'end',
-				'',
-				#{eplace1},
-				#{elat1},
-				#{elng1},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day2},
+			-1,
+			'start',
+			#{stime2},
+			#{splace2},
+			#{slat2},
+			#{slng2},
+			#{latlng2}
 			)
-			
-			<if test='splace2 != null'>
-			into place 
+		</if>
+
+		<if test='wplace21 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day2},
-				-1,
-				'start',
-				to_date(#{sdate1}||#{stime2}, 'yyyy-mm-dd hh24:mi'),
-				#{splace2},
-				#{slat2},
-				#{slng2},
-				#{latlng2}
+			seq_place_no.nextval,
+			#{no},
+			#{day2},
+			1,
+			'waypoint',
+			#{wtime21},
+			#{wplace21},
+			#{wlat21},
+			#{wlng21},
+			''
 			)
-			</if>
-			
-			<if test='wplace21 != null'>
-			into place 
+		</if>
+
+		<if test='wplace22 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day2},
-				1,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime21}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace21},
-				#{wlat21},
-				#{wlng21},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day2},
+			2,
+			'waypoint',
+			#{wtime22},
+			#{wplace22},
+			#{wlat22},
+			#{wlng22},
+			''
 			)
-			</if>
-			
-			<if test='wplace22 != null'>
-			into place 
+		</if>
+
+		<if test='wplace23 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day2},
-				2,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime22}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace22},
-				#{wlat22},
-				#{wlng22},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day2},
+			3,
+			'waypoint',
+			#{wtime23},
+			#{wplace23},
+			#{wlat23},
+			#{wlng23},
+			''
 			)
-			</if>
-			
-			<if test='wplace23 != null'>
-			into place 
+		</if>
+
+		<if test='wplace24 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day2},
-				3,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime23}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace23},
-				#{wlat23},
-				#{wlng23},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day2},
+			4,
+			'waypoint',
+			#{wtime24},
+			#{wplace24},
+			#{wlat24},
+			#{wlng24},
+			''
 			)
-			</if>
-			
-			<if test='wplace24 != null'>
-			into place 
+		</if>
+
+
+		<if test='wplace25 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day2},
-				4,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime24}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace24},
-				#{wlat24},
-				#{wlng24},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day2},
+			5,
+			'waypoint',
+			#{wtime25},
+			#{wplace25},
+			#{wlat25},
+			#{wlng25},
+			''
 			)
-			</if>
-			
-			
-			<if test='wplace25 != null'>
-			into place 
+		</if>
+
+		<if test='eplace2 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day2},
-				5,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime25}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace25},
-				#{wlat25},
-				#{wlng25},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day2},
+			0,
+			'end',
+			'',
+			#{eplace2},
+			#{elat2},
+			#{elng2},
+			''
 			)
-			</if>
-			
-			<if test='eplace2 != null'>
-			into place 
+		</if>
+
+
+		<if test='splace3 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day2},
-				0,
-				'end',
-				'',
-				#{eplace2},
-				#{elat2},
-				#{elng2},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day3},
+			-1,
+			'start',
+			#{stime3},
+			#{splace3},
+			#{slat3},
+			#{slng3},
+			#{latlng3}
 			)
-			</if>
-			
-			
-			<if test='splace3 != null'>
-			into place 
+		</if>
+
+		<if test='wplace31 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day3},
-				-1,
-				'start',
-				to_date(#{sdate1}||#{stime3}, 'yyyy-mm-dd hh24:mi'),
-				#{splace3},
-				#{slat3},
-				#{slng3},
-				#{latlng3}
+			seq_place_no.nextval,
+			#{no},
+			#{day3},
+			1,
+			'waypoint',
+			#{wtime31},
+			#{wplace31},
+			#{wlat31},
+			#{wlng31},
+			''
 			)
-			</if>
-			
-			<if test='wplace31 != null'>
-			into place 
+		</if>
+
+		<if test='wplace32 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day3},
-				1,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime31}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace31},
-				#{wlat31},
-				#{wlng31},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day3},
+			2,
+			'waypoint',
+			#{wtime32},
+			#{wplace32},
+			#{wlat32},
+			#{wlng32},
+			''
 			)
-			</if>
-			
-			<if test='wplace32 != null'>
-			into place 
+		</if>
+
+		<if test='wplace33 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day3},
-				2,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime32}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace32},
-				#{wlat32},
-				#{wlng32},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day3},
+			3,
+			'waypoint',
+			#{wtime33},
+			#{wplace33},
+			#{wlat33},
+			#{wlng33},
+			''
 			)
-			</if>
-			
-			<if test='wplace33 != null'>
-			into place 
+		</if>
+
+		<if test='wplace34 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day3},
-				3,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime33}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace33},
-				#{wlat33},
-				#{wlng33},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day3},
+			4,
+			'waypoint',
+			#{wtime34},
+			#{wplace34},
+			#{wlat34},
+			#{wlng34},
+			''
 			)
-			</if>
-			
-			<if test='wplace34 != null'>
-			into place 
+		</if>
+
+		<if test='wplace35 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day3},
-				4,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime34}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace34},
-				#{wlat34},
-				#{wlng34},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day3},
+			5,
+			'waypoint',
+			#{wtime35},
+			#{wplace35},
+			#{wlat35},
+			#{wlng35},
+			''
 			)
-			</if>
-			
-			<if test='wplace35 != null'>
-			into place 
+		</if>
+
+		<if test='eplace3 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day3},
-				5,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime35}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace35},
-				#{wlat35},
-				#{wlng35},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day3},
+			0,
+			'end',
+			'',
+			#{eplace3},
+			#{elat3},
+			#{elng3},
+			''
 			)
-			</if>
-			
-			<if test='eplace3 != null'>
-			into place 
+		</if>
+
+		<if test='splace4 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day3},
-				0,
-				'end',
-				'',
-				#{eplace3},
-				#{elat3},
-				#{elng3},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day4},
+			-1,
+			'start',
+			#{stime4},
+			#{splace4},
+			#{slat4},
+			#{slng4},
+			#{latlng4}
 			)
-			</if>
-			
-			<if test='splace4 != null'>
-			into place 
+		</if>
+
+		<if test='wplace41 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day4},
-				-1,
-				'start',
-				to_date(#{sdate1}||#{stime4}, 'yyyy-mm-dd hh24:mi'),
-				#{splace4},
-				#{slat4},
-				#{slng4},
-				#{latlng4}
+			seq_place_no.nextval,
+			#{no},
+			#{day4},
+			1,
+			'waypoint',
+			#{wtime41},
+			#{wplace41},
+			#{wlat41},
+			#{wlng41},
+			''
 			)
-			</if>
-			
-			<if test='wplace41 != null'>
-			into place 
+		</if>
+
+		<if test='wplace42 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day4},
-				1,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime41}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace41},
-				#{wlat41},
-				#{wlng41},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day4},
+			2,
+			'waypoint',
+			#{wtime42},
+			#{wplace42},
+			#{wlat42},
+			#{wlng42},
+			''
 			)
-			</if>
-			
-			<if test='wplace42 != null'>
-			into place 
+		</if>
+
+		<if test='wplace43 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day4},
-				2,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime42}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace42},
-				#{wlat42},
-				#{wlng42},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day4},
+			3,
+			'waypoint',
+			#{wtime43},
+			#{wplace43},
+			#{wlat43},
+			#{wlng43},
+			''
 			)
-			</if>
-			
-			<if test='wplace43 != null'>
-			into place 
+		</if>
+
+
+		<if test='wplace44 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day4},
-				3,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime43}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace43},
-				#{wlat43},
-				#{wlng43},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day4},
+			4,
+			'waypoint',
+			#{wtime44},
+			#{wplace44},
+			#{wlat44},
+			#{wlng44},
+			''
 			)
-			</if>
-			
-			
-			<if test='wplace44 != null'>
-			into place 
+		</if>
+
+		<if test='wplace45 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day4},
-				4,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime44}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace44},
-				#{wlat44},
-				#{wlng44},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day4},
+			5,
+			'waypoint',
+			#{wtime45},
+			#{wplace45},
+			#{wlat45},
+			#{wlng45},
+			''
 			)
-			</if>
-			
-			<if test='wplace45 != null'>
-			into place 
+		</if>
+
+		<if test='eplace4 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day4},
-				5,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime45}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace45},
-				#{wlat45},
-				#{wlng45},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day4},
+			0,
+			'end',
+			'',
+			#{eplace4},
+			#{elat4},
+			#{elng4},
+			''
 			)
-			</if>
-			
-			<if test='eplace4 != null'>
-			 into place 
+		</if>
+
+
+		<if test='splace5 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day4},
-				0,
-				'end',
-				'',
-				#{eplace4},
-				#{elat4},
-				#{elng4},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day5},
+			-1,
+			'start',
+			#{stime5},
+			#{splace5},
+			#{slat5},
+			#{slng5},
+			#{latlng5}
 			)
-			</if>
-			
-			
-			<if test='splace5 != null'>
-			 into place 
+		</if>
+
+		<if test='wplace51 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day5},
-				-1,
-				'start',
-				to_date(#{sdate1}||#{stime5}, 'yyyy-mm-dd hh24:mi'),
-				#{splace5},
-				#{slat5},
-				#{slng5},
-				#{latlng5}
+			seq_place_no.nextval,
+			#{no},
+			#{day5},
+			1,
+			'waypoint',
+			#{wtime51},
+			#{wplace51},
+			#{wlat51},
+			#{wlng51},
+			''
 			)
-			</if>
-			
-			<if test='wplace51 != null'>
-			 into place 
+		</if>
+
+
+		<if test='wplace52 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day5},
-				1,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime51}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace51},
-				#{wlat51},
-				#{wlng51},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day5},
+			2,
+			'waypoint',
+			#{wtime52},
+			#{wplace52},
+			#{wlat52},
+			#{wlng52},
+			''
 			)
-			</if>
-			
-			
-			<if test='wplace52 != null'>
-			 into place 
+		</if>
+
+		<if test='wplace53 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day5},
-				2,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime52}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace52},
-				#{wlat52},
-				#{wlng52},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day5},
+			3,
+			'waypoint',
+			#{wtime53},
+			#{wplace53},
+			#{wlat53},
+			#{wlng53},
+			''
 			)
-			</if>
-			
-			<if test='wplace53 != null'>
-			 into place 
+		</if>
+
+		<if test='wplace54 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day5},
-				3,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime53}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace53},
-				#{wlat53},
-				#{wlng53},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day5},
+			4,
+			'waypoint',
+			#{wtime54},
+			#{wplace54},
+			#{wlat54},
+			#{wlng54},
+			''
 			)
-			</if>
-			
-			<if test='wplace54 != null'>
-			 into place 
+		</if>
+
+		<if test='wplace55 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day5},
-				4,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime54}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace54},
-				#{wlat54},
-				#{wlng54},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day5},
+			5,
+			'waypoint',
+			#{wtime55},
+			#{wplace55},
+			#{wlat55},
+			#{wlng55},
+			''
 			)
-			</if>
-			
-			<if test='wplace55 != null'>
-			 into place 
+		</if>
+
+		<if test='eplace5 != null'>
+			into place
 			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day5},
-				5,
-				'waypoint',
-				to_date(#{sdate1}||#{wtime55}, 'yyyy-mm-dd hh24:mi'),
-				#{wplace55},
-				#{wlat55},
-				#{wlng55},
-				''
+			seq_place_no.nextval,
+			#{no},
+			#{day5},
+			0,
+			'end',
+			'',
+			#{eplace5},
+			#{elat5},
+			#{elng5},
+			''
 			)
-			</if>
-			
-			<if test='eplace5 != null'>
-			 into place 
-			values (
-				seq_place_no.nextval,
-				#{no},
-				#{day5},
-				0,
-				'end',
-				'',
-				#{eplace5},
-				#{elat5},
-				#{elng5},
-				''
-			)
-			</if>
-			select *
-			from dual
-			
-			
-		
-			
-		
-		
-		</insert>
-		
-		
-	
+		</if>
+		select *
+		from dual
+
+
+
+
+
+
+	</insert>
+
+
+
 
 </mapper>

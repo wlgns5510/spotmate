@@ -365,9 +365,10 @@
 	margin: 0px 0px 100px 0px;
 }
 
-.mateDeep_today .mateDeep_float {
+.mateDeep_today .mateDeep_spotBox {
 	float: left;
 	margin: 0px 0px 50px 0px;
+	cursor: pointer;
 }
 
 .mateDeep_today .mateDeep_lineImg {
@@ -387,7 +388,7 @@
 }
 
 .mateDeep_spot {
-	width: 120px;
+	width: 170px;
 	color: rgba(91, 91, 91, 1);
 	font-family: Noto Sans;
 	font-weight: 600;

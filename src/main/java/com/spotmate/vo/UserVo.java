@@ -62,7 +62,7 @@ public class UserVo {
 	      this.day = day;
 	  }
 	
-	public UserVo(int no, String name, int carNo) {
+		public UserVo(int no, String name, int carNo) {
 		this.no = no;
 		this.name = name;
 		this.carNo = carNo;

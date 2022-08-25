@@ -25,7 +25,8 @@ public class HitchDao {
 	}
 	
 	public int updateReserv(HitchReservVo hrVo) {
-		ss.update("spotmate.updatereserv", hrVo);
+		ss.update("spotmate.makereserv", hrVo);
+		ss.update("spotmate.updatereservpeople", hrVo);
 		int people = ss.selectOne("spotmate.updatepeople", hrVo.getMateNo());
 		if(people < 0) {
 			ss.update("spotmate.recoverreserv", hrVo);
@@ -34,13 +35,22 @@ public class HitchDao {
 		return people;
 	}
 	
-	public void watchPos(MapVo mVo) {
+	public int cancelReserv(int userNo, int mateNo) {
+		Map<String, Object> nMap = new HashMap<String, Object>();
+		nMap.put("userNo", userNo);
+		nMap.put("mateNo", mateNo);
+		ss.update("spotmate.cancelreserv", nMap);
+		ss.delete("spotmate.deletecancelreserv", nMap);
+		int people = ss.selectOne("spotmate.updatepeople", mateNo);
+		return people;
+	}
+	
+	public HitchReservVo watchPos(MapVo mVo) {
 		try {
 			ss.update("spotmate.watchpos", mVo);
 		} catch (UncategorizedSQLException e) {
 		}
-		
-//		String addr = ss.selectOne("spotmate.nowaddr", mVo.getMateNo());
+		return ss.selectOne("spotmate.selectrideuser", mVo.getMateNo());
 	}
 	
 	public Map<String, Object> selectDriverInfo(int mateNo) {
