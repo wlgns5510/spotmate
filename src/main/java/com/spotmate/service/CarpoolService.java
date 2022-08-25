@@ -28,7 +28,7 @@ public class CarpoolService {
 		// 리스트가져오기
 		/////////////////////////////////////////////
 		// 페이지당 글갯수
-		int listCnt = 5;
+		int listCnt = 10;
 
 		// 현재페이지
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
@@ -54,7 +54,7 @@ public class CarpoolService {
 		System.out.println(totalCarpoolCnt);
 
 		// 페이지당 버튼 갯수
-		int pageBtnCount = 5;
+		int pageBtnCount = 10;
 
 		// 마지막 버튼 번호
 		int endPageBtnNo = (int) Math.ceil(crtPage / (double) pageBtnCount) * pageBtnCount;
