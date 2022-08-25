@@ -43,9 +43,9 @@
 /*topNav*/
 .myPage_topNav {
 	margin: 0px auto;
-	padding-top: 20px;
+	padding-top: 40px;
 	width: 100%;
-	height: 210px;
+	height: 190px;
 	background: rgba(247, 247, 247, 1);
 	text-align: center;
 }
@@ -537,10 +537,16 @@
 	margin: 50px 0px 0px 175px;
 	/*    margin-top: 50px; */
 	width: 672px;
-	height: 40px;
+	height: 45px;
 	font-family: Noto Sans;
 	font-weight: bold;
 	font-size: 12px;
+}
+
+.paging> ul {
+	display:table;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .paging ul>li {
@@ -823,6 +829,7 @@
 }
 
 .myQnaryeo .imgbox {
+	postion:relative;
 	width: 90px;
 	height: 90px;
 	background: rgba(255, 255, 255, 1);
@@ -833,4 +840,31 @@
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	overflow: hidden;
+}
+.imgbox .drag-file.highlight { 
+border: 3px dashed red;
+}
+.imgbox .drag-file .image {
+  width: 40px;
+}
+.imgbox .drag-file .message {
+  margin-bottom: 0;
+}
+.imgbox .drag-file .preview {
+  display: none;
+  position: absolute;
+  left: 0;
+  height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.myQnaryeo>.imgbox>img {
+	position:absolute;
+	top: 0;
+	left: 0;
+	width:100%;
+	height: 100%;
+	object-fit: cover;
 }
