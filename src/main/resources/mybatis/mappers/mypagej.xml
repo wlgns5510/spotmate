@@ -4,7 +4,7 @@
 <mapper namespace="mypagej">
 
 	<!-- 쿠폰리스트가져오기 -->
-	<select id="selectCouponBList" parameterType="map" resultType="couponVo">
+	<select id="selectCouponBList" parameterType="couponVo" resultType="couponVo">
 		<![CDATA[
 			select  ort.rn,
 			        ort.no,
@@ -32,28 +32,32 @@
 			                    and br.no = co.brandno
 			                    and co.no = cu.couponNo
 			                    and u.no = #{userNo}
-			                    order by cu.no desc)ot
-			              )ort
-			where rn>=#{startRnum}
-			and rn<=#{endRnum}
+
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= buyDate-1
+			and #{endDate} >= cu.buyDate-1
 		</if>
 
 		<if test="startDate != '' and startDate != null">
-			and buyDate >= #{startDate}
+			and cu.buyDate >= #{startDate}
 		</if>
 
 		<if test="option2 != '' and option2 != null">
-			and ort.status = #{option2}
+			and status = #{option2}
 		</if>
 
 		<if test="option1 != '' and option1 != null">
-			and ort.name = #{option1}
+			and ca.name = #{option1}
 		</if>
-
+	
+		<![CDATA[
+				 order by cu.no desc
+				 )ot
+			    )ort
+			where rn>=#{startRnum}
+			and rn<=#{endRnum}
+		]]>
 	</select>
 
 
@@ -67,7 +71,7 @@
 
 
 	<!-- 쿠폰리스트전체글 갯수 -->
-	<select id="totalCouponCnt" parameterType="int" resultType="int">
+	<select id="totalCouponCnt" parameterType="couponVo" resultType="int">
 		<![CDATA[
 			select count(*) count
 			from category ca, brand br, coupon co, couponUsage cu, users u
@@ -77,6 +81,22 @@
 			and co.no = cu.couponNo
 			and u.no = #{userNo}
 		]]>
+
+		<if test="endDate != '' and endDate != null">
+			and #{endDate} >= cu.buyDate-1
+		</if>
+
+		<if test="startDate != '' and startDate != null">
+			and cu.buyDate >= #{startDate}
+		</if>
+
+		<if test="option2 != '' and option2 != null">
+			and status = #{option2}
+		</if>
+
+		<if test="option1 != '' and option1 != null">
+			and ca.name = #{option1}
+		</if>
 
 	</select>
 
