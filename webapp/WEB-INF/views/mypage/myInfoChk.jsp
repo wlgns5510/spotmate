@@ -110,8 +110,7 @@
 </body>
 <script type="text/javascript">
 
-$(".myPage_InfoChk").on("submit", function(){
-	console.log("비밀번호확인");
+$(".myPage_InfoChk").on("submit", function(){	
 	
 	var id = $("#input-uid").val();
 	var pw = $("#input-upw").val();
