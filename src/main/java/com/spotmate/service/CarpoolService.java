@@ -101,8 +101,10 @@ public class CarpoolService {
 		// 기본정보 (상세조건)
 		List<SpotDetailVo> spotDetailList = carpoolDao.read2(no);
 
+		
 		// 리뷰 배너
-		List<CarpoolVo> reviewList = carpoolDao.getreviewList();
+		List<CarpoolVo> reviewList = carpoolDao.getreviewList(no);
+		//List<CarpoolVo> reviewList = carpoolDao.getreviewList();
 
 		// Deep 차량 추천 리스트 박스
 		CarpoolVo carPoolVo = new CarpoolVo();

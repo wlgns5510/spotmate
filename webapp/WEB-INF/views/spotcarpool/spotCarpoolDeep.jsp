@@ -98,7 +98,7 @@
 			</div>
 
 			<a href="/myReservationUserMain">
-				<button type=button class="rideButton">탑승하기</button>
+				<button type="submit" class="rideButton">탑승하기</button>
 			</a>
 		</div>
 	</div>
@@ -133,12 +133,9 @@
 
 		<div class="carpool-top2">
 			<p class="authDriverInfo">
-				${cVoMap.cVo.id} 드라이버님의 차량 정보 <a href="/myQnaMain">
-					<button class="qnaButton">
-						<img class="qnaPicto" src="/assets/images/ico_talk.png">
-						문의하기
-					</button>
-				</a>
+				${cVoMap.cVo.id} 드라이버님의 차량 정보 
+					
+				
 			</p>
 
 
