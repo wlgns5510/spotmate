@@ -88,43 +88,50 @@ public class MypageJController {
 
 		return "redirect:/mypageJ/myCouponMain";
 	}
-	
-	
+
 	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myInfoChk() {
-		return "/mypage/myInfoChk";
-	}
-	
-	//개인정보수정폼
-	@RequestMapping(value = "/myInfoForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myInfoForm(Model model, HttpSession session) {
-		System.out.println("MypageJController > myInfoForm");
+	public String myInfoChk(Model model, HttpSession session) {
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
-		int userNo = authUser.getNo();
 		
+		int userNo = authUser.getNo();
+
 		UserVo userVo = mypagejService.getUser(userNo);
 		
 		model.addAttribute("userVo", userVo);
-		
-		return "/mypage/myInfoForm";
+
+		return "/mypage/myInfoChk";
 	}
-	
-	//개인정보수정
-	@RequestMapping(value = "/myInfoModify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myInfoModify(Model model, HttpSession session, @ModelAttribute UserVo userVo) {
-		System.out.println("MypageJController > myInfoModify");
-		
+
+	// 개인정보수정폼
+	@RequestMapping(value = "/myInfoForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myInfoForm(Model model, HttpSession session) {
+		System.out.println("MypageJController > myInfoForm");
+
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
-		
-		mypagejService.userModify(userVo , userNo);
-		
+
+		UserVo userVo = mypagejService.getUser(userNo);
+
+		model.addAttribute("userVo", userVo);
+
+		return "/mypage/myInfoForm";
+	}
+
+	// 개인정보수정
+	@RequestMapping(value = "/myInfoModify", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myInfoModify(Model model, HttpSession session, @ModelAttribute UserVo userVo) {
+		System.out.println("MypageJController > myInfoModify");
+
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		int userNo = authUser.getNo();
+
+		mypagejService.userModify(userVo, userNo);
+
 		return "redirect:/mypageJ/myInfoForm";
 	}
-	
 
 	// 포인트충전폼
 	@RequestMapping(value = "/myPointCharge", method = { RequestMethod.GET, RequestMethod.POST })

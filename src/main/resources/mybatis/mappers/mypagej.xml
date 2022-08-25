@@ -381,6 +381,7 @@
 		<![CDATA[
 			select  id,
 			        name,
+			        pw,
 			        email,
 			        phone,
 			        address,
