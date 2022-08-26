@@ -94,7 +94,7 @@
 						<article class="myPage_article">
 
 
-							<div class="inputBox">
+							<div class="inputBox_r">
 								<form>
 									<input type="date" value="2022-08-02"> <span> ~ </span> <input type="date" value="2022-08-02">
 
