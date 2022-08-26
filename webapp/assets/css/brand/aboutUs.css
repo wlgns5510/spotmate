@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+/*
+-------------------------------------------------
+-------------------------------------------------
+Content Style Sheet
+Version : 1.0
+Author : JYJ
+First update : 2022. 08. 12.
+Last update : 2022. 08. 00.
+-------------------------------------------------
+-------------------------------------------------
+*/
+
+/* .inner{display:block; width:1440px; margin:0 auto;} */
+
+/********** 상단 banner **********/
+.banner {
+	width : 100%;
+	height : 210px;
+	position : relative;
+    /* background-color: aquamarine; */
+}
+.brand_banner {
+	width : 100%;
+	height : 210px;
+}
+.brand_banner>p {
+	position : absolute;
+	width : 100%;
+	height : 210px;
+	background-image : url("../../images/content_banner_login.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+/* 배너 텍스트 */
+.banner_text {
+    position : absolute;
+	width : 100%;
+	height : 210px;
+    top : 0px;
+    /* background: dodgerblue; */
+    background : rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    /* padding: 105px 600px 20px 265px; */
+    color: #fff;
+    border : 1px solid red;
+}
+.banner_text > .text_lft {
+    float: left;
+    border : 1px solid red;
+    width: 500px;
+    margin: 90px 0px 0px 220px;
+}
+.banner_text > .text_rit {
+    float: right;
+    border : 1px solid yellow;
+    margin: 90px 90px 0px 0px;
+    width: 900px;
+}
+.banner_text > .text_lft > h2 {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 28px;
+    box-sizing: border-box;
+    padding: 0px 0px 10px 10px;
+}
+.banner_text > .text_rit > h3 {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0px 0px 10px 10px;
+}
+/********** //상단 banner **********/
+
+/********** sub_nav **********/
+.sub_wrap {
+    width: 100%;
+    border-bottom : 1.5px solid #D9D9D9;
+    border : 1px solid red;
+}
+.sub_nav {
+    width: 1440px;
+    margin: 0px auto;
+    display: flex;
+}
+
+.sub_nav > ul > li{
+    display:inline-block;
+    position:relative;
+    min-width: 130px; height: 50px;
+    text-align: center;
+}
+.sub_nav> ul > li > a{
+    display:inline-block; position:relative;
+    box-sizing: border-box;
+    padding:0 20px;
+    color:#1e1e1e; font-family: 'Montserrat'; font-size:14px; font-weight:500;
+    letter-spacing:-0.25px; line-height: 55px;
+}
+.sub_nav> ul > .sub_event {
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+    background :#F7F9FB;
+}
+.sub_nav> ul > .sub_event > a{
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+}
+.sub_nav > ul > li > a:hover {color:#4454A1; font-family: 'Montserrat'; font-weight:700;}
+.sub_nav> ul > li:hover { border-bottom : 2px solid #4655a4;}
+
+/********** //sub_nav **********/
+
+
+
+/********** event_cover : banner **********/
+.event_cover {
+	width : 1440px;
+    /* background-color: pink; */
+    margin: 0px auto;
+    padding: 150px 0px 300px 0px;
+    box-sizing: border-box;
+    
+}
+
+.event_banner {
+    position: relative;
+    width: 1440px;
+    height: 200px;
+    /* background-color: aquamarine; */
+    margin: 0px 0px 30px 0px;
+}
+/********** //event_cover : banner **********/
+
+/********** event_banner : 개별 이미지 **********/
+.event_cover .event_b1 {
+    position : absolute;
+	width : 100%;
+	height : 200px;
+	background-image : url("../../images/event_b1.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+
+.event_cover .event_b2 {
+    position : absolute;
+	width : 100%;
+	height : 200px;
+	background-image : url("../../images/event_b2.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+
+.event_cover .event_b3 {
+    position : absolute;
+	width : 100%;
+	height : 200px;
+	background-image : url("../../images/event_b3.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+
+.event_cover .event_b4 {
+    position : absolute;
+	width : 100%;
+	height : 200px;
+	background-image : url("../../images/event_b4.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+
+.event_cover .event_b5 {
+    position : absolute;
+	width : 100%;
+	height : 200px;
+	background-image : url("../../images/event_b5.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+
+/********** //event_banner : 개별 이미지 **********/
