@@ -116,7 +116,7 @@
 									</select>
 
 									<button type="button" class="myPage_btnB">조회하기</button>
-									<a href="./driver"><button type="button" class="myPage_btnY">등록하러가기 ></button></a>
+									<a href="./driver"><button type="button" class="myPage_btnC">등록하러가기 ></button></a>
 								</form>
 							</div>
 <!--  메모-->
