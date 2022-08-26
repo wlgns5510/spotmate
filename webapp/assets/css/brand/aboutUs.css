@@ -36,39 +36,37 @@ Last update : 2022. 08. 00.
 /* 배너 텍스트 */
 .banner_text {
     position : absolute;
-	width : 100%;
+	width : 1440px;
 	height : 210px;
     top : 0px;
-    /* background: dodgerblue; */
     background : rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
-    /* padding: 105px 600px 20px 265px; */
+    padding: 90px 500px 20px 220px;
     color: #fff;
     border : 1px solid red;
 }
-.banner_text > .text_lft {
+.banner_text > .autext_lft {
     float: left;
     border : 1px solid red;
-    width: 500px;
-    margin: 90px 0px 0px 220px;
+    
 }
-.banner_text > .text_rit {
+.banner_text > .autext_rit {
     float: right;
     border : 1px solid yellow;
-    margin: 90px 90px 0px 0px;
-    width: 900px;
+
+    
 }
-.banner_text > .text_lft > h2 {
+.banner_text > .autext_lft > h2 {
     font-family: 'Montserrat';
     font-weight: 600;
     font-size: 28px;
     box-sizing: border-box;
     padding: 0px 0px 10px 10px;
 }
-.banner_text > .text_rit > h3 {
+.banner_text > .autext_rit > h3 {
     font-family: 'Montserrat';
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     padding: 0px 0px 10px 10px;
 }
 /********** //상단 banner **********/
