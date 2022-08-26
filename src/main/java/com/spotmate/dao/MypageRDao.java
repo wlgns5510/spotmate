@@ -63,8 +63,12 @@ public class MypageRDao {
 		return count;
 	}
 	
-	public int carDetailUpdate(DriverLicenseVo dlvo, Map<String, Integer> carDetailMap) {
+	public int carDetailDelete(DriverLicenseVo dlvo) {
 		ss.delete("mypageR.carDetailDelete", dlvo);
+		return 0;
+	}
+	
+	public int carDetailUpdate(DriverLicenseVo dlvo, Map<String, Integer> carDetailMap) {
 		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
 		return count;
 	}

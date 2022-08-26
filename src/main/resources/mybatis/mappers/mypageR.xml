@@ -51,7 +51,7 @@
 			insert into carDetail
 			values(
 			    seq_carDetail_no.nextval,
-			    #{carNo},
+			    (select no from car where userno = #{userNo}),
 			    #{detailNo}
 			) 
 	
@@ -112,8 +112,7 @@
 	<update id="carDetailDelete" parameterType="dlvo">
 	<![CDATA[
 		delete from cardetail
-	 	where carno = (select no from car where userno = #{userNo}
-	 	#{detailNo})
+	 	where carno = (select no from car where userno = #{userNo})
 		]]>
 	</update>
 	

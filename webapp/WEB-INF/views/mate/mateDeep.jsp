@@ -308,7 +308,7 @@
 				
 
 				<div class="mateDeep_titleFont2">주변 장소 추천</div>
-				<div class="map_wrap">
+				<div class="map_wrap" id="mapPoint">
 				    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 				    <ul id="category">
 				        <li id="AD5" data-order="0"> 
@@ -336,17 +336,17 @@
 				</div>
 				<div class="mateDeep_recommendBox clear">
 					<img class="mateDeep_img1" src="/assets/images/ico_spot.png">
-					<span class="mateDeep_placeAround" id="mateDeep_placeAround">송정동 주변 4km</span> 
+					<span class="mateDeep_placeAround" id="mateDeep_placeAround"></span> 
 					
 				</div>
 				
-				<div class="mateDeep_recommendListBox">
+				<!-- <div class="mateDeep_recommendListBox">
 					<button class="beforeBtn" type="button"><img src="/assets/images/common/ico_arrow_lft.png"></button>
 					<div class="mateDeep_recommendList"></div>
 					<div class="mateDeep_recommendList"></div>
 					<div class="mateDeep_recommendList"></div>	
 					<button class="nextBtn" type="button"><img src="/assets/images/common/ico_arrow_rit.png"></button>
-				</div>
+				</div> -->
 				
 				<div class="carpool-top2">
 					<p class="authDriverInfo">
@@ -374,58 +374,55 @@
 				</div>
 				
 				<div class="carpool_detail">
-			<p class="driverInfo">드라이버 차량 정보</p>
+					<p class="driverInfo">드라이버 차량 정보</p>
 
-
-			<table>
-			<c:forEach items="${cVoMap.spotDetailList}" var="detailVo">
-			
-				<c:if test="${detailVo.spotDetailNo==1}">
-				<tr>
-					<td>
-						<img class="infoPicto" src="/assets/images/danger.png">
-						${detailVo.name}
-					</td>
-				</tr>
-				</c:if>
-				<c:if test="${detailVo.spotDetailNo==2}">
-				<tr>
-					<td>
-						<img class="infoPicto" src="/assets/images/boy.png">
-						${detailVo.name}
-					</td>
-				</tr>
-				</c:if>
-				<c:if test="${detailVo.spotDetailNo==3}">
-				<tr>
-					<td>
-						<img class="infoPicto" src="/assets/images/paws01.png">
-						${detailVo.name}
-					</td>
-				</tr>
-				</c:if>
-				<c:if test="${detailVo.spotDetailNo==4}">
-				<tr>
-					<td>
-						<img class="infoPicto" src="/assets/images/ico_plug.png">
-						${detailVo.name}
-					</td>
-				</tr>
-				</c:if>
-				<c:if test="${detailVo.spotDetailNo==5}">
-				<tr>
-					<td>
-						<img class="infoPicto" src="/assets/images/ico_toolbox.png">
-						${detailVo.name}
-					</td>
-				</tr>
-				</c:if>
-					
-			</c:forEach>
-			</table>
-
-
-		</div>
+					<table>
+						<c:forEach items="${mateDetailList}" var="detailVo">					
+							<c:if test="${detailVo.mateOptionNo==1}">
+							<tr>
+								<td>
+									<img class="infoPicto" src="/assets/images/danger.png">
+									${detailVo.optionName}
+								</td>
+							</tr>
+							</c:if>
+							<c:if test="${detailVo.mateOptionNo==2}">
+							<tr>
+								<td>
+									<img class="infoPicto" src="/assets/images/boy.png">
+									${detailVo.optionName}
+								</td>
+							</tr>
+							</c:if>
+							<c:if test="${detailVo.mateOptionNo==3}">
+							<tr>
+								<td>
+									<img class="infoPicto" src="/assets/images/paws01.png">
+									${detailVo.optionName}
+								</td>
+							</tr>
+							</c:if>
+							<c:if test="${detailVo.mateOptionNo==4}">
+							<tr>
+								<td>
+									<img class="infoPicto" src="/assets/images/ico_plug.png">
+									${detailVo.optionName}
+								</td>
+							</tr>
+							</c:if>
+							<c:if test="${detailVo.mateOptionNo==5}">
+							<tr>
+								<td>
+									<img class="infoPicto" src="/assets/images/ico_toolbox.png">
+									${detailVo.optionName}
+								</td>
+							</tr>
+							</c:if>								
+						</c:forEach>
+					</table>
+				</div>
+				
+				<p class="review">Reviews ★ ${cVoMap.cVo.avgStar}</p>
 
 
 
@@ -616,7 +613,13 @@ $(".mateDeep_spotBox").on("click", function() {
 	var place = $(this).data("place");
 	console.log(place);
 	//mateDeep_placeAround에 place정보를 넣어줌
-	document.getElementById("mateDeep_placeAround").innerHTML(place);
+	document.getElementById("mateDeep_placeAround").innerHTML = place;
+	
+	//지도의 화면상 위치를 변수에 담아줌
+	var location = document.querySelector("#mapPoint").offsetTop;
+	console.log(location);
+	//화면의 위치를 지도로 이동
+	window.scrollTo({top:location-200, behavior:'smooth'});
 })
 //a,b의 위치로 지도 이동
 function setCenter(a,b) {            
@@ -626,6 +629,8 @@ function setCenter(a,b) {
     // 지도 중심을 이동 시킵니다
     map.setCenter(moveLatLon);
 }
+
+
 </script>
 
 
