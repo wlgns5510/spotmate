@@ -50,7 +50,8 @@
 				       group by mateNo) pt 
 		         where sm.no = se.sMateNo
 		         and ca.no = sm.carNo
-		         and ca.userNo = us.no  
+		         and ca.userNo = us.no 
+		         and (sm.type = 'carpool' or sm.type = 'seasonTicket')
 		         and sm.no = pt.mateNo(+) 
 		     
 		]]>
