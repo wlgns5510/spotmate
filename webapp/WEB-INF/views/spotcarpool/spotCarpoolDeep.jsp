@@ -153,7 +153,7 @@
 					<a href=""> <img src="/assets/images/${cVoMap.cVo.carPicture}.png" alt="hover">
 
 						<h3>
-							<span> ${cVoMap.cVo.carName} </span>
+							<span> ${cVoMap.cVo.carName}<br>(${cVoMap.cVo.carNo}) </span>
 						</h3>
 					</a>
 				</div>
