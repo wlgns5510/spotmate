@@ -109,18 +109,18 @@
 								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input name="username" id="username" placeholder="ex)장원영" type="text"></td>
+										<td><input value="${dlvo.username}" name="username" id="username" placeholder="ex)장원영" type="text"></td>
 									</tr>
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
-											<td><input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)2004-08-31"
+											<td><input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)2004-0831"
 											type="text"></td>									
 										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
-										<td><input name="dl" id="dl" placeholder="ex)111802615510-X61D86"
+										<td><input name="dl" id="dl" placeholder="ex)11-18-026155-10-X61D86"
 											type="text"></td>
 									</tr>
 									<tr align="left">
@@ -177,7 +177,7 @@
 										<td><input type="checkbox" name="ch_type"
 											id="Dformcheckbox" value="1"><span>비흡연자</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="2" checked="checked"> <span>여성드라이버</span></td>
+											id="Dformcheckbox" value="2"> <span>여성드라이버</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"

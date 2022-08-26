@@ -97,7 +97,7 @@
 						<article class="myPage_article">
 
 
-							<div class="inputBox">
+							<div class="inputBox_r">
 								<form>
 									<input type="date" value="2022-08-02"> <span> ~ </span> <input type="date" value="2022-08-02">
 
@@ -119,7 +119,7 @@
 									</select>
 
 									<button type="button" class="myPage_btnB">조회하기</button>
-									<a href="./spotMain"><button type="button" class="myPage_btnY">신청하러가기 ></button></a>
+									<a href="./spotMain" class="a"><button type="button" class="myPage_btnY">신청하러가기 ></button></a>
 								</form>
 							</div>
 
