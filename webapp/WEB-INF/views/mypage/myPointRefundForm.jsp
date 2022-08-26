@@ -83,18 +83,18 @@
 				</header>
 
 				<!-- //section-article2 -->
-				<form action="${pageContext.request.contextPath }/mypageJ/myPointRefund" method="post">
+				<form action="${pageContext.request.contextPath }/mypageJ/myPointRefund" id="myPointRefund" method="post">
 					<article class="myPage_article2">
 						<h4>환불내역</h4>
 						<div class="myPage_pointCharge">
 							<p class="chargeMoney">환불 신청금액*</p>
-							<input type="text" name="point" placeholder="ex)30000">
+							<input name="point" value="" placeholder="ex)30000">
 							<div class="chargeEx">
 								<p>1원 = 1Point입니다.</p>
 								<p>포인트는 5,000P부터 1,000P 단위로 환불이 가능합니다.</p>
 							</div>
 							<p>환불 입금 받으실 계좌번호*</p>
-							<input type="text" name="accountNum" placeholder="우리은행:1002-234-000087">
+							<input type="text" name="accountNum" placeholder="우리은행 1002-234-000087">
 							<p>예금주명</p>
 							<input type="text" name="name" placeholder="ex)환불받는 분의 성함을 적어주세요">
 							<button type="submit" class="myPage_btnB">환불 신청하기</button>
@@ -111,7 +111,44 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+$("#myPointRefund").on("submit", function(){
+ 
+	var point = $('input[name=point]').val();
+	var accountNum = $('input[name=accountNum]').val();
+	var name = $('input[name=name]').val();
+	
+	if(point == "" || point == null) {
+		alert("환불 금액을 입력해주세요.");
+		return false;
+	}
+	
+	if(point == "" || point == null || point < 5000){
+		alert("포인트는 5,000P부터 환불이 가능합니다.");
+		return false;
+	}
+	
+	if(point%1000 != 0){
+		alert("포인트는 1,000P 단위로 환불이 가능합니다.");
+		return false;
+	}
+	
+	if(accountNum == "" || accountNum == null) {
+		alert("계좌번호를 입력해주세요.");
+		return false;
+	}
+	
+	if(name == "" || name == null) {
+		alert("예금주명을 입력해주세요.");
+		return false;
+	}
+	
+});
 
+
+
+
+</script>
 
 </html>
 

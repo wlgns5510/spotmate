@@ -104,7 +104,7 @@
 				</div>
 				
 				<div class="carpoolInput"> 
-					<input  class="input5" type="date" name="startDate" value="${param.startDate}" placeholder="이용 출발 날짜">
+					<input class="input5" type="date" name="startDate" value="${param.startDate}" placeholder="이용 출발 날짜">
 					<!--<button>
 						<img class="carpoolInput5Picto" src="/assets/images/regularcalendar.png">
 					

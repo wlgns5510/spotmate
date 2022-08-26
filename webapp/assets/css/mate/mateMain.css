@@ -317,3 +317,79 @@ input[type=checkbox] {
   font-weight: Bold;
   font-size: 30px; 
 }
+
+--예시
+/*이미지*/
+.mateMain_content2 .g2 {
+	width : 1400px;
+	padding-top : 20px;
+}
+.mateMain_content2 .g2:after {
+	content : "";
+	display : block;
+	clear : both;
+}
+.mateMain_content2 .g2grounp {
+	width : 350px;
+	height : 500px;
+	float : left;
+	position : relative;
+}
+.mateMain_content2 .g2image {
+	position : absolute;
+	display : none;
+}
+.mateMain_content2 .g2hover:hover>.g2image { 
+	display:block;
+}
+.mateMain_content2 .g2>ul>li:nth-child(2) {
+	background-color : #cf5414;
+	color : #fdebd9;
+	font : 13pt '나눔고딕';
+	width : 340px;
+	height : 30px;
+	padding : 5px;
+	box-sizing : border-box;
+	text-align : center;
+	border-radius : 3px;
+}
+.mateMain_content2 .g2>ul>li:nth-child(3) {
+	width :340px;
+	height : 30px;
+	padding : 5px;
+	font : 13pt '나눔고딕';
+	box-sizing : border-box;
+	text-align : center;
+}
+.mateMain_content2 .g2>ul>li:nth-child(4) {
+	float : left;
+	width : 30px;
+	margin-left : 40px;
+	height : 30px;
+	text-align : center;
+	box-sizing : border-box;
+}
+.mateMain_content2 .g2>ul>li:nth-child(5) {
+	float : left;
+	width :280px;
+	height : 30px;
+	padding : 5px;
+	font : 13pt '나눔고딕';
+	box-sizing : border-box;
+}
+
+/*더보기버튼*/
+.mateMain_content2 .plus {
+	text-align : center;
+}
+.mateMain_content2 button {
+	width : 150px;
+	height : 40px;
+	border-radius : 40px;
+	color : #fdebd9;
+	font : bold 13.5pt '나눔고딕';
+	background-color : #cf5414;
+	margin-top : 50px;
+	margin-bottom : 50px;
+	cursor : pointer;
+}

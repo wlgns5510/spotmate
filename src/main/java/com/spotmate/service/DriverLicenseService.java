@@ -46,7 +46,7 @@ public class DriverLicenseService {
 		}
 	}
 
-	
+	//sidenav in
 	public DriverLicenseVo getCarInfo(int userNo) {
 		
 		DriverLicenseVo dlvo = mrDao.getCarInfo(userNo);
@@ -64,16 +64,21 @@ public class DriverLicenseService {
 		count = mrDao.carUpdate(dlvo);
 		System.out.println(count + "건 차정보 수정");
 
-		List<Integer> chType = dlvo.getCh_type();  
-		for (int i = 0; i < chType.size(); i++) {
-
-			Map<String, Integer> carDetailMap = new HashMap<String, Integer>();
-			carDetailMap.put("carNo", dlvo.getCarNo());
-			carDetailMap.put("detailNo", chType.get(i));
-			mrDao.carDetailUpdate(dlvo, carDetailMap);
+		mrDao.carDetailDelete(dlvo);
+		List<Integer> chType = dlvo.getCh_type();
+		if(chType != null) {
+			for (int i = 0; i < chType.size(); i++) {
+				Map<String, Integer> carDetailMap = new HashMap<String, Integer>();
+				carDetailMap.put("userNo", dlvo.getUserNo());
+				carDetailMap.put("detailNo", chType.get(i));
+				System.out.println(carDetailMap);
+				mrDao.carDetailUpdate(dlvo, carDetailMap);
+			}
 		}
 		
 	}
+
+	
 
 	/*
 	 * //수정 public int modify(DriverLicenseVo dlvo) {

@@ -17,6 +17,8 @@ public class MateController {
 	
 	@Autowired
 	private MateService mateService;
+	
+	
 
 	//메이트인포 이동
 	@RequestMapping(value = "/mateInfo", method = { RequestMethod.GET, RequestMethod.POST })
@@ -33,33 +35,33 @@ public class MateController {
 		
 		// Service를 통해서 getMateList를 가져온다
 		List<MateVo> mateList = mateService.getMateList();
-		List<MateVo> mateOptionList = mateService.getMateOptionList(); //해당 메이트가 반려동물가능여부를 체크했는지 확인
 		List<MateVo> matePlaceList = mateService.getMatePlaceList();
 
 		
 		//ds 데이터보내기 --> request attribute에 넣는다
 		model.addAttribute("mateList", mateList);
-		model.addAttribute("mateOptionList", mateOptionList);
 		model.addAttribute("matePlaceList", matePlaceList);
 		
 		return "/mate/mateMain";
 	}
 
-	//mateNo에 해당하는 메이트딥 이동
-	@RequestMapping(value = "/mateDeep/{mateNo}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateDeep(@PathVariable("mateNo") int mateNo, Model model) {
+	//mateNo에 해당하는 메이트딥 이동 + 드라이버 차량 정보 가져오기 + 경로상세 + 차량의 상세조건
+	@RequestMapping(value = "/mateDeep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String mateDeep(@PathVariable("no") int mateNo, Model model) {
 		System.out.println("MateController >> mateDeep");
 		
-		MateVo mateVo = mateService.deepMateRead(mateNo);
-		List<MateVo> matePlaceList = mateService.deepPlaceRead(mateNo);
+		MateVo mateVo = mateService.deepMateRead(mateNo);	//해당 메이트에 관한 정보
+		MateVo mateDriverVo = mateService.deepMateDriverRead(mateNo);	//해당 메이트의 운전자,차량정보
+		List<MateVo> matePlaceList = mateService.deepPlaceRead(mateNo);	//해당 메이트의 출발지, 경유지, 도착지정보
+		List<MateVo> mateDetailList = mateService.deepDetailRead(mateNo); //해당 메이트의 운전자가 설정한 상세조건
 		
-		System.out.println("matePlaceList:" + matePlaceList);
 		
 		model.addAttribute("mateVo", mateVo);
 		model.addAttribute("matePlaceList", matePlaceList);
+		model.addAttribute("mateDriverVo", mateDriverVo);
+		model.addAttribute("mateDetailList", mateDetailList);
 		
 		return "/mate/mateDeep";
 	}
-
 
 }
