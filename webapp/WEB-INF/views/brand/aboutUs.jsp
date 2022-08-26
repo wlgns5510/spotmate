@@ -50,7 +50,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>기본 구조</title>
+	<title>ABOUT US</title>
 
 </head>
 
@@ -60,7 +60,44 @@
     <!-- // header -->
     
 	<!-- content -->
-	<p>여기 사이에 각자 영역 디자인 넣기</p>
+	<section class="contents_wrapper content">
+		<h2 class="hidden">content</h2>
+		
+	    <section class="banner">
+	        <h2 class="hidden">banner</h2>
+	        <div class="brand_banner">
+	            <p></p>
+	        </div>
+	        <div class="banner_text clear">
+	            <div class="text_lft">
+	                <h2>브랜드 소개</h2>
+	                <h2>ABOUT US</h2>
+	            </div>
+	            <div class="text_rit">
+	                <h3>스팟메이트는 고객님께 받은 사랑으로</h3>
+	                <h3>매월 다양한 혜택과 새로운 이벤트를 진행하고있습니다.</h3>
+	            </div>
+	        </div>
+	    </section>
+	    <!-- // banner -->
+	</section>
+	
+	<section class="sub_wrap">
+	    <div class="sub_nav clear">
+	        <ul>
+	            <li class="sub_event"><a href="javascript:void(0);">ABOUT US</a></li>
+	            <li><a href="javascript:void(0);">FOR EARTH</a></li>
+	        </ul>
+	    </div>
+	</section>
+	<!-- // sub_wrap -->
+	
+	<section>
+		<div class="inner">
+			<div class="event_cover">
+			</div>
+		</div>
+	</section>
 	<!-- //content -->
 
 	<!-- footer -->
