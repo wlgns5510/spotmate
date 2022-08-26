@@ -379,13 +379,13 @@
 	cursor: pointer;
 }
 
-.myPage_btnY {
+.myPage_btnC {
 	width: 150px;
 	height: 40px;
 	position: absolute;
 }
 
-.myPage_btnY {
+.myPage_btnC {
 	color: rgba(255, 255, 255, 1);
 	position: absolute;
 	font-family: Noto Sans;
@@ -413,7 +413,7 @@
 	font-weight: bold;
 	width: 450px;
 	border: 1px solid rgba(217, 217, 217, 1);
-	position: absolute;
+	
 }
 
 /* Change the color of links on hover */
@@ -427,7 +427,7 @@
 .topnav a.active {
 	background-color: white;
 	color: blue;
-	position: absolute;
+	
 }
 
 /************section-article2*****************/

@@ -119,7 +119,7 @@
 									</select>
 
 									<button type="button" class="myPage_btnB">조회하기</button>
-									<a href="./spotMain" class="a"><button type="button" class="myPage_btnY">신청하러가기 ></button></a>
+									<a href="./spotMain" class="a"><button type="button" class="myPage_btnC">신청하러가기 ></button></a>
 								</form>
 							</div>
 
