@@ -39,7 +39,7 @@ public class MypageRController {
 		int userNo = authUser.getNo();
 		DriverLicenseVo carInfo = dls.getCarInfo(userNo);
 		System.out.println(carInfo);
-		if(carInfo == null) {
+		if(carInfo.getC_Model() == null) {
 			return "/mypage/myDriverForm";
 		}
 		System.out.println(authUser);
@@ -77,7 +77,7 @@ public class MypageRController {
 	//등록
 	@RequestMapping(value = "/myDriverWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverInsert(@ModelAttribute DriverLicenseVo dlvo, HttpSession ss) { //ModelAttribute ..? Http Session/ Session..? 
-		System.out.println("=====================, =======================================");
+		/*System.out.println("=====================, =======================================");
 		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]
 		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
 		System.out.println("============================================================");
@@ -94,7 +94,21 @@ public class MypageRController {
 		//user업데이트+카정보등록+옵션등록
 		dls.myDriverRegister(dlvo);
 		System.out.println("==========");
-		return "/mypage/myDriverMain2";
+		return "/mypage/myDriverMain2";*/
+		System.out.println("MypageRController>modify()");
+
+		System.out.println(dlvo.toString());
+		
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		
+		int userNo = authUser.getNo();
+		
+		
+		dlvo.setUserNo(userNo);
+	    
+		dls.carInfoModify(dlvo);
+		
+		return "redirect:/myDriverMain2";
 	}
 	
 	
@@ -136,6 +150,29 @@ public class MypageRController {
 		dls.carInfoModify(dlvo);
 		
 		return "redirect:/myDriverMain2";
+	}
+	
+	//등록
+	@RequestMapping(value = "/myQnaInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myQnaInsert(@ModelAttribute DriverLicenseVo dlvo, HttpSession ss) { //ModelAttribute ..? Http Session/ Session..? 
+		System.out.println("=====================, =======================================");
+		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]
+		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
+		System.out.println("============================================================");
+		
+		
+		//세션에서 로그인 사용자 정보 가져오기
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");   
+		int userNo = authUser.getNo();
+		System.out.println(userNo);
+		//로그인한 사용자의 userNo을 vo에 넣어준다
+		dlvo.setUserNo(userNo);
+
+	
+		//user업데이트+카정보등록+옵션등록
+		dls.myDriverRegister(dlvo);
+		System.out.println("==========");
+		return "/mypage/myQnaMain";
 	}
 
 	
