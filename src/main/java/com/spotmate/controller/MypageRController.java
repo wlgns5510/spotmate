@@ -77,6 +77,7 @@ public class MypageRController {
 	//등록
 	@RequestMapping(value = "/myDriverWriteInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverInsert(@ModelAttribute DriverLicenseVo dlvo, HttpSession ss) { //ModelAttribute ..? Http Session/ Session..? 
+		
 		/*System.out.println("=====================, =======================================");
 		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]
 		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
@@ -87,10 +88,11 @@ public class MypageRController {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");   
 		int userNo = authUser.getNo();
 		System.out.println(userNo);
+		
 		//로그인한 사용자의 userNo을 vo에 넣어준다
 		dlvo.setUserNo(userNo);
 
-	
+	    
 		//user업데이트+카정보등록+옵션등록
 		dls.myDriverRegister(dlvo);
 		System.out.println("==========");

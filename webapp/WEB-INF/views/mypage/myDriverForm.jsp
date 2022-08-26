@@ -109,20 +109,18 @@
 								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input name="username" id="username"
-											placeholder="홍길동" type="text"></td>
-
+										<td><input name="username" id="username" placeholder="ex)장원영" type="text"></td>
 									</tr>
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
-										<td><input name="userBD" id="userBD"
-											placeholder="19900805" type="text"></td>
+											<td><input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)2004-08-31"
+											type="text"></td>									
 										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
-										<td><input name="dl" id="dl" placeholder="면허등록번호입력"
+										<td><input name="dl" id="dl" placeholder="ex)111802615510-X61D86"
 											type="text"></td>
 									</tr>
 									<tr align="left">
