@@ -69,11 +69,11 @@
 	            <p></p>
 	        </div>
 	        <div class="banner_text clear">
-	            <div class="text_lft">
+	            <div class="autext_lft">
 	                <h2>브랜드 소개</h2>
 	                <h2>ABOUT US</h2>
 	            </div>
-	            <div class="text_rit">
+	            <div class="autext_rit">
 	                <h3>스팟메이트는 고객님께 받은 사랑으로</h3>
 	                <h3>매월 다양한 혜택과 새로운 이벤트를 진행하고있습니다.</h3>
 	            </div>

@@ -180,12 +180,12 @@ font-size : 32px;
 /* #scrollbanner { position: absolute; z-index: 999; right: 30px; top: 500px;} */
 #scrollbanner { display: block; position:fixed; bottom: 130px; right: 50px; z-index: 999; }
 
-#scrollbanner > ul >li { background-color: #fff; padding: 8px 10px 10px 8px; text-align: center; }
+#scrollbanner > ul >li {width: 100px; height: 35px; background-color: #fff;  text-align: center; box-sizing: border-box; padding : 8px 5px 8px 5px;}
 #scrollbanner > ul >li:first-child { border: 1px solid #e5e5e5; }
 #scrollbanner > ul >li:last-child { border: 1px solid #e5e5e5; border-top: 0; }
-#scrollbanner > ul > li > a{ font-size: 14px; font-weight: 400; color: #1e1e1e; }
+#scrollbanner > ul > li > a{ font-size: 12px; font-weight: 400; color: #1e1e1e; }
 #scrollbanner > ul > li:hover{ background: #f8f9fa; }
-#scrollbanner > ul > li > a:hover{ font-size: 14px; font-weight: 600; color: #4454A1; }
+#scrollbanner > ul > li > a:hover{ font-size: 12px; font-weight: 600; color: #4454A1; }
 
 /********** //police scroll banner **********/
 
@@ -196,7 +196,6 @@ font-size : 32px;
 .review_box{display:block; position:relative;}
 .review_box .review_top{display:block; position:relative;}
 .review_box .review_top .writer_img{display:inline-block; position:relative; vertical-align:middle; width:70px; height:70px; border-radius:70px; background:#999;}
-.review_box .review_top .writer_img img{}
 .review_box .review_top .writer_info{display:inline-block; position:relative; vertical-align:middle; padding-left:10px; box-sizing:border-box;}
 .review_box .review_top .writer_info .name{display:block; position:relative; text-align:left; color:#1e1e1e; font-size:16px; font-weight:600; letter-spacing:-0.25px; line-height:20px;}
 .review_box .review_top .writer_info .date{display:block; position:relative; margin-top:5px; text-align:left; color:#1e1e1e; font-size:14px; font-weight:400; letter-spacing:-0.25px; line-height:20px;}
