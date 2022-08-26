@@ -314,7 +314,7 @@
 }
 
 /*inputBox*/
-.inputBox {
+.inputBox_r {
 	padding: 14px 2px 10px 7px;
 	text-align: left;
 }
@@ -328,7 +328,7 @@
 	font-weight: bold;
 }
 
-.inputBox input {
+.inputBox_r input {
 	width: 178px;
 	height: 40px;
 	background: rgba(255, 255, 255, 1);
@@ -341,7 +341,7 @@
 	text-align: center;
 }
 
-.inputBox select {
+.inputBox_r select {
 	width: 128px;
 	height: 42px;
 	background: rgba(255, 255, 255, 1);
@@ -379,13 +379,15 @@
 	cursor: pointer;
 }
 
-.myPage_btnY {
+.myPage_btnC {
 	width: 150px;
 	height: 40px;
+	position: absolute;
 }
 
-.myPage_btnY {
+.myPage_btnC {
 	color: rgba(255, 255, 255, 1);
+	position: absolute;
 	font-family: Noto Sans;
 	font-weight: SemiBold;
 	font-size: 16px;
@@ -411,6 +413,7 @@
 	font-weight: bold;
 	width: 450px;
 	border: 1px solid rgba(217, 217, 217, 1);
+	
 }
 
 /* Change the color of links on hover */
@@ -424,6 +427,7 @@
 .topnav a.active {
 	background-color: white;
 	color: blue;
+	
 }
 
 /************section-article2*****************/
@@ -788,7 +792,7 @@
 	text-align: left;
 }
 
-.myQnaryeo input, select {
+.myQnaryeo input_r, select {
 	width: 650px;
 	height: 45px;
 	background: rgba(255, 255, 255, 1);

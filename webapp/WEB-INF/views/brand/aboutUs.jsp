@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
 	<meta name="title" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -51,72 +50,58 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>myDriverMain</title>
-	
+	<title>ABOUT US</title>
+
 </head>
 
 <body>
+	<!-- header -->
+    <c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+    <!-- // header -->
+    
+	<!-- content -->
+	<section class="contents_wrapper content">
+		<h2 class="hidden">content</h2>
+		
+	    <section class="banner">
+	        <h2 class="hidden">banner</h2>
+	        <div class="brand_banner">
+	            <p></p>
+	        </div>
+	        <div class="banner_text clear">
+	            <div class="autext_lft">
+	                <h2>브랜드 소개</h2>
+	                <h2>ABOUT US</h2>
+	            </div>
+	            <div class="autext_rit">
+	                <h3>스팟메이트는 고객님께 받은 사랑으로</h3>
+	                <h3>매월 다양한 혜택과 새로운 이벤트를 진행하고있습니다.</h3>
+	            </div>
+	        </div>
+	    </section>
+	    <!-- // banner -->
+	</section>
+	
+	<section class="sub_wrap">
+	    <div class="sub_nav clear">
+	        <ul>
+	            <li class="sub_event"><a href="javascript:void(0);">ABOUT US</a></li>
+	            <li><a href="javascript:void(0);">FOR EARTH</a></li>
+	        </ul>
+	    </div>
+	</section>
+	<!-- // sub_wrap -->
+	
+	<section>
+		<div class="inner">
+			<div class="event_cover">
+			</div>
+		</div>
+	</section>
+	<!-- //content -->
 
-	<div id="wrap">
-
-		<!-- //header -->
-		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-		<!-- //topNav -->
-		<c:import url="/WEB-INF/views/includes/myPageTopNav.jsp"></c:import>
-
-		<!-- //myPage main contents -->
-		<main class="contents">
-
-			<!-- //sideNav  -->
-			<c:import url="/WEB-INF/views/includes/myPageSideNav.jsp"></c:import>
-				
-			<!-- //section -->
-			<section class="myPage_selection">
-				<!-- //section-header -->
-				<header class="myPage_header">
-					<h3>드라이버 정보</h3>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-						style="font-weight: bold">유저님의 차량 정보 및 상세 조건을 등록/수정하실 수
-						있습니다.</span>
-					<ul>
-						<li>드라이버 포인트 내역은 주행 완료 후 지급된 포인트입니다.</li>
-						<li>유저 포인트 내역은 다른 드라이버의 차량을 이용 후 사용한 포인트입니다.</li>
-						<li>그 외에도 이용수칙을 위반한 경우 차감 또는 추가 지급 될 수 있습니다.</li>
-					</ul>
-				</header>
-
-
-				<article class="myPage_article2">
-
-					<h4>드라이버 정보</h4>
-
-
-
-					<br> <br>
-					<pre>
-					<p width="300px">                                          아직 등록된 정보가 없습니다.<br>                              드라이버 차량 등록을 신청하고 서비스를 이용해보세요.</p>
-					</pre>
-
-
-
-
-
-				</article>
-
-				<a type="button" href="./myDriverForm" target="self" alt="등록하기"
-					class="DForm_enrollbtn"> <span>등록하기</span></a>
-
-			</section>
-
-		</main>
-
-
-
-		<!-- //banner & footer -->
-		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-	</div>
-
+	<!-- footer -->
+    <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+    <!-- footer -->
 </body>
-
-
 </html>

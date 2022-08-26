@@ -168,7 +168,16 @@
 
 					</div>
 
-					<button class="rideButton">탑승하기</button>
+					<c:choose>
+						<c:when test="${authUser != null}">
+							<a href="/myReservationUserMain">
+								<button type="submit" class="rideButton">탑승하기</button>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			
@@ -336,7 +345,7 @@
 				</div>
 				<div class="mateDeep_recommendBox clear">
 					<img class="mateDeep_img1" src="/assets/images/ico_spot.png">
-					<span class="mateDeep_placeAround" id="mateDeep_placeAround"></span> 
+					<span class="mateDeep_placeAround" id="mateDeep_placeAround">이동 스케줄에서 스팟을 선택해주세요</span> 
 					
 				</div>
 				
@@ -356,7 +365,8 @@
 						<div class="carpool-picture-image">
 							<a href=""> <img src="/assets/images/car_tesla.png">
 								<h3>
-									<span> ${mateDriverVo.carName} </span>
+									<span> ${mateDriverVo.carName}<br>(${mateDriverVo.carNo})</span>
+									
 								</h3>
 							</a>
 						</div>
@@ -461,6 +471,7 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     
 // 지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
+var markers = [];
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places(map); 
 // 지도에 idle 이벤트를 등록합니다
@@ -606,6 +617,9 @@ function changeCategoryClass(el) {
 } 
 //mateDeep_spotBox클릭 시 해당 장소의 위도,경도,지역이름을 x,y,place에 담아줌
 $(".mateDeep_spotBox").on("click", function() {
+	
+	
+	
 	var x =$(this).data("lat");
 	var y =$(this).data("lng");
 	setCenter(x, y);
@@ -620,14 +634,35 @@ $(".mateDeep_spotBox").on("click", function() {
 	console.log(location);
 	//화면의 위치를 지도로 이동
 	window.scrollTo({top:location-200, behavior:'smooth'});
+	
+	
+	// 마커가 표시될 위치입니다 
+    var markerPosition  = new kakao.maps.LatLng(x, y); 
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+    
+    markers.push(marker);
+ 	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+ 	for( var i=0;i<markers.length;i++) {
+	    markers[i].setMap(null); 
+ 	}
+ 	
+ 	// 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+	
 })
-//a,b의 위치로 지도 이동
-function setCenter(a,b) {            
+
+//x,y의 위치로 지도 이동
+function setCenter(x,y) {            
     // 이동할 위도 경도 위치를 생성합니다 
-    var moveLatLon = new kakao.maps.LatLng(a, b);
+    var moveLatLon = new kakao.maps.LatLng(x, y);
     
     // 지도 중심을 이동 시킵니다
     map.setCenter(moveLatLon);
+    	
 }
 
 
