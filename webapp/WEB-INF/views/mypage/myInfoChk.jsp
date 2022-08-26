@@ -74,8 +74,6 @@
 					<div class="myPage_InfoChkEx">
 						<h4>비밀번호 재확인</h4>
 						<p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요.
-						<input type="hidden"  id="userId" value="${userVo.id }">
-						<input type="hidden" id="userPw"value="${userVo.pw }">
 					</div>
 				</header>
 
@@ -96,7 +94,7 @@
 								</tbody>
 							</table>
 						</div>
-						<button type="submit"><span>확인</span></button>
+						<button type="button" class="InfoChk_button"><span>확인</span></button>
 					</form>
 				</article>
 			</section>
@@ -109,13 +107,15 @@
 	</div>
 </body>
 <script type="text/javascript">
-
-$(".myPage_InfoChk").on("submit", function(){	
+$(".InfoChk_button").on("click", function(){	
+	
+	console.log("야호");
 	
 	var id = $("#input-uid").val();
 	var pw = $("#input-upw").val();
-	var userId = $("#userId").val();
-	var userPw = $("#userPw").val();
+	
+
+	
 	
 	if(id == "" || id == null) {
 		alert("아이디를 입력해주세요.");
@@ -128,15 +128,31 @@ $(".myPage_InfoChk").on("submit", function(){
 		return false;
 	}
 	
-	if(id != userId || pw != userPw) {
-		alert("아이디와 비밀번호가 일치하지 않습니다.");
-		return false;
-	}
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/mypageJ/myInfoChkAjax",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify({
+			id: id,
+			pw: pw
+		}),
+		success : function(result) {
+			
+			if ( result == "success" ) {
+				$(".myPage_InfoChk").submit();
+			} else {
+				alert("아이디와 비밀번호가 일치하지 않습니다.");
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
 	
 	
 });
-
-
 </script>
 
 </html>
