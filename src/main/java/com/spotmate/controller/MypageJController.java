@@ -35,6 +35,11 @@ public class MypageJController {
 		System.out.println("MypageJController > myCouponMain");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
+
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+
 		int userNo = authUser.getNo();
 
 		Map<String, Object> cMap = mypagejService.getCouponBList(couponVo, userNo);
@@ -66,7 +71,11 @@ public class MypageJController {
 		System.out.println("MypageJController > myCouponUse");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		Map<String, Object> cuMap = mypagejService.getCouponUseMain(couponNo, userNo);
@@ -82,34 +91,47 @@ public class MypageJController {
 		System.out.println("MypageJController > myCouponPurchase");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		mypagejService.couponPurchase(userNo, couponVo);
 
 		return "redirect:/mypageJ/myCouponMain";
 	}
-	
-	//비밀번호재확인
-	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myInfoChk() {
 
+	// 비밀번호재확인
+	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myInfoChk(HttpSession session) {
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		return "/mypage/myInfoChk";
 	}
-	
-	//
+
+	// 비밀번호체크일치여부
 	@ResponseBody
 	@RequestMapping(value = "/myInfoChkAjax", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myInfoChk2(@RequestBody UserVo userChk, HttpSession session) {
-		
+
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
-		
-		String state = mypagejService.myInfoChk(userChk ,userNo);
-		
+
+		String state = mypagejService.myInfoChk(userChk, userNo);
+
 		System.out.println(state);
-		
+
 		return state;
 	}
 
@@ -119,7 +141,11 @@ public class MypageJController {
 		System.out.println("MypageJController > myInfoForm");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		UserVo userVo = mypagejService.getUser(userNo);
@@ -135,7 +161,11 @@ public class MypageJController {
 		System.out.println("MypageJController > myInfoModify");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		mypagejService.userModify(userVo, userNo);
@@ -153,15 +183,20 @@ public class MypageJController {
 
 	// 카카오페이
 	@RequestMapping(value = "/kakaoPaySuccess", method = { RequestMethod.GET, RequestMethod.POST })
-	public void myPointCharge(Long point, HttpSession session) {
+	public String myPointCharge(Long point, HttpSession session) {
 		System.out.println("MypageJController > kakaoPaySuccess");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		mypagejService.chargePoint(point, userNo);
-
+		
+		return null;
 	}
 
 	// 포인트메인
@@ -170,7 +205,11 @@ public class MypageJController {
 		System.out.println("MypageJController > myPointMain");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		Map<String, Object> cMap = mypagejService.getPointList(pointVo, userNo);
@@ -185,7 +224,11 @@ public class MypageJController {
 		System.out.println("MypageJController > myPointRefundMain");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		Map<String, Object> cMap = mypagejService.getRefundList(RefundVo, userNo);
@@ -193,7 +236,7 @@ public class MypageJController {
 
 		return "/mypage/myPointRefundMain";
 	}
- 
+
 	// 포인트환불폼
 	@RequestMapping(value = "/myPointRefundForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointRefundForm() {
@@ -205,7 +248,11 @@ public class MypageJController {
 	public String myPointRefund(@ModelAttribute RefundVo refundVo, HttpSession session) {
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		int userNo = authUser.getNo();
 
 		mypagejService.refundPoint(refundVo, userNo);
