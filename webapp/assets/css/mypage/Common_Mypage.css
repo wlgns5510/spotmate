@@ -696,6 +696,46 @@
 	margin: 10px 10px 10px 50px;
 }
 
+.DL_info .dltable{
+	display:table;
+	width:100%;
+}
+.DL_info >.dl_wrap1{
+	display:table-cell;
+	width:80px;
+	vertical-align:middle;
+	table-layout: fixed;
+}
+
+
+.DL_info .dltable .dl_box #dl_1{
+	width: 80px;
+	height: 35px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-radius: 6px;
+	margin-right: 0px 0px 0px 40px;
+	box-sizing: border-box;
+}
+.DL_info .dltable .dl_box #dl{
+	width: 80px;
+	height: 35px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-radius: 6px;
+	margin:0px;
+	box-sizing: border-box;
+
+}
+
+.error_next_box {
+    display: block;
+    margin: 9px 0 -2px;
+    font-size: 12px;
+    line-height: 14px;
+    color: red;
+}
+
 .DC_info input {
 	width: 281px;
 	height: 35px;
