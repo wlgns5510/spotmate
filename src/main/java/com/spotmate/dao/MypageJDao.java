@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
+import com.spotmate.vo.RefundVo;
+import com.spotmate.vo.UserVo;
 
 @Repository
 public class MypageJDao {
@@ -61,12 +63,21 @@ public class MypageJDao {
 	};
 
 	// 포인트리스트가져오기
-	public List<PointVo> getPointList(int userNo) {
+	public List<PointVo> getPointList(PointVo pointVo) {
 		System.out.println("MypageJService > getPointList");
 		
-		List<PointVo> pointList= sqlSession.selectList("mypagej.selectPointList", userNo);
+		List<PointVo> pointList= sqlSession.selectList("mypagej.selectPointList", pointVo);
 		
 		return pointList;
+	}
+	
+	// 포인트전체글 갯수
+	public int totalPointCnt(PointVo pointVo) {
+		System.out.println("MypageJDao > totalPointCnt");
+
+		int totalPointCnt = sqlSession.selectOne("mypagej.totalPointCnt", pointVo);
+
+		return totalPointCnt;
 	}
 	
 	// 총포인트가져오기
@@ -87,11 +98,57 @@ public class MypageJDao {
 		return count;
 	}
 	
-	////쿠폰구매insert(pointUsage)
+	//쿠폰구매insert(pointUsage)
 	public int insertpointUsage(CouponVo couponVo) {
 		System.out.println("MypageJService > insertpointUsage");
 		
 		int count = sqlSession.insert("mypagej.insertpointUsage", couponVo);
+		
+		return count;
+	}
+	
+	//포인트환불(RefundPoint)
+	public int insertRefundPoint(RefundVo refundVo) {
+		System.out.println("MypageJService > insertpointUsage");
+		
+		int count = sqlSession.insert("mypagej.insertRefundPoint", refundVo);
+		
+		return count;
+	}
+	
+	// 환불리스트가져오기
+	public List<RefundVo> getRefundList(RefundVo refundVo) {
+		System.out.println("MypageJService > getRefundList");
+		
+		List<RefundVo> refundList= sqlSession.selectList("mypagej.selectrefundList", refundVo);
+		
+		return refundList;
+	}
+	
+	// 환불전체글 갯수
+	public int totalRefundCnt(RefundVo refundVo) {
+		System.out.println("MypageJDao > totalRefundCnt");
+
+		int totalRefundCnt = sqlSession.selectOne("mypagej.totalRefundCnt", refundVo);
+
+		return totalRefundCnt;
+	}
+
+	//유저정보가져오기
+	public UserVo getUser(int userNo) {
+		System.out.println("MypageJDao > getUser");
+		
+		UserVo userVo = sqlSession.selectOne("mypagej.getUser", userNo);
+		
+		return userVo;
+	}
+	
+	//개인정보수정
+	public int updateUser(UserVo userVo) {
+		System.out.println("MypageJService > updateUser");
+		
+		System.out.println(userVo + "수정테스트");
+		int count = sqlSession.update("mypagej.updateUser", userVo);
 		
 		return count;
 	}
