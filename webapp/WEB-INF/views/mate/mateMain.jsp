@@ -49,6 +49,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
+	
 	<title>mateMain</title>
 	
 </head>
@@ -116,7 +117,9 @@
 			<c:forEach items="${mateList}" var="mateList" varStatus="status">
 				<div class=mateList>
 				<a href="/mateDeep/${mateList.mateNo}">
-					<img src="/assets/images/road1.jpg" class="matePicture">												
+					
+						<img src="/assets/images/mate_imgbox/mate_imgbox01.png" class="matePicture">
+																	
 				</a><br>
 					<span class="driverName">Driver ${mateList.name}</span>
 					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
@@ -349,6 +352,8 @@ $(document).ready(function(){
 			}
 	});
 });
-
+function random(n) {
+	return (Math.floor(Math.random()*100000)%6);
+}
 </script>
 </html>
