@@ -155,17 +155,30 @@
 		</if>
 	</select>
 
-	<!-- 리뷰 배너(리스트) *******쿼리문 수정하기-->
+	<!-- 리뷰 배너(리스트) -->
 
-	<select id="selectReviewList" resultType="com.spotmate.vo.CarpoolVo">
+	<select id="selectReviewList" parameterType="int" resultType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
-			select u.id,
-			       w.star,
-			       w.content
-			from users u, reservation r, userReview w, spotmate s
-			where u.no = r.userNo
-			and s.no = r.mateNo
-			and r.no = w.resvNo
+			select r.id,
+			       star,
+			       content
+			from (select mateNo,
+			        driverNo,
+			        no
+			      from reservation) d, ( select driverNo
+			                           from reservation
+			                           where mateNo = #{no}
+			                           ) i, (select star,
+			                                        content,
+			                                        resvno
+			                                 from userReview ) s, (select id,
+			                                                              r.no,
+			                                                              r.mateNo
+			                                                        from users u, reservation r
+			                                                        where u.no = r.userNo) r
+			where d.driverNo = i.driverNo
+			and d.no = s.resvno
+			and r.no = s.resvno
 					
 		]]>
 
@@ -237,7 +250,7 @@
 	<insert id="insertUserCarpoolInfo" parameterType="com.spotmate.vo.CarpoolVo">
 		<![CDATA[
 		insert into reservation
-		values (seq_reservation_no, #{mateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, '', #{people})
+		values (seq_reservation_no, #{mateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, '', #{people}, '', '')
 		]]>
 	</insert>
 

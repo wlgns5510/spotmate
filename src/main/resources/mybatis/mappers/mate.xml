@@ -30,20 +30,6 @@
 		]]>
 	</select>
 	
-	<!-- mateList 가져오기(애완동물 가능여부 체크) -->	
-	<select id="selectMateOptionList" resultType="MateVo" parameterType="int">
-		<![CDATA[
-				select mateNo mateOptionNo,
-				       s.detailNo,
-				       d.name optionName
-				from spotDetail s , detailOption d, spotmate sp
-				where s.detailNo = d.no
-				and sp.no = s.mateNo
-				and sp.type = 'mate'
-				and s.detailno = 3
-		]]>
-	</select>
-	
 	<!-- mateList 가져오기(도착, 출발장소만 가져오기) -->	
 	<select id="selectMatePlaceList" resultType="MateVo">
 		<![CDATA[
@@ -61,7 +47,7 @@
 		]]>
 	</select>
 	
-	<!-- mateNo에 맞는 데이터값 가져오기 -->
+	<!-- 해당 메이트에 관한 정보 -->
 	<select id="deepMateRead" resultType="MateVo" parameterType="int">
 		<![CDATA[
 				select no mateNo,
@@ -73,11 +59,32 @@
 				       point,
 				       comments
 				from spotmate
-				where no = #{mateNo}
+				where no = #{no}
 		]]>
 	</select>
 	
-	<!-- mateNo에 맞는 장소값 가져오기 -->
+	<!-- 해당 메이트의 운전자,차량정보 -->
+	<select id="deepMateDriverRead" resultType="MateVo" parameterType="int">
+		<![CDATA[
+				select  u.id,
+						u.name,
+				        c.carName,
+				        c.carPicture,
+				        c.carName,
+				        c.carNo,
+				        c.introduce,
+				        s.comments
+				from users u,
+				     car c,
+				     spotmate s
+				where u.no = c.userNo
+				and   c.no = s.carNo
+				and s.type = 'mate'
+				and s.no = #{no}
+		]]>
+	</select>
+	
+	<!-- 해당 메이트의 출발지, 경유지, 도착지정보 -->
 	<select id="deepPlaceRead" resultType="MateVo" parameterType="int">
 		<![CDATA[
 				select p.mateNo,
@@ -92,7 +99,18 @@
 				       to_char(s.endDate, 'yyyy.mm.dd day') endDate
 				from place p, spotmate s
 				where s.no = p.mateNo
-				and p.mateNo = #{mateNo}
+				and p.mateNo = #{no}
+		]]>
+	</select>
+	
+	<!-- 해당 메이트의 출발지, 경유지, 도착지정보 -->
+	<select id="deepDetailRead" resultType="MateVo" parameterType="int">
+		<![CDATA[
+				select d.no mateOptionNo,
+       				   d.name optionName
+				from spotDetail s, detailOpt d
+				where s.detailNo = d.no
+				and s.mateNo = #{no}
 		]]>
 	</select>
 	

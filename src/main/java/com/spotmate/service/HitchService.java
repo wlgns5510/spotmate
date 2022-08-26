@@ -21,37 +21,30 @@ public class HitchService {
 	private HitchDao hDao;
 	private ConvertPoint cp = new ConvertPoint();
 	
-	public List<HitchVo> getHitchList(MapVo mVo) {
-		List<HitchVo> hL = hDao.SelectHitchList();
-		List<HitchVo> nhL = new ArrayList<HitchVo>();
-		for( int i=0;i<hDao.SelectHitchList().size();i++ ) {
-			if( hL.get(i).getLatlng() != null ) {
-				Haversine haver = new Haversine();
-				if (haver.calcByHaversine(mVo.getLat(), mVo.getLng(), Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0])) < 5) {
-					hL.get(i).setConvertPoint(cp.convertPoint(hDao.SelectHitchList().get(i).getPoint()));
-					hL.get(i).setNowaddr(hL.get(i).getLatlng().split(",")[2]);
-					nhL.add(hL.get(i));
-				}
-			}
-		}
-		// 출발지에서부터 유저와 드라이버의 거리 재기
-//		haver.calcByHaversine(mVo.getLat(), mVo.getLng(), hL.get(i).getLat(), hL.get(i).getLng()) > haver.calcByHaversine(Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0]), hL.get(i).getLat(), hL.get(i).getLng()) && 
-		return nhL;
+	
+	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
+	public int chkRide(int mateNo, int userNo) {
+		return hDao.chkRide(mateNo, userNo);
 	}
 	
+	//유저가 탑승예약 할 때
 	public int makeReserv(HitchReservVo hrVo) {
 		return hDao.updateReserv(hrVo);
+	}
+	//신청한게 있나 없나 확인
+	public Map<String, Object> cancelChk(int mateNo, int userNo) {
+		return hDao.cancelChk(mateNo, userNo);
 	}
 	
 	public int cancelReserv(int userNo, int mateNo) {
 		return hDao.cancelReserv(userNo, mateNo);
 	}
 	
-	public HitchReservVo watchPos(MapVo mVo) {
+	public List<HitchReservVo> watchPos(MapVo mVo) {
 		return hDao.watchPos(mVo);
 	}
 	
-	public HitchVo getHdriverPage(int driverNo) {
+	public List<HitchVo> getHdriverPage(int driverNo) {
 		return hDao.getHdriverPage(driverNo);
 	}
 	
@@ -73,6 +66,24 @@ public class HitchService {
 	
 	public HitchVo getSummaryInfo(int mateNo) {
 		return hDao.selectSummaryInfo(mateNo);
+	}
+	
+	public List<HitchVo> nearHitchList(MapVo mVo, int userNo) {
+		List<HitchVo> hL = hDao.nearHitchList(userNo);
+		List<HitchVo> nhL = new ArrayList<HitchVo>();
+		for( int i=0;i<hL.size();i++ ) {
+			if( hL.get(i).getLatlng() != null ) {
+				Haversine haver = new Haversine();
+				if (haver.calcByHaversine(mVo.getLat(), mVo.getLng(), Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0])) < 5) {
+					hL.get(i).setConvertPoint(cp.convertPoint(hL.get(i).getPoint()));
+					hL.get(i).setNowaddr(hL.get(i).getLatlng().split(",")[2]);
+					nhL.add(hL.get(i));
+				}
+			}
+		}
+		// 출발지에서부터 유저와 드라이버의 거리 재기
+//		haver.calcByHaversine(mVo.getLat(), mVo.getLng(), hL.get(i).getLat(), hL.get(i).getLng()) > haver.calcByHaversine(Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0]), hL.get(i).getLat(), hL.get(i).getLng()) && 
+		return nhL;
 	}
 	
 	public List<HitchVo> getNear(MapVo mVo) {

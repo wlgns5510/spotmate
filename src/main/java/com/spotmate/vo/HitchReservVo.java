@@ -4,13 +4,12 @@ public class HitchReservVo {
 	
 	private int mateNo, people, canRide, userNo, point, driverNo;
 	private double lat, lng;
-	private String rideUser;
 	
 	public HitchReservVo() {}
 
 	
 	public HitchReservVo(int mateNo, int people, int canRide, int userNo, int point, int driverNo, double lat,
-			double lng, String rideUser) {
+			double lng, double rlat, double rlng) {
 		this.mateNo = mateNo;
 		this.people = people;
 		this.canRide = canRide;
@@ -19,7 +18,6 @@ public class HitchReservVo {
 		this.driverNo = driverNo;
 		this.lat = lat;
 		this.lng = lng;
-		this.rideUser = rideUser;
 	}
 	
 
@@ -51,13 +49,6 @@ public class HitchReservVo {
 		this.userNo = userNo;
 	}
 
-	public String getRideUser() {
-		return rideUser;
-	}
-
-	public void setRideUser(String rideUser) {
-		this.rideUser = rideUser;
-	}
 
 	public double getLat() {
 		return lat;
@@ -103,9 +94,7 @@ public class HitchReservVo {
 	@Override
 	public String toString() {
 		return "HitchReservVo [mateNo=" + mateNo + ", people=" + people + ", canRide=" + canRide + ", userNo=" + userNo
-				+ ", point=" + point + ", driverNo=" + driverNo + ", lat=" + lat + ", lng=" + lng + ", rideUser="
-				+ rideUser + "]";
+				+ ", point=" + point + ", driverNo=" + driverNo + ", lat=" + lat + ", lng=" + lng + "]";
 	}
-
 
 }

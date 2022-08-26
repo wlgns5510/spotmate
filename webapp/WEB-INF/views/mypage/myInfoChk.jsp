@@ -79,22 +79,22 @@
 
 				<!-- //section-article2 -->
 				<article class="myPage_article2">
-					<form action="" class="myPage_InfoChk">
+					<form action="${pageContext.request.contextPath }/mypageJ/myInfoForm" class="myPage_InfoChk" method="get">
 						<div class="myPage_InfoChkPass">
 							<table class="myPage_InfoChkForm">
 								<tbody>
 									<tr>
 										<th><label>아이디*</label></th>
-										<td><input type="text"></td>
+										<td><input id="input-uid" type="text"></td>
 										</tr>
 										<tr>
 										<th><label>패스워드*</label>
-										<td><input type="password"></td>
+										<td><input id="input-upw" type="password"></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<button type="submit"><span>확인</span></button>
+						<button type="button" class="InfoChk_button"><span>확인</span></button>
 					</form>
 				</article>
 			</section>
@@ -106,4 +106,53 @@
 
 	</div>
 </body>
+<script type="text/javascript">
+$(".InfoChk_button").on("click", function(){	
+	
+	console.log("야호");
+	
+	var id = $("#input-uid").val();
+	var pw = $("#input-upw").val();
+	
+
+	
+	
+	if(id == "" || id == null) {
+		alert("아이디를 입력해주세요.");
+		return false;
+	}
+	
+	
+	if(pw == "" || pw == null) {
+		alert("비밀번호를 입력해주세요.");
+		return false;
+	}
+	
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/mypageJ/myInfoChkAjax",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify({
+			id: id,
+			pw: pw
+		}),
+		success : function(result) {
+			
+			if ( result == "success" ) {
+				$(".myPage_InfoChk").submit();
+			} else {
+				alert("아이디와 비밀번호가 일치하지 않습니다.");
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+	
+	
+});
+</script>
+
 </html>
