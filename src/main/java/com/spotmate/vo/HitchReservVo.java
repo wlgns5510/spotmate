@@ -3,7 +3,7 @@ package com.spotmate.vo;
 public class HitchReservVo {
 	
 	private int mateNo, people, canRide, userNo, point, driverNo;
-	private double lat, lng, rlat, rlng;
+	private double lat, lng;
 	
 	public HitchReservVo() {}
 
@@ -18,8 +18,6 @@ public class HitchReservVo {
 		this.driverNo = driverNo;
 		this.lat = lat;
 		this.lng = lng;
-		this.rlat = rlat;
-		this.rlng = rlng;
 	}
 	
 
@@ -49,26 +47,6 @@ public class HitchReservVo {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
-	}
-
-
-	public double getRlat() {
-		return rlat;
-	}
-
-
-	public void setRlat(double rlat) {
-		this.rlat = rlat;
-	}
-
-
-	public double getRlng() {
-		return rlng;
-	}
-
-
-	public void setRlng(double rlng) {
-		this.rlng = rlng;
 	}
 
 
@@ -116,8 +94,7 @@ public class HitchReservVo {
 	@Override
 	public String toString() {
 		return "HitchReservVo [mateNo=" + mateNo + ", people=" + people + ", canRide=" + canRide + ", userNo=" + userNo
-				+ ", point=" + point + ", driverNo=" + driverNo + ", lat=" + lat + ", lng=" + lng + ", rlat=" + rlat
-				+ ", rlng=" + rlng + "]";
+				+ ", point=" + point + ", driverNo=" + driverNo + ", lat=" + lat + ", lng=" + lng + "]";
 	}
 
 }

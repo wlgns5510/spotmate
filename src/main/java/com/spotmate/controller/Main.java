@@ -83,5 +83,11 @@ public class Main {
 		return "/test/main10";
 	}
 	
+	@RequestMapping(value="/test2", method={RequestMethod.GET, RequestMethod.POST})
+	public String test2() {
+		System.out.println("hi");
+		return "/test/test2";
+	}
+	
 
 }
