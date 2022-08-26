@@ -14,22 +14,6 @@ Last update : 2022. 08. 26.
 
 /* .inner{display:block; width:1440px; margin:0 auto;} */
 
-
-/*content*/
-/* .content {
-	min-height: 400px;
-	position : relative;
-}
-.content:after {
-	content : "";
-	display : block;
-	clear : both;
-} */
-
-/* .inner {
-    background-color: burlywood;
-} */
-
 /*배너*/
 .banner {
 	width : 100%;
