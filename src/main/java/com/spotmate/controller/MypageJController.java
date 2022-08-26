@@ -193,7 +193,7 @@ public class MypageJController {
 
 		return "/mypage/myPointRefundMain";
 	}
-
+ 
 	// 포인트환불폼
 	@RequestMapping(value = "/myPointRefundForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointRefundForm() {
