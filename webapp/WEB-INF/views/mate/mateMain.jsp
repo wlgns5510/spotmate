@@ -116,8 +116,7 @@
 			<c:forEach items="${mateList}" var="mateList" varStatus="status">
 				<div class=mateList>
 				<a href="/mateDeep/${mateList.mateNo}">
-					<div class="matePicture">							
-					</div>
+					<img src="/assets/images/road1.jpg" class="matePicture">												
 				</a><br>
 					<span class="driverName">Driver ${mateList.name}</span>
 					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
