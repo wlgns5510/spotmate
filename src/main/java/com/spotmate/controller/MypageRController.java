@@ -38,11 +38,11 @@ public class MypageRController {
 
 		int userNo = authUser.getNo();
 		DriverLicenseVo carInfo = dls.getCarInfo(userNo);
-		System.out.println(carInfo);
+		carInfo.setUsername(authUser.getName());
 		if(carInfo.getC_Model() == null) {
+			model.addAttribute("dlvo", carInfo);
 			return "/mypage/myDriverForm";
 		}
-		System.out.println(authUser);
 		
 		DriverLicenseVo dlvo = dls.getCarInfo(userNo);
 		
