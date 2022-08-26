@@ -10,12 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.service.MypageJService;
-import com.spotmate.vo.CarpoolVo;
 import com.spotmate.vo.CouponVo;
 import com.spotmate.vo.PointVo;
 import com.spotmate.vo.RefundVo;
@@ -88,19 +89,28 @@ public class MypageJController {
 
 		return "redirect:/mypageJ/myCouponMain";
 	}
-
+	
+	//비밀번호재확인
 	@RequestMapping(value = "/myInfoChk", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myInfoChk(Model model, HttpSession session) {
+	public String myInfoChk() {
+
+		return "/mypage/myInfoChk";
+	}
+	
+	//
+	@ResponseBody
+	@RequestMapping(value = "/myInfoChkAjax", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myInfoChk2(@RequestBody UserVo userChk, HttpSession session) {
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
 		int userNo = authUser.getNo();
-
-		UserVo userVo = mypagejService.getUser(userNo);
 		
-		model.addAttribute("userVo", userVo);
-
-		return "/mypage/myInfoChk";
+		String state = mypagejService.myInfoChk(userChk ,userNo);
+		
+		System.out.println(state);
+		
+		return state;
 	}
 
 	// 개인정보수정폼
@@ -183,7 +193,7 @@ public class MypageJController {
 
 		return "/mypage/myPointRefundMain";
 	}
-
+ 
 	// 포인트환불폼
 	@RequestMapping(value = "/myPointRefundForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myPointRefundForm() {

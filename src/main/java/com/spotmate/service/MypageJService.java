@@ -350,4 +350,24 @@ public class MypageJService {
 		
 		System.out.println(count + "건 수정되었습니다.");
 	}
+	
+	//비밀번호재확인
+	public String myInfoChk(UserVo userChk, int userNo) {
+		System.out.println("MypageJService > myInfoChk");
+		
+		 UserVo userVo = mypagejDao.getUser(userNo);
+
+		 String state = "";
+		 
+		 if(userVo.getId().equals(userChk.getId()) && userVo.getPw().equals(userChk.getPw())) {
+			 
+			 state = "success";
+			 
+		 }else {
+			 
+			 state = "fail";
+		 }
+		 
+		 return state;
+	}
 }

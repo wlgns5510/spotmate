@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.executor.ExecutorException;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.UncategorizedSQLException;
@@ -20,37 +21,69 @@ public class HitchDao {
 	@Autowired
 	private SqlSession ss;
 	
-	public List<HitchVo> SelectHitchList() {
-		return ss.selectList("spotmate.selecthitchlist");
+	public List<HitchVo> getNear() {
+		return ss.selectList("spotmate.selectnear");
 	}
-	
-	public int updateReserv(HitchReservVo hrVo) {
-		ss.update("spotmate.makereserv", hrVo);
-		ss.update("spotmate.updatereservpeople", hrVo);
-		int people = ss.selectOne("spotmate.updatepeople", hrVo.getMateNo());
-		if(people < 0) {
-			ss.update("spotmate.recoverreserv", hrVo);
+	public List<HitchVo> nearHitchList(int userNo) {
+		return ss.selectList("spotmate.nearhitchlist", userNo);
+	}
+	//신청한게 있나 없나 확인
+	public Map<String, Object> cancelChk(int mateNo, int userNo) {
+		Map<String, Object> nMap = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
+		nMap.put("mateNo", mateNo);
+		nMap.put("userNo", userNo);
+		try {
+			 map = ss.selectOne("spotmate.cancelChk", nMap);
+		} catch(NullPointerException e) {
+		}
+		return map;
+	}
+	//유저가 탑승예약 할 때
+	public int updateReserv(HitchReservVo hrVo){
+		int canRide = ss.selectOne("spotmate.chkpeople", hrVo.getMateNo());
+		if ( canRide >= hrVo.getPeople()) {
+			ss.update("spotmate.updatereservpeople", hrVo);
+			ss.insert("spotmate.makereserv", hrVo);
+		} else {
 			return -1;
 		}
-		return people;
+		return ss.selectOne("spotmate.chkpeople", hrVo);
 	}
-	
+	//유저가 탑승예약 취소 할 때	
 	public int cancelReserv(int userNo, int mateNo) {
+		int people = -1;
 		Map<String, Object> nMap = new HashMap<String, Object>();
 		nMap.put("userNo", userNo);
 		nMap.put("mateNo", mateNo);
-		ss.update("spotmate.cancelreserv", nMap);
-		ss.delete("spotmate.deletecancelreserv", nMap);
-		int people = ss.selectOne("spotmate.updatepeople", mateNo);
+		try {
+			ss.insert("spotmate.cancelreserv", nMap);
+			ss.delete("spotmate.deletecancelreserv", nMap);
+			people = ss.selectOne("spotmate.chkpeople", mateNo);
+		} catch(ExecutorException e) {
+			return people;
+		}
 		return people;
 	}
-	
-	public HitchReservVo watchPos(MapVo mVo) {
+	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
+	public int chkRide(int mateNo, int userNo) {
+		int cnt = -1;
+		Map<String, Object> nMap = new HashMap<>();
+		nMap.put("mateNo", mateNo);
+		nMap.put("userNo", userNo);
+		try {
+			cnt = ss.selectOne("spotmate.chkride", nMap);
+		} catch(NullPointerException e) {
+			return cnt;
+		}
+		return cnt;
+	}
+	//드라이버 현재 위치 저장하면서 탑승한 유저 목록 가져옴
+	public List<HitchReservVo> watchPos(MapVo mVo) {
 		try {
 			ss.update("spotmate.watchpos", mVo);
-		} catch (UncategorizedSQLException e) {
-		}
-		return ss.selectOne("spotmate.selectrideuser", mVo.getMateNo());
+		} catch (UncategorizedSQLException e) {}
+		return ss.selectList("spotmate.selectrideuser", mVo.getMateNo());
 	}
 	
 	public Map<String, Object> selectDriverInfo(int mateNo) {
@@ -71,17 +104,14 @@ public class HitchDao {
 		return hMap;
 	}
 	
-	public HitchVo getHdriverPage(int driverNo) {
-		return ss.selectOne("spotmate.gethdriverpage", driverNo);
+	public List<HitchVo> getHdriverPage(int driverNo) {
+		return ss.selectList("spotmate.gethdriverpage", driverNo);
 	}
 	
 	public HitchVo selectSummaryInfo(int mateNo) {
 		return ss.selectOne("spotmate.selectsummarydriverinfo", mateNo);
 	}
 	
-	public List<HitchVo> getNear() {
-		return ss.selectList("spotmate.selectnear");
-	}
 	
 	public MapVo selectDriverPos(MapVo mVo) {
 		MapVo mVo2 = ss.selectOne("spotmate.selectDriverPos", mVo);
