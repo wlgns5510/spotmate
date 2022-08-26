@@ -64,8 +64,8 @@
 		</div>
 	</div>
 	<div class="inner">
-	<input type="hidden" id="latlng" name="latlng" value="${hVo.latlng}">
-		<div data-mateno="${hVo.mateNo}" id="hitch-driver-map"></div>
+	<input type="hidden" id="latlng" name="latlng" value="${hVo[0].latlng}">
+		<div data-mateno="${hVo[0].mateNo}" id="hitch-driver-map"></div>
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 	
@@ -76,20 +76,22 @@
 	var mateNo = $("#hitch-driver-map").data("mateno");
 	var geocoder = new kakao.maps.services.Geocoder();
 	var mapContainer = document.getElementById('hitch-driver-map'), // 지도를 표시할 div 
-	mapOption = {
-		center : new kakao.maps.LatLng(37.48436301061165, 126.9922281879226), // 지도의 중심좌표
-		level : 3
-	},
-	map = new kakao.maps.Map(mapContainer, mapOption);
+		mapOption = {
+			center : new kakao.maps.LatLng(37.48436301061165, 126.9922281879226), // 지도의 중심좌표
+			level : 3
+		},
+		map = new kakao.maps.Map(mapContainer, mapOption);
 
-	var	lat, lng = 0,
-		flag = false,
+	var	lat, lng = 0;
+	var flag = false,
 		driverMarker,
+		markers = [],
+		temp = [],
 		options = {
-		enableHighAccuracy : true,
-		timeout : 5000,
-		maximumAge : 0
-	};
+			enableHighAccuracy : true,
+			timeout : 5000,
+			maximumAge : 0
+		};
 	
 	var latlng = $("#latlng").val().split(',');
 	var elat,
@@ -126,7 +128,7 @@
 	for (var i=0;i<2;i++) {
 		if ( i==0 ) {
 			iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">출발지 입니다</div>'; 
-		} else if (i==1){
+		} else {
 			iwContent = '<div style="font-size:14px; padding:5px 0px 5px 30px;">도착지 입니다</div>';
 		}
 		var infowindow = new kakao.maps.InfoWindow({
@@ -138,13 +140,15 @@
 		var imageSrc = '/assets/images/pin_'+rnd+'.png', // 마커이미지의 주소입니다    
 			imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
-		startendMarker = new kakao.maps.Marker({
-			position: positions[i].latlng,
-			map: map,
-			image: markerImage
-		});
+			startendMarker = new kakao.maps.Marker({
+				position: positions[i].latlng,
+				map: map,
+				image: markerImage
+			});
 		infowindow.open(map, startendMarker);
 	}
+	
+	
 
 	if (navigator.geolocation) {
 		var na = navigator.geolocation.watchPosition(success, error, options);
@@ -159,32 +163,52 @@
 		var locPosition = new kakao.maps.LatLng(lat, lng); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 		searchDetailAddrFromCoords(locPosition, function(result, status) {
 			if (status === kakao.maps.services.Status.OK) {
-				var search = {};
-				search.addr = result[0].address.address_name;
-				search.lat = locPosition.getLat();
-				search.lng = locPosition.getLng();
-				search.mateNo = mateNo;
+				var mapVo = {};
+				mapVo.addr = result[0].address.address_name;
+				mapVo.lat = locPosition.getLat();
+				mapVo.lng = locPosition.getLng();
+				mapVo.mateNo = mateNo;
 				$.ajax({
 					url : "${pageContext.request.contextPath}/now",
 					type : "post",
 					contentType : "application/json",
-					data : JSON.stringify(search),
+					data : JSON.stringify(mapVo),
 					dataType : "json",
 					success : function(result) {
-						console.log(result)
-						if (result != null) {
-							var latlng = result.rideUser.split(",");
-							var rideUser = new kakao.maps.LatLng(latlng[0], latlng[1]);
-							
-							var imageSrc = './assets/images/common/login_image_50_01.png', // 마커이미지의 주소입니다    
+						var chkTemp = [],
+							imageSrc = './assets/images/common/login_image_50_01.png', // 마커이미지의 주소입니다    
 							imageSize = new kakao.maps.Size(50, 50); // 마커이미지의 크기입니다
-							var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize),
-							// 마커를 생성합니다
-							userMarker = new kakao.maps.Marker({
-								position : rideUser,
-								image : markerImage,
-								map : map
-							});
+						var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+						var atl = result.length - 1;
+						for( var i=0;i<result.length;i++ ) {
+							//전체 mateNo리스트
+							if ( !temp.includes(result[i].userNo) ) {
+								temp.push(result[i].userNo);
+							} 
+							//people = 0이 됬을 때 갱신된 mateNo리스트
+							else if ( temp.length >= chkTemp.length) {
+								chkTemp.push(result[i].userNo);
+								if ( i == atl ) {
+									var dif = temp.filter(x => !chkTemp.includes(x));
+									for( var k=0;k<dif.length;k++ ) {
+										markers[k].setMap(null);
+									}
+								}
+							}
+							console.log(markers)
+							if(result[i] != null && markers.length >= result.length) {
+								var rideUser = new kakao.maps.LatLng(result[i].lat, result[i].lng);
+								// 마커를 생성합니다
+								userMarker = new kakao.maps.Marker({
+									position : rideUser,
+									image : markerImage,
+									map : map
+								});
+								if (markers.length >= result.length) {
+									continue;
+								}
+								markers.push(userMarker);
+							}
 						}
 					},
 					error : function(XHR, status, error) {
@@ -202,9 +226,8 @@
 		if (flag) {
 			driverMarker.setMap(null);
 		}
-		
 		var imageSrc = './assets/images/common/android-icon-48x48.png', // 마커이미지의 주소입니다    
-		imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
+			imageSize = new kakao.maps.Size(48, 48); // 마커이미지의 크기입니다
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 		// 마커를 생성합니다
 		driverMarker = new kakao.maps.Marker({

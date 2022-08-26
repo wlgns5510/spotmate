@@ -85,58 +85,15 @@
 
 		<!-- //header -->
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-
 		<!-- //topNav -->
-		<nav class="myPage_topNav">
-			<div class="box1">
-				<div class="box1_box">
-					<img src="/assets/images/box_user.png">
-				</div>
-				<p>Ryeo-kyoung,kim님</p>
-				<span>Reviews</span><span><img
-					src="/assets/images/ico_star.png">4.3</span>
-			</div>
-			<div class="box2">
-				<p>
-					<a href="./myPointCharge">포인트 충전 ></a>
-				</p>
-				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
-			</div>
-			<div class="box3">
-				<p>
-					<a href="./myCouponMain">쿠폰 사용 ></a>
-				</p>
-				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
-			</div>
-		</nav>
+		<c:import url="/WEB-INF/views/includes/myPageTopNav.jsp"></c:import>
 
 		<!-- //myPage main contents -->
 		<main class="contents">
 
 			<!-- //sideNav  -->
-			<nav class="myPage_sideNav">
-				<h2>마이페이지</h2>
-				<!-- h2? -->
-				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-				</ul>
-			</nav>
-
+			<c:import url="/WEB-INF/views/includes/myPageSideNav.jsp"></c:import>
+			
 			<!-- //section -->
 			<section class="myPage_selection">
 				<!-- //section-header -->
@@ -152,16 +109,20 @@
 
 
 				<article class="myPage_article2">
+				<form method="post"
+							action="${pageContext.request.contextPath }/myQnaInsert">
 					<h4></h4>
 
 
 					<div class="myQnaryeo">
+					
+					
 						<table>
 
 							<tr>
 								<td><label for="type">유형*</label></td>
 								<td><select id="option1" class="form-select"
-									aria-label="Default select example">
+									aria-label="Default select example" name="qna_type">
 										<option value=selected>&nbsp;&nbsp;문의 유형을 선택해주세요</option>
 										<option value="1">카풀 문의</option>
 										<option value="2">히치하이크 문의</option>
@@ -175,23 +136,24 @@
 
 							<tr>
 								<td><label>제목*</label></td>
-								<td><input id="title" placeholder="&nbsp;제목을 작성해주세요"
+								<td><input id="title" name="title" placeholder="&nbsp;제목을 작성해주세요"
 									type="text"></td>
 							</tr>
 							<tr>
 								<td><span>내용*</span></td>
-								<td><textarea placeholder="내용을 입력해주세요"></textarea></td>
+								<td><textarea name="contents" placeholder="내용을 입력해주세요"></textarea></td>
 							</tr>
 							<tr>
 								<td><span>이미지</span></td>
-								<td><input type="file" class="real-upload" accept="image/*" required multiple style="display: none;">
+								<td><input type="file" name="image" class="real-upload" accept="image/*" required multiple style="display: none;">
 									<div type="button" class="imgbox">
-										<img src="/assets/images/myQna_imgfilebox.png" alt="파일 아이콘"class="image"> 
+										<img src="/assets/images/myQna_imgfilebox.png" alt="파일 아이콘" class="image"> 
 										
 									</div>
 									</td>
 							</tr>
 						</table>
+						
 					</div>
 					<div class="QnaWFp_group">
 						<p class=gray_bottomtext>* 30MB이상의 이미지만 업로드 가능합니다.</p>
@@ -201,9 +163,10 @@
 					</div>
 					<br> <br>
 					<div class="underlinegray"></div>
-					<a type="button" href="./myQnaMain" target="self" alt="등록하기"
-						class="DForm_enrollbtn"> <span>등록하기</span></a>
-
+					<!--  <input type="submit" value="등록하기" alt="등록하기"
+						class="DForm_enrollbtn"> -->
+						<input type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
+</form>
 				</article>
 			</section>
 		</main>

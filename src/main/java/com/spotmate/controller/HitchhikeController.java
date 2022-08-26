@@ -1,6 +1,5 @@
 package com.spotmate.controller;
 
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.service.HitchService;
+import com.spotmate.vo.CancelChkVo;
 import com.spotmate.vo.HitchInfoVo;
 import com.spotmate.vo.HitchReservVo;
+import com.spotmate.vo.HitchSearchVo;
 import com.spotmate.vo.HitchVo;
 import com.spotmate.vo.MapVo;
 import com.spotmate.vo.UserVo;
@@ -30,8 +31,12 @@ public class HitchhikeController {
 	private HitchService hService;
 	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
-	public String hitch() {
-		return "/spothitch/spotHitchMain";
+	public String hitch(HttpSession ss) {
+		if (ss.getAttribute("authUser") != null) {
+			return "/spothitch/spotHitchMain";
+		} else {
+			return "redirect:/loginForm";
+		}
 	}
 	
 	@RequestMapping(value="/spotHitchDriver", method={RequestMethod.GET, RequestMethod.POST})
@@ -42,18 +47,52 @@ public class HitchhikeController {
 	}
 	
 	
-//	@ResponseBody
-//	@RequestMapping(value="/search", method= {RequestMethod.GET, RequestMethod.POST})
-//	public List<HitchVo> search (@RequestBody sVo) {
-//		return hService.getsearchList(sVo);
-//	}
-	
-	
 	@ResponseBody
-	@RequestMapping(value="/nearHitchList", method= {RequestMethod.GET, RequestMethod.POST})
-	public List<HitchVo> nearHitchList(@RequestBody MapVo mVo) {
-		return hService.getHitchList(mVo);
+	@RequestMapping(value="/hitchsearch", method= {RequestMethod.GET, RequestMethod.POST})
+	public void search (@RequestBody HitchSearchVo hsVo) {
+		System.out.println(hsVo);
+//		return hService.getsearchList(sVo);
 	}
+	
+	//hitchmain접속 시 주변 5km이내 차량 리스트 보여주는 부분
+		@ResponseBody
+		@RequestMapping(value="/nearHitchList", method= {RequestMethod.GET, RequestMethod.POST})
+		public List<HitchVo> nearHitchList(@RequestBody MapVo mVo, HttpSession ss) {
+			UserVo authUser = (UserVo)ss.getAttribute("authUser");
+			return hService.nearHitchList(mVo, authUser.getNo());
+		}
+	//이동중인 차 위치 확인
+		@ResponseBody
+		@RequestMapping(value="/driverPos", method= {RequestMethod.GET, RequestMethod.POST})
+		public List<HitchVo> userPos(@RequestBody MapVo mVo) {
+			return hService.getNear(mVo);
+		}
+	
+	//신청한게 있나 없나 확인
+	@ResponseBody
+	@RequestMapping(value="/cancelChk", method= {RequestMethod.GET, RequestMethod.POST})
+	public CancelChkVo cancelChk(@RequestBody int mateNo, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		CancelChkVo ccVo = new CancelChkVo();
+		Map<String, Object> map = hService.cancelChk(mateNo, authUser.getNo());
+		try {
+			int people = Integer.parseInt(map.get("PEOPLE").toString());
+			ccVo.setResult(people);
+		} catch (NullPointerException e){
+			ccVo.setResult(-1);
+		}
+		ccVo.setMateNo(mateNo);
+		return ccVo;
+	}
+	
+	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
+	@ResponseBody
+	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
+	public int chkRide(@RequestBody int mateNo, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		return hService.chkRide(mateNo, authUser.getNo());
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value="/updateInfo", method= {RequestMethod.GET, RequestMethod.POST})
@@ -84,12 +123,7 @@ public class HitchhikeController {
 	public int rideReq(@RequestBody HitchReservVo hrVo, HttpSession ss) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		hrVo.setUserNo(authUser.getNo());
-		System.out.println(hrVo.toString());
-		int people = hService.makeReserv(hrVo);
-		if(people == -1) {
-			return -1;
-		}
-		return people;
+		return hService.makeReserv(hrVo);
 	}
 	
 	@ResponseBody
@@ -99,19 +133,11 @@ public class HitchhikeController {
 		return hService.cancelReserv(authUser.getNo(), mateNo);
 	}
 	
+	//Driver 현재 위치및 신청한 유저 위치 받아오는 부분
 	@ResponseBody
 	@RequestMapping(value="/now", method= {RequestMethod.GET, RequestMethod.POST})
-	public HitchReservVo now(@RequestBody MapVo mVo) {
-		LocalTime now = LocalTime.now();
-		System.out.println(now +": "+mVo);
+	public List<HitchReservVo> now(@RequestBody MapVo mVo) {
 		return hService.watchPos(mVo);
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/userPos", method= {RequestMethod.GET, RequestMethod.POST})
-	public List<HitchVo> userPos(@RequestBody MapVo mVo) {
-		LocalTime now = LocalTime.now();
-//		System.out.println(now +": "+mVo);
-		return hService.getNear(mVo);
-	}
 }

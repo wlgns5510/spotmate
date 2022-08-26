@@ -66,55 +66,14 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 
 		<!-- //topNav -->
-		<nav class="myPage_topNav">
-			<div class="box1">
-				<div class="box1_box">
-					<img src="/assets/images/box_user.png">
-				</div>
-				<p>Ryeo-kyoung,kim님</p>
-				<span>Reviews</span><span><img
-					src="/assets/images/ico_star.png">4.3</span>
-			</div>
-			<div class="box2">
-				<p>
-					<a href="./myPointCharge">포인트 충전 ></a>
-				</p>
-				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
-			</div>
-			<div class="box3">
-				<p>
-					<a href="./myCouponMain">쿠폰 사용 ></a>
-				</p>
-				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
-			</div>
-		</nav>
+		<c:import url="/WEB-INF/views/includes/myPageTopNav.jsp"></c:import>
 
 		<!-- //myPage main contents -->
 		<main class="contents">
 
 			<!-- //sideNav  -->
-			<nav class="myPage_sideNav">
-				<h2>마이페이지</h2>
-				<!-- h2? -->
-				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-				</ul>
-			</nav>
+			<c:import url="/WEB-INF/views/includes/myPageSideNav.jsp"></c:import>
+
 			<!-- //section -->
 			<section class="myPage_selection">
 				<!-- //section-header -->
@@ -150,20 +109,18 @@
 								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input name="username" id="username"
-											placeholder="홍길동" type="text"></td>
-
+										<td><input name="username" id="username" placeholder="ex)장원영" type="text"></td>
 									</tr>
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
-										<td><input name="userBD" id="userBD"
-											placeholder="19900805" type="text"></td>
+											<td><input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)2004-08-31"
+											type="text"></td>									
 										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
-										<td><input name="dl" id="dl" placeholder="면허등록번호입력"
+										<td><input name="dl" id="dl" placeholder="ex)111802615510-X61D86"
 											type="text"></td>
 									</tr>
 									<tr align="left">

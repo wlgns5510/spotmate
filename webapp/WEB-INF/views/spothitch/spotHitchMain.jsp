@@ -156,8 +156,25 @@
 				dataType : "json",
 				success : function(result) {
 					for(var i=0;i<result.length;i++) {
-						$("#hitch-list").append('<div class="box-hitch-info" id="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+result[i].mateNo+')" class="carPos" src="/assets/images/ico_spot.png"><div class="btn'+result[i].mateNo+'"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+result[i].mateNo+')" class="rideReq" id="rideReq'+result[i].mateNo+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+result[i].mateNo+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+result[i].mateNo+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"><input type="hidden" id="point'+result[i].mateNo+'" value="'+result[i].point+'"</div></div></div>');
+						var mateNo = result[i].mateNo;
+						$("#hitch-list").append('<div class="box-hitch-info" id="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+result[i].mateNo+')" class="carPos" src="/assets/images/ico_spot.png"><div class="btn'+result[i].mateNo+'"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+result[i].mateNo+')" class="rideReq" id="rideReq'+result[i].mateNo+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+result[i].mateNo+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+result[i].mateNo+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"><input type="hidden" id="point'+result[i].mateNo+'" value="'+result[i].point+'"></div></div></div>');
+						$.ajax({
+							url : "${pageContext.request.contextPath}/cancelChk",
+							type : "post",
+							contentType : "application/json",
+							data : JSON.stringify(result[i].mateNo),
+							dataType : "json",
+							success : function(ccVo) {
+								console.log(ccVo);
+								if(ccVo.result != -1)
+								$(".btn"+ccVo.mateNo).append('<p onclick="cancel('+ccVo.mateNo+')" class="cancel" id="cancel'+ccVo.mateNo+'">취소</p>');
+							},
+							error : function(XHR, status, error) {
+								console.error(status + " : " + error);
+							}
+						});
 					}
+					
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
@@ -195,7 +212,7 @@
 		marker.setMap(map);
 		
 		$.ajax({
-			url : "${pageContext.request.contextPath}/userPos",
+			url : "${pageContext.request.contextPath}/driverPos",
 			type : "post",
 			contentType : "application/json",
 			data : JSON.stringify({
@@ -268,6 +285,21 @@
 											for(var i=0;i<result.length;i++) {
 												if(!$("#box"+result[i].mateNo).hasClass("box-hitch-info")) {
 													$("#hitch-list").prepend('<div class="box-hitch-info" id="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+result[i].mateNo+')" class="carPos" src="/assets/images/ico_spot.png"><div class="btn'+result[i].mateNo+'"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+result[i].mateNo+')" class="rideReq" id="rideReq'+result[i].mateNo+'">탑승 요청</p><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+result[i].mateNo+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+result[i].mateNo+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"></div></div></div>');
+													$.ajax({
+														url : "${pageContext.request.contextPath}/cancelChk",
+														type : "post",
+														contentType : "application/json",
+														data : JSON.stringify(result[i].mateNo),
+														dataType : "json",
+														success : function(ccVo) {
+															console.log(ccVo);
+															if(ccVo.result != -1)
+															$(".btn"+ccVo.mateNo).append('<p onclick="cancel('+ccVo.mateNo+')" class="cancel" id="cancel'+ccVo.mateNo+'">취소</p>');
+														},
+														error : function(XHR, status, error) {
+															console.error(status + " : " + error);
+														}
+													});
 													markers[i].setMap(map);
 												}
 											}
@@ -305,7 +337,7 @@
 						    removable : true
 						});
 					kakao.maps.event.addListener(markers[i], 'click', clickMarker(map, markers[i], infowindows[i]));
-// 					map.setCenter(locPosition);					
+// 					map.setCenter(locPosition);
 					
 				}
 			},
@@ -323,15 +355,34 @@
 	}
 	
 	function rideReq(index) {
+		var chk = 0;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/chkRide",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(index),
+			dataType : "json",
+			async : false,
+			success : function(result) {
+				if (result == 1) {
+					chk = 1
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 		if ( $(".people").val() == '' ) {
 			alert("인원 수를 지정한 다음 시도해주세요")
+			return;
+		} else if(chk == 1) {
+			alert("이미 신청 하셨습니다")
 			return;
 		}
 		var hrVo = {};
 		hrVo.mateNo = $("#hitch"+index).val();
 		hrVo.people = $(".people").val();
 		hrVo.canRide = $("#canRide"+index).val();
-		console.log($("#point"+index).val());
 		hrVo.point = $("#point"+index).val();
 		navigator.geolocation.getCurrentPosition(function(position) {
 			lat = position.coords.latitude, // 위도
@@ -346,7 +397,6 @@
 			data : JSON.stringify(hrVo),
 			dataType : "json",
 			success : function(result) {
-				console.log(result);
 				if (result != -1) {
 					$("#canRide"+index).val(result);
 					$("#people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
@@ -383,10 +433,9 @@
 	
 	function carPos(index) {
 		var mateNo = $("#hitch"+index).val(),
-			Strlatlng = $("#latlng"+mateNo).val()
+			Strlatlng = $("#latlng"+mateNo).val().replace("(", "").replace(")", "")
 			latlngList = Strlatlng.split(",");
 		var	latlng = new kakao.maps.LatLng(latlngList[0], latlngList[1]);
-		console.log(latlng);
 		map.setCenter(latlng);
 	}
 	
@@ -400,7 +449,7 @@
 				people: people
 		};
 		$.ajax({
-			url : "${pageContext.request.contextPath}/search",
+			url : "${pageContext.request.contextPath}/hitchsearch",
 			type : "post",
 			contentType : "application/json",
 			data : JSON.stringify(searchVo),

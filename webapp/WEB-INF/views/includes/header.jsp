@@ -46,7 +46,7 @@
                         <ul>
                             <li><a href="javascript:void(0);">NOTICE</a></li>
                             <li><a href="javascript:void(0);">FAQ</a></li>
-                            <li><a href="javascript:void(0);">EVENT</a></li>
+                            <li><a href="/event">EVENT</a></li>
                         </ul>
                     </div>
                 </li>
