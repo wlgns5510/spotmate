@@ -196,7 +196,6 @@ font-size : 32px;
 .review_box{display:block; position:relative;}
 .review_box .review_top{display:block; position:relative;}
 .review_box .review_top .writer_img{display:inline-block; position:relative; vertical-align:middle; width:70px; height:70px; border-radius:70px; background:#999;}
-.review_box .review_top .writer_img img{}
 .review_box .review_top .writer_info{display:inline-block; position:relative; vertical-align:middle; padding-left:10px; box-sizing:border-box;}
 .review_box .review_top .writer_info .name{display:block; position:relative; text-align:left; color:#1e1e1e; font-size:16px; font-weight:600; letter-spacing:-0.25px; line-height:20px;}
 .review_box .review_top .writer_info .date{display:block; position:relative; margin-top:5px; text-align:left; color:#1e1e1e; font-size:14px; font-weight:400; letter-spacing:-0.25px; line-height:20px;}
