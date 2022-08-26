@@ -15,6 +15,10 @@ public class CommunityController {
       return "/community/event";
    }
    
+   @RequestMapping(value = "/faq", method = { RequestMethod.GET, RequestMethod.POST })
+   public String faq() {
+      return "/community/faq";
+   }
    
 
 }
