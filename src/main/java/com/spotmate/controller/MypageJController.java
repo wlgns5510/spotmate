@@ -175,9 +175,15 @@ public class MypageJController {
 
 	// 포인트충전폼
 	@RequestMapping(value = "/myPointCharge", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointCharge() {
+	public String myPointCharge(HttpSession session) {
 		System.out.println("MypageJController > myPointCharge");
-
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		return "/mypage/myPointCharge";
 	}
 
