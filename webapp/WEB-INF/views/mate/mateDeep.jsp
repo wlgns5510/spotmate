@@ -336,7 +336,7 @@
 				</div>
 				<div class="mateDeep_recommendBox clear">
 					<img class="mateDeep_img1" src="/assets/images/ico_spot.png">
-					<span class="mateDeep_placeAround" id="mateDeep_placeAround"></span> 
+					<span class="mateDeep_placeAround" id="mateDeep_placeAround">이동 스케줄에서 스팟을 선택해주세요</span> 
 					
 				</div>
 				
