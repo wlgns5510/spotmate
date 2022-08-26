@@ -695,6 +695,9 @@
 	border-radius: 6px;
 	margin: 10px 10px 10px 50px;
 }
+.join_call input{
+	margin-left:82px;
+}
 
 .DL_info .dltable{
 	display:table;

@@ -131,7 +131,7 @@
 
 								<h5>면허증 정보 입력*</h5>
 								<!-- Driver License -->
-								<table>
+								<table class="join_call">
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
 										<td><input value="${dlvo.username}" name="username"
@@ -143,17 +143,18 @@
 										<td><input value="${dlvo.userBD}" name="userBD"
 											id="userBD" placeholder="ex)2004-0831" type="text"></td>
 										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
-									</tr>
-									
+										</tr>
+									</table>
+									<table>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
 										<td>
 											<div class="join_dl">
 												<div class="dltable">
 
-													<div class="dl_wrap1">
+													<div class="dl_wrap1" style="width:490px">
 														<span class="dl_box"> <input name="dl" id="dl_1"
-															placeholder="ex)11" type="text">
+															placeholder="ex)11" type="text" style="margin-right: 0px;width: 80px;">
 														</span> <span class="dl_box"> <input name="dl" id="dl"
 															placeholder="ex)18" type="text">
 														</span> <span class="dl_box"> <input name="dl" id="dl"
@@ -162,11 +163,11 @@
 															placeholder="ex)10" type="text">
 														</span> <span class="dl_box"> <input type="text" id="dl"
 															placeholder="ex)X61D86" name="dl"></span>
-													</div>
 												</div>
 												<span class="error_next_box" id="dlMsg"
 													aria-live="assertive" style="display: none;">면허등록번호를
 													정확하게 입력하세요.</span>
+											</div>
 											</div>
 										</td>
 									</tr>
