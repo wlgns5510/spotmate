@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spotmate.dao.MateDao;
+import com.spotmate.vo.CarpoolVo;
 import com.spotmate.vo.MateVo;
 
 @Service
@@ -22,16 +23,7 @@ public class MateService {
 		List<MateVo> mateList = mateDao.getMateList();
 		
 		return mateList;
-	}	
-	
-	//메이트 리스트 가져오기(장소)
-	public List<MateVo> getMatePlaceList() {
-		System.out.println("MateService >> getMatePlaceList");
-		
-		List<MateVo> matePlaceList = mateDao.getMatePlaceList();
-		
-		return matePlaceList;
-	}
+	}		
 	
 	//해당 메이트에 관한 정보
 	public MateVo deepMateRead(int no) {
@@ -61,6 +53,12 @@ public class MateService {
 		return mateDao.deepDetailRead(no);
 	}
 	
+	//해당 메이트의 운전자의 별점리스트+별점의 평균
+	public List<CarpoolVo> deepReviewList(int no) {
+		System.out.println("MateService >> deepReviewList");
+		
+		return mateDao.deepReviewList(no);
+	}
 	
 	
 	
