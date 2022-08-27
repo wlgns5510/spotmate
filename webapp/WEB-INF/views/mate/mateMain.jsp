@@ -49,6 +49,8 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
+	
+	
 	<title>mateMain</title>
 	
 </head>
@@ -112,16 +114,20 @@
 		</div>
 		
 		<div class="mateListAll clear">
-		
+			
 			<c:forEach items="${mateList}" var="mateList" varStatus="status">
 				<div class=mateList>
 				<a href="/mateDeep/${mateList.mateNo}">
-					<img src="/assets/images/road1.jpg" class="matePicture">												
+						
+						<img src="/assets/images/mate_imgbox/${randomNumList[status.index]}.png" class="matePicture">
+						
+					
+																	
 				</a><br>
 					<span class="driverName">Driver ${mateList.name}</span>
 					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
 					<span class="startEnd">
-						${matePlaceList[status.index].sPlace} → ${matePlaceList[status.index].ePlace}
+						${mateList.sPlace} → ${mateList.ePlace}
 					</span>
 					<div class="mateMain_listBox">
 						<img src="/assets/images/car icon.png">
@@ -139,6 +145,7 @@
 		<button class="mateListBtn">
 				<h2>더보기</h2>
 		</button>
+		
 		
 		
 		<!-- 예시 -->
@@ -349,6 +356,7 @@ $(document).ready(function(){
 			}
 	});
 });
+
 
 </script>
 </html>
