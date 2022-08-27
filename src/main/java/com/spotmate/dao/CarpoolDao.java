@@ -1,6 +1,7 @@
 package com.spotmate.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,11 +73,21 @@ public class CarpoolDao {
 	
 	public void saveCarpool(CarpoolVo carpoolVo) {
 		System.out.println("CarpoolDao> saveCarpool()");
-
+		
 		int count = sqlSession.insert("carpool.insertUserCarpoolInfo", carpoolVo);
 
 		System.out.println(count);
 
+	}
+	
+	public int chkPeople(int mateNo) {
+		System.out.println("CarpoolDao> chkPeople()");
+		
+		return sqlSession.selectOne("carpool.chkpeople", mateNo);
+	}
+	
+	public void updateReservPeople(Map<String, Object> map) {
+		sqlSession.update("carpool.updatereservpeople", map);
 	}
 
 }

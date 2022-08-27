@@ -92,7 +92,7 @@ public class CarpoolService {
 
 	// 드라이버 차량 정보 가져오기
 	
-	public Map<String, Object> read(int no) {
+	public Map<String, Object> read(int no, CarpoolVo carpoolVo) {
 		System.out.println("CarpoolService>read()");
 
 		// 기본정보
@@ -107,11 +107,9 @@ public class CarpoolService {
 		//List<CarpoolVo> reviewList = carpoolDao.getreviewList();
 
 		// Deep 차량 추천 리스트 박스
-		CarpoolVo carPoolVo = new CarpoolVo();
-		carPoolVo.setStartRnum(1);
-		carPoolVo.setEndRnum(4);
-
-		List<CarpoolVo> recommendList = carpoolDao.getCarpoolList(carPoolVo);
+		carpoolVo.setStartRnum(1);
+		carpoolVo.setEndRnum(4);
+		List<CarpoolVo> recommendList = carpoolDao.getCarpoolList(carpoolVo);
 
 		Map<String, Object> driverMap = new HashMap<String, Object>();
 		driverMap.put("cVo", cVo);
@@ -127,14 +125,25 @@ public class CarpoolService {
 	}
 
 	// user예약내역 DB 저장
-	public void saveCarpool(int userNo) {
+	public int saveCarpool(int userNo, CarpoolVo carpoolVo) {
 		System.out.println("CarpoolService > saveCarpool");
-
-		CarpoolVo carpoolVo = new CarpoolVo();
 
 		carpoolVo.setUserNo(userNo);
 
 		carpoolDao.saveCarpool(carpoolVo);
+		int mateNo = carpoolVo.getSpotMateNo();
+		int people = carpoolVo.getPeople();
+		int canRide = carpoolDao.chkPeople(mateNo);
+		if(canRide >= people) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("people", people);
+			map.put("mateNo", mateNo);
+			carpoolDao.updateReservPeople(map);
+			return 0;
+		} else {
+			return -1;
+		}
+		
 	}
 
 }
