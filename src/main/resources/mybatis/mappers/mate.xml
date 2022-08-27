@@ -163,6 +163,23 @@
 		]]>
 	</select>
 	
+	<!-- 해당 메이트 운전자의 별점 평균 -->
+	<select id="deepReviewAvg" resultType="CarpoolVo" parameterType="int">
+		<![CDATA[
+				select round(avg(star),1) avgStar 
+		         from users u, car c, reservation r, userReview w, spotmate sm
+		         where u.no = c.userNo
+		         and c.no = sm.carNo
+		         and sm.no = r.mateNo
+		         and u.no = r.driverNo
+		         and r.no = w.resvNo
+		         and u.no = (select ca.userNo
+		                     from spotMate sm, car ca
+		                     where sm.carNo = ca.no
+		                     and sm.no = 1)
+		]]>
+	</select>
+	
 </mapper>
 
 

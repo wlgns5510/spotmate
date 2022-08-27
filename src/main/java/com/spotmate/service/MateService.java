@@ -53,13 +53,19 @@ public class MateService {
 		return mateDao.deepDetailRead(no);
 	}
 	
-	//해당 메이트의 운전자의 별점리스트+별점의 평균
+	//해당 메이트의 운전자의 별점리스트
 	public List<CarpoolVo> deepReviewList(int no) {
 		System.out.println("MateService >> deepReviewList");
 		
 		return mateDao.deepReviewList(no);
 	}
 	
+	//해당 메이트 운전자의 별점 평균
+	public CarpoolVo deepReviewAvg(int no) {
+		System.out.println("MateService >> deepReviewAvg");
+		
+		return mateDao.deepReviewAvg(no);
+	}
 	
 	
 
