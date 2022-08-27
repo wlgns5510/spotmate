@@ -17,10 +17,10 @@ public class MateService {
 	
 	
 	//메이트 리스트 가져오기
-	public List<MateVo> getMateList() {
+	public List<MateVo> getMateList(MateVo mateVo) {
 		System.out.println("MateService >> getMateList");
 		
-		List<MateVo> mateList = mateDao.getMateList();
+		List<MateVo> mateList = mateDao.getMateList(mateVo);
 		
 		return mateList;
 	}		
@@ -53,13 +53,19 @@ public class MateService {
 		return mateDao.deepDetailRead(no);
 	}
 	
-	//해당 메이트의 운전자의 별점리스트+별점의 평균
+	//해당 메이트의 운전자의 별점리스트
 	public List<CarpoolVo> deepReviewList(int no) {
 		System.out.println("MateService >> deepReviewList");
 		
 		return mateDao.deepReviewList(no);
 	}
 	
+	//해당 메이트 운전자의 별점 평균
+	public CarpoolVo deepReviewAvg(int no) {
+		System.out.println("MateService >> deepReviewAvg");
+		
+		return mateDao.deepReviewAvg(no);
+	}
 	
 	
 

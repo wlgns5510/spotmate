@@ -4,7 +4,7 @@
 <mapper namespace="mate">
 
 	<!-- mateList 가져오기 -->	
-	<select id="selectMateList" resultType="MateVo">
+	<select id="selectMateList" resultType="MateVo" parameterType="mateVo">
 		<![CDATA[
 				 select  u.name,
 				         c.carName,
@@ -15,14 +15,16 @@
 				         s.no mateNo,
 				         to_char(s.startDate,'mm.dd') startDate,
 				         to_char(s.endDate, 'mm.dd') endDate,
+				         to_char(s.startDate, 'yyyy-mm-dd') sDate,
+        				 to_char(s.endDate, 'yyyy-mm-dd') eDate,
 				         s.people,
 				         s.type,
 				         s.point,
 				         s.duration,
 				         s.distance,
 				         s.comments,
-				         p.splace,
-				         p.eplace
+				         p.sPlace,
+				         p.ePlace
 				 from users u,
 				      car c,
 				      spotmate s,
@@ -41,8 +43,29 @@
 			 	 and   c.no = s.carNo
 			 	 and p.mateNo = s.no
 			 	 and s.type = 'mate'
-			 	 order by startdate asc
+			 	 
 		]]>
+		<if test="ePlace != ''  and  ePlace != null ">
+			and p.ePlace like '%'||#{ePlace}||'%'
+		</if>
+		
+		<if test="sDate != ''  and  sDate != null ">
+			and to_char(s.startDate, 'yyyy-mm-dd') = #{sDate}
+		</if>
+		
+		<if test="eDate != ''  and  eDate != null ">
+			and to_char(s.endDate, 'yyyy-mm-dd') = #{eDate}
+		</if>
+		
+		<if test="smPeople != ''  and  smPeople != null ">
+			and s.people = #{smPeople}
+		</if>
+		
+		
+		<![CDATA[
+			order by startDate asc
+		]]>
+		
 	</select>
 	
 
@@ -103,7 +126,7 @@
 		]]>
 	</select>
 	
-	<!-- 해당 메이트의 출발지, 경유지, 도착지정보 -->
+	<!-- 해당메이트가 선택한 조건 -->
 	<select id="deepDetailRead" resultType="MateVo" parameterType="int">
 		<![CDATA[
 				select d.no mateOptionNo,
@@ -137,6 +160,23 @@
 			where d.driverNo = i.driverNo
 			and d.no = s.resvno
 			and r.no = s.resvno
+		]]>
+	</select>
+	
+	<!-- 해당 메이트 운전자의 별점 평균 -->
+	<select id="deepReviewAvg" resultType="CarpoolVo" parameterType="int">
+		<![CDATA[
+				select round(avg(star),1) avgStar 
+		         from users u, car c, reservation r, userReview w, spotmate sm
+		         where u.no = c.userNo
+		         and c.no = sm.carNo
+		         and sm.no = r.mateNo
+		         and u.no = r.driverNo
+		         and r.no = w.resvNo
+		         and u.no = (select ca.userNo
+		                     from spotMate sm, car ca
+		                     where sm.carNo = ca.no
+		                     and sm.no = 1)
 		]]>
 	</select>
 	

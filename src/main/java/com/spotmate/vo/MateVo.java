@@ -1,7 +1,7 @@
 package com.spotmate.vo;
 
 public class MateVo {
-	//필드
+	
 	private String id;
 	private String name;
 	private String carPicture;
@@ -9,7 +9,7 @@ public class MateVo {
 	private String carNo;
 	private String introduce;
 	private String startDate;
-	private String endDate;
+	private String endDate;	
 	private int people;
 	private String type;
 	private int point;
@@ -32,15 +32,24 @@ public class MateVo {
 	private String sPlace;
 	private String ePlace;
 	private int allDay;
-	
+	private String sDate;
+	private String eDate;
+	private Integer smPeople;
 
-	//생성자
+	
 	public MateVo() {}
+	public MateVo(double lat, double lng) {
+		super();
+		this.lat = lat;
+		this.lng = lng;
+	}
+
+
 	public MateVo(String id, String name, String carPicture, String carName, String carNo, String introduce,
 			String startDate, String endDate, int people, String type, int point, String duration, String distance,
 			String comments, int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day,
 			int wayNo, String sepplace, String time, String place, double lat, double lng, double latlng, String sPlace,
-			String ePlace, int allDay) {
+			String ePlace, int allDay, String sDate, String eDate, Integer smPeople) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -72,21 +81,17 @@ public class MateVo {
 		this.sPlace = sPlace;
 		this.ePlace = ePlace;
 		this.allDay = allDay;
+		this.sDate = sDate;
+		this.eDate = eDate;
+		this.smPeople = smPeople;
 	}
 	
-	
-	public MateVo(double lat, double lng) {
-		super();
-		this.lat = lat;
-		this.lng = lng;
+	public Integer getSmPeople() {
+		return smPeople;
 	}
-	
-	//메소드 gs
-	
-	public String getName() {
-		return name;
+	public void setSmPeople(Integer smPeople) {
+		this.smPeople = smPeople;
 	}
-
 	public String getId() {
 		return id;
 	}
@@ -97,10 +102,14 @@ public class MateVo {
 	}
 
 
+	public String getName() {
+		return name;
+	}
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 
 	public String getCarPicture() {
@@ -108,11 +117,9 @@ public class MateVo {
 	}
 
 
-
 	public void setCarPicture(String carPicture) {
 		this.carPicture = carPicture;
 	}
-
 
 
 	public String getCarName() {
@@ -120,11 +127,9 @@ public class MateVo {
 	}
 
 
-
 	public void setCarName(String carName) {
 		this.carName = carName;
 	}
-
 
 
 	public String getCarNo() {
@@ -132,11 +137,9 @@ public class MateVo {
 	}
 
 
-
 	public void setCarNo(String carNo) {
 		this.carNo = carNo;
 	}
-
 
 
 	public String getIntroduce() {
@@ -144,11 +147,9 @@ public class MateVo {
 	}
 
 
-
 	public void setIntroduce(String introduce) {
 		this.introduce = introduce;
 	}
-
 
 
 	public String getStartDate() {
@@ -156,11 +157,9 @@ public class MateVo {
 	}
 
 
-
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-
 
 
 	public String getEndDate() {
@@ -168,11 +167,9 @@ public class MateVo {
 	}
 
 
-
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-
 
 
 	public int getPeople() {
@@ -180,11 +177,9 @@ public class MateVo {
 	}
 
 
-
 	public void setPeople(int people) {
 		this.people = people;
 	}
-
 
 
 	public String getType() {
@@ -192,11 +187,9 @@ public class MateVo {
 	}
 
 
-
 	public void setType(String type) {
 		this.type = type;
 	}
-
 
 
 	public int getPoint() {
@@ -204,11 +197,9 @@ public class MateVo {
 	}
 
 
-
 	public void setPoint(int point) {
 		this.point = point;
 	}
-
 
 
 	public String getDuration() {
@@ -216,11 +207,9 @@ public class MateVo {
 	}
 
 
-
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-
 
 
 	public String getDistance() {
@@ -228,11 +217,9 @@ public class MateVo {
 	}
 
 
-
 	public void setDistance(String distance) {
 		this.distance = distance;
 	}
-
 
 
 	public String getComments() {
@@ -240,11 +227,9 @@ public class MateVo {
 	}
 
 
-
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-
 
 
 	public int getMateNo() {
@@ -252,11 +237,9 @@ public class MateVo {
 	}
 
 
-
 	public void setMateNo(int mateNo) {
 		this.mateNo = mateNo;
 	}
-
 
 
 	public String getOptionName() {
@@ -264,11 +247,9 @@ public class MateVo {
 	}
 
 
-
 	public void setOptionName(String optionName) {
 		this.optionName = optionName;
 	}
-
 
 
 	public int getMateOptionNo() {
@@ -276,11 +257,9 @@ public class MateVo {
 	}
 
 
-
 	public void setMateOptionNo(int mateOptionNo) {
 		this.mateOptionNo = mateOptionNo;
 	}
-
 
 
 	public int getOptionNo() {
@@ -288,11 +267,9 @@ public class MateVo {
 	}
 
 
-
 	public void setOptionNo(int optionNo) {
 		this.optionNo = optionNo;
 	}
-
 
 
 	public String getMatePlaceNo() {
@@ -300,11 +277,9 @@ public class MateVo {
 	}
 
 
-
 	public void setMatePlaceNo(String matePlaceNo) {
 		this.matePlaceNo = matePlaceNo;
 	}
-
 
 
 	public int getDay() {
@@ -312,11 +287,9 @@ public class MateVo {
 	}
 
 
-
 	public void setDay(int day) {
 		this.day = day;
 	}
-
 
 
 	public int getWayNo() {
@@ -324,11 +297,9 @@ public class MateVo {
 	}
 
 
-
 	public void setWayNo(int wayNo) {
 		this.wayNo = wayNo;
 	}
-
 
 
 	public String getSepplace() {
@@ -336,11 +307,9 @@ public class MateVo {
 	}
 
 
-
 	public void setSepplace(String sepplace) {
 		this.sepplace = sepplace;
 	}
-
 
 
 	public String getTime() {
@@ -348,11 +317,9 @@ public class MateVo {
 	}
 
 
-
 	public void setTime(String time) {
 		this.time = time;
 	}
-
 
 
 	public String getPlace() {
@@ -360,11 +327,9 @@ public class MateVo {
 	}
 
 
-
 	public void setPlace(String place) {
 		this.place = place;
 	}
-
 
 
 	public double getLat() {
@@ -372,11 +337,9 @@ public class MateVo {
 	}
 
 
-
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
-
 
 
 	public double getLng() {
@@ -384,11 +347,9 @@ public class MateVo {
 	}
 
 
-
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
-
 
 
 	public double getLatlng() {
@@ -396,11 +357,9 @@ public class MateVo {
 	}
 
 
-
 	public void setLatlng(double latlng) {
 		this.latlng = latlng;
 	}
-
 
 
 	public String getsPlace() {
@@ -408,11 +367,9 @@ public class MateVo {
 	}
 
 
-
 	public void setsPlace(String sPlace) {
 		this.sPlace = sPlace;
 	}
-
 
 
 	public String getePlace() {
@@ -420,11 +377,9 @@ public class MateVo {
 	}
 
 
-
 	public void setePlace(String ePlace) {
 		this.ePlace = ePlace;
 	}
-
 
 
 	public int getAllDay() {
@@ -432,15 +387,30 @@ public class MateVo {
 	}
 
 
-
 	public void setAllDay(int allDay) {
 		this.allDay = allDay;
 	}
 
 
-	
+	public String getsDate() {
+		return sDate;
+	}
 
-	//메소드일반
+
+	public void setsDate(String sDate) {
+		this.sDate = sDate;
+	}
+
+
+	public String geteDate() {
+		return eDate;
+	}
+
+
+	public void seteDate(String eDate) {
+		this.eDate = eDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "MateVo [id=" + id + ", name=" + name + ", carPicture=" + carPicture + ", carName=" + carName
@@ -450,6 +420,16 @@ public class MateVo {
 				+ optionName + ", mateOptionNo=" + mateOptionNo + ", optionNo=" + optionNo + ", matePlaceNo="
 				+ matePlaceNo + ", day=" + day + ", wayNo=" + wayNo + ", sepplace=" + sepplace + ", time=" + time
 				+ ", place=" + place + ", lat=" + lat + ", lng=" + lng + ", latlng=" + latlng + ", sPlace=" + sPlace
-				+ ", ePlace=" + ePlace + ", allDay=" + allDay + "]";
+				+ ", ePlace=" + ePlace + ", allDay=" + allDay + ", sDate=" + sDate + ", eDate=" + eDate + ", smPeople="
+				+ smPeople + "]";
 	}
+
+
+	
+	
+	
+	
+	
+
+	
 }
