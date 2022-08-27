@@ -65,6 +65,7 @@ public class CarpoolController {
 	
 	
 	//user 예약내역 DB 저장
+	
 	@RequestMapping(value = "/saveCarpool", method = { RequestMethod.GET, RequestMethod.POST })
 	public String saveCarpool (@ModelAttribute CarpoolVo carpoolVo, HttpSession session) {
 		

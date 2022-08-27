@@ -58,17 +58,8 @@ public class CarpoolDao {
 		List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewList", no);
 		return reviewList;
 	}
-	/*
-	// 리뷰 배너 
-	public List<CarpoolVo> getreviewList() {
-		System.out.println("CarpoolDao>reviewlist()");
-
-		List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewList");
-
-		return reviewList;
-	}*/
 	
-
+	
 	// user예약내역 DB 저장
 	
 	public void saveCarpool(CarpoolVo carpoolVo) {
