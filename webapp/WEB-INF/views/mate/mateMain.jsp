@@ -80,17 +80,17 @@
 						
 						<div class="sel2">
 							<label for="CheckIn" class="CheckInLabel">Check In</label><br>
-							<input type="date" id="CheckIn" <%-- name="sDate" value="${param.sDate} --%>" placeholder="Add Dates">
+							<input type="date" id="CheckIn" name="sDate" value="${param.sDate}" placeholder="Add Dates">
 						</div>
 						
 						<div class="sel3">
 							<label for="CheckOut" class="CheckOutLabel">Check Out</label><br>
-							<input type="date" id="CheckOut" <%-- name="eDate" value="${param.eDate --%>}" placeholder="Add Dates">
+							<input type="date" id="CheckOut" name="eDate" value="${param.eDate}" placeholder="Add Dates">
 						</div>
 						
 						<div class="sel4">
-							<label for="People" class="PeopleLabel">People</label><br>
-							<input type="text" id="People" <%-- name="people" value="${param.people} --%>" placeholder="Add Guests">
+							<label for="PeopleN" class="PeopleLabel">People</label><br>
+							<input type="number" id="PeopleN" name="smPeople" value="${param.smPeople}" placeholder="Add Guests">
 						</div>
 					</div>
 					
@@ -120,13 +120,9 @@
 			
 			<c:forEach items="${mateList}" var="mateList" varStatus="status">
 				<div class=mateList>
-				<a href="/mateDeep/${mateList.mateNo}">
-						
-						<img src="/assets/images/mate_imgbox/${randomNumList[status.index]}.png" class="matePicture">
-						
-					
-																	
-				</a><br>
+					<a href="/mateDeep/${mateList.mateNo}">						
+						<img src="/assets/images/mate_imgbox/${randomNumList[status.index]}.png" class="matePicture">																										
+					</a><br>
 					<span class="driverName">Driver ${mateList.name}</span>
 					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
 					<span class="startEnd">
@@ -134,10 +130,7 @@
 					</span>
 					<div class="mateMain_listBox">
 						<img src="/assets/images/car icon.png">
-						<span class="seatNo">${mateList.people}</span>
-						
-						
-						
+						<span class="seatNo">${mateList.people}</span>																		
 					</div>
 							
 				</div>	

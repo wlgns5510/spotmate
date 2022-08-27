@@ -49,8 +49,21 @@
 			and p.ePlace like '%'||#{ePlace}||'%'
 		</if>
 		
+		<if test="sDate != ''  and  sDate != null ">
+			and to_char(s.startDate, 'yyyy-mm-dd') = #{sDate}
+		</if>
+		
+		<if test="eDate != ''  and  eDate != null ">
+			and to_char(s.endDate, 'yyyy-mm-dd') = #{eDate}
+		</if>
+		
+		<if test="smPeople != ''  and  smPeople != null ">
+			and s.people = #{smPeople}
+		</if>
+		
+		
 		<![CDATA[
-				order by startDate asc
+			order by startDate asc
 		]]>
 		
 	</select>

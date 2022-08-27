@@ -34,6 +34,7 @@ public class MateVo {
 	private int allDay;
 	private String sDate;
 	private String eDate;
+	private Integer smPeople;
 
 	
 	public MateVo() {}
@@ -48,7 +49,7 @@ public class MateVo {
 			String startDate, String endDate, int people, String type, int point, String duration, String distance,
 			String comments, int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day,
 			int wayNo, String sepplace, String time, String place, double lat, double lng, double latlng, String sPlace,
-			String ePlace, int allDay, String sDate, String eDate) {
+			String ePlace, int allDay, String sDate, String eDate, Integer smPeople) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -82,9 +83,15 @@ public class MateVo {
 		this.allDay = allDay;
 		this.sDate = sDate;
 		this.eDate = eDate;
+		this.smPeople = smPeople;
 	}
-
-
+	
+	public Integer getSmPeople() {
+		return smPeople;
+	}
+	public void setSmPeople(Integer smPeople) {
+		this.smPeople = smPeople;
+	}
 	public String getId() {
 		return id;
 	}
@@ -403,8 +410,7 @@ public class MateVo {
 	public void seteDate(String eDate) {
 		this.eDate = eDate;
 	}
-
-
+	
 	@Override
 	public String toString() {
 		return "MateVo [id=" + id + ", name=" + name + ", carPicture=" + carPicture + ", carName=" + carName
@@ -414,8 +420,12 @@ public class MateVo {
 				+ optionName + ", mateOptionNo=" + mateOptionNo + ", optionNo=" + optionNo + ", matePlaceNo="
 				+ matePlaceNo + ", day=" + day + ", wayNo=" + wayNo + ", sepplace=" + sepplace + ", time=" + time
 				+ ", place=" + place + ", lat=" + lat + ", lng=" + lng + ", latlng=" + latlng + ", sPlace=" + sPlace
-				+ ", ePlace=" + ePlace + ", allDay=" + allDay + ", sDate=" + sDate + ", eDate=" + eDate + "]";
+				+ ", ePlace=" + ePlace + ", allDay=" + allDay + ", sDate=" + sDate + ", eDate=" + eDate + ", smPeople="
+				+ smPeople + "]";
 	}
+
+
+	
 	
 	
 	
