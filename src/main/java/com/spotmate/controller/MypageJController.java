@@ -245,7 +245,14 @@ public class MypageJController {
 
 	// 포인트환불폼
 	@RequestMapping(value = "/myPointRefundForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointRefundForm() {
+	public String myPointRefundForm(HttpSession session) {
+		
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		
+		if (authUser == null) {
+			return "redirect:/loginForm";
+		}
+		
 		return "/mypage/myPointRefundForm";
 	}
 
