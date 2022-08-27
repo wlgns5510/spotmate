@@ -48,6 +48,9 @@
 <script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 
+<!-- 다음주소 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <title>myInfoForm</title>
 
 </head>
@@ -106,8 +109,8 @@
 
 						<!-- 주소 -->
 						<div class="join_group">
-							<label class="" for="">주소*</label> <input type="text" id="join_address" name="address" value="${userVo.address }">
-							<button type="button" id="address_check" onclick="location.href='javascript:void(0);' ">주소 검색</button>
+							<label class="" for="">주소*</label> <input type="text" id="info_address" name="address" value="${userVo.address }">
+							<button type="button" id="address_check" >주소 검색</button>
 						</div>
 
 						<!-- 성별 -->
@@ -120,9 +123,9 @@
 								<label class="jointext" for="">여자</label>
 							</c:if>
 							<c:if test="${userVo.gender == 'female'}">
-								<input type="radio" id="join_male"  name="gender" value="male">
+								<input type="radio" id="join_male" name="gender" value="male">
 								<label class="jointext" for="">남자</label>
-								<input type="radio" id="join_female"  checked="checked" name="gender" value="female">
+								<input type="radio" id="join_female" checked="checked" name="gender" value="female">
 								<label class="jointext" for="">여자</label>
 							</c:if>
 						</div>
@@ -150,4 +153,16 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+window.onload = function(){
+    document.getElementById("address_check").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("info_address").value = data.address; // 주소 넣기
+            }
+        }).open();
+    });
+}
+</script>
+
 </html>
