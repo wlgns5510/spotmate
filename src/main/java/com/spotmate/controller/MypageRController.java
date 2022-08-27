@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.function.CarOwner;
@@ -31,7 +32,7 @@ public class MypageRController {
 	private DriverLicenseService dls;
 	private UserVo uVo;
 
-	@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
+	/*@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverForm(Model model, HttpSession ss) {
 		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -97,7 +98,7 @@ public class MypageRController {
 		dls.myDriverRegister(dlvo);
 		System.out.println("==========");
 		return "/mypage/myDriverMain2";*/
-		System.out.println("MypageRController>modify()");
+		/*System.out.println("MypageRController>modify()");
 
 		System.out.println(dlvo.toString());
 		
@@ -111,13 +112,28 @@ public class MypageRController {
 		dls.carInfoModify(dlvo);
 		
 		return "redirect:/myDriverMain2";
+	}*/
+	
+	//사진첨부 
+	@RequestMapping(value = "/fileupload/form", method = { RequestMethod.GET, RequestMethod.POST })
+	public String form() {   
+		//System.out.println("FileController>form()");
+		
+		return "fileupload/form";
 	}
 	
+	@RequestMapping(value = "/fileupload/upload", method = { RequestMethod.GET, RequestMethod.POST })
+	public String upload(@RequestParam(value="c_file") String c_file) {
+		System.out.println("FileController>upload()");
+		System.out.println("c_file");
+		
+		return"";
+	}
+		
 	
 	
 	
-	
-	//수정폼
+	/*//수정폼
 	@RequestMapping(value = "/myDriverMain2", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverMain2(Model model, HttpSession ss) {   //왜 model을 쓰는가...? 
 		//System.out.println("MypageRController>myDriverMain2()");
@@ -208,7 +224,7 @@ public class MypageRController {
 	public String myUsageUserMain() {
 		return "/mypage/myUsageUserMain";
 	}
-
+*/
 	
 
 }
