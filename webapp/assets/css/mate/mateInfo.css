@@ -54,7 +54,7 @@
 .mateInfo_content .picture1 {
   width: 710px;
   height: 760px;
-  background: url("/assets/images/common/hover.png");
+  background: url("/assets/images/mate_imgbox/mate_main1.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -144,7 +144,7 @@
 .mateInfo_content .picture2 {
   width: 710px;
   height: 546px;
-  background: url("/assets/images/common/hover.png");
+  background: url("/assets/images/mate_imgbox/mate_main2.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

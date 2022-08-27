@@ -431,25 +431,53 @@
 						</c:forEach>
 					</table>
 				</div>
-				
-				<p class="review">Reviews ★ ${cVoMap.cVo.avgStar}</p>
-
-
-
-
-
-
-
-
-
-			</div>
+				<p class="review">Reviews ★ ${reviewAvg.avgStar}</p>											
 		</div>
-		<!-- //mateDeep_content -->
+		<!-- //mateDeep_content -->						
+	</div>
+	<!-- //inner -->
+	
+	<!-- mateDeep_content2 -->
+	<div class="mateDeep_content2">
+		<div class="inner">
+			<div class="review_banner swiper-container">
+				<ul class="swiper-wrapper">
+					<c:forEach items="${reviewList}" var="carpoolVo">				
+						<li class="swiper-slide">
+							<dl class="review_box">
+								
+									<dt class="review_top">
+										<p class="writer_img">
+											
+										</p>
+	
+										<p class="writer_info">
+											<strong class="name">유저 ID : ${carpoolVo.id}</strong> 
+											<em class="date">별점 : ${carpoolVo.star}</em>
+										</p>
+	
+									</dt>
+									<dd class="review_dec">${carpoolVo.content}</dd>
+								
+							</dl>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+			<div class="review_banner_btns">
+				<a href="javascript:void(0);"><img class="swiper-button-prev"
+					src="/assets/images/common/ico_arrow_lft.png"></a> <a
+					href="javascript:void(0);"><img class="swiper-button-next"
+					src="/assets/images/common/ico_arrow_rit.png"></a>
+			</div>
+		</div>				
+	</div>
+	<!-- mateDeep_content2 -->
 
-		<!-- footer -->
-			<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+	<!-- footer -->
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
-		<!-- //footer -->
+	<!-- //footer -->
 
 	</div>
 	<!-- //mateDeep_wrap -->
@@ -665,6 +693,20 @@ function setCenter(x,y) {
     	
 }
 
+var swiperReview = new Swiper('.review_banner', {
+	slidesPerView : 4,
+	effect : 'slide',
+	autoplay : {
+		delay : 2000
+	},
+	spaceBetween : 20,
+	loop : true,
+	speed : 1000,
+	navigation : {
+		prevEl : '.review_banner_btns .swiper-button-prev',
+		nextEl : '.review_banner_btns .swiper-button-next'
+	}
+}); 
 
 </script>
 

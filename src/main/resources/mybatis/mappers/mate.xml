@@ -4,48 +4,71 @@
 <mapper namespace="mate">
 
 	<!-- mateList 가져오기 -->	
-	<select id="selectMateList" resultType="MateVo">
+	<select id="selectMateList" resultType="MateVo" parameterType="mateVo">
 		<![CDATA[
-				select  u.name,
-       				    c.carName,
-       				    c.carPicture,
-       				    c.carName,
-       				    c.carNo,
-       				    c.introduce,
-       				    s.no mateNo,
-				        to_char(s.startDate,'mm.dd') startDate,
-        				to_char(s.endDate, 'mm.dd') endDate,
-				        s.people,
-				        s.type,
-				        s.point,
-				        s.duration,
-					    s.distance,
-					    s.comments
-				from users u,
-				     car c,
-				     spotmate s
-				where u.no = c.userNo
-				and   c.no = s.carNo
-				and s.type = 'mate'
+				 select  u.name,
+				         c.carName,
+				         c.carPicture,
+				         c.carName,
+				         c.carNo,
+				         c.introduce,
+				         s.no mateNo,
+				         to_char(s.startDate,'mm.dd') startDate,
+				         to_char(s.endDate, 'mm.dd') endDate,
+				         to_char(s.startDate, 'yyyy-mm-dd') sDate,
+        				 to_char(s.endDate, 'yyyy-mm-dd') eDate,
+				         s.people,
+				         s.type,
+				         s.point,
+				         s.duration,
+				         s.distance,
+				         s.comments,
+				         p.sPlace,
+				         p.ePlace
+				 from users u,
+				      car c,
+				      spotmate s,
+				      (select substr(s.Place, 1, 6) sPlace,
+								       substr(e.place, 1, 6) ePlace,
+								       s.mateNo
+					   from place s, (select Place,
+								             mateNo
+							          from place
+							          where wayNo = 0
+							          and day = 1) e
+					   where s.wayNo = -1
+					   and s.day = 1
+					   and s.mateNo = e.mateNo) p  
+			 	 where u.no = c.userNo
+			 	 and   c.no = s.carNo
+			 	 and p.mateNo = s.no
+			 	 and s.type = 'mate'
+			 	 
 		]]>
+		<if test="ePlace != ''  and  ePlace != null ">
+			and p.ePlace like '%'||#{ePlace}||'%'
+		</if>
+		
+		<if test="sDate != ''  and  sDate != null ">
+			and to_char(s.startDate, 'yyyy-mm-dd') = #{sDate}
+		</if>
+		
+		<if test="eDate != ''  and  eDate != null ">
+			and to_char(s.endDate, 'yyyy-mm-dd') = #{eDate}
+		</if>
+		
+		<if test="smPeople != ''  and  smPeople != null ">
+			and s.people = #{smPeople}
+		</if>
+		
+		
+		<![CDATA[
+			order by startDate asc
+		]]>
+		
 	</select>
 	
-	<!-- mateList 가져오기(도착, 출발장소만 가져오기) -->	
-	<select id="selectMatePlaceList" resultType="MateVo">
-		<![CDATA[
-				select substr(s.Place, 1, 6) sPlace,
-				       substr(e.place, 1, 6) ePlace,
-				       s.mateNo
-				from place s, (select Place,
-				                      mateNo
-			                   from place
-			                   where wayNo = 0
-			                   and day = 1) e
-				where s.wayNo = -1
-				and s.day = 1
-				and s.mateNo = e.mateNo
-		]]>
-	</select>
+
 	
 	<!-- 해당 메이트에 관한 정보 -->
 	<select id="deepMateRead" resultType="MateVo" parameterType="int">
@@ -103,7 +126,7 @@
 		]]>
 	</select>
 	
-	<!-- 해당 메이트의 출발지, 경유지, 도착지정보 -->
+	<!-- 해당메이트가 선택한 조건 -->
 	<select id="deepDetailRead" resultType="MateVo" parameterType="int">
 		<![CDATA[
 				select d.no mateOptionNo,
@@ -111,6 +134,49 @@
 				from spotDetail s, detailOpt d
 				where s.detailNo = d.no
 				and s.mateNo = #{no}
+		]]>
+	</select>
+	
+	<!-- 해당 메이트의 운전자의 별점리스트 -->
+	<select id="deepReviewList" resultType="CarpoolVo" parameterType="int">
+		<![CDATA[
+				select r.id,
+			       star,
+			       content
+			from (select mateNo,
+			        driverNo,
+			        no
+			      from reservation) d, ( select driverNo
+			                           from reservation
+			                           where mateNo = #{no}
+			                           ) i, (select star,
+			                                        content,
+			                                        resvno
+			                                 from userReview ) s, (select id,
+			                                                              r.no,
+			                                                              r.mateNo
+			                                                        from users u, reservation r
+			                                                        where u.no = r.userNo) r
+			where d.driverNo = i.driverNo
+			and d.no = s.resvno
+			and r.no = s.resvno
+		]]>
+	</select>
+	
+	<!-- 해당 메이트 운전자의 별점 평균 -->
+	<select id="deepReviewAvg" resultType="CarpoolVo" parameterType="int">
+		<![CDATA[
+				select round(avg(star),1) avgStar 
+		         from users u, car c, reservation r, userReview w, spotmate sm
+		         where u.no = c.userNo
+		         and c.no = sm.carNo
+		         and sm.no = r.mateNo
+		         and u.no = r.driverNo
+		         and r.no = w.resvNo
+		         and u.no = (select ca.userNo
+		                     from spotMate sm, car ca
+		                     where sm.carNo = ca.no
+		                     and sm.no = 1)
 		]]>
 	</select>
 	
