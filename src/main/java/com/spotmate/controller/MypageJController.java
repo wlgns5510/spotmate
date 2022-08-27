@@ -130,8 +130,6 @@ public class MypageJController {
 
 		String state = mypagejService.myInfoChk(userChk, userNo);
 
-		System.out.println(state);
-
 		return state;
 	}
 

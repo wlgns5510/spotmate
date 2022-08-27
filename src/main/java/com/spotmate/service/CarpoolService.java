@@ -104,7 +104,7 @@ public class CarpoolService {
 		
 		// 리뷰 배너
 		List<CarpoolVo> reviewList = carpoolDao.getreviewList(no);
-		//List<CarpoolVo> reviewList = carpoolDao.getreviewList();
+	
 
 		// Deep 차량 추천 리스트 박스
 		carpoolVo.setStartRnum(1);
