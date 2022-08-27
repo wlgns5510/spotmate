@@ -135,6 +135,7 @@
 				id : id,
 				pw : pw
 			}),
+			dataType : "text",
 			success : function(result) {
 
 				if (result == "success") {
@@ -149,6 +150,7 @@
 		});
 
 	});
+
 </script>
 
 </html>
