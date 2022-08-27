@@ -78,37 +78,43 @@
 
 	<div class="carpoolDeep-aside">
 		<div class="aside">
-		
-			<form class="confirmForm">
-				출발지<br> <input class="confirm" type="text" name="splace" value="${cVoMap.cVo.splace}"> 
-				목적지<br> <input class="confirm" type="text" name="eplace" value="${cVoMap.cVo.eplace}"> 
-				탑승 인원수<br> <input class="confirm" type="text" name="people" value="${cVoMap.cVo.smPeople}">
-				탑승 시간<br> <input class="confirm" type="text" name="time" value="${cVoMap.cVo.sTime}"> 
-				처음 탑승일<br> <input class="confirm" type="text" name="startDate" value="${cVoMap.cVo.startDate}"> 
-				마지막 탑승일<br> <input class="confirm" type="text" name="endDate" value="${cVoMap.cVo.endDate}">
-
-			</form>
-
-			<div class="point">
-				총 결제 포인트<br> 
-				<input class="pointConfirm" type="text" name="point" value="${cVoMap.cVo.point}P"><br> <br> 
-				<span class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
-				</span>
-
+			<div  class="confirmForm">
+				<form action="/saveCarpool" method="get">
+					출발지<br> <input class="confirm" type="text" name="splace" value="${cVoMap.cVo.splace}"> 
+					목적지<br> <input class="confirm" type="text" name="eplace" value="${cVoMap.cVo.eplace}"> 
+					탑승 인원수<br> <input class="confirm" type="text" name="people" value="${cVoMap.cVo.smPeople}">
+					<c:if test='${param.result == "fail"}'>
+						<p style="color:red;">인원 수가 초과하였습니다.</p>
+					</c:if>
+					탑승 시간<br> <input class="confirm" type="text" name="time" value="${cVoMap.cVo.sTime}"> 
+					처음 탑승일<br> <input class="confirm" type="text" name="startDate" value="${cVoMap.cVo.startDate}"> 
+					마지막 탑승일<br> <input class="confirm" type="text" name="endDate" value="${cVoMap.cVo.endDate}">
+					<input type="hidden" name="spotMateNo" value="${cVoMap.cVo.spotMateNo}">
+	
+				
+	
+				<div class="point">
+					총 결제 포인트<br> 
+					<input class="pointConfirm" type="text" name="point" value="${cVoMap.cVo.point}"><br> <br> 
+					<span class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
+					</span>
+	
+				</div>
+				
+				<c:choose>
+					<c:when test="${authUser != null}">
+	<!-- 					<a href="/myReservationUserMain"> -->
+							<button type="submit" class="rideButton">탑승하기</button>
+	<!-- 					</a> -->
+					</c:when>
+					<c:otherwise>
+						<a href="/loginForm"><button type="button" class="rideButton">로그인 하러 가기</button></a>
+					</c:otherwise>
+				</c:choose>
+				</form>			
 			</div>
-			
-			<c:choose>
-				<c:when test="${authUser != null}">
-					<a href="/myReservationUserMain">
-						<button type="submit" class="rideButton">탑승하기</button>
-					</a>
-				</c:when>
-				<c:otherwise>
-					<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
-				</c:otherwise>
-			</c:choose>
-								
 		</div>
+		
 	</div>
 
 
@@ -302,8 +308,8 @@
 					</li>
 					<li>
 						<p class="recommend-point-list">소요 포인트 ${carpoolVo.point}P</p> 
-		<!--******************************** 선택 시 조건 검색 충족한 리스트만 보여주도록 수정 ***************************-->
-						<a href="${pageContext.request.contextPath}/spotCarpoolDeep/${carpoolVo.spotMateNo}">
+		
+						<a href="${pageContext.request.contextPath}/spotCarpoolDeep/${carpoolVo.spotMateNo}?splace=${param.splace}&eplace=${param.eplace}&sTime=${param.sTime}&smPeople=${param.smPeople}&startDate=${param.startDate}&endDate=${param.endDate}<c:forEach items="${paramValues.ch_type}" var="item">&ch_type=${item}</c:forEach>">
 							<button>
 								<img class="recommend-List-Picto"
 									src="/assets/images/external.png"> <span
@@ -316,7 +322,7 @@
 	
 		</div>
 
-		<a href="${pageContext.request.contextPath}/spotCarpool">
+		<a href="${pageContext.request.contextPath}/spotCarpool?splace=${param.splace}&eplace=${param.eplace}&sTime=${param.sTime}&smPeople=${param.smPeople}&startDate=${param.startDate}&endDate=${param.endDate}<c:forEach items="${paramValues.ch_type}" var="item">&ch_type=${item}</c:forEach>">
 			<button class="recommend-button">추천 리스트 더보기 ></button>
 		</a>
 
@@ -349,6 +355,8 @@
 			nextEl : '.review_banner_btns .swiper-button-next'
 		}
 	});
+	
+	
 </script>
 
 
