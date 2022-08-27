@@ -16,10 +16,10 @@ public class MateDao {
 	private SqlSession sqlSession;
 	
 	//메이트 리스트 가져오기
-	public List<MateVo> getMateList(){
+	public List<MateVo> getMateList(MateVo mateVo){
 		System.out.println("MateDao >> getMateList");
 		
-		List<MateVo> mateList = sqlSession.selectList("mate.selectMateList");
+		List<MateVo> mateList = sqlSession.selectList("mate.selectMateList", mateVo);
 		
 		return mateList;
 	}

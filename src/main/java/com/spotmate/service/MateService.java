@@ -17,10 +17,10 @@ public class MateService {
 	
 	
 	//메이트 리스트 가져오기
-	public List<MateVo> getMateList() {
+	public List<MateVo> getMateList(MateVo mateVo) {
 		System.out.println("MateService >> getMateList");
 		
-		List<MateVo> mateList = mateDao.getMateList();
+		List<MateVo> mateList = mateDao.getMateList(mateVo);
 		
 		return mateList;
 	}		

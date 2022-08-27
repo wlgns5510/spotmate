@@ -7,6 +7,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,11 +36,11 @@ public class MateController {
 
 	//메이트메인 이동 + 메이트 리스트 가져오기
 	@RequestMapping(value = "/mateMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateMain(Model model) {
+	public String mateMain(Model model, @ModelAttribute MateVo mateVo) {
 		System.out.println("MateController >> mateMain");
 		
 		// Service를 통해서 getMateList를 가져온다
-		List<MateVo> mateList = mateService.getMateList();
+		List<MateVo> mateList = mateService.getMateList(mateVo);
 		
 		
 			Random random = new Random();
