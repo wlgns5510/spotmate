@@ -431,7 +431,7 @@
 						</c:forEach>
 					</table>
 				</div>
-				<p class="review">Reviews ★</p>											
+				<p class="review">Reviews ★ ${reviewAvg.avgStar}</p>											
 		</div>
 		<!-- //mateDeep_content -->						
 	</div>
