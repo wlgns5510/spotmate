@@ -84,11 +84,11 @@
 
 						<!-- 새비밀번호 -->
 						<div class="join_group">
-							<label class="" for="">새비밀번호*</label> <input type="text" id="password" name="pw" value="" placeholder="새비밀번호를 입력해주세요">
+							<label class="" for="">새비밀번호*</label> <input type="password" id="password" name="pw" value="" placeholder="새비밀번호를 입력해주세요">
 						</div>
 						<!-- 비밀번호 확인 -->
 						<div class="join_group">
-							<label class="" for="">새비밀번호확인*</label> <input type="text" id="confirm_password" name="" value="" placeholder="새비밀번호를 한번 더 입력해주세요">
+							<label class="" for="">새비밀번호확인*</label> <input type="password" id="confirm_password" name="" value="" placeholder="새비밀번호를 한번 더 입력해주세요">
 						</div>
 						<span id='message'></span>
 						<!-- 이름 -->

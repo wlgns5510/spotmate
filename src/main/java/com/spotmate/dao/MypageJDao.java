@@ -147,7 +147,6 @@ public class MypageJDao {
 	public int updateUser(UserVo userVo) {
 		System.out.println("MypageJService > updateUser");
 		
-		System.out.println(userVo + "수정테스트");
 		int count = sqlSession.update("mypagej.updateUser", userVo);
 		
 		return count;

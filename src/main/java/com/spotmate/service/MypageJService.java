@@ -51,7 +51,6 @@ public class MypageJService {
 
 		// 전체글갯수
 		int totalCouponCnt = mypagejDao.totalCouponCnt(couponVo);
-		System.out.println(totalCouponCnt);
 
 		// 페이지당 버튼 갯수
 		int pageBtnCount = 5;
@@ -87,6 +86,7 @@ public class MypageJService {
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
+		cMap.put("totalCouponCnt", totalCouponCnt);
 
 		return cMap;
 
@@ -313,6 +313,7 @@ public class MypageJService {
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
+		
 		
 		return cMap;
 
