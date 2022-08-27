@@ -131,8 +131,7 @@
 					<div class="mateMain_listBox">
 						<img src="/assets/images/car icon.png">
 						<span class="seatNo">${mateList.people}</span>																		
-					</div>
-							
+					</div>							
 				</div>	
 			</c:forEach>
 			
@@ -160,7 +159,25 @@
 <!-- //mateMain_wrap -->
 </body>
 <script type="text/javascript">
+$(window).on('load', function(){
+	load('.mateList', '4');
+	$('.mateListBtn').on("click", function(){
+		load('.mateList', '4', '.mateListBtn');
+	})
+});
 
+function load(cnt){
+	var girls_list = id + ".mateList:not(.active)";
+	var girls_length = $(girls_list).length;
+	var girls_total_cnt;
+	if(cnt < girls_length) {
+		girls_total_cnt = cnt;
+	} else {
+		girls_total_cnt = girls_length;
+		$(button).hide();
+	}
+	$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
+}
 
 </script>
 </html>
