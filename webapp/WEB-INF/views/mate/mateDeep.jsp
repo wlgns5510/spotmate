@@ -130,7 +130,11 @@
 							탑승 가능 인원 수<br> 
 							<div class="confirm">
 								${mateVo.people}명
-							</div> 
+								<c:if test='${param.result == "fail"}'>
+									<p class= overPeople>※ 탑승 가능 인원 수가 초과하였습니다</p>
+								</c:if>
+							</div>
+							탑승요청 인원 수<br> <input class="confirm-2" type="text" name="requestPeople" value="" placeholder=" 인원 수를 입력해주세요"><br>
 							탑승 시간<br> 
 							<div class="confirm">
 								<c:forEach items="${matePlaceList}" var="matePlaceList">
