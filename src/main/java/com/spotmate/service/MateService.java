@@ -1,6 +1,8 @@
 package com.spotmate.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +69,26 @@ public class MateService {
 		return mateDao.deepReviewAvg(no);
 	}
 	
-	
+	// user예약내역 DB 저장
+	public int saveMate(int userNo, CarpoolVo carpoolVo) {
+		System.out.println("MateService > saveMate");
+
+		carpoolVo.setUserNo(userNo);
+
+		mateDao.saveMate(carpoolVo);
+		int mateNo = carpoolVo.getSpotMateNo();
+		int people = carpoolVo.getPeople();
+		int canRide = mateDao.chkPeople(mateNo);
+		if(canRide >= people) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("people", people);
+			map.put("mateNo", mateNo);
+			mateDao.updateReservPeople(map);
+			return 0;
+		} else {
+			return -1;
+		}
+			
+	}
 
 }

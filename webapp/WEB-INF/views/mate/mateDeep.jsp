@@ -109,75 +109,77 @@
 			<!-- //mateDeep_banner1 -->
 			<div class="carpoolDeep-aside">
 				<div class="aside">
-					<form class="confirmForm">
-						출발지<br> 
-						<div class="confirm">
-							<c:forEach items="${matePlaceList}" var="matePlaceList">
-								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-									${matePlaceList.place}
-								</c:if>
-							</c:forEach>
+					<div class="confirmForm">
+						<form action="/saveMate" method="get">
+							출발지<br>					
+							<div class="confirm">
+								<c:forEach items="${matePlaceList}" var="matePlaceList">
+									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+										${matePlaceList.place}
+									</c:if>
+								</c:forEach>
+							</div>
+							목적지<br> 
+							<div class="confirm">
+								<c:forEach items="${matePlaceList}" var="matePlaceList">
+									<c:if test="${matePlaceList.wayNo == 0 && matePlaceList.day == '1'}">
+										${matePlaceList.place}
+									</c:if>
+								</c:forEach>
+							</div>
+							탑승 가능 인원 수<br> 
+							<div class="confirm">
+								${mateVo.people}명
+							</div> 
+							탑승 시간<br> 
+							<div class="confirm">
+								<c:forEach items="${matePlaceList}" var="matePlaceList">
+									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+										${matePlaceList.time}
+									</c:if>
+								</c:forEach>
+							</div>
+							처음 탑승일<br>
+							<div class="confirm">
+								<c:forEach items="${matePlaceList}" var="matePlaceList">
+									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+										${matePlaceList.startDate}
+									</c:if>
+								</c:forEach>
+							</div>
+							마지막 탑승일<br> 
+							<div class="confirm">
+								<c:forEach items="${matePlaceList}" var="matePlaceList">
+									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+										${matePlaceList.endDate}
+									</c:if>
+								</c:forEach>
+							</div>
+	
+						
+	
+						<div class="point">
+							총 결제 포인트<br> 
+							<div class="pointConfirm">
+								<fmt:formatNumber value="${mateVo.point}" pattern="#,###" />포인트
+							</div><br> <br> 
+							<span
+								class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
+							</span>
+	
 						</div>
-						목적지<br> 
-						<div class="confirm">
-							<c:forEach items="${matePlaceList}" var="matePlaceList">
-								<c:if test="${matePlaceList.wayNo == 0 && matePlaceList.day == '1'}">
-									${matePlaceList.place}
-								</c:if>
-							</c:forEach>
-						</div>
-						탑승 인원 수<br> 
-						<div class="confirm">
-							${mateVo.people}명
-						</div> 
-						탑승 시간<br> 
-						<div class="confirm">
-							<c:forEach items="${matePlaceList}" var="matePlaceList">
-								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-									${matePlaceList.time}
-								</c:if>
-							</c:forEach>
-						</div>
-						처음 탑승일<br>
-						<div class="confirm">
-							<c:forEach items="${matePlaceList}" var="matePlaceList">
-								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-									${matePlaceList.startDate}
-								</c:if>
-							</c:forEach>
-						</div>
-						마지막 탑승일<br> 
-						<div class="confirm">
-							<c:forEach items="${matePlaceList}" var="matePlaceList">
-								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-									${matePlaceList.endDate}
-								</c:if>
-							</c:forEach>
-						</div>
-
+	
+						<c:choose>
+							<c:when test="${authUser != null}">
+								<a href="/myReservationUserMain">
+									<button type="submit" class="rideButton">탑승하기</button>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
+							</c:otherwise>
+						</c:choose>
 					</form>
-
-					<div class="point">
-						총 결제 포인트<br> 
-						<div class="pointConfirm">
-							<fmt:formatNumber value="${mateVo.point}" pattern="#,###" />포인트
-						</div><br> <br> 
-						<span
-							class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
-						</span>
-
-					</div>
-
-					<c:choose>
-						<c:when test="${authUser != null}">
-							<a href="/myReservationUserMain">
-								<button type="submit" class="rideButton">탑승하기</button>
-							</a>
-						</c:when>
-						<c:otherwise>
-							<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
-						</c:otherwise>
-					</c:choose>
 				</div>
 			</div>
 			

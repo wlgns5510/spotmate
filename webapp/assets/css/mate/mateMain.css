@@ -400,3 +400,6 @@ input[type=checkbox] {
     transform:scale(1.05, 1.05);  /* 가로2배 새로 1.5배 로 커짐 */
     transition: transform.1s;  /* 커지는 시간 */
 }
+
+
+
