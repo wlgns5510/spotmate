@@ -103,7 +103,7 @@
 /*************************mateDeep_content*******************************/
 .mateDeep_content {
 	width: 1000px;
-	height: 2600px;
+	height: 2520px;
 	/* 	margin: 0px 0px 0px 550px; */
 	background: rgba(255, 255, 255, 1);
 }
@@ -466,7 +466,7 @@
 .mateDeep_content2 .swiper-button-prev {
 	display: inline-block;
     position: relative;
-    top: 160px;
+    top: 260px;
     bottom: auto;
     left: 665px;
     right: auto;
@@ -480,7 +480,7 @@
 .mateDeep_content2 .swiper-button-next {
 	display: inline-block;
     position: relative;
-    top: 160px;
+    top: 260px;
     bottom: auto;
     left: 670px;
     right: auto;

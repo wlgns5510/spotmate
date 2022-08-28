@@ -109,7 +109,7 @@
 			<!-- //mateDeep_banner1 -->
 			<div class="carpoolDeep-aside">
 				<div class="aside">
-					<form class="confirmForm">
+					<div class="confirmForm">
 						출발지<br> 
 						<div class="confirm">
 							<c:forEach items="${matePlaceList}" var="matePlaceList">
@@ -126,10 +126,12 @@
 								</c:if>
 							</c:forEach>
 						</div>
-						탑승 인원 수<br> 
+						탑승 가능 인원 수<br> 
 						<div class="confirm">
 							${mateVo.people}명
 						</div> 
+						탑승 요청 인원 수<br>
+						<input class="confirm-2" type="text" name="requestPeople" value="" placeholder=" 인원 수를 입력해주세요">
 						탑승 시간<br> 
 						<div class="confirm">
 							<c:forEach items="${matePlaceList}" var="matePlaceList">
@@ -155,7 +157,7 @@
 							</c:forEach>
 						</div>
 
-					</form>
+					
 
 					<div class="point">
 						총 결제 포인트<br> 
@@ -178,6 +180,7 @@
 							<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
 						</c:otherwise>
 					</c:choose>
+				</div>
 				</div>
 			</div>
 			

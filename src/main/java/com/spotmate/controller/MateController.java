@@ -73,7 +73,6 @@ public class MateController {
 		List<MateVo> mateDetailList = mateService.deepDetailRead(mateNo); //해당 메이트의 운전자가 설정한 상세조건
 		List<CarpoolVo> reviewList = mateService.deepReviewList(mateNo);	//해당 메이트의 운전자의 별점리스트
 		CarpoolVo reviewAvg = mateService.deepReviewAvg(mateNo);	//해당 메이트 운전자의 별점 평균
-		System.out.println(reviewList);
 		
 		model.addAttribute("mateVo", mateVo);
 		model.addAttribute("matePlaceList", matePlaceList);
