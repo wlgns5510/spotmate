@@ -131,7 +131,7 @@
 
 								<h5>면허증 정보 입력*</h5>
 								<!-- Driver License -->
-								<table class="join_call">
+								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
 										<td><input value="${dlvo.username}" name="username"
@@ -140,35 +140,33 @@
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
-										<td><input value="${dlvo.userBD}" name="userBD"
-											id="userBD" placeholder="ex)2004-0831" type="text"></td>
-										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
+										<td>
+											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)2004-0831" type="text">
+											<button type="button" id="liau" class="smallbtn" style="float: initial;">본인인증</button>
+										</td>
+										<td></td>
 									</tr>
-								</table>
-								<table>
+
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
 										<td>
 											<div class="join_dl">
 												<div class="dltable">
 
-													<div class="dl_wrap1" style="width: 490px">
-														<span class="dl_box"> <input name="dl" id="dl_1"
-															placeholder="ex)11" type="text"
-															style="margin-right: 0px; width: 80px;">
-														</span> <span class="dl_box"> <input name="dl" id="dl"
-															placeholder="ex)18" type="text">
-														</span> <span class="dl_box"> <input name="dl" id="dl"
-															placeholder="ex)026155" type="text">
-														</span> <span class="dl_box"> <input name="dl" id="dl"
-															placeholder="ex)10" type="text">
-														</span> <span class="dl_box"> <input type="text" id="dl"
-															placeholder="ex)X61D86" name="dl"></span>
+													<div class="dl_wrap1">
+														<span class="dl_box"> 
+															<input id="dl_1"onchange="OnChangeDL();" placeholder="ex)11" type="text">
+															<input id="dl_2" class="dl" onchange="OnChangeDL();" placeholder="ex)18" type="text">
+															<input id="dl_3" class="dl" onchange="OnChangeDL();" placeholder="ex)026155" type="text">
+															<input id="dl_4" class="dl" onchange="OnChangeDL();" placeholder="ex)10" type="text">
+															<input id="dl_5" class="dl" onchange="OnChangeDL();" placeholder="ex)X61D86" type="text">
+															<input name="dl" id="dl" type="hidden">
+														</span>
 													</div>
-													<span class="error_next_box" id="dlMsg"
-														aria-live="assertive" style="display: none;">면허등록번호를
-														정확하게 입력하세요.</span>
 												</div>
+												<span class="error_next_box" id="dlMsg"
+													aria-live="assertive" style="display: none;">면허등록번호를
+													정확하게 입력하세요.</span>
 											</div>
 										</td>
 									</tr>
@@ -192,26 +190,14 @@
 									</tr>
 
 									<tr>
-										<div id="file">
-											<form method="post" action="${pageContext.request.contextPath}/fileupload/upload" enctype="multipart/form-data">
-												<table>
-													<colgroup>
-														<col style="width: 600px;">
-														<col style="width: 220px;">
-													</colgroup>
-													<tr>
-
-														<td><input type="text" id="input-file" name="c_file"
-															class="file_d"></td>
-
-														<td><button type="submit" class="smallbtn">파일업로드</button>
-														</td>
-													</tr>
-												</table>
-											</form>
-										</div>
+										<td></td>
+										<td>
+											<input name="c_file" id="c_file" type="text">
+											<input type="file" id="input-file" class="file_d" onchange="OnChangeFile();">
+										</td>
+										<td><label class="smallbtn" for="input-file"> <span>파일선택</span>
+										</label></td>
 									</tr>
-
 									<tr align="left">
 										<td><label for="c_num">차량등록번호*</label></td>
 										<td><input name="c_num" id="c_num" placeholder="770가7777"
@@ -236,28 +222,27 @@
 
 							<div class="DC_etc">
 								<h5>차량 상세조건</h5>
-								<table>
-									<!-- input type="radio" name="gender" id="male" placeholder="남자"  -->
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="1"><span>비흡연자</span></td>
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="2"> <span>여성드라이버</span></td>
-									</tr>
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="3"><span> 반려동물 탑승가능</span></td>
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="4"> <span>핸드폰 충전기 보유</span></td>
-									</tr>
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="5"><span> 트렁크 사용
-												가능여부</span></td>
-									</tr>
-								</table>
-							</div>
+								<div class="detail">
 
+									<label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="1">
+										&nbsp;&nbsp;비흡연자
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="2">
+										&nbsp;&nbsp;여성드라이버
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="3">
+										&nbsp;&nbsp;반려동물
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="4">
+										&nbsp;&nbsp;충전기 사용 가능
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="5">
+										&nbsp;&nbsp;트렁크 사용 가능
+									</label>
+								</div>
+							</div>
+							<br>
 
 
 							<div class="memo">
@@ -292,19 +277,28 @@
 
 </body>
 
-
-
-
-
 <script type="text/javascript">
+	function OnChangeDL() {
+		let dl_1 = document.getElementById("dl_1").value;
+		let dl_2 = document.getElementById("dl_2").value;
+		let dl_3 = document.getElementById("dl_3").value;
+		let dl_4 = document.getElementById("dl_4").value;
+		let dl_5 = document.getElementById("dl_5").value;
+		const dl = document.getElementById("dl");
+		dl.value = dl_1 + "-" + dl_2 + "-" + dl_3 + "-" + dl_4 + "-" + dl_5;
+	}
+	
+	function OnChangeFile() {
+		let fileName = document.getElementById("input-file").value;
+		document.getElementById("c_file").value = fileName;
+	}
+
 	$(document).ready(function() {
 		$("#file").on('change', function() {
 			var fileName = $("#file").val();
 			$(".upload-name").val(fileName);
 		});
 	});
-
-	//차량인증 
 
 	$("#carAuth").on("click", function() {
 		var name = $("#username").val();

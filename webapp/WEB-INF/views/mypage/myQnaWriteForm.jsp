@@ -136,12 +136,12 @@
 
 							<tr>
 								<td><label>제목*</label></td>
-								<td><input id="title" name="title" placeholder="&nbsp;제목을 작성해주세요"
+								<td><input id="title" name="qnatitle" placeholder="&nbsp;제목을 작성해주세요"
 									type="text"></td>
 							</tr>
 							<tr>
 								<td><span>내용*</span></td>
-								<td><textarea name="contents" placeholder="내용을 입력해주세요"></textarea></td>
+								<td><textarea name="qnacontents" placeholder="내용을 입력해주세요"></textarea></td>
 							</tr>
 							<tr>
 								<td><span>이미지</span></td>
