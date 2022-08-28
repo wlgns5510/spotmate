@@ -423,13 +423,16 @@
 	</update>
 	
 	<!-- 미사용쿠폰갯수 가져오기 -->
-	<select id="selectNouUsedCoupon" resultType="int">
+	<select id="selectNotUsedCoupon" resultType="int">
 		<![CDATA[
 			select count(*) count
-			from users u, couponUsage cu
-			where u.no = cu.couponNo
+			from category ca, brand br, coupon co, couponUsage cu, users u
+			where u.no = cu.userno
+			and ca.no = br.cateNo
+			and br.no = co.brandno
+			and co.no = cu.couponNo
 			and u.no = #{userNo}
-			and cu.status= '미사용'		
+			and cu.status = '미사용'		
 		]]>
 	</select>
 	

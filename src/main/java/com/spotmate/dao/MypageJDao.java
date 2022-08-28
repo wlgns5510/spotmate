@@ -162,12 +162,12 @@ public class MypageJDao {
 	}
 	
 	//미사용쿠폰갯수 가져오기
-	public int getNouUsedCoupon(int userNo) {
-		System.out.println("MypageJService > getNouUsedCoupon");
+	public int getNotUsedCoupon(int userNo) {
+		System.out.println("MypageJService > getNotUsedCoupon");
 		
-		int nouUsedCoupon= sqlSession.selectOne("mypagej.selectNouUsedCoupon", userNo);
+		int notUsedCoupon= sqlSession.selectOne("mypagej.selectNotUsedCoupon", userNo);
 		
-		return nouUsedCoupon;
+		return notUsedCoupon;
 	}
 	
 

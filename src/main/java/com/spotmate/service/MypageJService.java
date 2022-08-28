@@ -226,7 +226,7 @@ public class MypageJService {
 			}
 
 		}
-		System.out.println(totalPointCnt + "테스트중이다");
+		
 
 		return cMap;
 	}
@@ -371,6 +371,26 @@ public class MypageJService {
 		 
 		 return state;
 	}
+	
+	//마이페이지 탑네비데이터
+	public Map<String, Object> myPageTopNav(int userNo) {
+		System.out.println("MypageJService > myPageTopNav");
+		
+		float avgStar= mypagejDao.getavgStar(userNo);
+		
+		int totalPoint= mypagejDao.getTotalPoint(userNo);
+		
+		int notUsedCoupon= mypagejDao.getNotUsedCoupon(userNo);
+		
+		Map<String, Object> topNavMap = new HashMap<String, Object>();
+		
+		topNavMap.put("avgStar", avgStar);
+		topNavMap.put("totalPoint", totalPoint);
+		topNavMap.put("notUsedCoupon", notUsedCoupon);
+		
+		return topNavMap;
+	}
+	
 	
 
 }
