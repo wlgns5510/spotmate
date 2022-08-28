@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.spotmate.service.MateService;
 import com.spotmate.vo.CarpoolVo;
 import com.spotmate.vo.MateVo;
-import com.spotmate.vo.UserVo;
 
 @Controller
 public class MateController {
@@ -88,23 +85,10 @@ public class MateController {
 		return "/mate/mateDeep";
 	}
 	
-	//user 예약내역 DB 저장
-	@RequestMapping(value = "/saveMate", method = { RequestMethod.GET, RequestMethod.POST })
-	public String saveMate (@ModelAttribute CarpoolVo carpoolVo, HttpSession session) {
-		
-		System.out.println("MateController > saveMate");
-		
-		UserVo authUser= (UserVo)session.getAttribute("authUser");
-		
-		int userNo = authUser.getNo();
-		
-		int result = mateService.saveMate(userNo, carpoolVo); 
-		
-		if ( result == 0 ) {
-			return "redirect:/myReservationUserMain";
-		}
-		
-		return "redirect:/matelDeep/"+carpoolVo.getSpotMateNo()+"?result=fail";
+	@RequestMapping(value = "/testMate", method = { RequestMethod.GET, RequestMethod.POST })
+	public String test() {
+		return "/mate/testMate";
 	}
-
+	
+	
 }
