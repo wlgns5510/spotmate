@@ -55,6 +55,9 @@
 <body>
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<div class="driver-top-banner"></div>
+	<c:if test="${param.result == 'fail'}">
+		<input type="hidden" id="hitchfail" value="">
+	</c:if>
 	<div class="inner">
 		<div class="first clear" data-aos="fade-right">
 			<img src="/assets/images/common/login_image_100_01.png"> <span>드라이버<br>이동 경로 등록하기</span>
@@ -94,5 +97,8 @@
 </body>
 <script>
 	AOS.init();
+	if ( $("hitchfail") != null) {
+		alert("이미 운행 신청한 hitchhike가 있습니다.");
+	}ㄴ
 </script>
 </html>

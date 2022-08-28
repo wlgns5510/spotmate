@@ -84,11 +84,11 @@
 
 						<!-- 새비밀번호 -->
 						<div class="join_group">
-							<label class="" for="">새비밀번호*</label> <input type="text" id="password" name="pw" value="" placeholder="새비밀번호를 입력해주세요">
+							<label class="" for="">새비밀번호*</label> <input type="password" id="password" name="pw" value="" placeholder="새비밀번호를 입력해주세요">
 						</div>
 						<!-- 비밀번호 확인 -->
 						<div class="join_group">
-							<label class="" for="">새비밀번호확인*</label> <input type="text" id="confirm_password" name="" value="" placeholder="새비밀번호를 한번 더 입력해주세요">
+							<label class="" for="">새비밀번호확인*</label> <input type="password" id="confirm_password" name="" value="" placeholder="새비밀번호를 한번 더 입력해주세요">
 						</div>
 						<span id='message'></span>
 						<!-- 이름 -->
@@ -169,11 +169,36 @@
 		var password = $("#password").val();
 		var confirm_password = $("#confirm_password").val();
 		
+	    var num = password.search(/[0-9]/g);
+	    var eng = password.search(/[a-z]/ig);
+	    var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 		
-        if(password != confirm_password){
+	    if((password == null || password =="" ) && (confirm_password == null ||confirm_password =="")) {
+	    	return true;
+	    }
+	    
+    	if(password != confirm_password){
         	alert("비밀번호가 일치하지 않습니다");
+        	
             return false;
-        }
+        }else if(password.length < 8 || password.length > 20){
+		  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+		  
+		  return false;
+		}else if(password.search(/\s/) != -1){
+		  alert("비밀번호는 공백 없이 입력해주세요.");
+		  
+		  return false;
+	    }else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+		  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+		  
+		  return false;
+		}else {
+			
+			alert("수정이 완료되었습니다");
+		}	     
+	    
+
 	});
 	
 	

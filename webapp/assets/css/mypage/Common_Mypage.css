@@ -720,7 +720,7 @@
 	margin-right: 0px 0px 0px 40px;
 	box-sizing: border-box;
 }
-.DL_info .dltable .dl_box #dl{
+.DL_info .dltable .dl_box .dl {
 	width: 80px;
 	height: 35px;
 	background: rgba(255, 255, 255, 1);
@@ -906,7 +906,6 @@ border: 3px dashed red;
   height: 100%;
 }
 
-
 .myQnaryeo>.imgbox>img {
 	position:absolute;
 	top: 0;
@@ -914,4 +913,13 @@ border: 3px dashed red;
 	width:100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+#input-file {
+	position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }

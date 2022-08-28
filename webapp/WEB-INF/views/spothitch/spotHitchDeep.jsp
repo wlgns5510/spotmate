@@ -115,7 +115,7 @@
 	var mapContainer = document.getElementById('hitch-deep-map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.48436301061165, 126.9922281879226), // 지도의 중심좌표
-			level : 2
+			level : 3
 		},
 		map = new kakao.maps.Map(mapContainer, mapOption);
 	var Strlatlng = $("#latlng").val(),
@@ -148,13 +148,9 @@
 			}),
 			dataType : "json",
 			success : function(result) {
-				console.log(result);
-				console.log("before:",map);
 				if (result.lat == 0) {
-					console.log("same place");
 					return;
 				}
-				console.log("after:",map);
 				marker2.setMap(null);
 				infowindow2.close();
 				iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+result.addr+'</div>';

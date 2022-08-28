@@ -3,17 +3,18 @@ package com.spotmate.vo;
 public class DriverWriteVo {
 
 	private String sdate1, edate1, splace1, eplace1, fare, nosmoke, phonecharge, femaledriver, trunk, pet, introduce, dur,
-			dis, latlng1, comments, stime1, type;
-	private int people, intfare, no, userNo, carNo;
+			dis, latlng1, comments, stime1, etime1, type;
+	private int people, intfare, no, userNo, carNo, intdur;
 	private double slat1, slng1, elat1, elng1;
 
 	public DriverWriteVo() {
 	}
 
 	public DriverWriteVo(String sdate, String edate, String splace, String eplace, String fare, String nosmoke,
-			String femaledriver, String phonecharge, String trunk, String pet, String introduce, int people, int userNo, int carNo,
+			String femaledriver, String phonecharge, String trunk, String pet, String introduce, int people, int userNo, int carNo, int intdur,
 			double slat, double slng, double elat, double elng, String latlng, String dur, String dis, String type,
-			String comments, String stime) {
+			String comments, String stime, String etime) {
+		this.intdur = intdur;
 		this.sdate1 = sdate;
 		this.edate1 = edate;
 		this.splace1 = splace;
@@ -37,10 +38,29 @@ public class DriverWriteVo {
 		this.type = type;
 		this.comments = comments;
 		this.stime1 = stime;
+		this.etime1 = etime;
 	}
 	
 	
 	
+	
+	
+	public String getEtime1() {
+		return etime1;
+	}
+
+	public void setEtime1(String etime1) {
+		this.etime1 = etime1;
+	}
+
+	public int getIntdur() {
+		return intdur;
+	}
+
+	public void setIntdur(int intdur) {
+		this.intdur = intdur;
+	}
+
 	public int getCarNo() {
 		return carNo;
 	}
@@ -255,10 +275,10 @@ public class DriverWriteVo {
 				+ eplace1 + ", fare=" + fare + ", nosmoke=" + nosmoke + ", phonecharge=" + phonecharge
 				+ ", femaledriver=" + femaledriver + ", trunk=" + trunk + ", pet=" + pet + ", introduce=" + introduce
 				+ ", dur=" + dur + ", dis=" + dis + ", latlng1=" + latlng1 + ", comments=" + comments + ", stime1="
-				+ stime1 + ", type=" + type + ", people=" + people + ", intfare=" + intfare + ", no=" + no + ", userNo="
-				+ userNo + ", carNo=" + carNo + ", slat1=" + slat1 + ", slng1=" + slng1 + ", elat1=" + elat1
-				+ ", elng1=" + elng1 + "]";
+				+ stime1 + ", etime1=" + etime1 + ", type=" + type + ", people=" + people + ", intfare=" + intfare
+				+ ", no=" + no + ", userNo=" + userNo + ", carNo=" + carNo + ", intdur=" + intdur + ", slat1=" + slat1
+				+ ", slng1=" + slng1 + ", elat1=" + elat1 + ", elng1=" + elng1 + "]";
 	}
 
-	
+
 }
