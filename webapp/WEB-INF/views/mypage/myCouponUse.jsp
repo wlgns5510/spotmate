@@ -138,17 +138,28 @@
 								<div id="modal" class="modal-overlay">
 									<div class="modal-window">
 										<div class="close-area">X</div>
-										<div class="content">
+										<div class="modal-content clear">
+											<img class="modal-img" src="/assets/images/ico_boxgift.png">
+											<div class="modal-text">
+												<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
+													<p>해당 금액만큼 포인트에서 차감됩니다</p>
+													<p>쿠폰을 구매하시겠습니까?</p>
+													<p class="modal-second-p"></p>
+												</c:if>
+												<c:if test="${cuMap.totalPoint < cuMap.couponVo.point}">
+													<p>
+														<br>포인트가 부족합니다.
+													</p>
+													<p class="modal-second-p"></p>
+												</c:if>
+											</div>
+										</div>
+										<div class="modal-button-div">
 											<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
-												<p>
-													해당 금액만큼 포인트에서 차감됩니다.<br>쿠폰을 구매하시겠습니까?
-												</p>
+												<button id="back-btn" type="button">취소하기</button>
 												<button id="sub-btn" type="submit">구매하기</button>
 											</c:if>
 											<c:if test="${cuMap.totalPoint < cuMap.couponVo.point}">
-												<p>
-													<br> 포인트가 부족합니다.
-												</p>
 											</c:if>
 										</div>
 									</div>
@@ -234,49 +245,55 @@ function displayMarker(locPosition, message) {
 
 
 ///////////////모달자바스크립트
+$("#back-btn").on("click", function() {
+	location.replace("/mypageJ/myCouponBuy");
+})
 
 var modal = document.getElementById("modal")
 function modalOn() {
+    modal.style.animation = "fade-in 0.5s"
     modal.style.display = "flex"
 }
 function isModalOn() {
     return modal.style.display === "flex"
 }
 function modalOff() {
-    modal.style.display = "none"
+   	modal.style.animation = "fade-out 0.5s"
+	$("body").css("overflow-y","visible");//body 스크롤바 생성
+    setTimeout(function(){modal.style.display = "none"},501);
 }
 var btnModal = document.getElementById("btn-modal")
 btnModal.addEventListener("click", e => {
-     $(".modal-overlay").css({
+	  $(".modal-overlay").css({
           "top": (($(window).height()-$(".modal-overlay").outerHeight())/2+$(window).scrollTop())+"px",
           "left": (($(window).width()-$(".modal-overlay").outerWidth())/2+$(window).scrollLeft())+"px"
           //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정
        }); 
-      
+	  
       $(".modal-window").css("display","block"); //팝업 뒷배경 display block
       $(".modal-overlay").css("display","block"); //팝업창 display block
       
       $("body").css("overflow","hidden");//body 스크롤바 없애기
       modalOn()
-     })
+  	})
 var closeBtn = modal.querySelector(".close-area")
 closeBtn.addEventListener("click", e => {
-   $("body").css("overflow","auto");//body 스크롤바 생성
-    modalOff()
+	modalOff()
 })
 modal.addEventListener("click", e => {
-    var evTarget = e.target
+    const evTarget = e.target
     if(evTarget.classList.contains("modal-overlay")) {
-       $("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
 window.addEventListener("keyup", e => {
     if(isModalOn() && e.key === "Escape") {
-       $("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
+
+
+
 </script>
 
 </html>
