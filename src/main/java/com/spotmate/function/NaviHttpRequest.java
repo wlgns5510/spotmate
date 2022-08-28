@@ -168,6 +168,7 @@ public class NaviHttpRequest {
 		totalInfo.put("totalFare", totalFares);
 		totalInfo.put("benefit", benefits);
 		totalInfo.put("totalDur", totalDur1);
+		totalInfo.put("intDur", totalDur);
 		totalInfo.put("totalDis", totalDis1);
 		totalInfo.put("latlng", latlng);
 		

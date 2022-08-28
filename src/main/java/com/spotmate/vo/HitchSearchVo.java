@@ -1,16 +1,43 @@
 package com.spotmate.vo;
 
 public class HitchSearchVo {
-	private String detailOpt, place;
+	private String detailOpt, splace, eplace;
 	private int people;
+	private double lat, lng;
 	
 	public HitchSearchVo() {}
 	
-	public HitchSearchVo(String detailOpt, String place, int people) {
+	
+	public HitchSearchVo(String detailOpt, String splace, String eplace, int people, double lat, double lng) {
+		super();
 		this.detailOpt = detailOpt;
-		this.place = place;
+		this.splace = splace;
+		this.eplace = eplace;
 		this.people = people;
+		this.lat = lat;
+		this.lng = lng;
 	}
+
+
+	public double getLat() {
+		return lat;
+	}
+
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+
+	public double getLng() {
+		return lng;
+	}
+
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
 
 	public String getDetailOpt() {
 		return detailOpt;
@@ -20,12 +47,20 @@ public class HitchSearchVo {
 		this.detailOpt = detailOpt;
 	}
 
-	public String getPlace() {
-		return place;
+	public String getSplace() {
+		return splace;
 	}
 
-	public void setPlace(String place) {
-		this.place = place;
+	public void setSplace(String splace) {
+		this.splace = splace;
+	}
+
+	public String getEplace() {
+		return eplace;
+	}
+
+	public void setEplace(String eplace) {
+		this.eplace = eplace;
 	}
 
 	public int getPeople() {
@@ -36,8 +71,12 @@ public class HitchSearchVo {
 		this.people = people;
 	}
 
+
 	@Override
 	public String toString() {
-		return "HitchSearchVo [detailOpt=" + detailOpt + ", place=" + place + ", people=" + people + "]";
+		return "HitchSearchVo [detailOpt=" + detailOpt + ", splace=" + splace + ", eplace=" + eplace + ", people="
+				+ people + ", lat=" + lat + ", lng=" + lng + "]";
 	}
+
+
 }

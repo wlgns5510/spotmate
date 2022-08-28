@@ -118,17 +118,21 @@
 								<th>사용여부</th>
 							</tr>
 						</thead>
-						<tbody>
-							<c:forEach items="${cMap.couponBList }" var="couponVo">
-								<tr>
-									<td>${couponVo.no }</td>
-									<td>${couponVo.buyDate }</td>
-									<td>${couponVo.cateName }</td>
-									<td>${couponVo.usePlace }</td>
-									<td>${couponVo.point }</td>
-									<td>${couponVo.status }</td>
-								</tr>
-							</c:forEach>
+						<c:forEach items="${cMap.couponBList }" var="couponVo" varStatus="status">
+							<tr>
+								<c:if test="${param.crtPage != null}">
+									<td>${cMap.totalCouponCnt - ((param.crtPage -1)*5+status.index)}</td>
+								</c:if>
+								<c:if test="${param.crtPage == null}">
+									<td>${cMap.totalCouponCnt - (status.index)}</td>
+								</c:if>
+								<td>${couponVo.buyDate }</td>
+								<td>${couponVo.cateName }</td>
+								<td>${couponVo.usePlace }</td>
+								<td>${couponVo.point }</td>
+								<td>${couponVo.status }</td>
+							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 					<div class="paging">
@@ -143,9 +147,7 @@
 							</c:if>
 
 							<c:forEach begin="${cMap.startPageBtnNo}" end="${cMap.endPageBtnNo}" step="1" var="page">
-								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if>
-									href="${pageContext.request.contextPath}/mypageJ/myCouponMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"
-								> ${page} </a></li>
+								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if> href="${pageContext.request.contextPath}/mypageJ/myCouponMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> ${page} </a></li>
 							</c:forEach>
 							<c:if test="${cMap.next}">
 								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">

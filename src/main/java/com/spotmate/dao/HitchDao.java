@@ -12,6 +12,8 @@ import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.HitchReservVo;
+import com.spotmate.vo.HitchSearchResultVo;
+import com.spotmate.vo.HitchSearchVo;
 import com.spotmate.vo.HitchVo;
 import com.spotmate.vo.MapVo;
 
@@ -21,8 +23,8 @@ public class HitchDao {
 	@Autowired
 	private SqlSession ss;
 	
-	public List<HitchVo> getNear() {
-		return ss.selectList("spotmate.selectnear");
+	public List<HitchVo> getNear(int userNo) {
+		return ss.selectList("spotmate.selectnear", userNo);
 	}
 	public List<HitchVo> nearHitchList(int userNo) {
 		return ss.selectList("spotmate.nearhitchlist", userNo);
@@ -41,13 +43,13 @@ public class HitchDao {
 	}
 	//유저가 탑승예약 할 때
 	public int updateReserv(HitchReservVo hrVo){
-		int canRide = ss.selectOne("spotmate.chkpeople", hrVo.getMateNo());
-		if ( canRide >= hrVo.getPeople()) {
-			ss.update("spotmate.updatereservpeople", hrVo);
-			ss.insert("spotmate.makereserv", hrVo);
-		} else {
-			return -1;
-		}
+//		int canRide = ss.selectOne("spotmate.chkpeople", hrVo.getMateNo());
+//		if ( canRide >= hrVo.getPeople()) {
+		ss.update("spotmate.updatereservpeople", hrVo);
+		ss.insert("spotmate.makereserv", hrVo);
+//		} else {
+//			return -1;
+//		}
 		return ss.selectOne("spotmate.chkpeople", hrVo);
 	}
 	//유저가 탑승예약 취소 할 때	
@@ -108,8 +110,11 @@ public class HitchDao {
 		return ss.selectList("spotmate.gethdriverpage", driverNo);
 	}
 	
-	public HitchVo selectSummaryInfo(int mateNo) {
-		return ss.selectOne("spotmate.selectsummarydriverinfo", mateNo);
+	public HitchVo selectSummaryInfo(int mateNo, int userNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mateNo", mateNo);
+		map.put("userNo", userNo);
+		return ss.selectOne("spotmate.selectsummarydriverinfo", map);
 	}
 	
 	
@@ -122,5 +127,9 @@ public class HitchDao {
 			return mVo2;
 		};
 		return mVo;
+	}
+	
+	public List<HitchSearchResultVo> searchList(HitchSearchVo hsVo) {
+		return ss.selectList("spotmate.searchlist", hsVo);
 	}
 }

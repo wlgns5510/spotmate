@@ -55,26 +55,52 @@
 	background-color: #e8e7e7;
 }
 
-.searchbox>.place {
+.searchbox>.splace {
 	width: 220px;
 	height: 30px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
+}
+.searchbox>.eplace {
+	width: 220px;
+	height: 30px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 
 .searchbox>.people {
 	width: 120px;
 	height: 30px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
-
 .searchbox > button > img {
 	width:34px;
 	height:34px;
+	cursor:pointer;
 }
 
 .detail-option {
+	margin:0px auto;
+	padding: 10px;
 	position:relative;
 	border-bottom: 1px solid #e8e7e7;
 	font-weight: 600;
 }
+.detail-option .chkitem {
+	margin: 0px 0px 0px 10px;
+}
+
+.detail-option .do1 {
+	margin: 0px 0px 30px 250px;
+}
+.detail-option .do2 {
+	margin: 0px 0px 0px 150px;
+}
+
 .spot-hitch-info > form > .detail-option > input{
 	margin: 10px 0px 10px 30px;
 }
@@ -149,6 +175,17 @@
 	padding: 10px; 
 	background-color: #4454a1; 
 	color:white; 
+	border-radius: 10px;
+	font-weight: 600;
+}
+
+.driverList > div > .reqPeople {
+	top: 110px;
+	left: 499px;
+	text-align:center;
+	width: 77px;
+	position: absolute;
+	padding: 10px; 
 	border-radius: 10px;
 	font-weight: 600;
 }

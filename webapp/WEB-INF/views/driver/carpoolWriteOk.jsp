@@ -60,18 +60,18 @@
 				
 				<div class="matedesc">
 					<span>SPOT CARPOOL 등록시</span>
-					<p>예상 적립 포인트는 ${dwv.fare}입니다.</p>
+					<p>예상 적립 포인트는 ${dwVo.fare}입니다.</p>
 				</div>
 			</div>
 			<ul>
-				<li>도착까지 예상 소요시간 ${dwv.dur},&nbsp; ${dwv.dis}</li>
+				<li>도착까지 예상 소요시간 ${dwVo.dur},&nbsp; ${dwVo.dis}</li>
 				<li>입력해주신 SPOT CARPOOL 내용이 맞으시면 등록을 눌러주세요.</li>
 			</ul>
 		</div>
 	<div class="mid">
 		<form action="/carpoolWriteInsert" method="post">
 		<c:choose>
-		<c:when test="${dwv.sdate1 == dwv.edate1}">
+		<c:when test="${dwVo.sdate1 == dwVo.edate1}">
 		<input type="hidden" name="type" value="carpool">
 		</c:when>
 		<c:otherwise>
@@ -80,10 +80,10 @@
 		</c:choose>
 			<p>등록하신 날짜와 출발시간입니다.</p>
 			<div class="f-sec">
-				<span>출발 날짜</span><input type="text" name="sdate1" value="${dwv.sdate1}" id="s-date" >
-				<span>출발 시간</span><input type="text" name="stime1" value="${dwv.stime1}" id="s-time" >
+				<span>출발 날짜</span><input type="text" name="sdate1" value="${dwVo.sdate1}" id="s-date" >
+				<span>출발 시간</span><input type="text" name="stime1" value="${dwVo.stime1}" id="s-time" >
 				<br>
-				<span>도착 날짜</span><input type="text" name="edate1" value="${dwv.edate1}" id="e-date" >
+				<span>도착 날짜</span><input type="text" name="edate1" value="${dwVo.edate1}" id="e-date" >
 			</div>
 			<div class="s-sec">
 				<p>드라이버님의 이동 경로입니다</p>
@@ -92,71 +92,88 @@
 				<img src="assets/images/map_line_02.png">
 				<table>
 					<tr>
-						<td><input type="text" name="splace1" value="${dwv.splace1}" id="s-addr" class="s-addr" ></td>
-						<td><input type="hidden" name="slat1" value="${dwv.slat1}" class="s-lat"></td>
-						<td><input type="hidden" name="slng1" value="${dwv.slng1}" class="s-lng"></td>
+						<td><input type="text" name="splace1" value="${dwVo.splace1}" id="s-addr" class="s-addr" ></td>
+						<td><input type="hidden" name="slat1" value="${dwVo.slat1}" class="s-lat"></td>
+						<td><input type="hidden" name="slng1" value="${dwVo.slng1}" class="s-lng"></td>
 					</tr>
 					<tr>
-					 	<td><input type="text" name="eplace1" value="${dwv.eplace1}" id="e-addr" class="e-addr" ></td>
-						<td><input type="hidden" name="elat1" value="${dwv.elat1}" class="e-lat"></td>
-						<td><input type="hidden" name="elng1" value="${dwv.elng1}" class="e-lng"></td>
+					 	<td><input type="text" name="eplace1" value="${dwVo.eplace1}" id="e-addr" class="e-addr" ></td>
+						<td><input type="hidden" name="elat1" value="${dwVo.elat1}" class="e-lat"></td>
+						<td><input type="hidden" name="elng1" value="${dwVo.elng1}" class="e-lng"></td>
 				</table>
-				<input type="hidden" name="latlng1" value="${dwv.latlng1}" id="latlng">
+				<input type="hidden" name="latlng1" value="${dwVo.latlng1}" id="latlng">
+				<input type="hidden" name="intdur" value="${dwVo.intdur}">
 				</div>
 			</div>
 			<div id="map"></div>
 			<div class="t-sec">
 				<p>탑승 가능한 인원 수*</p>
-				<input name="people" value="${dwv.people}" type="text" >
-				<input type="hidden" name="intfare" value="${dwv.intfare}">
-				<input type="hidden" name="dur" value="${dwv.dur}">
-				<input type="hidden" name="dis" value="${dwv.dis}">
+				<input name="people" value="${dwVo.people}" type="text" >
+				<input type="hidden" name="intfare" value="${dwVo.intfare}">
+				<input type="hidden" name="dur" value="${dwVo.dur}">
+				<input type="hidden" name="dis" value="${dwVo.dis}">
 				<p>차량 상세조건</p>
-				<table class="deepsel">
+				<table>
 					<tr>
-					<c:if test="${dwv.nosmoke != null}">
-						<td><input type="hidden" id="nosmoke" name="nosmoke" value="nosmoke">비흡연자</td>
-					</c:if>
-					<c:if test="${dwv.phonecharge != null}">
-						<td><input class="td2" type="hidden" id="phonecharge" name="phonecharge" value="phonecharge">핸드폰 충전기 이용 가능</td>
-					</c:if>
+					<c:if test="${dwVo.nosmoke != null}">
+						<td><div style="background: url(/assets/images/drop-opacity.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>비흡연자</span></td>
+						<td><input type="hidden" name="nosmoke" value="${dwVo.nosmoke}"></td>
+						</c:if>
+						<c:if test="${dwVo.phonecharge != null}">
+						<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>핸드폰 충전기 이용 가능</span></td>
+						<td><input type="hidden" name="phonecharge" value="${dwVo.phonecharge}"></td>
+						</c:if>
 					</tr>
 					<tr>
-					<c:if test="${dwv.femaledriver != null}">
-						<td><input type="hidden" id="femaledriver" name="femaledriver" value="femaledriver">여성 드라이버</td>
-					</c:if>
-					<c:if test="${dwv.trunk != null}">
-						<td><input class="td2" type="hidden" id="trunk" name="trunk" value="trunk">트렁크 사용 가능</td>
-					</c:if>
+					<c:if test="${dwVo.femaledriver != null}">
+						<td><div style="background: url(/assets/images/boy.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>여성 드라이버</span></td>
+						<td><input type="hidden" name="femaledriver" value="${dwVo.femaledriver}"></td>
+						</c:if>
+						<c:if test="${dwVo.trunk != null}">
+						<td><div style="background: url(/assets/images/ico_toolbox.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
+						<td><input type="hidden" name="trunk" value="${dwVo.trunk}"></td>
+						</c:if>
 					</tr>
 					<tr>
-					<c:if test="${dwv.pet != null}">
-						<td><input class="td2" type="hidden" id="pet" name="pet" value="pet">반려동물 탑승 가능</td>
-					</c:if>
+						<c:if test="${dwVo.pet != null}">
+						<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물 탑승 가능</span></td>
+						<td><input type="hidden" name="pet" value="${dwVo.pet}"></td>
+						</c:if>
 					</tr>
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
-				<textarea class="introduce" name="introduce" >${dwv.introduce}</textarea>
+				<textarea class="introduce" name="introduce" >${dwVo.introduce}</textarea>
 				<p>드라이버님이 하고싶은 말을 적어주세요</p>
-				<textarea class="comments" name="comments">${dwv.comments}</textarea>
+				<textarea class="comments" name="comments">${dwVo.comments}</textarea>
 			</div>
-		<p id="btn-modal">등록하기</p>
-    <div id="modal" class="modal-overlay">
-        <div class="modal-window">
-            <div class="close-area">X</div>
-            <div class="content">
-                <p>예상 적립 포인트는 +${dwv.fare}입니다.</p>
-                <button id="sub-btn" type="submit">등록하기</button>
-            </div>
-        </div>
-    </div>
+			<button type="button" id="btn-modal">등록하기</button>
+		    <div id="modal" class="modal-overlay">
+		        <div class="modal-window">
+		            <div class="close-area">X</div>
+		            <div class="modal-content clear">
+		            	<img class="modal-img" src="/assets/images/ico_boxgift.png">
+		            	<div class="modal-text">
+			                <p>예상 적립 포인트는 +${dwVo.fare}입니다.</p>
+			                <p class="modal-second-p">*확인을 누르시면 이동 경로가 등록됩니다.</p>
+		                </div>
+		            </div>
+		            <div class="modal-button-div">
+			                <button id="back-btn" type="button">변경하기</button>
+			                <button id="sub-btn" type="submit">등록하기</button>
+	                </div>
+		        </div>
+		    </div>
 		</form>
-		
 	</div>
 </div>
 <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
+
+$("#back-btn").on("click", function() {
+	location.replace("/carpoolWrite");
+})
+
 var modal = document.getElementById("modal")
 function modalOn() {
     modal.style.animation = "fade-in 0.5s"

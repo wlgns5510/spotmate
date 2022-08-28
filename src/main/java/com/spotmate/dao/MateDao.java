@@ -1,6 +1,7 @@
 package com.spotmate.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,27 @@ public class MateDao {
 		System.out.println("MateDao >> deepReviewAvg");
 		
 		return sqlSession.selectOne("mate.deepReviewAvg", no);
+	}
+	
+	// user예약내역 DB 저장
+	
+	public void saveMate(CarpoolVo carpoolVo) {
+		System.out.println("MateDao> saveMate");
+		
+		int count = sqlSession.insert("carpool.insertUserCarpoolInfo", carpoolVo);
+
+		System.out.println(count);
+
+	}
+	
+	public int chkPeople(int mateNo) {
+		System.out.println("CarpoolDao> chkPeople()");
+		
+		return sqlSession.selectOne("carpool.chkpeople", mateNo);
+	}
+	
+	public void updateReservPeople(Map<String, Object> map) {
+		sqlSession.update("carpool.updatereservpeople", map);
 	}
 	
 }

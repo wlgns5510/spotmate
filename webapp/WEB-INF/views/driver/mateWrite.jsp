@@ -112,9 +112,9 @@
 									<td><input type="hidden" value="" name="day1" id="day1"></td>
 								</tr>
 							</table>
-						<div class='fare1'>1인당 적립 포인트:</div>
-				<div id="finish1" onclick="setDayPath(1)">설정완료</div>
+							<button onclick="setDayPath(1)" type="button" id="finish">설정완료</button>
 				<div id="map1"></div>
+				<div id="fareInfo1"></div>
 				</div>
 			</div>
 			</div>
@@ -124,27 +124,46 @@
 					<input id="people" name="people" type="number" min=1 placeholder="1명">
 					<p>차량 상세조건</p>
 					<table>
-						<tr>
-							<td><input type="checkbox" id="nosmoke" name="nosmoke"
-								value="nosmoke"><label for="nosmoke">비흡연자</label></td>
-							<td><input class="td2" type="checkbox" id="phonecharge"
-								name="phonecharge" value="phonecharge"><label
-								for="phonecharge">핸드폰 충전기 이용 가능</label></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" id="femaledriver"
-								name="femaledriver" value="femaledriver"><label
-								for="femaledriver">여성 드라이버</label></td>
-							<td><input class="td2" type="checkbox" id="trunk"
-								name="trunk" value="trunk"><label for="trunk">트렁크 사용 가능</label></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" id="pet" name="pet"
-								value="pet"><label for="pet">반려동물 탑승 가능</label></td>
-						</tr>
+						<c:forEach items="${driverInfo.NAME}" var="name">
+						<c:choose>
+							<c:when test="${name=='비흡연자'}">
+								<input type="hidden" class="nosmoke" value="">
+							</c:when>
+							<c:when test="${name=='충전기 사용 가능'}">
+								<input type="hidden" class="charge" value="">
+							</c:when>
+							<c:when test="${name=='여성드라이버'}">
+								<input type="hidden" class="female" value="">
+							</c:when>
+							<c:when test="${name=='트렁크 사용 가능'}">
+								<input type="hidden" class="trunk" value="">
+							</c:when>
+							<c:when test="${name=='반려동물'}">
+								<input type="hidden" class="pet" value="">
+							</c:when>
+						</c:choose>
+					</c:forEach>
+					<tr>
+						<td><input type="checkbox" id="nosmoke" name="nosmoke"
+							value="nosmoke"><label for="nosmoke">&nbsp;&nbsp;비흡연자</label></td>
+						<td><input class="td2" type="checkbox" id="phonecharge"
+							name="phonecharge" value="phonecharge"><label
+							for="phonecharge">&nbsp;&nbsp;핸드폰 충전기 이용 가능</label></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="femaledriver"
+							name="femaledriver" value="femaledriver"><label
+							for="femaledriver">&nbsp;&nbsp;여성 드라이버</label></td>
+						<td><input class="td2" type="checkbox" id="trunk"
+							name="trunk" value="trunk"><label for="trunk">&nbsp;&nbsp;트렁크 사용 가능</label></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="pet" name="pet"
+							value="pet"><label for="pet">&nbsp;&nbsp;반려동물 탑승 가능</label></td>
+					</tr>
 					</table>
 					<p>드라이버님을 소개해주세요*</p>
-					<textarea class="introduce" name="introduce" readonly>${introduce}</textarea>
+					<textarea class="introduce" name="introduce" readonly>${driverInfo.INTRODUCE}</textarea>
 					<p>드라이버님이 하고싶은 말을 적어주세요</p>
 					<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 				</div>
@@ -163,8 +182,23 @@ $(document).ready(function() {
 	      } else {
 	        $(this).parent().removeClass("selected");
 	      }
-	    });
-	});
+    });
+	if ( $(".nosmoke").val() != null ) {
+		$("#nosmoke").attr("checked", "checked;");
+	}
+	if ( $(".charge").val() != null ) {
+		$("#phonecharge").attr("checked", "checked;");
+	}
+	if ( $(".female").val() != null ) {
+		$("#femaledriver").attr("checked", "checked;");
+		}
+	if ( $(".trunk").val() != null ) {
+		$("#trunk").attr("checked", "checked;");
+	}
+	if ( $(".pet").val() != null ) {
+		$("#pet").attr("checked", "checked;");
+	}
+});
 document.getElementById("mate-s-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("mate-e-date").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 
@@ -214,7 +248,7 @@ function add() {
 		index = 6;
 		return;
 	}
-	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index+'"><input type="hidden" value="" name="day'+index+'" id="day'+index+'"><input type="hidden" value="" name="stime'+index+'" id="stime'+index+'"><div><span>일정을 추가하려면 눌러주세요</span><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div'+index+'"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index+'"><tr><td><input type="text" id="s-addr'+index+'" name="splace'+index+'" onclick="ssp('+index+')" value="" class="mate-s-addr'+index+'" placeholder="출발지를 입력하세요"><input type="time" value="" onclick="setTime('+index+')" id="s-time'+index+'" class="mate-s-time'+index+'"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow('+index+')"></td><td><input type="hidden" value="" class="hide-s-addr'+index+'"></td><td><input type="hidden" value="" name="slat'+index+'" class="s-lat'+index+'"></td><td><input type="hidden" name="slng'+index+'" value="" class="s-lng'+index+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="eplace'+index+'" id="e-addr'+index+'" class="mate-e-addr'+index+'" placeholder="도착지를 입력하세요" onclick="sep('+index+')"><img onclick="clean('+index+')" class="ic-btn" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="hide-e-addr'+index+'"></td><td><input type="hidden" value="" name="elat'+index+'" class="e-lat'+index+'"></td><td><input type="hidden" name="elng'+index+'" value="" class="e-lng'+index+'"></td><td><input type="hidden" name="latlng'+index+'" value="" id="latlng'+index+'"></td></tr></table><p class="fare'+index+'">1인당 적립 포인트:</p><p id="finish'+index+'" onclick="setDayPath('+index+')">설정완료</p><div id="map'+index+'"></div></div></div>';
+	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index+'"><input type="hidden" value="" name="day'+index+'" id="day'+index+'"><input type="hidden" value="" name="stime'+index+'" id="stime'+index+'"><div><span>일정을 추가하려면 눌러주세요</span><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div'+index+'"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index+'"><tr><td><input type="text" id="s-addr'+index+'" name="splace'+index+'" onclick="ssp('+index+')" value="" class="mate-s-addr'+index+'" placeholder="출발지를 입력하세요"><input type="time" value="" onclick="setTime('+index+')" id="s-time'+index+'" class="mate-s-time'+index+'"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow('+index+')"></td><td><input type="hidden" value="" class="hide-s-addr'+index+'"></td><td><input type="hidden" value="" name="slat'+index+'" class="s-lat'+index+'"></td><td><input type="hidden" name="slng'+index+'" value="" class="s-lng'+index+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="eplace'+index+'" id="e-addr'+index+'" class="mate-e-addr'+index+'" placeholder="도착지를 입력하세요" onclick="sep('+index+')"><img onclick="clean('+index+')" class="ic-btn" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="hide-e-addr'+index+'"></td><td><input type="hidden" value="" name="elat'+index+'" class="e-lat'+index+'"></td><td><input type="hidden" name="elng'+index+'" value="" class="e-lng'+index+'"></td><td><input type="hidden" name="latlng'+index+'" value="" id="latlng'+index+'"></td></tr></table><button onclick="setDayPath('+index+')" type="button" id="finish">설정완료</button><div id="map'+index+'"><div id="fareInfo'+index+'"></div></div></div></div>';
 	index++;
 	for (var i=1;i<index-1;i++) {
 		if ( $(".hide-s-addr"+i).val() != "" ) {
@@ -476,10 +510,10 @@ function setDayPath(index) {
 		success : function(result){
 			var i = (9*index)+(index+1);
 			$("#map"+index).remove();
-			$(".fare"+index).remove();
+			$("#fareInfo"+index).remove();
 			//요금 및 지도 정보 보여주기
-			document.getElementById("input-div"+index).innerHTML += "<div class='fare"+index+"'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare"+index+"' value='"+result.fare+"'>"+result.fare+"</div>";
-			document.getElementById("input-div"+index).innerHTML += '<div id="map'+index+'" style="width:720px; height: 300px; margin:0px 0px 100px 0px;">';
+			document.getElementById("input-div"+index).innerHTML += '<div id="map'+index+'" style="width:720px; height: 300px; margin:50px 0px 50px 0px;">';
+			document.getElementById("input-div"+index).innerHTML += "<div style='margin: 0px 0px 50px 0px; text-align:center;' id='fareInfo"+index+"'>1인당 적립 포인트:&nbsp; <input type='hidden' name='fare"+index+"' value='"+result.fare+"'><span style='color:#4454a1;'>"+result.fare+"</span></div>";
 			
 			//button누를 시 겉에 보이는 input박스는 값이 날아가서 hidden에 저장 후 다시 넣어줌
 			document.getElementById("s-addr"+index).value = saddr;

@@ -11,18 +11,43 @@
 
 /* hover */
 
-.inner > .mid input {
+#people {
 	border: 1px solid #bfbfbf;
-	border-radius: 15px;
+	border-radius: 10px;
 	padding: 0px 0px 0px 5px;
 }
 .inner > .mid textarea {
 	border: 1px solid #e8e7e7;
-	border-radius: 15px;
+	border-radius: 10px;
 }
 .inner > .mid ::placeholder {
 	color: #e8e7e7;
 	padding: 0px 0px 0px 10px;
+}
+.inner .fare {
+	margin: 0px auto;
+	padding: 10px;
+}
+.inner .dur {
+	margin: 0px auto;
+	padding: 10px;
+}
+.inner .dis {
+	margin: 0px auo;
+	padding: 10px;
+}
+.inner #finish {
+	margin: 0px auto;
+	width: 200px;
+	height: 50px;
+	margin: 50px 0px 0px 260px;
+	border-radius: 10px;
+	border: 1px solid #4454a1;
+}
+.inner #totalInfo {
+	margin: 0px 0px 50px 0px;
+	text-align:center;
+	color:#4454a1;
 }
 .e-time::placeholder {
 	font-weight: 300;
@@ -45,19 +70,7 @@
 	color: #e8e7e7;
 	padding: 10px 0px 0px 10px;
 }
-/* input[type="checkbox"] { */
-/* 	display:none; */
-/* } */
-/* input[type="checkbox"] + label { */
-/* 	display:inline; */
-/* 	width: 18px; */
-/* 	height: 18px; */
-/* 	position: relative; */
-/* } */
-/* input + label::after { */
-/* 	background-color: #4454a1; */
-/*     position: absolute; */
-/* } */
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -84,7 +97,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: rgba(255, 255, 255, 0.25);
+	background: rgba(0, 0, 0, 0.25);
 	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 	backdrop-filter: blur(1.5px);
 	-webkit-backdrop-filter: blur(1.5px);
@@ -92,14 +105,14 @@
 	border: 1px solid rgba(255, 255, 255, 0.18);
 }
 #modal .modal-window { 
-    background: rgba( 69, 139, 197, 0.70 ); 
+    background: rgba( 232, 231, 231, 0.70 ); 
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); 
     backdrop-filter: blur( 13.5px ); 
     -webkit-backdrop-filter: blur( 13.5px ); 
     border-radius: 10px; 
     border: 1px solid rgba( 255, 255, 255, 0.18 ); 
     width: 400px; 
-    height: 100px; 
+    height: 150px; 
     position: relative; 
     top: -100px; 
     padding: 10px; 
@@ -113,19 +126,52 @@
     color: white;
 }
 
-#modal .content {
+#modal > .modal-content {
 	text-align: center;
     margin-top: 20px;
     padding: 0px 10px;
     text-shadow: 1px 1px 2px gray;
     color: white;
 } 
-#sub-btn {
+.modal-img {
+	float:left;
+	margin: 0px 0px 0px 10px;
+	width:50px;
+	height:50px;
+}
+.modal-text {
+	margin: 30px 0px 0px 80px;
+	font-weight: 300;
+/* 	padding: 10px; */
+}
+.modal-second-p {
 	margin: 20px 0px 0px 0px;
+	font-size: 12px;
+	color: gray;
+}
+.modal-button-div {
+	margin: 20px 0px 0px 40px;
+}
+#back-btn {
+	margin: 0px 10px 0px 0px;
 	padding: 5px;
 	background-color: white;
 	opacity: 0.7;
 	border-radius: 10px;
+	border: 1px solid #4F4F4F;
+	color: black;
+	width: 150px;
+	height: 40px;
+}
+#sub-btn {
+/* 	margin: 20px 0px 0px  50px; */
+	padding: 5px;
+	background-color: #4F4F4F;
+	opacity: 0.7;
+	color: white;
+	border-radius: 10px;
+	width: 150px;
+	height: 40px;
 }
 
 .inner > .top {
@@ -150,9 +196,10 @@
 }
 .inner > .top > span {
 	position:absolute;
-	top: 170px;
+	top: 165px;
 	left: 1010px;
 	font-size: 16px;
+	font-weight: 400;
 	color: #4454a1;
 }
 
@@ -164,6 +211,9 @@
 	padding: 50px;
 	box-shadow: 0px 0px 5px 1px #e8e7e7;
 }
+.mid > #btn-modal {
+	margin:0px auto;
+}
 .f-sec {
 	margin: 30px 0px 50px 0px;
 }
@@ -174,62 +224,76 @@
 	width: 300px;
 	height: 50px;
 	margin: 0px 30px 10px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 .f-sec #s-time {
 	width: 161px;
 	height: 50px;
 	margin: 0px 0px 10px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 .f-sec #hitch-s-date {
 	width: 550px;
 	height: 50px;
 	margin: 0px 30px 10px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 .f-sec #hitch-s-time {
 	width: 550px;
 	height: 50px;
 	margin: 0px 0px 10px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 .f-sec #e-date {
 	width: 600px;
 	height: 50px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 
 
 
 .s-sec {
 	margin: 30px 0px 30px 0px;
-/* 	position:relative; */
-/* 	height: 220px; */
 }
 .s-sec table {
 	display:inline;
 }
-.s-sec > p {
-/* 	position: absolute; */
-/* 	top: 30px; */
-}
 .s-sec > img {
-/* 	position: absolute; */
-/* 	top: 100px; */
 	width: 15px;
 	height: 73px;
 }
 #input-div {
 	width: 730px;
-/* 	position: absolute; */
-/* 	top: 70px; */
 }
 .s-addr {
 	width: 670px;
-	height: 30px;
-	margin: 15px 0px 15px 0px;
+	height: 50px;
+	margin: 15px 0px 0px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .e-addr {
 	width: 670px;
-	height: 30px;
-	margin: 15px 0px 15px 0px;
+	height: 50px;
+	margin: 0px 0px 15px 0px;
+	border: 1px solid #bfbfbf;
+/* 	border-left: 1px solid #bfbfbf; */
+/* 	border-right: 1px solid #bfbfbf; */
+/* 	border-bottom: 1px solid #bfbfbf; */
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .ae-btn {
@@ -267,7 +331,7 @@
 }
 .t-sec > table > tbody > tr > .selected {
 	color: #4454a1;
-	font-weight: bold;
+	font-weight: 600;
 }
 .t-sec > .introduce {
 	width: 720px;
@@ -285,5 +349,6 @@
 	width: 200px;
 	height: 50px;
 	margin: 50px 0px 0px 260px;
+	border-radius: 10px;
 	border: 1px solid #4454a1;
 }
