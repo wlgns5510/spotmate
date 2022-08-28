@@ -80,15 +80,6 @@ public class MypageJDao {
 		return totalPointCnt;
 	}
 	
-	// 총포인트가져오기
-	public int getTotalPoint(int userNo) {
-		System.out.println("MypageJService > getTotalPoint");
-		
-		int totalPoint= sqlSession.selectOne("mypagej.selectTotalPoint", userNo);
-		
-		return totalPoint;
-	}
-	
 	//쿠폰구매insert(CouponUsage)
 	public int insertCouponUsage(CouponVo couponVo) {
 		System.out.println("MypageJService > insertCouponUsage");
@@ -152,4 +143,32 @@ public class MypageJDao {
 		return count;
 	}
 	
+	//총 별점평균가져오기
+	public float getavgStar(int userVo) {
+		System.out.println("MypageJService > getvgStar");
+		
+		float avgStar = sqlSession.selectOne("mypagej.selectavgStar", userVo);
+		
+		return avgStar;
+	}
+	
+	// 총포인트가져오기
+	public int getTotalPoint(int userNo) {
+		System.out.println("MypageJService > getTotalPoint");
+		
+		int totalPoint= sqlSession.selectOne("mypagej.selectTotalPoint", userNo);
+		
+		return totalPoint;
+	}
+	
+	//미사용쿠폰갯수 가져오기
+	public int getNouUsedCoupon(int userNo) {
+		System.out.println("MypageJService > getNouUsedCoupon");
+		
+		int nouUsedCoupon= sqlSession.selectOne("mypagej.selectNouUsedCoupon", userNo);
+		
+		return nouUsedCoupon;
+	}
+	
+
 }

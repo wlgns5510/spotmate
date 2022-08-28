@@ -368,6 +368,9 @@ public class MypageJService {
 			 state = "fail";
 		 }
 		 
+		 
 		 return state;
 	}
+	
+
 }

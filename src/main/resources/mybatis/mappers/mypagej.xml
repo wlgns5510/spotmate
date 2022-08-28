@@ -311,17 +311,6 @@
 		]]>
 	</insert>
 
-	<!-- 총 포인트 가져오기 -->
-
-	<select id="selectTotalPoint" parameterType="int" resultType="int">
-		<![CDATA[
-			select sum(point)
-			from pointUsage
-			where userno = #{userNo}
-		]]>
-
-	</select>
-
 	<!-- 포인트환불(RefundPoint) -->
 	<insert id="insertRefundPoint" parameterType="com.spotmate.vo.RefundVo">
 		<![CDATA[
@@ -432,5 +421,45 @@
 			where no = #{no}
 		]]>
 	</update>
+	
+	<!-- 미사용쿠폰갯수 가져오기 -->
+	<select id="selectNouUsedCoupon" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from users u, couponUsage cu
+			where u.no = cu.couponNo
+			and u.no = #{userNo}
+			and cu.status= '미사용'		
+		]]>
+	</select>
+	
+	
+	<!-- 총 포인트 가져오기 -->
+	<select id="selectTotalPoint" parameterType="int" resultType="int">
+		<![CDATA[
+			select sum(point)
+			from pointUsage
+			where userno = #{userNo}
+		]]>
 
+	</select>
+	
+	
+	<!-- 총 별점평균 가져오기 -->
+	<select id="selectavgStar" parameterType="int" resultType="float">
+		<![CDATA[
+			select sum(dAvgStar + uAvgStar)/2
+			from (select round(NVL(avg(star),0),1) dAvgStar
+				  from users u, reservation re, userReview ur
+				  where u.no = re.driverNo
+				  and ur.resvNo = re.no
+				  and u.no = #{userNo}) d, (select round(NVL(avg(star),0),1) uAvgStar
+				                  from users u, reservation re, driverReview dr
+				                  where u.no = re.userNo
+				                  and dr.resvNo = re.no
+				                  and u.no = #{userNo})u
+		]]>
+	
+	</select>
+	
 </mapper>
