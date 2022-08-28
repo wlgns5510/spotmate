@@ -6,7 +6,7 @@
 	<!-- 쿠폰리스트가져오기 -->
 	<select id="selectCouponBList" parameterType="couponVo" resultType="couponVo">
 		<![CDATA[
-			select  ort.rn,
+			select  ort.rn couponListNo,
 			        ort.no,
 			        to_char(ort.buyDate, 'yy.mm.dd') buyDate,
 			        ort.usePlace,
@@ -148,7 +148,7 @@
 	<!-- 포인트리스트가져오기 -->
 	<select id="selectPointList" parameterType="pointVo" resultType="PointVo">
 		<![CDATA[
-			select  ort.rn,
+			select  ort.rn pointNo,
 			        ort.no,
 			        ort.type,
 			        to_char(ort.regDate, 'yy.mm.dd') regDate,
@@ -322,7 +322,7 @@
 	<!-- 환불리스트가져오기 -->
 	<select id="selectrefundList" parameterType="com.spotmate.vo.RefundVo" resultType="com.spotmate.vo.RefundVo">
 		<![CDATA[
-			select  ort.rn,
+			select  ort.rn refundNo,
 			        to_char(ort.regDate, 'yy.mm.dd') regDate,
 			        ort.accountNum,
 			        ort.status,

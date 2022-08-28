@@ -120,7 +120,7 @@
 						<tbody>
 							<c:forEach items="${cMap.refundList }" var="refundVo" varStatus="status">
 								<tr>
-									<td>${cMap.totalRefundCnt - ((param.crtPage -1)*5+status.index)}</td>
+									<td>${refundVo.refundNo}</td>
 									<td>${refundVo.regDate }</td>
 									<td>${refundVo.accountNum }</td>
 									<td>${refundVo.status }</td>
