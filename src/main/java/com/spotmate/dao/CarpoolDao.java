@@ -1,6 +1,7 @@
 package com.spotmate.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,26 +58,27 @@ public class CarpoolDao {
 		List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewList", no);
 		return reviewList;
 	}
-	/*
-	// 리뷰 배너 
-	public List<CarpoolVo> getreviewList() {
-		System.out.println("CarpoolDao>reviewlist()");
-
-		List<CarpoolVo> reviewList = sqlSession.selectList("carpool.selectReviewList");
-
-		return reviewList;
-	}*/
 	
-
+	
 	// user예약내역 DB 저장
 	
 	public void saveCarpool(CarpoolVo carpoolVo) {
 		System.out.println("CarpoolDao> saveCarpool()");
-
+		
 		int count = sqlSession.insert("carpool.insertUserCarpoolInfo", carpoolVo);
 
 		System.out.println(count);
 
+	}
+	
+	public int chkPeople(int mateNo) {
+		System.out.println("CarpoolDao> chkPeople()");
+		
+		return sqlSession.selectOne("carpool.chkpeople", mateNo);
+	}
+	
+	public void updateReservPeople(Map<String, Object> map) {
+		sqlSession.update("carpool.updatereservpeople", map);
 	}
 
 }

@@ -50,8 +50,10 @@
 				       group by mateNo) pt 
 		         where sm.no = se.sMateNo
 		         and ca.no = sm.carNo
-		         and ca.userNo = us.no  
+		         and ca.userNo = us.no 
+		         and (sm.type = 'carpool' or sm.type = 'seasonTicket')
 		         and sm.no = pt.mateNo(+) 
+		         and sm.people > 0
 		     
 		]]>
 		<if test="splace != ''  and  splace != null ">
@@ -248,12 +250,30 @@
 	<!-- user예약내역 DB저장 -->
 	
 	<insert id="insertUserCarpoolInfo" parameterType="com.spotmate.vo.CarpoolVo">
+		<selectKey keyProperty="driverNo" resultType="int" order="BEFORE">
+	            select
+	               driverNo
+	            from reservation
+	            where mateNo = #{spotMateNo}
+	            group by driverNo
+	      </selectKey>
 		<![CDATA[
 		insert into reservation
-		values (seq_reservation_no, #{mateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, '', #{people}, '', '')
+		values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
 		]]>
 	</insert>
 
+	<select id="chkpeople" parameterType="int" resultType="int">
+      select people
+      from spotmate
+      where no = #{mateNo}
+   </select>
+
+   <update id="updatereservpeople" parameterType="map">
+      update spotmate
+      set people = people - #{people}
+	  where no = #{mateNo} 
+   </update>
 
 
 

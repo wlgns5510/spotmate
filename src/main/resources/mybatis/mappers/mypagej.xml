@@ -309,7 +309,7 @@
             values(seq_pointrefund_no.nextval, #{userNo}, sysdate, #{accountNum}, #{name}, '환불대기', #{point})
 		]]>
 	</insert>
-	
+
 	<!-- 환불리스트가져오기 -->
 	<select id="selectrefundList" parameterType="com.spotmate.vo.RefundVo" resultType="com.spotmate.vo.RefundVo">
 		<![CDATA[
@@ -353,7 +353,7 @@
 			and rn<=#{endRnum}
 		]]>
 	</select>
-	
+
 	<!-- 환불리스트전체글 갯수 -->
 	<select id="totalRefundCnt" parameterType="com.spotmate.vo.RefundVo" resultType="int">
 		<![CDATA[
@@ -375,7 +375,7 @@
 			and status = #{option1}
 		</if>
 	</select>
-	
+
 	<!-- 유저정보 가져오기 -->
 	<select id="getUser" parameterType="int" resultType="userVo">
 		<![CDATA[
@@ -392,7 +392,7 @@
 		]]>
 
 	</select>
-	
+
 	<!-- 유저정보 업데이트 -->
 	<update id="updateUser" parameterType="userVo">
 		<![CDATA[
@@ -402,6 +402,13 @@
 			     phone = #{phone},
 			     address = #{address},
 			     gender = #{gender}
+		]]>
+		
+		<if test="pw != '' and pw != null">
+			,pw = #{pw}
+		</if>
+			     
+		<![CDATA[
 			where no = #{no}
 		]]>
 	</update>

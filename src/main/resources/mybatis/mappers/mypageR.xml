@@ -19,7 +19,7 @@
 			    #{carNo},
 			    #{userNo},
 			    #{c_Model},
-			    '',
+			    #{c_file},
 			    #{c_num},
 			    #{c_color},
 			    #{num_PA},

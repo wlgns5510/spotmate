@@ -7,54 +7,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
-	<meta name="title" content="">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<meta name="keywords" content="">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="">
-	<meta property="og:description" content="">
-	<meta property="og:url" content="">
-	<meta property="og:image" content="">
-	<meta property="og:author" content="">
-	<meta property="kakao:title" content="">
-	<meta property="kakao:description" content="">
-	
-	<!-- favicon -->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" sizes="57x57" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="${pageContext.request.contextPath}/assets/images/common/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="${pageContext.request.contextPath}/assets/images/common/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="${pageContext.request.contextPath}/assets/images/common/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/assets/images/common/favicon-16x16.png">
-	<link rel="manifest" href="${pageContext.request.contextPath}/assets/images/common/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="${pageContext.request.contextPath}/assets/images/common/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-	
-	<!-- css, js 연결 -->
-	<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
-	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
-	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
-	
-	<title>myDriverForm</title>
-	
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SPOTMATE</title>
+<meta name="title" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:url" content="">
+<meta property="og:image" content="">
+<meta property="og:author" content="">
+<meta property="kakao:title" content="">
+<meta property="kakao:description" content="">
+
+<!-- favicon -->
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon.ico"
+	type="image/x-icon">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon.ico"
+	type="image/x-icon">
+<link rel="apple-touch-icon" sizes="57x57"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"
+	href="${pageContext.request.contextPath}/assets/images/common/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon-16x16.png">
+<link rel="manifest"
+	href="${pageContext.request.contextPath}/assets/images/common/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage"
+	content="${pageContext.request.contextPath}/assets/images/common/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<!-- css, js 연결 -->
+<link
+	href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css"
+	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/style.css"
+	rel="stylesheet" />
+<script
+	src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
+
+<title>myDriverForm</title>
+
 </head>
 
 <body>
@@ -66,55 +91,14 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 
 		<!-- //topNav -->
-		<nav class="myPage_topNav">
-			<div class="box1">
-				<div class="box1_box">
-					<img src="/assets/images/box_user.png">
-				</div>
-				<p>Ryeo-kyoung,kim님</p>
-				<span>Reviews</span><span><img
-					src="/assets/images/ico_star.png">4.3</span>
-			</div>
-			<div class="box2">
-				<p>
-					<a href="./myPointCharge">포인트 충전 ></a>
-				</p>
-				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
-			</div>
-			<div class="box3">
-				<p>
-					<a href="./myCouponMain">쿠폰 사용 ></a>
-				</p>
-				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
-			</div>
-		</nav>
+		<c:import url="/WEB-INF/views/includes/myPageTopNav.jsp"></c:import>
 
 		<!-- //myPage main contents -->
 		<main class="contents">
 
 			<!-- //sideNav  -->
-			<nav class="myPage_sideNav">
-				<h2>마이페이지</h2>
-				<!-- h2? -->
-				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-				</ul>
-			</nav>
+			<c:import url="/WEB-INF/views/includes/myPageSideNav.jsp"></c:import>
+
 			<!-- //section -->
 			<section class="myPage_selection">
 				<!-- //section-header -->
@@ -147,24 +131,46 @@
 
 								<h5>면허증 정보 입력*</h5>
 								<!-- Driver License -->
-								<table>
+								<table class="join_call">
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input name="username" id="username"
-											placeholder="홍길동" type="text"></td>
-
+										<td><input value="${dlvo.username}" name="username"
+											id="username" placeholder="ex)장원영" type="text"></td>
 									</tr>
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
-										<td><input name="userBD" id="userBD"
-											placeholder="19900805" type="text"></td>
+										<td><input value="${dlvo.userBD}" name="userBD"
+											id="userBD" placeholder="ex)2004-0831" type="text"></td>
 										<td><button type="button" id="liau" class="smallbtn">본인인증</button></td>
 									</tr>
+								</table>
+								<table>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
-										<td><input name="dl" id="dl" placeholder="면허등록번호입력"
-											type="text"></td>
+										<td>
+											<div class="join_dl">
+												<div class="dltable">
+
+													<div class="dl_wrap1" style="width: 490px">
+														<span class="dl_box"> <input name="dl" id="dl_1"
+															placeholder="ex)11" type="text"
+															style="margin-right: 0px; width: 80px;">
+														</span> <span class="dl_box"> <input name="dl" id="dl"
+															placeholder="ex)18" type="text">
+														</span> <span class="dl_box"> <input name="dl" id="dl"
+															placeholder="ex)026155" type="text">
+														</span> <span class="dl_box"> <input name="dl" id="dl"
+															placeholder="ex)10" type="text">
+														</span> <span class="dl_box"> <input type="text" id="dl"
+															placeholder="ex)X61D86" name="dl"></span>
+													</div>
+													<span class="error_next_box" id="dlMsg"
+														aria-live="assertive" style="display: none;">면허등록번호를
+														정확하게 입력하세요.</span>
+												</div>
+											</div>
+										</td>
 									</tr>
 									<tr align="left">
 										<td><label for="licensetype">종류*</label></td>
@@ -178,7 +184,7 @@
 							<div class="DC_info">
 								<h5>차량 정보 입력*</h5>
 								<table>
-									
+
 									<tr align="left">
 										<td><label for="c_Model">차량모델명*</label></td>
 										<td><input name="c_Model" id="c_Model"
@@ -186,16 +192,32 @@
 									</tr>
 
 									<tr>
-										<td></td>
-										<td><input type="file" id="input-file" class="file_d"></td>
-										<td><label class="smallbtn" for="input-file"> <span>파일선택</span>
-										</label></td>
+										<div id="file">
+											<form method="post" action="${pageContext.request.contextPath}/fileupload/upload" enctype="multipart/form-data">
+												<table>
+													<colgroup>
+														<col style="width: 600px;">
+														<col style="width: 220px;">
+													</colgroup>
+													<tr>
+
+														<td><input type="text" id="input-file" name="c_file"
+															class="file_d"></td>
+
+														<td><button type="submit" class="smallbtn">파일업로드</button>
+														</td>
+													</tr>
+												</table>
+											</form>
+										</div>
 									</tr>
+
 									<tr align="left">
 										<td><label for="c_num">차량등록번호*</label></td>
 										<td><input name="c_num" id="c_num" placeholder="770가7777"
 											type="text"></td>
-										<td><button type="button" style="font-weight: bold" class="smallbtn" id="carAuth">차량인증</button></td>
+										<td><button type="button" style="font-weight: bold"
+												class="smallbtn" id="carAuth">차량인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
@@ -220,7 +242,7 @@
 										<td><input type="checkbox" name="ch_type"
 											id="Dformcheckbox" value="1"><span>비흡연자</span></td>
 										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="2" checked="checked"> <span>여성드라이버</span></td>
+											id="Dformcheckbox" value="2"> <span>여성드라이버</span></td>
 									</tr>
 									<tr align="left">
 										<td><input type="checkbox" name="ch_type"
@@ -270,6 +292,10 @@
 
 </body>
 
+
+
+
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#file").on('change', function() {
@@ -277,26 +303,28 @@
 			$(".upload-name").val(fileName);
 		});
 	});
-	
+
+	//차량인증 
+
 	$("#carAuth").on("click", function() {
 		var name = $("#username").val();
 		var cnum = $("#c_num").val();
-		
+
 		console.log(name)
 		console.log(cnum)
 		$.ajax({
 			url : "${pageContext.request.contextPath}/carAuth",
 			type : "post",
 			contentType : "application/json",
-			async: false,
+			async : false,
 			data : JSON.stringify({
-					name: name,
-					cnum: cnum
+				name : name,
+				cnum : cnum
 			}),
 			dataType : "json",
 			success : function(result) {
-				console.log("result,",result)
-				if ( result == -1 ) {
+				console.log("result,", result)
+				if (result == -1) {
 					alert("틀렸습니다");
 				} else {
 					alert("성공했습니다");
@@ -307,12 +335,12 @@
 			}
 		});
 	})
-	
+
 	$("#liau").on("click", function() {
 		var name2 = $("#username").val();
 		var btd2 = $("#userBD").val();
 		var serial2 = $("#dl").val();
-		if(serial2.length != 22) {
+		if (serial2.length != 22) {
 			alert("형식에 맞게 값을 넣어주세요");
 			return;
 		}
@@ -320,16 +348,16 @@
 			url : "${pageContext.request.contextPath}/driverAuth",
 			type : "post",
 			contentType : "application/json",
-			async: false,
+			async : false,
 			data : JSON.stringify({
-					name: name2,
-					btd: btd2,
-					serial: serial2
+				name : name2,
+				btd : btd2,
+				serial : serial2
 			}),
 			dataType : "json",
 			success : function(result) {
-				console.log("result,",result)
-				if ( result == -1 ) {
+				console.log("result,", result)
+				if (result == -1) {
 					alert("틀렸습니다");
 				} else {
 					alert("성공했습니다");

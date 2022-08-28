@@ -20,11 +20,11 @@
          <div class="cen_sec">
             <strong class="footer_tit">SERVICE</strong>
             <ul class="footer_menu clear">
-               <li><a href="javascript:void(0);">BRAND</a></li>
-               <li><a href="javascript:void(0);">SPOT</a></li>
-               <li><a href="javascript:void(0);">MATE</a></li>
-               <li><a href="javascript:void(0);">COMMUNITY</a></li>
-               <li><a href="javascript:void(0);">DRIVER</a></li>
+               <li><a href="/aboutUs">BRAND</a></li>
+               <li><a href="/spotMain">SPOT</a></li>
+               <li><a href="/mateInfo">MATE</a></li>
+               <li><a href="/faq">COMMUNITY</a></li>
+               <li><a href="/driverMain">DRIVER</a></li>
             </ul>
          </div>
          <div class="rit_sec">

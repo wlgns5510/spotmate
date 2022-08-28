@@ -431,6 +431,21 @@
 /*inputBox 수정*/
 .style2 > input {
 	width: 220px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
+    top: 580px;
+    left: 555px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    overflow: hidden;
+    text-align: center;
+    color: rgba(102, 102, 102, 1);
+    font-family: Noto Sans;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 0px;
+	
 }
 
 .style2 > select {

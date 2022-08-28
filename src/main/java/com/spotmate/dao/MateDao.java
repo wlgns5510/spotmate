@@ -1,11 +1,13 @@
 package com.spotmate.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spotmate.vo.CarpoolVo;
 import com.spotmate.vo.MateVo;
 
 @Repository
@@ -15,32 +17,14 @@ public class MateDao {
 	private SqlSession sqlSession;
 	
 	//메이트 리스트 가져오기
-	public List<MateVo> getMateList(){
+	public List<MateVo> getMateList(MateVo mateVo){
 		System.out.println("MateDao >> getMateList");
 		
-		List<MateVo> mateList = sqlSession.selectList("mate.selectMateList");
+		List<MateVo> mateList = sqlSession.selectList("mate.selectMateList", mateVo);
 		
 		return mateList;
 	}
-	
-	//해당 메이트가 반려동물가능여부를 체크했는지 확인
-	public List<MateVo> getMateOptionList(){
-		System.out.println("MateDao >> getMateOptionList");
 		
-		List<MateVo> mateOptionList = sqlSession.selectList("mate.selectMateOptionList");
-		
-		return mateOptionList;
-	}
-	
-	//메이트 리스트 가져오기(장소)
-	public List<MateVo> getMatePlaceList(){
-		System.out.println("MateDao >> getMatePlaceList");
-		
-		List<MateVo> matePlaceList = sqlSession.selectList("mate.selectMatePlaceList");
-		
-		return matePlaceList;
-	}
-	
 	//해당 메이트에 관한 정보
 	public MateVo deepMateRead(int no) {
 		System.out.println("MateDao >> deepMateRead");
@@ -68,4 +52,41 @@ public class MateDao {
 		
 		return sqlSession.selectList("mate.deepDetailRead", no);
 	}
+	
+	//해당 메이트의 운전자의 별점리스트
+	public List<CarpoolVo> deepReviewList(int no) {
+		System.out.println("MateDao >> deepReviewList");
+		
+		return sqlSession.selectList("mate.deepReviewList", no);
+		
+	}
+	
+	//해당 메이트 운전자의 별점 평균
+	public CarpoolVo deepReviewAvg(int no) {
+		System.out.println("MateDao >> deepReviewAvg");
+		
+		return sqlSession.selectOne("mate.deepReviewAvg", no);
+	}
+	
+	// user예약내역 DB 저장
+	
+	public void saveMate(CarpoolVo carpoolVo) {
+		System.out.println("MateDao> saveMate");
+		
+		int count = sqlSession.insert("carpool.insertUserCarpoolInfo", carpoolVo);
+
+		System.out.println(count);
+
+	}
+	
+	public int chkPeople(int mateNo) {
+		System.out.println("CarpoolDao> chkPeople()");
+		
+		return sqlSession.selectOne("carpool.chkpeople", mateNo);
+	}
+	
+	public void updateReservPeople(Map<String, Object> map) {
+		sqlSession.update("carpool.updatereservpeople", map);
+	}
+	
 }
