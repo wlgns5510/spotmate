@@ -173,8 +173,8 @@ public class MypageJService {
 		///////////// 페이징계산//////////////
 
 		// 전체글갯수
-		int totalCouponCnt = mypagejDao.totalPointCnt(pointVo);
-		System.out.println(totalCouponCnt);
+		int totalPointCnt = mypagejDao.totalPointCnt(pointVo);
+		System.out.println(totalPointCnt);
 
 		// 페이지당 버튼 갯수
 		int pageBtnCount = 5;
@@ -189,11 +189,11 @@ public class MypageJService {
 
 		// 다음 화살표 유무
 		boolean next = false;
-		if (listCnt * endPageBtnNo < totalCouponCnt) {
+		if (listCnt * endPageBtnNo < totalPointCnt) {
 			next = true;
 
 		} else {
-			endPageBtnNo = (int) Math.ceil(totalCouponCnt / (double) listCnt);
+			endPageBtnNo = (int) Math.ceil(totalPointCnt / (double) listCnt);
 
 		}
 
@@ -210,7 +210,7 @@ public class MypageJService {
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
-
+		cMap.put("totalPointCnt", totalPointCnt);
 		
 
 		for (PointVo p : pointList) {
@@ -226,8 +226,7 @@ public class MypageJService {
 			}
 
 		}
-
-		System.out.println(pointList);
+		System.out.println(totalPointCnt + "테스트중이다");
 
 		return cMap;
 	}
