@@ -2,6 +2,7 @@ package com.spotmate.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spotmate.service.MateService;
-import com.spotmate.vo.CarpoolVo;
 import com.spotmate.vo.MateVo;
 
 @Controller
@@ -64,30 +64,18 @@ public class MateController {
 
 	//mateNo에 해당하는 메이트딥 이동 + 드라이버 차량 정보 가져오기 + 경로상세 + 차량의 상세조건
 	@RequestMapping(value = "/mateDeep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateDeep(@PathVariable("no") int mateNo, Model model) {
+	public String mateDeep(@PathVariable("no") int no, Model model) {
 		System.out.println("MateController >> mateDeep");
 		
-		MateVo mateVo = mateService.deepMateRead(mateNo);	//해당 메이트에 관한 정보
-		MateVo mateDriverVo = mateService.deepMateDriverRead(mateNo);	//해당 메이트의 운전자,차량정보
-		List<MateVo> matePlaceList = mateService.deepPlaceRead(mateNo);	//해당 메이트의 출발지, 경유지, 도착지정보
-		List<MateVo> mateDetailList = mateService.deepDetailRead(mateNo); //해당 메이트의 운전자가 설정한 상세조건
-		List<CarpoolVo> reviewList = mateService.deepReviewList(mateNo);	//해당 메이트의 운전자의 별점리스트
-		CarpoolVo reviewAvg = mateService.deepReviewAvg(mateNo);	//해당 메이트 운전자의 별점 평균
+		Map<String, Object> mMap = mateService.deepMateRead(no);
 		
-		model.addAttribute("mateVo", mateVo);
-		model.addAttribute("matePlaceList", matePlaceList);
-		model.addAttribute("mateDriverVo", mateDriverVo);
-		model.addAttribute("mateDetailList", mateDetailList);
-		model.addAttribute("reviewList", reviewList);
-		model.addAttribute("reviewAvg", reviewAvg);
+		model.addAttribute("mMap", mMap);
+		
 		
 		return "/mate/mateDeep";
 	}
 	
-	@RequestMapping(value = "/testMate", method = { RequestMethod.GET, RequestMethod.POST })
-	public String test() {
-		return "/mate/testMate";
-	}
+	
 	
 	
 }
