@@ -11,6 +11,8 @@ import com.spotmate.dao.HitchDao;
 import com.spotmate.function.ConvertPoint;
 import com.spotmate.function.Haversine;
 import com.spotmate.vo.HitchReservVo;
+import com.spotmate.vo.HitchSearchResultVo;
+import com.spotmate.vo.HitchSearchVo;
 import com.spotmate.vo.HitchVo;
 import com.spotmate.vo.MapVo;
 
@@ -64,8 +66,8 @@ public class HitchService {
 		return hDao.selectDriverPos(mVo);
 	}
 	
-	public HitchVo getSummaryInfo(int mateNo) {
-		return hDao.selectSummaryInfo(mateNo);
+	public HitchVo getSummaryInfo(int mateNo, int userNo) {
+		return hDao.selectSummaryInfo(mateNo, userNo);
 	}
 	
 	public List<HitchVo> nearHitchList(MapVo mVo, int userNo) {
@@ -86,9 +88,9 @@ public class HitchService {
 		return nhL;
 	}
 	
-	public List<HitchVo> getNear(MapVo mVo) {
+	public List<HitchVo> getNear(MapVo mVo, int userNo) {
 		Haversine haver = new Haversine();
-		List<HitchVo> hL = hDao.getNear();
+		List<HitchVo> hL = hDao.getNear(userNo);
 		List<HitchVo> nhL = new ArrayList<HitchVo>();
 		for(int i=0;i<hL.size();i++) {
 			if (hL.get(i).getLatlng() != null) {
@@ -100,6 +102,21 @@ public class HitchService {
 		return nhL;
 	}
 	
+	public List<HitchSearchResultVo> searchList(HitchSearchVo hsVo) {
+		Haversine haver = new Haversine();
+		List<HitchSearchResultVo> hsrL = hDao.searchList(hsVo);
+		List<HitchSearchResultVo> nhsrL = new ArrayList<HitchSearchResultVo>();
+		for(int i=0;i<hsrL.size();i++) {
+			if (hsrL.get(i).getLatlng() != null) {
+				if ( haver.calcByHaversine(hsVo.getLat(), hsVo.getLng(), Double.parseDouble(hsrL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hsrL.get(i).getLatlng().split(",")[0])) < 5) {
+					hsrL.get(i).setConvertPoint(cp.convertPoint(hsrL.get(i).getPoint()));
+					hsrL.get(i).setNowAddr(hsrL.get(i).getLatlng().split(",")[2]);
+					nhsrL.add(hsrL.get(i));
+				}
+			}
+		}
+		return nhsrL;
+	}
 	
 
 }
