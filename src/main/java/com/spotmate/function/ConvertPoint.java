@@ -1,5 +1,8 @@
 package com.spotmate.function;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ConvertPoint {
 	
 	public String convertPoint(int point) {
