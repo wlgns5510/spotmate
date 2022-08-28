@@ -28,10 +28,11 @@ public class MypageJController {
 
 	@Autowired
 	private MypageJService mypagejService;
-
+	private HttpSession session;
+	
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo, HttpSession session) {
+	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo) {
 		System.out.println("MypageJController > myCouponMain");
 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
