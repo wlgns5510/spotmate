@@ -131,12 +131,7 @@
 						<tbody>
 							<c:forEach items="${cMap.pointList }" var="pointVo" varStatus="status">
 								<tr>
-									<c:if test="${param.crtPage != null}">
-										<td>${cMap.totalPointCnt - ((param.crtPage -1)*5+status.index)}</td>
-									</c:if>
-									<c:if test="${param.crtPage == null}">
-										<td>${cMap.totalPointCnt - (status.index)}</td>
-									</c:if>
+									<td>${cMap.totalPointCnt - ((param.crtPage -1)*5+status.index)}</td>
 									<td>${pointVo.type }</td>
 									<td>${pointVo.regDate }</td>
 									<td>${pointVo.splace }</td>

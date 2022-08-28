@@ -174,7 +174,6 @@ public class MypageJService {
 
 		// 전체글갯수
 		int totalPointCnt = mypagejDao.totalPointCnt(pointVo);
-		System.out.println(totalPointCnt);
 
 		// 페이지당 버튼 갯수
 		int pageBtnCount = 5;
@@ -312,7 +311,7 @@ public class MypageJService {
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
-		
+		cMap.put("totalRefundCnt", totalRefundCnt);
 		
 		return cMap;
 

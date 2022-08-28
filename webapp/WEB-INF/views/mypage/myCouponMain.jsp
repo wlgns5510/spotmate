@@ -120,12 +120,7 @@
 						</thead>
 						<c:forEach items="${cMap.couponBList }" var="couponVo" varStatus="status">
 							<tr>
-								<c:if test="${param.crtPage != null}">
-									<td>${cMap.totalCouponCnt - ((param.crtPage -1)*5+status.index)}</td>
-								</c:if>
-								<c:if test="${param.crtPage == null}">
-									<td>${cMap.totalCouponCnt - (status.index)}</td>
-								</c:if>
+								<td>${cMap.totalCouponCnt - ((param.crtPage -1)*5+status.index)}</td>
 								<td>${couponVo.buyDate }</td>
 								<td>${couponVo.cateName }</td>
 								<td>${couponVo.usePlace }</td>
