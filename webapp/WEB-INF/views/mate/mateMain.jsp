@@ -50,7 +50,6 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
 	
-	
 	<title>mateMain</title>
 	
 </head>
@@ -109,17 +108,16 @@
 			<span class="DetaileBoxFont">상세조건</span>
 		</div>
 		<div class="checkBox">
-				<span class="nonSmoke"><input type="checkbox" name="mateContactList" value="nonSmoke">비흡연자</span>
-				<span class="femaleDriver"><input type="checkbox" name="mateContactList" value="femaleDriver">여성드라이버</span>
-				<span class="pet"><input type="checkbox" name="mateContactList" value="pet">반려동물</span>
-				<span class="phoneCharger"><input type="checkbox" name="mateContactList" value="phoneCharger">충전기 사용 가능</span>
-				<span class="useTrunk"><input type="checkbox" name="mateContactList" value="useTrunk">트렁크 사용 가능</span>									
+				<span class="nonSmoke"><input type="checkbox" name="mateContactList" value="nonSmoke" id="nonSmoke">비흡연자</span>
+				<span class="femaleDriver"><input type="checkbox" name="mateContactList" value="femaleDriver" id="femaleDriver">여성드라이버</span>
+				<span class="pet"><input type="checkbox" name="mateContactList" value="pet" id="pet">반려동물</span>
+				<span class="phoneCharger"><input type="checkbox" name="mateContactList" value="phoneCharger" id="phoneCharger">충전기 사용 가능</span>
+				<span class="useTrunk"><input type="checkbox" name="mateContactList" value="useTrunk" id="useTrunk">트렁크 사용 가능</span>									
 		</div>
 		
-		<div class="mateListAll clear">
-			
+		<div class="mateListAll clear">		
 			<c:forEach items="${mateList}" var="mateList" varStatus="status">
-				<div class=mateList>
+				<div class="mateList">
 					<a href="/mateDeep/${mateList.mateNo}">						
 						<img src="/assets/images/mate_imgbox/${randomNumList[status.index]}.png" class="matePicture">																										
 					</a><br>
@@ -133,19 +131,13 @@
 						<span class="seatNo">${mateList.people}</span>																		
 					</div>							
 				</div>	
-			</c:forEach>
-			
-						
+			</c:forEach>												
 		</div>
+		
 		<button class="mateListBtn">
 				<h2>더보기</h2>
 		</button>
-		
-		
-		
-		
-		
-									
+								
 	</div>
 	<!-- //mateMain_content2 -->
 	
@@ -159,25 +151,6 @@
 <!-- //mateMain_wrap -->
 </body>
 <script type="text/javascript">
-$(window).on('load', function(){
-	load('.mateList', '4');
-	$('.mateListBtn').on("click", function(){
-		load('.mateList', '4', '.mateListBtn');
-	})
-});
-
-function load(cnt){
-	var girls_list = id + ".mateList:not(.active)";
-	var girls_length = $(girls_list).length;
-	var girls_total_cnt;
-	if(cnt < girls_length) {
-		girls_total_cnt = cnt;
-	} else {
-		girls_total_cnt = girls_length;
-		$(button).hide();
-	}
-	$(girls_list + ":lt(" + girls_total_cnt + ")").addClass("active");
-}
 
 </script>
 </html>

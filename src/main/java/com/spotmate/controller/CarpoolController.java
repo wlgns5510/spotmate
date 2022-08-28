@@ -74,10 +74,11 @@ public class CarpoolController {
 		UserVo authUser= (UserVo)session.getAttribute("authUser");
 		
 		int userNo = authUser.getNo();
-		
+				
 		int result = carpoolService.saveCarpool(userNo, carpoolVo); 
 		
 		if ( result == 0 ) {
+											
 			return "redirect:/myReservationUserMain";
 		}
 		
