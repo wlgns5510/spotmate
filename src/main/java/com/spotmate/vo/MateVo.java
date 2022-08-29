@@ -40,7 +40,7 @@ public class MateVo {
 
 	private String opts; // db에서 정리된값
 
-	private List<Integer> mateContactList; // 옵션값 원본
+	private List<Integer> mateContactList; // 선택한 옵션값
 
 	private int crtPage;
 	private int startRnum;

@@ -21,9 +21,6 @@ public class MateController {
 	private MateService mateService;
 	
 
-	
-	
-
 	//메이트인포 이동
 	@RequestMapping(value = "/mateInfo", method = { RequestMethod.GET, RequestMethod.POST })
 	public String mateInfo() {

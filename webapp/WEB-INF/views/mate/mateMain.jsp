@@ -98,20 +98,18 @@
 						<img class="DetaileBoxImg" src="/assets/images/ico_filter_white.png"> 
 						<span class="DetaileBoxFont">상세조건</span>
 					</div>				
+					
 					<div class="chectBoxList">
-						<c:set var="doneLoop" value="false"/>
 						<c:forEach items="${mLMap.optList}" var="opt">
-							<span><b>${opt.detailOptNo}</b></span>
-							<span>${mateVo.mateContactList}</span>
-							
-							<span class=""><input type="checkbox" name="mateContactList" value="${opt.detailOptNo}">${opt.name}</span>
-								
+							<span class=""><input type="checkbox" name="mateContactList" value="${opt.detailOptNo}"
+								<c:forEach items="${mateVo.mateContactList}" var="target">
+									<c:if test="${opt.detailOptNo == target}">
+										checked="checked"
+									</c:if>
+								</c:forEach>
+							>${opt.name}</span>
 						</c:forEach>
 					</div>
-					
-					
-					
-					
 					<button type="submit" class="searchPictogrem"></button>
 				</form>
 			</div>
@@ -165,25 +163,6 @@
 var mateVo = {};
 
 
-$(document).ready(function() {
-	console.log("페이지 로딩 직전");
-
-	mateVo.crtPage = 1;
-	mateVo.ePlace = "${mateVo.ePlace}"
-	mateVo.sDate = "${mateVo.sDate}"
-	mateVo.eDate = "${mateVo.eDate}"
-	mateVo.smPeople = "${mateVo.smPeople}"
-	
-
-	//var list = '${paramValues.mateContactList[0]}';
-	//console.log(list);
-	console.log("--------------------------------------");
-	getOptList();
-	//var list = new Array(); list.push("${item.name}")
-
-	
-
-});
 
 $(".mateListBtn").on("click", function(){
 	console.log("더보기 버튼클릭");
