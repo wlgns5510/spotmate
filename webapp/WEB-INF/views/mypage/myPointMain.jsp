@@ -145,11 +145,11 @@
 					<div class="paging">
 						<ul>
 							<c:if test="${cMap.prev}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${cMap.startPageBtnNo-1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 								</a></li>
 							</c:if>
 							<c:if test="${cMap.prev}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${param.crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${param.crtPage-1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
 								</a></li>
 							</c:if>
 
@@ -157,11 +157,11 @@
 								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if> href="${pageContext.request.contextPath}/mypageJ/myPointMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> ${page} </a></li>
 							</c:forEach>
 							<c:if test="${cMap.next}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${param.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${param.crtPage+1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
 								</a></li>
 							</c:if>
 							<c:if test="${cMap.next}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${cMap.endPageBtnNo+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain?crtPage=${cMap.endPageBtnNo+1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
 								</a></li>
 							</c:if>
 						</ul>

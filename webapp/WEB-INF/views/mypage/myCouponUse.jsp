@@ -154,18 +154,15 @@
 												</c:if>
 											</div>
 										</div>
-										<div class="modal-button-div">
-											<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
+										<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
+											<div class="modal-button-div">
 												<button id="back-btn" type="button">취소하기</button>
 												<button id="sub-btn" type="submit">구매하기</button>
-											</c:if>
-											<c:if test="${cuMap.totalPoint < cuMap.couponVo.point}">
-											</c:if>
-										</div>
+											</div>
+										</c:if>
 									</div>
 								</div>
 							</div>
-						</div>
 					</form>
 				</article>
 			</section>
