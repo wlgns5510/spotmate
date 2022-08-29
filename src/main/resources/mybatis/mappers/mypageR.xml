@@ -102,6 +102,7 @@
 	 	set 
 	 		carname = #{c_Model},
 	 		carno = #{c_num},
+	 		carpicture = #{c_file},
 	 		carcolor = #{c_color},
 	 		people = #{num_PA},
 	 		introduce = #{introduce}

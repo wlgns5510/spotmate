@@ -1,9 +1,14 @@
 package com.spotmate.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +43,7 @@ public class MypageRController {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 
 		int userNo = authUser.getNo();
+		System.out.println(userNo);
 		DriverLicenseVo carInfo = dls.getCarInfo(userNo);
 		carInfo.setUsername(authUser.getName());
 		if(carInfo.getC_Model() == null) {
@@ -108,7 +114,19 @@ public class MypageRController {
 		
 		
 		dlvo.setUserNo(userNo);
-	    
+		
+		String imgBase64 = dlvo.getC_file();
+		String fileName = userNo + "_" + System.currentTimeMillis();
+		byte[] data = Base64.decodeBase64(imgBase64.substring(imgBase64.indexOf(",")+1));
+		try {
+			File imgFile = new File("C:/JavaStudy/workspaceWeb/spotmate2/webapp/assets/images/" + fileName + ".png");
+			imgFile.createNewFile();
+			OutputStream stream = new FileOutputStream(imgFile, false);
+		    stream.write(data);
+		    stream.close();
+		} catch(Exception e) {System.out.println(e.toString());}
+		dlvo.setC_file(fileName + ".png");
+		
 		dls.carInfoModify(dlvo);
 		
 		return "redirect:/myDriverMain2";
