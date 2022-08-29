@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,12 +99,17 @@
 						<span class="DetaileBoxFont">상세조건</span>
 					</div>				
 					<div class="chectBoxList">
-						<span class="nonSmoke"><input type="checkbox" name="mateContactList" value="1" id="nonSmoke">비흡연자</span>
-						<span class="femaleDriver"><input type="checkbox" name="mateContactList" value="2" id="femaleDriver">여성 드라이버</span>
-						<span class="pet"><input type="checkbox" name="mateContactList" value="3" id="pet">반려동물</span>
-						<span class="phoneCharger"><input type="checkbox" name="mateContactList" value="4" id="phoneCharger">충전기 사용 가능</span>
-						<span class="useTrunk"><input type="checkbox" name="mateContactList" value="5" id="useTrunk">트렁크 사용 가능</span>									
+						<c:set var="doneLoop" value="false"/>
+						<c:forEach items="${mLMap.optList}" var="opt">
+							<span><b>${opt.detailOptNo}</b></span>
+							<span>${mateVo.mateContactList}</span>
+							
+							<span class=""><input type="checkbox" name="mateContactList" value="${opt.detailOptNo}">${opt.name}</span>
+								
+						</c:forEach>
 					</div>
+					
+					
 					
 					
 					<button type="submit" class="searchPictogrem"></button>
@@ -120,7 +127,7 @@
 		</div>
 		
 		<div class="mateListAll clear">		
-			<c:forEach items="${mateList}" var="mateVo" varStatus="status">
+			<c:forEach items="${mLMap.mateList}" var="mateVo" varStatus="status">
 				<div class="mateList">
 					<a href="/mateDeep/${mateVo.mateNo}">						
 						<img src="/assets/images/mate_imgbox/${mateVo.randomImgNo}.png" class="matePicture">																										
@@ -167,16 +174,14 @@ $(document).ready(function() {
 	mateVo.eDate = "${mateVo.eDate}"
 	mateVo.smPeople = "${mateVo.smPeople}"
 	
-	/* for(var i<0 ; i<=${mateVo.ePlace}; i++){
-		
-	}
-	mateVo.mateContactList
-	 */
-		
-	/* mateVo.mateContactList = "${mateVo.mateContactList}" */
-		
-	console.log(mateVo);
 
+	//var list = '${paramValues.mateContactList[0]}';
+	//console.log(list);
+	console.log("--------------------------------------");
+	getOptList();
+	//var list = new Array(); list.push("${item.name}")
+
+	
 
 });
 
@@ -227,6 +232,7 @@ function render(mateList) {
 	
 	$(".mateListAll").append(str);
 }
+
 
 
 //옵션체크 했을때  vo값 변경

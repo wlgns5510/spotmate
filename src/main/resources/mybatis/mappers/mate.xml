@@ -178,6 +178,16 @@
 		]]>
 	</select>
 	
+	
+	<!-- 조건 모두 가져오기 -->
+	<select id="getOptList"  resultType="DetailOptVo">
+		<![CDATA[
+				select no detailOptNo,
+       				   name
+				from detailOpt
+		]]>
+	</select>
+	
 	<!-- 해당메이트가 선택한 조건 -->
 	<select id="deepDetailRead" resultType="MateVo" parameterType="int">
 		<![CDATA[

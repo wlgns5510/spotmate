@@ -33,7 +33,7 @@ public class MateVo {
 	private double latlng;
 	private String sPlace;
 	private String ePlace;
-	private int allDay;
+	private int allDay;		
 	private String sDate;
 	private String eDate;
 	private Integer smPeople;
