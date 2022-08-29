@@ -321,5 +321,7 @@ public class MypageJController {
 
 		return "redirect:/mypageJ/myPointRefundMain";
 	}
+	
+	
 
 }

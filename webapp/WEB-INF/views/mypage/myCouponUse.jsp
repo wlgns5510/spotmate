@@ -119,7 +119,7 @@
 									<li>✓모바일주유권 결제시 해당 주유소에서 현금영수증 발행이 가능합니다.</li>
 								</ul>
 							</div>
-						<!--    <div class="myPage_mapSearch">
+							<!--    <div class="myPage_mapSearch">
 								<div class="myPage_mapPicto"></div>
 								<span>지도로 이용가능한 매장 찾기</span>
 							</div>
@@ -159,11 +159,11 @@
 									</div>
 								</div>
 							</div>
+						</div>
 					</form>
 				</article>
 			</section>
 		</main>
-
 
 		<!-- //banner & footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

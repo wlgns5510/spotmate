@@ -121,8 +121,7 @@
 
 							<tr>
 								<td><label for="type">유형*</label></td>
-								<td><select id="option1" class="form-select"
-									aria-label="Default select example" name="type">
+								<td><select id="option1" name="type">
 										<option value=selected>&nbsp;&nbsp;문의 유형을 선택해주세요</option>
 										<option value="카풀">카풀 문의</option>
 										<option value="히치하이크">히치하이크 문의</option>
