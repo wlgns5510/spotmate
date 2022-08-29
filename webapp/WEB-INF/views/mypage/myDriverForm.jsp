@@ -190,14 +190,14 @@
 									</tr>
 
 									<tr>
-										<td></td>
+									<!-- 	<td></td>
 										<td>
 											<input type="hidden" name="c_file" id="c_file">
 											<input id="img_path" accept="image/*" type="text">
 											<input type="file" id="input-file" class="file_d" onchange="OnChangeFile();">
 										</td>
 										<td><label class="smallbtn" for="input-file"> <span>파일선택</span>
-										</label></td>
+										</label></td> -->
 									</tr>
 									<tr align="left">
 										<td><label for="c_num">차량등록번호*</label></td>
@@ -252,9 +252,7 @@
 									name="introduce" id="introduce"></textarea>
 							</div>
 
-							<input type="button" onclick="isCarAuth();" value="등록하기" class="DForm_enrollbtn0">
-
-
+							<input type="submit" value="등록하기" class="DForm_enrollbtn0">
 
 
 
@@ -281,7 +279,7 @@
 <script type="text/javascript">
 	let bCarAuth = false;
 	
-	function isCarAuth() {
+	/* function isCarAuth() {
 		if(!bCarAuth) {
 			alert("차량인증을 먼저 해주세요.");
 			//return false;
@@ -289,7 +287,7 @@
 		
 		document.getElementById("myform").submit();
 	}
-
+ */
 	
 	//상세조건 정렬
 	function OnChangeDL() {
