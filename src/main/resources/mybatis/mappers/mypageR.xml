@@ -150,7 +150,7 @@
 				                        point,
 				                        mateNo,
 				                        status
-				                    from reservation r
+				                    from reservation
 				                    where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 				                                                mateNo
 				                                            from place

@@ -80,7 +80,7 @@ public class DriverWriteController {
 	public String carpoolInsert(@ModelAttribute DriverWriteVo dwVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		dwService.carpoolRegister(dwVo, authUser.getNo(), authUser.getCarNo());
-		return "redirect:/myReservationDriverMain";
+		return "redirect:/myReservationDriverMain/1";
 	}
 
 	@RequestMapping(value = "/hitchWrite", method = { RequestMethod.GET, RequestMethod.POST })
@@ -129,7 +129,7 @@ public class DriverWriteController {
 	public String mateInsert(@ModelAttribute MateWriteVo mwVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		dwService.mateRegister(mwVo, authUser.getNo(), authUser.getCarNo());
-		return "redirect:/myReservationDriverMain";
+		return "redirect:/myReservationDriverMain/1";
 	}
 	
 	@RequestMapping(value = "/ssp/{no}", method = { RequestMethod.GET, RequestMethod.POST })
