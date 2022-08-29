@@ -15,7 +15,7 @@
 			    #{title},
 			    sysdate,
 			    #{content},
-			    답변대기
+			    '답변대기'
 
 			) 
 	

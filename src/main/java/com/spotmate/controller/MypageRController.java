@@ -37,6 +37,7 @@ public class MypageRController {
 	@Autowired
 	private DriverLicenseService dls;
 	private UserVo uVo;
+	@Autowired
 	private MyQnaService mqs;
 	
 

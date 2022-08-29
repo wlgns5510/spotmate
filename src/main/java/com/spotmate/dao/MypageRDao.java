@@ -21,7 +21,10 @@ public class MypageRDao {
 
 	//myqna insert
 	public void InsertQna(myQnaVo mqv) {
-		int count = ss.insert("mypageR.insertQna", mqv);
+		System.out.println("MypageRDao > InsertQna");
+		int count = ss.insert("mypageR.InsertQna", mqv);
+		
+		System.out.println(count + "건 등록되었습니다.");
 	}
 	
 	

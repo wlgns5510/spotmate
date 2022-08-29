@@ -14,8 +14,9 @@ public class MyQnaService {
 
 	// myQna
 	public void InsertQna(myQnaVo mqv) {
+		System.out.println("MyQnaService > InsertQna");
 		mrDao.InsertQna(mqv);
-		}
+	}
 	
 		 
 	

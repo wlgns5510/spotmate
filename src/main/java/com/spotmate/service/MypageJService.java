@@ -390,6 +390,5 @@ public class MypageJService {
 		return topNavMap;
 	}
 	
-	
 
 }
