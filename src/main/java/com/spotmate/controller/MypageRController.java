@@ -223,7 +223,7 @@ public class MypageRController {
 		return "/mypage/myQnaWriteForm";
 	}
 
-<<<<<<< HEAD
+
 	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myReservationDriverMain() {
 		return "/mypage/myReservationDriverMain";
@@ -245,7 +245,7 @@ public class MypageRController {
 	}
 
 	
-=======
+
 //	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
 //	public String myReservationDriverMain() {
 //		return "/mypage/myReservationDriverMain";
@@ -309,6 +309,6 @@ public class MypageRController {
 	public String review(Model model) {
 		return "/mypage/myReview";
 	}
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
+
 
 }
