@@ -32,7 +32,7 @@ public class MypageJController {
 	@Autowired
 	private HttpSession session;
 	
-	
+	 
 	// 쿠폰메인
 	@RequestMapping(value = "/myCouponMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myCouponMain(Model model, @ModelAttribute CouponVo couponVo) {
