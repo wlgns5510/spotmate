@@ -143,7 +143,7 @@
 								<td><span>내용*</span></td>
 								<td><textarea name="qnacontents" placeholder="내용을 입력해주세요"></textarea></td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td><span>이미지</span></td>
 								<td><input type="file" name="image" class="real-upload" accept="image/*" required multiple style="display: none;">
 									<div type="button" class="imgbox">
@@ -151,7 +151,7 @@
 										
 									</div>
 									</td>
-							</tr>
+							</tr> -->
 						</table>
 						
 					</div>
