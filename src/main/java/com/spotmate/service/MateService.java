@@ -3,6 +3,7 @@ package com.spotmate.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,33 @@ public class MateService {
 	public List<MateVo> getMateList(MateVo mateVo) {
 		System.out.println("MateService >> getMateList");
 		
+		int tmpPage = mateVo.getCrtPage();
+		
+		//페이지당 글갯수(10개)
+		int listCnt = 4;
+		
+		//현재페이지
+		int crtPage = (tmpPage > 0) ? tmpPage : (crtPage = 1);	//다른값 넣으면 1로 변환
+		
+		//시작 글번호
+		int startRnum = (crtPage-1)*listCnt + 1;
+		
+		//끝 글번호
+		int endRnum = (startRnum + listCnt) - 1;
+		
+		
+		mateVo.setStartRnum(startRnum);
+		mateVo.setEndRnum(endRnum);
+		
+		
 		List<MateVo> mateList = mateDao.getMateList(mateVo);
+		
+		Random random = new Random();
+		//mateList의 크기에 맞게 랜덤숫자도 넣어줌
+		for(int i=0; i<mateList.size(); i++) {
+			mateList.get(i).setRandomImgNo(random.nextInt(28));
+		}
+		
 		
 		return mateList;
 	}		

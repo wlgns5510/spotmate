@@ -86,7 +86,7 @@
 		                        </a>
 		                        <div class="down">
 		                            <ul>
-		                                <li><a href="/myUsageUserMain">마이 페이지</a></li>
+		                                <li><a href="/myUsageUserMain/1">마이 페이지</a></li>
 		                                <li><a href="/myPointMain">마이 포인트</a></li>
 		                                <li><a href="/myReservationUserMain">나의 예약 내역</a></li>
 		                                <li><a href="/logout">로그아웃</a></li>
@@ -94,7 +94,7 @@
 		                        </div>
 		                    </li>
 		                    <li>
-		                        <a href="/myUsageUserMain" class="btn_a2">MY PAGE</a>
+		                        <a href="/myUsageUserMain/1" class="btn_a2">MY PAGE</a>
 		                    </li>
 		                </ul>
                 	</c:otherwise>

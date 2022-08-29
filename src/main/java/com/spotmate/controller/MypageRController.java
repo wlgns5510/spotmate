@@ -1,9 +1,13 @@
 package com.spotmate.controller;
 
+<<<<<<< HEAD
+import java.util.Map;
+=======
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 import javax.servlet.http.HttpSession;
 
@@ -12,19 +16,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spotmate.function.CarOwner;
-import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
+<<<<<<< HEAD
+import com.spotmate.service.MypageRService;
+import com.spotmate.vo.UsageSearchVo;
+=======
 import com.spotmate.service.MyQnaService;
 import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 import com.spotmate.vo.UserVo;
 import com.spotmate.vo.myQnaVo;
 
@@ -36,12 +44,22 @@ public class MypageRController {
 	
 	@Autowired
 	private DriverLicenseService dls;
+<<<<<<< HEAD
+	@Autowired
+	private MypageRService mService;
+//	private UserVo uVo;
+	@Autowired
+	private HttpSession ss;
+	
+	/*@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
+=======
 	private UserVo uVo;
 	@Autowired
 	private MyQnaService mqs;
 	
 
 	@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	public String myDriverForm(Model model, HttpSession ss) {
 		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -234,7 +252,55 @@ public class MypageRController {
 	public String myUsageUserMain() {
 		return "/mypage/myUsageUserMain";
 	}
+<<<<<<< HEAD
+*/
+	@RequestMapping(value = "/myUsageUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myUsageUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getUserUsageList(authUser.getNo(), no, usVo));
+		return "/mypage/myUsageUserMain";
+	}
+	
+	@RequestMapping(value = "/myUsageDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myUsageDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getDriverUsageList(authUser.getNo(), no, usVo));
+		return "/mypage/myUsageDriverMain";
+	}
+	
+	@RequestMapping(value = "/myReservationUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myResvUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getUserResvList(authUser.getNo(), no, usVo));
+		return "/mypage/myReservationUserMain";
+	}
+	
+	@RequestMapping(value = "/myReservationDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myResvDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getDriverResvList(authUser.getNo(), no, usVo));
+		return "/mypage/myReservationDriverMain";
+	}
+	
+	@RequestMapping(value = "/review", method = { RequestMethod.GET, RequestMethod.POST })
+	public String review(Model model) {
+		return "/mypage/myReview";
+	}
+=======
 
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	
 
 }
