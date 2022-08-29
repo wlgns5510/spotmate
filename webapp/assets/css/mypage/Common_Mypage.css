@@ -835,7 +835,18 @@
 	text-align: left;
 }
 
-.myQnaryeo input_r, select {
+.myQnaryeo select {
+	width: 650px;
+	height: 45px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	/*border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;*/
+	color: rgba(217, 217, 217, 1);
+}
+.myQnaryeo .myqnainput {
 	width: 650px;
 	height: 45px;
 	background: rgba(255, 255, 255, 1);
