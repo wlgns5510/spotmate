@@ -82,11 +82,11 @@
 				<form action="/saveCarpool" method="get">
 					출발지<br> <input class="confirm" type="text" name="splace" value="${cVoMap.cVo.splace}"> 
 					목적지<br> <input class="confirm" type="text" name="eplace" value="${cVoMap.cVo.eplace}"> 
-					탑승 가능 인원 수<br> <input class="confirm" type="text" name="people" value="${cVoMap.cVo.smPeople}">
+					탑승 가능 인원 수<br> <input class="confirm" type="text" name="smPeople" value="${cVoMap.cVo.smPeople}">
 					<c:if test='${param.result == "fail"}'>
-						<p class= overPeople>※ 탑승 가능 인원 수가 초과하였습니다</p>
+						<p class= overPeople>※ 탑승 가능 인원 수를 초과하였습니다</p>
 					</c:if>
-					탑승 요청 인원 수<br> <input class="confirm-2" type="text" name="requestPeople" value="" placeholder=" 인원 수를 입력해주세요">
+					탑승 요청 인원 수<br> <input class="confirm-2" type="text" name="people" value="" placeholder=" 인원 수를 입력해주세요">
 					탑승 시간<br> <input class="confirm" type="text" name="time" value="${cVoMap.cVo.sTime}"> 
 					처음 탑승일<br> <input class="confirm" type="text" name="startDate" value="${cVoMap.cVo.startDate}"> 
 					마지막 탑승일<br> <input class="confirm" type="text" name="endDate" value="${cVoMap.cVo.endDate}">

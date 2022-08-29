@@ -251,8 +251,7 @@
 	
 	<insert id="insertUserCarpoolInfo" parameterType="com.spotmate.vo.CarpoolVo">
 		<selectKey keyProperty="driverNo" resultType="int" order="BEFORE">
-	            select
-	               driverNo
+	            select driverNo
 	            from reservation
 	            where mateNo = #{spotMateNo}
 	            group by driverNo
@@ -273,6 +272,7 @@
       update spotmate
       set people = people - #{people}
 	  where no = #{mateNo} 
+	  
    </update>
 
 
