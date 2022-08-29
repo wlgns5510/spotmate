@@ -143,8 +143,6 @@
 	
 	
 	
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	<select id="totalusercnt" parameterType="int" resultType="int">
 		select count(*) count
 		from (select type,
