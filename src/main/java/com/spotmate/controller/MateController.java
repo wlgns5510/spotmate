@@ -1,9 +1,7 @@
 package com.spotmate.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,25 +37,10 @@ public class MateController {
 	public String mateMain(Model model, @ModelAttribute MateVo mateVo) {
 		System.out.println("MateController >> mateMain");
 		
-		// Service를 통해서 getMateList를 가져온다
+		// Service를 통해서 getMateList를 가져온다	
 		List<MateVo> mateList = mateService.getMateList(mateVo);
-		
-		
-			Random random = new Random();
-			
-			random.nextInt(28);
-		
-			ArrayList<Integer> randomNumList = new ArrayList<Integer>();
-			
-			//mateList의 크기에 맞게 랜덤숫자도 넣어줌
-			for(int i=1; i<=mateList.size(); i++) {
-				randomNumList.add(random.nextInt(28));
-			}
-			
-		//ds 데이터보내기 --> request attribute에 넣는다
+
 		model.addAttribute("mateList", mateList);
-		model.addAttribute("randomNumList", randomNumList);
-		
 		
 		return "/mate/mateMain";
 	}
