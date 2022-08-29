@@ -82,14 +82,13 @@
 						<input class="chkitem" type="checkbox" id="femaledriver" name="femaledriver" value="여성드라이버">
 						<label for="femaledriver">여성 드라이버</label>
 						
-					</div>
-					<div class="do2">
+					
 						<input class="chkitem" type="checkbox" id="pet" name="pet" value="반려동물">
-						<label for="pet">반려동물 탑승</label>
+						<label for="pet">반려동물</label>
 						<input class="chkitem" type="checkbox" id="phonecharge" name="phonecharge" value="충전기 사용 가능">
-						<label for="phonecharge">충전기 이용</label>
+						<label for="phonecharge">충전기 사용 가능</label>
 						<input class="chkitem" type="checkbox" id="trunk" name="trunk" value="트렁크 사용 가능">
-						<label for="trunk">트렁크 사용</label>
+						<label for="trunk">트렁크 사용 가능</label>
 					</div>
 <!-- 					<input class="chkitem" type="checkbox" value="femaleDriver" id="femaleDriver"><label for="femaleDriver">&nbsp;여성 드라이버</label> -->
 <!-- 					<input class="chkitem" type="checkbox" value="nosmoke" id="nosmoke"><label for="nosmoke">&nbsp;비흡연자</label> -->
