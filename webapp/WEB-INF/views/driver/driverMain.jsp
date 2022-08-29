@@ -54,17 +54,24 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-		<div class="driver-top-banner"></div>
+		<div class="driver-top-banner">
 	<c:if test="${param.result == 'fail'}">
 		<input type="hidden" id="hitchfail" value="">
 	</c:if>
-	<div class="inner">
-		<div class="first clear" data-aos="fade-right">
-			<img src="/assets/images/common/login_image_100_01.png"> <span>드라이버<br>이동 경로 등록하기</span>
-				<p>드라이버님이 이동하시는 경로를 등록해주시면<br> 같이 이동을 원하는
+	<div class="content-head">
+		<div class="clear" style="width:1920px; margin:0px auto;">
+			<div class="driver-MainText1">
+			<img src="/assets/images/common/login_image_100_01.png"> 
+				<p> 드라이버<br>이동 경로 등록하기</p>
+			</div>
+				<p class="driver-MainText2">드라이버님이 이동하시는 경로를 등록해주시면<br> 같이 이동을 원하는
 					유저가 카풀을 신청 할 예정입니다.
 				</p>
 		</div>
+	</div>	
+	</div>
+	
+	<div id="driver-content">	
 		<div class="second clear" data-aos="fade-left">
 			<div class="s1">
 				<p class="sfd">SPOT CARPOOL</p>
@@ -87,12 +94,14 @@
 			<img src="/assets/images/road1.jpg">
 			<div class="f1">
 				<p class="ffd">MATE PRODUCT</p>
-				<span class="fsd">메이트 서비스는 드라이버가 이동하는 경로를<br> 등록하여 출발지에서
+				<span class="fsd">메이트 서비스는 드라이버가 이동하는 경로를 등록하여 <br> 출발지에서
 					도착지까지 모든 일정을<br> 함께하는 이동 메이트 서비스입니다.
 				<a href="./mateWrite" class="btn_a2">등록하기&nbsp; →</a></span>
 			</div>
 		</div>
 	</div>
+	
+	
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script>
