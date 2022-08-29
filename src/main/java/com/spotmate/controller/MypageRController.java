@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,6 +25,7 @@ import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
 import com.spotmate.vo.UserVo;
+import com.spotmate.vo.myQnaVo;
 
 
 @Controller
@@ -188,34 +188,20 @@ public class MypageRController {
 		return "redirect:/myDriverMain2";
 	}
 	
-	//등록
+	//qna등록
 	@RequestMapping(value = "/myQnaInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myQnaInsert(@ModelAttribute DriverLicenseVo dlvo, HttpSession ss) { //ModelAttribute ..? Http Session/ Session..? 
-		System.out.println("=====================, =======================================");
-		System.out.println(dlvo.toString()); //ch_type=[ch_type1, ch_type2, ch_type3, ch_type5]
-		//System.out.println(ckList.toString()); //[ch_type1, ch_type2, ch_type3, ch_type5]
-		System.out.println("============================================================");
+	public String myQnaInsert(@ModelAttribute myQnaVo mqv, HttpSession ss) { 
+		System.out.println(mqv);
 		
+	      UserVo authUser = (UserVo)ss.getAttribute("authUser");
+	      int userNo = authUser.getNo();
 		
-		//세션에서 로그인 사용자 정보 가져오기
-		UserVo authUser = (UserVo)ss.getAttribute("authUser");   
-		int userNo = authUser.getNo();
-		System.out.println(userNo);
-		//로그인한 사용자의 userNo을 vo에 넣어준다
-		dlvo.setUserNo(userNo);
-
-	
-		//user업데이트+카정보등록+옵션등록
-		dls.myDriverRegister(dlvo);
-		System.out.println("==========");
 		return "/mypage/myQnaMain";
+		
 	}
-
-	
-	
 	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myQnaInsert() {
-		return "/mypage/myQnaMain";
+	public String myQnaMain() {
+		return "/mypage/myQnaWriteForm";
 	}
 
 	@RequestMapping(value = "/myQnaWriteForm", method = { RequestMethod.GET, RequestMethod.POST })
