@@ -155,10 +155,10 @@
 						
 					</div>
 					<div class="QnaWFp_group">
-						<p class=gray_bottomtext>* 30MB이상의 이미지만 업로드 가능합니다.</p>
+						<!--<p class=gray_bottomtext>* 30MB이상의 이미지만 업로드 가능합니다.</p> -->
 						<p class=gray_bottomtext>* 서비스와 무관한 내용이거나 음란 및 불법적인 내용은 사전
 							통보없이 삭제될 수 있습니다.</p>
-						<p class=gray_bottomtext>* 사진은 최대 8장까지 등록가능합니다.</p>
+						<!--<p class=gray_bottomtext>* 사진은 최대 8장까지 등록가능합니다.</p> -->
 					</div>
 					<br> <br>
 					<div class="underlinegray"></div>
@@ -179,7 +179,10 @@
 </body>
 <script type="text/javascript">
 
-function getImageFiles(e) {
+
+
+
+<!--function getImageFiles(e) {
 	 const uploadFiles = [];
     const files = e.currentTarget.files;
     const imagePreview = document.querySelector('.image-preview');
@@ -200,7 +203,7 @@ const realUpload = document.querySelector('.real-upload');
 const imgbox = document.querySelector('.imgbox');
 
 imgbox.addEventListener('click', () => realUpload.click());
-realUpload.addEventListener('change', getImageFiles);
+realUpload.addEventListener('change', getImageFiles); -->
 </script>
 
 </html>
