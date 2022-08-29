@@ -98,7 +98,7 @@
 					</div>				
 					<div class="chectBoxList">
 						<span class="nonSmoke"><input type="checkbox" name="mateContactList" value="1" id="nonSmoke">비흡연자</span>
-						<span class="femaleDriver"><input type="checkbox" name="mateContactList" value="2" id="femaleDriver">여성드라이버</span>
+						<span class="femaleDriver"><input type="checkbox" name="mateContactList" value="2" id="femaleDriver">여성 드라이버</span>
 						<span class="pet"><input type="checkbox" name="mateContactList" value="3" id="pet">반려동물</span>
 						<span class="phoneCharger"><input type="checkbox" name="mateContactList" value="4" id="phoneCharger">충전기 사용 가능</span>
 						<span class="useTrunk"><input type="checkbox" name="mateContactList" value="5" id="useTrunk">트렁크 사용 가능</span>									
@@ -115,7 +115,7 @@
 	
 	<!-- mateMain_content2 -->
 	<div class="mateMain_content2">		
-		<div class="checkBox">
+		<div class="mateListFont">
 			<h2>탑승 가능 메이트 리스트</h2>									
 		</div>
 		
@@ -173,7 +173,7 @@ $(document).ready(function() {
 	mateVo.mateContactList
 	 */
 		
-	mateVo.mateContactList = "${mateVo.mateContactList}"
+	/* mateVo.mateContactList = "${mateVo.mateContactList}" */
 		
 	console.log(mateVo);
 
@@ -184,9 +184,52 @@ $(".mateListBtn").on("click", function(){
 	console.log("더보기 버튼클릭");
 	mateVo.crtPage += 1;
 	
-	console.log(mateVo);
-	
+	//ajax 요청  받는코드
+	$.ajax({
+		url : "${pageContext.request.contextPath}/mateList",
+		type : "post",
+		/* contentType : "application/json", */
+		data : mateVo,
+		dataType : "json",
+		success : function(mateList) {
+			/* 다음페이지 리스트 가져오기 */
+			console.log(mateList);
+			
+			/* 화면에 가져온 data와 html를 그린다 */
+			for (var i = 0; i < mateList.length; i++){
+				render(mateList[i]);	//화면에 그리는 함수실행
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});	
 });
+
+function render(mateList) {
+	console.log("render()");
+	
+	var str = '';
+	str += '<div class="mateList">';
+	str += '	<a href="/mateDeep/' + mateList.mateNo + '">';
+	str += '		<img src="/assets/images/mate_imgbox/' + mateList.randomImgNo + '.png" class="matePicture">';
+	str += '	</a><br>';
+	str += '	<span class="driverName">Driver ' + mateList.name + '</span>';
+	str += '	<span class="schedule">일정 ' + mateList.startDate + ' - ' + mateList.endDate + '</span><br>';
+	str += '	<span class="startEnd">';
+	str += '		' + mateList.sPlace +  ' → ' + mateList.ePlace + '';
+	str += '	</span>';
+	str += '	<div class="mateMain_listBox">';
+	str += '		<img src="/assets/images/car icon.png">';
+	str += '		<span class="seatNo">' + mateList.people + '</span>';
+	str += '	</div>';
+	str += '</div>';
+	
+	$(".mateListAll").append(str);
+}
+
+
+//옵션체크 했을때  vo값 변경
 
 </script>
 </html>

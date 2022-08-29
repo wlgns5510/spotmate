@@ -89,6 +89,7 @@ public class MypageRDao {
 		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
 		return count;
 	}
+
 	
 	
 	//카정보수정

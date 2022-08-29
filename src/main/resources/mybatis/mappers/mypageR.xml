@@ -139,6 +139,10 @@
 	
 	
 	
+
+	
+	
+	
 	<select id="totalusercnt" parameterType="int" resultType="int">
 		select count(*) count
 		from (select type,

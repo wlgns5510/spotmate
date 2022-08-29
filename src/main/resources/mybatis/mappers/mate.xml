@@ -113,8 +113,8 @@
 		<![CDATA[	 
 				               order by startDate asc) ot
 				        ) ort
-				where rn>=1
-				and rn<=100
+				where rn>=#{startRnum}
+				and rn<=#{endRnum}
 		]]>
 		
 		
