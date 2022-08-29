@@ -128,7 +128,7 @@
 								</div>
 
 								<br> <img align="left" class="file_d" alt="차량사진"
-									src="https://images.unsplash.com/photo-1537984822441-cff330075342?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=774&amp;q=80"
+									src="/assets/images/${dlvo.c_file}"
 									width="732px" height="272px">
 								<table>
 								

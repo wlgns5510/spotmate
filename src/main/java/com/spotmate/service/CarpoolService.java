@@ -129,8 +129,7 @@ public class CarpoolService {
 		System.out.println("CarpoolService > saveCarpool");
 
 		carpoolVo.setUserNo(userNo);
-
-		carpoolDao.saveCarpool(carpoolVo);
+		
 		int mateNo = carpoolVo.getSpotMateNo();
 		int people = carpoolVo.getPeople();
 		int canRide = carpoolDao.chkPeople(mateNo);
@@ -138,7 +137,8 @@ public class CarpoolService {
 			Map<String, Object> map = new HashMap<>();
 			map.put("people", people);
 			map.put("mateNo", mateNo);
-			carpoolDao.updateReservPeople(map);
+			carpoolDao.updateReservPeople(map); //인원수 업데이트 --> 스팟메이트
+			carpoolDao.saveCarpool(carpoolVo); //예약내역 저장
 			return 0;
 		} else {
 			return -1;

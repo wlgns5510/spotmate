@@ -121,29 +121,28 @@
 
 							<tr>
 								<td><label for="type">유형*</label></td>
-								<td><select id="option1" class="form-select"
-									aria-label="Default select example" name="qna_type">
+								<td><select id="option1" name="type">
 										<option value=selected>&nbsp;&nbsp;문의 유형을 선택해주세요</option>
-										<option value="1">카풀 문의</option>
-										<option value="2">히치하이크 문의</option>
-										<option value="3">메이트 문의</option>
-										<option value="4">드라이버 문의</option>
-										<option value="5">포인트/쿠폰문의</option>
-										<option value="6">기타문의</option>
+										<option value="카풀">카풀 문의</option>
+										<option value="히치하이크">히치하이크 문의</option>
+										<option value="메이트">메이트 문의</option>
+										<option value="드라이버">드라이버 문의</option>
+										<option value="포인트">포인트/쿠폰문의</option>
+										<option value="기타">기타문의</option>
 								</select></td>
 							</tr>
 
 
 							<tr>
 								<td><label>제목*</label></td>
-								<td><input id="title" name="title" placeholder="&nbsp;제목을 작성해주세요"
+								<td><input id="qnatitle" name="title" placeholder="&nbsp;제목을 작성해주세요"
 									type="text"></td>
 							</tr>
 							<tr>
 								<td><span>내용*</span></td>
-								<td><textarea name="contents" placeholder="내용을 입력해주세요"></textarea></td>
+								<td><textarea name="content" placeholder="내용을 입력해주세요"></textarea></td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td><span>이미지</span></td>
 								<td><input type="file" name="image" class="real-upload" accept="image/*" required multiple style="display: none;">
 									<div type="button" class="imgbox">
@@ -151,7 +150,7 @@
 										
 									</div>
 									</td>
-							</tr>
+							</tr> -->
 						</table>
 						
 					</div>

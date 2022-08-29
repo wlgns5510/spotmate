@@ -3,7 +3,27 @@
 
 <mapper namespace="mypageR">
 
+	<!-- myqna form 정보 등록 -->
+	<insert id="InsertQna" parameterType="com.spotmate.vo.myQnaVo">
 
+		<![CDATA[
+		
+			insert into myqna
+			values(seq_myqna_no.nextval, 
+			    #{userNo},
+			    #{type},
+			    #{title},
+			    sysdate,
+			    #{content},
+			    '답변대기'
+
+			) 
+	
+		]]>
+
+	</insert>
+	
+	
 	<!-- car정보 등록 -->
 	<insert id="myDriverinsert" parameterType="dlvo">
 
@@ -102,6 +122,7 @@
 	 	set 
 	 		carname = #{c_Model},
 	 		carno = #{c_num},
+	 		carpicture = #{c_file},
 	 		carcolor = #{c_color},
 	 		people = #{num_PA},
 	 		introduce = #{introduce}
@@ -118,6 +139,7 @@
 	
 	
 	
+<<<<<<< HEAD
 	
 	
 	
@@ -957,4 +979,6 @@
         </choose>
 	</select>
 	
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 </mapper>

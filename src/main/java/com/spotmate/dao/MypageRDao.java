@@ -9,8 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.DriverLicenseVo;
+<<<<<<< HEAD
 import com.spotmate.vo.MyUsageVo;
 import com.spotmate.vo.UsageSearchVo;
+=======
+import com.spotmate.vo.myQnaVo;
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 @Repository
 
@@ -18,6 +22,21 @@ public class MypageRDao {
 
 	@Autowired
 	private SqlSession ss;
+	
+	
+	
+
+	//myqna insert
+	public void InsertQna(myQnaVo mqv) {
+		System.out.println("MypageRDao > InsertQna");
+		int count = ss.insert("mypageR.InsertQna", mqv);
+		
+		System.out.println(count + "건 등록되었습니다.");
+	}
+	
+	
+	
+	
 
 	// 등록
 	public int myDriverInsert(DriverLicenseVo dlvo) {
@@ -46,36 +65,34 @@ public class MypageRDao {
 
 	}
 
-	
-	
-
 	public DriverLicenseVo getCarInfo(int userNo) {
 		DriverLicenseVo dlvo = ss.selectOne("mypageR.getCarInfo", userNo);
-		
+
 		return dlvo;
 	}
-	
-	//유저정보수정
+
+	// 유저정보수정
 	public int userUpdate(DriverLicenseVo dlvo) {
-		int count= ss.update("mypageR.userUpdate", dlvo);
-		
+		int count = ss.update("mypageR.userUpdate", dlvo);
+
 		return count;
 	}
-	
+
 	public int carUpdate(DriverLicenseVo dlvo) {
 		int count = ss.update("mypageR.carUpdate", dlvo);
 		return count;
 	}
-	
+
 	public int carDetailDelete(DriverLicenseVo dlvo) {
 		ss.delete("mypageR.carDetailDelete", dlvo);
 		return 0;
 	}
-	
+
 	public int carDetailUpdate(DriverLicenseVo dlvo, Map<String, Integer> carDetailMap) {
 		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
 		return count;
 	}
+<<<<<<< HEAD
 	
 	
 	//카정보수정
@@ -172,7 +189,10 @@ public class MypageRDao {
 		map.put("eNum", endRnum);
 		return ss.selectList("mypageR.getuserlistresv", map);
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
+<<<<<<< HEAD
 	public List<MyUsageVo> getDriverCrtPageResv(int userNo, int startRnum, int endRnum) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userNo", userNo);
@@ -202,15 +222,19 @@ public class MypageRDao {
 		return ss.selectList("mypageR.getdriversearchlistresv", map);
 	}
 	
+=======
+	// 카정보수정
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
-/*// 수정 
-	public int update(DriverLicenseVo dlvo) {
-		System.out.println("DriverLicenseService>update()");
-
-		ss.update("mypageR.update", dlvo);
-
-		return 0;
-
-	}*/
+	/*
+	 * // 수정 public int update(DriverLicenseVo dlvo) {
+	 * System.out.println("DriverLicenseService>update()");
+	 * 
+	 * ss.update("mypageR.update", dlvo);
+	 * 
+	 * return 0;
+	 * 
+	 * }
+	 */
 
 }

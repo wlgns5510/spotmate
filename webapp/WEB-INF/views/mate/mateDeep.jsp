@@ -110,80 +110,77 @@
 			<div class="carpoolDeep-aside">
 				<div class="aside">
 					<div class="confirmForm">
-						<form action="/saveMate" method="get">
-							출발지<br>					
-							<div class="confirm">
-								<c:forEach items="${matePlaceList}" var="matePlaceList">
-									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-										${matePlaceList.place}
-									</c:if>
-								</c:forEach>
-							</div>
-							목적지<br> 
-							<div class="confirm">
-								<c:forEach items="${matePlaceList}" var="matePlaceList">
-									<c:if test="${matePlaceList.wayNo == 0 && matePlaceList.day == '1'}">
-										${matePlaceList.place}
-									</c:if>
-								</c:forEach>
-							</div>
-							탑승 가능 인원 수<br> 
-							<div class="confirm">
-								${mateVo.people}명
-								<c:if test='${param.result == "fail"}'>
-									<p class= overPeople>※ 탑승 가능 인원 수가 초과하였습니다</p>
+						출발지<br> 
+						<div class="confirm">
+							<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+									${matePlaceList.place}
 								</c:if>
-							</div>
-							탑승요청 인원 수<br> <input class="confirm-2" type="text" name="requestPeople" value="" placeholder=" 인원 수를 입력해주세요"><br>
-							탑승 시간<br> 
-							<div class="confirm">
-								<c:forEach items="${matePlaceList}" var="matePlaceList">
-									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-										${matePlaceList.time}
-									</c:if>
-								</c:forEach>
-							</div>
-							처음 탑승일<br>
-							<div class="confirm">
-								<c:forEach items="${matePlaceList}" var="matePlaceList">
-									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-										${matePlaceList.startDate}
-									</c:if>
-								</c:forEach>
-							</div>
-							마지막 탑승일<br> 
-							<div class="confirm">
-								<c:forEach items="${matePlaceList}" var="matePlaceList">
-									<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
-										${matePlaceList.endDate}
-									</c:if>
-								</c:forEach>
-							</div>
-	
-						
-	
-						<div class="point">
-							총 결제 포인트<br> 
-							<div class="pointConfirm">
-								<fmt:formatNumber value="${mateVo.point}" pattern="#,###" />포인트
-							</div><br> <br> 
-							<span
-								class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
-							</span>
-	
+							</c:forEach>
 						</div>
-	
-						<c:choose>
-							<c:when test="${authUser != null}">
-								<a href="/myReservationUserMain">
-									<button type="submit" class="rideButton">탑승하기</button>
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
-							</c:otherwise>
-						</c:choose>
-					</form>
+						목적지<br> 
+						<div class="confirm">
+							<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+								<c:if test="${matePlaceList.wayNo == 0 && matePlaceList.day == '1'}">
+									${matePlaceList.place}
+								</c:if>
+							</c:forEach>
+						</div>
+						탑승 가능 인원 수<br> 
+						<div class="confirm">
+							${mateVo.people}명
+						</div> 
+						탑승 요청 인원 수<br>
+						<input class="confirm-2" type="text" name="requestPeople" value="" placeholder=" 인원 수를 입력해주세요">
+						탑승 시간<br> 
+						<div class="confirm">
+							<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+									${matePlaceList.time}
+								</c:if>
+							</c:forEach>
+						</div>
+						처음 탑승일<br>
+						<div class="confirm">
+							<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+									${matePlaceList.startDate}
+								</c:if>
+							</c:forEach>
+						</div>
+						마지막 탑승일<br> 
+						<div class="confirm">
+							<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+								<c:if test="${matePlaceList.wayNo == -1 && matePlaceList.day == '1'}">
+									${matePlaceList.endDate}
+								</c:if>
+							</c:forEach>
+						</div>
+
+					
+
+					<div class="point">
+						총 결제 포인트<br> 
+						<div class="pointConfirm">
+							<fmt:formatNumber value="${mMap.mateVo.point}" pattern="#,###" />포인트
+						</div><br> <br> 
+						<span
+							class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
+						</span>
+
+					</div>
+
+					<c:choose>
+						<c:when test="${authUser != null}">
+							<a href="/myReservationUserMain">
+								<button type="submit" class="rideButton">탑승하기</button>
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
+						</c:otherwise>
+					</c:choose>
+				</div>
 				</div>
 			</div>
 			
@@ -195,7 +192,7 @@
 						<div class="mateDeep_dayBox">
 							<p>1일차</p>
 						</div>
-						<c:forEach items="${matePlaceList}" var="matePlaceList">
+						<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 1}">
 								<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
 									<div class="mateDeep_start">
@@ -233,12 +230,12 @@
 				
 				
 				<div class="mateDeep_today">
-					<c:if test="${mateVo.allDay == 1}">
+					<c:if test="${mMap.mateVo.allDay == 1}">
 						<div class="mateDeep_dayBox">							
 							<p>2일차</p>							
 						</div>
 					</c:if>
-					<c:forEach items="${matePlaceList}" var="matePlaceList">
+					<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
 						<c:if test="${matePlaceList.day == 2}">
 							<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
 								<div class="mateDeep_start">
@@ -276,12 +273,12 @@
 				
 				
 				<div class="mateDeep_today">
-					<c:if test="${mateVo.allDay == 2}">	
+					<c:if test="${mMap.mateVo.allDay == 2}">	
 						<div class="mateDeep_dayBox">										
 							<p>3일차</p>													
 						</div>
 					</c:if>		
-						<c:forEach items="${matePlaceList}" var="matePlaceList">
+						<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
 							<c:if test="${matePlaceList.day == 3}">
 								<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
 									<div class="mateDeep_start">
@@ -365,13 +362,13 @@
 				
 				<div class="carpool-top2">
 					<p class="authDriverInfo">
-						${mateDriverVo.id} 드라이버님의 차량 정보
+						${mMap.mateDriverVo.id} 드라이버님의 차량 정보
 					</p>
 					<div class="carpool-picture">
 						<div class="carpool-picture-image">
 							<a href=""> <img src="/assets/images/car_tesla.png">
 								<h3>
-									<span> ${mateDriverVo.carName}<br>(${mateDriverVo.carNo})</span>
+									<span> ${mMap.mateDriverVo.carName}<br>(${mMap.mateDriverVo.carNo})</span>
 									
 								</h3>
 							</a>
@@ -384,16 +381,16 @@
 						</button>
 						드라이버 소개
 					</div>
-					<div class="introduceText">${mateDriverVo.introduce}</div>
+					<div class="introduceText">${mMap.mateDriverVo.introduce}</div>
 					<div class="driverComments">COMMENTS</div>
-					<div class="introduceText">${mateDriverVo.comments}</div>
+					<div class="introduceText">${mMap.mateDriverVo.comments}</div>
 				</div>
 				
 				<div class="carpool_detail">
 					<p class="driverInfo">드라이버 차량 정보</p>
 
 					<table>
-						<c:forEach items="${mateDetailList}" var="detailVo">					
+						<c:forEach items="${mMap.mateDetailList}" var="detailVo">					
 							<c:if test="${detailVo.mateOptionNo==1}">
 							<tr>
 								<td>
@@ -437,7 +434,7 @@
 						</c:forEach>
 					</table>
 				</div>
-				<p class="review">Reviews ★ ${reviewAvg.avgStar}</p>											
+				<p class="review">Reviews ★ ${mMap.reviewAvg.avgStar}</p>											
 		</div>
 		<!-- //mateDeep_content -->						
 	</div>
@@ -448,7 +445,7 @@
 		<div class="inner">
 			<div class="review_banner swiper-container">
 				<ul class="swiper-wrapper">
-					<c:forEach items="${reviewList}" var="carpoolVo">				
+					<c:forEach items="${mMap.reviewList}" var="carpoolVo">				
 						<li class="swiper-slide">
 							<dl class="review_box">
 								
@@ -672,7 +669,6 @@ $(".mateDeep_spotBox").on("click", function() {
 	
 	// 마커가 표시될 위치입니다 
     var markerPosition  = new kakao.maps.LatLng(x, y); 
-
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({
         position: markerPosition
@@ -688,7 +684,6 @@ $(".mateDeep_spotBox").on("click", function() {
     marker.setMap(map);
 	
 })
-
 //x,y의 위치로 지도 이동
 function setCenter(x,y) {            
     // 이동할 위도 경도 위치를 생성합니다 
@@ -698,7 +693,6 @@ function setCenter(x,y) {
     map.setCenter(moveLatLon);
     	
 }
-
 var swiperReview = new Swiper('.review_banner', {
 	slidesPerView : 4,
 	effect : 'slide',
@@ -713,7 +707,6 @@ var swiperReview = new Swiper('.review_banner', {
 		nextEl : '.review_banner_btns .swiper-button-next'
 	}
 }); 
-
 </script>
 
 
