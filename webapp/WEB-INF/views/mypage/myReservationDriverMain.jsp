@@ -196,7 +196,7 @@
 							<c:forEach begin="${uMap.startPageNum}" end="${uMap.endPageNum}" step="1" var="page">
 								<c:choose>
 									<c:when test="${uMap.crtPage == page}">
-										<li class="active"><a href="/myUsageUserMain/${page}">${page}</a></li>	
+										<li class="active"><a href="/myReservationDriverMain/${page}">${page}</a></li>	
 										<input type="hidden" value="${page}" class="crtPage">
 									</c:when>
 									<c:otherwise>
