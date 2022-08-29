@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,9 +48,10 @@ public class MateController {
 	//ajax 메이트 리스트 가져오기
 	@ResponseBody
 	@RequestMapping(value = "/mateList", method = { RequestMethod.GET, RequestMethod.POST })
-	public Map<String, Object> getMateList(Model model, @ModelAttribute MateVo mateVo) {
+	public Map<String, Object> getMateList(Model model, @RequestBody MateVo mateVo) {
 		System.out.println("MateController >> getMateListA");
 		
+		System.out.println(mateVo);
 		// Service를 통해서 getMateList를 가져온다	
 		Map<String, Object> mLMap = mateService.getMateList(mateVo);
 		

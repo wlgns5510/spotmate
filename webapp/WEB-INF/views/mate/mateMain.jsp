@@ -101,13 +101,13 @@
 					
 					<div class="chectBoxList">
 						<c:forEach items="${mLMap.optList}" var="opt">
-							<span class=""><input type="checkbox" name="mateContactList" value="${opt.detailOptNo}"
+							<span class=""><input id="chkOpt-${opt.detailOptNo}" type="checkbox" name="mateContactList" value="${opt.detailOptNo}"
 								<c:forEach items="${mateVo.mateContactList}" var="target">
 									<c:if test="${opt.detailOptNo == target}">
 										checked="checked"
 									</c:if>
 								</c:forEach>
-							>${opt.name}</span>
+							><label for="chkOpt-${opt.detailOptNo}">${opt.name}</label></span>
 						</c:forEach>
 					</div>
 					<button type="submit" class="searchPictogrem"></button>
@@ -143,7 +143,7 @@
 			</c:forEach>												
 		</div>
 		
-		<button class="mateListBtn">
+		<button class="mateListBtn" id="btnMoreList">
 				<h2>더보기</h2>
 		</button>
 								
@@ -162,20 +162,47 @@
 <script type="text/javascript">
 var mateVo = {};
 
+//페이지가 로딩되기 직전 일때
+$(document).ready(function(){
+	console.log("페이지 로딩 직전");
 
+	mateVo.crtPage = 1;
+	mateVo.ePlace = $("[name='ePlace']").val();
+	mateVo.sDate = $("[name='sDate']").val();
+	mateVo.eDate = $("[name='eDate']").val();
+	mateVo.smPeople = parseInt($("[name='smPeople']").val());
+	
+	var mateContactList = [];
+	
+	var chks=$("[name='mateContactList']");
+	chks.each(function(index){
+		if($(this).is(":checked") == true){
+			mateContactList.push(parseInt($(this).val()));
+		}
+	});
+	
+	mateVo.mateContactList = mateContactList;
+	
+	console.log(mateVo);
+
+});
 
 $(".mateListBtn").on("click", function(){
 	console.log("더보기 버튼클릭");
 	mateVo.crtPage += 1;
 	
+	console.log(mateVo);
+	
 	//ajax 요청  받는코드
 	$.ajax({
 		url : "${pageContext.request.contextPath}/mateList",
 		type : "post",
-		/* contentType : "application/json", */
-		data : mateVo,
+		contentType : "application/json",
+		data : JSON.stringify(mateVo),
 		dataType : "json",
-		success : function(mateList) {
+		success : function(mLMap) {
+			
+			var mateList = mLMap.mateList;
 			/* 다음페이지 리스트 가져오기 */
 			console.log(mateList);
 			
@@ -183,6 +210,9 @@ $(".mateListBtn").on("click", function(){
 			for (var i = 0; i < mateList.length; i++){
 				render(mateList[i]);	//화면에 그리는 함수실행
 			}
+
+			
+			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
