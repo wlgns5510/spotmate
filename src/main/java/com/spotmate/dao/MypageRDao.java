@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.DriverLicenseVo;
+import com.spotmate.vo.myQnaVo;
 
 @Repository
 
@@ -14,6 +15,18 @@ public class MypageRDao {
 
 	@Autowired
 	private SqlSession ss;
+	
+	
+	
+
+	//myqna insert
+	public void InsertQna(myQnaVo mqv) {
+		int count = ss.insert("mypageR.insertQna", mqv);
+	}
+	
+	
+	
+	
 
 	// 등록
 	public int myDriverInsert(DriverLicenseVo dlvo) {
@@ -42,51 +55,45 @@ public class MypageRDao {
 
 	}
 
-	
-	
-
 	public DriverLicenseVo getCarInfo(int userNo) {
 		DriverLicenseVo dlvo = ss.selectOne("mypageR.getCarInfo", userNo);
-		
+
 		return dlvo;
 	}
-	
-	//유저정보수정
+
+	// 유저정보수정
 	public int userUpdate(DriverLicenseVo dlvo) {
-		int count= ss.update("mypageR.userUpdate", dlvo);
-		
+		int count = ss.update("mypageR.userUpdate", dlvo);
+
 		return count;
 	}
-	
+
 	public int carUpdate(DriverLicenseVo dlvo) {
 		int count = ss.update("mypageR.carUpdate", dlvo);
 		return count;
 	}
-	
+
 	public int carDetailDelete(DriverLicenseVo dlvo) {
 		ss.delete("mypageR.carDetailDelete", dlvo);
 		return 0;
 	}
-	
+
 	public int carDetailUpdate(DriverLicenseVo dlvo, Map<String, Integer> carDetailMap) {
 		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
 		return count;
 	}
-	
-	
-	//카정보수정
-	
 
-	
+	// 카정보수정
 
-/*// 수정 
-	public int update(DriverLicenseVo dlvo) {
-		System.out.println("DriverLicenseService>update()");
-
-		ss.update("mypageR.update", dlvo);
-
-		return 0;
-
-	}*/
+	/*
+	 * // 수정 public int update(DriverLicenseVo dlvo) {
+	 * System.out.println("DriverLicenseService>update()");
+	 * 
+	 * ss.update("mypageR.update", dlvo);
+	 * 
+	 * return 0;
+	 * 
+	 * }
+	 */
 
 }

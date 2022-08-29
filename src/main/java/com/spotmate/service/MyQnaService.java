@@ -11,10 +11,13 @@ public class MyQnaService {
 
 	@Autowired
 	private MypageRDao mrDao;
+
+	// myQna
+	public void InsertQna(myQnaVo mqv) {
+		mrDao.InsertQna(mqv);
+		}
 	
-	//myQna
-	public void myQnaRegister(myQnaVo mqv) {
-		System.out.println("MyQnaService>myQnaMain");
-		
-	}
+		 
+	
+	
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spotmate.function.CarOwner;
 import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
+import com.spotmate.service.MyQnaService;
 import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
@@ -36,6 +37,8 @@ public class MypageRController {
 	@Autowired
 	private DriverLicenseService dls;
 	private UserVo uVo;
+	private MyQnaService mqs;
+	
 
 	@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverForm(Model model, HttpSession ss) {
@@ -195,7 +198,9 @@ public class MypageRController {
 		
 	      UserVo authUser = (UserVo)ss.getAttribute("authUser");
 	      int userNo = authUser.getNo();
-		
+	      mqv.setUserNo(userNo);//세팅을 해놓는다 
+	      mqs.InsertQna(mqv); //메소드가 없어 서비스로 만들어주러가야함 
+	      
 		return "/mypage/myQnaMain";
 		
 	}

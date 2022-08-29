@@ -3,7 +3,27 @@
 
 <mapper namespace="mypageR">
 
+	<!-- myqna form 정보 등록 -->
+	<insert id="InsertQna" parameterType="com.spotmate.vo.myQnaVo">
 
+		<![CDATA[
+		
+			insert into myqna
+			values(seq_myqna_no.nextval, 
+			    #{userNo},
+			    #{type},
+			    #{title},
+			    sysdate,
+			    #{content},
+			    답변대기
+
+			) 
+	
+		]]>
+
+	</insert>
+	
+	
 	<!-- car정보 등록 -->
 	<insert id="myDriverinsert" parameterType="dlvo">
 
@@ -116,6 +136,7 @@
 	 	where carno = (select no from car where userno = #{userNo})
 		]]>
 	</update>
+	
 	
 	
 </mapper>
