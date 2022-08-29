@@ -186,26 +186,26 @@
 					<div class="reserv-paging">
 						<ul>
 							<c:if test="${uMap.prev == true}">
-							<li><a href="/myUsageUserMain/1"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+							<li><a href="/myReservationUserMain/1"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 								</a></li>
-								<li><a href="/myUsageUserMain/${crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								<li><a href="/myReservationUserMain/${crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
 								</a></li>
 							</c:if>
 							<c:forEach begin="${uMap.startPageNum}" end="${uMap.endPageNum}" step="1" var="page">
 								<c:choose>
 									<c:when test="${uMap.crtPage == page}">
-										<li class="active"><a href="/myUsageUserMain/${page}">${page}</a></li>	
+										<li class="active"><a href="/myReservationUserMain/${page}">${page}</a></li>	
 										<input type="hidden" value="${page}" class="crtPage">
 									</c:when>
 									<c:otherwise>
-										<li><a href="/myUsageUserMain/${page}">${page}</a></li>
+										<li><a href="/myReservationUserMain/${page}">${page}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							<c:if test="${uMap.next == true}">					
-								<li><a href="${uMap.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								<li><a href="/myReservationUserMain/${uMap.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
 								</a></li>
-								<li><a href="/myUsageUserMain/${uMap.endPageNum}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								<li><a href="/myReservationUserMain/${uMap.endPageNum}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
 							</a></li>
 							</c:if>
 						</ul>

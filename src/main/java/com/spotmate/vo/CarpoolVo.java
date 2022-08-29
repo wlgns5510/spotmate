@@ -7,7 +7,7 @@ public class CarpoolVo {
 	// 필드
 
 	private int no, userNo, mateNo, sMateNo, eMateNo, wayNo, sWayNo, eWayNo, sPlaceNo, ePlaceNo, point, people,
-			driverNo, detailNo, star, avgStar, spotMateNo, sLat, sLng, eLat, eLng, lat, lng;
+			driverNo, detailNo, star, avgStar, spotMateNo, sLat, sLng, eLat, eLng, lat, lng, canRide;
 	private String id, userName, startDate, endDate, place, splace, sSepPlace, eplace, eSepPlace, latlng, detailOpt,
 			type, duration, distance, carName, carPicture, introduce, comments, name, time, sTime, content,
 			femaleDriver, pet, phoneCharger, nonSmoke, useTrunk, carNo;
@@ -34,7 +34,7 @@ public class CarpoolVo {
 			String carName, String carPicture, String introduce, String comments, String name, String time,
 			String sTime, String content, String femaleDriver, String pet, String phoneCharger, String nonSmoke,
 			String useTrunk, String carNo, String opts, Integer smPeople, List<Integer> ch_type, int crtPage,
-			int startRnum, int endRnum) {
+			int startRnum, int endRnum, int canRide) {
 
 		this.no = no;
 		this.userNo = userNo;
@@ -97,6 +97,14 @@ public class CarpoolVo {
 
 	// 메서드 getter/setter
 
+	public int getCanRide() {
+		return canRide;
+	}
+
+	public void setCanRide(int canRide) {
+		this.canRide = canRide;
+	}
+	
 	public int getNo() {
 		return no;
 	}

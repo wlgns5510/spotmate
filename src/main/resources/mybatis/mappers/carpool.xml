@@ -256,10 +256,35 @@
 	            where mateNo = #{spotMateNo}
 	            group by driverNo
 	      </selectKey>
-		<![CDATA[
-		insert into reservation
-		values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
-		]]>
+	      
+	      <![CDATA[
+ 				insert into reservation 
+ 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
+ 				]]>
+<!-- 		<selectKey keyColumn="driverNo, people" keyProperty="driverNo, canRide" resultType="map" order="BEFORE"> -->
+<!-- 			select driverNo, -->
+<!-- 				people -->
+<!-- 			from (select driverNo -->
+<!-- 	            from reservation -->
+<!-- 	            where mateNo = #{spotMateNo} -->
+<!-- 	            group by driverNo), (select people -->
+<!-- 							      	from spotmate -->
+<!-- 							      	where no = #{spotMateNo} ) -->
+<!-- 		</selectKey> -->
+		
+<!-- 		<choose> -->
+<!-- 			<when test="canRide >= people"> -->
+<!-- 				<![CDATA[ -->
+<!-- 				insert into reservation -->
+<!-- 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '') -->
+<!-- 				]]> -->
+<!-- 			</when> -->
+<!-- 			<otherwise> -->
+<!-- 				update spotmate -->
+<!-- 	            set people = people -->
+<!-- 	     		where no = #{mateNo}  -->
+<!-- 			</otherwise> -->
+<!-- 		</choose> -->
 	</insert>
 
 	<select id="chkpeople" parameterType="int" resultType="int">
@@ -268,12 +293,13 @@
       where no = #{mateNo}
    </select>
 
-   <update id="updatereservpeople" parameterType="map">
+   <insert id="updatereservpeople" parameterType="map">
+      
       update spotmate
       set people = people - #{people}
-	  where no = #{mateNo} 
+      where no = #{mateNo} 
 	  
-   </update>
+   </insert>
 
 
 

@@ -47,12 +47,13 @@
 	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
 	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
 
-<title>test</title>
+<title>review</title>
 
 
 </head>
 
 <body>
+
 	<div class="score-box">
 		<div class="score">
 			<input class="slider" type="range" min="0" max="10" step="1" value="0" >
@@ -65,6 +66,9 @@
 
 </body>
 <script type="text/javascript">
+
+// ★★★★★
+
 $(".score .foreground").css("width", "0%");
 $(".score-box .display").html(0);
 
@@ -74,6 +78,22 @@ $(".slider").on("mousemove", function(){
 	
 	$(".score .foreground").css("width", percent+"%");
 	$(".score-box .display").html(point);
+	
+	var star = $(".slider").val();
+	
+// 	if( star < 1 ){
+// 		$(".score .foreground").text();
+// 	} else if ( 2<= star < 4 ) {
+// 		$(".score .foreground").text('★');
+// 	} else if ( 4<= star < 6 ) {
+// 		$(".score .foreground").text('★★');
+// 	} else if ( 6<= star < 8 ) {
+// 		$(".score .foreground").text('★★★');
+// 	} else if ( 8<= star < 10 ) {
+// 		$(".score .foreground").text('★★★★');
+// 	} else if ( 10<= star < 11 ) {
+// 		$(".score .foreground").text('★★★★★');
+// 	}
 });
 	
 	

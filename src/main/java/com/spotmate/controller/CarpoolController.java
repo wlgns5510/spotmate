@@ -79,7 +79,7 @@ public class CarpoolController {
 		
 		if ( result == 0 ) {
 											
-			return "redirect:/myReservationUserMain";
+			return "redirect:/myReservationUserMain/1";
 		}
 		
 		return "redirect:/spotCarpoolDeep/"+carpoolVo.getSpotMateNo()+"?result=fail";

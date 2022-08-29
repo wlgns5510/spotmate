@@ -64,7 +64,7 @@ public class CarpoolDao {
 	
 	public void saveCarpool(CarpoolVo carpoolVo) {
 		System.out.println("CarpoolDao> saveCarpool()");
-		
+		System.out.println(carpoolVo.toString());
 		int count = sqlSession.insert("carpool.insertUserCarpoolInfo", carpoolVo);
 
 		System.out.println(count);
