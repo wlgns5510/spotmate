@@ -39,6 +39,8 @@ public class MypageRController {
 	
 	@Autowired
 	private DriverLicenseService dls;
+	private UserVo uVo;
+
 	@Autowired
 	private MypageRService mService;
 	@Autowired
@@ -109,7 +111,6 @@ public class MypageRController {
 		
 		//로그인한 사용자의 userNo을 vo에 넣어준다
 		dlvo.setUserNo(userNo);
-
 	    
 		//user업데이트+카정보등록+옵션등록
 		dls.myDriverRegister(dlvo);
@@ -222,6 +223,29 @@ public class MypageRController {
 		return "/mypage/myQnaWriteForm";
 	}
 
+
+	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myReservationDriverMain() {
+		return "/mypage/myReservationDriverMain";
+	}
+
+	@RequestMapping(value = "/myReservationUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myReservationUserMain() {
+		return "/mypage/myReservationUserMain";
+	}
+
+	@RequestMapping(value = "/myUsageDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myUsageDriverMain() {
+		return "/mypage/myUsageDriverMain";
+	}
+
+	@RequestMapping(value = "/myUsageUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myUsageUserMain() {
+		return "/mypage/myUsageUserMain";
+	}
+
+	
+
 //	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
 //	public String myReservationDriverMain() {
 //		return "/mypage/myReservationDriverMain";
@@ -285,5 +309,6 @@ public class MypageRController {
 	public String review(Model model) {
 		return "/mypage/myReview";
 	}
+
 
 }
