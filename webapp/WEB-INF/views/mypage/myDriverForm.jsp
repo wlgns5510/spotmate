@@ -125,7 +125,7 @@
 
 					<div class="DriverenrollForm">
 						<form method="post"
-							action="${pageContext.request.contextPath }/myDriverWriteInsert">
+							action="${pageContext.request.contextPath }/myDriverWriteInsert" id="myform">
 							<div class="DL_info">
 								<!-- -->
 
@@ -192,7 +192,8 @@
 									<tr>
 										<td></td>
 										<td>
-											<input name="c_file" id="c_file" type="text">
+											<input type="hidden" name="c_file" id="c_file">
+											<input id="img_path" accept="image/*" type="text">
 											<input type="file" id="input-file" class="file_d" onchange="OnChangeFile();">
 										</td>
 										<td><label class="smallbtn" for="input-file"> <span>파일선택</span>
@@ -251,7 +252,7 @@
 									name="introduce" id="introduce"></textarea>
 							</div>
 
-							<input type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
+							<input type="button" onclick="isCarAuth();" value="등록하기" class="DForm_enrollbtn0">
 
 
 
@@ -278,6 +279,19 @@
 </body>
 
 <script type="text/javascript">
+	let bCarAuth = false;
+	
+	function isCarAuth() {
+		if(!bCarAuth) {
+			alert("차량인증을 먼저 해주세요.");
+			//return false;
+		}
+		
+		document.getElementById("myform").submit();
+	}
+
+	
+	//상세조건 정렬
 	function OnChangeDL() {
 		let dl_1 = document.getElementById("dl_1").value;
 		let dl_2 = document.getElementById("dl_2").value;
@@ -289,8 +303,16 @@
 	}
 	
 	function OnChangeFile() {
-		let fileName = document.getElementById("input-file").value;
-		document.getElementById("c_file").value = fileName;
+		const inputFile = document.getElementById("input-file");
+		let fileName = inputFile.value;
+		document.getElementById("img_path").value = fileName;
+		
+		var FR= new FileReader();
+		FR.onload = function(e) {
+			console.log(e.target.result);
+			document.getElementById("c_file").value = e.target.result;
+		};       
+		FR.readAsDataURL( inputFile.files[0] );
 	}
 
 	$(document).ready(function() {
@@ -322,6 +344,7 @@
 					alert("틀렸습니다");
 				} else {
 					alert("성공했습니다");
+					bCarAuth = true;
 				}
 			},
 			error : function(XHR, status, error) {

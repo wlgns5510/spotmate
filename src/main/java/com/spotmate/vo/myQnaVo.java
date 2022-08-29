@@ -3,46 +3,63 @@ package com.spotmate.vo;
 public class myQnaVo {
 
 	//필드 
-	private String qna_contents, qna_title;
-	private int qna_type;
-
-	//생성자 
+	private String type, title, regDate,content;
+	private int userNo, no;
+	
+	
+	//생성자
 	public myQnaVo() {
+		
+	}
+	public myQnaVo(String type, String title, String regDate, String content, int userNo, int no) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.type = type;
+		this.title = title;
+		this.regDate = regDate;
+		this.content = content;
+		this.userNo = userNo;
+		this.no = no;
 	}
-	
-	public myQnaVo(String qna_contents, String qna_title, int qna_type) {
-		super();
-		this.qna_contents = qna_contents;
-		this.qna_title = qna_title;
-		this.qna_type = qna_type;
+	public String getType() {
+		return type;
 	}
-	
-	//gs
-	public String getQna_contents() {
-		return qna_contents;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public void setQna_contents(String qna_contents) {
-		this.qna_contents = qna_contents;
+	public String getTitle() {
+		return title;
 	}
-	public String getQna_title() {
-		return qna_title;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public void setQna_title(String qna_title) {
-		this.qna_title = qna_title;
+	public String getRegDate() {
+		return regDate;
 	}
-	public int getQna_type() {
-		return qna_type;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
-	public void setQna_type(int qna_type) {
-		this.qna_type = qna_type;
+	public String getContent() {
+		return content;
 	}
-	
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	@Override
 	public String toString() {
-		return "myQnaVo [qna_contents=" + qna_contents + ", qna_title=" + qna_title + ", qna_type=" + qna_type + "]";
+		return "myQnaVo [type=" + type + ", title=" + title + ", regDate=" + regDate + ", content=" + content
+				+ ", userNo=" + userNo + ", no=" + no + "]";
 	}
-
 	
 }

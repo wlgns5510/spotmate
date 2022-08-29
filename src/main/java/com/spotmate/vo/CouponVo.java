@@ -5,6 +5,7 @@ public class CouponVo {
 	//필드
 	private int no;
 	private int userNo;
+	private int couponListNo;
 	private String buyDate;
 	private String usePlace;
 	private int point;
@@ -26,12 +27,12 @@ public class CouponVo {
 	public CouponVo() {
 	}
 
-	public CouponVo(int no, int userNo, String buyDate, String usePlace, int point, String status, int couponNo,
-			String imgsrc, String cateName, String startDate, String endDate, String option1, String option2,
-			int crtPage, int startRnum, int endRnum) {
-		super();
+	public CouponVo(int no, int userNo, int couponListNo, String buyDate, String usePlace, int point, String status,
+			int couponNo, String imgsrc, String cateName, String startDate, String endDate, String option1,
+			String option2, int crtPage, int startRnum, int endRnum) {
 		this.no = no;
 		this.userNo = userNo;
+		this.couponListNo = couponListNo;
 		this.buyDate = buyDate;
 		this.usePlace = usePlace;
 		this.point = point;
@@ -48,6 +49,7 @@ public class CouponVo {
 		this.endRnum = endRnum;
 	}
 
+
 	//메소드-gs
 	public int getNo() {
 		return no;
@@ -63,6 +65,14 @@ public class CouponVo {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public int getCouponListNo() {
+		return couponListNo;
+	}
+
+	public void setCouponListNo(int couponListNo) {
+		this.couponListNo = couponListNo;
 	}
 
 	public String getBuyDate() {
@@ -180,12 +190,13 @@ public class CouponVo {
 	//메소드-일반
 	@Override
 	public String toString() {
-		return "CouponVo [no=" + no + ", userNo=" + userNo + ", buyDate=" + buyDate + ", usePlace=" + usePlace
-				+ ", point=" + point + ", status=" + status + ", couponNo=" + couponNo + ", imgsrc=" + imgsrc
-				+ ", cateName=" + cateName + ", startDate=" + startDate + ", endDate=" + endDate + ", option1="
-				+ option1 + ", option2=" + option2 + ", crtPage=" + crtPage + ", startRnum=" + startRnum + ", endRnum="
-				+ endRnum + "]";
+		return "CouponVo [no=" + no + ", userNo=" + userNo + ", couponListNo=" + couponListNo + ", buyDate=" + buyDate
+				+ ", usePlace=" + usePlace + ", point=" + point + ", status=" + status + ", couponNo=" + couponNo
+				+ ", imgsrc=" + imgsrc + ", cateName=" + cateName + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", option1=" + option1 + ", option2=" + option2 + ", crtPage=" + crtPage + ", startRnum=" + startRnum
+				+ ", endRnum=" + endRnum + "]";
 	}
+
 
 
 }

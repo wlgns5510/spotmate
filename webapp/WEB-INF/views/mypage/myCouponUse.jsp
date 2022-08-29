@@ -77,11 +77,7 @@
 				<header class="myPage_header">
 					<h3>쿠폰</h3>
 					<p>선택하신 모바일 쿠폰입니다.</p>
-					<ul>
-						<li>쿠폰</li>
-						<li>유저 포인트 내역은 다른 드라이버의 차량을 이용 후 사용한 포인트입니다.</li>
-						<li>그 외에도 이용수칙을 위반한 경우 차감 또는 추가 지급 될 수 있습니다.</li>
-					</ul>
+
 				</header>
 
 				<!-- //section-article -->
@@ -123,7 +119,7 @@
 									<li>✓모바일주유권 결제시 해당 주유소에서 현금영수증 발행이 가능합니다.</li>
 								</ul>
 							</div>
-							<div class="myPage_mapSearch">
+							<!--    <div class="myPage_mapSearch">
 								<div class="myPage_mapPicto"></div>
 								<span>지도로 이용가능한 매장 찾기</span>
 							</div>
@@ -138,19 +134,28 @@
 								<div id="modal" class="modal-overlay">
 									<div class="modal-window">
 										<div class="close-area">X</div>
-										<div class="content">
-											<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
-												<p>
-													해당 금액만큼 포인트에서 차감됩니다.<br>쿠폰을 구매하시겠습니까?
-												</p>
-												<button id="sub-btn" type="submit">구매하기</button>
-											</c:if>
-											<c:if test="${cuMap.totalPoint < cuMap.couponVo.point}">
-												<p>
-													<br> 포인트가 부족합니다.
-												</p>
-											</c:if>
+										<div class="modal-content clear">
+											<img class="modal-img" src="/assets/images/ico_boxgift.png">
+											<div class="modal-text">
+												<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
+													<p>해당 금액만큼 포인트에서 차감됩니다</p>
+													<p>쿠폰을 구매하시겠습니까?</p>
+													<p class="modal-second-p"></p>
+												</c:if>
+												<c:if test="${cuMap.totalPoint < cuMap.couponVo.point}">
+													<p>
+														<br>포인트가 부족합니다.
+													</p>
+													<p class="modal-second-p"></p>
+												</c:if>
+											</div>
 										</div>
+										<c:if test="${cuMap.totalPoint >= cuMap.couponVo.point}">
+											<div class="modal-button-div">
+												<button id="back-btn" type="button">취소하기</button>
+												<button id="sub-btn" type="submit">구매하기</button>
+											</div>
+										</c:if>
 									</div>
 								</div>
 							</div>
@@ -160,7 +165,6 @@
 			</section>
 		</main>
 
-
 		<!-- //banner & footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 
@@ -169,114 +173,56 @@
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8e7c67039e0100811551e543e8f330e8&libraries=services,clusterer,drawing"></script>
 <script>
-
-//카카오지도API
-var container = document.getElementById('map');
-var options = {
-	center : new kakao.maps.LatLng(33.450701, 126.570667),
-	level : 3
-};
-
-var map = new kakao.maps.Map(container, options);
-
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-if (navigator.geolocation) {
-    
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
-        
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
-        
-        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">나의 현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
-        
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition, message);
-            
-      });
-    
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-    
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-        message = 'geolocation을 사용할수 없어요..'
-        
-    displayMarker(locPosition, message);
-}
-
-// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-function displayMarker(locPosition, message) {
-
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({  
-        map: map, 
-        position: locPosition
-    }); 
-    
-    var iwContent = message, // 인포윈도우에 표시할 내용
-        iwRemoveable = true;
-
-    // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        content : iwContent,
-        removable : iwRemoveable
-    });
-    
-    // 인포윈도우를 마커위에 표시합니다 
-    infowindow.open(map, marker);
-    
-
-}    
-
-
-
-
-
-
 ///////////////모달자바스크립트
+$("#back-btn").on("click", function() {
+	location.replace("/mypageJ/myCouponBuy");
+})
 
 var modal = document.getElementById("modal")
 function modalOn() {
+    modal.style.animation = "fade-in 0.5s"
     modal.style.display = "flex"
 }
 function isModalOn() {
     return modal.style.display === "flex"
 }
 function modalOff() {
-    modal.style.display = "none"
+   	modal.style.animation = "fade-out 0.5s"
+	$("body").css("overflow-y","visible");//body 스크롤바 생성
+    setTimeout(function(){modal.style.display = "none"},501);
 }
 var btnModal = document.getElementById("btn-modal")
 btnModal.addEventListener("click", e => {
-     $(".modal-overlay").css({
+	  $(".modal-overlay").css({
           "top": (($(window).height()-$(".modal-overlay").outerHeight())/2+$(window).scrollTop())+"px",
           "left": (($(window).width()-$(".modal-overlay").outerWidth())/2+$(window).scrollLeft())+"px"
           //팝업창을 가운데로 띄우기 위해 현재 화면의 가운데 값과 스크롤 값을 계산하여 팝업창 CSS 설정
        }); 
-      
+	  
       $(".modal-window").css("display","block"); //팝업 뒷배경 display block
       $(".modal-overlay").css("display","block"); //팝업창 display block
       
       $("body").css("overflow","hidden");//body 스크롤바 없애기
       modalOn()
-     })
+  	})
 var closeBtn = modal.querySelector(".close-area")
 closeBtn.addEventListener("click", e => {
-   $("body").css("overflow","auto");//body 스크롤바 생성
-    modalOff()
+	modalOff()
 })
 modal.addEventListener("click", e => {
-    var evTarget = e.target
+    const evTarget = e.target
     if(evTarget.classList.contains("modal-overlay")) {
-       $("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
 window.addEventListener("keyup", e => {
     if(isModalOn() && e.key === "Escape") {
-       $("body").css("overflow","auto");//body 스크롤바 생성
         modalOff()
     }
 })
+
+
+
 </script>
 
 </html>
