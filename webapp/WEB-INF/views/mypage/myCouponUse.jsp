@@ -119,7 +119,7 @@
 									<li>✓모바일주유권 결제시 해당 주유소에서 현금영수증 발행이 가능합니다.</li>
 								</ul>
 							</div>
-							<div class="myPage_mapSearch">
+						<!--    <div class="myPage_mapSearch">
 								<div class="myPage_mapPicto"></div>
 								<span>지도로 이용가능한 매장 찾기</span>
 							</div>
@@ -173,70 +173,6 @@
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8e7c67039e0100811551e543e8f330e8&libraries=services,clusterer,drawing"></script>
 <script>
-
-//카카오지도API
-var container = document.getElementById('map');
-var options = {
-	center : new kakao.maps.LatLng(33.450701, 126.570667),
-	level : 3
-};
-
-var map = new kakao.maps.Map(container, options);
-
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-if (navigator.geolocation) {
-    
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
-        
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
-        
-        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">나의 현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
-        
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition, message);
-            
-      });
-    
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-    
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-        message = 'geolocation을 사용할수 없어요..'
-        
-    displayMarker(locPosition, message);
-}
-
-// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-function displayMarker(locPosition, message) {
-
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({  
-        map: map, 
-        position: locPosition
-    }); 
-    
-    var iwContent = message, // 인포윈도우에 표시할 내용
-        iwRemoveable = true;
-
-    // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        content : iwContent,
-        removable : iwRemoveable
-    });
-    
-    // 인포윈도우를 마커위에 표시합니다 
-    infowindow.open(map, marker);
-    
-
-}    
-
-
-
-
-
-
 ///////////////모달자바스크립트
 $("#back-btn").on("click", function() {
 	location.replace("/mypageJ/myCouponBuy");
