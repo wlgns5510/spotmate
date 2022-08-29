@@ -128,7 +128,7 @@
 						</div>
 						탑승 가능 인원 수<br> 
 						<div class="confirm">
-							${mateVo.people}명
+							${mMap.mateVo.people}명
 						</div> 
 						탑승 요청 인원 수<br>
 						<input class="confirm-2" type="text" name="requestPeople" value="" placeholder=" 인원 수를 입력해주세요">

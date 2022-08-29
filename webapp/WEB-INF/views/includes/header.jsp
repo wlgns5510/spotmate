@@ -17,22 +17,22 @@
                     <a href="javascript:void(0);">BRAND</a>
                     <div class="depth2">
                         <ul>
-                            <li><a href="javascript:void(0);">ABOUT US</a></li>
-                            <li><a href="javascript:void(0);">FOR EARTH</a></li>
+                            <li><a href="/aboutUs">ABOUT US</a></li>
+                            <li><a href="/forEarth">FOR EARTH</a></li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:void(0);">SPOT</a>
+                    <a href="/spotMain">SPOT</a>
                     <div class="depth2">
                         <ul>
-                            <li><a href="/spotMain">CARPOOL</a></li>
+                            <li><a href="/spotCarpool">CARPOOL</a></li>
                             <li><a href="/spotHitchhike">HITCHHIKE</a></li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:void(0);">MATE</a>
+                    <a href="/mateMain">MATE</a>
                     <div class="depth2">
                         <ul>
                             <li><a href="/mateInfo">SERVICE</a></li>
@@ -41,17 +41,17 @@
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:void(0);">COMMUNITY</a>
+                    <a href="/event">COMMUNITY</a>
                     <div class="depth2">
                         <ul>
                             <li><a href="javascript:void(0);">NOTICE</a></li>
-                            <li><a href="javascript:void(0);">FAQ</a></li>
+                            <li><a href="/faq">FAQ</a></li>
                             <li><a href="/event">EVENT</a></li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <a href="javascript:void(0);">DRIVER</a>
+                    <a href="/driver">DRIVER</a>
                     <div class="depth2">
                         <ul>
                             <li><a href="/driver">GUIDE</a></li>
@@ -86,7 +86,7 @@
 		                        </a>
 		                        <div class="down">
 		                            <ul>
-		                                <li><a href="/myUsageUserMain">마이 페이지</a></li>
+		                                <li><a href="/myUsageUserMain/1">마이 페이지</a></li>
 		                                <li><a href="/myPointMain">마이 포인트</a></li>
 		                                <li><a href="/myReservationUserMain">나의 예약 내역</a></li>
 		                                <li><a href="/logout">로그아웃</a></li>
@@ -94,7 +94,7 @@
 		                        </div>
 		                    </li>
 		                    <li>
-		                        <a href="/myUsageUserMain" class="btn_a2">MY PAGE</a>
+		                        <a href="/myUsageUserMain/1" class="btn_a2">MY PAGE</a>
 		                    </li>
 		                </ul>
                 	</c:otherwise>

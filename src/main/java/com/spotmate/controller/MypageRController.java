@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,9 +23,11 @@ import com.spotmate.function.CarOwner;
 import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
 import com.spotmate.service.MyQnaService;
+import com.spotmate.service.MypageRService;
 import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
+import com.spotmate.vo.UsageSearchVo;
 import com.spotmate.vo.UserVo;
 import com.spotmate.vo.myQnaVo;
 
@@ -37,8 +40,14 @@ public class MypageRController {
 	@Autowired
 	private DriverLicenseService dls;
 	private UserVo uVo;
+
+	@Autowired
+	private MypageRService mService;
+	@Autowired
+	private HttpSession ss;
 	@Autowired
 	private MyQnaService mqs;
+	
 	
 
 	@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
@@ -102,7 +111,6 @@ public class MypageRController {
 		
 		//로그인한 사용자의 userNo을 vo에 넣어준다
 		dlvo.setUserNo(userNo);
-
 	    
 		//user업데이트+카정보등록+옵션등록
 		dls.myDriverRegister(dlvo);
@@ -215,6 +223,7 @@ public class MypageRController {
 		return "/mypage/myQnaWriteForm";
 	}
 
+
 	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myReservationDriverMain() {
 		return "/mypage/myReservationDriverMain";
@@ -236,5 +245,70 @@ public class MypageRController {
 	}
 
 	
+
+//	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myReservationDriverMain() {
+//		return "/mypage/myReservationDriverMain";
+//	}
+//
+//	@RequestMapping(value = "/myReservationUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myReservationUserMain() {
+//		return "/mypage/myReservationUserMain";
+//	}
+//
+//	@RequestMapping(value = "/myUsageDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myUsageDriverMain() {
+//		return "/mypage/myUsageDriverMain";
+//	}
+//
+//	@RequestMapping(value = "/myUsageUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myUsageUserMain() {
+//		return "/mypage/myUsageUserMain";
+//	}
+	@RequestMapping(value = "/myUsageUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myUsageUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getUserUsageList(authUser.getNo(), no, usVo));
+		return "/mypage/myUsageUserMain";
+	}
+	
+	@RequestMapping(value = "/myUsageDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myUsageDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getDriverUsageList(authUser.getNo(), no, usVo));
+		return "/mypage/myUsageDriverMain";
+	}
+	
+	@RequestMapping(value = "/myReservationUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myResvUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getUserResvList(authUser.getNo(), no, usVo));
+		return "/mypage/myReservationUserMain";
+	}
+	
+	@RequestMapping(value = "/myReservationDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myResvDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if( authUser == null ) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("uMap", mService.getDriverResvList(authUser.getNo(), no, usVo));
+		return "/mypage/myReservationDriverMain";
+	}
+	
+	@RequestMapping(value = "/review", method = { RequestMethod.GET, RequestMethod.POST })
+	public String review(Model model) {
+		return "/mypage/myReview";
+	}
+
 
 }

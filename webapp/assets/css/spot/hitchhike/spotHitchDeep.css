@@ -5,6 +5,12 @@
 	width: 1440px;
 	height: 600px;
 }
+.hd-people {
+	margin: 0px 0px 0px 1000px;
+	width: 100px;
+	height: 40px;
+	display: inline;
+}
 .hitchdeepinfotop {
 	width: 200px; 
 	height:50px; 

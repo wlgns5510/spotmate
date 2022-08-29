@@ -6,65 +6,117 @@
 	<!-- mateList 가져오기 -->	
 	<select id="selectMateList" resultType="MateVo" parameterType="mateVo">
 		<![CDATA[
-				 select  u.name,
-				         c.carName,
-				         c.carPicture,
-				         c.carName,
-				         c.carNo,
-				         c.introduce,
-				         s.no mateNo,
-				         to_char(s.startDate,'mm.dd') startDate,
-				         to_char(s.endDate, 'mm.dd') endDate,
-				         to_char(s.startDate, 'yyyy-mm-dd') sDate,
-        				 to_char(s.endDate, 'yyyy-mm-dd') eDate,
-				         s.people,
-				         s.type,
-				         s.point,
-				         s.duration,
-				         s.distance,
-				         s.comments,
-				         p.sPlace,
-				         p.ePlace
-				 from users u,
-				      car c,
-				      spotmate s,
-				      (select substr(s.Place, 1, 6) sPlace,
-								       substr(e.place, 1, 6) ePlace,
-								       s.mateNo
-					   from place s, (select Place,
-								             mateNo
-							          from place
-							          where wayNo = 0
-							          and day = 1) e
-					   where s.wayNo = -1
-					   and s.day = 1
-					   and s.mateNo = e.mateNo) p  
-			 	 where u.no = c.userNo
-			 	 and   c.no = s.carNo
-			 	 and p.mateNo = s.no
-			 	 and s.type = 'mate'
+				 select   ort.rn,
+				          ort.name,
+				          ort.carName,
+				          ort.carPicture,
+				          ort.carNo,
+				          ort.introduce,
+				          ort.mateNo,
+				          ort.startDate,
+				          ort.endDate,
+				          ort.sDate,
+				          ort.eDate,
+				          ort.people,
+				          ort.type,
+				          ort.point,
+				          ort.duration,
+				          ort.distance,
+				          ort.comments,
+				          ort.sPlace,
+				          ort.ePlace,
+				          ort.opts
+				from  (select    rownum rn,
+				                 ot.name,
+				                 ot.carName,
+				                 ot.carPicture,
+				                 ot.carNo,
+				                 ot.introduce,
+				                 ot.mateNo,
+				                 ot.startDate,
+				                 ot.endDate,
+				                 ot.sDate,
+				                 ot.eDate,
+				                 ot.people,
+				                 ot.type,
+				                 ot.point,
+				                 ot.duration,
+				                 ot.distance,
+				                 ot.comments,
+				                 ot.sPlace,
+				                 ot.ePlace,
+				                 ot.opts
+				        from   (select   u.name,
+				                         c.carName,
+				                         c.carPicture,
+				                         c.carNo,
+				                         c.introduce,
+				                         s.no mateNo,
+				                         to_char(s.startDate,'mm.dd') startDate,
+				                         to_char(s.endDate, 'mm.dd') endDate,
+				                         to_char(s.startDate, 'yyyy-mm-dd') sDate,
+				                         to_char(s.endDate, 'yyyy-mm-dd') eDate,
+				                         s.people,
+				                         s.type,
+				                         s.point,
+				                         s.duration,
+				                         s.distance,
+				                         s.comments,
+				                         p.sPlace,
+				                         p.ePlace,
+				                         pt.opts
+				                from  users u,
+				                      car c,
+				                      spotmate s,
+				                      (select substr(s.Place, 1, 6) sPlace,
+				                                       substr(e.place, 1, 6) ePlace,
+				                                       s.mateNo
+				                       from place s, (select Place,
+				                                             mateNo
+				                                      from place
+				                                      where wayNo = 0
+				                                      and day = 1) e
+				                       where s.wayNo = -1
+				                       and s.day = 1
+				                       and s.mateNo = e.mateNo) p,  (select mateNo,
+				                              							    LISTAGG(detailNo, ',') within group (order by detailNo asc) opts
+											                         from spotDetail
+											                         group by mateNo) pt 
+				               where u.no = c.userNo
+				               and   c.no = s.carNo
+				               and p.mateNo = s.no
+				               and p.mateNo = pt.mateNo
 			 	 
 		]]>
-		<if test="ePlace != ''  and  ePlace != null ">
-			and p.ePlace like '%'||#{ePlace}||'%'
-		</if>
-		
-		<if test="sDate != ''  and  sDate != null ">
-			and to_char(s.startDate, 'yyyy-mm-dd') = #{sDate}
-		</if>
-		
-		<if test="eDate != ''  and  eDate != null ">
-			and to_char(s.endDate, 'yyyy-mm-dd') = #{eDate}
-		</if>
-		
-		<if test="smPeople != ''  and  smPeople != null ">
-			and s.people = #{smPeople}
-		</if>
-		
-		
-		<![CDATA[
-			order by startDate asc
+							  <if test="ePlace != ''  and  ePlace != null ">
+							    	and p.ePlace like '%'||#{ePlace}||'%'
+							  </if>
+							
+							  <if test="sDate != ''  and  sDate != null ">
+									and  to_char(s.startDate, 'yyyy-mm-dd') = #{sDate}
+							  </if>
+							
+							  <if test="eDate != ''  and  eDate != null ">
+									and to_char(s.endDate, 'yyyy-mm-dd') = #{eDate}
+							  </if>
+							
+							  <if test="smPeople != ''  and  smPeople != null ">
+									and s.people = #{smPeople}
+							  </if>
+							  
+							  <if test="mateContactList != ''  and  mateContactList != null ">
+							      <foreach item="item" collection="mateContactList">
+							          and pt.opts like '%'||#{item}||'%'
+							      </foreach>
+							  </if>	
+					
+		<![CDATA[	 
+				               order by startDate asc) ot
+				        ) ort
+				where rn>=#{startRnum}
+				and rn<=#{endRnum}
 		]]>
+		
 		
 	</select>
 	
@@ -143,10 +195,10 @@
 				select r.id,
 			       star,
 			       content
-			from (select mateNo,
-			        driverNo,
-			        no
-			      from reservation) d, ( select driverNo
+				   from (select mateNo,
+						        driverNo,
+						        no
+						        from reservation) d, ( select driverNo
 			                           from reservation
 			                           where mateNo = #{no}
 			                           ) i, (select star,
