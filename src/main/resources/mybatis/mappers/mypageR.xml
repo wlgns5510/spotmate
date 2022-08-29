@@ -139,11 +139,6 @@
 	
 	
 	
-<<<<<<< HEAD
-	
-	
-	
-	
 	<select id="totalusercnt" parameterType="int" resultType="int">
 		select count(*) count
 		from (select type,
@@ -979,6 +974,4 @@
         </choose>
 	</select>
 	
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 </mapper>

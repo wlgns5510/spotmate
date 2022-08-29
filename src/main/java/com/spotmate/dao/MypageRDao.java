@@ -9,12 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.DriverLicenseVo;
-<<<<<<< HEAD
 import com.spotmate.vo.MyUsageVo;
 import com.spotmate.vo.UsageSearchVo;
-=======
 import com.spotmate.vo.myQnaVo;
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 @Repository
 
@@ -92,7 +89,6 @@ public class MypageRDao {
 		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
 		return count;
 	}
-<<<<<<< HEAD
 	
 	
 	//카정보수정
@@ -189,10 +185,7 @@ public class MypageRDao {
 		map.put("eNum", endRnum);
 		return ss.selectList("mypageR.getuserlistresv", map);
 	}
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
-
-<<<<<<< HEAD
+	
 	public List<MyUsageVo> getDriverCrtPageResv(int userNo, int startRnum, int endRnum) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userNo", userNo);
@@ -222,9 +215,7 @@ public class MypageRDao {
 		return ss.selectList("mypageR.getdriversearchlistresv", map);
 	}
 	
-=======
 	// 카정보수정
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 	/*
 	 * // 수정 public int update(DriverLicenseVo dlvo) {

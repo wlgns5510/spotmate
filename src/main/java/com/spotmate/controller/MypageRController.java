@@ -1,13 +1,9 @@
 package com.spotmate.controller;
 
-<<<<<<< HEAD
-import java.util.Map;
-=======
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 import javax.servlet.http.HttpSession;
 
@@ -23,16 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spotmate.function.CarOwner;
+import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
-<<<<<<< HEAD
-import com.spotmate.service.MypageRService;
-import com.spotmate.vo.UsageSearchVo;
-=======
 import com.spotmate.service.MyQnaService;
+import com.spotmate.service.MypageRService;
 import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
+import com.spotmate.vo.UsageSearchVo;
 import com.spotmate.vo.UserVo;
 import com.spotmate.vo.myQnaVo;
 
@@ -44,22 +39,16 @@ public class MypageRController {
 	
 	@Autowired
 	private DriverLicenseService dls;
-<<<<<<< HEAD
 	@Autowired
 	private MypageRService mService;
-//	private UserVo uVo;
 	@Autowired
 	private HttpSession ss;
-	
-	/*@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
-=======
-	private UserVo uVo;
 	@Autowired
 	private MyQnaService mqs;
 	
+	
 
 	@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	public String myDriverForm(Model model, HttpSession ss) {
 		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -233,27 +222,25 @@ public class MypageRController {
 		return "/mypage/myQnaWriteForm";
 	}
 
-	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myReservationDriverMain() {
-		return "/mypage/myReservationDriverMain";
-	}
-
-	@RequestMapping(value = "/myReservationUserMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myReservationUserMain() {
-		return "/mypage/myReservationUserMain";
-	}
-
-	@RequestMapping(value = "/myUsageDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myUsageDriverMain() {
-		return "/mypage/myUsageDriverMain";
-	}
-
-	@RequestMapping(value = "/myUsageUserMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myUsageUserMain() {
-		return "/mypage/myUsageUserMain";
-	}
-<<<<<<< HEAD
-*/
+//	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myReservationDriverMain() {
+//		return "/mypage/myReservationDriverMain";
+//	}
+//
+//	@RequestMapping(value = "/myReservationUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myReservationUserMain() {
+//		return "/mypage/myReservationUserMain";
+//	}
+//
+//	@RequestMapping(value = "/myUsageDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myUsageDriverMain() {
+//		return "/mypage/myUsageDriverMain";
+//	}
+//
+//	@RequestMapping(value = "/myUsageUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myUsageUserMain() {
+//		return "/mypage/myUsageUserMain";
+//	}
 	@RequestMapping(value = "/myUsageUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myUsageUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -298,9 +285,5 @@ public class MypageRController {
 	public String review(Model model) {
 		return "/mypage/myReview";
 	}
-=======
-
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
-	
 
 }
