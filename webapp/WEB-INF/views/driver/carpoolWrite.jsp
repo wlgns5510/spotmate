@@ -62,19 +62,22 @@
 		<p>드라이버님이 이동하시는 경로를 등록해주시면<br>
 		같이 이동을 원하는 유저가 카풀을 신청 할 예정입니다.</p>
 		
-		<span>*필수 입력사항</span>
+		<span>* 필수 입력사항</span>
 	</div>
 	<div class="mid">
 		<form action="/carpoolWriteOk" method="post">
-			<p>이동하는 날짜와 시간을 입력해주세요*</p>
+			
+			<p class="write-font">이동하는 날짜와 시간을 입력해주세요 *</p>
 			<div class="f-sec">
 				<span>출발 날짜</span><input type="date" name="sdate1" value="" id="s-date">
-				<span>출발 시간</span><input type="time" name="stime1" value="" id="s-time" onclick="setTime()">
+				<span class="fsecs-time">출발 예정 시간</span><input type="time" name="stime1" value="" id="s-time" onclick="setTime()">
 				<br>
 				<span>도착 날짜</span><input type="date" name="edate1" value="" id="e-date">
+				<span>탑승 가능 인원 *</span><input id="people" name="people" type="number" min=1 placeholder="1명" value="1"> 
 			</div>
+			
 			<div class="s-sec">
-				<p>드라이버님의 이동 경로를 입력해주세요*</p>
+				<p class="write-font">드라이버님의 이동 경로를 입력해주세요 * <br><br> </p>
 				
 				<div id="input-div">
 				<img src="assets/images/map_line_02.png">
@@ -91,15 +94,18 @@
 						<td><input type="hidden" name="latlng1" value="" id="latlng1"></td>
 						<td><input type="hidden" name="intdur" value="" id="intdur"></td>
 				</table>
-				<button type="button" id="finish">설정완료</button>
+				
+				<button type="button" id="finish">경로 확인하기</button>
+	
 				</div>
 			</div>
+			
+			
 			<div id="map"></div>
 			<div id="totalInfo"></div>
 			<div class="t-sec">
-				<p>탑승 가능한 인원 수*</p>
-				<input id="people" name="people" type="number" min=1 placeholder="1명" value="1"> 
-				<p>차량 상세조건</p>
+				
+				<p class="write-font">차량 상세조건</p>
 				<table class="deepsel">
 					<c:forEach items="${totalInfo.driverInfo.NAME}" var="name">
 						<c:choose>
@@ -139,10 +145,10 @@
 							value="pet"><label for="pet">&nbsp;&nbsp;반려동물 탑승 가능</label></td>
 					</tr>
 				</table>
-				<p>드라이버님을 소개해주세요*</p>
+				<p class="write-font">드라이버님을 소개해주세요 *</p>
 				<textarea class="introduce" name="introduce" readonly>${totalInfo.driverInfo.INTRODUCE}</textarea>
-				<p>드라이버님이 하고싶은 말을 적어주세요</p>
-				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
+				<p class="write-font">드라이버님이 하고 싶은 말을 적어주세요</p>
+				<textarea class="comments" name="comments" placeholder="하고 싶은 말을 적어주세요 !"></textarea>
 			</div>
 			<button onclick="moveOk()" id="btn" type="button">등록하기</button>
 		</form>
