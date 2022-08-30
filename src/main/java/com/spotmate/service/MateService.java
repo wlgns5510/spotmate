@@ -96,8 +96,9 @@ public class MateService {
 		int mateNo = mateVo.getSpotMateNo();
 		System.out.println(mateNo);
 		int people = mateVo.getPeople();
-		System.out.println(people);
+		System.out.println("탑승인원= " + people);
 		int canRide = mateDao.chkPeople(mateNo);
+		System.out.println("탑승가능인원= " + canRide);
 		int usablePoint = mateDao.getTotalPoint(userNo);
 		if(canRide >= people && usablePoint >= mateVo.getPoint()) {
 			Map<String, Object> map = new HashMap<>();

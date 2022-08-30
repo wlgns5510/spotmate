@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.DriverLicenseVo;
 import com.spotmate.vo.MyUsageVo;
+import com.spotmate.vo.ReviewInfoVo;
+import com.spotmate.vo.ReviewVo;
 import com.spotmate.vo.UsageSearchVo;
 import com.spotmate.vo.myQnaVo;
 
@@ -142,6 +144,9 @@ public class MypageRDao {
 		return ss.selectOne("mypageR.totaldrivercntresv", userNo);
 	}
 	
+	public int endResv(Map<String, Object> map) {
+		return ss.update("mypageR.endResv", map);
+	}
 	
 	public int getDriverSearchCntResv(UsageSearchVo usVo, int userNo) {
 		Map<String, Object> map = new HashMap<>();
@@ -158,6 +163,37 @@ public class MypageRDao {
 		map.put("eNum", endRnum);
 		return ss.selectList("mypageR.getdriversearchlistresv", map);
 	}
+	
+	public int getMateNoByResvNo(int resvNo) {
+		return ss.selectOne("mypageR.getMateNoByResvNo", resvNo);
+	}
+	
+	public ReviewInfoVo forReviewInfo(Map<String, Object> map) {
+		return ss.selectOne("mypageR.forReviewInfo", map);
+	}
+	
+	public void insertUserReview(ReviewVo rVo) {
+		ss.insert("mypageR.insertUserReview", rVo);
+	}
+	public void afterInsertUserReview(int resvNo) {
+		ss.update("mypageR.afterInsertUserReview", resvNo);
+	}
+	
+	public List<Map<String, Object>> getPassengerList(Map<String, Object> map) {
+		return ss.selectList("mypageR.getPassengerList", map);
+	}
+	
+	public List<Integer> getReviewedPassengerList(int resvNo) {
+		return ss.selectList("mypageR.getReviewedPassengerList", resvNo);
+	}
+	
+	public void insertDriverReview(ReviewVo rVo) {
+		ss.insert("mypageR.insertDriverReview", rVo);
+	}
+	public void afterInsertDriverReview(int resvNo) {
+		ss.update("mypageR.afterInsertDriverReview", resvNo);
+	}
+	
 	
 	// 카정보수정
 
