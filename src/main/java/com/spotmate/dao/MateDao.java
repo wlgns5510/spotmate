@@ -113,6 +113,7 @@ public class MateDao {
 		System.out.println("MateDao >> getTotalPoint");
 		
 		int totalPoint = sqlSession.selectOne("mypagej.selectTotalPoint", userNo);
+		System.out.println(userNo + " 유저가 가지고 있는 잔액: " + totalPoint);
 		
 		return totalPoint;
 	}

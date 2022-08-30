@@ -56,8 +56,9 @@
 	text-align: center;
 	border-bottom: 3px solid #4454a1;
 	padding: 20px 0;
-	background: rgba(239, 192, 74, 1);
+	background: rgb(242, 205, 108);	
 }
+
 
 .spot-hitch-infoTop > li {
 	font-size: 20px;

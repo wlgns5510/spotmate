@@ -218,28 +218,6 @@
 	padding: 50px 0px 40px 0px;
 }
 
-.qnaButton {
-	width: 130px;
-	height: 40px;
-	background: rgba(239, 239, 239, 1);
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border: none;
-	float: right;
-	color: rgba(95, 95, 95, 1);
-	font-family: Noto Sans;
-	font-weight: 700;
-	font-size: 16px;
-	text-align: center;
-	cursor: pointer;
-}
-
-.qnaPicto:after {
-	cursor: pointer;
-	float: left;
-}
 
 .carpool-picture {
 	position: relative;
@@ -259,9 +237,10 @@
 .carpool-picture-image img {
 	width: 1000px;
 	height: 350px;
+	
 }
 
-.carpool-picture-image>a {
+.carpool-picture-image {
 	position: relative;
 	display: block;
 	width: 1000px;
@@ -269,20 +248,20 @@
 	overflow: hidden;
 }
 
-.carpool-picture-image>a>img {
+.carpool-picture-image > img {
 	position: absolute;
 	transition: all 0.2s linear;
 }
 
 
-.carpool-picture-image>a>h3 {
+.carpool-picture-image > h3 {
 	width: 1000px;
 	height: 350px;
 	background-color: rgba(20, 15, 19, 0.6);
 	position: absolute;
 }
 
-.carpool-picture-image>a>h3>span {
+.carpool-picture-image > h3 > span {
 	position: absolute;
 	color: #fff;
 	text-align: center;

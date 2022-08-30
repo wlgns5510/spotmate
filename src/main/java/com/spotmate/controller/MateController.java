@@ -85,12 +85,12 @@ public class MateController {
 	
 	
 	
-	//mateNo에 해당하는 메이트딥 이동 + 드라이버 차량 정보 가져오기 + 경로상세 + 차량의 상세조건
+	//mateNo에 해당하는 메이트딥 이동 + 드라이버 차량 정보 가져오기 + 경로상세 + 차량의 상세조건 + 차량 추천리스트
 	@RequestMapping(value = "/mateDeep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateDeep(@PathVariable("no") int no, Model model) {
+	public String mateDeep(@PathVariable("no") int no, Model model, MateVo mVo) {
 		System.out.println("MateController >> mateDeep");
 		
-		Map<String, Object> mMap = mateService.deepMateRead(no);
+		Map<String, Object> mMap = mateService.deepMateRead(no, mVo);
 		
 		model.addAttribute("mMap", mMap);
 		
@@ -109,7 +109,7 @@ public class MateController {
 		int userNo = authUser.getNo(); //로그인한 유저의 번호를 가져옴
 		
 		int result = mateService.saveMate(userNo, mateVo);
-		
+		System.out.println("result: " + result);
 		if( result == 0) {
 			return "redirect:/myReservationUserMain/1";
 		}

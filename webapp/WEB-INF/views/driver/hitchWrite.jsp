@@ -103,43 +103,43 @@
 							<c:when test="${name=='비흡연자'}">
 								<input type="hidden" class="nosmoke" value="">
 							</c:when>
-							<c:when test="${name=='충전기 사용 가능'}">
-								<input type="hidden" class="charge" value="">
-							</c:when>
-							<c:when test="${name=='여성드라이버'}">
+							<c:when test="${name=='여성 드라이버'}">
 								<input type="hidden" class="female" value="">
-							</c:when>
-							<c:when test="${name=='트렁크 사용 가능'}">
-								<input type="hidden" class="trunk" value="">
 							</c:when>
 							<c:when test="${name=='반려동물'}">
 								<input type="hidden" class="pet" value="">
 							</c:when>
+							<c:when test="${name=='충전기 사용 가능'}">
+								<input type="hidden" class="charge" value="">
+							</c:when>
+							<c:when test="${name=='트렁크 사용 가능'}">
+								<input type="hidden" class="trunk" value="">
+							</c:when>
+							
 						</c:choose>
 					</c:forEach>
 					<tr>
-						<td><input type="checkbox" id="nosmoke" name="nosmoke"
-							value="nosmoke"><label for="nosmoke">&nbsp;&nbsp;비흡연자</label></td>
-						<td><input class="td2" type="checkbox" id="phonecharge"
-							name="phonecharge" value="phonecharge"><label
-							for="phonecharge">&nbsp;&nbsp;핸드폰 충전기 이용 가능</label></td>
+						<td><input type="checkbox" id="nosmoke" name="nosmoke" value="nosmoke">
+						<label for="nosmoke">&nbsp;&nbsp;비흡연자</label></td>
+						<td><input type="checkbox" id="femaledriver" name="femaledriver" value="femaledriver">
+						<label for="femaledriver">&nbsp;&nbsp;여성 드라이버</label></td>
+						
 					</tr>
 					<tr>
-						<td><input type="checkbox" id="femaledriver"
-							name="femaledriver" value="femaledriver"><label
-							for="femaledriver">&nbsp;&nbsp;여성 드라이버</label></td>
+						<td><input type="checkbox" id="pet" name="pet" value="pet">
+						<label for="pet">&nbsp;&nbsp;반려동물</label></td>
+						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge">
+						<label for="phonecharge">&nbsp;&nbsp;충전기 사용 가능</label></td>
+					</tr>
+					<tr>
 						<td><input class="td2" type="checkbox" id="trunk"
-							name="trunk" value="trunk"><label for="trunk">&nbsp;&nbsp;트렁크 사용 가능</label></td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" id="pet" name="pet"
-							value="pet"><label for="pet">&nbsp;&nbsp;반려동물 탑승 가능</label></td>
+							name="trunk" value="trunk"><label for="trunk">&nbsp;&nbsp; 트렁크 사용 가능</label></td>
 					</tr>
 				</table>
 				<p class="write-font">드라이버님을 소개해주세요 *</p>
 				<textarea class="introduce" name="introduce" readonly>${driverInfo.INTRODUCE}</textarea>
 				<p class="write-font">드라이버님이 하고싶은 말을 적어주세요</p>
-				<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
+				<textarea class="comments" name="comments" placeholder="하고 싶은 말을 적어주세요!"></textarea>
 			</div>
 		<button onclick="moveOk()" id="btn" type="button">등록하기</button>
 		</form>
@@ -228,9 +228,9 @@ $("#finish").on("click", function() {
 			$(".fare").remove();
 			$(".dur").remove();
 			$(".dis").remove();
-			document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트:&nbsp;</span><input type='hidden' name='fare' id='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
-			document.getElementById("totalInfo").innerHTML += "<div class='dur'><span style='color:black;'>예상 소요 시간:&nbsp;</span><input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
-			document.getElementById("totalInfo").innerHTML += "<div class='dis'><span style='color:black;'>예상 거리:&nbsp;</span><input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
+			document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트 : &nbsp;</span><input type='hidden' name='fare' id='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
+			document.getElementById("totalInfo").innerHTML += "<div class='dur'><span style='color:black;'>예상 소요 시간 : &nbsp;</span><input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
+			document.getElementById("totalInfo").innerHTML += "<div class='dis'><span style='color:black;'>예상 거리 : &nbsp;</span><input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
 			document.getElementById("s-addr1").value = result.splace;
 			document.getElementById("e-addr1").value = result.eplace;
 			var bounds = new kakao.maps.LatLngBounds();
@@ -332,10 +332,10 @@ $(".ic-btn").on("click", function() {
 	$(".e-addr").val("");
 })
 function ssp() {
-	window.open("ssp/1", "child", "width=1350, height=820, left=300, top=100");
+	window.open("ssp/1", "child", "width=1000, height=600, left=300, top=100");
 }
 function sep() {
-	window.open("sep/1", "child", "width=1350, height=820, left=300, top=100");
+	window.open("sep/1", "child", "width=1000, height=600, left=300, top=100");
 }
 </script>
 </html>
