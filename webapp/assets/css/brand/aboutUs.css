@@ -7,7 +7,7 @@ Content Style Sheet
 Version : 1.0
 Author : JYJ
 First update : 2022. 08. 12.
-Last update : 2022. 08. 00.
+Last update : 2022. 08. 28.
 -------------------------------------------------
 -------------------------------------------------
 */
@@ -34,7 +34,7 @@ Last update : 2022. 08. 00.
 	background-position : center center;
 }
 /* 배너 텍스트 */
-.banner_text {
+.banner_back {
     position : absolute;
 	width : 100%;
 	height : 210px;
@@ -43,27 +43,36 @@ Last update : 2022. 08. 00.
     transform: translate(-50%, -50%);
     background : rgba(0, 0, 0, 0.5);
     box-sizing: border-box;
+}
+.banner_text {
+    position : absolute;
+	width : 1440px;
+	height : 210px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
     padding: 90px 0px 20px 0px;
     color: #fff;
-    border : 1px solid red;
+    /* border : 1px solid red; */
 }
-.banner_text > .autext_lft {
+.banner_text > .text_lft {
     float: left;
-    border : 1px solid red;
+    /* border : 1px solid red; */
     margin : 0px 550px 0px 35px;
 }
-.banner_text > .autext_rit {
+.banner_text > .text_rit {
     float: left;
     /*border : 1px solid yellow;*/
 }
-.banner_text > .autext_lft > h2 {
+.banner_text > .text_lft > h2 {
     font-family: 'Montserrat';
     font-weight: 600;
     font-size: 28px;
     box-sizing: border-box;
     padding: 0px 0px 10px 10px;
 }
-.banner_text > .autext_rit > h3 {
+.banner_text > .text_rit > h3 {
     font-family: 'Montserrat';
     font-weight: 600;
     font-size: 16px;
@@ -75,7 +84,7 @@ Last update : 2022. 08. 00.
 .sub_wrap {
     width: 100%;
     border-bottom : 1.5px solid #D9D9D9;
-    border : 1px solid red;
+    /* border : 1px solid red; */
 }
 .sub_nav {
     width: 1440px;
@@ -112,67 +121,244 @@ Last update : 2022. 08. 00.
 
 /********** event_cover : banner **********/
 .event_cover {
-	width : 1440px;
+	width : 100%;
     /* background-color: pink; */
     margin: 0px auto;
     padding: 150px 0px 300px 0px;
     box-sizing: border-box;
-    
+    /* border : 1px solid green; */
 }
 
-.event_banner {
-    position: relative;
-    width: 1440px;
-    height: 200px;
-    /* background-color: aquamarine; */
-    margin: 0px 0px 30px 0px;
-}
-/********** //event_cover : banner **********/
-
-/********** event_banner : 개별 이미지 **********/
-.event_cover .event_b1 {
-    position : absolute;
+/********** BRAND_CONCEPT **********/
+.concept {
 	width : 100%;
+}
+.concept > h2 {
+	/* border: 1px solid red; */
+	text-align : center;
+	box-sizing : border-box;
+	font-family: 'Montserrat';
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 130%;
+}
+
+.concept > p {
+	text-align : center;
+	margin: 20px 0px 30px 0px;
+	line-height: 22px;
+}
+.concept > .c1_img {
+	width : 100%;
+	height : 450px;
+	margin: 0px auto;
+	background-image : url("../../images/ourservice_b1.png");
+	/* background-size: 100% 100%; */
+	background-position : center center;
+}
+
+/* scroll action */
+.bc1 {
+	position : relative;
+	left: 50%;
+    transform: translate(-50%, 0%);
+	/* border: 1px solid blue; */
+	width : 1440px;
+	height : 600px;
+	
+}
+/* left_text */
+.bc1_text {
+	opacity : 0;
+	position : absolute;
+	left : 1000px;
+	top : 100px;
+	width : 750px;
+	/* border: 1px solid orange; */
+
+}
+.bc1_text>p:nth-child(1) {
+	width : 750px;
 	height : 200px;
-	background-image : url("../../images/event_b1.png");
+	text-align : justify;
+	line-height : 18pt;
+}
+.bc1_text>p:nth-child(2) {
+	text-align : center;
+	width : 750px;
+	margin: 70px 0px 0px 0px;
+	font-weight: 600;
+	font-size: 20px;
+}
+/* right_image */
+.bc2 {
+	opacity : 0;
+	position : absolute;
+	right : -1000px;
+	top : 100px;
+	width : 400px;
+	height : 400px;
+	background-image : url("../../images/ourservice_b2.png");
 	background-size: 100% 100%;
 	background-position : center center;
 }
 
-.event_cover .event_b2 {
-    position : absolute;
+/********** // BRAND_CONCEPT **********/
+
+/********** OUR SERVICE **********/
+.ourservices {
 	width : 100%;
-	height : 200px;
-	background-image : url("../../images/event_b2.png");
-	background-size: 100% 100%;
+	/* border: 1px solid pink; */
+}
+.ourservices > h2 {
+	margin: 200px 0px 0px 0px;
+	text-align : center;
+	box-sizing : border-box;
+	font-family: 'Montserrat';
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 130%;
+}
+
+.ourservices > p {
+	text-align : center;
+	margin: 20px 0px 30px 0px;
+	line-height: 22px;
+}
+
+.ourservices > .sr_img {
+	width : 100%;
+	height : 500px;
+	margin: 0px auto;
+	background-image : url("../../images/ourservice_b3.png");
+	/* background-size: 100% 100%; */
 	background-position : center center;
 }
 
-.event_cover .event_b3 {
-    position : absolute;
+/* service text */
+.ourservices > .service_box {
+	/* border: 1px solid purple; */
+	width: 1440px;
+	margin: 0px auto;
+	box-sizing: border-box;
+	padding: 70px 0px 70px 0px;
+	display: flex;
+}
+.service_box > .ser_text {
+	/* width: 420px; */
+	margin: 0px auto;
+	/* border: 1px solid salmon; */
+	box-sizing: border-box;
+	
+}
+.ser_text > .ser_t1 {
+	font-family: 'Montserrat';
+	font-weight: 700;
+	font-size: 40px;
+	line-height: 200%;
+	color :#4454A1;
+}
+.ser_text > h3 {
+	font-family: 'Montserrat';
+	font-weight: 600;
+	font-size: 20px;
+}
+.ser_text > .ser_t3 {
+	padding: 10px 0px 0px 0px;
+	font-family: 'Montserrat';
+	font-size: 14px;
+	line-height: 130%;
+	color : #474747;
+}
+
+/********** //OUR SERVICE **********/
+
+/********** BRAND CHANNEL **********/
+.brand_channel {
 	width : 100%;
-	height : 200px;
-	background-image : url("../../images/event_b3.png");
-	background-size: 100% 100%;
+	/* border: 1px solid pink; */
+	
+}
+.brand_channel > h2 {
+	margin: 200px 0px 0px 0px;
+	text-align : center;
+	box-sizing : border-box;
+	font-family: 'Montserrat';
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 130%;
+}
+
+.brand_channel > p {
+	text-align : center;
+	margin: 20px 0px 100px 0px;
+	line-height: 22px;
+}
+
+/* slide */
+#slider {
+	overflow: hidden;
+	position: relative;
+	left: 50%;
+    transform: translate(-50%, 0%);
+	/* border: 20px solid red; */
+	/* // 이미지 보여지는 뷰 부분만큼 px조절 */
+	/* width: 1440px; */
+	width: 100%;  
+	height: 140px;
+	box-sizing: border-box;
+}
+.channel-box {
+	/* 원본+클론의 총 합 */
+	width:5478px;
+	height:100%;
+	display:flex;
+	flex-wrap:nowrap;
+	animation: bannermove 20s linear infinite;
+}
+.channel-box > div {
+	margin: 0px -1px 0px 0px;
+}
+@keyframes bannermove {
+	0% {
+		transform: translate(0, 0);
+	}
+	100% {
+		transform: translate(-50%, 0);
+	}
+}
+
+/********** //BRAND CHANNEL **********/
+
+/********** BRAND IDENTITY **********/
+.brand_identity {
+	width : 100%;
+	/* border: 1px solid pink; */
+}
+.brand_identity > h2 {
+	margin: 200px 0px 0px 0px;
+	text-align : center;
+	box-sizing : border-box;
+	font-family: 'Montserrat';
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 130%;
+}
+
+.brand_identity > p:nth-child(2) {
+	text-align : center;
+	margin: 20px 0px 100px 0px;
+	line-height: 22px;
+}
+
+/* bi_img */
+.brand_identity > .bi_img {
+	width : 100%;
+	height : 6218px;
+	margin: 0px auto;
+	background-image : url("../../images/brand_bi.png");
+	/* background-size: 100% 100%; */
 	background-position : center center;
 }
 
-.event_cover .event_b4 {
-    position : absolute;
-	width : 100%;
-	height : 200px;
-	background-image : url("../../images/event_b4.png");
-	background-size: 100% 100%;
-	background-position : center center;
-}
-
-.event_cover .event_b5 {
-    position : absolute;
-	width : 100%;
-	height : 200px;
-	background-image : url("../../images/event_b5.png");
-	background-size: 100% 100%;
-	background-position : center center;
-}
-
-/********** //event_banner : 개별 이미지 **********/
+/********** //BRAND IDENTITY **********/
