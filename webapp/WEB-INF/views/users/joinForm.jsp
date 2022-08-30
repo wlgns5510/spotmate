@@ -48,7 +48,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/joinForm.js"></script>
-	<title>joinForm</title>
+	<title>aboutUs</title>
 	
 </head>
 
