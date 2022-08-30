@@ -50,11 +50,28 @@ public class MypageRController {
 	
 	
 	
-	///////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////qna 
+	
+	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myQnaMain(Model model) {
+		
+		UserVo authUser = (UserVo) ss.getAttribute("authUser");
+		
+		int userNo = authUser.getNo();
+		
+		model.addAttribute("qList", mqs.getMyQnaList(userNo));
+		
+		return "/mypage/myQnaMain";
+	}
+	
+	@RequestMapping(value = "/myQnaWriteForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myQnaWriteForm() {
+		return "/mypage/myQnaWriteForm";
+	}
 	
 	// qna등록
 	@RequestMapping(value = "/myQnaInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myQnaInsert(@ModelAttribute myQnaVo mqv, HttpSession ss) {
+	public String myQnaInsert(@ModelAttribute myQnaVo mqv) {
 		System.out.println(mqv);
 
 		UserVo authUser = (UserVo) ss.getAttribute("authUser");
@@ -65,23 +82,8 @@ public class MypageRController {
 		return "/mypage/myQnaMain";
 
 	}
+	
 
-	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myQnaMain(@ModelAttribute myQnaVo mqv, HttpSession ss) {
-		UserVo authUser = (UserVo) ss.getAttribute("authUser");
-		int userNo = authUser.getNo();
-
-		mqs.getMyQnaList(userNo);
-		return "/mypage/myQnaMain";
-	}
-	
-	@RequestMapping(value = "/myQnaWriteForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myQnaWriteForm() {
-		return "/mypage/myQnaWriteForm";
-	}
-	
-	
-////////////////////////////////////////////////////////////////// qna 
 	@RequestMapping(value = "/myUsageUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myUsageUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -105,18 +107,7 @@ public class MypageRController {
 		model.addAttribute("uMap", mService.getDriverUsageList(authUser.getNo(), no, usVo));
 		return "/mypage/myUsageDriverMain";
 	}
-	
-	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myQnaMain(Model model) {
-		
-		UserVo authUser = (UserVo) ss.getAttribute("authUser");
-		
-		int userNo = authUser.getNo();
-		
-		model.addAttribute("qList", mqs.getMyQnaList(userNo));
-		
-		return "/mypage/myQnaMain";
-	}
+
 	
 	@RequestMapping(value = "/myReservationUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myResvUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
