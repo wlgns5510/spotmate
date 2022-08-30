@@ -219,9 +219,9 @@
 			                                                              r.mateNo
 			                                                        from users u, reservation r
 			                                                        where u.no = r.userNo) r
-			where d.driverNo = i.driverNo
-			and d.no = s.resvno
-			and r.no = s.resvno
+				where d.driverNo = i.driverNo
+				and d.no = s.resvno
+				and r.no = s.resvno
 		]]>
 	</select>
 	
@@ -241,6 +241,54 @@
 		                     and sm.no = 1)
 		]]>
 	</select>
+	
+	<!-- user예약내역 DB저장 -->	
+	<insert id="insertUserMateInfo" parameterType="mateVo">
+		<selectKey keyProperty="driverNo" resultType="int" order="BEFORE">
+	            select driverNo
+	            from reservation
+	            where mateNo = #{spotMateNo}
+	            group by driverNo
+	    </selectKey>
+	      
+	    <![CDATA[
+ 				insert into reservation 
+ 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
+ 	     ]]>
+	</insert>
+	
+	<!-- 인원체크하기(차량 탑승가능인원) -->
+	<select id="chkpeople" parameterType="int" resultType="int">
+		<![CDATA[
+		      	select people
+		      	from spotmate
+		      	where no = #{mateNo}
+        ]]>
+   </select>
+   
+   <!-- 인원체크하기(탑승할 인원), 차량 탑승가능인원에서 탑승할 인원을 빼준다. -->
+   <insert id="updatereservpeople" parameterType="map">
+   		<![CDATA[
+   				update spotmate
+      			set people = people - #{people}
+     		    where no = #{mateNo} 
+   		]]>
+   </insert>
+   
+   <!-- user 예약시 포인트 DB저장 -->
+   <insert id="insertUserMatePoint" parameterType="MateVo">
+   		<selectKey keyProperty="resvNo" resultType="int" order="BEFORE">
+   			 select no
+	         from reservation
+	         where mateNo = #{spotMateNo}
+	         and userNo = #{userNo}
+   		</selectKey>
+   		<![CDATA[
+ 				insert into pointusage 
+ 				values (seq_pointusage_no.nextval, #{userNo}, '완료', sysdate, #{point}, #{point}, #{resvNo})
+ 		]]>
+   		
+   </insert>
 	
 </mapper>
 

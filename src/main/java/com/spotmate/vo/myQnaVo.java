@@ -3,7 +3,7 @@ package com.spotmate.vo;
 public class myQnaVo {
 
 	//필드 
-	private String type, title, regDate,content;
+	private String type, title, regDate, content, status;
 	private int userNo, no;
 	
 	
@@ -11,7 +11,7 @@ public class myQnaVo {
 	public myQnaVo() {
 		
 	}
-	public myQnaVo(String type, String title, String regDate, String content, int userNo, int no) {
+	public myQnaVo(String type, String status, String title, String regDate, String content, int userNo, int no) {
 		super();
 		this.type = type;
 		this.title = title;
@@ -19,6 +19,15 @@ public class myQnaVo {
 		this.content = content;
 		this.userNo = userNo;
 		this.no = no;
+		this.status = status;
+	}
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public String getType() {
 		return type;

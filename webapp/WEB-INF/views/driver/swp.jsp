@@ -191,6 +191,40 @@
 	cursor: default;
 	color: #777;
 }
+
+.search-btn1{
+	margin-left: 5px;
+	padding :5px 20px 5px 20px;
+	border: 1px solid #4454a1;
+	font-weight:700;
+	font-size: 15px;
+	color:#4454a1;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: #e8e7e7;
+}
+.search-btn2{
+	z-index:1; 
+	padding:6px 20px 6px 20px;
+	border: none;
+	background-color: #4454a1;
+	color:#e8e7e7;
+	font-weight:700;
+ 	font-size: 15px;
+	cursor: pointer;
+	border-radius: 5px;	
+	
+}
+.keyword-search{
+	padding :7.5px 11px 7px 5px;
+	margin: 0px 0px 5px 0px;
+	border: none;
+	border-radius: 5px;
+	color:#4454a1;	
+	font-weight:600;
+	font-size:12px;
+	background-color: #e8e7e7;
+}
 </style>
 </head>
 <body>
@@ -202,8 +236,9 @@
 			<div class="option">
 				<div>
 					<form onsubmit="searchPlaces(); return false;">
-						검색어 : <input type="text" value="서울대입구역" id="keyword" size="15">
-						<button>검색하기</button>
+						검색어 <input class="keyword-search" type="text" value="" placeholder=" 장소를 입력해주세요" id="keyword" size="15">
+						<button class="search-btn1">검색하기</button>
+						<button class="search-btn2" onclick="setParentText()">장소 확정</button>
 					</form>
 				</div>
 			</div>
@@ -213,7 +248,6 @@
 		</div>
 	</div>
 	<div id="clickLatlng"></div>
-	<button class="search-btn" onclick="setParentText()" style="position:absolute; top:25px; left: 1100px; z-index:1;">장소 확정</button>
 	<input type="hidden" value="" id="addr">
 	<input type="hidden" value="" id="lat">
 	<input type="hidden" value="" id="lng">
@@ -270,10 +304,10 @@
 
 			var keyword = document.getElementById('keyword').value;
 
-			if (!keyword.replace(/^\s+|\s+$/g, '')) {
+			/*if (!keyword.replace(/^\s+|\s+$/g, '')) {
 				alert('키워드를 입력해주세요!');
 				return false;
-			}
+			}*/
 
 			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 			ps.keywordSearch(keyword, placesSearchCB);

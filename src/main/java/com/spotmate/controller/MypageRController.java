@@ -50,7 +50,6 @@ public class MypageRController {
 	
 	
 	
-	
 	///////////////////////////////////////////////////////////////////////////////////////////
 	
 	// qna등록
@@ -105,6 +104,18 @@ public class MypageRController {
 		}
 		model.addAttribute("uMap", mService.getDriverUsageList(authUser.getNo(), no, usVo));
 		return "/mypage/myUsageDriverMain";
+	}
+	
+	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myQnaMain(Model model) {
+		
+		UserVo authUser = (UserVo) ss.getAttribute("authUser");
+		
+		int userNo = authUser.getNo();
+		
+		model.addAttribute("qList", mqs.getMyQnaList(userNo));
+		
+		return "/mypage/myQnaMain";
 	}
 	
 	@RequestMapping(value = "/myReservationUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
