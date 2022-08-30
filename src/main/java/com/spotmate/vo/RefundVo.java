@@ -14,6 +14,7 @@ public class RefundVo {
 	private String endDate;
 	private String option1;
 	private String option2;
+	private String bank;
 	
 	private int crtPage;
 	private int startRnum;
@@ -25,8 +26,8 @@ public class RefundVo {
 	}
 
 	public RefundVo(int no, int userNo, int refundNo, String regDate, String name, String status, String accountNum,
-			int point, String startDate, String endDate, String option1, String option2, int crtPage, int startRnum,
-			int endRnum) {
+			int point, String startDate, String endDate, String option1, String option2, String bank, int crtPage,
+			int startRnum, int endRnum) {
 		this.no = no;
 		this.userNo = userNo;
 		this.refundNo = refundNo;
@@ -39,6 +40,7 @@ public class RefundVo {
 		this.endDate = endDate;
 		this.option1 = option1;
 		this.option2 = option2;
+		this.bank = bank;
 		this.crtPage = crtPage;
 		this.startRnum = startRnum;
 		this.endRnum = endRnum;
@@ -142,6 +144,14 @@ public class RefundVo {
 		this.option2 = option2;
 	}
 
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
 	public int getCrtPage() {
 		return crtPage;
 	}
@@ -166,14 +176,13 @@ public class RefundVo {
 		this.endRnum = endRnum;
 	}
 
-
 	//메소드-일반
 	@Override
 	public String toString() {
 		return "RefundVo [no=" + no + ", userNo=" + userNo + ", refundNo=" + refundNo + ", regDate=" + regDate
 				+ ", name=" + name + ", status=" + status + ", accountNum=" + accountNum + ", point=" + point
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", option1=" + option1 + ", option2=" + option2
-				+ ", crtPage=" + crtPage + ", startRnum=" + startRnum + ", endRnum=" + endRnum + "]";
+				+ ", bank=" + bank + ", crtPage=" + crtPage + ", startRnum=" + startRnum + ", endRnum=" + endRnum + "]";
 	}
 	
 }

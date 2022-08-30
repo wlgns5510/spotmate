@@ -1,5 +1,7 @@
 package com.spotmate.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,13 @@ public class MyQnaService {
 	public void InsertQna(myQnaVo mqv) {
 		System.out.println("MyQnaService > InsertQna");
 		mrDao.InsertQna(mqv);
+	}
+
+	public void getMyQnaList(int userNo) {
+		System.out.println("MyQnaService > myqnamain");
+		
+		
+	
 	}
 	
 		 
