@@ -28,6 +28,7 @@
 		<mapper resource="mybatis/mappers/mate.xml" />
 		<mapper resource="mybatis/mappers/mypageR.xml" />
 		<mapper resource="mybatis/mappers/users.xml" />
+		<mapper resource="mybatis/mappers/users.xml" />
 	</mappers>
 </configuration>
 
