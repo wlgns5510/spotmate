@@ -213,14 +213,14 @@ public class MypageJService {
 		
 
 		for (PointVo p : pointList) {
-			if ("히치하이크".equals(p.getType()) && p.getPoint() > 0 || "메이트".equals(p.getType()) && p.getPoint() > 0
-					|| "카풀1회성".equals(p.getType()) && p.getPoint() > 0
-					|| "카풀정기권".equals(p.getType()) && p.getPoint() > 0) {
+			if ("hitchhike".equals(p.getType()) && p.getPoint() > 0 || "mate".equals(p.getType()) && p.getPoint() > 0
+					|| "carpool".equals(p.getType()) && p.getPoint() > 0
+					|| "season".equals(p.getType()) && p.getPoint() > 0) {
 				p.setpType("드라이버");
 			}
-			if ("히치하이크".equals(p.getType()) && p.getPoint() < 0 || "메이트".equals(p.getType()) && p.getPoint() < 0
-					|| "카풀1회성".equals(p.getType()) && p.getPoint() < 0
-					|| "카풀정기권".equals(p.getType()) && p.getPoint() < 0) {
+			if ("hitchhike".equals(p.getType()) && p.getPoint() < 0 || "mate".equals(p.getType()) && p.getPoint() < 0
+					|| "carpool".equals(p.getType()) && p.getPoint() < 0
+					|| "season".equals(p.getType()) && p.getPoint() < 0) {
 				p.setpType("유저");
 			}
 
