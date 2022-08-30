@@ -114,9 +114,10 @@
 
                         <!-- 주소 -->
                         <div class="join_group">
-                            <label class="" for="">주소*</label> 
-                            <!-- <button class="btn_address" type="button" onclick="location.href='addressmap.jsp' ">주소 검색</button> -->
-                            <button class="btn_address" type="button" onclick="location.href='javascript:void(0);' ">주소 검색</button>
+                                <label class="" for="">주소*</label> 
+                                <!-- <button class="btn_address" type="button" onclick="location.href='addressmap.jsp' ">주소 검색</button> -->
+                                <input type="text" id="address_kakao" name="address" value="" placeholder="주소 검색" readonly />
+                                <input type="text" id="detail_address" class="detail_address" name="address_detail" value="" placeholder="상세주소를 입력해주세요">
                         </div>
 
                         <!-- 성별 -->
