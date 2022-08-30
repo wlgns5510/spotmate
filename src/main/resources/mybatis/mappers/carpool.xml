@@ -261,30 +261,7 @@
  				insert into reservation 
  				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
  				]]>
-<!-- 		<selectKey keyColumn="driverNo, people" keyProperty="driverNo, canRide" resultType="map" order="BEFORE"> -->
-<!-- 			select driverNo, -->
-<!-- 				people -->
-<!-- 			from (select driverNo -->
-<!-- 	            from reservation -->
-<!-- 	            where mateNo = #{spotMateNo} -->
-<!-- 	            group by driverNo), (select people -->
-<!-- 							      	from spotmate -->
-<!-- 							      	where no = #{spotMateNo} ) -->
-<!-- 		</selectKey> -->
-		
-<!-- 		<choose> -->
-<!-- 			<when test="canRide >= people"> -->
-<!-- 				<![CDATA[ -->
-<!-- 				insert into reservation -->
-<!-- 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '') -->
-<!-- 				]]> -->
-<!-- 			</when> -->
-<!-- 			<otherwise> -->
-<!-- 				update spotmate -->
-<!-- 	            set people = people -->
-<!-- 	     		where no = #{mateNo}  -->
-<!-- 			</otherwise> -->
-<!-- 		</choose> -->
+
 	</insert>
 
 	<select id="chkpeople" parameterType="int" resultType="int">
@@ -301,7 +278,20 @@
 	  
    </insert>
 
+	<!-- user 예약시 포인트 DB 저장  -->
 
+	<insert id="insertUserCarpoolPoint" parameterType="com.spotmate.vo.CarpoolVo">
+			<selectKey keyProperty="resvNo" resultType="int" order="BEFORE">
+	            select no
+	            from reservation
+	            where mateNo = #{spotMateNo}
+	            and userNo = #{userNo}
+	      </selectKey>
+	      <![CDATA[
+ 				insert into pointusage 
+ 				values (seq_pointusage_no.nextval, #{userNo}, '예약', sysdate, #{point}, #{point}, #{resvNo})
+ 		  ]]>
 
+	</insert>
 
 </mapper>	

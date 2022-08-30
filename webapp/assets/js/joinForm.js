@@ -11,7 +11,7 @@ First update : 2022. 08. 04.
 */
 
 
-// '출생 연도' 셀렉트 박스 option 목록 동적 생성
+//'출생 연도' 셀렉트 박스 option 목록 동적 생성
 $(document).ready(function(){
     const birthYearEl = document.querySelector('#birth-year')
     // option 목록 생성 여부 확인
@@ -73,11 +73,12 @@ $(document).ready(function(){
         // month 목록 생성되지 않았을 때 (최초 클릭 시)
         if(!isDayOptionExisted) {
             isDayOptionExisted = true
-            for(var i = 1; i <= 31; i++) {
+            for(var i = 1; i <= 12; i++) {
             // option element 생성
             const DayOption = document.createElement('option')
             DayOption.setAttribute('value', i)
             DayOption.innerText = i
+            // MonthOption.innerText = i + '월'
             // birthMonthEl의 자식 요소로 추가
             this.appendChild(DayOption);
             $("#birth-day").css("color", "#4454A1");
@@ -97,6 +98,23 @@ $(document).ready(function(){
 //     });
 // });
 
+$(document).ready(function () {
+    $("input:checkbox").on('click', function () {
+        if ($(this).prop('checked')) {
+            // $(this).parent().addClass("selected");
+            //$(this).siblings().css({"color": "#4454a1"});
+            $(this).siblings().addClass("selected");
+            $(this).siblings().css({"color": "#4454a1"});
+            $(this).siblings().css({"font-weight": "bold"});
+        } else {
+            $(this).siblings().removeClass("selected");
+            $(this).siblings().css({"color": ""});
+            $(this).siblings().css({"font-weight": ""});
+        }
+    });
+});
+
+
 //체크박스 전체 선택 및 해제
 $(document).ready(function () {
     $('#allCk').click(function(){
@@ -109,3 +127,17 @@ $(document).ready(function () {
         }
 	});
 });
+
+// 주소창 띄우기
+$(document).ready(function () {
+    document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
+
+}); 

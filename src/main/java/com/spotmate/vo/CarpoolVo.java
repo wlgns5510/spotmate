@@ -6,7 +6,7 @@ public class CarpoolVo {
 
 	// 필드
 
-	private int no, userNo, mateNo, sMateNo, eMateNo, wayNo, sWayNo, eWayNo, sPlaceNo, ePlaceNo, point, people,
+	private int no, userNo, mateNo, sMateNo, eMateNo, resvNo, wayNo, sWayNo, eWayNo, sPlaceNo, ePlaceNo, point, people,
 			driverNo, detailNo, star, avgStar, spotMateNo, sLat, sLng, eLat, eLng, lat, lng, canRide;
 	private String id, userName, startDate, endDate, place, splace, sSepPlace, eplace, eSepPlace, latlng, detailOpt,
 			type, duration, distance, carName, carPicture, introduce, comments, name, time, sTime, content,
@@ -26,21 +26,23 @@ public class CarpoolVo {
 
 	}
 
-	public CarpoolVo(int no, int userNo, int mateNo, int sMateNo, int eMateNo, int wayNo, int sWayNo, int eWayNo,
-			int sPlaceNo, int ePlaceNo, int point, int people, int driverNo, int detailNo, int star, int avgStar,
-			int spotMateNo, int sLat, int sLng, int eLat, int eLng, int lat, int lng, String id, String userName,
-			String startDate, String endDate, String place, String splace, String sSepPlace, String eplace,
-			String eSepPlace, String latlng, String detailOpt, String type, String duration, String distance,
-			String carName, String carPicture, String introduce, String comments, String name, String time,
-			String sTime, String content, String femaleDriver, String pet, String phoneCharger, String nonSmoke,
-			String useTrunk, String carNo, String opts, Integer smPeople, List<Integer> ch_type, int crtPage,
-			int startRnum, int endRnum, int canRide) {
 
+	public CarpoolVo(int no, int userNo, int mateNo, int sMateNo, int eMateNo, int resvNo, int wayNo, int sWayNo,
+			int eWayNo, int sPlaceNo, int ePlaceNo, int point, int people, int driverNo, int detailNo, int star,
+			int avgStar, int spotMateNo, int sLat, int sLng, int eLat, int eLng, int lat, int lng, int canRide,
+			String id, String userName, String startDate, String endDate, String place, String splace, String sSepPlace,
+			String eplace, String eSepPlace, String latlng, String detailOpt, String type, String duration,
+			String distance, String carName, String carPicture, String introduce, String comments, String name,
+			String time, String sTime, String content, String femaleDriver, String pet, String phoneCharger,
+			String nonSmoke, String useTrunk, String carNo, String opts, Integer smPeople, List<Integer> ch_type,
+			int crtPage, int startRnum, int endRnum) {
+		super();
 		this.no = no;
 		this.userNo = userNo;
 		this.mateNo = mateNo;
 		this.sMateNo = sMateNo;
 		this.eMateNo = eMateNo;
+		this.resvNo = resvNo;
 		this.wayNo = wayNo;
 		this.sWayNo = sWayNo;
 		this.eWayNo = eWayNo;
@@ -59,6 +61,7 @@ public class CarpoolVo {
 		this.eLng = eLng;
 		this.lat = lat;
 		this.lng = lng;
+		this.canRide = canRide;
 		this.id = id;
 		this.userName = userName;
 		this.startDate = startDate;
@@ -95,11 +98,24 @@ public class CarpoolVo {
 		this.endRnum = endRnum;
 	}
 
+
 	// 메서드 getter/setter
+	
+	
 
 	public int getCanRide() {
 		return canRide;
 	}
+
+	public int getResvNo() {
+		return resvNo;
+	}
+
+
+	public void setResvNo(int resvNo) {
+		this.resvNo = resvNo;
+	}
+
 
 	public void setCanRide(int canRide) {
 		this.canRide = canRide;
