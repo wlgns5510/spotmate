@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.CarpoolVo;
+import com.spotmate.vo.DetailOptVo;
 import com.spotmate.vo.MateVo;
 
 @Repository
@@ -65,6 +66,15 @@ public class MateDao {
 		System.out.println("MateDao >> deepReviewAvg");
 		
 		return sqlSession.selectOne("mate.deepReviewAvg", no);
+	}
+	
+	//조건 모두 가져오기
+	public List<DetailOptVo> getOptList() {
+		System.out.println("MateDao >> getOptList");
+		
+		List<DetailOptVo> optList =  sqlSession.selectList("mate.getOptList");
+		
+		return optList;
 	}
 	
 	

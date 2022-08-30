@@ -123,7 +123,7 @@ input[type=checkbox] {
 }
 .chectBoxList span {
 	margin: 0px 50px 0px 0px;
-	font-weight: 400;
+	font-weight: 500;
 }
 .mateMain_content2 {
 	width: 1440px;
@@ -155,16 +155,16 @@ input[type=checkbox] {
 	left: 5px;
     position: absolute;
 }
-.mateMain_content2 .checkBox {
+.mateMain_content2 .mateListFont {
   width: 1284px;
   height: 53px;
   background: rgba(255,255,255,1);
-  margin: 60px 0px 50px 100px;
+  margin: 60px 0px 0px 0px;
   padding : 0px 0px 0px 0px;
   overflow: hidden;
   position: relative;
 }
-.mateMain_content2 .checkBox h2{
+.mateMain_content2 .mateListFont h2{
   width: 280px;
   color: rgba(91,91,91,1);
   font-family: Noto Sans Korean;
@@ -333,70 +333,7 @@ input[type=checkbox] {
   font-size: 30px; 
 }
 
---예시
-/*이미지*/
-.mateMain_content2 .g2 {
-	width : 1400px;
-	padding-top : 20px;
-}
-.mateMain_content2 .g2:after {
-	content : "";
-	display : block;
-	clear : both;
-}
-.mateMain_content2 .g2grounp {
-	width : 350px;
-	height : 500px;
-	float : left;
-	position : relative;
-}
-.mateMain_content2 .g2image {
-	position : absolute;
-	display : none;
-}
-.mateMain_content2 .g2hover:hover>.g2image { 
-	display:block;
-}
-.mateMain_content2 .g2>ul>li:nth-child(2) {
-	background-color : #cf5414;
-	color : #fdebd9;
-	font : 13pt '나눔고딕';
-	width : 340px;
-	height : 30px;
-	padding : 5px;
-	box-sizing : border-box;
-	text-align : center;
-	border-radius : 3px;
-}
-.mateMain_content2 .g2>ul>li:nth-child(3) {
-	width :340px;
-	height : 30px;
-	padding : 5px;
-	font : 13pt '나눔고딕';
-	box-sizing : border-box;
-	text-align : center;
-}
-.mateMain_content2 .g2>ul>li:nth-child(4) {
-	float : left;
-	width : 30px;
-	margin-left : 40px;
-	height : 30px;
-	text-align : center;
-	box-sizing : border-box;
-}
-.mateMain_content2 .g2>ul>li:nth-child(5) {
-	float : left;
-	width :280px;
-	height : 30px;
-	padding : 5px;
-	font : 13pt '나눔고딕';
-	box-sizing : border-box;
-}
 
-/*더보기버튼*/
-.mateMain_content2 .plus {
-	text-align : center;
-}
 .mateMain_content2 button {
 	width : 150px;
 	height : 40px;
@@ -410,38 +347,11 @@ input[type=checkbox] {
 }
 .matePicture:hover {
 	/* width:400px; */  /* 사진크기 조절 */
-    transform:scale(1.05, 1.05);  /* 가로2배 새로 1.5배 로 커짐 */
+    transform:scale(1.05, 1.05);  /* 가로1.05배 새로 1.55배 로 커짐 */
     transition: transform.1s;  /* 커지는 시간 */
 }
 
---예제
-.js-load {
-    display: none;
-}
-.js-load.active {
-    display: block;
-}
-.is_comp.js-load:after {
-    display: none;
-}
-.btn-wrap, .lists, .main {
-    display: block;
-}
-.main {
-    max-width: 640px;
-    margin: 0 auto;
-}
-.lists {
-    margin-bottom: 4rem;
-}
-.lists__item {
-    padding: 20px;
-    background: #EEE;
-}
-.lists__item:nth-child(2n) {
-    background: #59b1eb;
-    color: #fff;
-}
+
 .btn-wrap {
     text-align: center;
 }
@@ -455,5 +365,7 @@ input[type=checkbox] {
     border-top: 1px solid #C2C6CC;
     background-color: aliceblue;
 }
-
+.mateListFont {
+	height: 50px;
+}
 

@@ -113,8 +113,8 @@
 		<![CDATA[	 
 				               order by startDate asc) ot
 				        ) ort
-				where rn>=1
-				and rn<=100
+				where rn>=#{startRnum}
+				and rn<=#{endRnum}
 		]]>
 		
 		
@@ -175,6 +175,16 @@
 				from place p, spotmate s
 				where s.no = p.mateNo
 				and p.mateNo = #{no}
+		]]>
+	</select>
+	
+	
+	<!-- 조건 모두 가져오기 -->
+	<select id="getOptList"  resultType="DetailOptVo">
+		<![CDATA[
+				select no detailOptNo,
+       				   name
+				from detailOpt
 		]]>
 	</select>
 	
