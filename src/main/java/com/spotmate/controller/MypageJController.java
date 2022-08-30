@@ -80,6 +80,8 @@ public class MypageJController {
 		model.addAttribute("topNavMap", topNavMap);
 		
 		model.addAttribute("couponList", couponList);
+		
+		System.out.println(couponList);
 
 		return "/mypage/myCouponBuy";
 	}

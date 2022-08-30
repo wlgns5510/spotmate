@@ -215,7 +215,7 @@ public class MypageRController {
 	}
 	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myQnaMain() {
-		return "/mypage/myQnaWriteForm";
+		return "/mypage/myQnaMain";
 	}
 
 	@RequestMapping(value = "/myQnaWriteForm", method = { RequestMethod.GET, RequestMethod.POST })
