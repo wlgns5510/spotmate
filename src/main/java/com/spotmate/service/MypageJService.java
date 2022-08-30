@@ -322,7 +322,10 @@ public class MypageJService {
 	public void refundPoint(RefundVo refundVo, int userNo) {
 		System.out.println("MypageJService > refundPoint");
 		
+		String account = refundVo.getBank() + " " + refundVo.getAccountNum();
+		
 		refundVo.setUserNo(userNo);
+		refundVo.setAccountNum(account);
 		
 		int count = mypagejDao.insertRefundPoint(refundVo);
 		
