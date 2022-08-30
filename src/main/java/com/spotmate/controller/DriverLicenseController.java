@@ -1,17 +1,25 @@
 package com.spotmate.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spotmate.function.CarOwner;
+import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
 import com.spotmate.service.MypageJService;
 import com.spotmate.service.MypageRService;
+import com.spotmate.vo.CarAuthInfoVo;
+import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
 import com.spotmate.vo.UserVo;
 
@@ -129,4 +137,25 @@ public class DriverLicenseController {
 		return "redirect:/myDriverForm";
 	}
 
+	
+	//면허증 검사
+	@ResponseBody
+	@RequestMapping(value="/driverAuth", method = {RequestMethod.GET, RequestMethod.POST})
+	public int driverAuth(@RequestBody DriverAuthVo daVo) {
+		
+		DriverLicenseAuth dla = new DriverLicenseAuth();
+		
+		
+		return dla.LicenseAuth(daVo.getName(), daVo.getBtd(), daVo.getSerial());
+	}
+	
+	//차량등록 검사
+	@ResponseBody
+	@RequestMapping(value="/carAuth", method = {RequestMethod.GET, RequestMethod.POST})
+	public int carAuth(@RequestBody CarAuthInfoVo carInfo) throws IOException {
+		
+		CarOwner co = new CarOwner();
+		
+		return co.CarAuth(carInfo);
+	}
 }

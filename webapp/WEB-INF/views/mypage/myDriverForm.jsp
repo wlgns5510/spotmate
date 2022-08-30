@@ -124,8 +124,8 @@
 					</div>
 
 					<div class="DriverenrollForm">
-						<form method="post"
-							action="${pageContext.request.contextPath }/myDriverWriteInsert" id="myform">
+						<form id="myform"  method="post"
+							action="${pageContext.request.contextPath }/myDriverWriteInsert" enctype="multipart/form-data">
 							<div class="DL_info">
 								<!-- -->
 
@@ -134,8 +134,7 @@
 								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input value="${dlvo.username}" name="username"
-											id="username" placeholder="ex)장원영" type="text"></td>
+										<td><input value="${dlvo.username}" name="username" id="username" placeholder="ex)장원영" type="text"></td>
 									</tr>
 
 									<tr align="left">
@@ -148,19 +147,19 @@
 									</tr>
 
 									<tr align="left">
-										<td><label for="dl">면허등록번호*</label></td>
+										<td style="width: 105px;"><label for="dl">면허등록번호*</label></td>
 										<td>
 											<div class="join_dl">
 												<div class="dltable">
 
 													<div class="dl_wrap1">
 														<span class="dl_box"> 
-															<input id="dl_1"onchange="OnChangeDL();" placeholder="ex)11" type="text">
-															<input id="dl_2" class="dl" onchange="OnChangeDL();" placeholder="ex)18" type="text">
-															<input id="dl_3" class="dl" onchange="OnChangeDL();" placeholder="ex)026155" type="text">
-															<input id="dl_4" class="dl" onchange="OnChangeDL();" placeholder="ex)10" type="text">
-															<input id="dl_5" class="dl" onchange="OnChangeDL();" placeholder="ex)X61D86" type="text">
-															<input name="dl" id="dl" type="hidden">
+															<input id="dl_1" class="txt-dl" placeholder="ex)11" type="text">
+															<input id="dl_2" class="dl txt-dl" placeholder="ex)18" type="text">
+															<input id="dl_3" class="dl txt-dl" placeholder="ex)026155" type="text">
+															<input id="dl_4" class="dl txt-dl" placeholder="ex)10" type="text">
+															<input id="dl_5" class="dl txt-dl" placeholder="ex)X61D86" type="text">
+															<input id="dl" name="dl"  type="text">
 														</span>
 													</div>
 												</div>
@@ -187,17 +186,17 @@
 										<td><label for="c_Model">차량모델명*</label></td>
 										<td><input name="c_Model" id="c_Model"
 											placeholder="테슬라 모델3" type="text"></td>
+											
 									</tr>
 
 									<tr>
-									<!-- 	<td></td>
+										<td></td>
 										<td>
-											<input type="hidden" name="c_file" id="c_file">
-											<input id="img_path" accept="image/*" type="text">
-											<input type="file" id="input-file" class="file_d" onchange="OnChangeFile();">
+											<input readonly type="text" name="c_file" id="c_file">
+											<input type="file" name="file" id="input-file" class="">
 										</td>
 										<td><label class="smallbtn" for="input-file"> <span>파일선택</span>
-										</label></td> -->
+										</label></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_num">차량등록번호*</label></td>
@@ -225,20 +224,28 @@
 								<h5>차량 상세조건</h5>
 								<div class="detail">
 
-									<label class="detailtext"> <input class="detail_ckbox"
-										type="checkbox" name="ch_type" id="Dformcheckbox" value="1">
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="1">
 										&nbsp;&nbsp;비흡연자
-									</label> <label class="detailtext"> <input class="detail_ckbox"
-										type="checkbox" name="ch_type" id="Dformcheckbox" value="2">
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox"  type="checkbox" name="ch_type" id="Dformcheckbox" value="2">
 										&nbsp;&nbsp;여성드라이버
-									</label> <label class="detailtext"> <input class="detail_ckbox"
-										type="checkbox" name="ch_type" id="Dformcheckbox" value="3">
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="3">
 										&nbsp;&nbsp;반려동물
-									</label> <label class="detailtext"> <input class="detail_ckbox"
-										type="checkbox" name="ch_type" id="Dformcheckbox" value="4">
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="4">
 										&nbsp;&nbsp;충전기 사용 가능
-									</label> <label class="detailtext"> <input class="detail_ckbox"
-										type="checkbox" name="ch_type" id="Dformcheckbox" value="5">
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="5">
 										&nbsp;&nbsp;트렁크 사용 가능
 									</label>
 								</div>
@@ -252,9 +259,7 @@
 									name="introduce" id="introduce"></textarea>
 							</div>
 
-							<input type="submit" value="등록하기" class="DForm_enrollbtn0">
-
-
+							<button type="submit" class="DForm_enrollbtn0">등록하기</button>
 
 						</form>
 
@@ -277,80 +282,76 @@
 </body>
 
 <script type="text/javascript">
-	let bCarAuth = false;
-	
-	/* function isCarAuth() {
-		if(!bCarAuth) {
-			alert("차량인증을 먼저 해주세요.");
-			//return false;
+
+	//드라이버 등록하기 버튼 클릭할때 - 빈칸체크
+	$("#myform").on("submit", function(){
+		console.log("드라이버 등록하기 버튼 클릭");
+
+		//면허등록번호 체크///////////////////////////////////////////
+		var dl_1 = $("#dl_1").val();
+		var dl_2 = $("#dl_2").val();
+		var dl_3 = $("#dl_3").val();
+		var dl_4 = $("#dl_4").val();
+		var dl_5 = $("#dl_5").val();
+		
+		if( (dl_1 == "" || dl_1 == null) ||
+			(dl_2 == "" || dl_2 == null) || 
+			(dl_3 == "" || dl_3 == null) || 
+			(dl_4 == "" || dl_4 == null) ||
+			(dl_5 == "" || dl_5 == null) )	{ //빈칸이 있으면 alert
+			
+			alert("면허등록번호를 확인해 주세요");
+			return false;
+			
+		}else { //빈칸이 없으면 히든에 면허등록번호 조합 해서 넣어둔다
+			var dl = dl_1 +"-"+ dl_2 +"-"+ dl_3 +"-"+ dl_4 +"-"+ dl_5;
+			$("#dl").val(dl);
 		}
 		
-		document.getElementById("myform").submit();
-	}
- */
-	
-	//상세조건 정렬
-	function OnChangeDL() {
-		let dl_1 = document.getElementById("dl_1").value;
-		let dl_2 = document.getElementById("dl_2").value;
-		let dl_3 = document.getElementById("dl_3").value;
-		let dl_4 = document.getElementById("dl_4").value;
-		let dl_5 = document.getElementById("dl_5").value;
-		const dl = document.getElementById("dl");
-		dl.value = dl_1 + "-" + dl_2 + "-" + dl_3 + "-" + dl_4 + "-" + dl_5;
-	}
-	
-	function OnChangeFile() {
-		const inputFile = document.getElementById("input-file");
-		let fileName = inputFile.value;
-		document.getElementById("img_path").value = fileName;
 		
-		var FR= new FileReader();
-		FR.onload = function(e) {
-			console.log(e.target.result);
-			document.getElementById("c_file").value = e.target.result;
-		};       
-		FR.readAsDataURL( inputFile.files[0] );
-	}
-
-	$(document).ready(function() {
-		$("#file").on('change', function() {
-			var fileName = $("#file").val();
-			$(".upload-name").val(fileName);
-		});
+		//차량등록번호 체크 ///////////////////////////////////////////
+		var c_num = $("#c_num").val();
+		if(c_num==null || c_num==""){
+			alert("차량등록번호를 확인해 주세요");
+			return false;
+		}
+		
+		//면허종류 체크///////////////////////////////////////////
+		
+		
+		return true;	
+				
+		
 	});
 
-	$("#carAuth").on("click", function() {
-		var name = $("#username").val();
-		var cnum = $("#c_num").val();
 
-		console.log(name)
-		console.log(cnum)
-		$.ajax({
-			url : "${pageContext.request.contextPath}/carAuth",
-			type : "post",
-			contentType : "application/json",
-			async : false,
-			data : JSON.stringify({
-				name : name,
-				cnum : cnum
-			}),
-			dataType : "json",
-			success : function(result) {
-				console.log("result,", result)
-				if (result == -1) {
-					alert("틀렸습니다");
-				} else {
-					alert("성공했습니다");
-					bCarAuth = true;
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-	})
+	//첨부파일 등록시 파일이름 출력
+	$('#input-file').on("change", function(){
+		
+		var tmpFilePath = $('#input-file').val()
+		
+		$('#c_file').val(tmpFilePath);
+		
+	});
+	
+	
 
+	//면호 등록번호 txt창의 값이 변할때 번호 합치기
+	$(".txt-dl").on("change", function(){
+		console.log("txt-dl");
+		
+		var dl_1 = $("#dl_1").val();
+		var dl_2 = $("#dl_2").val();
+		var dl_3 = $("#dl_3").val();
+		var dl_4 = $("#dl_4").val();
+		var dl_5 = $("#dl_5").val();
+		
+		var dl = dl_1 +"-"+ dl_2 +"-"+ dl_3 +"-"+ dl_4 +"-"+ dl_5;
+		$("#dl").val(dl);
+	});
+	
+	
+	//면허 등록번호 체크
 	$("#liau").on("click", function() {
 		var name2 = $("#username").val();
 		var btd2 = $("#userBD").val();
@@ -383,6 +384,91 @@
 			}
 		});
 	})
+	
+	
+	//실제 차량 등록 확인
+	$("#carAuth").on("click", function() {
+		var name = $("#username").val();
+		var cnum = $("#c_num").val();
+
+		console.log(name)
+		console.log(cnum)
+		$.ajax({
+			url : "${pageContext.request.contextPath}/carAuth",
+			type : "post",
+			contentType : "application/json",
+			async : false,
+			data : JSON.stringify({
+				name : name,
+				cnum : cnum
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log("result,", result)
+				if (result == -1) {
+					alert("틀렸습니다");
+				} else {
+					alert("성공했습니다");
+					bCarAuth = true;
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
+	
+	
+	
+	
+	
+	let bCarAuth = false;
+	
+	function isCarAuth() {
+		if(!bCarAuth) {
+			alert("차량인증을 먼저 해주세요.");
+			//return false;
+		}
+		
+		/* document.getElementById("myform").submit(); */
+	}
+
+	
+	//상세조건 정렬
+	/*
+ 	function OnChangeDL() {
+		let dl_1 = document.getElementById("dl_1").value;
+		let dl_2 = document.getElementById("dl_2").value;
+		let dl_3 = document.getElementById("dl_3").value;
+		let dl_4 = document.getElementById("dl_4").value;
+		let dl_5 = document.getElementById("dl_5").value;
+		const dl = document.getElementById("dl");
+		dl.value = dl_1 + "-" + dl_2 + "-" + dl_3 + "-" + dl_4 + "-" + dl_5;
+	}
+	*/
+	function OnChangeFile() {
+		const inputFile = document.getElementById("input-file");
+		let fileName = inputFile.value;
+		document.getElementById("img_path").value = fileName;
+		
+		var FR= new FileReader();
+		FR.onload = function(e) {
+			console.log(e.target.result);
+			document.getElementById("c_file").value = e.target.result;
+		};       
+		FR.readAsDataURL( inputFile.files[0] );
+	}
+
+	$(document).ready(function() {
+		$("#file").on('change', function() {
+			var fileName = $("#file").val();
+			$(".upload-name").val(fileName);
+		});
+	});
+
+	
+
+	
 </script>
 
 </html>
