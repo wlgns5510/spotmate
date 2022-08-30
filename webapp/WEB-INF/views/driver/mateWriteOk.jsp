@@ -74,7 +74,7 @@
 			<form action="/mateWriteInsert" method="post">
 				<p>등록하신 날짜와 출발시간입니다</p>
 				<div class="f-sec">
-					<input type="text" id="mate-s-date" value="${mwVo.sdate1} ~ ${mwVo.edate1}" readonly>
+					<input type="text" id="mate-s-dateOK" value="${mwVo.sdate1} ~ ${mwVo.edate1}" readonly>
 				</div>
 				<input type="hidden" name="sdate1" value="${mwVo.sdate1}">
 				<input type="hidden" name="edate1" value="${mwVo.edate1}">
