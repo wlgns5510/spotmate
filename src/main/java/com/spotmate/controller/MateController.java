@@ -2,6 +2,8 @@ package com.spotmate.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.service.MateService;
 import com.spotmate.vo.MateVo;
+import com.spotmate.vo.UserVo;
 
 @Controller
 public class MateController {
@@ -94,6 +97,22 @@ public class MateController {
 		
 		return "/mate/mateDeep";
 	}
+	
+	//메이트 user 예약내역 DB에 저장하기
+	@RequestMapping(value = "/saveMate", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveMate(@ModelAttribute MateVo mateVo, HttpSession session) {
+		System.out.println("MateController >> saveMate");
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser"); //세션에서 로그인한 유저를 가져옴
+		
+		int userNo = authUser.getNo(); //로그인한 유저의 번호를 가져옴
+		
+		
+		
+		return "/mate/mateDeep";
+	}
+	
+	
 	
 	
 	

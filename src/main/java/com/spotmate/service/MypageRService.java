@@ -216,6 +216,13 @@ public class MypageRService {
 		return uMap;
 	}
 	
+	public int endResv(int mateNo, int userNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mateNo", mateNo);
+		map.put("userNo", userNo);
+		return mDao.endResv(map);
+	}
+	
 	public ReviewInfoVo forReviewInfo(int resvNo) {
 		ConvertPoint cp = new ConvertPoint();
 		Map<String, Object> map = new HashMap<>();
@@ -240,6 +247,7 @@ public class MypageRService {
 		map.put("mateNo", mDao.getMateNoByResvNo(resvNo));
 		map.put("userNo", userNo);
 		List<Map<String, Object>> mList = mDao.getPassengerList(map);
+		System.out.println(ReviewedPassengerList.toString());
 		for(int i=0;i<mList.size();i++) {
 			int reviewPassenger = Integer.parseInt(String.valueOf(mList.get(i).get("USERNO")));
 			try {
@@ -268,6 +276,15 @@ public class MypageRService {
 	private void setMl(List<MyUsageVo> mL) {
 		ConvertPoint cp = new ConvertPoint();
 		for (int i = 0; i < mL.size(); i++) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			LocalDateTime now = LocalDateTime.now();
+			LocalDateTime onTime = LocalDateTime.parse(mL.get(i).getStartDate(), formatter);
+			now.format(formatter);
+			if(now.isBefore(onTime)) {
+				mL.get(i).setStatus("noRide");
+			} else {
+				mL.get(i).setStatus("ride");
+			}
 			mL.get(i).setStartPlace(mL.get(i).getFullPlace().split(",")[0]);
 			mL.get(i).setEndPlace(mL.get(i).getFullPlace().split(",")[1]);
 			mL.get(i).setConvertPoint(cp.convertPoint(mL.get(i).getPoint()));
@@ -295,9 +312,9 @@ public class MypageRService {
 				usVo.setNowTime(onTime.toString());
 				now.format(formatter);
 				if(now.isBefore(onTime)) {
-					usVo.setStatus("out");
+					usVo.setStatus("noRide");
 				} else {
-					usVo.setStatus("in");
+					usVo.setStatus("ride");
 				}
 			}
 		}

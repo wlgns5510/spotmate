@@ -104,9 +104,6 @@
 <script type="text/javascript">
 
 // ★★★★★
-$(".review-btn").on("click", function() {
-	window.close();
-})
 $(".score .foreground").css("width", "0%");
 $(".score-box .display").html(0);
 

@@ -75,6 +75,8 @@
 .myPage-usage-article2 .paging ul>li>a.active {
 	font-size: 15px;
 }
+
+
 .review-box {
 	width: 720px;
     margin: 60px auto;
@@ -136,4 +138,10 @@
 }
 .rfbp2 {
 	margin: 0px 30px 50px 0px;
+}
+.ride-user {
+	float: right;
+	border-radius:5px;
+	margin: 0px 550px 0px 0px;
+	font-size:14px;	
 }

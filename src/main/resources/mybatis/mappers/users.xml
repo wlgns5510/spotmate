@@ -15,7 +15,7 @@
 		        #{name},
 		        #{email},
 		        #{phone},
-		        'address',
+		        #{address}||","||#{addressDeatil},
 		        #{gender},
 		        #{birth},
 		        '',

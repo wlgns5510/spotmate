@@ -110,7 +110,7 @@
 
 				<article class="myPage_article2">
 				<form method="post"
-							action="${pageContext.request.contextPath }/myQnaInsert">
+							action="${pageContext.request.contextPath }/myQnaInsert" id="myqnaform">
 					<h4></h4>
 
 
@@ -164,7 +164,7 @@
 					<div class="underlinegray"></div>
 					<!--  <input type="submit" value="등록하기" alt="등록하기"
 						class="DForm_enrollbtn"> -->
-						<input type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
+						<input id="ssubmit" type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
 </form>
 				</article>
 			</section>
@@ -178,7 +178,16 @@
 
 </body>
 <script type="text/javascript">
+let ssubmit = false;
 
+function issubbmit() {
+	if(!ssubmit) {
+		alert("등록되었습니다.");
+		return ture;
+	}
+	
+	document.getElementById("myqnaform").submit();
+}
 
 
 

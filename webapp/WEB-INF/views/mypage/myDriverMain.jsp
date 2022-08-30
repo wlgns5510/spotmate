@@ -103,7 +103,7 @@
 
 				</article>
 
-				<a type="button" href="./myDriverForm" target="self" alt="등록하기"
+				<a type="button" href="${pageContext.request.contextPath}/myDriverWriteForm" alt="등록하기"
 					class="DForm_enrollbtn"> <span>등록하기</span></a>
 
 			</section>

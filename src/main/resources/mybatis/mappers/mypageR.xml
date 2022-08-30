@@ -3,7 +3,7 @@
 
 <mapper namespace="mypageR">
 
-	<!-- myqna form 정보 등록 -->
+
 	<insert id="InsertQna" parameterType="com.spotmate.vo.myQnaVo">
 
 		<![CDATA[
@@ -24,6 +24,23 @@
 	</insert>
 	
 	
+	<!-- select mqa 가져오기  -->
+	<select id="selectmqaList" parameterType="com.spotmate.vo.myQnaVo" resultType="com.spotmate.vo.myQnaVo">
+		<![CDATA[
+	 		select  mq.no myqna,
+        			mq.type,
+        			mq.regDate,
+        			mq.title,
+			        mq.content,
+			        mq.status,
+			        u.no userNo
+			from myqna mq, users u
+			where u.no = mq.userno
+			and u.no = 1
+		]]>
+		
+		</select>
+				
 	<!-- car정보 등록 -->
 	<insert id="myDriverinsert" parameterType="dlvo">
 
@@ -660,7 +677,7 @@
 						    p.fullplace,
 						    r.point,
 					    	r.mateNo,
-					    	startdate
+					    	to_char(startdate, 'yyyy-mm-dd hh24:mm') startdate
 						from spotmate s, (select regdate,
 						                        point,
 						                        mateNo
@@ -747,7 +764,7 @@
 					    p.fullplace,
 					    r.point,
 			    		r.mateNo,
-			    		startdate
+			    		to_char(startdate, 'yyyy-mm-dd hh24:mm') startdate
 					from spotmate s, (select regdate,
 					                        point,
 					                        mateNo
@@ -981,7 +998,7 @@
 						    p.fullplace,
 						    r.point,
 					    	r.mateNo,
-					    	startdate
+					    	to_char(startdate, 'yyyy-mm-dd hh24:mm') startdate
 						from spotmate s, (select regdate,
 						                        point,
 						                        mateNo
@@ -1058,7 +1075,7 @@
 	<insert id="insertDriverReview" parameterType="rVo">
 		insert into driverReview
 		values(
-			seq_userReview_no.nextval,
+			seq_driverReview_no.nextval,
 			#{resvNo},
 			#{userNo},
 			#{star}
@@ -1078,4 +1095,11 @@
 		order by userNo asc
 	</select>
 	
+	<update id="endResv" parameterType="map">
+		update spotmate
+		set status = 'close'
+		where carNo = #{userNo}
+		and no = #{mateNo}
+	</update>
+
 </mapper>

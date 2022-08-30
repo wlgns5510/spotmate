@@ -67,12 +67,12 @@
 				예정입니다.
 			</p>
 
-			<span>*필수 입력사항</span>
+			<span>* 필수 입력사항</span>
 		</div>
 		<input type="hidden" value="" id="insRowChk">
 		<div class="mid">
 			<form action="/mateWriteOk" method="post">
-				<p>등록하신 날짜와 출발시간입니다.</p>
+				<p class="write-font">등록하신 날짜와 출발시간입니다.</p>
 				<div class="f-sec">
 					<span>출발 날짜</span><input type="date" name="sdate1" value="" id="mate-s-date">
 					<br>
@@ -81,10 +81,10 @@
 				<div id="s-sec-box">
 					<div class="s-sec1">
 						<div>
-							<span>일정을 추가하려면 눌러주세요</span>
+							<span class="write-font">일정을 추가하려면 눌러주세요</span>
 							<img class="ia-btn2" src="assets/images/ico_add.png" onclick="add()">
 							<img class="rmv-btn" src="assets/images/ico_close.png" onclick="rmv()">
-							<p>드라이버님의 1일차 이동 경로를 입력해주세요*</p>
+							<p class="write-font">드라이버님의 1일차 이동 경로를 입력해주세요 *</p>
 						</div>
 						<div id="input-div1">
 							<img class="mate-img" src="assets/images/map_line_03.png">
@@ -112,7 +112,7 @@
 									<td><input type="hidden" value="" name="day1" id="day1"></td>
 								</tr>
 							</table>
-							<button onclick="setDayPath(1)" type="button" id="finish">설정완료</button>
+							<button onclick="setDayPath(1)" type="button" id="finish">경로 확인하기</button>
 				<div id="map1"></div>
 				<div id="fareInfo1"></div>
 				</div>
@@ -120,9 +120,9 @@
 			</div>
 			
 				<div class="t-sec">
-					<p>탑승 가능한 인원 수*</p>
+					<p class="write-font">탑승 가능한 인원 수 *</p>
 					<input id="people" name="people" type="number" min=1 placeholder="1명">
-					<p>차량 상세조건</p>
+					<p class="write-font">차량 상세조건</p>
 					<table>
 						<c:forEach items="${driverInfo.NAME}" var="name">
 						<c:choose>
@@ -162,9 +162,9 @@
 							value="pet"><label for="pet">&nbsp;&nbsp;반려동물 탑승 가능</label></td>
 					</tr>
 					</table>
-					<p>드라이버님을 소개해주세요*</p>
+					<p class="write-font">드라이버님을 소개해주세요 *</p>
 					<textarea class="introduce" name="introduce" readonly>${driverInfo.INTRODUCE}</textarea>
-					<p>드라이버님이 하고싶은 말을 적어주세요</p>
+					<p class="write-font">드라이버님이 하고싶은 말을 적어주세요</p>
 					<textarea class="comments" name="comments" placeholder="하고싶은 말을 적어주세요!"></textarea>
 				</div>
 				<button onclick="moveOk()" id="btn" type="button">등록하기</button>
@@ -248,7 +248,7 @@ function add() {
 		index = 6;
 		return;
 	}
-	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index+'"><input type="hidden" value="" name="day'+index+'" id="day'+index+'"><input type="hidden" value="" name="stime'+index+'" id="stime'+index+'"><div><span>일정을 추가하려면 눌러주세요</span><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index+'일차 이동 경로를 입력해주세요*</p></div><div id="input-div'+index+'"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index+'"><tr><td><input type="text" id="s-addr'+index+'" name="splace'+index+'" onclick="ssp('+index+')" value="" class="mate-s-addr'+index+'" placeholder="출발지를 입력하세요"><input type="time" value="" onclick="setTime('+index+')" id="s-time'+index+'" class="mate-s-time'+index+'"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow('+index+')"></td><td><input type="hidden" value="" class="hide-s-addr'+index+'"></td><td><input type="hidden" value="" name="slat'+index+'" class="s-lat'+index+'"></td><td><input type="hidden" name="slng'+index+'" value="" class="s-lng'+index+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="eplace'+index+'" id="e-addr'+index+'" class="mate-e-addr'+index+'" placeholder="도착지를 입력하세요" onclick="sep('+index+')"><img onclick="clean('+index+')" class="ic-btn" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="hide-e-addr'+index+'"></td><td><input type="hidden" value="" name="elat'+index+'" class="e-lat'+index+'"></td><td><input type="hidden" name="elng'+index+'" value="" class="e-lng'+index+'"></td><td><input type="hidden" name="latlng'+index+'" value="" id="latlng'+index+'"></td></tr></table><button onclick="setDayPath('+index+')" type="button" id="finish">설정완료</button><div id="map'+index+'"><div id="fareInfo'+index+'"></div></div></div></div>';
+	document.getElementById("s-sec-box").innerHTML += '<div class="s-sec'+index+'"><input type="hidden" value="" name="day'+index+'" id="day'+index+'"><input type="hidden" value="" name="stime'+index+'" id="stime'+index+'"><div><span>일정을 추가하려면 눌러주세요</span><img class="ia-btn2" onclick="add()" src="assets/images/ico_add.png"><p>드라이버님의 '+index+'일차 이동 경로를 입력해주세요 *</p></div><div id="input-div'+index+'"><img class="mate-img" src="assets/images/map_line_03.png"><table id="addTable'+index+'"><tr><td><input type="text" id="s-addr'+index+'" name="splace'+index+'" onclick="ssp('+index+')" value="" class="mate-s-addr'+index+'" placeholder="출발지를 입력하세요"><input type="time" value="" onclick="setTime('+index+')" id="s-time'+index+'" class="mate-s-time'+index+'"><img class="ia-btn" src="assets/images/ico_add.png" onclick="insRow('+index+')"></td><td><input type="hidden" value="" class="hide-s-addr'+index+'"></td><td><input type="hidden" value="" name="slat'+index+'" class="s-lat'+index+'"></td><td><input type="hidden" name="slng'+index+'" value="" class="s-lng'+index+'"></td></tr><tr class="mate-e-addr-tr"><td><input type="text" value="" name="eplace'+index+'" id="e-addr'+index+'" class="mate-e-addr'+index+'" placeholder="도착지를 입력하세요" onclick="sep('+index+')"><img onclick="clean('+index+')" class="ic-btn" src="assets/images/ico_close.png"></td><td><input type="hidden" value="" class="hide-e-addr'+index+'"></td><td><input type="hidden" value="" name="elat'+index+'" class="e-lat'+index+'"></td><td><input type="hidden" name="elng'+index+'" value="" class="e-lng'+index+'"></td><td><input type="hidden" name="latlng'+index+'" value="" id="latlng'+index+'"></td></tr></table><button onclick="setDayPath('+index+')" type="button" id="finish">경로 확인하기</button><div id="map'+index+'"><div id="fareInfo'+index+'"></div></div></div></div>';
 	index++;
 	for (var i=1;i<index-1;i++) {
 		if ( $(".hide-s-addr"+i).val() != "" ) {

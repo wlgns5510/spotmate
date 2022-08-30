@@ -76,13 +76,13 @@
 			</div>
 		</div>
 		<div class="review-second-box">
-			<p class="rbp">탑승유저 평가*</p>
-			<select name="userNo">
-				<option value=selected>상태</option>
+			<select class="ride-user" name="userNo">
+				<option value=selected>탑승자</option>
 				<c:forEach items="${map.pList}" var="pVo">
 					<option value="${pVo.USERNO}">${pVo.NAME}</option>
 				</c:forEach>
 			</select>
+			<p class="rbp">탑승유저 평가*</p>
 			<p class="rbp">탑승자의 매너 점수를 평가해주세요</p>
 			<div class="score-box">
 				<div class="score">
@@ -106,9 +106,6 @@
 <script type="text/javascript">
 
 // ★★★★★
-$(".review-btn").on("click", function() {
-	window.close();
-})
 $(".score .foreground").css("width", "0%");
 $(".score-box .display").html(0);
 

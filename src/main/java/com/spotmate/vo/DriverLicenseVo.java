@@ -2,6 +2,8 @@ package com.spotmate.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class DriverLicenseVo {
 
 	// 필드
@@ -10,15 +12,17 @@ public class DriverLicenseVo {
 	private int carNo, userNo, num_PA, detailNo;
 
 	private List<Integer> ch_type;
-	
+
+	private MultipartFile file;
+
 	// 생성자
 	public DriverLicenseVo() {
-		
+
 	}
 
 	public DriverLicenseVo(String username, String licensetype, String c_Model, String c_file, String c_color,
 			String introduce, String userBD, String dl, String c_num, int carNo, int userNo, int num_PA, int detailNo,
-			List<Integer> ch_type) {
+			List<Integer> ch_type, MultipartFile file) {
 		super();
 		this.username = username;
 		this.licensetype = licensetype;
@@ -34,8 +38,7 @@ public class DriverLicenseVo {
 		this.num_PA = num_PA;
 		this.detailNo = detailNo;
 		this.ch_type = ch_type;
-		
-		
+		this.file = file;
 	}
 
 	public String getUsername() {
@@ -150,14 +153,20 @@ public class DriverLicenseVo {
 		this.ch_type = ch_type;
 	}
 
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	@Override
 	public String toString() {
 		return "DriverLicenseVo [username=" + username + ", licensetype=" + licensetype + ", c_Model=" + c_Model
 				+ ", c_file=" + c_file + ", c_color=" + c_color + ", introduce=" + introduce + ", userBD=" + userBD
 				+ ", dl=" + dl + ", c_num=" + c_num + ", carNo=" + carNo + ", userNo=" + userNo + ", num_PA=" + num_PA
-				+ ", detailNo=" + detailNo + ", ch_type=" + ch_type + "]";
-	}
+				+ ", detailNo=" + detailNo + ", ch_type=" + ch_type + ", file=" + file + "]";
 	}
 
-	
-	
+}

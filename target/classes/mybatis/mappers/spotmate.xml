@@ -62,14 +62,18 @@
 	</select>
 
  
-	<select id="selectdriverinfo" parameterType="int" resultType="map">
-		select introduce,
-		    listagg(name, ',') within group(order by null) as name
+	<select id="getDriverIntroduce" parameterType="int" resultType="String">
+		select introduce
+		from car
+		where no = #{carNo}
+	</select>
+	
+	<select id="getDriverDetailOpt" parameterType="int" resultType="String">
+		select listagg(name, ',') within group(order by detailNo) as name
 		from car c, carDetail cd, detailOpt do
-		where c.no = #{userNo}
+		where c.no = #{carNo}
 		and c.no = cd.carNo
 		and cd.detailNo = do.no
-		group by introduce
 	</select>
 
 	<select id="nowaddr" parameterType="int" resultType="String">

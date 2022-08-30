@@ -2,14 +2,14 @@ package com.spotmate.vo;
 
 public class MyUsageVo {
 	
-	private String type, regDate, fullPlace, status, startPlace, endPlace, convertPoint;
+	private String type, regDate, fullPlace, status, startPlace, endPlace, convertPoint, startDate;
 	private int point, rn, mateNo, resvNo;
 	public MyUsageVo() {}
 	
 
 	
 	public MyUsageVo(String type, String regDate, String fullPlace, String status, String startPlace, String endPlace,
-			String convertPoint, int point, int rn, int mateNo, int resvNo) {
+			String convertPoint, String startDate, int point, int rn, int mateNo, int resvNo) {
 		this.type = type;
 		this.regDate = regDate;
 		this.fullPlace = fullPlace;
@@ -21,6 +21,18 @@ public class MyUsageVo {
 		this.rn = rn;
 		this.mateNo = mateNo;
 		this.resvNo = resvNo;
+		this.startDate = startDate;
+	}
+
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
 
@@ -161,7 +173,8 @@ public class MyUsageVo {
 	public String toString() {
 		return "MyUsageVo [type=" + type + ", regDate=" + regDate + ", fullPlace=" + fullPlace + ", status=" + status
 				+ ", startPlace=" + startPlace + ", endPlace=" + endPlace + ", convertPoint=" + convertPoint
-				+ ", point=" + point + ", rn=" + rn + ", mateNo=" + mateNo + ", resvNo=" + resvNo + "]";
+				+ ", startDate=" + startDate + ", point=" + point + ", rn=" + rn + ", mateNo=" + mateNo + ", resvNo="
+				+ resvNo + "]";
 	}
 
 }

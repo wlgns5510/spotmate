@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,23 +81,28 @@
 		<div class="aside">
 			<div  class="confirmForm">
 				<form action="/saveCarpool" method="get">
-					출발지<br> <input class="confirm" type="text" name="splace" value="${cVoMap.cVo.splace}"> 
-					목적지<br> <input class="confirm" type="text" name="eplace" value="${cVoMap.cVo.eplace}"> 
-					탑승 가능 인원 수<br> <input class="confirm" type="text" name="smPeople" value="${cVoMap.cVo.smPeople}">
+					출발지<br> <div class="confirm"> ${cVoMap.cVo.splace}</div>
+					목적지<br> <div class="confirm"> ${cVoMap.cVo.eplace}</div>
+					탑승 가능 인원 수<br> <div class="confirm"> ${cVoMap.cVo.smPeople}</div>
 					<c:if test='${param.result == "fail"}'>
 						<p class= overPeople>※ 탑승 가능 인원 수를 초과하였습니다</p>
 					</c:if>
-					탑승 요청 인원 수<br> <input class="confirm-2" type="text" name="people" value="" placeholder=" 인원 수를 입력해주세요">
-					탑승 시간<br> <input class="confirm" type="text" name="time" value="${cVoMap.cVo.sTime}"> 
-					처음 탑승일<br> <input class="confirm" type="text" name="startDate" value="${cVoMap.cVo.startDate}"> 
-					마지막 탑승일<br> <input class="confirm" type="text" name="endDate" value="${cVoMap.cVo.endDate}">
+					<c:if test='${param.pointResult == "fail"}'>
+						<p class= overPeople>※ 포인트가 부족합니다</p>
+					</c:if>
+					탑승 요청 인원 수<br> <input class="confirm-2" type="number" name="people" value="1" placeholder=" 인원 수를 입력해주세요">
+					탑승 시간<br> <div class="confirm"> ${cVoMap.cVo.sTime}</div>
+					처음 탑승일<br> <div class="confirm"> ${cVoMap.cVo.startDate}</div> 
+					마지막 탑승일<br> <div class="confirm"> ${cVoMap.cVo.endDate}</div>
 					<input type="hidden" name="spotMateNo" value="${cVoMap.cVo.spotMateNo}">
 	
 				
 	
 				<div class="point">
 					총 결제 포인트<br> 
-					<input class="pointConfirm" type="text" name="point" value="${cVoMap.cVo.point}"><br> <br> 
+					<div class="pointConfirm">
+						<fmt:formatNumber value="${cVoMap.cVo.point}" pattern="#,###" /> Point
+					</div><br> <br> 
 					<span class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
 					</span>
 	
