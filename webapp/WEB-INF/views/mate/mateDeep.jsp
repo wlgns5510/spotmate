@@ -352,13 +352,7 @@
 					
 				</div>
 				
-				<!-- <div class="mateDeep_recommendListBox">
-					<button class="beforeBtn" type="button"><img src="/assets/images/common/ico_arrow_lft.png"></button>
-					<div class="mateDeep_recommendList"></div>
-					<div class="mateDeep_recommendList"></div>
-					<div class="mateDeep_recommendList"></div>	
-					<button class="nextBtn" type="button"><img src="/assets/images/common/ico_arrow_rit.png"></button>
-				</div> -->
+				
 				
 				<div class="carpool-top2">
 					<p class="authDriverInfo">
