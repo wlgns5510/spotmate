@@ -210,7 +210,7 @@
 .s-sec1 .mate-e-addr1 {
 	width: 400px;
 	height: 50px;
-	margin: 0px 0px 10px 0px;
+	margin: 0px 0px 30px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -232,7 +232,7 @@
 .s-sec2 .mate-s-addr2 {
 	width: 400px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	margin:10px 0px 10px 5px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -240,10 +240,11 @@
 .s-sec2 .mate-s-time2 {
 	width: 200px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	padding: 0px 0px 0px 5px;
+	margin:0px 0px 0px 5px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
-	padding: 0px 0px 0px 5px;
+	
 }
 .s-sec2 #w-addr21 {
 	width: 400px;
@@ -337,7 +338,7 @@
 .s-sec2 .mate-e-addr2 {
 	width: 400px;
 	height: 50px;
-	margin: 0px 0px 10px 5px;
+	margin: 0px 0px 30px 5px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -357,7 +358,7 @@
 .s-sec3 .mate-s-addr3 {
 	width: 400px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	margin:10px 0px 10px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -365,7 +366,7 @@
 .s-sec3 .mate-s-time3 {
 	width: 200px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	margin:0px 0px 0px 5px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -461,7 +462,7 @@
 .s-sec3 .mate-e-addr3 {
 	width: 400px;
 	height: 50px;
-	margin: 0px 0px 10px 5px;
+	margin: 0px 0px 30px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -481,7 +482,7 @@
 .s-sec4 .mate-s-addr4 {
 	width: 400px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	margin:10px 0px 10px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -489,7 +490,7 @@
 .s-sec4 .mate-s-time4 {
 	width: 200px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	margin:0px 0px 0px 5px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -588,7 +589,7 @@
 .s-sec4 .mate-e-addr4 {
 	width: 400px;
 	height: 50px;
-	margin: 0px 0px 10px 5px;
+	margin: 0px 0px 30px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -601,6 +602,7 @@
 #input-div5 #addTable5 {
 	display: inline;
 }
+
 .s-sec5 > img {
 	width: 15px;
 	height: 73px;
@@ -608,15 +610,19 @@
 .s-sec5 .mate-s-addr5 {
 	width: 400px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	margin:10px 0px 10px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
 }
 .s-sec5 .mate-s-time5 {
+	
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin:0px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-addr51 {
@@ -711,7 +717,7 @@
 .s-sec5 .mate-e-addr5 {
 	width: 400px;
 	height: 50px;
-	margin: 0px 0px 10px 5px;
+	margin: 0px 0px 30px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;

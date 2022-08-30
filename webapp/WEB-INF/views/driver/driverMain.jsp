@@ -60,8 +60,9 @@
 	</c:if>
 	<div class="content-head">
 		<div class="clear" style="width:1920px; margin:0px auto;">
+			
+			<!--  <img src="/assets/images/common/login_image_100_01.png"> -->
 			<div class="driver-MainText1">
-			<img src="/assets/images/common/login_image_100_01.png"> 
 				<p> 드라이버<br>이동 경로 등록하기</p>
 			</div>
 				<p class="driver-MainText2">드라이버님이 이동하시는 경로를 등록해주시면<br> 같이 이동을 원하는

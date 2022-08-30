@@ -78,7 +78,7 @@
 		<input type="hidden" name="type" value="seasonTicket">
 		</c:otherwise>
 		</c:choose>
-			<p class="write-font">등록하신 날짜와 출발 시간입니다.</p>
+			<p class="write-font">등록하신 날짜와 출발 시간입니다</p>
 			<div class="f-sec">
 				<span>출발 날짜</span><input type="text" name="sdate1" value="${dwVo.sdate1}" id="s-date" >
 				&nbsp&nbsp&nbsp<span>출발 시간</span><input type="text" name="stime1" value="${dwVo.stime1}" class="carpool-stime" >
@@ -119,27 +119,32 @@
 						<td><div style="background: url(/assets/images/drop-opacity.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>비흡연자</span></td>
 						<td><input type="hidden" name="nosmoke" value="${dwVo.nosmoke}"></td>
 						</c:if>
-						<c:if test="${dwVo.phonecharge != null}">
-						<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>핸드폰 충전기 이용 가능</span></td>
-						<td><input type="hidden" name="phonecharge" value="${dwVo.phonecharge}"></td>
-						</c:if>
 					</tr>
 					<tr>
 					<c:if test="${dwVo.femaledriver != null}">
 						<td><div style="background: url(/assets/images/boy.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>여성 드라이버</span></td>
 						<td><input type="hidden" name="femaledriver" value="${dwVo.femaledriver}"></td>
 						</c:if>
+					</tr>
+					<tr>
+						<c:if test="${dwVo.pet != null}">
+						<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물</span></td>
+						<td><input type="hidden" name="pet" value="${dwVo.pet}"></td>
+						</c:if>
+					</tr>
+					<tr>
+						<c:if test="${dwVo.phonecharge != null}">
+						<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>충전기 사용 가능</span></td>
+						<td><input type="hidden" name="phonecharge" value="${dwVo.phonecharge}"></td>
+						</c:if>
+					</tr>
+					<tr>
 						<c:if test="${dwVo.trunk != null}">
 						<td><div style="background: url(/assets/images/ico_toolbox.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
 						<td><input type="hidden" name="trunk" value="${dwVo.trunk}"></td>
 						</c:if>
 					</tr>
-					<tr>
-						<c:if test="${dwVo.pet != null}">
-						<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물 탑승 가능</span></td>
-						<td><input type="hidden" name="pet" value="${dwVo.pet}"></td>
-						</c:if>
-					</tr>
+					
 				</table>
 				<p class="write-font">드라이버님을 소개해주세요 *</p>
 				<textarea class="introduce" name="introduce" >${dwVo.introduce}</textarea>
@@ -153,8 +158,8 @@
 		            <div class="modal-content clear">
 		            	<img class="modal-img" src="/assets/images/ico_boxgift.png">
 		            	<div class="modal-text">
-			                <p>예상 적립 포인트는 +${dwVo.fare}입니다.</p>
-			                <p class="modal-second-p">*확인을 누르시면 이동 경로가 등록됩니다.</p>
+			                <p>예상 적립 포인트는 + ${dwVo.fare}입니다.</p>
+			                <p class="modal-second-p">* 확인을 누르시면 이동 경로가 등록됩니다.</p>
 		                </div>
 		            </div>
 		            <div class="modal-button-div">
