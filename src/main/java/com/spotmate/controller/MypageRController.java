@@ -48,7 +48,6 @@ public class MypageRController {
 	
 	
 	
-	
 	///////////////////////////////////////////////////////////////////////////////////////////
 	
 	// qna등록
@@ -66,11 +65,14 @@ public class MypageRController {
 		}
 
 		@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
-		public String myQnaMain(@ModelAttribute myQnaVo mqv, HttpSession ss) {
+		public String myQnaMain(Model model) {
+			
 			UserVo authUser = (UserVo) ss.getAttribute("authUser");
+			
 			int userNo = authUser.getNo();
-
-			mqs.getMyQnaList(userNo);
+			
+			model.addAttribute("qList", mqs.getMyQnaList(userNo));
+			
 			return "/mypage/myQnaMain";
 		}
 		
