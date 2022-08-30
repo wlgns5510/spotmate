@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.spotmate.dao.MateDao;
 import com.spotmate.vo.CarpoolVo;
+import com.spotmate.vo.DetailOptVo;
 import com.spotmate.vo.MateVo;
 
 @Service
@@ -20,7 +21,7 @@ public class MateService {
 	
 	
 	//메이트 리스트 가져오기
-	public List<MateVo> getMateList(MateVo mateVo) {
+	public Map<String, Object> getMateList(MateVo mateVo) {
 		System.out.println("MateService >> getMateList");
 		
 		int tmpPage = mateVo.getCrtPage();
@@ -44,14 +45,24 @@ public class MateService {
 		
 		List<MateVo> mateList = mateDao.getMateList(mateVo);
 		
-		Random random = new Random();
+		
 		//mateList의 크기에 맞게 랜덤숫자도 넣어줌
+		Random random = new Random();
 		for(int i=0; i<mateList.size(); i++) {
-			mateList.get(i).setRandomImgNo(random.nextInt(28));
+			mateList.get(i).setRandomImgNo(random.nextInt(28));			
 		}
 		
 		
-		return mateList;
+		//옵션리스트 가져오기
+		List<DetailOptVo> optList = mateDao.getOptList();
+		
+		Map<String, Object> mateListMap = new HashMap<String, Object>();
+		mateListMap.put("mateList", mateList);
+		mateListMap.put("optList", optList);
+		System.out.println(optList);
+		
+		
+		return mateListMap;
 	}		
 	
 	//해당 메이트에 관한 정보
@@ -65,18 +76,16 @@ public class MateService {
 		List<CarpoolVo> reviewList = mateDao.deepReviewList(no);	//해당 메이트의 운전자의 별점리스트
 		CarpoolVo reviewAvg = mateDao.deepReviewAvg(no);	//해당 메이트 운전자의 별점 평균
 		
-		Map<String, Object> MateDriverMap = new HashMap<String, Object>();
-		MateDriverMap.put("mateVo", mateVo);
-		MateDriverMap.put("mateDriverVo", mateDriverVo);
-		MateDriverMap.put("matePlaceList", matePlaceList);
-		MateDriverMap.put("mateDetailList", mateDetailList);
-		MateDriverMap.put("reviewList", reviewList);
-		MateDriverMap.put("reviewAvg", reviewAvg);
+		Map<String, Object> mateDriverMap = new HashMap<String, Object>();
+		mateDriverMap.put("mateVo", mateVo);
+		mateDriverMap.put("mateDriverVo", mateDriverVo);
+		mateDriverMap.put("matePlaceList", matePlaceList);
+		mateDriverMap.put("mateDetailList", mateDetailList);
+		mateDriverMap.put("reviewList", reviewList);
+		mateDriverMap.put("reviewAvg", reviewAvg);
 		
-		return MateDriverMap;	
+		return mateDriverMap;	
 	}
-	
-	
 	
 	
 	

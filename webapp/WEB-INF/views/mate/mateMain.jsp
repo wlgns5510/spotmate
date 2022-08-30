@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,15 +98,18 @@
 						<img class="DetaileBoxImg" src="/assets/images/ico_filter_white.png"> 
 						<span class="DetaileBoxFont">상세조건</span>
 					</div>				
+					
 					<div class="chectBoxList">
-						<span class="nonSmoke"><input type="checkbox" name="mateContactList" value="1" id="nonSmoke">비흡연자</span>
-						<span class="femaleDriver"><input type="checkbox" name="mateContactList" value="2" id="femaleDriver">여성 드라이버</span>
-						<span class="pet"><input type="checkbox" name="mateContactList" value="3" id="pet">반려동물</span>
-						<span class="phoneCharger"><input type="checkbox" name="mateContactList" value="4" id="phoneCharger">충전기 사용 가능</span>
-						<span class="useTrunk"><input type="checkbox" name="mateContactList" value="5" id="useTrunk">트렁크 사용 가능</span>									
+						<c:forEach items="${mLMap.optList}" var="opt">
+							<span class=""><input id="chkOpt-${opt.detailOptNo}" type="checkbox" name="mateContactList" value="${opt.detailOptNo}"
+								<c:forEach items="${mateVo.mateContactList}" var="target">
+									<c:if test="${opt.detailOptNo == target}">
+										checked="checked"
+									</c:if>
+								</c:forEach>
+							><label for="chkOpt-${opt.detailOptNo}">${opt.name}</label></span>
+						</c:forEach>
 					</div>
-					
-					
 					<button type="submit" class="searchPictogrem"></button>
 				</form>
 			</div>
@@ -120,7 +125,7 @@
 		</div>
 		
 		<div class="mateListAll clear">		
-			<c:forEach items="${mateList}" var="mateVo" varStatus="status">
+			<c:forEach items="${mLMap.mateList}" var="mateVo" varStatus="status">
 				<div class="mateList">
 					<a href="/mateDeep/${mateVo.mateNo}">						
 						<img src="/assets/images/mate_imgbox/${mateVo.randomImgNo}.png" class="matePicture">																										
@@ -138,7 +143,7 @@
 			</c:forEach>												
 		</div>
 		
-		<button class="mateListBtn">
+		<button class="mateListBtn" id="btnMoreList">
 				<h2>더보기</h2>
 		</button>
 								
@@ -157,26 +162,28 @@
 <script type="text/javascript">
 var mateVo = {};
 
-
-$(document).ready(function() {
+//페이지가 로딩되기 직전 일때
+$(document).ready(function(){
 	console.log("페이지 로딩 직전");
 
 	mateVo.crtPage = 1;
-	mateVo.ePlace = "${mateVo.ePlace}"
-	mateVo.sDate = "${mateVo.sDate}"
-	mateVo.eDate = "${mateVo.eDate}"
-	mateVo.smPeople = "${mateVo.smPeople}"
+	mateVo.ePlace = $("[name='ePlace']").val();
+	mateVo.sDate = $("[name='sDate']").val();
+	mateVo.eDate = $("[name='eDate']").val();
+	mateVo.smPeople = parseInt($("[name='smPeople']").val());
 	
-	/* for(var i<0 ; i<=${mateVo.ePlace}; i++){
-		
-	}
-	mateVo.mateContactList
-	 */
-		
-	/* mateVo.mateContactList = "${mateVo.mateContactList}" */
-		
+	var mateContactList = [];
+	
+	var chks=$("[name='mateContactList']");
+	chks.each(function(index){
+		if($(this).is(":checked") == true){
+			mateContactList.push(parseInt($(this).val()));
+		}
+	});
+	
+	mateVo.mateContactList = mateContactList;
+	
 	console.log(mateVo);
-
 
 });
 
@@ -184,14 +191,18 @@ $(".mateListBtn").on("click", function(){
 	console.log("더보기 버튼클릭");
 	mateVo.crtPage += 1;
 	
+	console.log(mateVo);
+	
 	//ajax 요청  받는코드
 	$.ajax({
 		url : "${pageContext.request.contextPath}/mateList",
 		type : "post",
-		/* contentType : "application/json", */
-		data : mateVo,
+		contentType : "application/json",
+		data : JSON.stringify(mateVo),
 		dataType : "json",
-		success : function(mateList) {
+		success : function(mLMap) {
+			
+			var mateList = mLMap.mateList;
 			/* 다음페이지 리스트 가져오기 */
 			console.log(mateList);
 			
@@ -199,6 +210,9 @@ $(".mateListBtn").on("click", function(){
 			for (var i = 0; i < mateList.length; i++){
 				render(mateList[i]);	//화면에 그리는 함수실행
 			}
+
+			
+			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -227,6 +241,7 @@ function render(mateList) {
 	
 	$(".mateListAll").append(str);
 }
+
 
 
 //옵션체크 했을때  vo값 변경

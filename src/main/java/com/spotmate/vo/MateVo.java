@@ -33,14 +33,14 @@ public class MateVo {
 	private double latlng;
 	private String sPlace;
 	private String ePlace;
-	private int allDay;
+	private int allDay;		
 	private String sDate;
 	private String eDate;
 	private Integer smPeople;
 
 	private String opts; // db에서 정리된값
 
-	private List<Integer> mateContactList; // 옵션값 원본
+	private List<Integer> mateContactList; // 선택한 옵션값
 
 	private int crtPage;
 	private int startRnum;

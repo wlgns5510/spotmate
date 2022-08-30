@@ -13,7 +13,7 @@
 .content-head {
 	margin: 0px auto;
 	height: 230px;
-	background: rgba(245, 245, 245, 1);
+	background-color: rgba(232,231,231,1);
 }
 
 .carpool-MainText1 {
@@ -118,7 +118,7 @@
 	text-align: left;
 	border: none;
 	width: 250px;
-	padding: 10px 0px 0px 0px;
+	padding: 20px 0px 0px 0px;
 }
 
 .pointText {
@@ -130,7 +130,7 @@
 }
 
 .rideButton {
-	width: 330px;
+	width: 320px;
 	height: 65px;
 	background: rgba(70, 84, 163, 1);
 	border-top-left-radius: 6px;

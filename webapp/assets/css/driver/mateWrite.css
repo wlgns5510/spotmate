@@ -36,13 +36,12 @@
 
 .mate-e-addr-tr {
 	border-bottom:3px solid #4454a1;
-	
 }
 
 .mate-img {
 	width: 15px;
 	height: 113px;
-	margin: 30px 0px 0px 0px;
+	margin: 10px 0px 0px 0px;
 }
 
 .ia-btn {
@@ -74,7 +73,9 @@
 }
 
 
-
+#input-div1 {
+	margin:15px 0px 0px 0px;
+}
 
 #input-div1 #addTable1 {
 	display: inline;
@@ -86,7 +87,7 @@
 /* 	height: 30px; */
 	width: 400px;
 	height: 50px;
-	margin: 15px 0px 0px 5px;
+	margin:0px 0px 10px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
@@ -97,10 +98,10 @@
 /* 	margin: 0px 0px 0px 10px; */
 	width: 200px;
 	height: 50px;
-	margin: 15px 0px 0px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
+	margin:0px 0px 10px 0px;
 }
 
 .s-sec1 #w-addr11 {
@@ -209,7 +210,7 @@
 .s-sec1 .mate-e-addr1 {
 	width: 400px;
 	height: 50px;
-	margin: 0px 0px 10px 5px;
+	margin: 0px 0px 10px 0px;
 	border: 1px solid #bfbfbf;
 	border-radius: 5px;
 	padding: 0px 0px 0px 5px;
