@@ -40,6 +40,8 @@ public class MateVo {
 	private int spotMateNo;
 	private int userNo;
 	private int driverNo;
+	private int no;
+	private int resvNo;
 	
 
 	private String opts; // db에서 정리된값
@@ -60,8 +62,8 @@ public class MateVo {
 			String comments, int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day,
 			int wayNo, String sepplace, String time, String place, double lat, double lng, double latlng, String sPlace,
 			String ePlace, int allDay, String sDate, String eDate, Integer smPeople, int spotMateNo, int userNo,
-			int driverNo, String opts, List<Integer> mateContactList, int crtPage, int startRnum, int endRnum,
-			int randomImgNo) {
+			int driverNo, int no, int resvNo, String opts, List<Integer> mateContactList, int crtPage, int startRnum,
+			int endRnum, int randomImgNo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -99,6 +101,8 @@ public class MateVo {
 		this.spotMateNo = spotMateNo;
 		this.userNo = userNo;
 		this.driverNo = driverNo;
+		this.no = no;
+		this.resvNo = resvNo;
 		this.opts = opts;
 		this.mateContactList = mateContactList;
 		this.crtPage = crtPage;
@@ -395,6 +399,22 @@ public class MateVo {
 		this.driverNo = driverNo;
 	}
 
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
+	public int getResvNo() {
+		return resvNo;
+	}
+
+	public void setResvNo(int resvNo) {
+		this.resvNo = resvNo;
+	}
+
 	public String getOpts() {
 		return opts;
 	}
@@ -453,10 +473,12 @@ public class MateVo {
 				+ matePlaceNo + ", day=" + day + ", wayNo=" + wayNo + ", sepplace=" + sepplace + ", time=" + time
 				+ ", place=" + place + ", lat=" + lat + ", lng=" + lng + ", latlng=" + latlng + ", sPlace=" + sPlace
 				+ ", ePlace=" + ePlace + ", allDay=" + allDay + ", sDate=" + sDate + ", eDate=" + eDate + ", smPeople="
-				+ smPeople + ", spotMateNo=" + spotMateNo + ", userNo=" + userNo + ", driverNo=" + driverNo + ", opts="
-				+ opts + ", mateContactList=" + mateContactList + ", crtPage=" + crtPage + ", startRnum=" + startRnum
-				+ ", endRnum=" + endRnum + ", randomImgNo=" + randomImgNo + "]";
+				+ smPeople + ", spotMateNo=" + spotMateNo + ", userNo=" + userNo + ", driverNo=" + driverNo + ", no="
+				+ no + ", resvNo=" + resvNo + ", opts=" + opts + ", mateContactList=" + mateContactList + ", crtPage="
+				+ crtPage + ", startRnum=" + startRnum + ", endRnum=" + endRnum + ", randomImgNo=" + randomImgNo + "]";
 	}
+
+	
 
 	
 
