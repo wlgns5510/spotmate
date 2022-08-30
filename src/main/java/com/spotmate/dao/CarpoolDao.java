@@ -81,4 +81,23 @@ public class CarpoolDao {
 		sqlSession.update("carpool.updatereservpeople", map);
 	}
 
+	// user 예약시 포인트 DB 저장
+	
+	public void savePoint(CarpoolVo carpoolVo) {
+		System.out.println("CarpoolDao> savePoint()");
+		System.out.println(carpoolVo.toString());
+		int count = sqlSession.insert("carpool.insertUserCarpoolPoint", carpoolVo);
+
+		System.out.println(count);
+
+	}
+	
+	public int getTotalPoint(int userNo) {
+      System.out.println("MypageJService > getTotalPoint");
+      
+      int totalPoint= sqlSession.selectOne("mypagej.selectTotalPoint", userNo);
+      
+      return totalPoint;
+   }
+	
 }
