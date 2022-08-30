@@ -3,7 +3,7 @@
 
 <mapper namespace="mypageR">
 
-	<!-- myqna form 정보 등록 -->
+
 	<insert id="InsertQna" parameterType="com.spotmate.vo.myQnaVo">
 
 		<![CDATA[
@@ -24,6 +24,23 @@
 	</insert>
 	
 	
+	<!-- select mqa 가져오기  -->
+	<select id="selectmqaList" parameterType="com.spotmate.vo.myQnaVo" resultType="com.spotmate.vo.myQnaVo">
+		<![CDATA[
+	 		select  mq.no myqna,
+        			mq.type,
+        			mq.regDate,
+        			mq.title,
+			        mq.content,
+			        mq.status,
+			        u.no userNo
+			from myqna mq, users u
+			where u.no = mq.userno
+			and u.no = 1
+		]]>
+		
+		</select>
+				
 	<!-- car정보 등록 -->
 	<insert id="myDriverinsert" parameterType="dlvo">
 
@@ -977,5 +994,7 @@
 	        </otherwise>
         </choose>
 	</select>
-	
+
+
+
 </mapper>

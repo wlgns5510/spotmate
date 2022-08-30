@@ -222,6 +222,8 @@ public class MypageRController {
 	}
 	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myQnaMain(@ModelAttribute myQnaVo mqv, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		int userNo = authUser.getNo();   
 		
 		mqs.getMyQnaList(userNo);
 		return "/mypage/myQnaMain";
