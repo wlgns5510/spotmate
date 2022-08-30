@@ -96,8 +96,7 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
 	public int chkRide(@RequestBody int mateNo) {
-		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		return hService.chkRide(mateNo, authUser.getNo());
+		return hService.chkRide(mateNo);
 	}
 	
 	

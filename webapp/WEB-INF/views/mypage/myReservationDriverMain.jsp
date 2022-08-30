@@ -156,9 +156,9 @@
 								<td>${ui.convertPoint}</td>
 								<td><input type="hidden" class="status" value="${ui.status}"></td>
 								<c:choose>
-								<c:when test="${ui.status == 'close'}">
+								<c:when test="${ui.status == 'ride'}">
 								<td>
-									<button type="button" class="btn_review" onclick="msg()">모집완료</button>
+									<button type="button" class="btn_review" onclick="msg(${ui.mateNo})">카풀종료</button>
 								</td>
 								</c:when>
 								<c:otherwise>
@@ -230,8 +230,23 @@ setTime();
 setInterval(function(){setTime()},60000);
 			
 function setTime(){
-			document.getElementById("in").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
-			document.getElementById("out").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+	document.getElementById("in").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+	document.getElementById("out").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+}
+function msg(mateNo) {
+	$.ajax({
+		url : "${pageContext.request.contextPath}/endResv",		
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(mateNo),
+		dataType : "json",
+		success : function(result){
+			console.log(result);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
 }
 </script>
 

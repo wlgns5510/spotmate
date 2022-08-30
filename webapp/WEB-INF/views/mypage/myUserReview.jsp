@@ -8,7 +8,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
 	<meta name="title" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -53,22 +52,58 @@
 </head>
 
 <body>
-
-	<div class="score-box">
-		<div class="score">
-			<input class="slider" type="range" min="0" max="10" step="1" value="0" >
-			<div class="foreground">★★★★★</div>
-			<div class="background">☆☆☆☆☆</div>
+<div class="review-box">
+    <form action="/userReviewInsert" method="get">
+		<div class="review-first-box clear">
+			<p class="rbp">이용 내역</p>
+			<div class="review-in-box">
+				<p class="rfbp">출발지</p>
+				<p class="rfbp2">도착지</p>
+				<p class="rfbp">탑승 인원 수</p>
+				<p class="rfbp2">탑승 시간</p>
+				<p class="rfbp">총 결제 포인트</p>
+			</div>
+			<div class="review-in-box">
+				<p class="rbp">${riVo.splace}</p>
+				<p class="rbp2">${riVo.eplace}</p>
+				<p class="rbp">${riVo.people}명</p>
+				<p class="rbp2">${riVo.startTime}</p>
+				<p class="rbp rbpc">${riVo.convertPoint}</p>
+			</div>
+			<div class="review-in-box review-last-box">
+				<img class="review-img" src="/assets/images/map_line_02.png">
+				<span class="rbpc">도착지까지 소요시간 ${riVo.duration}, ${riVo.distance}</span>
+			</div>
 		</div>
-		<span class="display">0</span>
-	</div>
+		<div class="review-second-box">
+			<p class="rbp">드라이버 평가*</p>
+			<p class="rbp">운전자의 매너 점수를 평가해주세요</p>
+			<div class="score-box">
+				<div class="score">
+					<input class="slider" type="range" min="0" max="10" step="1" value="0" >
+					<input type="hidden" name="star" value="" id="rs">
+					<input type="hidden" name="resvNo" value="${riVo.resvNo}">
+					<div class="foreground">★★★★★</div>
+					<div class="background">☆☆☆☆☆</div>
+				</div>
+				<span class="display">0</span>
+			</div>
+		</div>
+		<div class="review-third-box">
+			<p class="rbp">탑승 후기를 작성해주세요*</p>
+			<textarea class="rhb-ta" name="content" placeholder="너무 좋았어요!"></textarea>
+		</div>
+		<div>
+			<button type="submit" class="review-btn">등록하기</button>
+		</div>
+	</form>
+</div>
 
 
 </body>
 <script type="text/javascript">
 
 // ★★★★★
-
 $(".score .foreground").css("width", "0%");
 $(".score-box .display").html(0);
 
@@ -79,7 +114,7 @@ $(".slider").on("mousemove", function(){
 	$(".score .foreground").css("width", percent+"%");
 	$(".score-box .display").html(point);
 	
-	var star = $(".slider").val();
+	$("#rs").val($(".slider").val() / 2);
 	
 // 	if( star < 1 ){
 // 		$(".score .foreground").text();

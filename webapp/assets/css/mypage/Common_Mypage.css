@@ -320,6 +320,7 @@
 }
 
 .myPage_article2 .btn_review {
+	border-radius: 5px;
 	background-color: rgba(245, 245, 245, 1);
 	color: rgba(68, 84, 161, 1);
 	width: 100px;

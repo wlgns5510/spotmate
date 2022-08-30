@@ -298,9 +298,9 @@ $("#finish").on("click", function() {
 			$(".fare").remove();
 			$(".dur").remove();
 			$(".dis").remove();
-			document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트:&nbsp;</span><input type='hidden' name='fare' id='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
-			document.getElementById("totalInfo").innerHTML += "<div class='dur'><span style='color:black;'>예상 소요 시간:&nbsp;</span><input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
-			document.getElementById("totalInfo").innerHTML += "<div class='dis'><span style='color:black;'>예상 거리:&nbsp;</span><input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
+			document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트 : &nbsp;</span><input type='hidden' name='fare' id='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
+			document.getElementById("totalInfo").innerHTML += "<div class='dur'><span style='color:black;'>예상 소요 시간 : &nbsp;</span><input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
+			document.getElementById("totalInfo").innerHTML += "<div class='dis'><span style='color:black;'>예상 거리 : &nbsp;</span><input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
 			
 			//버튼 클릭 시 input박스 안 disp되는 값이 날라가서 그 부분 따로 저장
 			document.getElementById("s-addr1").value = result.splace;
@@ -428,11 +428,11 @@ $(".ic-btn").on("click", function() {
 
 //출발지 검색 팝업
 function ssp() {
-	window.open("ssp/1", "child", "width=1350, height=820, left=300, top=100");
+	window.open("ssp/1", "child", "width=1000, height=600, left=300, top=100");
 }
 //도착지 검색 팝업
 function sep() {
-	window.open("sep/1", "child", "width=1350, height=820, left=300, top=100");
+	window.open("sep/1", "child", "width=1000, height=600, left=300, top=100");
 }
 </script>
 </html>

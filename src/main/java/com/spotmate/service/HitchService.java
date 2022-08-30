@@ -25,8 +25,8 @@ public class HitchService {
 	
 	
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
-	public int chkRide(int mateNo, int userNo) {
-		return hDao.chkRide(mateNo, userNo);
+	public int chkRide(int mateNo) {
+		return hDao.chkRide(mateNo);
 	}
 	
 	//유저가 탑승예약 할 때

@@ -17,8 +17,10 @@ public class UserController {
    
    @Autowired
    private UserService uService;
+   @Autowired
+   HttpSession session;
    
-   @RequestMapping(value = "/index, /", method = { RequestMethod.GET, RequestMethod.POST })
+   @RequestMapping(value = {"/index", "/"}, method = { RequestMethod.GET, RequestMethod.POST })
    public String index() {
       return "/index";
    }
@@ -30,7 +32,7 @@ public class UserController {
       
 	   String url = request.getHeader("Referer");
 	   
-	   if(url !=null && !url.contains("/login") && !url.contains("/join") && !url.contains("write")) {
+	   if(url !=null && !url.contains("/login") && !url.contains("/join") && !url.contains("Write")) {
 		   request.getSession().setAttribute("prevPage", url);
 	   }
 	   
@@ -39,10 +41,11 @@ public class UserController {
    
    @RequestMapping(value = "/loginOk", method = { RequestMethod.GET, RequestMethod.POST })
    //public String loginOk(Model model, @ModelAttribute UserVo userVo) {
-   public String loginOk(@ModelAttribute UserVo userVo, HttpSession session) {
+   public String loginOk(@ModelAttribute UserVo userVo) {
 	   
 	   UserVo authUser = uService.loginOk(userVo);
 	   String url = (String)session.getAttribute("prevPage");
+	   System.out.println(authUser);
 	   if(authUser !=null && url !=null) {
 		   session.setAttribute("authUser", authUser);
 		   return "redirect:"+url;
@@ -60,10 +63,10 @@ public class UserController {
    
    // 로그아웃
    @RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
-   public String logout(HttpSession session) {
+   public String logout() {
 	   
 	   session.removeAttribute("authUser");
-	   
+	   session.invalidate();
 	   return "redirect:/index";
    }
    

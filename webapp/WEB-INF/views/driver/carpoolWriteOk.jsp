@@ -78,15 +78,16 @@
 		<input type="hidden" name="type" value="seasonTicket">
 		</c:otherwise>
 		</c:choose>
-			<p>등록하신 날짜와 출발시간입니다.</p>
+			<p class="write-font">등록하신 날짜와 출발 시간입니다.</p>
 			<div class="f-sec">
 				<span>출발 날짜</span><input type="text" name="sdate1" value="${dwVo.sdate1}" id="s-date" >
-				<span>출발 시간</span><input type="text" name="stime1" value="${dwVo.stime1}" id="s-time" >
+				&nbsp&nbsp&nbsp<span>출발 시간</span><input type="text" name="stime1" value="${dwVo.stime1}" class="carpool-stime" >
 				<br>
 				<span>도착 날짜</span><input type="text" name="edate1" value="${dwVo.edate1}" id="e-date" >
+				&nbsp&nbsp&nbsp<span>탑승 인원</span><input name="people" value="${dwVo.people}" type="text" class="carpool-stime" >
 			</div>
 			<div class="s-sec">
-				<p>드라이버님의 이동 경로입니다</p>
+				<p class="write-font">드라이버님의 이동 경로입니다</p>
 				
 				<div id="input-div">
 				<img src="assets/images/map_line_02.png">
@@ -107,12 +108,11 @@
 			</div>
 			<div id="map"></div>
 			<div class="t-sec">
-				<p>탑승 가능한 인원 수*</p>
-				<input name="people" value="${dwVo.people}" type="text" >
+				
 				<input type="hidden" name="intfare" value="${dwVo.intfare}">
 				<input type="hidden" name="dur" value="${dwVo.dur}">
 				<input type="hidden" name="dis" value="${dwVo.dis}">
-				<p>차량 상세조건</p>
+				<p class="write-font">차량 상세조건</p>
 				<table>
 					<tr>
 					<c:if test="${dwVo.nosmoke != null}">
@@ -141,9 +141,9 @@
 						</c:if>
 					</tr>
 				</table>
-				<p>드라이버님을 소개해주세요*</p>
+				<p class="write-font">드라이버님을 소개해주세요 *</p>
 				<textarea class="introduce" name="introduce" >${dwVo.introduce}</textarea>
-				<p>드라이버님이 하고싶은 말을 적어주세요</p>
+				<p class="write-font">드라이버님이 하고 싶은 말을 적어주세요</p>
 				<textarea class="comments" name="comments">${dwVo.comments}</textarea>
 			</div>
 			<button type="button" id="btn-modal">등록하기</button>
