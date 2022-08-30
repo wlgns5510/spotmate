@@ -314,7 +314,7 @@ public class MypageJController {
 		if (authUser == null) {
 			return "redirect:/loginForm";
 		}
-		
+
 		int userNo = authUser.getNo();
 
 		mypagejService.refundPoint(refundVo, userNo);

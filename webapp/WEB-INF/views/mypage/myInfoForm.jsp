@@ -104,7 +104,6 @@
 						<!-- 휴대폰 -->
 						<div class="join_group">
 							<label class="" for="">휴대폰*</label> <input type="text" id="join_phone" name="phone" value="${userVo.phone }">
-							<button type="button" id="id_check">본인인증</button>
 						</div>
 
 						<!-- 주소 -->
