@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,7 @@ import com.spotmate.function.CarOwner;
 import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
 import com.spotmate.service.MyQnaService;
+import com.spotmate.service.MypageJService;
 import com.spotmate.service.MypageRService;
 import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
@@ -39,14 +41,15 @@ public class MypageRController {
 	
 	@Autowired
 	private DriverLicenseService dls;
-	private UserVo uVo;
-
 	@Autowired
 	private MypageRService mService;
 	@Autowired
 	private HttpSession ss;
 	@Autowired
 	private MyQnaService mqs;
+	@Autowired
+	private MypageJService mypagejService;
+	private int userNo;
 	
 	
 
@@ -63,7 +66,8 @@ public class MypageRController {
 			model.addAttribute("dlvo", carInfo);
 			return "/mypage/myDriverForm";
 		}
-		
+		 Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+		 model.addAttribute("topNavMap", topNavMap);
 		DriverLicenseVo dlvo = dls.getCarInfo(userNo);
 		
 		model.addAttribute("dlvo", dlvo);
@@ -72,6 +76,7 @@ public class MypageRController {
 
 	@RequestMapping(value = "/myDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverMain() {
+		
 		return "/mypage/myDriverMain";
 	}
 	
@@ -167,7 +172,8 @@ public class MypageRController {
 	@RequestMapping(value = "/myDriverMain2", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myDriverMain2(Model model, HttpSession ss) {   //왜 model을 쓰는가...? 
 		//System.out.println("MypageRController>myDriverMain2()");
-		
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+		model.addAttribute("topNavMap", topNavMap);
 		
 		//세션에서 로그인 사용자 정보 가져오기
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -209,12 +215,17 @@ public class MypageRController {
 	      int userNo = authUser.getNo();
 	      mqv.setUserNo(userNo);//세팅을 해놓는다 
 	      mqs.InsertQna(mqv); //메소드가 없어 서비스로 만들어주러가야함 
+	     
 	      
 		return "/mypage/myQnaMain";
 		
 	}
 	@RequestMapping(value = "/myQnaMain", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myQnaMain() {
+	public String myQnaMain(@ModelAttribute myQnaVo mqv, HttpSession ss) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		int userNo = authUser.getNo();   
+		
+		mqs.getMyQnaList(userNo);
 		return "/mypage/myQnaMain";
 	}
 
@@ -277,7 +288,11 @@ public class MypageRController {
 	
 	@RequestMapping(value = "/myUsageDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myUsageDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+		model.addAttribute("topNavMap", topNavMap);
+		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		
 		if( authUser == null ) {
 			return "redirect:/loginForm";
 		}
@@ -289,6 +304,8 @@ public class MypageRController {
 	public String myResvUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		if( authUser == null ) {
+			Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+			model.addAttribute("topNavMap", topNavMap);
 			return "redirect:/loginForm";
 		}
 		model.addAttribute("uMap", mService.getUserResvList(authUser.getNo(), no, usVo));
@@ -298,6 +315,9 @@ public class MypageRController {
 	@RequestMapping(value = "/myReservationDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myResvDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+		model.addAttribute("topNavMap", topNavMap);
+		
 		if( authUser == null ) {
 			return "redirect:/loginForm";
 		}
