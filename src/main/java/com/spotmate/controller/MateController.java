@@ -104,12 +104,17 @@ public class MateController {
 		System.out.println("MateController >> saveMate");
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser"); //세션에서 로그인한 유저를 가져옴
+		System.out.println("로그인한 회원정보: " + authUser);
 		
 		int userNo = authUser.getNo(); //로그인한 유저의 번호를 가져옴
 		
+		int result = mateService.saveMate(userNo, mateVo);
 		
-		
-		return "/mate/mateDeep";
+		if( result == 0) {
+			return "redirect:/myReservationUserMain/1";
+		}
+				
+		return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?result=fail";
 	}
 	
 	
