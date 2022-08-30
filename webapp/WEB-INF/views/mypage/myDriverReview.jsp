@@ -8,7 +8,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
 	<meta name="title" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -47,24 +46,69 @@
 	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
 	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
 
-<title>test</title>
+<title>review</title>
 
 
 </head>
 
 <body>
-	<div class="score-box">
-		<div class="score">
-			<input class="slider" type="range" min="0" max="10" step="1" value="0" >
-			<div class="foreground">★★★★★</div>
-			<div class="background">☆☆☆☆☆</div>
+<div class="review-box">
+    <form action="/driverReviewInsert" method="get">
+		<div class="review-first-box clear">
+			<p class="rbp">이용 내역</p>
+			<div class="review-in-box">
+				<p class="rfbp">출발지</p>
+				<p class="rfbp2">도착지</p>
+				<p class="rfbp">탑승 인원 수</p>
+				<p class="rfbp2">탑승 시간</p>
+				<p class="rfbp">총 결제 포인트</p>
+			</div>
+			<div class="review-in-box">
+				<p class="rbp">${map.riVo.splace}</p>
+				<p class="rbp2">${map.riVo.eplace}</p>
+				<p class="rbp">${map.riVo.people}명</p>
+				<p class="rbp2">${map.riVo.startTime}</p>
+				<p class="rbp rbpc">${map.riVo.convertPoint}</p>
+			</div>
+			<div class="review-in-box review-last-box">
+				<img class="review-img" src="/assets/images/map_line_02.png">
+				<span class="rbpc">도착지까지 소요시간 ${map.riVo.duration}, ${map.riVo.distance}</span>
+			</div>
 		</div>
-		<span class="display">0</span>
-	</div>
+		<div class="review-second-box">
+			<p class="rbp">탑승유저 평가*</p>
+			<select name="userNo">
+				<option value=selected>상태</option>
+				<c:forEach items="${map.pList}" var="pVo">
+					<option value="${pVo.USERNO}">${pVo.NAME}</option>
+				</c:forEach>
+			</select>
+			<p class="rbp">탑승자의 매너 점수를 평가해주세요</p>
+			<div class="score-box">
+				<div class="score">
+					<input class="slider" type="range" min="0" max="10" step="1" value="0" >
+					<input type="hidden" name="star" value="" id="rs">
+					<input type="hidden" name="resvNo" value="${map.riVo.resvNo}">
+					<div class="foreground">★★★★★</div>
+					<div class="background">☆☆☆☆☆</div>
+				</div>
+				<span class="display">0</span>
+			</div>
+		</div>
+		<div>
+			<button type="submit" class="review-btn">등록하기</button>
+		</div>
+	</form>
+</div>
 
 
 </body>
 <script type="text/javascript">
+
+// ★★★★★
+$(".review-btn").on("click", function() {
+	window.close();
+})
 $(".score .foreground").css("width", "0%");
 $(".score-box .display").html(0);
 
@@ -74,6 +118,22 @@ $(".slider").on("mousemove", function(){
 	
 	$(".score .foreground").css("width", percent+"%");
 	$(".score-box .display").html(point);
+	
+	$("#rs").val($(".slider").val() / 2);
+	
+// 	if( star < 1 ){
+// 		$(".score .foreground").text();
+// 	} else if ( 2<= star < 4 ) {
+// 		$(".score .foreground").text('★');
+// 	} else if ( 4<= star < 6 ) {
+// 		$(".score .foreground").text('★★');
+// 	} else if ( 6<= star < 8 ) {
+// 		$(".score .foreground").text('★★★');
+// 	} else if ( 8<= star < 10 ) {
+// 		$(".score .foreground").text('★★★★');
+// 	} else if ( 10<= star < 11 ) {
+// 		$(".score .foreground").text('★★★★★');
+// 	}
 });
 	
 	

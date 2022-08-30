@@ -35,17 +35,16 @@ public class HitchhikeController {
 	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitch(HttpSession ss) {
-		if (ss.getAttribute("authUser") != null) {
-			return "/spothitch/spotHitchMain";
-		} else {
-			return "redirect:/loginForm";
-		}
+		return "/spothitch/spotHitchMain";
 	}
 	
 	@RequestMapping(value="/spotHitchDriver", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitchDriver(Model model, HttpSession session) {
-		UserVo authVo = (UserVo) session.getAttribute("authUser");
-		model.addAttribute("hVo", hService.getHdriverPage(authVo.getNo()));
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		if(authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("hVo", hService.getHdriverPage(authUser.getNo()));
 		return "/spothitch/spotHitchDriver";
 	}
 	
@@ -97,8 +96,7 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
 	public int chkRide(@RequestBody int mateNo) {
-		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		return hService.chkRide(mateNo, authUser.getNo());
+		return hService.chkRide(mateNo);
 	}
 	
 	

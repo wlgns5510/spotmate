@@ -64,18 +64,18 @@
 
 
 	<!-- CONTENT -->
-
-	<div id="spotContent" class="clear">
-		<div class="spot-content-head">
-
+	
+	<div class="content-head">
+		<div class="clear" style="width:1920px; margin:0px auto;">
 			<span class="mainText1"> 누구나 쉽게, <br> 원하는 목적지로 이동
 			</span> <span class="mainText2"> 이동하는 경로가 비슷한 드라이버를 찾아 <br>
 				출발지부터 목적지까지 편하게 이동해보세요.
 			</span>
-
 		</div>
 
-
+	</div>
+	
+	<div id="spotContent">
 
 		<div class="service1">
 			<div class="service1_image">

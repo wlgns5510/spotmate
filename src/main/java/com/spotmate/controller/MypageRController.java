@@ -1,13 +1,11 @@
 package com.spotmate.controller;
 
-<<<<<<< HEAD
-import java.util.Map;
-=======
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,16 +21,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spotmate.function.CarOwner;
+import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
-<<<<<<< HEAD
-import com.spotmate.service.MypageRService;
-import com.spotmate.vo.UsageSearchVo;
-=======
 import com.spotmate.service.MyQnaService;
+import com.spotmate.service.MypageRService;
 import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
+import com.spotmate.vo.ReviewVo;
+import com.spotmate.vo.UsageSearchVo;
 import com.spotmate.vo.UserVo;
 import com.spotmate.vo.myQnaVo;
 
@@ -44,22 +42,18 @@ public class MypageRController {
 	
 	@Autowired
 	private DriverLicenseService dls;
-<<<<<<< HEAD
+	private UserVo uVo;
+
 	@Autowired
 	private MypageRService mService;
-//	private UserVo uVo;
 	@Autowired
 	private HttpSession ss;
-	
-	/*@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
-=======
-	private UserVo uVo;
 	@Autowired
 	private MyQnaService mqs;
 	
+	
 
 	@RequestMapping(value = "/myDriverForm", method = { RequestMethod.GET, RequestMethod.POST })
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	public String myDriverForm(Model model, HttpSession ss) {
 		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -120,7 +114,6 @@ public class MypageRController {
 		
 		//로그인한 사용자의 userNo을 vo에 넣어준다
 		dlvo.setUserNo(userNo);
-
 	    
 		//user업데이트+카정보등록+옵션등록
 		dls.myDriverRegister(dlvo);
@@ -233,6 +226,7 @@ public class MypageRController {
 		return "/mypage/myQnaWriteForm";
 	}
 
+
 	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myReservationDriverMain() {
 		return "/mypage/myReservationDriverMain";
@@ -252,8 +246,28 @@ public class MypageRController {
 	public String myUsageUserMain() {
 		return "/mypage/myUsageUserMain";
 	}
-<<<<<<< HEAD
-*/
+
+	
+
+//	@RequestMapping(value = "/myReservationDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myReservationDriverMain() {
+//		return "/mypage/myReservationDriverMain";
+//	}
+//
+//	@RequestMapping(value = "/myReservationUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myReservationUserMain() {
+//		return "/mypage/myReservationUserMain";
+//	}
+//
+//	@RequestMapping(value = "/myUsageDriverMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myUsageDriverMain() {
+//		return "/mypage/myUsageDriverMain";
+//	}
+//
+//	@RequestMapping(value = "/myUsageUserMain", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String myUsageUserMain() {
+//		return "/mypage/myUsageUserMain";
+//	}
 	@RequestMapping(value = "/myUsageUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myUsageUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
@@ -294,13 +308,32 @@ public class MypageRController {
 		return "/mypage/myReservationDriverMain";
 	}
 	
-	@RequestMapping(value = "/review", method = { RequestMethod.GET, RequestMethod.POST })
-	public String review(Model model) {
-		return "/mypage/myReview";
+	@RequestMapping(value = "/userReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String userReview(@PathVariable int no, Model model) {
+		model.addAttribute("riVo", mService.forReviewInfo(no));
+		return "/mypage/myUserReview";
 	}
-=======
-
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 	
+	@RequestMapping(value = "/userReviewInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public void userReviewInsert(@ModelAttribute ReviewVo rVo) {
+		mService.insertUserReview(rVo);
+	}
+	
+	@RequestMapping(value = "/driverReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String driverReview(@PathVariable int no, Model model) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		Map<String, Object> map = new HashMap<>();
+		map.put("pList", mService.getPassengerList(no, authUser.getNo()));
+		map.put("riVo", mService.forReviewInfo(no));
+		model.addAttribute("map", map);
+		return "/mypage/myDriverReview";
+	}
+	
+	@RequestMapping(value = "/driverReviewInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public void driverReviewInsert(@ModelAttribute ReviewVo rVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		mService.insertDriverReview(rVo, authUser.getNo());
+	}
+
 
 }

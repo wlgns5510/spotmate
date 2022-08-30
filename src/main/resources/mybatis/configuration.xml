@@ -17,6 +17,9 @@
 		<typeAlias alias="dlvo" type="com.spotmate.vo.DriverLicenseVo" />
 		<typeAlias alias="userVo" type="com.spotmate.vo.UserVo" />
 		<typeAlias alias="muVo" type="com.spotmate.vo.MyUsageVo" />
+		<typeAlias alias="DetailOptVo" type="com.spotmate.vo.DetailOptVo" />
+		<typeAlias alias="riVo" type="com.spotmate.vo.ReviewInfoVo" />
+		<typeAlias alias="rVo" type="com.spotmate.vo.ReviewVo" />
 	</typeAliases>
 
 

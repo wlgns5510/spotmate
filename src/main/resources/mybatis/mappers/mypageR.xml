@@ -139,8 +139,7 @@
 	
 	
 	
-<<<<<<< HEAD
-	
+
 	
 	
 	
@@ -155,8 +154,9 @@
 				                        point,
 				                        mateNo,
 				                        status
-				                    from reservation r
-				                    where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+				                    from reservation
+				                    where userNo = #{userNo}
+				                    and driverNo != #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 				                                                mateNo
 				                                            from place
 				                                            group by mateNo) p
@@ -181,10 +181,11 @@
 			                                status
 			                            from reservation r
 			                            where userNo = #{userNo}
+			                            and driverNo != #{userNo}
 			                        	and status like '%'||#{usVo.status}||'%' ) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
-			                                                        mateNo
-			                                                    from place
-			                                                    group by mateNo) p
+									                                                        mateNo
+									                                                    from place
+									                                                    group by mateNo) p
 			where s.no = r.mateNo
 			and p.mateNo = r.mateNo
 			and s.status = 'close'
@@ -204,26 +205,31 @@
 			    fullplace,
 			    point,
 			    status,
-			    mateNo
+			    mateNo,
+			    resvNo
 		    from (select rownum rn,
 		        type,
 		        regdate,
 		        fullplace,
 		        point,
 		        status,
-			    mateNo
+			    mateNo,
+			    resvNo
 				from (select type,
 				    regdate,
 				    p.fullplace,
 				    r.point,
 				    r.status,
-			    	r.mateNo
+			    	r.mateNo,
+			    	resvNo
 				from spotmate s, (select regdate,
 				                        point,
 				                        mateNo,
-				                        status
+				                        status,
+				                        no resvNo
 				                    from reservation r
 				                    where userNo = #{userNo}
+				                    and driverNo != #{userNo}
 		                            and status like '%'||#{usVo.status}||'%'
 				                    and regDate >= #{usVo.sdate}
 				                    and regDate <= #{usVo.edate}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
@@ -234,7 +240,7 @@
 				and p.mateNo = r.mateNo
 				and s.status = 'close'
 				and type like '%'||#{usVo.type}||'%'
-				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo
+				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo, resvNo
 		        order by s.no desc))
 		        where rn >= #{sNum}
 				and rn <= #{eNum}
@@ -249,33 +255,38 @@
 			    fullplace,
 			    point,
 			    status,
-			    mateNo
+			    mateNo,
+			    resvNo
 		    from (select rownum rn,
 		        type,
 		        regdate,
 		        fullplace,
 		        point,
 		        status,
-			    mateNo
+			    mateNo,
+			    resvNo
 				from (select type,
 				    regdate,
 				    p.fullplace,
 				    r.point,
 				    r.status,
-			    	r.mateNo
+			    	r.mateNo,
+			    	resvNo
 				from spotmate s, (select regdate,
 				                        point,
 				                        mateNo,
-				                        status
+				                        status,
+				                        no resvNo
 				                    from reservation
-				                    where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+				                    where userNo = #{userNo}
+				                    and driverNo != #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 				                                                mateNo
 				                                            from place
 				                                            group by mateNo) p
 				where s.no = r.mateNo
 				and p.mateNo = r.mateNo
 				and s.status = 'close'
-				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo
+				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo, resvNo
 		        order by s.no desc))
 		        where rn >= #{sNum}
 				and rn <= #{eNum}
@@ -290,24 +301,28 @@
 			    fullplace,
 			    point,
 			    status,
-			    mateNo
+			    mateNo,
+			    resvNo
 		    from (select rownum rn,
 			        type,
 			        regdate,
 			        fullplace,
 			        point,
 			        status,
-			    	mateNo
+			    	mateNo,
+			    	resvNo
 					from (select type,
 					    regdate,
 					    p.fullplace,
 					    r.point,
 					    r.status,
-			    		r.mateNo
+			    		r.mateNo,
+			    		resvNo
 					from spotmate s, (select regdate,
 					                        point,
 					                        mateNo,
-					                        status
+					                        status,
+					                        no resvNo
 					                    from reservation
 					                    where userNo = #{userNo}
 					                    and driverNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
@@ -317,7 +332,7 @@
 				where s.no = r.mateNo
 				and p.mateNo = r.mateNo
 				and s.status = 'close'
-				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo
+				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo, resvNo
 		        order by s.no desc))
 		        where rn >= #{sNum}
 				and rn <= #{eNum}
@@ -385,23 +400,27 @@
 			    fullplace,
 			    point,
 			    status,
-			    mateNo
+			    mateNo,
+			    resvNo
 		    from (select rownum rn,
 		        type,
 		        regdate,
 		        fullplace,
 		        point,
 		        status,
-			    mateNo
+			    mateNo,
+			    resvNo
 				from (select type,
 				    regdate,
 				    p.fullplace,
 				    r.point,
 				    r.status,
-			    	r.mateNo
+			    	r.mateNo,
+			    	resvNo
 				from spotmate s, (select regdate,
 				                        point,
-				                        mateNo
+				                        mateNo,
+				                        no
 				                    from reservation
 				                    where userNo = #{userNo}
 				                    and driverNo = #{userNo}
@@ -415,7 +434,7 @@
 				and p.mateNo = r.mateNo
 				and s.status = 'close'
 				and type like '%'||#{usVo.type}||'%'
-				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo
+				group by type, regdate, r.point, r.status, p.fullplace, s.no, r.mateNo, resvNo
 		        order by s.no desc))
 		        where rn >= #{sNum}
 				and rn <= #{eNum}
@@ -441,7 +460,8 @@
 				                        point,
 				                        mateNo
 				                    from reservation
-				                    where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+				                    where userNo = #{userNo}
+				                    and driverNo != #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 				                                                mateNo
 				                                            from place
 				                                            group by mateNo) p
@@ -465,7 +485,8 @@
 					                                point,
 					                                mateNo
 					                            from reservation r
-					                            where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+					                            where userNo = #{userNo}
+					                            and driverNo != #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 					                                                        mateNo
 					                                                    from place
 					                                                    group by mateNo) p
@@ -490,7 +511,8 @@
 					                                point,
 					                                mateNo
 					                            from reservation r
-					                            where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+					                            where userNo = #{userNo}
+					                            and driverNo != #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 					                                                        mateNo
 					                                                    from place
 					                                                    group by mateNo) p
@@ -515,7 +537,8 @@
 					                                point,
 					                                mateNo
 					                            from reservation r
-					                            where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+					                            where userNo = #{userNo}
+					                            and driverNo != #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 					                                                        mateNo
 					                                                    from place
 					                                                    group by mateNo) p
@@ -558,6 +581,7 @@
 						                        mateNo
 						                    from reservation
 						                    where userNo = #{userNo}
+						                    and driverNo != #{userNo}
 						                    and regDate >= #{usVo.sdate}
 						                    and regDate <= #{usVo.edate}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 						                                                mateNo
@@ -598,6 +622,7 @@
 						                        mateNo
 						                    from reservation
 						                    where userNo = #{userNo}
+						                    and driverNo != #{userNo}
 						                    and regDate >= #{usVo.sdate}
 						                    and regDate <= #{usVo.edate}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 						                                                mateNo
@@ -641,6 +666,7 @@
 						                        mateNo
 						                    from reservation
 						                    where userNo = #{userNo}
+						                    and driverNo != #{userNo}
 						                    and regDate >= #{usVo.sdate}
 						                    and regDate <= #{usVo.edate}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 						                                                mateNo
@@ -685,7 +711,8 @@
 				                        point,
 				                        mateNo
 				                    from reservation
-				                    where userNo = #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
+				                    where userNo = #{userNo}
+				                    and driverNo != #{userNo}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
 				                                                mateNo
 				                                            from place
 				                                            group by mateNo) p
@@ -979,6 +1006,76 @@
         </choose>
 	</select>
 	
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
+	<select id="getMateNoByResvNo" parameterType="int" resultType="int">
+		select  mateNo
+		from reservation
+		where no = #{resvNo}
+	</select>
+	
+	<select id="forReviewInfo" parameterType="map" resultType="riVo">
+		select listagg(place, ',') within group(order by wayno) fullPlace,
+		    r.people,
+		    to_char(startdate, 'am hh:mm') startTime,
+		    r.point,
+		    duration,
+		    distance,
+		    r.no resvNo
+		from spotmate s, place p, reservation r
+		where s.no = #{mateNo}
+		and r.no = #{resvNo}
+		and s.no = p.mateno
+		and s.no = r.mateno
+		group by r.people, startdate, r.point, duration, distance, r.no
+	</select>
+	
+	<insert id="insertUserReview" parameterType="rVo">
+		insert into userReview
+		values(
+			seq_userReview_no.nextval,
+			#{resvNo},
+			#{star},
+			#{content}
+		)
+	</insert>
+	
+	<update id="afterInsertUserReview" parameterType="int">
+		update reservation
+		set status = 'close'
+		where no = #{resvNo}
+	</update>
+	
+	
+	<select id="getPassengerList" parameterType="map" resultType="map">
+		select userNo,
+			name
+		from reservation r, users u
+		where mateNo = #{mateNo}
+		and userNo = u.no
+		and userNo != #{userNo}
+		order by userNo asc
+	</select>
+	
+	<insert id="insertDriverReview" parameterType="rVo">
+		insert into driverReview
+		values(
+			seq_userReview_no.nextval,
+			#{resvNo},
+			#{userNo},
+			#{star}
+		)
+	</insert>
+	
+	<update id="afterInsertDriverReview" parameterType="int">
+		update reservation
+		set status = 'close'
+		where no = #{resvNo}
+	</update>
+	
+	<select id="getReviewedPassengerList" parameterType="int" resultType="int">
+		select userNo
+		from driverReview
+		where resvNo = #{resvNo}
+		order by userNo asc
+	</select>
+	
 </mapper>

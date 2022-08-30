@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.DriverLicenseVo;
-<<<<<<< HEAD
 import com.spotmate.vo.MyUsageVo;
+import com.spotmate.vo.ReviewInfoVo;
+import com.spotmate.vo.ReviewVo;
 import com.spotmate.vo.UsageSearchVo;
-=======
 import com.spotmate.vo.myQnaVo;
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 @Repository
 
@@ -92,7 +91,7 @@ public class MypageRDao {
 		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
 		return count;
 	}
-<<<<<<< HEAD
+
 	
 	
 	//카정보수정
@@ -189,10 +188,7 @@ public class MypageRDao {
 		map.put("eNum", endRnum);
 		return ss.selectList("mypageR.getuserlistresv", map);
 	}
-=======
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
-
-<<<<<<< HEAD
+	
 	public List<MyUsageVo> getDriverCrtPageResv(int userNo, int startRnum, int endRnum) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userNo", userNo);
@@ -222,9 +218,38 @@ public class MypageRDao {
 		return ss.selectList("mypageR.getdriversearchlistresv", map);
 	}
 	
-=======
+	public int getMateNoByResvNo(int resvNo) {
+		return ss.selectOne("mypageR.getMateNoByResvNo", resvNo);
+	}
+	
+	public ReviewInfoVo forReviewInfo(Map<String, Object> map) {
+		return ss.selectOne("mypageR.forReviewInfo", map);
+	}
+	
+	public void insertUserReview(ReviewVo rVo) {
+		ss.insert("mypageR.insertUserReview", rVo);
+	}
+	public void afterInsertUserReview(int resvNo) {
+		ss.update("mypageR.afterInsertUserReview", resvNo);
+	}
+	
+	public List<Map<String, Object>> getPassengerList(Map<String, Object> map) {
+		return ss.selectList("mypageR.getPassengerList", map);
+	}
+	
+	public List<Integer> getReviewedPassengerList(int resvNo) {
+		return ss.selectList("mypageR.getReviewedPassengerList", resvNo);
+	}
+	
+	public void insertDriverReview(ReviewVo rVo) {
+		ss.insert("mypageR.insertDriverReview", rVo);
+	}
+	public void afterInsertDriverReview(int resvNo) {
+		ss.update("mypageR.afterInsertDriverReview", resvNo);
+	}
+	
+	
 	// 카정보수정
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 
 	/*
 	 * // 수정 public int update(DriverLicenseVo dlvo) {

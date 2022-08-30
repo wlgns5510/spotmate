@@ -151,29 +151,15 @@
 								<td>${ui.convertPoint}</td>
 								<td><input type="hidden" class="status" value="${ui.status}"></td>
 								<c:choose>
-								<c:when test="${ui.status == 'close'}">
+								<c:when test="${ui.status == 'open'}">
 								<td>
-									<button type="button" class="btn_review" onclick="msg()">후기작성</button>
+									<button type="button" class="btn_review" onclick="msg(${ui.resvNo})">후기작성</button>
 								</td>
 								</c:when>
 								<c:otherwise>
-								<c:choose>
-								<c:when test="${ui.type=='히치 하이크'}">
-									<td>
-										<a href="/spotHitchhikedeep/${ui.mateNo}"><button type="button" class="btn_review">진행중</button></a>
-									</td>
-								</c:when>
-								<c:when test="${ui.type=='카풀 1회성' || ui.type=='카풀 정기권'}">
-									<td>
-										<a href="/spotCarpoolDeep/${ui.mateNo}"><button type="button" class="btn_review">진행중</button></a>
-									</td>
-								</c:when>
-								<c:when test="${ui.type=='메이트'}">
-									<td>
-										<a href="/mateDeep/${ui.mateNo}"><button type="button" class="btn_review">진행중</button></a>
-									</td>
-								</c:when>
-								</c:choose>
+								<td>
+									<button type="button" class="btn_review" >작성완료</button>
+								</td>
 								</c:otherwise>
 								</c:choose>
 							</tr>
@@ -184,9 +170,9 @@
 					<div class="reserv-paging">
 						<ul>
 							<c:if test="${uMap.prev == true}">
-							<li><a href="/myUsageUserMain/1"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+							<li><a href="/myUsageDriverMain/1"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 								</a></li>
-								<li><a href="/myUsageUserMain/${crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								<li><a href="/myUsageDriverMain/${crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
 								</a></li>
 							</c:if>
 							<c:forEach begin="${uMap.startPageNum}" end="${uMap.endPageNum}" step="1" var="page">
@@ -196,14 +182,14 @@
 										<input type="hidden" value="${page}" class="crtPage">
 									</c:when>
 									<c:otherwise>
-										<li><a href="/myUsageUserMain/${page}">${page}</a></li>
+										<li><a href="/myUsageDriverMain/${page}">${page}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							<c:if test="${uMap.next == true}">					
-								<li><a href="${uMap.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								<li><a href="/myUsageDriverMain/${uMap.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
 								</a></li>
-								<li><a href="/myUsageUserMain/${uMap.endPageNum}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								<li><a href="/myUsageDriverMain/${uMap.endPageNum}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
 							</a></li>
 							</c:if>
 						</ul>
@@ -221,6 +207,10 @@
 
 </body>
 <script>
+
+function msg(resvNo) {
+	 window.open("/userReview/"+resvNo, "child", "width=1350, height=820, left=300, top=100");
+}
 
 document.getElementById("startDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("endDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);

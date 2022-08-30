@@ -292,11 +292,10 @@
 
 <!-- 	rideReq를 통해서 탑승 예약 -->
 
-	<select id="chkride" parameterType="map" resultType="int">
+	<select id="chkride" parameterType="int" resultType="int">
 		select people
-		from reservation
-		where mateNo = #{mateNo}
-		and userNo = #{userNo}
+		from spotmate
+		where no = #{mateNo}
 	</select>
 
 <!-- cancel을 이용해서 탑승 예약 취소 -->

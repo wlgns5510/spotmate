@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
 	<meta name="title" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -42,71 +43,99 @@
 	<meta name="theme-color" content="#ffffff">
 	
 	<!-- css, js 연결 -->
-	<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
 	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
 	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
-	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	<link rel="stylesheet" href="/assets/css/style.css">
+
+<title>review</title>
+
+
 </head>
+
 <body>
-	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-		<div class="driver-top-banner">
-	<c:if test="${param.result == 'fail'}">
-		<input type="hidden" id="hitchfail" value="">
-	</c:if>
-	<div class="content-head">
-		<div class="clear" style="width:1920px; margin:0px auto;">
-			<div class="driver-MainText1">
-			<img src="/assets/images/common/login_image_100_01.png"> 
-				<p> 드라이버<br>이동 경로 등록하기</p>
+<div class="review-box">
+    <form action="/userReviewInsert" method="get">
+		<div class="review-first-box clear">
+			<p class="rbp">이용 내역</p>
+			<div class="review-in-box">
+				<p class="rfbp">출발지</p>
+				<p class="rfbp2">도착지</p>
+				<p class="rfbp">탑승 인원 수</p>
+				<p class="rfbp2">탑승 시간</p>
+				<p class="rfbp">총 결제 포인트</p>
 			</div>
-				<p class="driver-MainText2">드라이버님이 이동하시는 경로를 등록해주시면<br> 같이 이동을 원하는
-					유저가 카풀을 신청 할 예정입니다.
-				</p>
-		</div>
-	</div>	
-	</div>
-	
-	<div id="driver-content">	
-		<div class="second clear" data-aos="fade-left">
-			<div class="s1">
-				<p class="sfd">SPOT CARPOOL</p>
-				<span class="ssd">스팟 카풀 서비스는 '스팟'에서 '스팟'으로 이동하는<br>
-					드라이버와 유저를 매칭해주는 카풀 서비스로<br> 원하는 장소와 기간을 설정하여 등록할 수 있습니다.
-				<a href="./carpoolWrite">등록하기&nbsp; →</a></span>
+			<div class="review-in-box">
+				<p class="rbp">${riVo.splace}</p>
+				<p class="rbp2">${riVo.eplace}</p>
+				<p class="rbp">${riVo.people}명</p>
+				<p class="rbp2">${riVo.startTime}</p>
+				<p class="rbp rbpc">${riVo.convertPoint}</p>
 			</div>
-			<img src="/assets/images/road1.jpg">
-		</div>
-		<div class="third clear" data-aos="fade-right">
-			<img src="/assets/images/road2.jpg">
-			<div class="t1">
-				<p class="tfd">SPOT HITCHHIKE</p>
-				<span class="tsd">스팟 카풀 서비스는 '스팟'에서 '스팟'으로 이동하는<br>
-					드라이버와 유저를 매칭해주는 카풀 서비스로<br> 원하는 장소와 기간을 설정하여 등록할 수 있습니다.
-				<a href="./hitchWrite">등록하기&nbsp; →</a></span>
+			<div class="review-in-box review-last-box">
+				<img class="review-img" src="/assets/images/map_line_02.png">
+				<span class="rbpc">도착지까지 소요시간 ${riVo.duration}, ${riVo.distance}</span>
 			</div>
 		</div>
-		<div class="fourth clear" data-aos="fade-left">
-			<img src="/assets/images/road1.jpg">
-			<div class="f1">
-				<p class="ffd">MATE PRODUCT</p>
-				<span class="fsd">메이트 서비스는 드라이버가 이동하는 경로를 등록하여 <br> 출발지에서
-					도착지까지 모든 일정을<br> 함께하는 이동 메이트 서비스입니다.
-				<a href="./mateWrite" class="btn_a2">등록하기&nbsp; →</a></span>
+		<div class="review-second-box">
+			<p class="rbp">드라이버 평가*</p>
+			<p class="rbp">운전자의 매너 점수를 평가해주세요</p>
+			<div class="score-box">
+				<div class="score">
+					<input class="slider" type="range" min="0" max="10" step="1" value="0" >
+					<input type="hidden" name="star" value="" id="rs">
+					<input type="hidden" name="resvNo" value="${riVo.resvNo}">
+					<div class="foreground">★★★★★</div>
+					<div class="background">☆☆☆☆☆</div>
+				</div>
+				<span class="display">0</span>
 			</div>
 		</div>
-	</div>
-	
-	
-	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+		<div class="review-third-box">
+			<p class="rbp">탑승 후기를 작성해주세요*</p>
+			<textarea class="rhb-ta" name="content" placeholder="너무 좋았어요!"></textarea>
+		</div>
+		<div>
+			<button type="submit" class="review-btn">등록하기</button>
+		</div>
+	</form>
+</div>
+
+
 </body>
-<script>
-	AOS.init();
-	if ( $("#hitchfail").val() == "") {
-		alert("이미 운행 신청한 hitchhike가 있습니다.");
-	}
+<script type="text/javascript">
+
+// ★★★★★
+$(".review-btn").on("click", function() {
+	window.close();
+})
+$(".score .foreground").css("width", "0%");
+$(".score-box .display").html(0);
+
+$(".slider").on("mousemove", function(){
+	percent = $(".slider").val()*10;
+	point = $(".slider").val() / 2.0;
+	
+	$(".score .foreground").css("width", percent+"%");
+	$(".score-box .display").html(point);
+	
+	$("#rs").val($(".slider").val() / 2);
+	
+// 	if( star < 1 ){
+// 		$(".score .foreground").text();
+// 	} else if ( 2<= star < 4 ) {
+// 		$(".score .foreground").text('★');
+// 	} else if ( 4<= star < 6 ) {
+// 		$(".score .foreground").text('★★');
+// 	} else if ( 6<= star < 8 ) {
+// 		$(".score .foreground").text('★★★');
+// 	} else if ( 8<= star < 10 ) {
+// 		$(".score .foreground").text('★★★★');
+// 	} else if ( 10<= star < 11 ) {
+// 		$(".score .foreground").text('★★★★★');
+// 	}
+});
+	
+	
 </script>
+
+
 </html>

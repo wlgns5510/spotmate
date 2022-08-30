@@ -3,7 +3,7 @@
 
 .score-box {
 	font-size: 20px;
-	border:1px solid black;
+/* 	border:1px solid black; */
 }
 
 .score-box .score {
@@ -25,8 +25,7 @@
 	top: 0px;
 	left: 0px;
 	overflow: hidden;
-	color: red;
-	width: 0%;
+	color: #4454a1;
 }	 
 
 
@@ -75,4 +74,66 @@
 /*페이징*/
 .myPage-usage-article2 .paging ul>li>a.active {
 	font-size: 15px;
+}
+.review-box {
+	width: 720px;
+    margin: 60px auto;
+    padding: 50px;
+    box-shadow: 0px 0px 5px 1px #e8e7e7;
+}
+
+.review-first-box {
+	padding: 0px 0px 20px 0px; 
+	border-bottom:1px solid #bfbfbf;
+}
+
+.review-second-box {
+	padding-bottom:40px; 
+	margin:40px 0px 40px 0px; 
+	border-bottom:1px solid #bfbfbf;
+}
+.review-third-box {
+	margin: 40px 0px 40px 0px;
+}
+.review-last-box {
+	margin: 0px 0px 0px 40px;
+}
+.review-in-box {
+	float:left;
+}
+
+.review-img {
+	height: 60px; 
+}
+.rhb-ta {
+	display:block;
+	width:700px; 
+	height:100px; 
+	margin:0px auto;
+	border-radius: 5px;
+}
+.review-btn {
+	display:block; 
+	margin:0px auto; 
+	border-radius:5px; 
+	width:200px; 
+	height:50px; 
+	background-color:#4454a1; 
+	color:white;
+}
+.rbp {
+	margin: 0px 0px 20px 0px;
+}
+.rbp2 {
+	margin: 0px 0px 50px 0px;
+}
+.rbpc {
+	color:#4454a1;
+}
+
+.rfbp {
+	margin: 0px 30px 20px 0px;
+}
+.rfbp2 {
+	margin: 0px 30px 50px 0px;
 }
