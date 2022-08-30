@@ -33,11 +33,13 @@ public class CarpoolService {
 		// 현재페이지
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 
+					
 		// 시작글번호
-		int startRnum = (crtPage - 1) * listCnt + 1;
+		int startRnum  = (crtPage - 1) * listCnt + 1;
 
 		// 끝글번호
 		int endRnum = (startRnum + listCnt) - 1;
+		
 
 		// 시작글번호 끝글번호 대입
 		carpoolVo.setStartRnum(startRnum);
@@ -133,18 +135,22 @@ public class CarpoolService {
 		int mateNo = carpoolVo.getSpotMateNo();
 		int people = carpoolVo.getPeople();
 		int canRide = carpoolDao.chkPeople(mateNo);
-		if(canRide >= people) {
+		int usablePoint = carpoolDao.getTotalPoint(userNo);
+		if(canRide < people ) {
+			return -1;
+		} else if ( usablePoint < carpoolVo.getPoint() ) {
+			return -2;
+		} else if(canRide >= people && usablePoint >= carpoolVo.getPoint() ) {
 			Map<String, Object> map = new HashMap<>();
 			map.put("people", people);
 			map.put("mateNo", mateNo);
 			carpoolDao.updateReservPeople(map); //인원수 업데이트 --> 스팟메이트
 			carpoolDao.saveCarpool(carpoolVo); //예약내역 저장
+			carpoolDao.savePoint(carpoolVo);
 			return 0;
 		} else {
 			return -1;
 		}
-		
-				
 		
 	}
 
