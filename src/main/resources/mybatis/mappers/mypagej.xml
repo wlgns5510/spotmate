@@ -237,13 +237,17 @@
 			                   where userno = #{userNo}
 			                   and (type = '충전' or type='환불' or type='구매')
 		]]>
-
+			
 		<if test="option1 != '' and option1 != null">
 			and type = #{option1}
 		</if>
-
+		
+		<![CDATA[
+			) where no = #{userNo}
+		]]>
+		
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate -1
+			and #{endDate} >= regDate 
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -251,7 +255,7 @@
 		</if>
 		
 		<![CDATA[
-			         )order by regDate desc
+			order by regDate desc      
 			        )ot
 			       )ort
 			where rn>=#{startRnum}
@@ -343,7 +347,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate -1
+			and #{endDate} >= regDate
 		</if>
 
 		<if test="startDate != '' and startDate != null">
