@@ -130,9 +130,12 @@
 							탑승 가능 인원 수<br> 
 							<div class="confirm">
 								${mMap.mateVo.people}명
-							</div> 
+							</div>
+							<c:if test='${param.result == "fail"}'>
+								<p class= overPeople>※ 탑승 가능 인원 수를 초과하였습니다</p>
+							</c:if>
 							탑승 요청 인원 수<br>
-							<input class="confirm-2" type="text" name="requestPeople" value="" placeholder=" 인원 수를 입력해주세요">
+							<input class="confirm-2" type="number" name="people" value="1" placeholder=" 인원 수를 입력해주세요">
 							탑승 시간<br> 
 							<div class="confirm">
 								<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
@@ -157,6 +160,7 @@
 									</c:if>
 								</c:forEach>
 							</div>
+							<input type="hidden" name="spotMateNo" value="${mMap.mateVo.mateNo}">
 	
 						
 	
@@ -172,12 +176,10 @@
 	
 							<c:choose>
 								<c:when test="${authUser != null}">
-									<a href="/myReservationUserMain">
 										<button type="submit" class="rideButton">탑승하기</button>
-									</a>
 								</c:when>
 								<c:otherwise>
-									<a href="/loginForm"><button class="rideButton">로그인 하러 가기</button></a>
+									<a href="/loginForm"><button type="button" class="rideButton">로그인 하러 가기</button></a>
 								</c:otherwise>
 							</c:choose>
 						</form>

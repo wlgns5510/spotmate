@@ -1,6 +1,7 @@
 package com.spotmate.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,43 @@ public class MateDao {
 		return optList;
 	}
 	
+	//메이트 user 예약내역 DB에 저장하기
+	public void saveMate(MateVo mateVo) {
+		System.out.println("MateDao >> saveMate");
+		
+		System.out.println(mateVo);
+		
+		sqlSession.insert("mate.insertUserMateInfo",mateVo);		
+	}
 	
+	//인원체크하기(차량 탑승가능인원)
+	public int chkPeople(int mateNo) {
+		System.out.println("MateDao >> chkPeople");
+	
+		return sqlSession.selectOne("mate.chkpeople", mateNo);
+	}
+	
+	//인원체크하기(탑승할 인원), 차량 탑승가능인원에서 탑승할 인원을 빼준다.
+	public void updateReservPeople(Map<String,Object> map) {
+		System.out.println("MateDao >> updateReservPeople");
+		
+		sqlSession.update("mate.updatereservpeople", map);
+	}
+	
+	//user 예약시 포인트 DB 저장
+	public void savePoint(MateVo mateVo) {
+		System.out.println("MateDao >> savePoint");
+		
+		sqlSession.insert("mate.insertUserMatePoint", mateVo);
+	}
+	
+	//user가 갖고 있는 포인트 잔액
+	public int getTotalPoint(int userNo) {
+		System.out.println("MateDao >> getTotalPoint");
+		
+		int totalPoint = sqlSession.selectOne("mypagej.selectTotalPoint", userNo);
+		
+		return totalPoint;
+	}
 	
 }

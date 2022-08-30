@@ -25,9 +25,9 @@
 	
 	
 	<!-- select mqa 가져오기  -->
-	<select id="selectmqaList" parameterType="com.spotmate.vo.myQnaVo" resultType="com.spotmate.vo.myQnaVo">
+	<select id="selectmqaList" parameterType="int" resultType="com.spotmate.vo.myQnaVo">
 		<![CDATA[
-	 		select  mq.no myqna,
+	 		select  mq.no ,
         			mq.type,
         			mq.regDate,
         			mq.title,
@@ -36,7 +36,7 @@
 			        u.no userNo
 			from myqna mq, users u
 			where u.no = mq.userno
-			and u.no = 1
+			and u.no = #{userNo}
 		]]>
 		
 		</select>

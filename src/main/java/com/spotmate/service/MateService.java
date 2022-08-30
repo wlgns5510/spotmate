@@ -87,6 +87,32 @@ public class MateService {
 		return mateDriverMap;	
 	}
 	
+	//메이트 user 예약내역 DB에 저장하기
+	public int saveMate(int userNo, MateVo mateVo) {
+		System.out.println("MateService >> saveMate");
+		
+		mateVo.setUserNo(userNo);
+		
+		int mateNo = mateVo.getSpotMateNo();
+		System.out.println(mateNo);
+		int people = mateVo.getPeople();
+		System.out.println(people);
+		int canRide = mateDao.chkPeople(mateNo);
+		int usablePoint = mateDao.getTotalPoint(userNo);
+		if(canRide >= people && usablePoint >= mateVo.getPoint()) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("people", people);
+			map.put("mateNo", mateNo);
+			mateDao.updateReservPeople(map);	//인원수 업데이트(스팟메이트)
+			mateDao.saveMate(mateVo);	//예약내역 저장
+			mateDao.savePoint(mateVo);
+			return 0;
+		} else {
+				return -1;
+		}
+		
+		
+	}
 	
 	
 	
