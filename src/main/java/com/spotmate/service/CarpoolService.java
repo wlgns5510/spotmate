@@ -33,11 +33,13 @@ public class CarpoolService {
 		// 현재페이지
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 
+					
 		// 시작글번호
-		int startRnum = (crtPage - 1) * listCnt + 1;
+		int startRnum  = (crtPage - 1) * listCnt + 1;
 
 		// 끝글번호
 		int endRnum = (startRnum + listCnt) - 1;
+		
 
 		// 시작글번호 끝글번호 대입
 		carpoolVo.setStartRnum(startRnum);

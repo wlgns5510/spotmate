@@ -89,10 +89,10 @@
 							<div class="style2">
 								<input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value=""> <select name="option1">
 									<option value="">유형</option>
-									<option value="카풀정기권">카풀정기권</option>
-									<option value="카풀1회성">카풀1회성</option>
-									<option value="히치하이크">히치하이크</option>
-									<option value="메이트">메이트</option>
+									<option value="season">카풀정기권</option>
+									<option value="carpool">카풀1회성</option>
+									<option value="hitchhike">히치하이크</option>
+									<option value="mate">메이트</option>
 									<option value="충전">충전</option>
 									<option value="구매">구매</option>
 									<option value="환불">환불</option>
