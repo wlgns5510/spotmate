@@ -18,7 +18,7 @@ public class UserController {
    @Autowired
    private UserService uService;
    
-   @RequestMapping(value = "/index", method = { RequestMethod.GET, RequestMethod.POST })
+   @RequestMapping(value = "/index, /", method = { RequestMethod.GET, RequestMethod.POST })
    public String index() {
       return "/index";
    }
