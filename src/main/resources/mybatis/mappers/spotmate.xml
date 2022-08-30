@@ -207,7 +207,7 @@
 		order by s.no desc
 	</select>
 
-	<select id="nearhitchlist" parameterType="int" resultType="hVo">
+	<select id="nearHitchListLogin" parameterType="int" resultType="hVo">
 		select s.no mateNo,
 		place eplace1,
 		slatlng.lat,
@@ -228,6 +228,29 @@
 		and s.type = 'hitchhike'
 		and s.status = 'open'
 		and carNo != #{userNo}
+        order by s.no desc
+	</select>
+	
+	<select id="nearHitchListNoLogin" resultType="hVo">
+		select s.no mateNo,
+		place eplace1,
+		slatlng.lat,
+		slatlng.lng,
+		s.people people,
+		s.point point,
+        latlng
+		from spotmate s, place p, (select lat,
+                                          lng,
+                                          s.no no
+                                   from spotmate s, place p
+                                   where s.no = p.mateNo
+                                   and wayno = -1) slatlng
+		where p.mateNo = s.no
+		and slatlng.no = s.no
+		and wayno = 0
+		and s.people > 0
+		and s.type = 'hitchhike'
+		and s.status = 'open'
         order by s.no desc
 	</select>
 	

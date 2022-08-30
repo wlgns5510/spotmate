@@ -88,6 +88,11 @@ public class HitchService {
 		return nhL;
 	}
 	
+	public List<HitchVo> nearHitchList() {
+		List<HitchVo> hL = hDao.nearHitchList();
+		return hL;
+	}
+	
 	public List<HitchVo> getNear(MapVo mVo, int userNo) {
 		Haversine haver = new Haversine();
 		List<HitchVo> hL = hDao.getNear(userNo);

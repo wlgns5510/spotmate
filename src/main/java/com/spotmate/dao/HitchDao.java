@@ -27,7 +27,11 @@ public class HitchDao {
 		return ss.selectList("spotmate.selectnear", userNo);
 	}
 	public List<HitchVo> nearHitchList(int userNo) {
-		return ss.selectList("spotmate.nearhitchlist", userNo);
+		return ss.selectList("spotmate.nearHitchListLogin", userNo);
+	}
+	
+	public List<HitchVo> nearHitchList() {
+		return ss.selectList("spotmate.nearHitchListNoLogin");
 	}
 	//신청한게 있나 없나 확인
 	public Map<String, Object> cancelChk(int mateNo, int userNo) {

@@ -276,14 +276,16 @@ public class MypageRService {
 	private void setMl(List<MyUsageVo> mL) {
 		ConvertPoint cp = new ConvertPoint();
 		for (int i = 0; i < mL.size(); i++) {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-			LocalDateTime now = LocalDateTime.now();
-			LocalDateTime onTime = LocalDateTime.parse(mL.get(i).getStartDate(), formatter);
-			now.format(formatter);
-			if(now.isBefore(onTime)) {
-				mL.get(i).setStatus("noRide");
-			} else {
-				mL.get(i).setStatus("ride");
+			if( mL.get(i).getStartDate() != null) {
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+				LocalDateTime now = LocalDateTime.now();
+				LocalDateTime onTime = LocalDateTime.parse(mL.get(i).getStartDate(), formatter);
+				now.format(formatter);
+				if(now.isBefore(onTime)) {
+					mL.get(i).setStatus("noRide");
+				} else {
+					mL.get(i).setStatus("ride");
+				}
 			}
 			mL.get(i).setStartPlace(mL.get(i).getFullPlace().split(",")[0]);
 			mL.get(i).setEndPlace(mL.get(i).getFullPlace().split(",")[1]);

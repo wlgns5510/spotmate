@@ -15,9 +15,12 @@
 		        #{name},
 		        #{email},
 		        #{phone},
-		        #{address}||","||#{addressDeatil},
+		        #{address}||','||#{address_detail},
 		        #{gender},
 		        #{birth},
+		        '',
+		        '',
+		        '',
 		        '',
 		        ''
 		)
@@ -44,5 +47,28 @@
 		and id = #{id}
 		and pw = #{pw}
 	</select>
+	
+	<select id="idChk" parameterType="String" resultType="int">
+		select count(*)
+		from users
+		where id = #{id}
+	</select>
+	
+	<select id="kakaoLogin" parameterType="hashmap" resultType="userVo">
+		select u.no no
+			   ,u.name name
+			   ,c.no carNo
+		from users u, car c
+		where u.no = c.userNo
+		and u.name = #{nickname}
+		and kakaoEmail = #{email}
+	</select>
+	
+	<update id="insertKakao" parameterType="map">
+		update users
+		set kakaoEmail = #{email}
+		where name = #{nickname}
+		and no = #{userNo}
+	</update>
 
 </mapper>
