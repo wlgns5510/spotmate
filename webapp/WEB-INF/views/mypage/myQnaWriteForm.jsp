@@ -110,7 +110,7 @@
 
 				<article class="myPage_article2">
 				<form method="post"
-							action="${pageContext.request.contextPath }/myQnaInsert">
+							action="${pageContext.request.contextPath }/myQnaInsert" id="myqnaform">
 					<h4></h4>
 
 
@@ -121,29 +121,28 @@
 
 							<tr>
 								<td><label for="type">유형*</label></td>
-								<td><select id="option1" class="form-select"
-									aria-label="Default select example" name="qna_type">
+								<td><select id="option1" name="type">
 										<option value=selected>&nbsp;&nbsp;문의 유형을 선택해주세요</option>
-										<option value="1">카풀 문의</option>
-										<option value="2">히치하이크 문의</option>
-										<option value="3">메이트 문의</option>
-										<option value="4">드라이버 문의</option>
-										<option value="5">포인트/쿠폰문의</option>
-										<option value="6">기타문의</option>
+										<option value="카풀">카풀 문의</option>
+										<option value="히치하이크">히치하이크 문의</option>
+										<option value="메이트">메이트 문의</option>
+										<option value="드라이버">드라이버 문의</option>
+										<option value="포인트">포인트/쿠폰문의</option>
+										<option value="기타">기타문의</option>
 								</select></td>
 							</tr>
 
 
 							<tr>
 								<td><label>제목*</label></td>
-								<td><input id="title" name="title" placeholder="&nbsp;제목을 작성해주세요"
+								<td><input id="qnatitle" name="title" placeholder="&nbsp;제목을 작성해주세요"
 									type="text"></td>
 							</tr>
 							<tr>
 								<td><span>내용*</span></td>
-								<td><textarea name="contents" placeholder="내용을 입력해주세요"></textarea></td>
+								<td><textarea name="content" placeholder="내용을 입력해주세요"></textarea></td>
 							</tr>
-							<tr>
+							<!-- <tr>
 								<td><span>이미지</span></td>
 								<td><input type="file" name="image" class="real-upload" accept="image/*" required multiple style="display: none;">
 									<div type="button" class="imgbox">
@@ -151,21 +150,21 @@
 										
 									</div>
 									</td>
-							</tr>
+							</tr> -->
 						</table>
 						
 					</div>
 					<div class="QnaWFp_group">
-						<p class=gray_bottomtext>* 30MB이상의 이미지만 업로드 가능합니다.</p>
+						<!--<p class=gray_bottomtext>* 30MB이상의 이미지만 업로드 가능합니다.</p> -->
 						<p class=gray_bottomtext>* 서비스와 무관한 내용이거나 음란 및 불법적인 내용은 사전
 							통보없이 삭제될 수 있습니다.</p>
-						<p class=gray_bottomtext>* 사진은 최대 8장까지 등록가능합니다.</p>
+						<!--<p class=gray_bottomtext>* 사진은 최대 8장까지 등록가능합니다.</p> -->
 					</div>
 					<br> <br>
 					<div class="underlinegray"></div>
 					<!--  <input type="submit" value="등록하기" alt="등록하기"
 						class="DForm_enrollbtn"> -->
-						<input type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
+						<input id="ssubmit" type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
 </form>
 				</article>
 			</section>
@@ -179,8 +178,20 @@
 
 </body>
 <script type="text/javascript">
+let ssubmit = false;
 
-function getImageFiles(e) {
+function issubbmit() {
+	if(!ssubmit) {
+		alert("등록되었습니다.");
+		return ture;
+	}
+	
+	document.getElementById("myqnaform").submit();
+}
+
+
+
+<!--function getImageFiles(e) {
 	 const uploadFiles = [];
     const files = e.currentTarget.files;
     const imagePreview = document.querySelector('.image-preview');
@@ -201,7 +212,7 @@ const realUpload = document.querySelector('.real-upload');
 const imgbox = document.querySelector('.imgbox');
 
 imgbox.addEventListener('click', () => realUpload.click());
-realUpload.addEventListener('change', getImageFiles);
+realUpload.addEventListener('change', getImageFiles); -->
 </script>
 
 </html>

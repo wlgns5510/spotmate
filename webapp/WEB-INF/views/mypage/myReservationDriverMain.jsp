@@ -83,10 +83,10 @@
 					<tr>
 						<div class="topnav">
 							<ul>
-								<li><a class="active" href="/myReservationDriverMain">DRIVER 예약 등록 내역</a></li>
+								<li><a class="active" href="/myReservationDriverMain/1">DRIVER 예약 등록 내역</a></li>
 							</ul>
 							<ul>
-								<li><a href="/myReservationUserMain">USER 예약 신청 내역</a></li>
+								<li><a href="/myReservationUserMain/1">USER 예약 신청 내역</a></li>
 							</ul>
 						</div>
 					</tr>
@@ -95,28 +95,29 @@
 
 
 							<div class="inputBox_r">
-								<form>
-									<input type="date" value="2022-08-02"> <span> ~ </span> <input type="date" value="2022-08-02">
-
+								
+								<form action="/myReservationDriverMain/1" method="get">
+									<input name="sdate" id="startDate" type="date" value=""> <span> ~ </span> <input name="edate" id="endDate" type="date" value="">
+		
 									<!-- <label for="lecture">유형</label> -->
-									<select id="option1" class="form-select" aria-label="Default select example">
+									<select name="type" id="option1" class="form-select" aria-label="Default select example">
 										<option value=selected>유형</option>
-										<option value="1">카풀정기권</option>
-										<option value="2">히치하이크</option>
-										<option value="3">메이트</option>
-										<option value="4">카풀1회성</option>
-										<option value="5"><span style="color: red">패널티</span></option>
+										<option value="seasonTicket">카풀정기권</option>
+										<option value="hitchhike">히치하이크</option>
+										<option value="mate">메이트</option>
+										<option value="carpool">카풀1회성</option>
+										<option style="color: red" value="penalty">패널티</option>
 									</select>
-
+		
 									<!-- <label for="lecture">참여주체</label> -->
-									<select id="option1" class="form-select" aria-label="Default select example">
+									<select name="status" id="option2" class="form-select" aria-label="Default select example">
 										<option value=selected>상태</option>
-										<option value="1">모집중</option>
-										<option value="2">모집완료</option>
+										<option id="out" value="">탑승대기</option>
+										<option id="in" value="">탑승완료</option>
 									</select>
-
-									<button type="button" class="myPage_btnB">조회하기</button>
-									<a href="./driver"><button type="button" class="myPage_btnY">등록하러가기 ></button></a>
+		
+									<button type="submit" class="myPage_btnB">조회하기</button>
+									<a href="/driver"><button type="button" class="myPage_btnC">등록하러가기 ></button></a>
 								</form>
 							</div>
 <!--  메모-->
@@ -140,126 +141,75 @@
 								<th>출발지</th>
 								<th>도착지</th>
 								<th>지급포인트</th>
+								<th></th>
 								<th>상태</th>
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach items="${uMap.mL}" var="ui" varStatus="status">
 							<tr>
-								<td>1</td>
-								<td>히치하이크</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+10000</td>
-								<td class="myRDMstate">모집완료</td>
+								<td>${ui.rn}</td>
+								<td>${ui.type}</td>
+								<td>${ui.regDate}</td>
+								<td>${ui.startPlace}</td>
+								<td>${ui.endPlace}</td>
+								<td>${ui.convertPoint}</td>
+								<td><input type="hidden" class="status" value="${ui.status}"></td>
+								<c:choose>
+								<c:when test="${ui.status == 'close'}">
+								<td>
+									<button type="button" class="btn_review" onclick="msg()">모집완료</button>
+								</td>
+								</c:when>
+								<c:otherwise>
+								<c:choose>
+								<c:when test="${ui.type=='히치 하이크'}">
+									<td>
+										<a href="/spotHitchhikedeep/${ui.mateNo}"><button type="button" class="btn_review">진행중</button></a>
+									</td>
+								</c:when>
+								<c:when test="${ui.type=='카풀 1회성' || ui.type=='카풀 정기권'}">
+									<td>
+										<a href="/spotCarpoolDeep/${ui.mateNo}"><button type="button" class="btn_review">진행중</button></a>
+									</td>
+								</c:when>
+								<c:when test="${ui.type=='메이트'}">
+									<td>
+										<a href="/mateDeep/${ui.mateNo}"><button type="button" class="btn_review">진행중</button></a>
+									</td>
+								</c:when>
+								</c:choose>
+								</c:otherwise>
+								</c:choose>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>히치하이크</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+10000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>메이트</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+5000</td>
-								<td class="myRDMstate">남은좌석</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>카풀1회성</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+5000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>히치하이크</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+5000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>히치하이크</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+5000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
-							<tr>
-								<td>7</td>
-								<td>히치하이크</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+5000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
-							<tr>
-								<td>8</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+3000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
-							<tr>
-								<td>9</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+5000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
-							<tr>
-								<td>10</td>
-								<td>카풀 정기권</td>
-								<td>2022.07.26</td>
-								<td>출발지</td>
-								<td>도착지</td>
-								<td>+3000</td>
-								<td class="myRDMstate">모집완료</td>
-							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 					<div class="reserv-paging">
 						<ul>
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+							<c:if test="${uMap.prev == true}">
+							<li><a href="/myReservationDriverMain/1"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+								</a></li>
+								<li><a href="/myReservationDriverMain/${crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								</a></li>
+							</c:if>
+							<c:forEach begin="${uMap.startPageNum}" end="${uMap.endPageNum}" step="1" var="page">
+								<c:choose>
+									<c:when test="${uMap.crtPage == page}">
+										<li class="active"><a href="/myReservationDriverMain/${page}">${page}</a></li>	
+										<input type="hidden" value="${page}" class="crtPage">
+									</c:when>
+									<c:otherwise>
+										<li><a href="/myReservationDriverMain/${page}">${page}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${uMap.next == true}">					
+								<li><a href="/myReservationDriverMain/${uMap.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								</a></li>
+								<li><a href="/myReservationDriverMain/${uMap.endPageNum}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
 							</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
-							</a></li>
-
-							<li><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">4</a></li>
-							<li class="active"><a href="">5</a></li>
-							<li><a href="">6</a></li>
-							<li><a href="">7</a></li>
-							<li><a href="">8</a></li>
-							<li><a href="">9</a></li>
-							<li><a href="">10</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
-							</a></li>
-
-							<li><a href=""> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
-							</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</article>
@@ -273,6 +223,16 @@
 	</div>
 
 </body>
-
+<script>
+document.getElementById("startDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+document.getElementById("endDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+setTime();
+setInterval(function(){setTime()},60000);
+			
+function setTime(){
+			document.getElementById("in").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+			document.getElementById("out").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
+}
+</script>
 
 </html>

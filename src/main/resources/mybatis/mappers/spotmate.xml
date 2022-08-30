@@ -3,11 +3,73 @@
 
 <mapper namespace="spotmate">
 
+	<select id="getmateno" parameterType="int" resultType="int">
+		select s.no
+		from spotmate s, car c
+		where s.carNo = c.no
+		and type='hitchhike'
+		and c.userNo = #{userNo}
+	</select>
+	
+	<select id="searchlist" parameterType="hsVo" resultType="hsrVo">
+		select  splace.mateNo,
+		    eplace.place eplace1,
+		    splace.people,
+		    splace.point,
+		    latlng
+		from (select 
+		    s.no mateNo, 
+		    s.people,
+		    s.point,
+		    listagg(name, ',') within group(order by do.no asc) as name
+		from spotmate s, spotDetail sd, detailOpt do, place p
+		where s.no = sd.mateNo
+		and p.mateNo = s.no
+		and sd.detailNo = do.no
+		and wayno = -1
+		and place like '%'||#{splace}||'%'
+		and people >= #{people}
+		group by s.no, s.people, s.point
+		order by s.no desc) splace, (select place,  
+		                                    mateNo,
+		                                    latlng
+		                                from spotmate s, place p
+		                                where p.mateNo = s.no
+		                                and wayno = 0
+		                                and place like '%'||#{eplace}||'%'
+		                                and people >= #{people}
+		                                order by s.no desc) eplace
+		where splace.mateNo = eplace.mateNo
+		and name like '%'||#{detailOpt}||'%'
+		order by splace.mateNo desc
+	</select>
+	
+	<select id="chkanothercarpool" parameterType="int" resultType="com.spotmate.vo.StartEndTimeVo">
+		select to_char(startdate,  'yyyy-mm-dd hh24:mi') "start",
+    		to_char(enddate,  'yyyy-mm-dd hh24:mi') "end"
+		from spotmate
+		where carNo = #{userNo}
+		and type = 'carpool'
+		and status = 'open'
+	</select>
+	
+	<select id="chkanotherhitchhike" parameterType="int" resultType="String">
+		select comments 
+		from spotmate
+		where carNo = #{userNo}
+		and type = 'hitchhike'
+		and status = 'open'
+	</select>
 
-	<select id="selectdriverinfo" parameterType="int" resultType="String">
-		select introduce
-		from car
-		where no = #{userNo}
+ 
+	<select id="selectdriverinfo" parameterType="int" resultType="map">
+		select introduce,
+		    listagg(name, ',') within group(order by null) as name
+		from car c, carDetail cd, detailOpt do
+		where c.no = #{userNo}
+		and c.no = cd.carNo
+		and cd.detailNo = do.no
+		group by introduce
 	</select>
 
 	<select id="nowaddr" parameterType="int" resultType="String">
@@ -80,7 +142,7 @@
 	</select>
 <!-- 	hitchDeep 상세정보 review 없을 때-->
 
-	<select id="selectsummarydriverinfo" parameterType="int" resultType="hVo">
+	<select id="selectsummarydriverinfo" parameterType="map" resultType="hVo">
 		select place eplace1,
 			name,
 			s.people people
@@ -89,6 +151,7 @@
 													where u.no = r.driverNo
 													and r.mateNo = #{mateNo} )
 		where s.no = #{mateNo}
+		and s.carNo != #{userNo}
 		and s.no = p.mateNo
 		and r.mateNo = s.no
 		and wayno = 0
@@ -114,7 +177,7 @@
 		and s.no = r.mateNo
 		and type = 'hitchhike'
 		and wayno = -1
-		and status='open'
+		and s.status='open'
 		and u.no = #{no}
 	</select>
 
@@ -133,8 +196,9 @@
 		from place p, spotmate s
 		where wayno = 0
 		and s.no = p.mateno
-		and status = 'open'
+		and s.status = 'open'
 		and type = 'hitchhike'
+		and s.carNo != #{userNo}
 		and s.people > 0
 		order by s.no desc
 	</select>
@@ -158,7 +222,7 @@
 		and wayno = 0
 		and s.people > 0
 		and s.type = 'hitchhike'
-		and status = 'open'
+		and s.status = 'open'
 		and carNo != #{userNo}
         order by s.no desc
 	</select>
@@ -177,20 +241,27 @@
 	
 <!-- 	rideReq를 통해서 탑승예약 -->
 
-	<select id="chkpeople" parameterType="int" resultType="int">
-		select people
-		from spotmate
-		where no = #{mateNo}
-	</select>
-
-	<update id="updatereservpeople" parameterType="hrVo">
+	<insert id="updatereservpeople" parameterType="hrVo">
+	
+		<selectKey keyProperty="canRide" resultType="int" order="BEFORE">
+				select people
+				from spotmate
+				where no = #{mateNo}
+		</selectKey>
 		
 		update spotmate
-			set people = people - #{people}
+		<choose>
+			<when test="canRide >= people">
+				set people = people - #{people}
+			</when>
+			<otherwise>
+				set people = people
+			</otherwise>
+		</choose>
 		
 		where no = #{mateNo} 
 	
-	</update>
+	</insert>
 	
 	<insert id="makereserv" parameterType="hrVo">
 	
@@ -211,6 +282,7 @@
 			#{driverNo},
 			sysdate,
 			#{point},
+			'open',
 			#{people},
 			#{lat},
 			#{lng}
@@ -305,6 +377,7 @@
 		#{userNo},
 		sysdate,
 		#{intfare},
+		'open',
 		#{people},
 		'',
 		''
@@ -391,13 +464,14 @@
 		#{no},
 		#{carNo},
 		to_date(#{sdate1}||#{stime1}, 'yyyy-mm-dd hh24:mi'),
-		#{edate1},
+		to_date(#{edate1}||#{etime1}, 'yyyy-mm-dd hh24:mi'),
 		#{people},
 		#{type},
 		#{intfare},
 		#{dur},
 		#{dis},
-		#{comments}
+		#{comments},
+		'open'
 		)
 		<if test='nosmoke != null'>
 			into spotDetail
@@ -500,7 +574,8 @@
 		#{intfare},
 		'',
 		'',
-		#{comments}
+		#{comments},
+		'open'
 		)
 		into reservation
 		values (

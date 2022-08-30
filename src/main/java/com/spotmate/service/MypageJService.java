@@ -51,7 +51,6 @@ public class MypageJService {
 
 		// 전체글갯수
 		int totalCouponCnt = mypagejDao.totalCouponCnt(couponVo);
-		System.out.println(totalCouponCnt);
 
 		// 페이지당 버튼 갯수
 		int pageBtnCount = 5;
@@ -87,6 +86,7 @@ public class MypageJService {
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
+		cMap.put("totalCouponCnt", totalCouponCnt);
 
 		return cMap;
 
@@ -173,8 +173,7 @@ public class MypageJService {
 		///////////// 페이징계산//////////////
 
 		// 전체글갯수
-		int totalCouponCnt = mypagejDao.totalPointCnt(pointVo);
-		System.out.println(totalCouponCnt);
+		int totalPointCnt = mypagejDao.totalPointCnt(pointVo);
 
 		// 페이지당 버튼 갯수
 		int pageBtnCount = 5;
@@ -189,11 +188,11 @@ public class MypageJService {
 
 		// 다음 화살표 유무
 		boolean next = false;
-		if (listCnt * endPageBtnNo < totalCouponCnt) {
+		if (listCnt * endPageBtnNo < totalPointCnt) {
 			next = true;
 
 		} else {
-			endPageBtnNo = (int) Math.ceil(totalCouponCnt / (double) listCnt);
+			endPageBtnNo = (int) Math.ceil(totalPointCnt / (double) listCnt);
 
 		}
 
@@ -210,24 +209,23 @@ public class MypageJService {
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
-
+		cMap.put("totalPointCnt", totalPointCnt);
 		
 
 		for (PointVo p : pointList) {
-			if ("히치하이크".equals(p.getType()) && p.getPoint() > 0 || "메이트".equals(p.getType()) && p.getPoint() > 0
-					|| "카풀1회성".equals(p.getType()) && p.getPoint() > 0
-					|| "카풀정기권".equals(p.getType()) && p.getPoint() > 0) {
+			if ("hitchhike".equals(p.getType()) && p.getPoint() > 0 || "mate".equals(p.getType()) && p.getPoint() > 0
+					|| "carpool".equals(p.getType()) && p.getPoint() > 0
+					|| "season".equals(p.getType()) && p.getPoint() > 0) {
 				p.setpType("드라이버");
 			}
-			if ("히치하이크".equals(p.getType()) && p.getPoint() < 0 || "메이트".equals(p.getType()) && p.getPoint() < 0
-					|| "카풀1회성".equals(p.getType()) && p.getPoint() < 0
-					|| "카풀정기권".equals(p.getType()) && p.getPoint() < 0) {
+			if ("hitchhike".equals(p.getType()) && p.getPoint() < 0 || "mate".equals(p.getType()) && p.getPoint() < 0
+					|| "carpool".equals(p.getType()) && p.getPoint() < 0
+					|| "season".equals(p.getType()) && p.getPoint() < 0) {
 				p.setpType("유저");
 			}
 
 		}
-
-		System.out.println(pointList);
+		
 
 		return cMap;
 	}
@@ -313,6 +311,7 @@ public class MypageJService {
 		cMap.put("next", next);
 		cMap.put("endPageBtnNo", endPageBtnNo);
 		cMap.put("startPageBtnNo", startPageBtnNo);
+		cMap.put("totalRefundCnt", totalRefundCnt);
 		
 		return cMap;
 
@@ -323,7 +322,10 @@ public class MypageJService {
 	public void refundPoint(RefundVo refundVo, int userNo) {
 		System.out.println("MypageJService > refundPoint");
 		
+		String account = refundVo.getBank() + " " + refundVo.getAccountNum();
+		
 		refundVo.setUserNo(userNo);
+		refundVo.setAccountNum(account);
 		
 		int count = mypagejDao.insertRefundPoint(refundVo);
 		
@@ -368,6 +370,28 @@ public class MypageJService {
 			 state = "fail";
 		 }
 		 
+		 
 		 return state;
 	}
+	
+	//마이페이지 탑네비데이터
+	public Map<String, Object> myPageTopNav(int userNo) {
+		System.out.println("MypageJService > myPageTopNav");
+		
+		float avgStar= mypagejDao.getavgStar(userNo);
+		
+		int totalPoint= mypagejDao.getTotalPoint(userNo);
+		
+		int notUsedCoupon= mypagejDao.getNotUsedCoupon(userNo);
+		
+		Map<String, Object> topNavMap = new HashMap<String, Object>();
+		
+		topNavMap.put("avgStar", avgStar);
+		topNavMap.put("totalPoint", totalPoint);
+		topNavMap.put("notUsedCoupon", notUsedCoupon);
+		
+		return topNavMap;
+	}
+	
+
 }

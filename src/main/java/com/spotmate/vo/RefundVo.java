@@ -4,6 +4,7 @@ public class RefundVo {
 	//필드
 	private int no;
 	private int userNo;
+	private int refundNo;
 	private String regDate;
 	private String name;
 	private String status;
@@ -13,7 +14,8 @@ public class RefundVo {
 	private String endDate;
 	private String option1;
 	private String option2;
-
+	private String bank;
+	
 	private int crtPage;
 	private int startRnum;
 	private int endRnum;
@@ -23,10 +25,12 @@ public class RefundVo {
 	public RefundVo() {
 	}
 
-	public RefundVo(int no, int userNo, String regDate, String name, String status, String accountNum, int point,
-			String startDate, String endDate, String option1, String option2, int crtPage, int startRnum, int endRnum) {
+	public RefundVo(int no, int userNo, int refundNo, String regDate, String name, String status, String accountNum,
+			int point, String startDate, String endDate, String option1, String option2, String bank, int crtPage,
+			int startRnum, int endRnum) {
 		this.no = no;
 		this.userNo = userNo;
+		this.refundNo = refundNo;
 		this.regDate = regDate;
 		this.name = name;
 		this.status = status;
@@ -36,10 +40,12 @@ public class RefundVo {
 		this.endDate = endDate;
 		this.option1 = option1;
 		this.option2 = option2;
+		this.bank = bank;
 		this.crtPage = crtPage;
 		this.startRnum = startRnum;
 		this.endRnum = endRnum;
 	}
+
 
 	//메소드-gs
 	public int getNo() {
@@ -56,6 +62,14 @@ public class RefundVo {
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public int getRefundNo() {
+		return refundNo;
+	}
+
+	public void setRefundNo(int refundNo) {
+		this.refundNo = refundNo;
 	}
 
 	public String getRegDate() {
@@ -130,6 +144,14 @@ public class RefundVo {
 		this.option2 = option2;
 	}
 
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+
 	public int getCrtPage() {
 		return crtPage;
 	}
@@ -157,12 +179,10 @@ public class RefundVo {
 	//메소드-일반
 	@Override
 	public String toString() {
-		return "RefundVo [no=" + no + ", userNo=" + userNo + ", regDate=" + regDate + ", name=" + name + ", status="
-				+ status + ", accountNum=" + accountNum + ", point=" + point + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", option1=" + option1 + ", option2=" + option2 + ", crtPage=" + crtPage + ", startRnum="
-				+ startRnum + ", endRnum=" + endRnum + "]";
+		return "RefundVo [no=" + no + ", userNo=" + userNo + ", refundNo=" + refundNo + ", regDate=" + regDate
+				+ ", name=" + name + ", status=" + status + ", accountNum=" + accountNum + ", point=" + point
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", option1=" + option1 + ", option2=" + option2
+				+ ", bank=" + bank + ", crtPage=" + crtPage + ", startRnum=" + startRnum + ", endRnum=" + endRnum + "]";
 	}
-
-	
 	
 }

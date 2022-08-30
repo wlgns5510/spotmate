@@ -75,11 +75,6 @@
 				<header class="myPage_header">
 					<h3>환불 신청</h3>
 					<p>보유하고 있는 포인트를 환불하실 수 있습니다.</p>
-					<ul>
-						<li>드라이버 포인트 내역은 주행 완료 후 지급된 포인트입니다.</li>
-						<li>유저 포인트 내역은 다른 드라이버의 차량을 이용 후 사용한 포인트입니다.</li>
-						<li>그 외에도 이용수칙을 위반한 경우 차감 또는 추가 지급 될 수 있습니다.</li>
-					</ul>
 				</header>
 
 				<!-- //section-article2 -->
@@ -92,9 +87,20 @@
 							<div class="chargeEx">
 								<p>1원 = 1Point입니다.</p>
 								<p>포인트는 5,000P부터 1,000P 단위로 환불이 가능합니다.</p>
+								<input type="hidden" id="totalPoint" value="${topNavMap.totalPoint }">
 							</div>
 							<p>환불 입금 받으실 계좌번호*</p>
-							<input type="text" name="accountNum" placeholder="우리은행 1002-234-000087">
+							<div class="myPage_input2">
+								<select name="bank" class="bank">
+									<option value=selected>은행</option>
+									<option value="신한은행">신한은행</option>
+									<option value="농협">NH농협</option>
+									<option value="국민은행">국민은행</option>
+									<option value="우리은행">우리은행</option>
+									<option value="카카오뱅크">카카오뱅크</option>
+									<option value="케이뱅크">케이뱅크</option>
+								</select> <input type="text" name="accountNum" placeholder="계좌번호를 입력해주세요">
+							</div>
 							<p>예금주명</p>
 							<input type="text" name="name" placeholder="ex)환불받는 분의 성함을 적어주세요">
 							<button type="submit" class="myPage_btnB">환불 신청하기</button>
@@ -112,42 +118,45 @@
 
 </body>
 <script type="text/javascript">
-$("#myPointRefund").on("submit", function(){
- 
-	var point = $('input[name=point]').val();
-	var accountNum = $('input[name=accountNum]').val();
-	var name = $('input[name=name]').val();
-	
-	if(point == "" || point == null) {
-		alert("환불 금액을 입력해주세요.");
-		return false;
-	}
-	
-	if(point == "" || point == null || point < 5000){
-		alert("포인트는 5,000P부터 환불이 가능합니다.");
-		return false;
-	}
-	
-	if(point%1000 != 0){
-		alert("포인트는 1,000P 단위로 환불이 가능합니다.");
-		return false;
-	}
-	
-	if(accountNum == "" || accountNum == null) {
-		alert("계좌번호를 입력해주세요.");
-		return false;
-	}
-	
-	if(name == "" || name == null) {
-		alert("예금주명을 입력해주세요.");
-		return false;
-	}
-	
-});
+	$("#myPointRefund").on("submit", function() {
 
+		var point = $('input[name=point]').val();
+		var accountNum = $('input[name=accountNum]').val();
+		var name = $('input[name=name]').val();
+		var totalPoint = $('#totalPoint').val();
 
+		
+		if (point == "" || point == null) {
+			alert("환불 금액을 입력해주세요.");
+			return false;
+		}
 
+		if (point == "" || point == null || point < 5000) {
+			alert("포인트는 5,000P부터 환불이 가능합니다.");
+			return false;
+		}
 
+		if (point > totalPoint) {
+			alert("보유한 포인트 내에서 환불신청이 가능합니다.");
+			return false;
+		}
+
+		if (point % 1000 != 0) {
+			alert("포인트는 1,000P 단위로 환불이 가능합니다.");
+			return false;
+		}
+
+		if (accountNum == "" || accountNum == null) {
+			alert("계좌번호를 입력해주세요.");
+			return false;
+		}
+
+		if (name == "" || name == null) {
+			alert("예금주명을 입력해주세요.");
+			return false;
+		}
+
+	});
 </script>
 
 </html>

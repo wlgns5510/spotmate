@@ -103,9 +103,18 @@
 /*************************mateDeep_content*******************************/
 .mateDeep_content {
 	width: 1000px;
-	height: 3500px;
+	height: 2600px;
 	/* 	margin: 0px 0px 0px 550px; */
 	background: rgba(255, 255, 255, 1);
+}
+.mateDeep_content2 {
+	display: block;
+    position: relative;
+    width: 100%;
+    height: 350px;
+    padding: 35px 0 70px;
+    box-sizing: border-box;
+    background: #f6f6f6;
 }
 
 .mateDeep_infoBox {
@@ -442,4 +451,43 @@
     border-bottom-right-radius: 6px;
     margin: 30px 15px 0px 15px;
     float: left;
+}
+.mateDeep_reviewBannerBox {
+	/* display: block;
+    position: relative;
+    width: 100%;
+    height: 350px;
+    padding: 35px 0 70px;
+    box-sizing: border-box;
+    background: #f6f6f6; */
+    width: 100px;
+}
+
+.mateDeep_content2 .swiper-button-prev {
+	display: inline-block;
+    position: relative;
+    top: 260px;
+    bottom: auto;
+    left: 665px;
+    right: auto;
+    border: 0;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: url(../../images/common/ico_arrow_lft.png) no-repeat center center;
+}
+
+.mateDeep_content2 .swiper-button-next {
+	display: inline-block;
+    position: relative;
+    top: 260px;
+    bottom: auto;
+    left: 670px;
+    right: auto;
+    border: 0;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: url(../../images/common/ico_arrow_rit.png) no-repeat center center;
+    margin-left: 10px;
 }

@@ -75,11 +75,7 @@
 				<header class="myPage_header">
 					<h3>쿠폰</h3>
 					<p>나의 쿠폰 사용과 구매 내역입니다.</p>
-					<ul>
-						<li>드라이버 포인트 내역은 주행 완료 후 지급된 포인트입니다.</li>
-						<li>유저 포인트 내역은 다른 드라이버의 차량을 이용 후 사용한 포인트입니다.</li>
-						<li>그 외에도 이용수칙을 위반한 경우 차감 또는 추가 지급 될 수 있습니다.</li>
-					</ul>
+
 				</header>
 
 				<!-- //section-article -->
@@ -118,41 +114,38 @@
 								<th>사용여부</th>
 							</tr>
 						</thead>
-						<tbody>
-							<c:forEach items="${cMap.couponBList }" var="couponVo">
-								<tr>
-									<td>${couponVo.no }</td>
-									<td>${couponVo.buyDate }</td>
-									<td>${couponVo.cateName }</td>
-									<td>${couponVo.usePlace }</td>
-									<td>${couponVo.point }</td>
-									<td>${couponVo.status }</td>
-								</tr>
-							</c:forEach>
+						<c:forEach items="${cMap.couponBList }" var="couponVo">
+							<tr>
+								<td>${couponVo.couponListNo}</td>
+								<td>${couponVo.buyDate }</td>
+								<td>${couponVo.cateName }</td>
+								<td>${couponVo.usePlace }</td>
+								<td>${couponVo.point }</td>
+								<td>${couponVo.status }</td>
+							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 					<div class="paging">
 						<ul>
 							<c:if test="${cMap.prev}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.startPageBtnNo-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.startPageBtnNo-1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-left.png">
 								</a></li>
 							</c:if>
 							<c:if test="${cMap.prev}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage-1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage-1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-left.png">
 								</a></li>
 							</c:if>
 
 							<c:forEach begin="${cMap.startPageBtnNo}" end="${cMap.endPageBtnNo}" step="1" var="page">
-								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if>
-									href="${pageContext.request.contextPath}/mypageJ/myCouponMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"
-								> ${page} </a></li>
+								<li><a <c:if test="${param.crtPage==page}">class='active'</c:if> href="${pageContext.request.contextPath}/mypageJ/myCouponMain?crtPage=${page}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> ${page} </a></li>
 							</c:forEach>
 							<c:if test="${cMap.next}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${param.crtPage+1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-right.png">
 								</a></li>
 							</c:if>
 							<c:if test="${cMap.next}">
-								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.endPageBtnNo+1}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
+								<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain?crtPage=${cMap.endPageBtnNo+1}&startDate=${param.startDate}&endDate=${param.endDate}&option1=${param.option1}&option2=${param.option2}"> <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
 								</a></li>
 							</c:if>
 						</ul>

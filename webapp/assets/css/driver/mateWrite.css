@@ -21,11 +21,17 @@
 	width: 590px;
 	height:50px;
 	margin: 0px 0px 20px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 
 #mate-e-date {
 	width: 590px;
 	height:50px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 0px 0px 0px 5px;
 }
 
 .mate-e-addr-tr {
@@ -35,7 +41,7 @@
 .mate-img {
 	width: 15px;
 	height: 113px;
-	margin: 30px 0px 0px 0px;
+	margin: 10px 0px 0px 0px;
 }
 
 .ia-btn {
@@ -67,87 +73,147 @@
 }
 
 
-
+#input-div1 {
+	margin:15px 0px 0px 0px;
+}
 
 #input-div1 #addTable1 {
 	display: inline;
 }
 
 .s-sec1 .mate-s-addr1 {
-	margin: 10px 0px 10px 0px;
+/* 	margin: 10px 0px 10px 0px; */
+/* 	width: 400px; */
+/* 	height: 30px; */
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin:0px 0px 10px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec1 .mate-s-time1 {
+/* 	width: 200px; */
+/* 	height: 30px; */
+/* 	margin: 0px 0px 0px 10px; */
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
+	margin:0px 0px 10px 0px;
 }
 
 .s-sec1 #w-addr11 {
-	margin: 10px 0px 10px 0px;
+/* 	margin: 10px 0px 10px 0px; */
+/* 	width: 400px; */
+/* 	height: 30px; */
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-addr12 {
-	margin: 10px 0px 8px 0px;
+/* 	margin: 10px 0px 8px 0px; */
+/* 	width: 400px; */
+/* 	height: 30px; */
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
+
 }
 
 .s-sec1 #w-addr13 {
-	margin: 10px 0px 8px 0px;
+/* 	margin: 10px 0px 8px 0px; */
+/* 	width: 400px; */
+/* 	height: 30px; */
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-addr14 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-addr15 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-time11 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-time12 {
+/* 	width: 200px; */
+/* 	height: 30px; */
+/* 	margin: 0px 0px 0px 10px; */
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-time13 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-time14 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 #w-time15 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec1 .mate-e-addr1 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 
@@ -164,78 +230,117 @@
 }
 
 .s-sec2 .mate-s-addr2 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec2 .mate-s-time2 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec2 #w-addr21 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-addr22 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-addr23 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-addr24 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-addr25 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec2 #w-time21 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-time22 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-time23 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-time24 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 #w-time25 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec2 .mate-e-addr2 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 0px 0px 10px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 
@@ -250,77 +355,116 @@
 	display: inline;
 }
 .s-sec3 .mate-s-addr3 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec3 .mate-s-time3 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec3 #w-addr31 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-addr32 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-addr33 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-addr34 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-addr35 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec3 #w-time31 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-time32 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-time33 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-time34 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec3 #w-time35 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec3 .mate-e-addr3 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 0px 0px 10px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 {
@@ -335,80 +479,119 @@
 	display: inline;
 }
 .s-sec4 .mate-s-addr4 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec4 .mate-s-time4 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-addr41 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-addr42 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-addr43 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-addr44 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-addr45 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 
 .s-sec4 #w-time41 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-time42 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-time43 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-time44 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec4 #w-time45 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec4 .mate-e-addr4 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 0px 0px 10px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 {
@@ -423,9 +606,12 @@
 	height: 73px;
 }
 .s-sec5 .mate-s-addr5 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec5 .mate-s-time5 {
 	width: 200px;
@@ -434,66 +620,99 @@
 }
 
 .s-sec5 #w-addr51 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-addr52 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-addr53 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-addr54 {
-	margin: 10px 0px 8px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-addr55 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-time51 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-time52 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-time53 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-time54 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 
 .s-sec5 #w-time55 {
 	width: 200px;
-	height: 30px;
-	margin: 0px 0px 0px 10px;
+	height: 50px;
+	margin: 15px 0px 0px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }
 .s-sec5 .mate-e-addr5 {
-	margin: 10px 0px 10px 0px;
 	width: 400px;
-	height: 30px;
+	height: 50px;
+	margin: 0px 0px 10px 5px;
+	border: 1px solid #bfbfbf;
+	border-radius: 5px;
+	padding: 0px 0px 0px 5px;
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,6 +51,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
+	
 	<title>mateMain</title>
 	
 </head>
@@ -65,32 +68,50 @@
 	<!-- mateMain_content -->
 	<div class="mateMain-banner">
 	<div class="mateMain_content">
-	<div class="seachBox">
+		<div class="seachBox">
 			<h2>FIND YOUR MATE</h2>
+			
 			<div class="mateMain_inputBox">
-				<div class="selBox">
-					<div class="sel1">
-						<label for="Location" class="LocationLabel">Location</label><br>
-						<input type="text" id="Location" placeholder="목적지를 입력해주세요">
+				<form class="mateSearch" action="${pageContext.request.contextPath}/mateMain" method="get">
+					<div class="selBox">
+						<div class="sel1">
+							<label for="Location" class="LocationLabel">Location</label><br>
+							<input type="text" id="Location" name="ePlace" value="${param.ePlace}" placeholder="목적지를 입력해주세요">
+						</div>
+						
+						<div class="sel2">
+							<label for="CheckIn" class="CheckInLabel">Check In</label><br>
+							<input type="date" id="CheckIn" name="sDate" value="${param.sDate}" placeholder="Add Dates">
+						</div>
+						
+						<div class="sel3">
+							<label for="CheckOut" class="CheckOutLabel">Check Out</label><br>
+							<input type="date" id="CheckOut" name="eDate" value="${param.eDate}" placeholder="Add Dates">
+						</div>
+						
+						<div class="sel4">
+							<label for="PeopleN" class="PeopleLabel">People</label><br>
+							<input type="number" id="PeopleN" name="smPeople" value="${param.smPeople}" placeholder="Add Guests">
+						</div>
 					</div>
+					<div class="DetaileBox">
+						<img class="DetaileBoxImg" src="/assets/images/ico_filter_white.png"> 
+						<span class="DetaileBoxFont">상세조건</span>
+					</div>				
 					
-					<div class="sel2">
-						<label for="CheckIn" class="CheckInLabel">Check In</label><br>
-						<input type="text" id="CheckIn" placeholder="Add Dates">
+					<div class="chectBoxList">
+						<c:forEach items="${mLMap.optList}" var="opt">
+							<span class=""><input id="chkOpt-${opt.detailOptNo}" type="checkbox" name="mateContactList" value="${opt.detailOptNo}"
+								<c:forEach items="${mateVo.mateContactList}" var="target">
+									<c:if test="${opt.detailOptNo == target}">
+										checked="checked"
+									</c:if>
+								</c:forEach>
+							><label for="chkOpt-${opt.detailOptNo}">${opt.name}</label></span>
+						</c:forEach>
 					</div>
-					
-					<div class="sel3">
-						<label for="CheckOut" class="CheckOutLabel">Check Out</label><br>
-						<input type="text" id="CheckOut" placeholder="Add Dates">
-					</div>
-					
-					<div class="sel4">
-						<label for="People" class="PeopleLabel">People</label><br>
-						<input type="text" id="People" placeholder="Add Guests">
-					</div>
-				</div>
-				
-				<div class="searchPictogrem"></div>
+					<button type="submit" class="searchPictogrem"></button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -98,196 +119,34 @@
 	<!-- mateMain_content -->
 	
 	<!-- mateMain_content2 -->
-	<div class="mateMain_content2">
-		<div class="DetaileBox">
-			<img class="DetaileBoxImg" src="/assets/images/ico_filter_white.png"> 
-			<span class="DetaileBoxFont">상세조건</span>
-		</div>
-		<div class="checkBox">
-				<span class="nonSmoke"><input type="checkbox" name="mateContactList" value="nonSmoke">비흡연자</span>
-				<span class="femaleDriver"><input type="checkbox" name="mateContactList" value="femaleDriver">여성드라이버</span>
-				<span class="pet"><input type="checkbox" name="mateContactList" value="pet">반려동물</span>
-				<span class="phoneCharger"><input type="checkbox" name="mateContactList" value="phoneCharger">충전기 사용 가능</span>
-				<span class="useTrunk"><input type="checkbox" name="mateContactList" value="useTrunk">트렁크 사용 가능</span>									
+	<div class="mateMain_content2">		
+		<div class="mateListFont">
+			<h2>탑승 가능 메이트 리스트</h2>									
 		</div>
 		
-		<div class="mateListAll clear">
-		
-			<c:forEach items="${mateList}" var="mateList" varStatus="status">
-				<div class=mateList>
-				<a href="/mateDeep/${mateList.mateNo}">
-					<img src="/assets/images/road1.jpg" class="matePicture">												
-				</a><br>
-					<span class="driverName">Driver ${mateList.name}</span>
-					<span class="schedule">일정 ${mateList.startDate} - ${mateList.endDate}</span><br>
+		<div class="mateListAll clear">		
+			<c:forEach items="${mLMap.mateList}" var="mateVo" varStatus="status">
+				<div class="mateList">
+					<a href="/mateDeep/${mateVo.mateNo}">						
+						<img src="/assets/images/mate_imgbox/${mateVo.randomImgNo}.png" class="matePicture">																										
+					</a><br>
+					<span class="driverName">Driver ${mateVo.name}</span>
+					<span class="schedule">일정 ${mateVo.startDate} - ${mateVo.endDate}</span><br>
 					<span class="startEnd">
-						${matePlaceList[status.index].sPlace} → ${matePlaceList[status.index].ePlace}
+						${mateVo.sPlace} → ${mateVo.ePlace}
 					</span>
 					<div class="mateMain_listBox">
 						<img src="/assets/images/car icon.png">
-						<span class="seatNo">${mateList.people}</span>
-						
-						
-						
-					</div>
-							
+						<span class="seatNo">${mateVo.people}</span>																		
+					</div>							
 				</div>	
-			</c:forEach>
-			
-						
+			</c:forEach>												
 		</div>
-		<button class="mateListBtn">
+		
+		<button class="mateListBtn" id="btnMoreList">
 				<h2>더보기</h2>
 		</button>
-		
-		
-		<!-- 예시 -->
-		<br><br><br><br><br><br><br>
-		<div class="gallerymenu">
-				<ul>
-					<li>
-						<input type="checkbox" name="kodak" value="kodak" id="kodak">
-						<label for="kodak" title="kodak">KODAK</label>
-					</li>
-					<li>
-						<input type="checkbox" name="fuji" value="fuji" id="fuji">
-						<label for="fuji" title="fuji">FUJI</label>
-					</li>
-					<li>
-						<input type="checkbox" name="nikon" value="nikon" id="nikon">
-						<label for="nikon" title="nikon">NIKON</label>
-					</li>
-					<li>
-						<input type="checkbox" name="konica" value="konica" id="konica">
-						<label for="konica" title="konica">KONICA</label>
-					</li>
-				</ul>
-				</div>
-				<div class="g2">
-					<ul class="g2grounp" title="kodak">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta1.png" alt="갤러리호버1"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta1.png" alt="포토갤러리1"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp" title="fuji">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta2.png" alt="갤러리호버2"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta2.png" alt="포토갤러리2"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp" title="nikon">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta1.png" alt="갤러리호버3"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta3.png" alt="포토갤러리3"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp" title="konica">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta2.png" alt="갤러리호버4"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta4.png" alt="포토갤러리4"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta1.png" alt="갤러리호버5"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta5.png" alt="포토갤러리5"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta1.png" alt="갤러리호버6"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta6.png" alt="포토갤러리6"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta1.png" alt="갤러리호버7"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta7.png" alt="포토갤러리7"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta2.png" alt="갤러리호버8"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta8.png" alt="포토갤러리8"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta1.png" alt="갤러리호버9"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta9.png" alt="포토갤러리9"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta2.png" alt="갤러리호버10"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta10.png" alt="포토갤러리10"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta1.png" alt="갤러리호버11"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta11.png" alt="포토갤러리11"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-					<ul class="g2grounp">
-						<li class="g2hover">
-							<p class="g2image"><a href="#"><img src="images/ph_insta2.png" alt="갤러리호버12"></a></p>
-							<p class="g2text"><a href="#"><img src="images/pinsta12.png" alt="포토갤러리12"></a></p>
-						</li>
-						<li>#스페인 &nbsp;#마드리드 &nbsp;#kodak</li>
-						<li>Instagram ID : @yunju_1</li>
-						<li><img src="images/heart25.png" alt="좋아요"></li>
-						<li>좋아요 2,019개</li>
-					</ul>
-				</div>
-				<p class="plus"><button>더보기 + </button></p>
-		
-									
+								
 	</div>
 	<!-- //mateMain_content2 -->
 	
@@ -301,54 +160,91 @@
 <!-- //mateMain_wrap -->
 </body>
 <script type="text/javascript">
+var mateVo = {};
+
+//페이지가 로딩되기 직전 일때
 $(document).ready(function(){
-	//처음상태 만들기(8개만 보이기)
-	$(".g2>ul:nth-child(n+9)").hide();
-		
-	//더보기
-	$(".plus>button").click(function(){
-		number = $(".g2>ul:visible").length;
-		number = Math.floor(number/4)*4;
-		if(number>17) return false;
-		else {
-			$(".g2>ul").hide();
-			$(".g2>ul:nth-child(-n+"+(number+4)+")").show();
+	console.log("페이지 로딩 직전");
+
+	mateVo.crtPage = 1;
+	mateVo.ePlace = $("[name='ePlace']").val();
+	mateVo.sDate = $("[name='sDate']").val();
+	mateVo.eDate = $("[name='eDate']").val();
+	mateVo.smPeople = parseInt($("[name='smPeople']").val());
+	
+	var mateContactList = [];
+	
+	var chks=$("[name='mateContactList']");
+	chks.each(function(index){
+		if($(this).is(":checked") == true){
+			mateContactList.push(parseInt($(this).val()));
 		}
-		return false;
-		
 	});
 	
-	//체크박스
-		$("input").click(function() {
-			$(".g2>ul").hide();
-			
-			if(this.checked) {
-				for(i=0; i<=3; i++) {
-					if($(".gallerymenu>ul>li:eq("+i+")>input").is(":checked")==true){
-						input_value = $(".gallerymenu>ul>li:eq("+i+")>input:checked").val();
-						$(".gallerymenu>ul>li>label[title="+input_value+"]").css("color","#cf5414");
-						$(".g2>ul[title="+input_value+"]").show();
-					}
-				}
-			}
-			else {
-				empty_number = 0
-				for(i=0; i<=3; i++) {
-					if($(".gallerymenu>ul>li:eq("+i+")>input").is(":checked")==false){
-						input_value = $(".gallerymenu>ul>li:eq("+i+")>input").val();
-						$(".g2>ul[title="+input_value+"]").hide();
-						empty_number++;
-					}
-					else {
-						input_value = $(".gallerymenu>ul>li:eq("+i+")>input").val();
-						$(".g2>ul[title="+input_value+"]").show();
-					}
-				}
-				if( empty_number == 3)
-					$(".g2>ul:nth-child(-n+8)").show();
-			}
-	});
+	mateVo.mateContactList = mateContactList;
+	
+	console.log(mateVo);
+
 });
+
+$(".mateListBtn").on("click", function(){
+	console.log("더보기 버튼클릭");
+	mateVo.crtPage += 1;
+	
+	console.log(mateVo);
+	
+	//ajax 요청  받는코드
+	$.ajax({
+		url : "${pageContext.request.contextPath}/mateList",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(mateVo),
+		dataType : "json",
+		success : function(mLMap) {
+			
+			var mateList = mLMap.mateList;
+			/* 다음페이지 리스트 가져오기 */
+			console.log(mateList);
+			
+			/* 화면에 가져온 data와 html를 그린다 */
+			for (var i = 0; i < mateList.length; i++){
+				render(mateList[i]);	//화면에 그리는 함수실행
+			}
+
+			
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});	
+});
+
+function render(mateList) {
+	console.log("render()");
+	
+	var str = '';
+	str += '<div class="mateList">';
+	str += '	<a href="/mateDeep/' + mateList.mateNo + '">';
+	str += '		<img src="/assets/images/mate_imgbox/' + mateList.randomImgNo + '.png" class="matePicture">';
+	str += '	</a><br>';
+	str += '	<span class="driverName">Driver ' + mateList.name + '</span>';
+	str += '	<span class="schedule">일정 ' + mateList.startDate + ' - ' + mateList.endDate + '</span><br>';
+	str += '	<span class="startEnd">';
+	str += '		' + mateList.sPlace +  ' → ' + mateList.ePlace + '';
+	str += '	</span>';
+	str += '	<div class="mateMain_listBox">';
+	str += '		<img src="/assets/images/car icon.png">';
+	str += '		<span class="seatNo">' + mateList.people + '</span>';
+	str += '	</div>';
+	str += '</div>';
+	
+	$(".mateListAll").append(str);
+}
+
+
+
+//옵션체크 했을때  vo값 변경
 
 </script>
 </html>

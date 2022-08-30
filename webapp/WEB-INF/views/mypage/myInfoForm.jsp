@@ -48,6 +48,9 @@
 <script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 
+<!-- 다음주소 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <title>myInfoForm</title>
 
 </head>
@@ -81,13 +84,13 @@
 
 						<!-- 새비밀번호 -->
 						<div class="join_group">
-							<label class="" for="">새비밀번호*</label> <input type="text" id="join_pass" name="pw" value="" placeholder="새비밀번호를 입력해주세요">
+							<label class="" for="">새비밀번호*</label> <input type="password" id="password" name="pw" value="" placeholder="새비밀번호를 입력해주세요">
 						</div>
 						<!-- 비밀번호 확인 -->
 						<div class="join_group">
-							<label class="" for="">새비밀번호확인*</label> <input type="text" id="join_passcheck" name="" value="" placeholder="새비밀번호를 한번 더 입력해주세요">
+							<label class="" for="">새비밀번호확인*</label> <input type="password" id="confirm_password" name="" value="" placeholder="새비밀번호를 한번 더 입력해주세요">
 						</div>
-
+						<span id='message'></span>
 						<!-- 이름 -->
 						<div class="join_group">
 							<label class="" for="">이름*</label> <input type="text" id="join_name" name="name" value="${userVo.name }">
@@ -101,13 +104,12 @@
 						<!-- 휴대폰 -->
 						<div class="join_group">
 							<label class="" for="">휴대폰*</label> <input type="text" id="join_phone" name="phone" value="${userVo.phone }">
-							<button type="button" id="id_check">본인인증</button>
 						</div>
 
 						<!-- 주소 -->
 						<div class="join_group">
-							<label class="" for="">주소*</label> <input type="text" id="join_address" name="address" value="${userVo.address }">
-							<button type="button" id="address_check" onclick="location.href='javascript:void(0);' ">주소 검색</button>
+							<label class="" for="">주소*</label> <input type="text" id="info_address" name="address" value="${userVo.address }">
+							<button type="button" id="address_check">주소 검색</button>
 						</div>
 
 						<!-- 성별 -->
@@ -120,9 +122,9 @@
 								<label class="jointext" for="">여자</label>
 							</c:if>
 							<c:if test="${userVo.gender == 'female'}">
-								<input type="radio" id="join_male"  name="gender" value="male">
+								<input type="radio" id="join_male" name="gender" value="male">
 								<label class="jointext" for="">남자</label>
-								<input type="radio" id="join_female"  checked="checked" name="gender" value="female">
+								<input type="radio" id="join_female" checked="checked" name="gender" value="female">
 								<label class="jointext" for="">여자</label>
 							</c:if>
 						</div>
@@ -150,4 +152,55 @@
 	</div>
 
 </body>
+<script type="text/javascript">
+	window.onload = function(){
+	    document.getElementById("address_check").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	        new daum.Postcode({
+	            oncomplete: function(data) { //선택시 입력값 세팅
+	                document.getElementById("info_address").value = data.address; // 주소 넣기
+	            }
+	        }).open();
+	    });
+	}
+	
+	$("#btn_submit").on("click", function(){
+		
+		var password = $("#password").val();
+		var confirm_password = $("#confirm_password").val();
+		
+	    var num = password.search(/[0-9]/g);
+	    var eng = password.search(/[a-z]/ig);
+	    var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		
+	    if((password == null || password =="" ) && (confirm_password == null ||confirm_password =="")) {
+	    	return true;
+	    }
+	    
+    	if(password != confirm_password){
+        	alert("비밀번호가 일치하지 않습니다");
+        	
+            return false;
+        }else if(password.length < 8 || password.length > 20){
+		  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+		  
+		  return false;
+		}else if(password.search(/\s/) != -1){
+		  alert("비밀번호는 공백 없이 입력해주세요.");
+		  
+		  return false;
+	    }else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+		  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+		  
+		  return false;
+		}else {
+			
+			alert("수정이 완료되었습니다");
+		}	     
+	    
+
+	});
+	
+	
+</script>
+
 </html>

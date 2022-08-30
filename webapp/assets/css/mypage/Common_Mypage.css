@@ -326,6 +326,7 @@
 	height: 30px;
 	border: none;
 	font-weight: bold;
+	cursor:pointer;
 }
 
 .inputBox_r input {
@@ -379,13 +380,13 @@
 	cursor: pointer;
 }
 
-.myPage_btnY {
+.myPage_btnC {
 	width: 150px;
 	height: 40px;
 	position: absolute;
 }
 
-.myPage_btnY {
+.myPage_btnC {
 	color: rgba(255, 255, 255, 1);
 	position: absolute;
 	font-family: Noto Sans;
@@ -413,7 +414,7 @@
 	font-weight: bold;
 	width: 450px;
 	border: 1px solid rgba(217, 217, 217, 1);
-	position: absolute;
+	
 }
 
 /* Change the color of links on hover */
@@ -427,7 +428,7 @@
 .topnav a.active {
 	background-color: white;
 	color: blue;
-	position: absolute;
+	
 }
 
 /************section-article2*****************/
@@ -569,15 +570,18 @@
 }
 
 .reserv-paging {
-	margin: 50px 0px 0px 200px;
-	/*    margin-top: 50px; */
-	width: 672px;
+/* 	margin: 50px 0px 0px 200px; */
+/*  margin-top: 50px; */
+/* 	width: 672px; */
+	margin: 50px auto;
 	height: 40px;
-	font-family: Noto Sans;
-	font-weight: bold;
+	font-weight: 600;
 	font-size: 12px;
 }
-
+.reserv-paging ul {
+	display:table;
+	margin: 0px auto;
+}
 .reserv-paging ul>li {
 	float: left;
 	padding: 15px 17px 15px 17px;
@@ -695,6 +699,49 @@
 	border-radius: 6px;
 	margin: 10px 10px 10px 50px;
 }
+.join_call input{
+	margin-left:82px;
+}
+
+.DL_info .dltable{
+	display:table;
+	width:100%;
+}
+.DL_info >.dl_wrap1{
+	display:table-cell;
+	width:80px;
+	vertical-align:middle;
+	table-layout: fixed;
+}
+
+
+.DL_info .dltable .dl_box #dl_1{
+	width: 80px;
+	height: 35px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-radius: 6px;
+	margin-right: 0px 0px 0px 40px;
+	box-sizing: border-box;
+}
+.DL_info .dltable .dl_box .dl {
+	width: 80px;
+	height: 35px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	border-radius: 6px;
+	margin:0px;
+	box-sizing: border-box;
+
+}
+
+.error_next_box {
+    display: block;
+    margin: 9px 0 -2px;
+    font-size: 12px;
+    line-height: 14px;
+    color: red;
+}
 
 .DC_info input {
 	width: 281px;
@@ -792,7 +839,18 @@
 	text-align: left;
 }
 
-.myQnaryeo input_r, select {
+.myQnaryeo select {
+	width: 650px;
+	height: 45px;
+	background: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(217, 217, 217, 1);
+	/*border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;*/
+	color: rgba(217, 217, 217, 1);
+}
+.myQnaryeo .myqnainput {
 	width: 650px;
 	height: 45px;
 	background: rgba(255, 255, 255, 1);
@@ -863,7 +921,6 @@ border: 3px dashed red;
   height: 100%;
 }
 
-
 .myQnaryeo>.imgbox>img {
 	position:absolute;
 	top: 0;
@@ -871,4 +928,13 @@ border: 3px dashed red;
 	width:100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+#input-file {
+	position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }

@@ -24,7 +24,7 @@ public class CarpoolController {
 	CarpoolService carpoolService;
 	
 
-
+  
 	@RequestMapping(value = "/spotMain", method = { RequestMethod.GET, RequestMethod.POST })
 	public String spotMain() {
 		
@@ -55,10 +55,9 @@ public class CarpoolController {
 	//드라이버 차량 정보 가져오기 (기본, 상세조건, 리뷰, 추천 리스트)
 	
 	@RequestMapping(value = "/spotCarpoolDeep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String spotCarpoolDeep(Model model, @PathVariable("no") int mateNo) {
+	public String spotCarpoolDeep(Model model, @PathVariable("no") int mateNo, CarpoolVo carpoolVo) {
 		
-		Map<String,Object> cVoMap = carpoolService.read(mateNo);
-		
+		Map<String,Object> cVoMap = carpoolService.read(mateNo,carpoolVo);
 		model.addAttribute("cVoMap", cVoMap);
 		
 		return "/spotcarpool/spotCarpoolDeep";
@@ -66,18 +65,24 @@ public class CarpoolController {
 	
 	
 	//user 예약내역 DB 저장
+	
 	@RequestMapping(value = "/saveCarpool", method = { RequestMethod.GET, RequestMethod.POST })
-	public String myPointCharge(@ModelAttribute CarpoolVo carpoolVo, HttpSession session) {
+	public String saveCarpool (@ModelAttribute CarpoolVo carpoolVo, HttpSession session) {
 		
 		System.out.println("CarpoolController > saveCarpool");
 		
 		UserVo authUser= (UserVo)session.getAttribute("authUser");
 		
 		int userNo = authUser.getNo();
+				
+		int result = carpoolService.saveCarpool(userNo, carpoolVo); 
 		
-		carpoolService.saveCarpool(userNo);
+		if ( result == 0 ) {
+											
+			return "redirect:/myReservationUserMain/1";
+		}
 		
-		return "/mypage/myReservationUserMain";
+		return "redirect:/spotCarpoolDeep/"+carpoolVo.getSpotMateNo()+"?result=fail";
 	}
 	
 	

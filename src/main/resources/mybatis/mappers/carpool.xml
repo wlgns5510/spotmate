@@ -53,6 +53,7 @@
 		         and ca.userNo = us.no 
 		         and (sm.type = 'carpool' or sm.type = 'seasonTicket')
 		         and sm.no = pt.mateNo(+) 
+		         and sm.people > 0
 		     
 		]]>
 		<if test="splace != ''  and  splace != null ">
@@ -249,12 +250,56 @@
 	<!-- user예약내역 DB저장 -->
 	
 	<insert id="insertUserCarpoolInfo" parameterType="com.spotmate.vo.CarpoolVo">
-		<![CDATA[
-		insert into reservation
-		values (seq_reservation_no, #{mateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, '', #{people}, '', '')
-		]]>
+		<selectKey keyProperty="driverNo" resultType="int" order="BEFORE">
+	            select driverNo
+	            from reservation
+	            where mateNo = #{spotMateNo}
+	            group by driverNo
+	      </selectKey>
+	      
+	      <![CDATA[
+ 				insert into reservation 
+ 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
+ 				]]>
+<!-- 		<selectKey keyColumn="driverNo, people" keyProperty="driverNo, canRide" resultType="map" order="BEFORE"> -->
+<!-- 			select driverNo, -->
+<!-- 				people -->
+<!-- 			from (select driverNo -->
+<!-- 	            from reservation -->
+<!-- 	            where mateNo = #{spotMateNo} -->
+<!-- 	            group by driverNo), (select people -->
+<!-- 							      	from spotmate -->
+<!-- 							      	where no = #{spotMateNo} ) -->
+<!-- 		</selectKey> -->
+		
+<!-- 		<choose> -->
+<!-- 			<when test="canRide >= people"> -->
+<!-- 				<![CDATA[ -->
+<!-- 				insert into reservation -->
+<!-- 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '') -->
+<!-- 				]]> -->
+<!-- 			</when> -->
+<!-- 			<otherwise> -->
+<!-- 				update spotmate -->
+<!-- 	            set people = people -->
+<!-- 	     		where no = #{mateNo}  -->
+<!-- 			</otherwise> -->
+<!-- 		</choose> -->
 	</insert>
 
+	<select id="chkpeople" parameterType="int" resultType="int">
+      select people
+      from spotmate
+      where no = #{mateNo}
+   </select>
+
+   <insert id="updatereservpeople" parameterType="map">
+      
+      update spotmate
+      set people = people - #{people}
+      where no = #{mateNo} 
+	  
+   </insert>
 
 
 

@@ -63,9 +63,10 @@
 	background: rgba(68, 84, 161, 1);
 	border-radius: 6px;
 	margin-top: 70px;
+	cursor: pointer;
 }
 
-.myPage_article2>.myPage_InfoChk>button > span {
+.myPage_article2>.myPage_InfoChk>button > span{
 	width: 37px;
     color: rgba(255,255,255,1);
     font-family: Noto Sans;

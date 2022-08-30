@@ -5,8 +5,8 @@
 	<h2>마이페이지</h2>
 	<ul class="myPage_list">
 		<li><a href="${pageContext.request.contextPath }/myDriverForm">드라이버 신청/정보<img src="/assets/images/chevron-right-blue.png"></a></li>
-		<li><a href="${pageContext.request.contextPath }/myUsageDriverMain">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
-		<li><a href="${pageContext.request.contextPath }/myReservationDriverMain">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
+		<li><a href="${pageContext.request.contextPath }/myUsageUserMain/1">이용 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
+		<li><a href="${pageContext.request.contextPath }/myReservationUserMain/1">예약 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
 		<li><a href="${pageContext.request.contextPath }/myQnaMain">문의 내역<img src="/assets/images/chevron-right-blue.png"></a></li>
 		<li><a href="${pageContext.request.contextPath }/mypageJ/myPointMain">포인트<img src="/assets/images/chevron-right-blue.png"></a></li>
 		<li><a href="${pageContext.request.contextPath }/mypageJ/myCouponMain">쿠폰<img src="/assets/images/chevron-right-blue.png"></a></li>

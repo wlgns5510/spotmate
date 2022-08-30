@@ -4,6 +4,7 @@ public class PointVo {
 
 	// 필드
 	private int no;
+	private int pointNo;
 	private int userNo;
 	private String type;
 	private String regDate;
@@ -24,11 +25,11 @@ public class PointVo {
 	public PointVo() {
 	}
 
-	public PointVo(int no, int userNo, String type, String regDate, String splace, String eplace, String pType,
-			Long point, String startDate, String endDate, String option1, String option2, int crtPage, int startRnum,
-			int endRnum) {
-		super();
+	public PointVo(int no, int pointNo, int userNo, String type, String regDate, String splace, String eplace,
+			String pType, Long point, String startDate, String endDate, String option1, String option2, int crtPage,
+			int startRnum, int endRnum) {
 		this.no = no;
+		this.pointNo = pointNo;
 		this.userNo = userNo;
 		this.type = type;
 		this.regDate = regDate;
@@ -52,6 +53,14 @@ public class PointVo {
 
 	public void setNo(int no) {
 		this.no = no;
+	}
+
+	public int getPointNo() {
+		return pointNo;
+	}
+
+	public void setPointNo(int pointNo) {
+		this.pointNo = pointNo;
 	}
 
 	public int getUserNo() {
@@ -169,11 +178,12 @@ public class PointVo {
 	// 메소드-일반
 	@Override
 	public String toString() {
-		return "PointVo [no=" + no + ", userNo=" + userNo + ", type=" + type + ", regDate=" + regDate + ", splace="
-				+ splace + ", eplace=" + eplace + ", pType=" + pType + ", point=" + point + ", startDate=" + startDate
-				+ ", endDate=" + endDate + ", option1=" + option1 + ", option2=" + option2 + ", crtPage=" + crtPage
-				+ ", startRnum=" + startRnum + ", endRnum=" + endRnum + "]";
+		return "PointVo [no=" + no + ", pointNo=" + pointNo + ", userNo=" + userNo + ", type=" + type + ", regDate="
+				+ regDate + ", splace=" + splace + ", eplace=" + eplace + ", pType=" + pType + ", point=" + point
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", option1=" + option1 + ", option2=" + option2
+				+ ", crtPage=" + crtPage + ", startRnum=" + startRnum + ", endRnum=" + endRnum + "]";
 	}
+
 
 	
 }

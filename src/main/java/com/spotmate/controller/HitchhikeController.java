@@ -19,6 +19,7 @@ import com.spotmate.service.HitchService;
 import com.spotmate.vo.CancelChkVo;
 import com.spotmate.vo.HitchInfoVo;
 import com.spotmate.vo.HitchReservVo;
+import com.spotmate.vo.HitchSearchResultVo;
 import com.spotmate.vo.HitchSearchVo;
 import com.spotmate.vo.HitchVo;
 import com.spotmate.vo.MapVo;
@@ -29,29 +30,30 @@ public class HitchhikeController {
 	
 	@Autowired
 	private HitchService hService;
+	@Autowired
+	private HttpSession ss;
 	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitch(HttpSession ss) {
-		if (ss.getAttribute("authUser") != null) {
-			return "/spothitch/spotHitchMain";
-		} else {
-			return "redirect:/loginForm";
-		}
+		return "/spothitch/spotHitchMain";
 	}
 	
 	@RequestMapping(value="/spotHitchDriver", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitchDriver(Model model, HttpSession session) {
-		UserVo authVo = (UserVo) session.getAttribute("authUser");
-		model.addAttribute("hVo", hService.getHdriverPage(authVo.getNo()));
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
+		if(authUser == null) {
+			return "redirect:/loginForm";
+		}
+		model.addAttribute("hVo", hService.getHdriverPage(authUser.getNo()));
 		return "/spothitch/spotHitchDriver";
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping(value="/hitchsearch", method= {RequestMethod.GET, RequestMethod.POST})
-	public void search (@RequestBody HitchSearchVo hsVo) {
-		System.out.println(hsVo);
-//		return hService.getsearchList(sVo);
+	public List<HitchSearchResultVo> search (@RequestBody HitchSearchVo hsVo) {
+		System.out.println(hsVo.toString());
+		return hService.searchList(hsVo);
 	}
 	
 	//hitchmain접속 시 주변 5km이내 차량 리스트 보여주는 부분
@@ -65,7 +67,12 @@ public class HitchhikeController {
 		@ResponseBody
 		@RequestMapping(value="/driverPos", method= {RequestMethod.GET, RequestMethod.POST})
 		public List<HitchVo> userPos(@RequestBody MapVo mVo) {
-			return hService.getNear(mVo);
+			UserVo authUser = (UserVo)ss.getAttribute("authUser");
+			try {
+				return hService.getNear(mVo, authUser.getNo());
+			} catch (NullPointerException e) {
+				return hService.getNear(mVo, 0);
+			}
 		}
 	
 	//신청한게 있나 없나 확인
@@ -88,7 +95,7 @@ public class HitchhikeController {
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
 	@ResponseBody
 	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
-	public int chkRide(@RequestBody int mateNo, HttpSession ss) {
+	public int chkRide(@RequestBody int mateNo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		return hService.chkRide(mateNo, authUser.getNo());
 	}
@@ -97,8 +104,9 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/updateInfo", method= {RequestMethod.GET, RequestMethod.POST})
 	public Map<String, Object> updateInfo(@RequestBody HitchInfoVo hiVo) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		Map<String, Object> hMap = new HashMap<>();
-		hMap.put("hVo", hService.getSummaryInfo(hiVo.getMateNo()));
+		hMap.put("hVo", hService.getSummaryInfo(hiVo.getMateNo(), authUser.getNo()));
 		hMap.put("hiVo", hiVo);
 		return hMap;
 	}

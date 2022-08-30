@@ -91,7 +91,7 @@
 					<h4>드라이버/차량정보</h4>
 
 					<div class="DriverenrollForm">
-						<form action="${pageContext.request.contextPath }/modify" method="post">
+						<form action="${pageContext.request.contextPath }/modify" method="post" enctype="multipart/form-data">
 
 							<div class="DL_info">
 
@@ -124,12 +124,13 @@
 							<div class="DC_info">
 								<h5>차량 정보</h5>
 								<div class="right_smallbtn">
-									<a class="smallbtn" type="button" href="#"><span>사진변경</span></a>
+									<input type="file" name="file" id="input-file" class="smallbtn">
+									<label class="smallbtn" for="input-file"> <span>사진변경</span></label>
 								</div>
 
-								<br> <img align="left" class="file_d" alt="차량사진"
-									src="https://images.unsplash.com/photo-1537984822441-cff330075342?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=774&amp;q=80"
-									width="732px" height="272px">
+								<br> 
+								<img align="left" id="carImg" class="file_d" alt="차량사진" src="${pageContext.request.contextPath}/upload/${dlvo.c_file}" width="732px" height="272px">
+								
 								<table>
 								
 									<tr align="left">
@@ -155,31 +156,35 @@
 
 							<div class="DC_etc">
 								<h5>차량 상세조건</h5>
-								<table>
-									<!-- input type="radio" name="gender" id="male" value="남자"  -->
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="1"><span>비흡연자</span></td>
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="2" checked="checked">
-											<span>여성드라이버</span></td>
-									</tr>
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="3"><span> 반려동물
-												탑승가능</span></td>
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="4"> <span>핸드폰
-												충전기 보유</span></td>
-									</tr>
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="5"><span> 트렁크
-												사용 가능여부</span></td>
-									</tr>
-								</table>
-							</div>
+								<div class="detail">
 
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="1">
+										&nbsp;&nbsp;비흡연자
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox"  type="checkbox" name="ch_type" id="Dformcheckbox" value="2">
+										&nbsp;&nbsp;여성드라이버
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="3">
+										&nbsp;&nbsp;반려동물
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="4">
+										&nbsp;&nbsp;충전기 사용 가능
+									</label> 
+									
+									<label class="detailtext"> 
+										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="5">
+										&nbsp;&nbsp;트렁크 사용 가능
+									</label>
+								</div>
+							</div>
+<br>
 
 
 							<div class="memo">
@@ -207,5 +212,15 @@
 
 </body>
 
+<script type="text/javascript">
+
+//파일 선택시 미리보기
+$("#input-file").on("change", function(e) {
+	var tmp = e.target.files[0];
+    var img = URL.createObjectURL(tmp);
+    $("#carImg").attr("src", img);
+});
+
+</script>
 
 </html>

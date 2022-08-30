@@ -67,7 +67,8 @@
 	<div class="inner clear">
 		<div class="hitch-deep-infoTop clear">
 			<div class="markImg"></div>
-			<span>드라이버 ${hMap.hVo.name}님</span> <a href="#">탑승 요청</a>
+			<input name="people" id="people" class="hd-people" type="number" min="1" value="1">
+			<span>드라이버 ${hMap.hVo.name}님</span> <a href="javascript:void(0)" id="rideReq" onclick="rideReq()">탑승 요청</a>
 		</div>
 		<div class="data">
 			<table>
@@ -103,6 +104,7 @@
 		</div>
 		<div id="hitch-deep-map"></div>
 		<a class="back" href="/spotHitchhike">목록보기</a>
+		<input type="hidden" id="intFare" value="${hMap.hVo.point}">
 		<input type="hidden" id="latlng" value="${hMap.latlng}">
 		<input type="hidden" id="nowLatlng" value="${hMap.nowLatlng}">
 		<input type="hidden" id="nowAddr" value="${hMap.nowAddr}">
@@ -115,7 +117,7 @@
 	var mapContainer = document.getElementById('hitch-deep-map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.48436301061165, 126.9922281879226), // 지도의 중심좌표
-			level : 2
+			level : 3
 		},
 		map = new kakao.maps.Map(mapContainer, mapOption);
 	var Strlatlng = $("#latlng").val(),
@@ -148,13 +150,9 @@
 			}),
 			dataType : "json",
 			success : function(result) {
-				console.log(result);
-				console.log("before:",map);
 				if (result.lat == 0) {
-					console.log("same place");
 					return;
 				}
-				console.log("after:",map);
 				marker2.setMap(null);
 				infowindow2.close();
 				iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+result.addr+'</div>';
@@ -264,6 +262,61 @@
 			strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 			strokeStyle: 'solid', // 선의 스타일입니다
 			map: map
+		});
+	}
+	
+	function rideReq() {
+		var mateNo = $("#mateNo").val();
+		var chk = 0;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/chkRide",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(mateNo),
+			dataType : "json",
+			async : false,
+			success : function(result) {
+				if (result == 1) {
+					chk = 1
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		if ( $("#people").val() == '' ) {
+			alert("인원 수를 지정한 다음 시도해주세요")
+			return;
+		} else if(chk == 1) {
+			alert("이미 신청 하셨습니다")
+			return;
+		}
+		var hrVo = {};
+		hrVo.mateNo = mateNo;
+		hrVo.people = $("#people").val();
+		hrVo.point = $("#intFare").val();
+		navigator.geolocation.getCurrentPosition(function(position) {
+			lat = position.coords.latitude, // 위도
+			lng = position.coords.longitude; // 경도
+		})
+		hrVo.lat = lat;
+		hrVo.lng = lng;
+		$.ajax({
+			url : "${pageContext.request.contextPath}/rideReq",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(hrVo),
+			dataType : "json",
+			success : function(result) {
+				if (result != -1) {
+					$("#rideReq").text("신청 완료");
+				} else {
+					alert("탑승 인원 초과입니다.");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
 		});
 	}
 </script>

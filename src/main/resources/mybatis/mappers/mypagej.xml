@@ -6,7 +6,7 @@
 	<!-- 쿠폰리스트가져오기 -->
 	<select id="selectCouponBList" parameterType="couponVo" resultType="couponVo">
 		<![CDATA[
-			select  ort.rn,
+			select  ort.rn couponListNo,
 			        ort.no,
 			        to_char(ort.buyDate, 'yy.mm.dd') buyDate,
 			        ort.usePlace,
@@ -36,7 +36,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= cu.buyDate-1
+			and #{endDate} >= cu.buyDate -1
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -73,7 +73,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= cu.buyDate-1
+			and #{endDate} >= cu.buyDate
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -148,7 +148,7 @@
 	<!-- 포인트리스트가져오기 -->
 	<select id="selectPointList" parameterType="pointVo" resultType="PointVo">
 		<![CDATA[
-			select  ort.rn,
+			select  ort.rn pointNo,
 			        ort.no,
 			        ort.type,
 			        to_char(ort.regDate, 'yy.mm.dd') regDate,
@@ -237,13 +237,17 @@
 			                   where userno = #{userNo}
 			                   and (type = '충전' or type='환불' or type='구매')
 		]]>
-
+			
 		<if test="option1 != '' and option1 != null">
 			and type = #{option1}
 		</if>
-
+		
+		<![CDATA[
+			) where no = #{userNo}
+		]]>
+		
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate-1
+			and #{endDate} >= regDate 
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -251,7 +255,7 @@
 		</if>
 		
 		<![CDATA[
-			         )order by regDate desc
+			order by regDate desc      
 			        )ot
 			       )ort
 			where rn>=#{startRnum}
@@ -264,21 +268,41 @@
 	<select id="totalPointCnt" parameterType="pointVo" resultType="int">
 		<![CDATA[
 			select count(*) count
-			from pointUsage p, users u
-			where p.userNo = u.no
-			and u.no= #{userNo}
+			from (select  pu.userNo,
+			        pu.type,
+			        pu.regDate,
+			        pu.point,
+			        pu.reno,
+			        null spType
+			from users u, pointUsage pu
+			where u.no = pu.userNo
+			and u.no = #{userNo}
+			and (type = '충전' or type='환불' or type='구매')
+			
+			union
+			
+			select  pu.userNo,
+			        pu.type,
+			        pu.regDate,
+			        pu.point,
+			        pu.reno,
+			        sp.type
+			from reservation re, pointUsage pu,spotmate sp
+			where re.no = pu.reNo
+			and re.mateno = sp.no
+			and pu.userNo = #{userNo}
+			and pu.type='완료')
+			where userNo = #{userNo}
 		]]>
-
-		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate-1
+		<if test="option1 != '' and option1 != null">
+			and spType = #{option1}
+			or type = #{option1}
 		</if>
-
+		<if test="endDate != '' and endDate != null">
+			and #{endDate} >= regDate
+		</if>
 		<if test="startDate != '' and startDate != null">
 			and regDate >= #{startDate}
-		</if>
-
-		<if test="option1 != '' and option1 != null">
-			and p.type = #{option1}
 		</if>
 
 	</select>
@@ -291,17 +315,6 @@
 		]]>
 	</insert>
 
-	<!-- 총 포인트 가져오기 -->
-
-	<select id="selectTotalPoint" parameterType="int" resultType="int">
-		<![CDATA[
-			select sum(point)
-			from pointUsage
-			where userno = #{userNo}
-		]]>
-
-	</select>
-
 	<!-- 포인트환불(RefundPoint) -->
 	<insert id="insertRefundPoint" parameterType="com.spotmate.vo.RefundVo">
 		<![CDATA[
@@ -309,11 +322,11 @@
             values(seq_pointrefund_no.nextval, #{userNo}, sysdate, #{accountNum}, #{name}, '환불대기', #{point})
 		]]>
 	</insert>
-	
+
 	<!-- 환불리스트가져오기 -->
 	<select id="selectrefundList" parameterType="com.spotmate.vo.RefundVo" resultType="com.spotmate.vo.RefundVo">
 		<![CDATA[
-			select  ort.rn,
+			select  ort.rn refundNo,
 			        to_char(ort.regDate, 'yy.mm.dd') regDate,
 			        ort.accountNum,
 			        ort.status,
@@ -334,7 +347,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate-1
+			and #{endDate} >= regDate
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -353,7 +366,7 @@
 			and rn<=#{endRnum}
 		]]>
 	</select>
-	
+
 	<!-- 환불리스트전체글 갯수 -->
 	<select id="totalRefundCnt" parameterType="com.spotmate.vo.RefundVo" resultType="int">
 		<![CDATA[
@@ -375,7 +388,7 @@
 			and status = #{option1}
 		</if>
 	</select>
-	
+
 	<!-- 유저정보 가져오기 -->
 	<select id="getUser" parameterType="int" resultType="userVo">
 		<![CDATA[
@@ -392,7 +405,7 @@
 		]]>
 
 	</select>
-	
+
 	<!-- 유저정보 업데이트 -->
 	<update id="updateUser" parameterType="userVo">
 		<![CDATA[
@@ -402,8 +415,58 @@
 			     phone = #{phone},
 			     address = #{address},
 			     gender = #{gender}
+		]]>
+		
+		<if test="pw != '' and pw != null">
+			,pw = #{pw}
+		</if>
+			     
+		<![CDATA[
 			where no = #{no}
 		]]>
 	</update>
+	
+	<!-- 미사용쿠폰갯수 가져오기 -->
+	<select id="selectNotUsedCoupon" resultType="int">
+		<![CDATA[
+			select count(*) count
+			from category ca, brand br, coupon co, couponUsage cu, users u
+			where u.no = cu.userno
+			and ca.no = br.cateNo
+			and br.no = co.brandno
+			and co.no = cu.couponNo
+			and u.no = #{userNo}
+			and cu.status = '미사용'		
+		]]>
+	</select>
+	
+	
+	<!-- 총 포인트 가져오기 -->
+	<select id="selectTotalPoint" parameterType="int" resultType="int">
+		<![CDATA[
+			select sum(point)
+			from pointUsage
+			where userno = #{userNo}
+		]]>
 
+	</select>
+	
+	
+	<!-- 총 별점평균 가져오기 -->
+	<select id="selectavgStar" parameterType="int" resultType="float">
+		<![CDATA[
+			select sum(dAvgStar + uAvgStar)/2
+			from (select round(NVL(avg(star),0),1) dAvgStar
+				  from users u, reservation re, userReview ur
+				  where u.no = re.driverNo
+				  and ur.resvNo = re.no
+				  and u.no = #{userNo}) d, (select round(NVL(avg(star),0),1) uAvgStar
+				                  from users u, reservation re, driverReview dr
+				                  where u.no = re.userNo
+				                  and dr.resvNo = re.no
+				                  and u.no = #{userNo})u
+		]]>
+	
+	</select>
+	
 </mapper>
