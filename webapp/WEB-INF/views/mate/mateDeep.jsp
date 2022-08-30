@@ -464,18 +464,18 @@
 		<h6 class="recommend">차량 추천 리스트</h6>
 
 		<div class="recommendList">
-			<c:forEach items="${cVoMap.recommendList}" var="carpoolVo">
+			<c:forEach items="${mMap.recommendList}" var="mVo">
 				<ol>
 					<li>
-						<p class="recommend-Driver-list">드라이버 : ${carpoolVo.id}</p>
+						<p class="recommend-Driver-list">드라이버 : ${mVo.id}</p>
 					</li>
 					<li>
-						<p class="recommend-start-list">출발일시 : ${carpoolVo.startDate}</p>
+						<p class="recommend-start-list">출발일시 : ${mVo.startDate}</p>
 					</li>
 					<li>
-						<p class="recommend-point-list">소요 포인트 ${carpoolVo.point}P</p> 
+						<p class="recommend-point-list">소요 포인트 ${mVo.point}P</p> 
 		
-						<a href="${pageContext.request.contextPath}/spotCarpoolDeep/${carpoolVo.spotMateNo}?splace=${param.splace}&eplace=${param.eplace}&sTime=${param.sTime}&smPeople=${param.smPeople}&startDate=${param.startDate}&endDate=${param.endDate}<c:forEach items="${paramValues.ch_type}" var="item">&ch_type=${item}</c:forEach>">
+						<a href="${pageContext.request.contextPath}/mateDeep/${mVo.mateNo}">
 							<button>
 								<img class="recommend-List-Picto"
 									src="/assets/images/external.png"> <span
@@ -488,7 +488,7 @@
 	
 		</div>
 
-		<a href="${pageContext.request.contextPath}/spotCarpool?splace=${param.splace}&eplace=${param.eplace}&sTime=${param.sTime}&smPeople=${param.smPeople}&startDate=${param.startDate}&endDate=${param.endDate}<c:forEach items="${paramValues.ch_type}" var="item">&ch_type=${item}</c:forEach>">
+		<a href="${pageContext.request.contextPath}/mateMain?splace=${param.splace}&eplace=${param.eplace}&sDate=${param.sDate}&eDate=${param.eDate}&smPeople=${param.smPeople}<c:forEach items="${paramValues.mateContactList}" var="item">&mateContactList=${item}</c:forEach>">
 			<button class="recommend-button">추천 리스트 더보기 ></button>
 		</a>
 
@@ -727,6 +727,8 @@ function setCenter(x,y) {
     map.setCenter(moveLatLon);
     	
 }
+
+//리뷰베너 이벤트
 var swiperReview = new Swiper('.review_banner', {
 	slidesPerView : 4,
 	effect : 'slide',

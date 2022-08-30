@@ -7,6 +7,7 @@
 	<select id="selectMateList" resultType="MateVo" parameterType="mateVo">
 		<![CDATA[
 				 select   ort.rn,
+				 	      ort.id,
 				          ort.name,
 				          ort.carName,
 				          ort.carPicture,
@@ -27,6 +28,7 @@
 				          ort.ePlace,
 				          ort.opts
 				from  (select    rownum rn,
+								 ot.id,
 				                 ot.name,
 				                 ot.carName,
 				                 ot.carPicture,
@@ -46,7 +48,8 @@
 				                 ot.sPlace,
 				                 ot.ePlace,
 				                 ot.opts
-				        from   (select   u.name,
+				        from   (select   u.id,
+				        				 u.name,
 				                         c.carName,
 				                         c.carPicture,
 				                         c.carNo,

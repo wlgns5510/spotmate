@@ -66,7 +66,7 @@ public class MateService {
 	}		
 	
 	//해당 메이트에 관한 정보
-	public Map<String, Object> deepMateRead(int no) {
+	public Map<String, Object> deepMateRead(int no, MateVo mVo) {
 		System.out.println("MateService >> deepMateRead");
 		
 		//해당 메이트에 관한 정보
@@ -87,7 +87,10 @@ public class MateService {
 		//해당 메이트 운전자의 별점 평균
 		CarpoolVo reviewAvg = mateDao.deepReviewAvg(no);	
 		
-		
+		//Deep페이지 차량 추천 리스트 박스
+		mVo.setStartRnum(1);
+		mVo.setEndRnum(4);
+		List<MateVo> recommendList = mateDao.getMateList(mVo);
 		
 		
 		Map<String, Object> mateDriverMap = new HashMap<String, Object>();
@@ -97,6 +100,7 @@ public class MateService {
 		mateDriverMap.put("mateDetailList", mateDetailList);
 		mateDriverMap.put("reviewList", reviewList);
 		mateDriverMap.put("reviewAvg", reviewAvg);
+		mateDriverMap.put("recommendList", recommendList);
 		
 		return mateDriverMap;	
 	}
