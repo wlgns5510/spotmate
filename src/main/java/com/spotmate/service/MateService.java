@@ -69,12 +69,26 @@ public class MateService {
 	public Map<String, Object> deepMateRead(int no) {
 		System.out.println("MateService >> deepMateRead");
 		
-		MateVo mateVo = mateDao.deepMateRead(no);	//해당 메이트에 관한 정보
-		MateVo mateDriverVo = mateDao.deepMateDriverRead(no);	//해당 메이트의 운전자,차량정보
-		List<MateVo> matePlaceList = mateDao.deepPlaceRead(no);	//해당 메이트의 출발지, 경유지, 도착지정보
-		List<MateVo> mateDetailList = mateDao.deepDetailRead(no);	//해당 메이트의 운전자가 설정한 상세조건
-		List<CarpoolVo> reviewList = mateDao.deepReviewList(no);	//해당 메이트의 운전자의 별점리스트
-		CarpoolVo reviewAvg = mateDao.deepReviewAvg(no);	//해당 메이트 운전자의 별점 평균
+		//해당 메이트에 관한 정보
+		MateVo mateVo = mateDao.deepMateRead(no);	
+		
+		//해당 메이트의 운전자,차량정보
+		MateVo mateDriverVo = mateDao.deepMateDriverRead(no);	
+		
+		//해당 메이트의 출발지, 경유지, 도착지정보
+		List<MateVo> matePlaceList = mateDao.deepPlaceRead(no);	
+		
+		//해당 메이트의 운전자가 설정한 상세조건
+		List<MateVo> mateDetailList = mateDao.deepDetailRead(no);	
+		
+		//해당 메이트의 운전자의 별점리스트
+		List<CarpoolVo> reviewList = mateDao.deepReviewList(no);	
+		
+		//해당 메이트 운전자의 별점 평균
+		CarpoolVo reviewAvg = mateDao.deepReviewAvg(no);	
+		
+		
+		
 		
 		Map<String, Object> mateDriverMap = new HashMap<String, Object>();
 		mateDriverMap.put("mateVo", mateVo);
@@ -86,6 +100,8 @@ public class MateService {
 		
 		return mateDriverMap;	
 	}
+	
+	//드라이버 
 	
 	//메이트 user 예약내역 DB에 저장하기
 	public int saveMate(int userNo, MateVo mateVo) {
