@@ -87,7 +87,10 @@
 					<c:if test='${param.result == "fail"}'>
 						<p class= overPeople>※ 탑승 가능 인원 수를 초과하였습니다</p>
 					</c:if>
-					탑승 요청 인원 수<br> <input class="confirm-2" type="number" name="people" value="" placeholder=" 인원 수를 입력해주세요">
+					<c:if test='${param.pointResult == "fail"}'>
+						<p class= overPeople>※ 포인트가 부족합니다</p>
+					</c:if>
+					탑승 요청 인원 수<br> <input class="confirm-2" type="number" name="people" value="1" placeholder=" 인원 수를 입력해주세요">
 					탑승 시간<br> <div class="confirm"> ${cVoMap.cVo.sTime}</div>
 					처음 탑승일<br> <div class="confirm"> ${cVoMap.cVo.startDate}</div> 
 					마지막 탑승일<br> <div class="confirm"> ${cVoMap.cVo.endDate}</div>

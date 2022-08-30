@@ -283,6 +283,9 @@
 
 <script type="text/javascript">
 
+	var driverLiceneseYN = false;  //면허등록번호 참거짓
+	var carEnrollYN = false;       //차량등록번호
+
 	//드라이버 등록하기 버튼 클릭할때 - 빈칸체크
 	$("#myform").on("submit", function(){
 		console.log("드라이버 등록하기 버튼 클릭");
@@ -319,6 +322,25 @@
 		//면허종류 체크///////////////////////////////////////////
 		
 		
+		
+		//면허등록번호 참거짓///////////////////////////////////////////
+		if(driverLiceneseYN == false) {
+			alert("면허등록번호를 확인해 주세요");
+			return false;
+		}
+		
+		//차량등록번호 참거진///////////////////////////////////////////
+		if(carEnrollYN == false) {
+			alert("차량등록번호 확인해 주세요");
+			return false;
+		}
+		
+		
+		
+		
+		
+		
+		//최종///////////////////////////////////////////////////////
 		return true;	
 				
 		
@@ -336,7 +358,7 @@
 	
 	
 
-	//면호 등록번호 txt창의 값이 변할때 번호 합치기
+	//면허 등록번호 txt창의 값이 변할때 번호 합치기
 	$(".txt-dl").on("change", function(){
 		console.log("txt-dl");
 		
@@ -375,8 +397,10 @@
 				console.log("result,", result)
 				if (result == -1) {
 					alert("틀렸습니다");
+					driverLiceneseYN = false;
 				} else {
 					alert("성공했습니다");
+					driverLiceneseYN = true;
 				}
 			},
 			error : function(XHR, status, error) {
@@ -407,9 +431,10 @@
 				console.log("result,", result)
 				if (result == -1) {
 					alert("틀렸습니다");
+					carEnrollYN = false;
 				} else {
 					alert("성공했습니다");
-					bCarAuth = true;
+					carEnrollYN = true;
 				}
 			},
 			error : function(XHR, status, error) {

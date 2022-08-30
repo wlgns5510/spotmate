@@ -33,10 +33,9 @@ public class MypageRDao {
 	
 	
 	//myqna list 
-	public String getMyQnaList(myQnaVo mqv){
-		List<myQnaVo> MyQnaList = ss.selectList("mypageR.selectmqaList");
-		return "";
-	
+	public List<myQnaVo> getMyQnaList(int userNo){
+		List<myQnaVo> myqnaList = ss.selectList("mypageR.selectmqaList", userNo);
+		return myqnaList;
 	}
 	
 	
