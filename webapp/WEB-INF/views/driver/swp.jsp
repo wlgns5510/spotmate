@@ -191,6 +191,21 @@
 	cursor: default;
 	color: #777;
 }
+
+.search-btn{
+	position:absolute; 
+	top:18px;
+	left: 280px; 
+	z-index:1; 
+	padding:10px 15px 10px 15px;
+	border: none;
+	background-color: #4454a1;
+	color:white;
+	font-weight:700;
+ 	font-size: 15px;
+	cursor: pointer;
+	
+}
 </style>
 </head>
 <body>
@@ -213,7 +228,7 @@
 		</div>
 	</div>
 	<div id="clickLatlng"></div>
-	<button class="search-btn" onclick="setParentText()" style="position:absolute; top:25px; left: 1100px; z-index:1;">장소 확정</button>
+	<button class="search-btn" onclick="setParentText()">장소 확정</button>
 	<input type="hidden" value="" id="addr">
 	<input type="hidden" value="" id="lat">
 	<input type="hidden" value="" id="lng">

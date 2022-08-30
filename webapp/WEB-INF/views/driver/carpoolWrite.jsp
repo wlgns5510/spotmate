@@ -428,11 +428,11 @@ $(".ic-btn").on("click", function() {
 
 //출발지 검색 팝업
 function ssp() {
-	window.open("ssp/1", "child", "width=1350, height=820, left=300, top=100");
+	window.open("ssp/1", "child", "width=1000, height=600, left=300, top=100");
 }
 //도착지 검색 팝업
 function sep() {
-	window.open("sep/1", "child", "width=1350, height=820, left=300, top=100");
+	window.open("sep/1", "child", "width=1000, height=600, left=300, top=100");
 }
 </script>
 </html>
