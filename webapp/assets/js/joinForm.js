@@ -73,7 +73,7 @@ $(document).ready(function(){
         // month 목록 생성되지 않았을 때 (최초 클릭 시)
         if(!isDayOptionExisted) {
             isDayOptionExisted = true
-            for(var i = 1; i <= 12; i++) {
+            for(var i = 1; i <= 31; i++) {
             // option element 생성
             const DayOption = document.createElement('option')
             DayOption.setAttribute('value', i)
@@ -142,14 +142,21 @@ $(document).ready(function () {
 
 });
 
+
+
+
+
+
+
 //아이디 중복 확인하는 부분
 $("#id_check").on("click", function() {
+	console.log("aaaa");
 	if ( !/^[a-zA-Z0-9]{1,6}$/.test($("#join_uid").val()) ) {
 		alert('ID는 숫자와 영문자 조합으로 1~6자리를 사용해야 합니다');
 		return;
 	}
 	$.ajax({
-		url : "${pageContext.request.contextPath}/idChk",		
+		url : "/idChk",		
 		type : "post",
 		contentType : "application/json",
 		data : $("#join_uid").val(),
@@ -169,6 +176,25 @@ $("#id_check").on("click", function() {
 		}
 	});
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //비밀번호 확인하는 부분
 $("#join_pass").on("input", function() {
