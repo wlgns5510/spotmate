@@ -112,9 +112,13 @@ public class MateController {
 		System.out.println("result: " + result);
 		if( result == 0) {
 			return "redirect:/myReservationUserMain/1";
+		}else if(result == -2) {
+			return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?pointResult=fail";
+		}else {
+			return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?result-fail";
 		}
 				
-		return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?result=fail";
+		
 	}
 	
 	
