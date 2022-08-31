@@ -247,7 +247,7 @@
 		]]>
 		
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate 
+			and #{endDate} >= regDate -1
 		</if>
 
 		<if test="startDate != '' and startDate != null">
