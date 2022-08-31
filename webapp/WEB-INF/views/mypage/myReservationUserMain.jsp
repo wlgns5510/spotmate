@@ -154,7 +154,7 @@
 								<td>${ui.convertPoint}</td>
 								<td><input type="hidden" class="status" value="${ui.status}"></td>
 								<c:choose>
-								<c:when test="${ui.status == 'close'}">
+								<c:when test="${ui.status == 'ride'}">
 								<td>
 									<button type="button" class="btn_review" onclick="msg()">모집완료</button>
 								</td>

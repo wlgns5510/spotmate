@@ -72,9 +72,9 @@
 		</div>
 		<div class="mid">
 			<form action="/mateWriteInsert" method="post">
-				<p>등록하신 날짜와 출발시간입니다.</p>
+				<p>등록하신 날짜와 출발시간입니다</p>
 				<div class="f-sec">
-					<input type="text" id="mate-s-date" value="${mwVo.sdate1} ~ ${mwVo.edate1}" readonly>
+					<input type="text" id="mate-s-dateOK" value="${mwVo.sdate1} ~ ${mwVo.edate1}" readonly>
 				</div>
 				<input type="hidden" name="sdate1" value="${mwVo.sdate1}">
 				<input type="hidden" name="edate1" value="${mwVo.edate1}">
@@ -148,7 +148,7 @@
 								</c:if>
 							</table>
 							<div id="map1"></div>
-							<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare1'>1인당 적립 포인트:&nbsp;<span style="color:#4454a1;">${mwVo.fare1}</span></div>
+							<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare1'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare1}</span></div>
 						</div>
 					</div>
 					<c:if test="${mwVo.splace2 != null}">
@@ -219,7 +219,7 @@
 								</c:if>
 							</table>
 						<div id="map2"></div>
-						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare2'>1인당 적립 포인트:&nbsp;<span style="color:#4454a1;">${mwVo.fare2}</span></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare2'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare2}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -291,7 +291,7 @@
 								</c:if>
 							</table>
 						<div id="map3"></div>
-						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare3'>1인당 적립 포인트:&nbsp;<span style="color:#4454a1;">${mwVo.fare3}</span></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare3'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare3}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -363,7 +363,7 @@
 								</c:if>
 							</table>
 						<div id="map4"></div>
-						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare4'>1인당 적립 포인트:&nbsp;<span style="color:#4454a1;">${mwVo.fare4}</span></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare4'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare4}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -435,7 +435,7 @@
 								</c:if>
 							</table>
 						<div id="map5"></div>
-						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare5'>1인당 적립 포인트:&nbsp;<span style="color:#4454a1;">${mwVo.fare5}</span></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare5'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare5}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -449,26 +449,33 @@
 							<c:if test="${mwVo.nosmoke != null}">
 								<td><div style="background: url(/assets/images/drop-opacity.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>비흡연자</span></td>
 								<td><input type="hidden" name="nosmoke" value="${mwVo.nosmoke}"></td>
-								</c:if>
-								<c:if test="${mwVo.phonecharge != null}">
-								<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>핸드폰 충전기 이용 가능</span></td>
-								<td><input type="hidden" name="phonecharge" value="${mwVo.phonecharge}"></td>
-								</c:if>
+							</c:if>
 							</tr>
 							<tr>
 							<c:if test="${mwVo.femaledriver != null}">
 								<td><div style="background: url(/assets/images/boy.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>여성 드라이버</span></td>
 								<td><input type="hidden" name="femaledriver" value="${mwVo.femaledriver}"></td>
-								</c:if>
-								<c:if test="${mwVo.trunk != null}">
-								<td><div style="background: url(/assets/images/ico_toolbox.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
-								<td><input type="hidden" name="trunk" value="${mwVo.trunk}"></td>
+							</c:if>
+								
+							</tr>
+							<tr>
+							<c:if test="${mwVo.pet != null}">
+								<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물</span></td>
+								<td><input type="hidden" name="pet" value="${mwVo.pet}"></td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${mwVo.pet != null}">
-								<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물 탑승 가능</span></td>
-								<td><input type="hidden" name="pet" value="${mwVo.pet}"></td>
+							<c:if test="${mwVo.phonecharge != null}">
+								<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>충전기 사용 가능</span></td>
+								<td><input type="hidden" name="phonecharge" value="${mwVo.phonecharge}"></td>
+							</c:if>
+								
+							</tr>
+							<tr>
+								
+								<c:if test="${mwVo.trunk != null}">
+								<td><div style="background: url(/assets/images/ico_toolbox.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
+								<td><input type="hidden" name="trunk" value="${mwVo.trunk}"></td>
 								</c:if>
 							</tr>
 						</table>

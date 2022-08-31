@@ -34,7 +34,7 @@ public class HitchhikeController {
 	private HttpSession ss;
 	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
-	public String hitch(HttpSession ss) {
+	public String hitch() {
 		return "/spothitch/spotHitchMain";
 	}
 	
@@ -61,6 +61,9 @@ public class HitchhikeController {
 		@RequestMapping(value="/nearHitchList", method= {RequestMethod.GET, RequestMethod.POST})
 		public List<HitchVo> nearHitchList(@RequestBody MapVo mVo, HttpSession ss) {
 			UserVo authUser = (UserVo)ss.getAttribute("authUser");
+			if(authUser == null) {
+				return hService.nearHitchList();
+			}
 			return hService.nearHitchList(mVo, authUser.getNo());
 		}
 	//이동중인 차 위치 확인
@@ -78,10 +81,13 @@ public class HitchhikeController {
 	//신청한게 있나 없나 확인
 	@ResponseBody
 	@RequestMapping(value="/cancelChk", method= {RequestMethod.GET, RequestMethod.POST})
-	public CancelChkVo cancelChk(@RequestBody int mateNo, HttpSession ss) {
+	public CancelChkVo cancelChk(@RequestBody int mateNo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		Map<String, Object> map = new HashMap<>();
 		CancelChkVo ccVo = new CancelChkVo();
-		Map<String, Object> map = hService.cancelChk(mateNo, authUser.getNo());
+		if( authUser != null ) {
+			map = hService.cancelChk(mateNo, authUser.getNo());
+		}
 		try {
 			int people = Integer.parseInt(map.get("PEOPLE").toString());
 			ccVo.setResult(people);
@@ -96,8 +102,7 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
 	public int chkRide(@RequestBody int mateNo) {
-		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		return hService.chkRide(mateNo, authUser.getNo());
+		return hService.chkRide(mateNo);
 	}
 	
 	
@@ -106,7 +111,9 @@ public class HitchhikeController {
 	public Map<String, Object> updateInfo(@RequestBody HitchInfoVo hiVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		Map<String, Object> hMap = new HashMap<>();
-		hMap.put("hVo", hService.getSummaryInfo(hiVo.getMateNo(), authUser.getNo()));
+		if( authUser != null ) {
+			hMap.put("hVo", hService.getSummaryInfo(hiVo.getMateNo(), authUser.getNo()));
+		}
 		hMap.put("hiVo", hiVo);
 		return hMap;
 	}

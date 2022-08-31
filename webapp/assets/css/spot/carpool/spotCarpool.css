@@ -98,6 +98,10 @@
  
 }
 
+input[type="time"]::before{content:attr(data-placeholder);width:100%}
+input[type="time"]:focus::before,
+input[type="time"]:valid::before{display:none}
+
 .input3 {
   width: 295px;
   height: 55px;
@@ -112,6 +116,7 @@
   text-align: left;
   padding: 0px 0px 0px 20px;
   border-radius: 0px;
+  color:gray;
 }
 
 .input4 {
@@ -151,8 +156,14 @@
   font-size: 20px;
   text-align: left;
   padding: 0px 0px 0px 20px;
-  border-radius: 0px;
+  border-radius: 0px; 
+  color:gray;
 }
+
+input[type="date"]::before{content:attr(data-placeholder);width:100%}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before{display:none}
+
 
 
 
@@ -178,6 +189,7 @@
   text-align: left;
   padding: 0px 0px 0px 20px;
   border-radius: 0px;
+  color:gray;
 }
 
 .carpoolInput6Picto {

@@ -39,7 +39,7 @@ public class KakaoAuthService {
 			sb.append("grant_type=authorization_code");
             
 			sb.append("&client_id=2b24f06df2137983cc98995c1ddce575"); //본인이 발급받은 key
-			sb.append("&redirect_uri=https://spotmate.duckdns.org/member/kakaologin"); // 본인이 설정한 주소
+			sb.append("&redirect_uri=https://spotmate.duckdns.org/kakaoLogin"); // 본인이 설정한 주소
             
 			sb.append("&code=" + authorize_code);
 			bw.write(sb.toString());
@@ -57,7 +57,6 @@ public class KakaoAuthService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
             
 			JsonElement element = JsonParser.parseString(result);
 
@@ -65,7 +64,6 @@ public class KakaoAuthService {
 			access_Token = element.getAsJsonObject().get("access_token").getAsString();
 			refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
             
-			System.out.println("access_token : " + access_Token);
 			System.out.println("refresh_token : " + refresh_Token);
             
 			br.close();

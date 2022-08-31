@@ -94,7 +94,7 @@
 
 				<input class="input2" type="text" name="eplace" value="${param.eplace}" placeholder="도착지를 입력하세요">
 				
-				<input class="input3" type="time" name="sTime" value="${param.sTime}" placeholder="출발시간">
+				<input class="input3" type="time" name="sTime" value="${param.sTime}" data-placeholder="출발시간" required aria-required="true">
 				
 				<div class="carpoolInput">
 					<input class="input4" type="number" name="smPeople" value="${param.smPeople}" placeholder="인원수">
@@ -104,7 +104,7 @@
 				</div>
 				
 				<div class="carpoolInput"> 
-					<input class="input5" type="date" name="startDate" value="${param.startDate}" placeholder="이용 출발 날짜">
+					<input class="input5" type="date" name="startDate" value="${param.startDate}" data-placeholder="이용 출발 날짜" required aria-required="true"/>
 					<!--<button>
 						<img class="carpoolInput5Picto" src="/assets/images/regularcalendar.png">
 					
@@ -112,7 +112,7 @@
 				</div>
 				
 				<div class="carpoolInput">
-					<input class="input6" type="date" name="endDate" value="${param.endDate}" placeholder="이용 도착 날짜"> 
+					<input class="input6" type="date" name="endDate" value="${param.endDate}" data-placeholder="이용 도착 날짜" required aria-required="true"/> 
 					<!--<button>
 						<img class="carpoolInput6Picto" src="/assets/images/regularcalendar.png">
 					</button>  -->
@@ -170,10 +170,13 @@
 
 					<tbody>
 					
-						
-						<c:forEach items="${cMap.carpoolList}" var="carpoolVo">
+
+				
+
+						<c:forEach items="${cMap.carpoolList}" var="carpoolVo" varStatus="status">	
+					
 							<tr>
-								<td>${carpoolVo.spotMateNo}</td>
+								<td>${(crtPage * listCnt) + 1 - listCnt + status.index}</td>
 								<td>${carpoolVo.type}</td>
 								<td>${carpoolVo.splace}</td>
 								<td>${carpoolVo.eplace}</td>
@@ -183,6 +186,8 @@
 	
 							</tr>
 						</c:forEach>
+			
+
 					</tbody>
 				
 				</table>

@@ -69,13 +69,11 @@ public class DriverWriteService {
 	}
 	
 	public Map<String, Object> getDriverInfo(int userNo) {
-		Map<String, Object> map = dwDao.selectDriverInfo(userNo);
-//		String str = map.get("NAME").toString();
-//		String[] arr = str.split(",");
-//		map.remove("NAME");
-//		for(int i=0;i<arr.length;i++) {
-//			map.put("opt"+i, arr[i]);
-//		}
+		Map<String, Object> map = new HashMap<>();
+		String introduce = dwDao.getDriverIntroduce(userNo);
+		String detailOpt = dwDao.getDriverDetailOpt(userNo);
+		map.put("INTRODUCE", introduce);
+		map.put("NAME", detailOpt);
 		return map;
 	}
 	

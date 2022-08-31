@@ -3,6 +3,8 @@
 
 .inner > .top > .clear > .matedesc {
 	font-size: 30px;
+	font-family: Montserrat;
+  	font-weight:700;
 	
 }
 .inner > .top > .clear {
@@ -24,3 +26,4 @@
 .inner > .top > ul > li{
 	list-style-type:circle;
 }
+
