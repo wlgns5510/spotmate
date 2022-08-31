@@ -50,14 +50,12 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>스팟 카풀 상세</title>
+	<title>스팟 카풀 Deep</title>
 
 </head>
 
 
 <body>
-
-	<!-- 	<div id="wrap"> -->
 
 	<!-- header-->
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
@@ -87,7 +85,10 @@
 					<c:if test='${param.result == "fail"}'>
 						<p class= overPeople>※ 탑승 가능 인원 수를 초과하였습니다</p>
 					</c:if>
-					탑승 요청 인원 수<br> <input class="confirm-2" type="text" name="people" value="" placeholder=" 인원 수를 입력해주세요">
+					<c:if test='${param.pointResult == "fail"}'>
+						<p class= overPeople>※ 포인트가 부족합니다</p>
+					</c:if>
+					탑승 요청 인원 수<br> <input class="confirm-2" type="number" name="people" value="" placeholder=" 인원 수를 입력해주세요">
 					탑승 시간<br> <div class="confirm"> ${cVoMap.cVo.sTime}</div>
 					처음 탑승일<br> <div class="confirm"> ${cVoMap.cVo.startDate}</div> 
 					마지막 탑승일<br> <div class="confirm"> ${cVoMap.cVo.endDate}</div>
@@ -95,26 +96,24 @@
 	
 				
 	
-				<div class="point">
-					총 결제 포인트<br> 
-					<div class="pointConfirm">
-						<fmt:formatNumber value="${cVoMap.cVo.point}" pattern="#,###" /> Point
-					</div><br> <br> 
-					<span class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
-					</span>
-	
-				</div>
-				
-				<c:choose>
-					<c:when test="${authUser != null}">
-	<!-- 					<a href="/myReservationUserMain"> -->
-							<button type="submit" class="rideButton">탑승하기</button>
-	<!-- 					</a> -->
-					</c:when>
-					<c:otherwise>
-						<a href="/loginForm"><button type="button" class="rideButton">로그인 하러 가기</button></a>
-					</c:otherwise>
-				</c:choose>
+					<div class="point">
+						총 결제 포인트<br> 
+						<div class="pointConfirm">
+							<fmt:formatNumber value="${cVoMap.cVo.point}" pattern="#,###" /> Point
+						</div><br> <br> 
+						<span class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
+						</span>
+		
+					</div>
+					
+					<c:choose>
+						<c:when test="${authUser != null}">	
+								<button type="submit" class="rideButton">탑승하기</button>	
+						</c:when>
+						<c:otherwise>
+							<a href="/loginForm"><button type="button" class="rideButton">로그인 하러 가기</button></a>
+						</c:otherwise>
+					</c:choose>
 				</form>			
 			</div>
 		</div>
@@ -151,21 +150,17 @@
 
 		<div class="carpool-top2"> 
 			<p class="authDriverInfo">
-				${cVoMap.cVo.id} 드라이버님의 차량 정보 
-					
-				
+				${cVoMap.cVo.id} 드라이버님의 차량 정보 			
 			</p>
-
-
 
 			<div class="carpool-picture">
 				<div class="carpool-picture-image">
-					<a href=""> <img src="/assets/images/${cVoMap.cVo.carPicture}.png" alt="hover">
+					<img src="/assets/images/${cVoMap.cVo.carPicture}.png" alt="hover">
 
-						<h3>
-							<span> ${cVoMap.cVo.carName}<br>(${cVoMap.cVo.carNo}) </span>
-						</h3>
-					</a>
+					<h3>
+						<span> ${cVoMap.cVo.carName}<br>(${cVoMap.cVo.carNo}) </span>
+					</h3>
+				
 				</div>
 			</div>
 
@@ -331,12 +326,6 @@
 		</a>
 
 	</div>
-
-
-
-
-
-	<!-- 	</div>	 -->
 
 
 	<!-- footer-->

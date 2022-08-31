@@ -44,11 +44,12 @@
 	<!-- css, js 연결 -->
 	<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
 	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
-	
-	<title>joinForm</title>
+	<script src="${pageContext.request.contextPath}/assets/js/joinForm.js"></script>
+	<title>aboutUs</title>
 	
 </head>
 
@@ -78,19 +79,20 @@
                         <!-- 아이디 -->
                         <div class="join_group topborder">
                             <label class="" for="">아이디*</label> 
-                            <input type="text" id="join_uid" name="id" value="" placeholder="7자미만의 영문 혹은 영문과 숫자를 조합하여 작성해주세요">
+                            <input type="text" id="join_uid" name="id" value="" placeholder="※7자미만의 영문 혹은 영문과 숫자를 조합하여 작성해주세요">
+                            <input type="hidden" id="id_chk_status" value="1">
                             <button type="button" id="id_check">중복확인</button>
                         </div>
 
                         <!-- 비밀번호 -->
                         <div class="join_group">
                             <label class="" for="">비밀번호*</label> 
-                            <input type="text" id="join_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
+                            <input type="password" id="join_pass" name="pw" value="" placeholder="※숫자와 영문자 조합으로 8~16자리를 사용해야 합니다.">
                         </div>
                         <!-- 비밀번호 확인 -->
-                        <div class="join_group">
+                        <div class="join_group chk_pw">
                             <label class="" for="">비밀번호확인*</label> 
-                            <input type="text" id="join_passcheck" name="" value="" placeholder="비밀번호를 한번 더 입력해주세요">
+                            <input type="password" id="join_passcheck" name="" value="" placeholder="비밀번호를 한번 더 입력해주세요">
                         </div>
 
                         <!-- 이름 -->
@@ -114,17 +116,18 @@
 
                         <!-- 주소 -->
                         <div class="join_group">
-                            <label class="" for="">주소*</label> 
-                            <!-- <button class="btn_address" type="button" onclick="location.href='addressmap.jsp' ">주소 검색</button> -->
-                            <button class="btn_address" type="button" onclick="location.href='javascript:void(0);' ">주소 검색</button>
+                                <label class="" for="">주소*</label> 
+                                <!-- <button class="btn_address" type="button" onclick="location.href='addressmap.jsp' ">주소 검색</button> -->
+                                <input type="text" id="address_kakao" name="address" value="" placeholder="주소 검색" readonly />
+                                <input type="text" id="detail_address" class="detail_address" name="address_detail" value="" placeholder="상세주소를 입력해주세요">
                         </div>
 
                         <!-- 성별 -->
                         <div class="join_checkbox">
                             <label class="joingender" for="">성별*</label> 
-                            <input id="join_male" type="checkbox" name="gender" value="male">
+                            <input id="join_male" type="radio" name="gender" value="male">
                             <label class="jointext" for="">남자</label> 
-                            <input id="join_female" type="checkbox" name="gender" value="female">
+                            <input id="join_female" type="radio" name="gender" value="female">
                             <label class="jointext" for="">여자</label>
                         </div>
 
@@ -155,22 +158,22 @@
                                     <p>선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk">
+                                    <input id="" type="checkbox" class="oneCk must1">
                                     <label class="agreetext" for="">이용약관 동의 &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk">
+                                    <input id="" type="checkbox" class="oneCk must2">
                                     <label class="agreetext" for="">개인정보 제 3자 제공 동의 &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk">
+                                    <input id="" type="checkbox" class="oneCk must3">
                                     <label class="agreetext" for="">개인정보 수집 및 이용 동의 &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk">
+                                    <input id="" type="checkbox" class="oneCk must4">
                                     <label class="agreetext" for="">본인은 만 14세이상입니다. &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
@@ -184,7 +187,7 @@
 
                         <!-- 버튼영역 -->
                         <div class="button_area">
-                            <button type="submit" id="btn_submit">가입하기</button>
+                            <button type="button" id="btn_submit">가입하기</button>
                         </div>
                     </form>
                 </div>
@@ -202,5 +205,4 @@
 
 </body>
 <!-- //body -->
-
 </html>

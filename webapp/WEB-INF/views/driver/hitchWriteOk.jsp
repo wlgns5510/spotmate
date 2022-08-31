@@ -71,7 +71,7 @@
 	<div class="mid">
 		<form action="/hitchWriteInsert" method="post">
 		<input type="hidden" name="type" value="hitchhike">
-			<p>등록하신 날짜와 출발시간입니다.</p>
+			<p>등록하신 날짜와 출발시간입니다</p>
 			<div class="f-sec">
 				<span>출발 날짜</span><input type="text" name="sdate1" value="${dwVo.sdate1}" id="hitch-s-date""><br>
 				<span>출발 시간</span><input type="text" name="stime1" value="${dwVo.stime1}" id="hitch-s-time">
@@ -97,7 +97,7 @@
 			</div>
 			<div id="map"></div>
 			<div class="t-sec">
-				<p>탑승 가능한 인원 수*</p>
+				<p>탑승 가능한 인원 수 *</p>
 				<input name="people" value="${dwVo.people}" type="text">
 				<input type="hidden" name="fare" value="${dwVo.fare}">
 				<input type="hidden" name="intfare" value="${dwVo.intfare}">
@@ -110,27 +110,33 @@
 						<td><div style="background: url(/assets/images/drop-opacity.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>비흡연자</span></td>
 						<td><input type="hidden" name="nosmoke" value="${dwVo.nosmoke}"></td>
 						</c:if>
-						<c:if test="${dwVo.phonecharge != null}">
-						<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>핸드폰 충전기 이용 가능</span></td>
-						<td><input type="hidden" name="phonecharge" value="${dwVo.phonecharge}"></td>
-						</c:if>
 					</tr>
 					<tr>
 					<c:if test="${dwVo.femaledriver != null}">
 						<td><div style="background: url(/assets/images/boy.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>여성 드라이버</span></td>
 						<td><input type="hidden" name="femaledriver" value="${dwVo.femaledriver}"></td>
 						</c:if>
+					</tr>
+					<tr>
+						<c:if test="${dwVo.pet != null}">
+						<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물</span></td>
+						<td><input type="hidden" name="pet" value="${dwVo.pet}"></td>
+						</c:if>
+					</tr>
+					<tr>
+						<c:if test="${dwVo.phonecharge != null}">
+						<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>충전기 사용 가능</span></td>
+						<td><input type="hidden" name="phonecharge" value="${dwVo.phonecharge}"></td>
+						</c:if>
+					</tr>
+					
+					<tr>
 						<c:if test="${dwVo.trunk != null}">
 						<td><div style="background: url(/assets/images/ico_toolbox.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
 						<td><input type="hidden" name="trunk" value="${dwVo.trunk}"></td>
 						</c:if>
 					</tr>
-					<tr>
-						<c:if test="${dwVo.pet != null}">
-						<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물 탑승 가능</span></td>
-						<td><input type="hidden" name="pet" value="${dwVo.pet}"></td>
-						</c:if>
-					</tr>
+					
 				</table>
 				<p>드라이버님을 소개해주세요*</p>
 				<textarea class="introduce" name="introduce" readonly>${dwVo.introduce}</textarea>

@@ -13,8 +13,6 @@
 }
 
 .mateDeep_wrap {
-	width: 100%;
-	height: 100%;
 	background: rgba(255, 255, 255, 1);
 	margin: 0px auto;
 }
@@ -102,9 +100,8 @@
 }
 /*************************mateDeep_content*******************************/
 .mateDeep_content {
+	
 	width: 1000px;
-	height: 2600px;
-	/* 	margin: 0px 0px 0px 550px; */
 	background: rgba(255, 255, 255, 1);
 }
 .mateDeep_content2 {
@@ -371,7 +368,7 @@
 	display: block;
 	width: 1000px;
 	float: left;
-	margin: 0px 0px 100px 0px;
+	margin: 0px 0px 50px 0px;
 }
 
 .mateDeep_today .mateDeep_spotBox {
@@ -425,7 +422,7 @@
 }
 .mateDeep_recommendBox {
 	width:900px;
-	height: 200px;
+	height: 150px;
 }
 .mateDeep_recommendListBox {
 	width: 900px;

@@ -37,6 +37,12 @@ public class MateVo {
 	private String sDate;
 	private String eDate;
 	private Integer smPeople;
+	private int spotMateNo;
+	private int userNo;
+	private int driverNo;
+	private int no;
+	private int resvNo;
+	
 
 	private String opts; // db에서 정리된값
 
@@ -55,8 +61,9 @@ public class MateVo {
 			String startDate, String endDate, int people, String type, int point, String duration, String distance,
 			String comments, int mateNo, String optionName, int mateOptionNo, int optionNo, String matePlaceNo, int day,
 			int wayNo, String sepplace, String time, String place, double lat, double lng, double latlng, String sPlace,
-			String ePlace, int allDay, String sDate, String eDate, Integer smPeople, String opts,
-			List<Integer> mateContactList, int crtPage, int startRnum, int endRnum, int randomImgNo) {
+			String ePlace, int allDay, String sDate, String eDate, Integer smPeople, int spotMateNo, int userNo,
+			int driverNo, int no, int resvNo, String opts, List<Integer> mateContactList, int crtPage, int startRnum,
+			int endRnum, int randomImgNo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -91,6 +98,11 @@ public class MateVo {
 		this.sDate = sDate;
 		this.eDate = eDate;
 		this.smPeople = smPeople;
+		this.spotMateNo = spotMateNo;
+		this.userNo = userNo;
+		this.driverNo = driverNo;
+		this.no = no;
+		this.resvNo = resvNo;
 		this.opts = opts;
 		this.mateContactList = mateContactList;
 		this.crtPage = crtPage;
@@ -363,6 +375,46 @@ public class MateVo {
 		this.smPeople = smPeople;
 	}
 
+	public int getSpotMateNo() {
+		return spotMateNo;
+	}
+
+	public void setSpotMateNo(int spotMateNo) {
+		this.spotMateNo = spotMateNo;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+	public int getDriverNo() {
+		return driverNo;
+	}
+
+	public void setDriverNo(int driverNo) {
+		this.driverNo = driverNo;
+	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
+	}
+
+	public int getResvNo() {
+		return resvNo;
+	}
+
+	public void setResvNo(int resvNo) {
+		this.resvNo = resvNo;
+	}
+
 	public String getOpts() {
 		return opts;
 	}
@@ -421,8 +473,13 @@ public class MateVo {
 				+ matePlaceNo + ", day=" + day + ", wayNo=" + wayNo + ", sepplace=" + sepplace + ", time=" + time
 				+ ", place=" + place + ", lat=" + lat + ", lng=" + lng + ", latlng=" + latlng + ", sPlace=" + sPlace
 				+ ", ePlace=" + ePlace + ", allDay=" + allDay + ", sDate=" + sDate + ", eDate=" + eDate + ", smPeople="
-				+ smPeople + ", opts=" + opts + ", mateContactList=" + mateContactList + ", crtPage=" + crtPage
-				+ ", startRnum=" + startRnum + ", endRnum=" + endRnum + ", randomImgNo=" + randomImgNo + "]";
+				+ smPeople + ", spotMateNo=" + spotMateNo + ", userNo=" + userNo + ", driverNo=" + driverNo + ", no="
+				+ no + ", resvNo=" + resvNo + ", opts=" + opts + ", mateContactList=" + mateContactList + ", crtPage="
+				+ crtPage + ", startRnum=" + startRnum + ", endRnum=" + endRnum + ", randomImgNo=" + randomImgNo + "]";
 	}
+
+	
+
+	
 
 }

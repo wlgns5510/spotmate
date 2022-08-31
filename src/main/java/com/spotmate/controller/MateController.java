@@ -2,6 +2,8 @@ package com.spotmate.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.service.MateService;
 import com.spotmate.vo.MateVo;
+import com.spotmate.vo.UserVo;
 
 @Controller
 public class MateController {
@@ -82,18 +85,39 @@ public class MateController {
 	
 	
 	
-	//mateNo에 해당하는 메이트딥 이동 + 드라이버 차량 정보 가져오기 + 경로상세 + 차량의 상세조건
+	//mateNo에 해당하는 메이트딥 이동 + 드라이버 차량 정보 가져오기 + 경로상세 + 차량의 상세조건 + 차량 추천리스트
 	@RequestMapping(value = "/mateDeep/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mateDeep(@PathVariable("no") int no, Model model) {
+	public String mateDeep(@PathVariable("no") int no, Model model, MateVo mVo) {
 		System.out.println("MateController >> mateDeep");
 		
-		Map<String, Object> mMap = mateService.deepMateRead(no);
+		Map<String, Object> mMap = mateService.deepMateRead(no, mVo);
 		
 		model.addAttribute("mMap", mMap);
 		
 		
 		return "/mate/mateDeep";
 	}
+	
+	//메이트 user 예약내역 DB에 저장하기
+	@RequestMapping(value = "/saveMate", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveMate(@ModelAttribute MateVo mateVo, HttpSession session) {
+		System.out.println("MateController >> saveMate");
+		
+		UserVo authUser = (UserVo)session.getAttribute("authUser"); //세션에서 로그인한 유저를 가져옴
+		System.out.println("로그인한 회원정보: " + authUser);
+		
+		int userNo = authUser.getNo(); //로그인한 유저의 번호를 가져옴
+		
+		int result = mateService.saveMate(userNo, mateVo);
+		System.out.println("result: " + result);
+		if( result == 0) {
+			return "redirect:/myReservationUserMain/1";
+		}
+				
+		return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?result=fail";
+	}
+	
+	
 	
 	
 	

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.spotmate.vo.DriverLicenseVo;
 import com.spotmate.vo.MyUsageVo;
+import com.spotmate.vo.ReviewInfoVo;
+import com.spotmate.vo.ReviewVo;
 import com.spotmate.vo.UsageSearchVo;
 import com.spotmate.vo.myQnaVo;
 
@@ -33,82 +35,18 @@ public class MypageRDao {
 	
 	
 	//myqna list 
-	public String getMyQnaList(myQnaVo mqv){
-		List<myQnaVo> MyQnaList = ss.selectList("mypageR.selectmqaList");
-		return "";
-	
+	public List<myQnaVo> getMyQnaList(int userNo){
+		List<myQnaVo> myqnaList = ss.selectList("mypageR.selectmqaList", userNo);
+		return myqnaList;
 	}
 	
 	
 	
 
-	// 등록
-	public int myDriverInsert(DriverLicenseVo dlvo) {
-		int count = ss.insert("mypageR.myDriverinsert", dlvo);
-		System.out.println(dlvo);
-		System.out.println(count + "건 등록되었습니다.");
 
-		return count;
-
-	}
-
-	// users테이블에 면허정보 업데이트
-	public int update(DriverLicenseVo dlvo) {
-
-		int count = ss.update("mypageR.myDriverUpdate", dlvo);
-		System.out.println(count + "건 업데이트 되었습니다.");
-		return count;
-
-	}
-
-	// carDetail 값 저장
-	public int carDetailInsert(Map<String, Integer> carDetailMap) {
-
-		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
-		return count;
-
-	}
-
-	public DriverLicenseVo getCarInfo(int userNo) {
-		DriverLicenseVo dlvo = ss.selectOne("mypageR.getCarInfo", userNo);
-
-		return dlvo;
-	}
-
-	// 유저정보수정
-	public int userUpdate(DriverLicenseVo dlvo) {
-		int count = ss.update("mypageR.userUpdate", dlvo);
-
-		return count;
-	}
-
-	public int carUpdate(DriverLicenseVo dlvo) {
-		int count = ss.update("mypageR.carUpdate", dlvo);
-		return count;
-	}
-
-	public int carDetailDelete(DriverLicenseVo dlvo) {
-		ss.delete("mypageR.carDetailDelete", dlvo);
-		return 0;
-	}
-
-	public int carDetailUpdate(DriverLicenseVo dlvo, Map<String, Integer> carDetailMap) {
-		int count = ss.insert("mypageR.carDetailInsert", carDetailMap);
-		return count;
-	}
 
 	
-	
-	//카정보수정
-	
-//	public List<MyUsageVo> getUserUsageList(int userNo) {
-//		return ss.selectList("mypageR.getuserusagelist", userNo);
-//	}
-//	
-//	public List<MyUsageVo> getDriverUsageList(int userNo) {
-//		return ss.selectList("mypageR.getdriverusagelist", userNo);
-//	}
-	
+
 	public int totalUserCnt(int userNo) {
 		return ss.selectOne("mypageR.totalusercnt", userNo);
 	}
@@ -206,6 +144,9 @@ public class MypageRDao {
 		return ss.selectOne("mypageR.totaldrivercntresv", userNo);
 	}
 	
+	public int endResv(Map<String, Object> map) {
+		return ss.update("mypageR.endResv", map);
+	}
 	
 	public int getDriverSearchCntResv(UsageSearchVo usVo, int userNo) {
 		Map<String, Object> map = new HashMap<>();
@@ -222,6 +163,37 @@ public class MypageRDao {
 		map.put("eNum", endRnum);
 		return ss.selectList("mypageR.getdriversearchlistresv", map);
 	}
+	
+	public int getMateNoByResvNo(int resvNo) {
+		return ss.selectOne("mypageR.getMateNoByResvNo", resvNo);
+	}
+	
+	public ReviewInfoVo forReviewInfo(Map<String, Object> map) {
+		return ss.selectOne("mypageR.forReviewInfo", map);
+	}
+	
+	public void insertUserReview(ReviewVo rVo) {
+		ss.insert("mypageR.insertUserReview", rVo);
+	}
+	public void afterInsertUserReview(int resvNo) {
+		ss.update("mypageR.afterInsertUserReview", resvNo);
+	}
+	
+	public List<Map<String, Object>> getPassengerList(Map<String, Object> map) {
+		return ss.selectList("mypageR.getPassengerList", map);
+	}
+	
+	public List<Integer> getReviewedPassengerList(int resvNo) {
+		return ss.selectList("mypageR.getReviewedPassengerList", resvNo);
+	}
+	
+	public void insertDriverReview(ReviewVo rVo) {
+		ss.insert("mypageR.insertDriverReview", rVo);
+	}
+	public void afterInsertDriverReview(int resvNo) {
+		ss.update("mypageR.afterInsertDriverReview", resvNo);
+	}
+	
 	
 	// 카정보수정
 

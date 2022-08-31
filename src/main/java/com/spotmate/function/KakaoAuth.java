@@ -17,7 +17,7 @@ public class KakaoAuth {
 	@Autowired
 	private KakaoAuthService kas;
 
-	@RequestMapping(value="/kakaologin", method=RequestMethod.GET)
+	@RequestMapping(value="/kakaoogin", method=RequestMethod.GET)
 	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) throws Exception {
 		System.out.println("########" + code);
 		

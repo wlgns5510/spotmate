@@ -25,8 +25,8 @@ public class HitchService {
 	
 	
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
-	public int chkRide(int mateNo, int userNo) {
-		return hDao.chkRide(mateNo, userNo);
+	public int chkRide(int mateNo) {
+		return hDao.chkRide(mateNo);
 	}
 	
 	//유저가 탑승예약 할 때
@@ -86,6 +86,11 @@ public class HitchService {
 		// 출발지에서부터 유저와 드라이버의 거리 재기
 //		haver.calcByHaversine(mVo.getLat(), mVo.getLng(), hL.get(i).getLat(), hL.get(i).getLng()) > haver.calcByHaversine(Double.parseDouble(hL.get(i).getLatlng().split(",")[1]), Double.parseDouble(hL.get(i).getLatlng().split(",")[0]), hL.get(i).getLat(), hL.get(i).getLng()) && 
 		return nhL;
+	}
+	
+	public List<HitchVo> nearHitchList() {
+		List<HitchVo> hL = hDao.nearHitchList();
+		return hL;
 	}
 	
 	public List<HitchVo> getNear(MapVo mVo, int userNo) {

@@ -18,6 +18,8 @@
 		<typeAlias alias="userVo" type="com.spotmate.vo.UserVo" />
 		<typeAlias alias="muVo" type="com.spotmate.vo.MyUsageVo" />
 		<typeAlias alias="DetailOptVo" type="com.spotmate.vo.DetailOptVo" />
+		<typeAlias alias="riVo" type="com.spotmate.vo.ReviewInfoVo" />
+		<typeAlias alias="rVo" type="com.spotmate.vo.ReviewVo" />
 	</typeAliases>
 
 
@@ -28,6 +30,7 @@
 		<mapper resource="mybatis/mappers/mate.xml" />
 		<mapper resource="mybatis/mappers/mypageR.xml" />
 		<mapper resource="mybatis/mappers/users.xml" />
+		<mapper resource="mybatis/mappers/driverLicense.xml" />
 	</mappers>
 </configuration>
 
