@@ -1,7 +1,6 @@
 package com.spotmate.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +26,14 @@ public class DriverWriteDao {
 		ss.insert("spotmate.mateinsert", mwVo);
 	}
 	
-	public Map<String, Object>selectDriverInfo(int userNo) {
-		Map<String, Object> map = ss.selectOne("spotmate.selectdriverinfo", userNo);
-		return map;
+	public String getDriverIntroduce(int userNo) {
+		String introduce = ss.selectOne("spotmate.getDriverIntroduce", userNo);
+		return introduce;
+	}
+	
+	public String getDriverDetailOpt(int userNo) {
+		String detailOpt = ss.selectOne("spotmate.getDriverDetailOpt", userNo);
+		return detailOpt;
 	}
 	
 	public int getMateNo(int userNo) {

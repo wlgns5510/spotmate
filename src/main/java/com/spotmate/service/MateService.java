@@ -66,15 +66,32 @@ public class MateService {
 	}		
 	
 	//해당 메이트에 관한 정보
-	public Map<String, Object> deepMateRead(int no) {
+	public Map<String, Object> deepMateRead(int no, MateVo mVo) {
 		System.out.println("MateService >> deepMateRead");
 		
-		MateVo mateVo = mateDao.deepMateRead(no);	//해당 메이트에 관한 정보
-		MateVo mateDriverVo = mateDao.deepMateDriverRead(no);	//해당 메이트의 운전자,차량정보
-		List<MateVo> matePlaceList = mateDao.deepPlaceRead(no);	//해당 메이트의 출발지, 경유지, 도착지정보
-		List<MateVo> mateDetailList = mateDao.deepDetailRead(no);	//해당 메이트의 운전자가 설정한 상세조건
-		List<CarpoolVo> reviewList = mateDao.deepReviewList(no);	//해당 메이트의 운전자의 별점리스트
-		CarpoolVo reviewAvg = mateDao.deepReviewAvg(no);	//해당 메이트 운전자의 별점 평균
+		//해당 메이트에 관한 정보
+		MateVo mateVo = mateDao.deepMateRead(no);	
+		
+		//해당 메이트의 운전자,차량정보
+		MateVo mateDriverVo = mateDao.deepMateDriverRead(no);	
+		
+		//해당 메이트의 출발지, 경유지, 도착지정보
+		List<MateVo> matePlaceList = mateDao.deepPlaceRead(no);	
+		
+		//해당 메이트의 운전자가 설정한 상세조건
+		List<MateVo> mateDetailList = mateDao.deepDetailRead(no);	
+		
+		//해당 메이트의 운전자의 별점리스트
+		List<CarpoolVo> reviewList = mateDao.deepReviewList(no);	
+		
+		//해당 메이트 운전자의 별점 평균
+		CarpoolVo reviewAvg = mateDao.deepReviewAvg(no);	
+		
+		//Deep페이지 차량 추천 리스트 박스
+		mVo.setStartRnum(1);
+		mVo.setEndRnum(4);
+		List<MateVo> recommendList = mateDao.getMateList(mVo);
+		
 		
 		Map<String, Object> mateDriverMap = new HashMap<String, Object>();
 		mateDriverMap.put("mateVo", mateVo);
@@ -83,10 +100,40 @@ public class MateService {
 		mateDriverMap.put("mateDetailList", mateDetailList);
 		mateDriverMap.put("reviewList", reviewList);
 		mateDriverMap.put("reviewAvg", reviewAvg);
+		mateDriverMap.put("recommendList", recommendList);
 		
 		return mateDriverMap;	
 	}
 	
+	//드라이버 
+	
+	//메이트 user 예약내역 DB에 저장하기
+	public int saveMate(int userNo, MateVo mateVo) {
+		System.out.println("MateService >> saveMate");
+		
+		mateVo.setUserNo(userNo);
+		
+		int mateNo = mateVo.getSpotMateNo();
+		System.out.println(mateNo);
+		int people = mateVo.getPeople();
+		System.out.println("탑승인원= " + people);
+		int canRide = mateDao.chkPeople(mateNo);
+		System.out.println("탑승가능인원= " + canRide);
+		int usablePoint = mateDao.getTotalPoint(userNo);
+		if(canRide >= people && usablePoint >= mateVo.getPoint()) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("people", people);
+			map.put("mateNo", mateNo);
+			mateDao.updateReservPeople(map);	//인원수 업데이트(스팟메이트)
+			mateDao.saveMate(mateVo);	//예약내역 저장
+			mateDao.savePoint(mateVo);
+			return 0;
+		} else {
+				return -1;
+		}
+		
+		
+	}
 	
 	
 	

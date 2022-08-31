@@ -78,11 +78,12 @@ public class CarpoolController {
 		int result = carpoolService.saveCarpool(userNo, carpoolVo); 
 		
 		if ( result == 0 ) {
-											
 			return "redirect:/myReservationUserMain/1";
+		} else if( result == -2 ) {
+			return "redirect:/spotCarpoolDeep/"+carpoolVo.getSpotMateNo()+"?pointResult=fail";
+		} else {
+			return "redirect:/spotCarpoolDeep/"+carpoolVo.getSpotMateNo()+"?result=fail";
 		}
-		
-		return "redirect:/spotCarpoolDeep/"+carpoolVo.getSpotMateNo()+"?result=fail";
 	}
 	
 	

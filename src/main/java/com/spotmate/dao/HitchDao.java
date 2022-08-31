@@ -27,7 +27,11 @@ public class HitchDao {
 		return ss.selectList("spotmate.selectnear", userNo);
 	}
 	public List<HitchVo> nearHitchList(int userNo) {
-		return ss.selectList("spotmate.nearhitchlist", userNo);
+		return ss.selectList("spotmate.nearHitchListLogin", userNo);
+	}
+	
+	public List<HitchVo> nearHitchList() {
+		return ss.selectList("spotmate.nearHitchListNoLogin");
 	}
 	//신청한게 있나 없나 확인
 	public Map<String, Object> cancelChk(int mateNo, int userNo) {
@@ -68,17 +72,8 @@ public class HitchDao {
 		return people;
 	}
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
-	public int chkRide(int mateNo, int userNo) {
-		int cnt = -1;
-		Map<String, Object> nMap = new HashMap<>();
-		nMap.put("mateNo", mateNo);
-		nMap.put("userNo", userNo);
-		try {
-			cnt = ss.selectOne("spotmate.chkride", nMap);
-		} catch(NullPointerException e) {
-			return cnt;
-		}
-		return cnt;
+	public int chkRide(int mateNo) {
+		return ss.selectOne("spotmate.chkride", mateNo);
 	}
 	//드라이버 현재 위치 저장하면서 탑승한 유저 목록 가져옴
 	public List<HitchReservVo> watchPos(MapVo mVo) {

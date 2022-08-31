@@ -289,7 +289,7 @@
 	      </selectKey>
 	      <![CDATA[
  				insert into pointusage 
- 				values (seq_pointusage_no.nextval, #{userNo}, '예약', sysdate, #{point}, #{point}, #{resvNo})
+ 				values (seq_pointusage_no.nextval, #{userNo}, '완료', sysdate, #{point}, #{point}, #{resvNo})
  		  ]]>
 
 	</insert>

@@ -62,14 +62,18 @@
 	</select>
 
  
-	<select id="selectdriverinfo" parameterType="int" resultType="map">
-		select introduce,
-		    listagg(name, ',') within group(order by null) as name
+	<select id="getDriverIntroduce" parameterType="int" resultType="String">
+		select introduce
+		from car
+		where no = #{carNo}
+	</select>
+	
+	<select id="getDriverDetailOpt" parameterType="int" resultType="String">
+		select listagg(name, ',') within group(order by detailNo) as name
 		from car c, carDetail cd, detailOpt do
-		where c.no = #{userNo}
+		where c.no = #{carNo}
 		and c.no = cd.carNo
 		and cd.detailNo = do.no
-		group by introduce
 	</select>
 
 	<select id="nowaddr" parameterType="int" resultType="String">
@@ -203,7 +207,7 @@
 		order by s.no desc
 	</select>
 
-	<select id="nearhitchlist" parameterType="int" resultType="hVo">
+	<select id="nearHitchListLogin" parameterType="int" resultType="hVo">
 		select s.no mateNo,
 		place eplace1,
 		slatlng.lat,
@@ -224,6 +228,29 @@
 		and s.type = 'hitchhike'
 		and s.status = 'open'
 		and carNo != #{userNo}
+        order by s.no desc
+	</select>
+	
+	<select id="nearHitchListNoLogin" resultType="hVo">
+		select s.no mateNo,
+		place eplace1,
+		slatlng.lat,
+		slatlng.lng,
+		s.people people,
+		s.point point,
+        latlng
+		from spotmate s, place p, (select lat,
+                                          lng,
+                                          s.no no
+                                   from spotmate s, place p
+                                   where s.no = p.mateNo
+                                   and wayno = -1) slatlng
+		where p.mateNo = s.no
+		and slatlng.no = s.no
+		and wayno = 0
+		and s.people > 0
+		and s.type = 'hitchhike'
+		and s.status = 'open'
         order by s.no desc
 	</select>
 	
@@ -292,11 +319,10 @@
 
 <!-- 	rideReq를 통해서 탑승 예약 -->
 
-	<select id="chkride" parameterType="map" resultType="int">
+	<select id="chkride" parameterType="int" resultType="int">
 		select people
-		from reservation
-		where mateNo = #{mateNo}
-		and userNo = #{userNo}
+		from spotmate
+		where no = #{mateNo}
 	</select>
 
 <!-- cancel을 이용해서 탑승 예약 취소 -->

@@ -136,7 +136,11 @@ public class CarpoolService {
 		int people = carpoolVo.getPeople();
 		int canRide = carpoolDao.chkPeople(mateNo);
 		int usablePoint = carpoolDao.getTotalPoint(userNo);
-		if(canRide >= people && usablePoint >= carpoolVo.getPoint() ) {
+		if(canRide < people ) {
+			return -1;
+		} else if ( usablePoint < carpoolVo.getPoint() ) {
+			return -2;
+		} else if(canRide >= people && usablePoint >= carpoolVo.getPoint() ) {
 			Map<String, Object> map = new HashMap<>();
 			map.put("people", people);
 			map.put("mateNo", mateNo);
@@ -146,7 +150,7 @@ public class CarpoolService {
 			return 0;
 		} else {
 			return -1;
-		}				
+		}
 		
 	}
 
