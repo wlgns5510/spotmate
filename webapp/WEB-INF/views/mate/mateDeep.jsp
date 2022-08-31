@@ -350,7 +350,7 @@
 				</p>
 				<div class="carpool-picture">
 					<div class="carpool-picture-image">
-						<a href=""> <img src="/assets/images/car_tesla.png">
+						<a href=""> <img src="/upload/${mateDriverVo.carPicture}">
 							<h3>
 								<span> ${mMap.mateDriverVo.carName}<br>(${mMap.mateDriverVo.carNo})</span>
 								

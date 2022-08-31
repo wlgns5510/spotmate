@@ -1,5 +1,6 @@
 package com.spotmate.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,7 +80,7 @@ public class MypageRController {
 		mqv.setUserNo(userNo);// 세팅을 해놓는다
 		mqs.InsertQna(mqv); // 메소드가 없어 서비스로 만들어주러가야함
 
-		return "/mypage/myQnaMain";
+		 return "redirect:/myQnaMain";
 
 	}
 	

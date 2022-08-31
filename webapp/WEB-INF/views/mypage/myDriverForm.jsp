@@ -140,7 +140,11 @@
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
 										<td>
+<<<<<<< HEAD
 											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)970107" type="number">
+=======
+											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)040831" type="text">
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 											<button type="button" id="liau" class="smallbtn" style="float: initial;">본인인증</button>
 										</td>
 										<td></td>
@@ -154,11 +158,11 @@
 
 													<div class="dl_wrap1">
 														<span class="dl_box"> 
-															<input id="dl_1" class="txt-dl" placeholder="ex)11" type="text">
-															<input id="dl_2" class="dl txt-dl" placeholder="ex)18" type="text">
-															<input id="dl_3" class="dl txt-dl" placeholder="ex)026155" type="text">
+															<input id="dl_1" class="txt-dl" placeholder="ex)10" type="text">
+															<input id="dl_2" class="dl txt-dl" placeholder="ex)10" type="text">
+															<input id="dl_3" class="dl txt-dl" placeholder="ex)000000" type="text">
 															<input id="dl_4" class="dl txt-dl" placeholder="ex)10" type="text">
-															<input id="dl_5" class="dl txt-dl" placeholder="ex)X61D86" type="text">
+															<input id="dl_5" class="dl txt-dl" placeholder="ex)Xxxxxx" type="text">
 															<input id="dl" name="dl"  type="text">
 														</span>
 													</div>
