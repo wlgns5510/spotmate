@@ -83,9 +83,12 @@ public class CarpoolService {
 		cMap.put("carpoolList", carpoolList);
 
 		cMap.put("prev", prev);
-		cMap.put("next", next);
-		cMap.put("startPageBtnNo", startPageBtnNo);
-		cMap.put("endPageBtnNo", endPageBtnNo);
+        cMap.put("next", next);
+        cMap.put("startPageBtnNo", startPageBtnNo);
+        cMap.put("endPageBtnNo", endPageBtnNo);
+        cMap.put("totalCarpoolCnt", totalCarpoolCnt);
+        cMap.put("listCnt", listCnt);
+        cMap.put("crtPage", crtPage);
 
 		return cMap;
 
@@ -137,10 +140,13 @@ public class CarpoolService {
 		int canRide = carpoolDao.chkPeople(mateNo);
 		int usablePoint = carpoolDao.getTotalPoint(userNo);
 		if(canRide < people ) {
+			System.out.println("1");
 			return -1;
 		} else if ( usablePoint < carpoolVo.getPoint() ) {
+			System.out.println("2");
 			return -2;
 		} else if(canRide >= people && usablePoint >= carpoolVo.getPoint() ) {
+			System.out.println("3");
 			Map<String, Object> map = new HashMap<>();
 			map.put("people", people);
 			map.put("mateNo", mateNo);
@@ -149,6 +155,7 @@ public class CarpoolService {
 			carpoolDao.savePoint(carpoolVo);
 			return 0;
 		} else {
+			System.out.println("4");
 			return -1;
 		}
 		

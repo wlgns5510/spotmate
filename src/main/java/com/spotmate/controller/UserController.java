@@ -70,6 +70,7 @@ public class UserController {
 	   if( nickname != null ) {
 		   uService.insertKakao(nickname, email, authUser.getNo());
 	   }
+	   System.out.println(authUser.toString());
 	   String url = (String)session.getAttribute("prevPage");
 	   System.out.println(authUser);
 	   if(authUser !=null && url !=null) {

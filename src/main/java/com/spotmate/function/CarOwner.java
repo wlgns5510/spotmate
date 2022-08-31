@@ -48,7 +48,7 @@ public class CarOwner {
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 		httpConn.setRequestMethod("POST");
 
-		httpConn.setRequestProperty("Authorization", "Token bfa7f421f3d4458e8e636f23792d27088cc4ff32");
+		httpConn.setRequestProperty("Authorization", "Token f302782e25b244c8a79125e0e75dfa63f1ff95f5");
 		httpConn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
 		httpConn.setDoOutput(true);
 		OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
@@ -66,6 +66,7 @@ public class CarOwner {
 		JsonElement element = JsonParser.parseString(result);
 		String data = element.getAsJsonObject().get("data").toString();
 		s.close();
+		System.out.println(data);
 		if ( data.contains(carInfo.getName()) == true ) {
 			return 0;
 		}
