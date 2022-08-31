@@ -154,11 +154,11 @@
 
 													<div class="dl_wrap1">
 														<span class="dl_box"> 
-															<input id="dl_1" class="txt-dl" placeholder="ex)11" type="text">
-															<input id="dl_2" class="dl txt-dl" placeholder="ex)18" type="text">
-															<input id="dl_3" class="dl txt-dl" placeholder="ex)026155" type="text">
+															<input id="dl_1" class="txt-dl" placeholder="ex)10" type="text">
+															<input id="dl_2" class="dl txt-dl" placeholder="ex)10" type="text">
+															<input id="dl_3" class="dl txt-dl" placeholder="ex)000000" type="text">
 															<input id="dl_4" class="dl txt-dl" placeholder="ex)10" type="text">
-															<input id="dl_5" class="dl txt-dl" placeholder="ex)X61D86" type="text">
+															<input id="dl_5" class="dl txt-dl" placeholder="ex)Xxxxxx" type="text">
 															<input id="dl" name="dl"  type="text">
 														</span>
 													</div>
