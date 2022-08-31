@@ -584,7 +584,7 @@ for (var j=1;j<6;j++) {
 	var Strlatlng = $("#latlng"+j).val().replace('[', '').replace(']','');
 	var latlng = Strlatlng.split(',');
 	$("#latlng"+j).val(latlng);
-	$("#map"+j).attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
+	$("#map"+j).attr("style","width:720px; height: 300px; margin:20px 0px 50px 0px;");
 	//마커 위치 찍어주기 및 bound설정
 	var latArray = [slat, elat],
 		lngArray = [slng, elng],

@@ -140,7 +140,11 @@
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
 										<td>
-											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)2004-0831" type="text">
+<<<<<<< HEAD
+											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)970107" type="number">
+=======
+											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)040831" type="text">
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 											<button type="button" id="liau" class="smallbtn" style="float: initial;">본인인증</button>
 										</td>
 										<td></td>
@@ -377,6 +381,10 @@
 	$("#liau").on("click", function() {
 		var name2 = $("#username").val();
 		var btd2 = $("#userBD").val();
+		if(btd2.length != 6) {
+			alert("형식에 맞게 값을 넣어주세요");
+			return;
+		}
 		var serial2 = $("#dl").val();
 		if (serial2.length != 22) {
 			alert("형식에 맞게 값을 넣어주세요");
