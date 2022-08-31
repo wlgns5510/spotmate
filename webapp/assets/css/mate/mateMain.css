@@ -1,8 +1,9 @@
 .mateMain_inputBox input::placeholder {
-	color: #C2C6CC;
+	color:gray;
 }
 .mateMain_inputBox input {
 	border: none;
+	color:gray;
 }
 input[type=checkbox] {
     accent-color: rgba(73,85,159,1);    
@@ -120,6 +121,9 @@ input[type=checkbox] {
 /***********************mateMain_content2**************************/
 .chectBoxList input {
 	margin: 0px 10px 0px 0px;
+}
+.chectBoxList label {
+	cursor : pointer;
 }
 .chectBoxList span {
 	margin: 0px 50px 0px 0px;
