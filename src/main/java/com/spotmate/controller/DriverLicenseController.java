@@ -153,9 +153,25 @@ public class DriverLicenseController {
 	@ResponseBody
 	@RequestMapping(value="/carAuth", method = {RequestMethod.GET, RequestMethod.POST})
 	public int carAuth(@RequestBody CarAuthInfoVo carInfo) throws IOException {
-		
 		CarOwner co = new CarOwner();
 		
-		return co.CarAuth(carInfo);
+		//strip()은 문자열 사이에 공백을 없애 줌
+		//ex)64무6432
+		carInfo.setCnum(carInfo.getCnum().replace(" ", ""));
+		System.out.println(carInfo.getCnum());
+		int result = co.CarAuth(carInfo);
+		//ex)64무 6432
+		carInfo.setCnum(carInfo.getCnum().replace("[가-힣]", "[가-힣] "));
+		System.out.println(carInfo.getCnum());
+		int result2 = co.CarAuth(carInfo);
+		
+		if( result > result2 ) {
+			return result;
+		} else if ( result < result2 ) { 
+			return result2;
+		} else {
+			return result;
+		}
 	}
+		
 }
