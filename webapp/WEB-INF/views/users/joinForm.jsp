@@ -48,7 +48,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/joinForm.js"></script>
+
 	<title>aboutUs</title>
 	
 </head>
@@ -111,7 +111,7 @@
                         <div class="join_group">
                             <label class="" for="">휴대폰*</label> 
                             <input type="text" id="join_phone" name="phone" value="" placeholder="숫자만 입력해주세요">
-                            <button type="button" id="id_check">본인인증</button>
+                            <button type="button" id="id_check2" class="certification">본인인증</button>
                         </div>
 
                         <!-- 주소 -->
@@ -158,27 +158,27 @@
                                     <p>선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</p>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk must1">
+                                    <input type="checkbox" class="oneCk must1">
                                     <label class="agreetext" for="">이용약관 동의 &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk must2">
+                                    <input type="checkbox" class="oneCk must2">
                                     <label class="agreetext" for="">개인정보 제 3자 제공 동의 &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk must3">
+                                    <input type="checkbox" class="oneCk must3">
                                     <label class="agreetext" for="">개인정보 수집 및 이용 동의 &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
                                 <div class="onecheck clear">
-                                    <input id="" type="checkbox" class="oneCk must4">
+                                    <input type="checkbox" class="oneCk must4">
                                     <label class="agreetext" for="">본인은 만 14세이상입니다. &#40;필수&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
                                 <div class="onecheck">
-                                    <input id="" type="checkbox" class="oneCk">
+                                    <input type="checkbox" class="oneCk">
                                     <label class="agreetext" for="">마케팅 정보 수신 동의 &#40;선택&#41;</label> 
                                     <a href="javascript:void(0);">자세히 확인하기</a>
                                 </div>
@@ -205,4 +205,11 @@
 
 </body>
 <!-- //body -->
+
+<script type="text/javascript">
+
+
+</script>
+
+<script src="${pageContext.request.contextPath}/assets/js/joinForm.js"></script>
 </html>

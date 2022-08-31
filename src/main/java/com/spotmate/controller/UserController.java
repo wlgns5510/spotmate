@@ -67,7 +67,7 @@ public class UserController {
 		   @RequestParam(value = "nickname", required = false) String nickname,
 		   @RequestParam(value = "email", required = false) String email) {
 	   UserVo authUser = uService.loginOk(userVo);
-	   if( nickname != "") {
+	   if( nickname != null ) {
 		   uService.insertKakao(nickname, email, authUser.getNo());
 	   }
 	   String url = (String)session.getAttribute("prevPage");

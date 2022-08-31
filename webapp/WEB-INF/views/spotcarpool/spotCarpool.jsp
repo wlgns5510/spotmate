@@ -169,14 +169,12 @@
 					</thead>
 
 					<tbody>
-					
 
-				
 
-						<c:forEach items="${cMap.carpoolList}" var="carpoolVo" varStatus="status">	
+						<c:forEach items="${cMap.carpoolList}" var="carpoolVo" >	
 					
 							<tr>
-								<td>${(crtPage * listCnt) + 1 - listCnt + status.index}</td>
+								<td>${carpoolVo.spotMateNo}</td>
 								<td>${carpoolVo.type}</td>
 								<td>${carpoolVo.splace}</td>
 								<td>${carpoolVo.eplace}</td>
