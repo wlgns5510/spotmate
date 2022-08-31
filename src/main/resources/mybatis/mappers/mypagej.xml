@@ -444,7 +444,7 @@
 	<!-- 총 포인트 가져오기 -->
 	<select id="selectTotalPoint" parameterType="int" resultType="int">
 		<![CDATA[
-			select sum(point)
+			select NVL(sum(point),0)
 			from pointUsage
 			where userno = #{userNo}
 		]]>
