@@ -113,14 +113,15 @@ public class MateService {
 		
 		mateVo.setUserNo(userNo);
 		
-		int mateNo = mateVo.getSpotMateNo();
-		System.out.println(mateNo);
+		int mateNo = mateVo.getSpotMateNo();		
 		int people = mateVo.getPeople();
-		System.out.println("탑승인원= " + people);
 		int canRide = mateDao.chkPeople(mateNo);
-		System.out.println("탑승가능인원= " + canRide);
 		int usablePoint = mateDao.getTotalPoint(userNo);
-		if(canRide >= people && usablePoint >= mateVo.getPoint()) {
+		if(canRide < people) {
+			return -1;
+		} else if(usablePoint < mateVo.getPoint()) {
+			return -2;
+		} else if(canRide >= people && usablePoint >= mateVo.getPoint()) {
 			Map<String, Object> map = new HashMap<>();
 			map.put("people", people);
 			map.put("mateNo", mateNo);
@@ -129,7 +130,7 @@ public class MateService {
 			mateDao.savePoint(mateVo);
 			return 0;
 		} else {
-				return -1;
+			return -1;
 		}
 		
 		
