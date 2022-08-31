@@ -59,6 +59,7 @@
 	<!-- //header -->
 	
 	<p>잘 보이고 있는건데 디자인을 안했음</p>
+	<video src="../video/main_video.mp4" muted autoplay loop poster="이미지주소">video error</video>
 	
 	<!-- footer -->
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
