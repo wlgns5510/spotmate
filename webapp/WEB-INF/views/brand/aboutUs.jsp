@@ -152,23 +152,23 @@
 
                         <div id="slider">
                             <div class="channel-box">
-                                <div><img class="" src="../images/ch_tiktok.png" alt=""></div>
-                                <div><img class="" src="../images/ch_facebook.png" alt=""></div>
-                                <div><img class="" src="../images/ch_insta.png" alt=""></div>
-                                <div><img class="" src="../images/ch_kakao.png" alt=""></div>
-                                <div><img class="" src="../images/ch_notion.png" alt=""></div>
-                                <div><img class="" src="../images/ch_github.png" alt=""></div>
-                                <div><img class="" src="../images/ch_line.png" alt=""></div>
-                                <div><img class="" src="../images/ch_youtube.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_tiktok.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_facebook.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_insta.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_kakao.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_notion.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_github.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_line.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_youtube.png" alt=""></div>
                                 <!--   clone     -->
-                                <div><img class="" src="../images/ch_tiktok.png" alt=""></div>
-                                <div><img class="" src="../images/ch_facebook.png" alt=""></div>
-                                <div><img class="" src="../images/ch_insta.png" alt=""></div>
-                                <div><img class="" src="../images/ch_kakao.png" alt=""></div>
-                                <div><img class="" src="../images/ch_notion.png" alt=""></div>
-                                <div><img class="" src="../images/ch_github.png" alt=""></div>
-                                <div><img class="" src="../images/ch_line.png" alt=""></div>
-                                <div><img class="" src="../images/ch_youtube.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_tiktok.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_facebook.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_insta.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_kakao.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_notion.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_github.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_line.png" alt=""></div>
+                                <div><img class="" src="/assets/images/ch_youtube.png" alt=""></div>
                             </div>
                         </div>
                     </div>
