@@ -177,10 +177,10 @@
 						<div id="notice_paging">
 							<ul>
 								<li><a href="#">
-                                    <img class="notice_arrow" src="../images/chevron-double-left.png">
+                                    <img class="notice_arrow" src="/assets/images/chevron-double-left.png">
                                 </a></li>
                                 <li><a href="#">
-                                    <img class="notice_arrow" src="../images/chevron-left.png">
+                                    <img class="notice_arrow" src="/assets/images/chevron-left.png">
                                 </a></li>
 								<li><a href="#">1</a></li>
 								<li><a href="#">2</a></li>
@@ -193,10 +193,10 @@
 								<li><a href="#">9</a></li>
 								<li><a href="#">10</a></li>
 								<li><a href="#">
-                                    <img class="notice_arrow" src="../images/chevron-right.png">
+                                    <img class="notice_arrow" src="/assets/images/chevron-right.png">
                                 </a></li>
                                 <li><a href="#">
-                                    <img class="myPage_PagePicto" src="../images/chevron-double-right.png">
+                                    <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
                                 </a></li>
 							</ul>
 						</div>
