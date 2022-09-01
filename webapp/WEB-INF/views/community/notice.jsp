@@ -82,9 +82,9 @@
         <section class="sub_wrap">
             <div class="sub_nav clear">
                 <ul>
-                    <li class="sub_faq"><a href="javascript:void(0);">NOTICE</a></li>
+                    <li class="sub_faq"><a href="/notice/1">NOTICE</a></li>
                     <li><a href="javascript:void(0);">FAQ</a></li>
-                    <li><a href="javascript:void(0);">EVENT</a></li>
+                    <li><a href="/event">EVENT</a></li>
                 </ul>
             </div>
         </section>
@@ -94,9 +94,9 @@
             <div class="inner">
                 <div id="notice_board" class="notice_cover">
 					<div id="notice_list" class="notice_list">
-						<form action="" method="get">
+						<form action="/notice/1" method="get">
                             <div class="notice_bar">
-                                <input name="startDate" type="date" value=""> <span> - </span> <input name="endDate" type="date" value="">
+                                <input id="startDate" name="startDate" type="date" value=""> <span> - </span> <input id="endDate" name="endDate" type="date" value="">
                                 <select name="noti_option">
                                     <option value="">유형</option>
                                     <option value="season">카풀정기권</option>
@@ -106,9 +106,9 @@
                                     <option value="notice">공지사항</option>
                                     <option value="event">이벤트</option>
                                 </select>
-                                <input type="text" id="notice_search" name="" value="" placeholder="검색어를 입력해주세요">
+                                <input type="text" id="notice_search" name="noticeSearch" value="" placeholder="검색어를 입력해주세요">
                                 <button type="submit" class="">검색하기</button>
-                                <a href="javascript:void(0);"><button type="button" class="">1:1 문의하기</button></a>
+                                <a href="/myQnaMain"><button type="button" class="">1:1 문의하기</button></a>
                             </div>
                         </form>
                         <h3>공지사항</h3>
@@ -127,93 +127,49 @@
 							</thead>
 							<tbody>
 							
-							<c:forEach items="${nList}" var="nVo">
-								<tr>
-                                    <td>${nVo.no}</td>
-                                    <td>${nVo.type}</td>
-                                    <td class="text-left"><a href="javascript:void(0);">${nVo.title}</a></td>
-                                    <td>${nVo.hit}</td>
-                                    <td>${nVo.regDate}</td>
-                                    <td>${nVo.admin}</td>
-                                    <td><a href="javascript:void(0);">${nVo.manage}</a></td>
-                                </tr>
-                           	</c:forEach>
-<!-- 								<tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr class="last"> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
+								<c:forEach items="${nMap.nList}" var="nVo">
+									<tr id="tr${nVo.no}">
+	                                    <td>${nVo.rn}</td>
+	                                    <td>${nVo.type}</td>
+	                                    <td class="text-left" onclick="nCount(${nVo.no})">${nVo.title}</td>
+	                                    <td>${nVo.hit}</td>
+	                                    <td>${nVo.regDate}</td>
+	                                    <td>${nVo.admin}</td>
+	                                    <c:if test="${authUser.id == 'spotmate'}">
+	                                    	<td><button id="delete" onclick="nDelete(${nVo.no})" type="button">[삭제]</button></td>
+	                                    </c:if>
+	                                </tr>
+	                           	</c:forEach>
 							</tbody>
 						</table>
 			
-						<div id="notice_paging">
-							<ul>
-								<li><a href="#">
-                                    <img class="notice_arrow" src="/assets/images/chevron-double-left.png">
-                                </a></li>
-                                <li><a href="#">
-                                    <img class="notice_arrow" src="/assets/images/chevron-left.png">
-                                </a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li class="active"><a href="#">5</a></li>
-								<li><a href="#">6</a></li>
-								<li><a href="#">7</a></li>
-								<li><a href="#">8</a></li>
-								<li><a href="#">9</a></li>
-								<li><a href="#">10</a></li>
-								<li><a href="#">
-                                    <img class="notice_arrow" src="/assets/images/chevron-right.png">
-                                </a></li>
-                                <li><a href="#">
-                                    <img class="myPage_PagePicto" src="/assets/images/chevron-double-right.png">
-                                </a></li>
-							</ul>
-						</div>
+					<div id="notice_paging">
+						<ul>
+							<c:if test="${nMap.prev == true}">
+								<li><a href="/notice/1"> <img class="notice_arrow" src="/assets/images/chevron-double-left.png"></a></li>
+								<li><a href="/notice/${crtPage-1}"> <img class="notice_arrow" src="/assets/images/chevron-left.png"></a></li>
+							</c:if>
+							<c:forEach begin="${nMap.startPageNum}" end="${nMap.endPageNum}" step="1" var="page">
+								<c:choose>
+									<c:when test="${nMap.crtPage == page}">
+										<li class="active"><a href="/notice/${page}">${page}</a></li>
+										<input type="hidden" value="${page}" class="crtPage">
+									</c:when>
+									<c:otherwise>
+										<li><a href="/notice/${page}">${page}</a></li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${nMap.next == true}">					
+								<li><a href="/notice/${nMap.crtPage+1}"> <img class="notice_arrow" src="/assets/images/chevron-right.png">
+								</a></li>
+								<li><a href="/notice/${nMap.endPageNum}"> <img class="notice_arrow" src="/assets/images/chevron-double-right.png">
+							</a></li>
+							</c:if>
+						</ul>
+					</div>
 
-						<a id="btn_write" href="javascript:void(0);">글쓰기</a>
+						<a id="btn_write" href="/notice/write">글쓰기</a>
 					</div>
 					<!-- //list -->
 				</div>
@@ -227,4 +183,34 @@
     <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
     <!-- footer -->
 </body>
+<script>
+document.getElementById("startDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+document.getElementById("endDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
+	function nDelete(noticeNo) {
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/notice/delete",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(noticeNo),
+			dataType : "json",
+			success : function(result){
+				if (result == 1) {
+					$("#tr"+noticeNo).remove();
+				} else {
+					return;
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+				return;
+			}
+		});
+		alert("삭제되었습니다!");
+	}
+	
+	function nCount(noticeNo) {
+		location.href="/notice/read/"+noticeNo;
+	}
+</script>
 </html>

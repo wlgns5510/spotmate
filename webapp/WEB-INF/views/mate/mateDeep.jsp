@@ -188,11 +188,11 @@
 		<div class="mateDeep_content clear">
 			<div class="mateDeep_titleFont1">이동 스케줄</div> 
 			
-			<div class="mateDeep_today">
-				<div class="mateDeep_dayBox">
+			<!-- 1일차 -->
+			<div class="mateDeep_dayBox">
 					<p>1일차</p>
 				</div>
-				
+			<div class="mateDeep_today">	
 				<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
 					<c:if test="${matePlaceList.day == 1}">
 						<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
@@ -222,100 +222,99 @@
 							<div class="mateDeep_time">${matePlaceList.time}</div>
 							<div class="mateDeep_spot">${matePlaceList.place}</div>
 						</div>
-						<c:if test="${matePlaceList.wayNo != 0}">					
+						<c:if test="${matePlaceList.wayNo != 0 && matePlaceList.wayNo != 2 && matePlaceList.wayNo != 5}">					
 							<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
 						</c:if>
 					</c:if>
 				</c:forEach>														
 			</div>		
-			<!-- //1일차 -->
 			
-		<c:if test="${mMap.mateVo.allDay == 1 || mMap.mateVo.allDay == 2}">
-			<div class="mateDeep_today">			
-					<div class="mateDeep_dayBox">							
-						<p>2일차</p>							
-					</div>
-				
-				<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
-					<c:if test="${matePlaceList.day == 2}">
-						<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
-							<div class="mateDeep_start">
-							<c:if test="${matePlaceList.wayNo == -1}">
-								START
-							</c:if>
-							<c:if test="${matePlaceList.wayNo == 1}">
-								SPOT 1
-							</c:if>
-							<c:if test="${matePlaceList.wayNo == 2}">
-								SPOT 2
-							</c:if>
-							<c:if test="${matePlaceList.wayNo == 3}">
-								SPOT 3
-							</c:if>
-							<c:if test="${matePlaceList.wayNo == 4}">
-								SPOT 4
-							</c:if>
-							<c:if test="${matePlaceList.wayNo == 5}">
-								SPOT 5
-							</c:if>
-							<c:if test="${matePlaceList.wayNo == 0}">
-								END
-							</c:if>
-							</div>
-							<div class="mateDeep_time">${matePlaceList.time}</div>
-							<div class="mateDeep_spot">${matePlaceList.place}</div>
-						</div>
-						<c:if test="${matePlaceList.wayNo != 0}">					
-							<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
+		<!-- 2일차 -->	
+		<c:if test="${mMap.mateVo.allDay == 1 || mMap.mateVo.allDay == 2}">					
+				<div class="mateDeep_dayBox">							
+					<p>2일차</p>							
+				</div>
+			<div class="mateDeep_today">
+			<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+				<c:if test="${matePlaceList.day == 2}">
+					<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
+						<div class="mateDeep_start">
+						<c:if test="${matePlaceList.wayNo == -1}">
+							START
 						</c:if>
+						<c:if test="${matePlaceList.wayNo == 1}">
+							SPOT 1
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 2}">
+							SPOT 2
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 3}">
+							SPOT 3
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 4}">
+							SPOT 4
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 5}">
+							SPOT 5
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 0}">
+							END
+						</c:if>
+						</div>
+						<div class="mateDeep_time">${matePlaceList.time}</div>
+						<div class="mateDeep_spot">${matePlaceList.place}</div>
+					</div>
+					<c:if test="${matePlaceList.wayNo != 0 && matePlaceList.wayNo != 2 && matePlaceList.wayNo != 5}">					
+						<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
 					</c:if>
-				</c:forEach>														
+				</c:if>
+			</c:forEach>														
 			</div>
 		</c:if>
-		<!-- 2일차 -->		
-		<c:if test="${mMap.mateVo.allDay == 2}">
-			<div class="mateDeep_today">				
-					<div class="mateDeep_dayBox">										
-						<p>3일차</p>													
-					</div>
-					
-					<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
-						<c:if test="${matePlaceList.day == 3}">
-							<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
-								<div class="mateDeep_start">
-								<c:if test="${matePlaceList.wayNo == -1}">
-									START
-								</c:if>
-								<c:if test="${matePlaceList.wayNo == 1}">
-									SPOT 1
-								</c:if>
-								<c:if test="${matePlaceList.wayNo == 2}">
-									SPOT 2
-								</c:if>
-								<c:if test="${matePlaceList.wayNo == 3}">
-									SPOT 3
-								</c:if>
-								<c:if test="${matePlaceList.wayNo == 4}">
-									SPOT 4
-								</c:if>
-								<c:if test="${matePlaceList.wayNo == 5}">
-									SPOT 5
-								</c:if>
-								<c:if test="${matePlaceList.wayNo == 0}">
-									END
-								</c:if>
-								</div>
-								<div class="mateDeep_time">${matePlaceList.time}</div>
-								<div class="mateDeep_spot">${matePlaceList.place}</div>
-							</div>
-							<c:if test="${matePlaceList.wayNo != 0}">					
-								<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-							</c:if>
+		
+		<!-- 3일차 -->		
+		<c:if test="${mMap.mateVo.allDay == 2}">							
+			<div class="mateDeep_dayBox">										
+				<p>3일차</p>													
+			</div>
+			<div class="mateDeep_today">
+			<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+				<c:if test="${matePlaceList.day == 3}">
+					<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
+						<div class="mateDeep_start">
+						<c:if test="${matePlaceList.wayNo == -1}">
+							START
 						</c:if>
-					</c:forEach>														
-				</div>
-			</c:if>	
-			<!-- //3일차 -->
+						<c:if test="${matePlaceList.wayNo == 1}">
+							SPOT 1
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 2}">
+							SPOT 2
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 3}">
+							SPOT 3
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 4}">
+							SPOT 4
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 5}">
+							SPOT 5
+						</c:if>
+						<c:if test="${matePlaceList.wayNo == 0}">
+							END
+						</c:if>
+						</div>
+						<div class="mateDeep_time">${matePlaceList.time}</div>
+						<div class="mateDeep_spot">${matePlaceList.place}</div>
+					</div>
+					<c:if test="${matePlaceList.wayNo != 0 && matePlaceList.wayNo != 2 && matePlaceList.wayNo != 5}">					
+						<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
+					</c:if>
+				</c:if>
+			</c:forEach>														
+			</div>
+		</c:if>	
+		
 			
 			<div class="mateDeep_titleFont2">주변 장소 추천</div>
 			<div class="map_wrap" id="mapPoint">
@@ -747,6 +746,7 @@ var swiperReview = new Swiper('.review_banner', {
 		nextEl : '.review_banner_btns .swiper-button-next'
 	}
 }); 
+
 </script>
 
 

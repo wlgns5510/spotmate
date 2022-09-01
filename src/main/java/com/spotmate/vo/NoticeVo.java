@@ -3,13 +3,14 @@ package com.spotmate.vo;
 public class NoticeVo {
 	
 	
-	private int no, hit;
+	private int rn, no, hit;
 	private String regDate, type, title, admin, content, manage;
 	
 	public NoticeVo() {}
 	
-	public NoticeVo(int no, int hit, String regDate, String type, String title, String admin, String content, String manage) {
+	public NoticeVo(int rn, int no, int hit, String regDate, String type, String title, String admin, String content, String manage) {
 		super();
+		this.rn = rn;
 		this.no = no;
 		this.hit = hit;
 		this.regDate = regDate;
@@ -22,6 +23,14 @@ public class NoticeVo {
 	
 	
 	
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+
 	public String getManage() {
 		return manage;
 	}
@@ -75,10 +84,10 @@ public class NoticeVo {
 
 	@Override
 	public String toString() {
-		return "NoticeVo [no=" + no + ", hit=" + hit + ", regDate=" + regDate + ", type=" + type + ", title=" + title
-				+ ", admin=" + admin + ", content=" + content + ", manage=" + manage + "]";
+		return "NoticeVo [rn=" + rn + ", no=" + no + ", hit=" + hit + ", regDate=" + regDate + ", type=" + type
+				+ ", title=" + title + ", admin=" + admin + ", content=" + content + ", manage=" + manage + "]";
 	}
-	
+
 	
 	
 }
