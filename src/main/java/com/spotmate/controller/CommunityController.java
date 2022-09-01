@@ -20,9 +20,9 @@ public class CommunityController {
       return "/community/faq";
    }
    
-   @RequestMapping(value = "/notice", method = { RequestMethod.GET, RequestMethod.POST })
-   public String notice() {
-      return "/community/notice";
-   }
+//   @RequestMapping(value = "/notice", method = { RequestMethod.GET, RequestMethod.POST })
+//   public String notice() {
+//      return "/community/notice";
+//   }
 
 }

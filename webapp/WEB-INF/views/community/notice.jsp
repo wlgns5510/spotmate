@@ -126,51 +126,63 @@
 								</tr>
 							</thead>
 							<tbody>
+							
+							<c:forEach items="${nList}" var="nVo">
 								<tr>
-                                    <td>1</td>
-                                    <td>카풀정기권</td>
-                                    <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td>
-                                    <td>20831</td>
-                                    <td>2022-08-31</td>
-                                    <td>spotmate</td>
-                                    <td><a href="javascript:void(0);">[삭제]</a></td>
+                                    <td>${nVo.no}</td>
+                                    <td>${nVo.type}</td>
+                                    <td class="text-left"><a href="javascript:void(0);">${nVo.title}</a></td>
+                                    <td>${nVo.hit}</td>
+                                    <td>${nVo.regDate}</td>
+                                    <td>${nVo.admin}</td>
+                                    <td><a href="javascript:void(0);">${nVo.manage}</a></td>
                                 </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>카풀정기권</td>
-                                    <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td>
-                                    <td>20831</td>
-                                    <td>2022-08-31</td>
-                                    <td>spotmate</td>
-                                    <td><a href="javascript:void(0);">[삭제]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>카풀정기권</td>
-                                    <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td>
-                                    <td>20831</td>
-                                    <td>2022-08-31</td>
-                                    <td>spotmate</td>
-                                    <td><a href="javascript:void(0);">[삭제]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>카풀정기권</td>
-                                    <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td>
-                                    <td>20831</td>
-                                    <td>2022-08-31</td>
-                                    <td>spotmate</td>
-                                    <td><a href="javascript:void(0);">[삭제]</a></td>
-                                </tr>
-                                <tr class="last">
-                                    <td>1</td>
-                                    <td>카풀정기권</td>
-                                    <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td>
-                                    <td>20831</td>
-                                    <td>2022-08-31</td>
-                                    <td>spotmate</td>
-                                    <td><a href="javascript:void(0);">[삭제]</a></td>
-                                </tr>
+                           	</c:forEach>
+<!-- 								<tr> -->
+<!--                                     <td>1</td> -->
+<!--                                     <td>카풀정기권</td> -->
+<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
+<!--                                     <td>20831</td> -->
+<!--                                     <td>2022-08-31</td> -->
+<!--                                     <td>spotmate</td> -->
+<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
+<!--                                 </tr> -->
+<!--                                 <tr> -->
+<!--                                     <td>1</td> -->
+<!--                                     <td>카풀정기권</td> -->
+<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
+<!--                                     <td>20831</td> -->
+<!--                                     <td>2022-08-31</td> -->
+<!--                                     <td>spotmate</td> -->
+<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
+<!--                                 </tr> -->
+<!--                                 <tr> -->
+<!--                                     <td>1</td> -->
+<!--                                     <td>카풀정기권</td> -->
+<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
+<!--                                     <td>20831</td> -->
+<!--                                     <td>2022-08-31</td> -->
+<!--                                     <td>spotmate</td> -->
+<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
+<!--                                 </tr> -->
+<!--                                 <tr> -->
+<!--                                     <td>1</td> -->
+<!--                                     <td>카풀정기권</td> -->
+<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
+<!--                                     <td>20831</td> -->
+<!--                                     <td>2022-08-31</td> -->
+<!--                                     <td>spotmate</td> -->
+<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
+<!--                                 </tr> -->
+<!--                                 <tr class="last"> -->
+<!--                                     <td>1</td> -->
+<!--                                     <td>카풀정기권</td> -->
+<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
+<!--                                     <td>20831</td> -->
+<!--                                     <td>2022-08-31</td> -->
+<!--                                     <td>spotmate</td> -->
+<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
+<!--                                 </tr> -->
 							</tbody>
 						</table>
 			
