@@ -369,10 +369,16 @@
 }
 .t-sec > table > tbody > tr > td {
 	padding: 10px 40px 5px 10px;
-	
 }
+
+.detailtext-2{
+	cursor:pointer;
+}
+	
+
 .t-sec > table > tbody > tr > .td2 {
 	margin: 0px 0px 0px 50px;
+	
 }
 .t-sec > table > tbody > tr > .selected {
 	color: #4454a1;
