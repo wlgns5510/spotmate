@@ -355,12 +355,11 @@
 				</p>
 				<div class="carpool-picture">
 					<div class="carpool-picture-image">
-						<a href=""> <img src="/upload/${mateDriverVo.carPicture}">
-							<h3>
-								<span> ${mMap.mateDriverVo.carName}<br>(${mMap.mateDriverVo.carNo})</span>
+						<img src="/upload/${mateDriverVo.carPicture}">
+						<h3>
+							<span> ${mMap.mateDriverVo.carName}<br>(${mMap.mateDriverVo.carNo})</span>
 								
-							</h3>
-						</a>
+						</h3>
 					</div>
 				</div>
 				<div class="driverIntoduce">
@@ -475,10 +474,10 @@
 						<p class="recommend-Driver-list">드라이버 : ${mVo.id}</p>
 					</li>
 					<li>
-						<p class="recommend-start-list">출발일시 : ${mVo.startDate}</p>
+						<p class="recommend-start-list">출발일시 : ${mVo.sDate}</p>
 					</li>
 					<li>
-						<p class="recommend-point-list">소요 포인트 ${mVo.point}P</p> 
+						<p class="recommend-point-list">소요 포인트 <fmt:formatNumber value="${mVo.point}" pattern="#,###" />P</p> 
 		
 						<a href="${pageContext.request.contextPath}/mateDeep/${mVo.mateNo}">
 							<button>
