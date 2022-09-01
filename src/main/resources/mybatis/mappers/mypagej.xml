@@ -227,9 +227,9 @@
 									     where ep.mateNo = egp.mateNo
 									     and ep.day = egp.minDay) et,
 									    
-									    spotMate sm
-									where st.sMateNo = et.eMateNo
-									and sm.no = st.sMateNo)se
+									     spotMate sm
+									     where st.sMateNo = et.eMateNo
+									     and sm.no = st.sMateNo)se
 			                   where sp.no = se.sMateNo
 			                   and re.mateno = sp.no
 			                   and pu.reno = re.no
