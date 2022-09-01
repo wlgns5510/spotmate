@@ -98,14 +98,28 @@
                     <p>*spotmate admin 계정만 작성가능</p>
 
                     <div id="noticeWriteForm" class="noWriteBox">
-                        <form action="" method="">
-                            <!-- 아이디 -->
+                        <form action="" method="get">
+                            <!-- 유형 -->
+                            <div class="noWrite_form">
+                                <label class="txt-title" for="nowrite-title">유형</label>
+                                <select name="noti_option">
+                                    <option value="">유형</option>
+                                    <option value="season">카풀정기권</option>
+                                    <option value="carpool">카풀1회성</option>
+                                    <option value="hitchhike">히치하이크</option>
+                                    <option value="mate">메이트</option>
+                                    <option value="notice">공지사항</option>
+                                    <option value="event">이벤트</option>
+                                </select>
+                            </div>
+
+                            <!-- 제목 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">제목</label>
                                 <input type="text" id="nowrite-title" name="" value="" placeholder="제목을 입력해 주세요">
                             </div>
 
-                            <!-- 비밀번호 -->
+                            <!-- 내용 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">내용</label>
                                 <textarea id="nowrite-content" name="" value="" placeholder="내용을 작성해주세요"></textarea>
