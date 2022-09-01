@@ -57,7 +57,7 @@ Last update : 2022. 08. 30.
     width : 120px;
     height: 120px;
     margin: 0px auto;
-	background-image : url("../../images/icon_joinOk2.png");
+	background-image : url("/assets/images/icon_joinOk2.png");
 	background-size: 100% 100%;
 	background-position : center center;
 }
