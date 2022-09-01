@@ -22,11 +22,12 @@
 .myPage_btnB {
 	color: rgba(255, 255, 255, 1);
 	font-family: Noto Sans;
-	font-weight: SemiBold;
+	font-weight: 700;
 	font-size: 16px;
 	text-align: center;
 	background: rgba(68, 84, 161, 1);
 	cursor: pointer;
+	margin:3px 0px 0px 0px;
 }
 
 .myPage_btnY {
