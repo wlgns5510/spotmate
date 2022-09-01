@@ -1,6 +1,4 @@
-.clearfix {
-	*zoom: 1;
-}
+
 
 .clearfix:before, .clearfix:after {
 	display: block;
@@ -343,6 +341,7 @@
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	overflow: hidden;
+	margin: 0px 0px 20px 0px;
 }
 
 .mateDeep_content .mateDeep_dayBox p {
@@ -366,10 +365,14 @@
 
 .mateDeep_today {
 	display: block;
-	width: 1000px;
-	float: left;
-	margin: 0px 0px 40px 0px;
-	border-bottom: 1px solid rgba(217, 217, 217, 1);
+    width: 1000px;
+    height: 150px;
+    float: left;
+    margin: 0px 0px 61px 0px;
+    border-bottom: 1px solid rgba(217, 217, 217, 1);
+    white-space: nowrap;
+    overflow: scroll;
+    overflow: auto;
 }
 
 .mateDeep_today .mateDeep_spotBox {
