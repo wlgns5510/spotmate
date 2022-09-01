@@ -220,7 +220,11 @@ public class MypageRService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("mateNo", mateNo);
 		map.put("userNo", userNo);
-		return mDao.endResv(map);
+		int count = mDao.endResv(map);
+		int resvNo = mDao.getResvNo(map);
+		map.put("resvNo", resvNo);
+		mDao.driverGetPoint(map);
+		return count;
 	}
 	
 	public ReviewInfoVo forReviewInfo(int resvNo) {

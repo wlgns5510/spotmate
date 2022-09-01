@@ -132,6 +132,10 @@ $(".slider").on("mousemove", function(){
 // 		$(".score .foreground").text('★★★★★');
 // 	}
 });
+
+$(".review-btn").on("click", function() {
+	opener.$(".btn_review").text("작성완료");
+})
 	
 	
 </script>
