@@ -5,24 +5,22 @@
 }
 .more-box {
 	float: left;
-	margin: 100px 0px 0px 250px;
+	margin: 120px 0px 0px 210px;
 }
 .driver-top-banner .more {
-	font-size: 30px;
-	font-family: Noto Sans Korean;
-	font-weight: 600;
+	font-size: 32px;
+  	font-weight:700;
+  	font-size: 32px;
 }
 .driver-top-banner .more3 {
-	font-size: 30px;
-	font-family: Montserrat;
-	font-weight: 600;
+	font-size: 32px;
+ 	font-weight:700;
 }
 .driver-top-banner .more2 {
 	float:right;
 	font-size: 20px;
-	font-family: Noto Sans Korean;
 	font-weight: 600;
-	margin: 100px 300px 0px 0px;
+	margin: 120px 630px 0px 0px;
 }
 
 #hitch-main-map {
@@ -30,58 +28,104 @@
 	width: 650px;
 	height: 640px;
 	margin: 150px 0px 500px 0px;
+	border-top-left-radius: 5px;
+ 	border-top-right-radius: 5px;
+ 	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
-.info {
+.spot-hitch-info {
 	float: left;
-	width: 720px;
+	width: 750px;
 	height:640px;
 	overflow: scroll;
 	overflow-x:hidden;
-	border-top: 1px solid #e8e7e7;
-	border-right: 1px solid #e8e7e7;
-	border-left: 1px solid #e8e7e7;
+	border: 1px solid #e8e7e7;
+/* 	border-top: 1px solid #e8e7e7; */
+/* 	border-right: 1px solid #e8e7e7; */
+/* 	border-left: 1px solid #e8e7e7; */
 	margin: 150px 0px 500px 30px;
+	border-top-left-radius: 5px;
+ 	border-top-right-radius: 5px;
+ 	border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
-.infoTop {
+.spot-hitch-infoTop {
+	font-weight: 600;
 	text-align: center;
 	border-bottom: 3px solid #4454a1;
 	padding: 20px 0;
+	background: rgb(242, 205, 108);	
+}
+
+
+.spot-hitch-infoTop > li {
+	font-size: 20px;
+	font-family: Noto Sans;
+  	font-weight: 700;
 }
 
 .searchbox {
-	padding: 20px 0px 20px 20px;
+	padding: 15px 0px 20px 30px;
 	background-color: #e8e7e7;
 }
 
-.searchbox>.place {
+.searchbox>.splace {
 	width: 220px;
 	height: 30px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 4px 4px 4px 10px;
+}
+.searchbox>.eplace {
+	width: 220px;
+	height: 30px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 4px 4px 4px 10px;
 }
 
 .searchbox>.people {
 	width: 120px;
 	height: 30px;
+	border: 1px solid #bfbfbf;
+	border-radius: 10px;
+	padding: 4px 4px 4px 10px;
 }
-
 .searchbox > button > img {
 	width:34px;
 	height:34px;
+	cursor:pointer;
+	margin :0px 10px 0px 10px;
 }
 
 .detail-option {
+	margin:0px auto;
+	padding: 10px;
 	position:relative;
 	border-bottom: 1px solid #e8e7e7;
+	font-weight: 600;
 }
-.info > form > .detail-option > input{
+.detail-option .chkitem {
+	margin: 0px 0px 0px 15px;
+}
+
+.detail-option .do1 {
+	margin: 20px 0px 30px 18px;
+}
+.detail-option .do2 {
+	margin: 0px 0px 0px 150px;
+}
+
+.spot-hitch-info > form > .detail-option > input{
 	margin: 10px 0px 10px 30px;
 }
-.info .detail-option .btn_a1:hover {
+.spot-hitch-info .detail-option .btn_a1:hover {
 	cursor: pointer;
 }
-.info .detail-option .btn_a1:before{display:block; position:absolute; top:50%; right:20px; transform:translateY(-50%); width:15px; height:9px; content:""; background:url(/assets/images/common/ico_select_down.png)no-repeat center center; transition:all .3s;}
-.info .detail-option.after .btn_a1:before{transform:translateY(-50%) rotate(180deg);}
+.spot-hitch-info .detail-option .btn_a1:before{display:block; position:absolute; top:50%; right:20px; transform:translateY(-50%); width:15px; height:9px; content:""; background:url(/assets/images/common/ico_select_down.png)no-repeat center center; transition:all .3s;}
+.spot-hitch-info .detail-option.after .btn_a1:before{transform:translateY(-50%) rotate(180deg);}
 
 .driverList {
 	border-bottom: 1px solid #e8e7e7;
@@ -93,22 +137,24 @@
 }
 .driverList > .start > p {
 	padding: 0px 0px 10px 0px;
-	color: #bfbfbf;
+	color: #e8e7e7;
 }
 .driverList > .start > span {
 	font-size: 18px;
 	font-weight: 600;
+	font-family: Montserrat;
 }
 .driverList > .end {
 	margin: 20px;
 }
 .driverList > .end > p {
 	padding: 0px 0px 10px 0px;
-	color: #bfbfbf;
+	color: #e8e7e7;
 }
 .driverList > .end > span {
 	font-size: 18px;
 	font-weight: 600;
+	font-family: Montserrat;
 }
 .driverList > .num {
 	margin: 20px;
@@ -118,8 +164,8 @@
 }
 .driverList > .num > p {
 	display:inline;
-	font-size: 18px;
-	font-weight: 600;
+	font-size: 20px;
+	font-weight: 700;
 }
 .driverList > .usePoint {
 	margin: 20px;
@@ -136,30 +182,57 @@
 	position: absolute;
 	top: 0px;
 	left: 650px;
+	cursor: pointer;
 }
-
-.driverList > .hitchdeep {
-	text-align:center;
-	width: 77px;
-	position: absolute;
+.driverList > div > .hitchdeep {
 	top: 160px;
 	left: 500px;
-	cursor:pointer;
-	padding: 10px; 
-	background-color: #4454a1; 
-	color:white; 
-	border-radius: 10px;
-}
-
-.driverList > .rideReq {
 	text-align:center;
 	width: 77px;
 	position: absolute;
+	cursor: pointer;
+	padding: 10px; 
+	background-color: #4454a1; 
+	color:white; 
+	border-radius: 10px;
+	font-weight: 600;
+}
+
+.driverList > div > .reqPeople {
+	top: 110px;
+	left: 499px;
+	text-align:center;
+	width: 77px;
+	position: absolute;
+	padding: 10px; 
+	border-radius: 10px;
+	font-weight: 600;
+}
+
+.driverList > div > .rideReq {
 	top: 160px;
 	left: 605px;
+	text-align:center;
+	width: 77px;
+	position: absolute;
 	cursor:pointer;
 	padding: 10px; 
 	background-color: #4454a1; 
 	color:white; 
 	border-radius: 10px;
+	font-weight: 600;
+}
+
+.driverList > div > .cancel {
+	top: 110px;
+	left: 605px;
+	text-align:center;
+	width: 77px;
+	position: absolute;
+	cursor:pointer;
+	padding: 10px; 
+	background-color: #4454a1; 
+	color:white; 
+	border-radius: 10px;
+	font-weight: 600;
 }

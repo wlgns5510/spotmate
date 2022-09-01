@@ -59,9 +59,6 @@
 	margin: 10px 0;
 }
 
-#menu_wrap .option button {
-	margin-left: 5px;
-}
 
 #placesList li {
 	list-style: none;
@@ -191,6 +188,40 @@
 	cursor: default;
 	color: #777;
 }
+
+.search-btn1{
+	margin-left: 5px;
+	padding :5px 20px 5px 20px;
+	border: 1px solid #4454a1;
+	font-weight:700;
+	font-size: 15px;
+	color:#4454a1;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: #e8e7e7;
+}
+.search-btn2{
+	z-index:1; 
+	padding:6px 20px 6px 20px;
+	border: none;
+	background-color: #4454a1;
+	color:#e8e7e7;
+	font-weight:700;
+ 	font-size: 15px;
+	cursor: pointer;
+	border-radius: 5px;	
+	
+}
+.keyword-search{
+	padding :7.5px 11px 7px 5px;
+	margin: 0px 0px 5px 0px;
+	border: none;
+	border-radius: 5px;
+	color:#4454a1;	
+	font-weight:600;
+	font-size:12px;
+	background-color: #e8e7e7;
+}
 </style>
 </head>
 <body>
@@ -202,8 +233,9 @@
 			<div class="option">
 				<div>
 					<form onsubmit="searchPlaces(); return false;">
-						검색어 : <input type="text" value="서울대입구역" id="keyword" size="15">
-						<button>검색하기</button>
+						검색어 <input class="keyword-search" type="text" value="" placeholder=" 장소를 입력해주세요" id="keyword" >
+						<button class="search-btn1">검색하기</button>
+						<button class="search-btn2" onclick="setParentText()">장소 확정</button>
 					</form>
 				</div>
 			</div>
@@ -213,7 +245,7 @@
 		</div>
 	</div>
 	<div id="clickLatlng"></div>
-	<button class="search-btn" onclick="setParentText()" style="position:absolute; top:25px; left: 1100px; z-index:1;">장소 확정</button>
+	
 	<input type="hidden" value="" id="addr">
 	<input type="hidden" value="" id="lat">
 	<input type="hidden" value="" id="lng">
@@ -269,10 +301,10 @@
 
 			var keyword = document.getElementById('keyword').value;
 
-			if (!keyword.replace(/^\s+|\s+$/g, '')) {
+			/*if (!keyword.replace(/^\s+|\s+$/g, '')) {
 				alert('키워드를 입력해주세요!');
 				return false;
-			}
+			}*/
 
 			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 			ps.keywordSearch(keyword, placesSearchCB);
@@ -484,13 +516,14 @@
 				spriteOrigin : new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
 				offset : new kakao.maps.Point(13, 37)
 			// 마커 좌표에 일치시킬 이미지 내에서의 좌표
-			}, markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-					imgOptions), marker = new kakao.maps.Marker({
+			}, 
+			markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions), 
+			marker = new kakao.maps.Marker({
 				position : position, // 마커의 위치
-				image : markerImage
+				image : markerImage,
+				map : map
 			});
 
-			marker.setMap(map); // 지도 위에 마커를 표출합니다
 			markers.push(marker); // 배열에 생성된 마커를 추가합니다
 
 			return marker;

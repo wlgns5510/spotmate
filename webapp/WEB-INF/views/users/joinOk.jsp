@@ -114,4 +114,9 @@
     <!-- //footer -->
     
 </body>
+<script>
+	$("#btn_joinOk").on("click", function() {
+		location.href="/loginForm";
+	})
+</script>
 </html>

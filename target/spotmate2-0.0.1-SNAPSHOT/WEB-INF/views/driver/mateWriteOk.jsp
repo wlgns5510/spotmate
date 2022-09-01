@@ -4,13 +4,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<meta http-equiv="Content-Security-Policy"
-	content="upgrade-insecure-requests">
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>SPOTMATE</title>
+	<meta name="title" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="">
+	<meta property="og:image" content="">
+	<meta property="og:author" content="">
+	<meta property="kakao:title" content="">
+	<meta property="kakao:description" content="">
+	
+	<!-- favicon -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="${pageContext.request.contextPath}/assets/images/common/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" sizes="57x57" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/assets/images/common/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="${pageContext.request.contextPath}/assets/images/common/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="${pageContext.request.contextPath}/assets/images/common/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="${pageContext.request.contextPath}/assets/images/common/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/assets/images/common/favicon-16x16.png">
+	<link rel="manifest" href="${pageContext.request.contextPath}/assets/images/common/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="${pageContext.request.contextPath}/assets/images/common/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	
+	<!-- css, js 연결 -->
+	<link href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css" rel="stylesheet" >
+	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" />
+	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
 <title>Insert title here</title>
-<script type="text/javascript" src="/assets/js/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
-<script src="/assets/jqueryUi/jquery-ui.js"></script>
 
 <link rel="stylesheet" href="/assets/jqueryUi/jquery-ui.min.css">
 <link rel="stylesheet" href="/assets/css/style.css">
@@ -33,9 +72,9 @@
 		</div>
 		<div class="mid">
 			<form action="/mateWriteInsert" method="post">
-				<p>등록하신 날짜와 출발시간입니다.</p>
+				<p>등록하신 날짜와 출발시간입니다</p>
 				<div class="f-sec">
-					<input type="text" id="mate-s-date" value="${mwVo.sdate1} ~ ${mwVo.edate1}" readonly>
+					<input type="text" id="mate-s-dateOK" value="${mwVo.sdate1} ~ ${mwVo.edate1}" readonly>
 				</div>
 				<input type="hidden" name="sdate1" value="${mwVo.sdate1}">
 				<input type="hidden" name="edate1" value="${mwVo.edate1}">
@@ -108,8 +147,8 @@
 								</tr>
 								</c:if>
 							</table>
-							<div class='fare1'>1인당 적립 포인트:${mwVo.fare1}</div>
-						<div id="map1"></div>
+							<div id="map1"></div>
+							<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare1'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare1}</span></div>
 						</div>
 					</div>
 					<c:if test="${mwVo.splace2 != null}">
@@ -179,8 +218,8 @@
 								</tr>
 								</c:if>
 							</table>
-							<div class='fare2'>1인당 적립 포인트:${mwVo.fare2}</div>
 						<div id="map2"></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare2'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare2}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -251,8 +290,8 @@
 								</tr>
 								</c:if>
 							</table>
-							<div class='fare3'>1인당 적립 포인트:${mwVo.fare3}</div>
 						<div id="map3"></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare3'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare3}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -323,8 +362,8 @@
 								</tr>
 								</c:if>
 							</table>
-							<div class='fare4'>1인당 적립 포인트:${mwVo.fare4}</div>
 						<div id="map4"></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare4'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare4}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -395,8 +434,8 @@
 								</tr>
 								</c:if>
 							</table>
-							<div class='fare5'>1인당 적립 포인트:${mwVo.fare5}</div>
 						<div id="map5"></div>
+						<div style='margin: 0px 0px 50px 0px; text-align:center;' class='fare5'>1인당 적립 포인트 : &nbsp;<span style="color:#4454a1;">${mwVo.fare5}</span></div>
 						</div>
 					</div>
 					</c:if>
@@ -410,26 +449,33 @@
 							<c:if test="${mwVo.nosmoke != null}">
 								<td><div style="background: url(/assets/images/drop-opacity.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>비흡연자</span></td>
 								<td><input type="hidden" name="nosmoke" value="${mwVo.nosmoke}"></td>
-								</c:if>
-								<c:if test="${mwVo.phonecharge != null}">
-								<td><div style="background: url(/assets/images/mic.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>핸드폰 충전기 이용 가능</span></td>
-								<td><input type="hidden" name="phonecharge" value="${mwVo.phonecharge}"></td>
-								</c:if>
+							</c:if>
 							</tr>
 							<tr>
 							<c:if test="${mwVo.femaledriver != null}">
 								<td><div style="background: url(/assets/images/boy.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>여성 드라이버</span></td>
 								<td><input type="hidden" name="femaledriver" value="${mwVo.femaledriver}"></td>
-								</c:if>
-								<c:if test="${mwVo.trunk != null}">
-								<td><div style="background: url(/assets/images/wifi.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
-								<td><input type="hidden" name="trunk" value="${mwVo.trunk}"></td>
+							</c:if>
+								
+							</tr>
+							<tr>
+							<c:if test="${mwVo.pet != null}">
+								<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물</span></td>
+								<td><input type="hidden" name="pet" value="${mwVo.pet}"></td>
 								</c:if>
 							</tr>
 							<tr>
-								<c:if test="${mwVo.pet != null}">
-								<td><div style="background: url(/assets/images/paws01.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>반려동물 탑승 가능</span></td>
-								<td><input type="hidden" name="pet" value="${mwVo.pet}"></td>
+							<c:if test="${mwVo.phonecharge != null}">
+								<td><div style="background: url(/assets/images/ico_plug.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>충전기 사용 가능</span></td>
+								<td><input type="hidden" name="phonecharge" value="${mwVo.phonecharge}"></td>
+							</c:if>
+								
+							</tr>
+							<tr>
+								
+								<c:if test="${mwVo.trunk != null}">
+								<td><div style="background: url(/assets/images/ico_toolbox.png); background-repeat: no-repeat; width:30px; height: 30px; float:left;"></div><span>트렁크 사용 가능</span></td>
+								<td><input type="hidden" name="trunk" value="${mwVo.trunk}"></td>
 								</c:if>
 							</tr>
 						</table>
@@ -438,24 +484,32 @@
 					<p>드라이버님이 하고싶은 말을 적어주세요</p>
 					<textarea class="comments" name="comments" readonly>${mwVo.comments}</textarea>
 					</div>
-					<p id="btn-modal">등록하기</p>
-    <div id="modal" class="modal-overlay">
-        <div class="modal-window">
-<!--             <div class="title"> -->
-<!--             </div> -->
-            <div class="close-area">X</div>
-            <div class="content">
-                <p>예상 적립 포인트는 +${mwVo.totalFare}입니다.</p>
-                <button id="sub-btn" type="submit">등록하기</button>
-            </div>
-        </div>
-    </div>
+							<button type="button" id="btn-modal">등록하기</button>
+		    <div id="modal" class="modal-overlay">
+		        <div class="modal-window">
+		            <div class="close-area">X</div>
+		            <div class="modal-content clear">
+		            	<img class="modal-img" src="/assets/images/ico_boxgift.png">
+		            	<div class="modal-text">
+			                <p>예상 적립 포인트는 +${mwVo.totalFare}입니다.</p>
+			                <p class="modal-second-p">*확인을 누르시면 이동 경로가 등록됩니다.</p>
+		                </div>
+		            </div>
+		            <div class="modal-button-div">
+			                <button id="back-btn" type="button">변경하기</button>
+			                <button id="sub-btn" type="submit">등록하기</button>
+	                </div>
+		        </div>
+		    </div>
 		</form>
 			</div>
 	</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
+$("#back-btn").on("click", function() {
+	location.replace("/mateWrite");
+})
 var modal = document.getElementById("modal")
 function modalOn() {
     modal.style.animation = "fade-in 0.5s"
@@ -509,7 +563,7 @@ $(document).ready(function() {
 for (var j=1;j<6;j++) {
 	var i = (9*j)+(j+1);
 	
-	var day = j+"일차";
+	var day = j;
 	var slat = $(".s-lat"+j).val();
 	if (slat == null) {
 		break;
@@ -530,7 +584,7 @@ for (var j=1;j<6;j++) {
 	var Strlatlng = $("#latlng"+j).val().replace('[', '').replace(']','');
 	var latlng = Strlatlng.split(',');
 	$("#latlng"+j).val(latlng);
-	$("#map"+j).attr("style","width:720px; height: 300px; margin:0px 0px 100px 0px;");
+	$("#map"+j).attr("style","width:720px; height: 300px; margin:20px 0px 50px 0px;");
 	//마커 위치 찍어주기 및 bound설정
 	var latArray = [slat, elat],
 		lngArray = [slng, elng],

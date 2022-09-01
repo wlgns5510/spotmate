@@ -82,7 +82,6 @@ public class MateDao {
 	public void saveMate(MateVo mateVo) {
 		System.out.println("MateDao >> saveMate");
 		
-		System.out.println(mateVo);
 		
 		sqlSession.insert("mate.insertUserMateInfo",mateVo);		
 	}
@@ -106,6 +105,7 @@ public class MateDao {
 		System.out.println("MateDao >> savePoint");
 		
 		sqlSession.insert("mate.insertUserMatePoint", mateVo);
+		
 	}
 	
 	//user가 갖고 있는 포인트 잔액
@@ -113,7 +113,6 @@ public class MateDao {
 		System.out.println("MateDao >> getTotalPoint");
 		
 		int totalPoint = sqlSession.selectOne("mypagej.selectTotalPoint", userNo);
-		System.out.println(userNo + " 유저가 가지고 있는 잔액: " + totalPoint);
 		
 		return totalPoint;
 	}

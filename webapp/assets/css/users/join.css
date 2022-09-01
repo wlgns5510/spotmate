@@ -84,9 +84,11 @@ Last update : 2022. 08. 29.
 }
 #chk_pw_pass {
 	font-size:8px;
+	margin: 5px 0px 0px 10px;
 }
 #chk_pw_fail {
 	font-size:8px;
+	margin: 5px 0px 0px 10px;
 	color:red;
 }
 .topborder {
