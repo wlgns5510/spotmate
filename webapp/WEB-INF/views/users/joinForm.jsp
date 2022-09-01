@@ -80,7 +80,7 @@
                         <!-- 아이디 -->
                         <div class="join_group topborder">
                             <label class="" for="">아이디*</label> 
-                            <input type="text" id="join_uid" name="id" value="" placeholder="※7자미만의 영문 혹은 영문과 숫자를 조합하여 작성해주세요">
+                            <input type="text" id="join_uid" name="id" value="" placeholder="※영문과 숫자를 조합해 8자이하로 입력해주세요">
                             <input type="hidden" id="id_chk_status" value="1">
                             <button type="button" id="id_check" class="id-check">중복확인</button>
                         </div>
