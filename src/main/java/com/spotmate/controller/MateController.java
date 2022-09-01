@@ -104,18 +104,18 @@ public class MateController {
 		System.out.println("MateController >> saveMate");
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser"); //세션에서 로그인한 유저를 가져옴
-		System.out.println("로그인한 회원정보: " + authUser);
+
 		
 		int userNo = authUser.getNo(); //로그인한 유저의 번호를 가져옴
 		
 		int result = mateService.saveMate(userNo, mateVo);
 
 		if( result == 0) {
-			return "redirect:/myReservationUserMain/1";
+			return "redirect:/myReservationUserMain/1";	//정상적으로 탑승하기가 완료됐을때 예약내역으로 리다이렉트
 		}else if(result == -2) {
-			return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?pointResult=fail";
+			return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?pointResult=fail";	//이용자의 포인트가 필요포인트 보다 적을때 
 		}else {
-			return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?result=fail";
+			return "redirect:/mateDeep/" + mateVo.getSpotMateNo() + "?result=fail";	//이용자가 선택한 인원 메이트가능한 인원 보다 많을때
 		}
 				
 		
