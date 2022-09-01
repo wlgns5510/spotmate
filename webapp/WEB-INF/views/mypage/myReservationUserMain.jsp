@@ -145,7 +145,7 @@
 						</thead>
 						<tbody>
 						<c:forEach items="${uMap.mL}" var="ui" varStatus="status">
-							<tr>
+							<tr id="box${ui.mateNo}">
 								<td>${ui.rn}</td>
 								<td>${ui.type}</td>
 								<td>${ui.regDate}</td>
@@ -156,7 +156,7 @@
 								<c:choose>
 								<c:when test="${ui.status == 'ride'}">
 								<td>
-									<button type="button" class="btn_review" onclick="msg()">모집완료</button>
+									<button type="button" class="btn_review">모집완료</button>
 								</td>
 								</c:when>
 								<c:otherwise>
@@ -230,6 +230,22 @@ document.getElementById("endDate").value = new Date(new Date().getTime() - (new 
 	function setTime(){
 				document.getElementById("in").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16).replace("T", " ");
 				document.getElementById("out").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16).replace("T", " ");
+	}
+	function msg(mateNo) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/endResv",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(mateNo),
+			dataType : "json",
+			success : function(result){
+				$("#box"+mateNo).remove();
+				alert("카풀이 종료 되었습니다!")
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
 	}
 </script>
 
