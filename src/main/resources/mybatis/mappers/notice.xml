@@ -31,5 +31,15 @@
 		from notice))
 		
 	</select>
+	
+	<insert id="insertNotice" parameterType="map">
+		
+		insert into notice
+		values(
+			seq_notice_no.nextval,
+			
+		)
+	
+	</insert>
 
 </mapper>

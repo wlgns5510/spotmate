@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spotmate.service.NoticeService;
 
@@ -35,6 +36,13 @@ public class NoticeController {
 	public String noticeWriteForm() {
 	     return "/community/noticeWrite";
 	}
+	
+	@RequestMapping(value = "/noticeInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String noticeInsert(@RequestParam String title, @RequestParam String content) {
+		nService.insertNotice(title, content);
+	    return "/community/noticeWrite";
+	}
+	
 	
 	
 	
