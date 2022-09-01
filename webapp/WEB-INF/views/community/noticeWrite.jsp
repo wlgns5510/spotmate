@@ -60,7 +60,70 @@
     <!-- // header -->
     
 	<!-- content -->
-	
+	<section class="contents_wrapper content">
+            <h2 class="hidden">content</h2>
+                <section class="banner">
+                    <h2 class="hidden">banner</h2>
+                    <div class="login_banner">
+                        <p></p>
+                    </div>
+                    <div class="banner_text clear">
+                        <div class="text_lft">
+                            <h2>공지사항</h2>
+                            <h2>COMMUNITY NOTICE</h2>
+                        </div>
+                        <div class="text_rit">
+                            <h3>서비스 이용시 문의사항이 가장 많은 내용입니다.</h3>
+                            <h3>그 외의 질문이 있으시다면 1:1 문의하기를 사용해보세요.</h3>
+                        </div>
+                    </div>
+                    
+        </section>
+        <section class="sub_wrap">
+            <div class="sub_nav clear">
+                <ul>
+                    <li class="sub_faq"><a href="javascript:void(0);">NOTICE</a></li>
+                    <li><a href="javascript:void(0);">FAQ</a></li>
+                    <li><a href="javascript:void(0);">EVENT</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- inner -->
+        <section>
+            <div class="inner">
+                <div id="write_board" class="writeBoard">
+                    <p class="writeImg"></p>
+                    <h2>공지사항 글쓰기</h2>
+                    <p>*spotmate admin 계정만 작성가능</p>
+
+                    <div id="noticeWriteForm" class="noWriteBox">
+                        <form action="" method="">
+                            <!-- 아이디 -->
+                            <div class="noWrite_form">
+                                <label class="txt-title" for="nowrite-title">제목</label>
+                                <input type="text" id="nowrite-title" name="" value="" placeholder="제목을 입력해 주세요">
+                            </div>
+
+                            <!-- 비밀번호 -->
+                            <div class="noWrite_form">
+                                <label class="txt-title" for="nowrite-title">내용</label>
+                                <textarea id="nowrite-content" name="" value="" placeholder="내용을 작성해주세요"></textarea>
+                            </div>
+
+                            <!-- 버튼영역 -->
+                            <div class="writeBtn_area">
+                                <a id="btn_cancel" href="">취소</a>
+                                <button id="btn_add" type="submit">등록</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                
+            </div>
+            <!-- inner -->
+        </section>
 	<!-- //content -->
 
 	<!-- footer -->
