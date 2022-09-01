@@ -13,7 +13,7 @@
 			    #{userNo},
 			    #{type},
 			    #{title},
-			    sysdate,
+			     sysDate,
 			    #{content},
 			    '답변대기'
 
@@ -29,7 +29,7 @@
 		<![CDATA[
 	 		select  mq.no ,
         			mq.type,
-        			mq.regDate,
+        			to_char(ort.regDate, 'yy.mm.dd') regDate,
         			mq.title,
 			        mq.content,
 			        mq.status,
