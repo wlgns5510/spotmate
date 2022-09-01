@@ -1,1 +1,174 @@
 @charset "UTF-8";
+
+/*
+-------------------------------------------------
+-------------------------------------------------
+Content Style Sheet
+Version : 1.0
+Author : JYJ
+First update : 2022. 08. 08.
+Last update : 2022. 08. 30.
+-------------------------------------------------
+-------------------------------------------------
+*/
+
+/* .inner{display:block; width:1440px; margin:0 auto;} */
+
+
+/********** sub_nav **********/
+.sub_wrap {
+    width: 100%;
+    border-bottom : 1.5px solid #D9D9D9;
+}
+.sub_nav {
+    width: 1440px;
+    margin: 0px auto;
+    display: flex;
+}
+
+.sub_nav > ul > li{
+    display:inline-block;
+    position:relative;
+    min-width: 130px; height: 50px;
+    text-align: center;
+}
+.sub_nav> ul > li > a{
+    display:inline-block; position:relative;
+    box-sizing: border-box;
+    padding:0 20px;
+    color:#1e1e1e; font-family: 'Montserrat'; font-size:14px; font-weight:500;
+    letter-spacing:-0.25px; line-height: 60px;
+}
+.sub_nav> ul > .sub_faq {
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+    background :#F7F9FB;
+}
+.sub_nav> ul > .sub_faq > a{
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+}
+.sub_nav > ul > li > a:hover {color:#4454A1; font-family: 'Montserrat'; font-weight:700;}
+.sub_nav> ul > li:hover { border-bottom: 2px solid #4655a4;}
+
+/********** //sub_nav **********/
+
+/********** 공지사항 테이블 **********/
+.notice_cover {
+	width : 1440px;
+    /* background-color: pink; */
+    border: 1px solid greenyellow;
+    margin: 0px auto;
+    padding: 70px 0px 700px 0px;
+    box-sizing: border-box;
+    
+}
+.notice_list{
+    box-sizing: border-box;
+    border: 1px solid blueviolet;
+    position: relative;
+}
+/* notice_bar */
+.notice_bar {
+    /* border: 1px solid goldenrod; */
+    background: greenyellow;
+}
+
+/* notice_bar */
+
+/* 게시판 table */
+.notice_table {
+    position: relative;
+}
+#notice_board table {
+    width: 1440px;
+    border-collapse: collapse;
+    text-align: center; 
+}
+
+#notice_list > h3 {
+    border: 1px solid red;
+    box-sizing: border-box;
+    padding: 30px 0px 10px 0px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+    color: #5B5B5B;
+}
+
+
+#notice_board #notice_list table>thead>tr {
+    border-top: 2px solid #4454A1; 
+    border-bottom: 2px solid #D3D3D3;
+    background-color: #F5F5F5; 
+}
+
+#notice_board #notice_list table>thead>tr>th {
+    padding: 20px 0px 20px 0px;
+    font-weight: 500;
+}
+
+#notice_board #notice_list table>tbody>tr { 
+    border-bottom: 1px solid #D3D3D3;
+}
+
+#notice_board #notice_list table>tbody>tr:hover { 
+	background-color: #F7F9FB;
+    color: #4454A1; 
+}
+
+#notice_board #notice_list table>tbody>tr>td {
+    padding: 20px 0px 20px 0px;
+    font-size: 14px;
+}
+
+/********** 공지사항 테이블 **********/
+
+/********** 페이징 **********/
+/* 게시판 페이징 */
+
+#notice_board #notice_list #notice_paging ul>li.active{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/* 페이징 번호 */
+#notice_paging {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin: 100px 0px 0px 0px;
+    /* width: 672px; */
+    /* height: 45px; */
+    /* border: 1px solid green; */
+}
+#notice_paging ul>li {
+    float: left;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 15px 17px 15px 17px;
+    margin: 0px 0px 0px -1px;
+    border: 1px solid rgba(239, 239, 239, 1);
+}
+#notice_paging ul>li>a {
+    color: rgba(75, 75, 75, 1);
+    font-weight: 500;
+    font-size: 14px;
+    
+}
+
+/* 글쓰기 버튼 */
+#notice_board #notice_list #btn_write {
+    float: right;
+    box-sizing: border-box;
+    margin: 50px 0px 0px 0px;
+    padding: 10px 10px 10px 10px;
+    width: 150px;
+    height: 40px;
+    background: #4454A1;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    color: #fff;
+}
+/********** // 페이징  **********/
+
