@@ -355,7 +355,7 @@
 				</p>
 				<div class="carpool-picture">
 					<div class="carpool-picture-image">
-						<img src="/upload/${mateDriverVo.carPicture}">
+						<img src="/upload/${mMap.mateDriverVo.carPicture}">
 						<h3>
 							<span> ${mMap.mateDriverVo.carName}<br>(${mMap.mateDriverVo.carNo})</span>
 								
