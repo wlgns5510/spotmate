@@ -88,7 +88,7 @@
                         <!-- 비밀번호 -->
                         <div class="join_group">
                             <label class="" for="">비밀번호*</label> 
-                            <input type="password" id="join_pass" name="pw" value="" placeholder="※숫자와 영문자 조합으로 8~16자리를 사용해야 합니다.">
+                            <input type="password" id="join_pass" name="pw" value="" placeholder="※숫자,영문자와 특수기호를 조합해 8~16자리로 입력해주세요">
                         </div>
                         <!-- 비밀번호 확인 -->
                         <div class="join_group chk_pw">
