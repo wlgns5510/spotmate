@@ -46,7 +46,7 @@
 	padding-top: 40px;
 	width: 100%;
 	height: 190px;
-	background: rgba(232,231,231,1);
+	background: rgba(232, 231, 231, 1);
 	text-align: center;
 }
 
@@ -327,7 +327,7 @@
 	height: 30px;
 	border: none;
 	font-weight: bold;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .inputBox_r input {
@@ -355,9 +355,10 @@
 	text-align: center;
 	color: rgba(102, 102, 102, 1);
 	font-family: Noto Sans;
-	font-weight: Regular;
+	font-weight: 700;
 	font-size: 16px;
 	text-align: center;
+	cursor:pointer;
 }
 
 /*버튼*/
@@ -374,7 +375,7 @@
 .UsagemyPage_btnB {
 	color: rgba(255, 255, 255, 1);
 	font-family: Noto Sans;
-	font-weight: SemiBold;
+	font-weight: 700;
 	font-size: 16px;
 	text-align: center;
 	background: rgba(68, 84, 161, 1);
@@ -382,16 +383,18 @@
 }
 
 .myPage_btnC {
-	width: 150px;
+	width: 140px;
 	height: 40px;
 	position: absolute;
+	cursor:pointer;
+	margin:3px 0px 0px 5px;
 }
 
 .myPage_btnC {
 	color: rgba(255, 255, 255, 1);
 	position: absolute;
 	font-family: Noto Sans;
-	font-weight: SemiBold;
+	font-weight: 700;
 	font-size: 16px;
 	text-align: center;
 	background: rgba(239, 192, 74, 1);
@@ -415,21 +418,20 @@
 	font-weight: bold;
 	width: 450px;
 	border: 1px solid rgba(217, 217, 217, 1);
-	
 }
 
 /* Change the color of links on hover */
 .topnav a:hover {
 	background-color: white;
-	color: blue;
-	border-bottom: 2px solid blue;
+	color: #4454a1;
+	border-bottom: 2px solid #4454a1;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
 	background-color: white;
-	color: blue;
-	
+
+	color: #4454a1;
 }
 
 /************section-article2*****************/
@@ -444,6 +446,12 @@
 	height: 100%;
 	/*border: 1px solid #ff00ff;*/
 	float: left;
+}
+
+.myPage_selection>.myPage_article2>p {
+	margin-left: 365px;
+	display: inline-block;
+	text-align: center;
 }
 
 .DriverenrollForm>form {
@@ -511,11 +519,28 @@
 	font-family: Noto Sans;
 	font-weight: SemiBold;
 	font-size: 24px;
-	margin-left: 200px;
-	margin-top: 50px;
+	margin-left: 265px;
+	margin-top: 100px; margin-bottom : 100px;
 	display: inline-block;
 	text-align: center;
+	margin-bottom: 100px;
 }
+.DForm_enrollbtnQna {
+	width: 283px;
+	height: 65px;
+	background-color: rgba(70, 84, 163, 1);
+	border-radius: 6px;
+	color: rgba(255, 255, 255, 1);
+	font-family: Noto Sans;
+	font-weight: SemiBold;
+	font-size: 24px;
+	margin-left: 330px;
+	margin-top: 75px; margin-bottom : 100px;
+	display: inline-block;
+	text-align: center;
+	margin-bottom: 100px;
+}
+
 
 .DForm_enrollbtn {
 	width: 283px;
@@ -526,10 +551,12 @@
 	font-family: Noto Sans;
 	font-weight: SemiBold;
 	font-size: 24px;
-	margin-left: 300px;
 	margin-top: 100px;
-	display: inline-block;
+	margin-bottom: 100px; margin-left : 280px; display : inline-block;
 	text-align: center;
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 280px;
 }
 
 .DForm_enrollbtn>span {
@@ -549,8 +576,8 @@
 	font-size: 12px;
 }
 
-.paging> ul {
-	display:table;
+.paging>ul {
+	display: table;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -571,18 +598,20 @@
 }
 
 .reserv-paging {
-/* 	margin: 50px 0px 0px 200px; */
-/*  margin-top: 50px; */
-/* 	width: 672px; */
+	/* 	margin: 50px 0px 0px 200px; */
+	/*  margin-top: 50px; */
+	/* 	width: 672px; */
 	margin: 50px auto;
 	height: 40px;
 	font-weight: 600;
 	font-size: 12px;
 }
+
 .reserv-paging ul {
-	display:table;
+	display: table;
 	margin: 0px auto;
 }
+
 .reserv-paging ul>li {
 	float: left;
 	padding: 15px 17px 15px 17px;
@@ -645,6 +674,7 @@
 	border-bottom-right-radius: 6px;
 	overflow: hidden;
 	float: left;
+	cursor: pointer;
 }
 
 .DriverenrollForm span {
@@ -700,23 +730,24 @@
 	border-radius: 6px;
 	margin: 10px 10px 10px 50px;
 }
-.join_call input{
-	margin-left:82px;
+
+.join_call input {
+	margin-left: 82px;
 }
 
-.DL_info .dltable{
-	display:table;
-	width:100%;
+.DL_info .dltable {
+	display: table;
+	width: 100%;
 }
-.DL_info >.dl_wrap1{
-	display:table-cell;
-	width:80px;
-	vertical-align:middle;
+
+.DL_info>.dl_wrap1 {
+	display: table-cell;
+	width: 80px;
+	vertical-align: middle;
 	table-layout: fixed;
 }
 
-
-.DL_info .dltable .dl_box #dl_1{
+.DL_info .dltable .dl_box #dl_1 {
 	width: 80px;
 	height: 35px;
 	background: rgba(255, 255, 255, 1);
@@ -725,23 +756,23 @@
 	margin-right: 0px 0px 0px 40px;
 	box-sizing: border-box;
 }
+
 .DL_info .dltable .dl_box .dl {
 	width: 80px;
 	height: 35px;
 	background: rgba(255, 255, 255, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
 	border-radius: 6px;
-	margin:0px;
+	margin: 0px;
 	box-sizing: border-box;
-
 }
 
 .error_next_box {
-    display: block;
-    margin: 9px 0 -2px;
-    font-size: 12px;
-    line-height: 14px;
-    color: red;
+	display: block;
+	margin: 9px 0 -2px;
+	font-size: 12px;
+	line-height: 14px;
+	color: red;
 }
 
 .DC_info input {
@@ -806,9 +837,10 @@
 	text-align: center;
 	color: rgba(102, 102, 102, 1);
 	font-family: Noto Sans;
-	font-weight: Regular;
+	font-weight: 700;
 	font-size: 16px;
 	text-align: center;
+	cursor:pointer;
 }
 
 .UsageinputBox {
@@ -849,8 +881,9 @@
 	border-top-right-radius: 6px;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;*/
-	color: rgba(217, 217, 217, 1);
+	color: black;
 }
+
 .myQnaryeo .myqnainput {
 	width: 650px;
 	height: 45px;
@@ -860,7 +893,7 @@
 	border-top-right-radius: 6px;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;*/
-	color: rgba(217, 217, 217, 1);
+	color: black;
 }
 
 .myQnaryeo td {
@@ -877,7 +910,7 @@
 	border-top-right-radius: 6px;
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
-	color: rgba(217, 217, 217, 1);
+	color: black;
 }
 
 .QnaWFp_group {
@@ -892,7 +925,7 @@
 }
 
 .myQnaryeo .imgbox {
-	postion:relative;
+	postion: relative;
 	width: 90px;
 	height: 90px;
 	background: rgba(255, 255, 255, 1);
@@ -904,38 +937,42 @@
 	border-bottom-right-radius: 6px;
 	overflow: hidden;
 }
-.imgbox .drag-file.highlight { 
-border: 3px dashed red;
+
+.imgbox .drag-file.highlight {
+	border: 3px dashed red;
 }
+
 .imgbox .drag-file .image {
-  width: 40px;
+	width: 40px;
 }
+
 .imgbox .drag-file .message {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
+
 .imgbox .drag-file .preview {
-  display: none;
-  position: absolute;
-  left: 0;
-  height: 0;
-  width: 100%;
-  height: 100%;
+	display: none;
+	position: absolute;
+	left: 0;
+	height: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .myQnaryeo>.imgbox>img {
-	position:absolute;
+	position: absolute;
 	top: 0;
 	left: 0;
-	width:100%;
+	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
 #input-file {
 	position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
 }

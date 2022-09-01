@@ -13,7 +13,7 @@
 			    #{userNo},
 			    #{type},
 			    #{title},
-			    sysdate,
+			     sysDate,
 			    #{content},
 			    '답변대기'
 
@@ -29,7 +29,7 @@
 		<![CDATA[
 	 		select  mq.no ,
         			mq.type,
-        			mq.regDate,
+        			to_char(ort.regDate, 'yy.mm.dd') regDate,
         			mq.title,
 			        mq.content,
 			        mq.status,
@@ -192,7 +192,7 @@
 			            p.fullplace,
 			            r.point,
 			            r.status
-			        from spotmate s, (select regdate,
+			        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 			                                point,
 			                                mateNo,
 			                                status
@@ -239,7 +239,7 @@
 				    r.status,
 			    	r.mateNo,
 			    	resvNo
-				from spotmate s, (select regdate,
+				from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 				                        point,
 				                        mateNo,
 				                        status,
@@ -289,7 +289,7 @@
 				    r.status,
 			    	r.mateNo,
 			    	resvNo
-				from spotmate s, (select regdate,
+				from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 				                        point,
 				                        mateNo,
 				                        status,
@@ -335,7 +335,7 @@
 					    r.status,
 			    		r.mateNo,
 			    		resvNo
-					from spotmate s, (select regdate,
+					from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                        point,
 					                        mateNo,
 					                        status,
@@ -363,7 +363,7 @@
 				    p.fullplace,
 				    r.point,
 				    r.status
-				from spotmate s, (select regdate,
+				from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 				                        point,
 				                        mateNo,
 				                        status
@@ -388,7 +388,7 @@
 			            p.fullplace,
 			            r.point,
 			            r.status
-			        from spotmate s, (select regdate,
+			        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 			                                point,
 			                                mateNo
 			                            from reservation r
@@ -434,7 +434,7 @@
 				    r.status,
 			    	r.mateNo,
 			    	resvNo
-				from spotmate s, (select regdate,
+				from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 				                        point,
 				                        mateNo,
 				                        no
@@ -444,9 +444,9 @@
 		                            and status like '%'||#{usVo.status}||'%'
 				                    and regDate >= #{usVo.sdate}
 				                    and regDate <= #{usVo.edate}) r, (select LISTAGG(place, ',') within group (order by wayno asc) as fullPlace,
-				                                                mateNo
-				                                            from place
-				                                            group by mateNo) p
+						                                                mateNo
+						                                            from place
+						                                            group by mateNo) p
 				where s.no = r.mateNo
 				and p.mateNo = r.mateNo
 				and s.status = 'close'
@@ -473,7 +473,7 @@
 				    regdate,
 				    p.fullplace,
 				    r.point
-				from spotmate s, (select regdate,
+				from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 				                        point,
 				                        mateNo
 				                    from reservation
@@ -498,7 +498,7 @@
 					            regdate,
 					            p.fullplace,
 					            r.point
-					        from spotmate s, (select regdate,
+					        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                                point,
 					                                mateNo
 					                            from reservation r
@@ -524,7 +524,7 @@
 					            regdate,
 					            p.fullplace,
 					            r.point
-					        from spotmate s, (select regdate,
+					        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                                point,
 					                                mateNo
 					                            from reservation r
@@ -550,7 +550,7 @@
 					            regdate,
 					            p.fullplace,
 					            r.point
-					        from spotmate s, (select regdate,
+					        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                                point,
 					                                mateNo
 					                            from reservation r
@@ -593,7 +593,7 @@
 						    p.fullplace,
 						    r.point,
 					    	r.mateNo
-						from spotmate s, (select regdate,
+						from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 						                        point,
 						                        mateNo
 						                    from reservation
@@ -634,7 +634,7 @@
 						    p.fullplace,
 						    r.point,
 					    	r.mateNo
-						from spotmate s, (select regdate,
+						from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 						                        point,
 						                        mateNo
 						                    from reservation
@@ -678,7 +678,7 @@
 						    r.point,
 					    	r.mateNo,
 					    	to_char(startdate, 'yyyy-mm-dd hh24:mi') startdate
-						from spotmate s, (select regdate,
+						from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 						                        point,
 						                        mateNo
 						                    from reservation
@@ -719,12 +719,12 @@
 			    mateNo,
 			    startdate
 				from (select type,
-				    regdate,
+				  	regdate,
 				    p.fullplace,
 				    r.point,
 			    	r.mateNo,
 			    	to_char(startdate, 'yyyy-mm-dd hh24:mi') startdate
-   					from spotmate s, (select regdate,
+   					from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 				                        point,
 				                        mateNo
 				                    from reservation
@@ -765,7 +765,7 @@
 					    r.point,
 			    		r.mateNo,
 			    		to_char(startdate, 'yyyy-mm-dd hh24:mi') startdate
-					from spotmate s, (select regdate,
+					from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                        point,
 					                        mateNo
 					                    from reservation
@@ -791,7 +791,7 @@
 				    p.fullplace,
 				    r.point,
 				    status
-				from spotmate s, (select regdate,
+				from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 				                        point,
 				                        mateNo
 				                    from reservation
@@ -817,7 +817,7 @@
 					            p.fullplace,
 					            r.point,
 					            status
-					        from spotmate s, (select regdate,
+					        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                                point,
 					                                mateNo
 					                            from reservation r
@@ -844,7 +844,7 @@
 					            p.fullplace,
 					            r.point,
 					            status
-					        from spotmate s, (select regdate,
+					        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                                point,
 					                                mateNo
 					                            from reservation r
@@ -871,7 +871,7 @@
 					            p.fullplace,
 					            r.point,
 					            status
-					        from spotmate s, (select regdate,
+					        from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 					                                point,
 					                                mateNo
 					                            from reservation r
@@ -914,7 +914,7 @@
 						    p.fullplace,
 						    r.point,
 					    	r.mateNo
-						from spotmate s, (select regdate,
+						from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 						                        point,
 						                        mateNo
 						                    from reservation
@@ -955,7 +955,7 @@
 						    p.fullplace,
 						    r.point,
 					    	r.mateNo
-						from spotmate s, (select regdate,
+						from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 						                        point,
 						                        mateNo
 						                    from reservation
@@ -999,7 +999,7 @@
 						    r.point,
 					    	r.mateNo,
 					    	to_char(startdate, 'yyyy-mm-dd hh24:mi') startdate
-						from spotmate s, (select regdate,
+						from spotmate s, (select to_char(regdate, 'yyyy-mm-dd hh24:mi') regdate,
 						                        point,
 						                        mateNo
 						                    from reservation

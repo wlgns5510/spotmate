@@ -49,7 +49,6 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	<script type="text/javascript"src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
-<title>스팟 히치하이크 상세</title>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
@@ -120,6 +119,9 @@
 			level : 3
 		},
 		map = new kakao.maps.Map(mapContainer, mapOption);
+	var imageSrc = '/assets/images/common/login_people_f50.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(50, 50), // 마커이미지의 크기입니다
+		userMarkerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 	var Strlatlng = $("#latlng").val(),
 		mateNo = $("#mateNo").val(),
 		latlng = Strlatlng.split(","),
@@ -130,6 +132,7 @@
 		marker0,
 		marker1,
 		marker2,
+		userMarker,
 		infowindow0,
 		infowindow1,
 		infowindow2,
@@ -140,6 +143,19 @@
 		
 		
 	function nowPos() {
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				userMarker.setMap(null);
+				lat = position.coords.latitude, // 위도
+				lng = position.coords.longitude, // 경도
+				locPosition = new kakao.maps.LatLng(lat, lng);
+				userMarker = new kakao.maps.Marker({
+					position: locPosition,
+					map: map,
+					image: userMarkerImage
+				});
+			})
+		}
 		$.ajax({
 			url : "${pageContext.request.contextPath}/updateDriverPos",
 			type : "post",
@@ -177,6 +193,20 @@
 	}
 		
 	function firstSet() {
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				lat = position.coords.latitude, // 위도
+				lng = position.coords.longitude, // 경도
+				locPosition = new kakao.maps.LatLng(lat, lng);
+				userMarker = new kakao.maps.Marker({
+					position: locPosition,
+					map: map,
+					image: userMarkerImage
+				});
+				map.setCenter(locPosition);
+			})
+		}
+			
 		var bounds = new kakao.maps.LatLngBounds();
 		bounds.extend(new kakao.maps.LatLng(latlng[1], latlng[0]));
 		bounds.extend(new kakao.maps.LatLng(latlng[latlng.length-1], latlng[latlng.length-2]));
@@ -205,7 +235,7 @@
 				    content : iwContent
 				});
 			} else if (i==2) {
-				iwContent = '<div class="hitchdeepinfo"">현재위치 입니다<br>'+nowAddr+'</div>';
+				iwContent = '<div class="hitchdeepinfo"">드라이버님의<br> 현재위치 입니다<br>'+nowAddr+'</div>';
 				infowindow2 = new kakao.maps.InfoWindow({
 				    content : iwContent
 				});
@@ -278,6 +308,8 @@
 			success : function(result) {
 				if (result == 1) {
 					chk = 1
+				} else {
+					chk = -1;
 				}
 			},
 			error : function(XHR, status, error) {
@@ -290,34 +322,42 @@
 		} else if(chk == 1) {
 			alert("이미 신청 하셨습니다")
 			return;
+		} else if(chk == -1) {
+			alert("로그인 후 시도해 주세요!");
+			return;
 		}
-		var hrVo = {};
-		hrVo.mateNo = mateNo;
-		hrVo.people = $("#people").val();
-		hrVo.point = $("#intFare").val();
-		navigator.geolocation.getCurrentPosition(function(position) {
-			lat = position.coords.latitude, // 위도
-			lng = position.coords.longitude; // 경도
-		})
-		hrVo.lat = lat;
-		hrVo.lng = lng;
-		$.ajax({
-			url : "${pageContext.request.contextPath}/rideReq",
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(hrVo),
-			dataType : "json",
-			success : function(result) {
-				if (result != -1) {
-					$("#rideReq").text("신청 완료");
-				} else {
-					alert("탑승 인원 초과입니다.");
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
+		var lat,
+			lng,
+			hrVo = {};
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				lat = position.coords.latitude, // 위도
+				lng = position.coords.longitude, // 경도
+				hrVo.mateNo = mateNo;
+				hrVo.people = $("#people").val();
+				hrVo.point = $("#intFare").val();
+				hrVo.lat = lat;
+				hrVo.lng = lng;
+				$.ajax({
+					url : "${pageContext.request.contextPath}/rideReq",
+					type : "post",
+					contentType : "application/json",
+					data : JSON.stringify(hrVo),
+					dataType : "json",
+					success : function(result) {
+						if (result != -1) {
+							$("#rideReq").text("신청 완료");
+						} else {
+							alert("탑승 인원 초과입니다.");
+						}
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+			})
+		}
+		
 	}
 </script>
 </html>

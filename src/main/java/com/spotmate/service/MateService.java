@@ -59,7 +59,7 @@ public class MateService {
 		Map<String, Object> mateListMap = new HashMap<String, Object>();
 		mateListMap.put("mateList", mateList);
 		mateListMap.put("optList", optList);
-		System.out.println(optList);
+		
 		
 		
 		return mateListMap;
@@ -105,7 +105,7 @@ public class MateService {
 		return mateDriverMap;	
 	}
 	
-	//드라이버 
+	
 	
 	//메이트 user 예약내역 DB에 저장하기
 	public int saveMate(int userNo, MateVo mateVo) {
@@ -113,15 +113,27 @@ public class MateService {
 		
 		mateVo.setUserNo(userNo);
 		
-		int mateNo = mateVo.getSpotMateNo();		
+		int mateNo = mateVo.getSpotMateNo();
+		System.out.println("메이트번호: " + mateNo);
+		
 		int people = mateVo.getPeople();
+		System.out.println("신청한 인원수: " + people);
+		
 		int canRide = mateDao.chkPeople(mateNo);
+		System.out.println("탑승 가능한 인원수: " + canRide);
+		
 		int usablePoint = mateDao.getTotalPoint(userNo);
-		if(canRide < people) {
+		System.out.println("사용 가능 포인트: " + usablePoint);
+		System.out.println("필요 포인트: " + mateVo.getPoint());
+		System.out.println(mateVo);
+		if(canRide < people) {	//이용자가 선택한 인원 메이트가능한 인원 보다 많을때 --> -1
+			System.out.println("인원초과");
 			return -1;
-		} else if(usablePoint < mateVo.getPoint()) {
+		} else if(usablePoint < mateVo.getPoint()) {	//이용자의 포인트가 필요포인트 보다 적을때 --> -2
+			System.out.println("잔액부족");
 			return -2;
-		} else if(canRide >= people && usablePoint >= mateVo.getPoint()) {
+		} else if(canRide >= people && usablePoint >= mateVo.getPoint()) {	//정상적으로 탑승하기가 완료됐을때 --> 0
+			System.out.println("탑승완료");
 			Map<String, Object> map = new HashMap<>();
 			map.put("people", people);
 			map.put("mateNo", mateNo);
@@ -130,6 +142,7 @@ public class MateService {
 			mateDao.savePoint(mateVo);
 			return 0;
 		} else {
+			System.out.println("탑승실패");
 			return -1;
 		}
 		

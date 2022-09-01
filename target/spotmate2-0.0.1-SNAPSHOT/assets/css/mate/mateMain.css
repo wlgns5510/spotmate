@@ -1,8 +1,9 @@
 .mateMain_inputBox input::placeholder {
-	color: #C2C6CC;
+	color:gray;
 }
 .mateMain_inputBox input {
 	border: none;
+	color:gray;
 }
 input[type=checkbox] {
     accent-color: rgba(73,85,159,1);    
@@ -28,7 +29,7 @@ input[type=checkbox] {
 }
 .mateMain_content .seachBox {
 	position: absolute;
-	top: 180px;
+	top: 130px;
 	left: 470px;
 }
 .mateMain_content .selBox {
@@ -46,7 +47,7 @@ input[type=checkbox] {
 }
 .mateMain_content .mateMain_inputBox {
   width: 1000px;
-  height: 70px;
+  height: 120px;
   background: rgba(255,255,255,1);
   position: relative;
 }
@@ -114,11 +115,19 @@ input[type=checkbox] {
   position: absolute;
   top: 8px;
   left: 930px;  
+  cursor: pointer;
 }
 
 /***********************mateMain_content2**************************/
-.mateMain_content2 input {
+.chectBoxList input {
 	margin: 0px 10px 0px 0px;
+}
+.chectBoxList label {
+	cursor : pointer;
+}
+.chectBoxList span {
+	margin: 0px 50px 0px 0px;
+	font-weight: 500;
 }
 .mateMain_content2 {
 	width: 1440px;
@@ -126,37 +135,46 @@ input[type=checkbox] {
 	background: rgba(255,255,255,1);
 	margin: 0px auto;	
 }
-.mateMain_content2 .DetaileBox {
-	width: 150px;
-	height:55px;
+.mateMain_inputBox .DetaileBox {
+	width: 110px;
+	height:50px;
+	top: 70px;
+	left: 0px;
 	background-color: #4454A1;
 	float: left;
-	position: relative;
+	position: absolute;
 	
 }
-.mateMain_content2 .DetaileBox .DetaileBoxFont {
-	top: 19px;
-	left: 60px;
+.mateMain_content .DetaileBox .DetaileBoxFont {
+	top: 15px;
+	left: 38px;
 	font-family: Noto Sans;
     font-weight: 600;
     font-size: 16px;
     color: #FFFFFF;
     position: absolute;
 }
-.mateMain_content2 .DetaileBox .DetaileBoxImg {
-	top: 17px;
-	left: 25px;
+.mateMain_content .DetaileBox .DetaileBoxImg {
+	top: 13px;
+	left: 5px;
     position: absolute;
 }
-.mateMain_content2 .checkBox {
+.mateMain_content2 .mateListFont {
   width: 1284px;
   height: 53px;
   background: rgba(255,255,255,1);
-  margin: 60px 0px 50px 100px;
+  margin: 60px 0px 0px 0px;
   padding : 0px 0px 0px 0px;
-  border: 1px solid rgba(217,217,217,1);
   overflow: hidden;
   position: relative;
+}
+.mateMain_content2 .mateListFont h2{
+  width: 280px;
+  color: rgba(91,91,91,1);
+  font-family: Noto Sans Korean;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: left;
 }
 .mateMain_content2 .nonSmoke {
   width: 90px;
@@ -228,7 +246,7 @@ input[type=checkbox] {
 }
 .mateMain_content2 .mateList .matePicture {
   width: 340px;
-  height: 330px;
+  height: 340px;
   background-color: #000000;
   background-repeat: no-repeat;
   background-position: center center;
@@ -238,6 +256,7 @@ input[type=checkbox] {
   border-top-right-radius: 12px;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  margin: 0px 0px 15px 0px;
 }
 .mateMain_content2 .mateList .driverName {
   width: 118px;
@@ -251,17 +270,21 @@ input[type=checkbox] {
   width: 135px;
   color: rgba(72,72,72,1);
   font-family: Noto Sans;
-  font-weight: Regular;
+  font-weight: 400;
   font-size: 16px;
+  float: right;
 }
 .mateMain_content2 .mateList .startEnd {
-  width: 150px;
+  width: 250px;
   color: rgba(72,72,72,1);
   font-family: Noto Sans;
   font-weight: Bold;
   font-size: 20px;
-  margin: 10px 73px 0px 0px;
+  margin: 10px 0px 0px 0px;
  float: left;
+}
+.mateMain_listBox {
+	float: right;
 }
 .mateMain_content2 .mateList img {
 	margin: 5px 0px 3px 0px;
@@ -272,7 +295,7 @@ input[type=checkbox] {
   font-family: Montserrat;
   font-weight: 600;
   font-size: 16px;
-  margin: 7px 14px 0px 0px;
+  margin: 7px 0px 0px 0px;
 }
 .mateMain_content2 .mateList .petYN {
   width: 50px;
@@ -280,6 +303,7 @@ input[type=checkbox] {
   font-family: Montserrat;
   font-weight: Bold;
   font-size: 16px;
+  padding: 5px 0px 0px 0px;
 }
 .mateMain_content2 .mateListBtn {
   width: 310px;
@@ -312,3 +336,40 @@ input[type=checkbox] {
   font-weight: Bold;
   font-size: 30px; 
 }
+
+
+.mateMain_content2 button {
+	width : 150px;
+	height : 40px;
+	border-radius : 40px;
+	color : #fdebd9;
+	font : bold 13.5pt '나눔고딕';
+	background-color : #cf5414;
+	margin-top : 50px;
+	margin-bottom : 50px;
+	cursor : pointer;
+}
+.matePicture:hover {
+	/* width:400px; */  /* 사진크기 조절 */
+    transform:scale(1.05, 1.05);  /* 가로1.05배 새로 1.55배 로 커짐 */
+    transition: transform.1s;  /* 커지는 시간 */
+}
+
+
+.btn-wrap {
+    text-align: center;
+}
+.mateMain_inputBox .chectBoxList {
+	position: absolute;
+    top: 70px;
+    left: 110px;
+    height: 35px;
+    width: 865px;
+    padding: 14px 0px 0px 25px;
+    border-top: 1px solid #C2C6CC;
+    background-color: aliceblue;
+}
+.mateListFont {
+	height: 50px;
+}
+

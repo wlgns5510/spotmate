@@ -124,8 +124,9 @@
 					</div>
 
 					<div class="DriverenrollForm">
-						<form id="myform"  method="post"
-							action="${pageContext.request.contextPath }/myDriverWriteInsert" enctype="multipart/form-data">
+						<form id="myform" method="post"
+							action="${pageContext.request.contextPath }/myDriverWriteInsert"
+							enctype="multipart/form-data">
 							<div class="DL_info">
 								<!-- -->
 
@@ -134,20 +135,16 @@
 								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input value="${dlvo.username}" name="username" id="username" placeholder="ex)장원영" type="text"></td>
+										<td><input value="${dlvo.username}" name="username"
+											id="username" placeholder="ex)장원영" type="text"></td>
 									</tr>
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
-										<td>
-<<<<<<< HEAD
-											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)970107" type="number">
-=======
-											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)040831" type="text">
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
-											<button type="button" id="liau" class="smallbtn" style="float: initial;">본인인증</button>
-										</td>
-										<td></td>
+
+										<td><input value="${dlvo.userBD}" name="userBD"
+											id="userBD" placeholder="ex)040831" type="text"></td>
+
 									</tr>
 
 									<tr align="left">
@@ -157,13 +154,15 @@
 												<div class="dltable">
 
 													<div class="dl_wrap1">
-														<span class="dl_box"> 
-															<input id="dl_1" class="txt-dl" placeholder="ex)10" type="text">
-															<input id="dl_2" class="dl txt-dl" placeholder="ex)10" type="text">
-															<input id="dl_3" class="dl txt-dl" placeholder="ex)000000" type="text">
-															<input id="dl_4" class="dl txt-dl" placeholder="ex)10" type="text">
-															<input id="dl_5" class="dl txt-dl" placeholder="ex)Xxxxxx" type="text">
-															<input id="dl" name="dl"  type="text">
+														<span class="dl_box"> <input id="dl_1"
+															class="txt-dl" placeholder="ex)10" type="text"> <input
+															id="dl_2" class="dl txt-dl" placeholder="ex)10"
+															type="text"> <input id="dl_3" class="dl txt-dl"
+															placeholder="ex)000000" type="text"> <input
+															id="dl_4" class="dl txt-dl" placeholder="ex)10"
+															type="text"> <input id="dl_5" class="dl txt-dl"
+															placeholder="ex)Xxxxxx" type="text"> <input
+															id="dl" name="dl" type="hidden">
 														</span>
 													</div>
 												</div>
@@ -173,14 +172,21 @@
 											</div>
 										</td>
 									</tr>
+									</table>
+									<table>
 									<tr align="left">
-										<td><label for="licensetype">종류*</label></td>
+										<td width="105px"><label for="licensetype">종류*</label></td>
 										<td><input name="licensetype" id="licensetype"
 											placeholder="대형 1종" type="text" placeholder=""></td>
+										<td>
+											<button type="button" id="liau" class="smallbtn"
+												style="float: initial;">본인인증</button>
+										</td>
 									</tr>
 
 								</table>
 							</div>
+
 
 							<div class="DC_info">
 								<h5>차량 정보 입력*</h5>
@@ -190,13 +196,12 @@
 										<td><label for="c_Model">차량모델명*</label></td>
 										<td><input name="c_Model" id="c_Model"
 											placeholder="테슬라 모델3" type="text"></td>
-											
+
 									</tr>
 
 									<tr>
 										<td></td>
-										<td>
-											<input readonly type="text" name="c_file" id="c_file">
+										<td><input readonly type="text" name="c_file" id="c_file">
 											<input type="file" name="file" id="input-file" class="">
 										</td>
 										<td><label class="smallbtn" for="input-file"> <span>파일선택</span>
@@ -228,28 +233,20 @@
 								<h5>차량 상세조건</h5>
 								<div class="detail">
 
-									<label class="detailtext"> 
-										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="1">
+									<label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="1">
 										&nbsp;&nbsp;비흡연자
-									</label> 
-									
-									<label class="detailtext"> 
-										<input class="detail_ckbox"  type="checkbox" name="ch_type" id="Dformcheckbox" value="2">
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="2">
 										&nbsp;&nbsp;여성드라이버
-									</label> 
-									
-									<label class="detailtext"> 
-										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="3">
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="3">
 										&nbsp;&nbsp;반려동물
-									</label> 
-									
-									<label class="detailtext"> 
-										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="4">
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="4">
 										&nbsp;&nbsp;충전기 사용 가능
-									</label> 
-									
-									<label class="detailtext"> 
-										<input class="detail_ckbox" type="checkbox" name="ch_type" id="Dformcheckbox" value="5">
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="5">
 										&nbsp;&nbsp;트렁크 사용 가능
 									</label>
 								</div>
@@ -268,120 +265,108 @@
 						</form>
 
 					</div>
-	</div>
 	</article>
 
 
 	</section>
 
 	</main>
+	
 
 
 
 	<!-- //banner & footer -->
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-
 	</div>
 
 </body>
 
 <script type="text/javascript">
-
-	var driverLiceneseYN = false;  //면허등록번호 참거짓
-	var carEnrollYN = false;       //차량등록번호
+	var driverLiceneseYN = false; //면허등록번호 참거짓
+	var carEnrollYN = false; //차량등록번호
 
 	//드라이버 등록하기 버튼 클릭할때 - 빈칸체크
-	$("#myform").on("submit", function(){
-		console.log("드라이버 등록하기 버튼 클릭");
+	$("#myform").on(
+			"submit",
+			function() {
+				console.log("드라이버 등록하기 버튼 클릭");
 
-		//면허등록번호 체크///////////////////////////////////////////
-		var dl_1 = $("#dl_1").val();
-		var dl_2 = $("#dl_2").val();
-		var dl_3 = $("#dl_3").val();
-		var dl_4 = $("#dl_4").val();
-		var dl_5 = $("#dl_5").val();
-		
-		if( (dl_1 == "" || dl_1 == null) ||
-			(dl_2 == "" || dl_2 == null) || 
-			(dl_3 == "" || dl_3 == null) || 
-			(dl_4 == "" || dl_4 == null) ||
-			(dl_5 == "" || dl_5 == null) )	{ //빈칸이 있으면 alert
-			
-			alert("면허등록번호를 확인해 주세요");
-			return false;
-			
-		}else { //빈칸이 없으면 히든에 면허등록번호 조합 해서 넣어둔다
-			var dl = dl_1 +"-"+ dl_2 +"-"+ dl_3 +"-"+ dl_4 +"-"+ dl_5;
-			$("#dl").val(dl);
-		}
-		
-		
-		//차량등록번호 체크 ///////////////////////////////////////////
-		var c_num = $("#c_num").val();
-		if(c_num==null || c_num==""){
-			alert("차량등록번호를 확인해 주세요");
-			return false;
-		}
-		
-		//면허종류 체크///////////////////////////////////////////
-		
-		
-		
-		//면허등록번호 참거짓///////////////////////////////////////////
-		if(driverLiceneseYN == false) {
-			alert("면허등록번호를 확인해 주세요");
-			return false;
-		}
-		
-		//차량등록번호 참거진///////////////////////////////////////////
-		if(carEnrollYN == false) {
-			alert("차량등록번호 확인해 주세요");
-			return false;
-		}
-		
-		
-		
-		
-		
-		
-		//최종///////////////////////////////////////////////////////
-		return true;	
-				
-		
-	});
+				//면허등록번호 체크///////////////////////////////////////////
+				var dl_1 = $("#dl_1").val();
+				var dl_2 = $("#dl_2").val();
+				var dl_3 = $("#dl_3").val();
+				var dl_4 = $("#dl_4").val();
+				var dl_5 = $("#dl_5").val();
 
+				if ((dl_1 == "" || dl_1 == null)
+						|| (dl_2 == "" || dl_2 == null)
+						|| (dl_3 == "" || dl_3 == null)
+						|| (dl_4 == "" || dl_4 == null)
+						|| (dl_5 == "" || dl_5 == null)) { //빈칸이 있으면 alert
+
+					alert("면허등록번호를 확인해 주세요");
+					return false;
+
+				} else { //빈칸이 없으면 히든에 면허등록번호 조합 해서 넣어둔다
+					var dl = dl_1 + "-" + dl_2 + "-" + dl_3 + "-" + dl_4 + "-"
+							+ dl_5;
+					$("#dl").val(dl);
+				}
+
+				//차량등록번호 체크 ///////////////////////////////////////////
+				var c_num = $("#c_num").val();
+				if (c_num == null || c_num == "") {
+					alert("차량등록번호를 확인해 주세요");
+					return false;
+				}
+
+				//면허종류 체크///////////////////////////////////////////
+
+				//면허등록번호 참거짓///////////////////////////////////////////
+				if (driverLiceneseYN == false) {
+					alert("면허등록번호를 확인해 주세요");
+					return false;
+				}
+
+				//차량등록번호 참거진///////////////////////////////////////////
+				if (carEnrollYN == false) {
+					alert("차량등록번호 확인해 주세요");
+					return false;
+				}
+
+				//최종///////////////////////////////////////////////////////
+				return true;
+
+			});
 
 	//첨부파일 등록시 파일이름 출력
-	$('#input-file').on("change", function(){
-		
+	$('#input-file').on("change", function() {
+
 		var tmpFilePath = $('#input-file').val()
-		
+
 		$('#c_file').val(tmpFilePath);
-		
+
 	});
-	
-	
 
 	//면허 등록번호 txt창의 값이 변할때 번호 합치기
-	$(".txt-dl").on("change", function(){
+	$(".txt-dl").on("change", function() {
 		console.log("txt-dl");
-		
+
 		var dl_1 = $("#dl_1").val();
 		var dl_2 = $("#dl_2").val();
 		var dl_3 = $("#dl_3").val();
 		var dl_4 = $("#dl_4").val();
 		var dl_5 = $("#dl_5").val();
-		
-		var dl = dl_1 +"-"+ dl_2 +"-"+ dl_3 +"-"+ dl_4 +"-"+ dl_5;
+
+		var dl = dl_1 + "-" + dl_2 + "-" + dl_3 + "-" + dl_4 + "-" + dl_5;
 		$("#dl").val(dl);
 	});
-	
-	
+
 	//면허 등록번호 체크
 	$("#liau").on("click", function() {
 		var name2 = $("#username").val();
 		var btd2 = $("#userBD").val();
-		if(btd2.length != 6) {
+		if (btd2.length != 6) {
 			alert("형식에 맞게 값을 넣어주세요");
 			return;
 		}
@@ -416,8 +401,7 @@
 			}
 		});
 	})
-	
-	
+
 	//실제 차량 등록 확인
 	$("#carAuth").on("click", function() {
 		var name = $("#username").val();
@@ -450,26 +434,21 @@
 			}
 		});
 	})
-	
-	
-	
-	
-	
+
 	let bCarAuth = false;
-	
+
 	function isCarAuth() {
-		if(!bCarAuth) {
+		if (!bCarAuth) {
 			alert("차량인증을 먼저 해주세요.");
 			//return false;
 		}
-		
+
 		/* document.getElementById("myform").submit(); */
 	}
 
-	
 	//상세조건 정렬
 	/*
- 	function OnChangeDL() {
+	function OnChangeDL() {
 		let dl_1 = document.getElementById("dl_1").value;
 		let dl_2 = document.getElementById("dl_2").value;
 		let dl_3 = document.getElementById("dl_3").value;
@@ -478,18 +457,18 @@
 		const dl = document.getElementById("dl");
 		dl.value = dl_1 + "-" + dl_2 + "-" + dl_3 + "-" + dl_4 + "-" + dl_5;
 	}
-	*/
+	 */
 	function OnChangeFile() {
 		const inputFile = document.getElementById("input-file");
 		let fileName = inputFile.value;
 		document.getElementById("img_path").value = fileName;
-		
-		var FR= new FileReader();
+
+		var FR = new FileReader();
 		FR.onload = function(e) {
 			console.log(e.target.result);
 			document.getElementById("c_file").value = e.target.result;
-		};       
-		FR.readAsDataURL( inputFile.files[0] );
+		};
+		FR.readAsDataURL(inputFile.files[0]);
 	}
 
 	$(document).ready(function() {
@@ -498,10 +477,6 @@
 			$(".upload-name").val(fileName);
 		});
 	});
-
-	
-
-	
 </script>
 
 </html>

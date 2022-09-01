@@ -149,17 +149,23 @@
 								</table>
 							</div>
 
+
 							<div class="DC_info">
 								<h5>차량 정보</h5>
-								<div class="right_smallbtn">
-									<input type="file" name="file" id="input-file" class="smallbtn">
-									<label class="smallbtn" for="input-file"> <span>사진변경</span></label>
+								<div>
+									<div class="right_smallbtn">
+										<input type="file" name="file" id="input-file"
+											class="smallbtn"> <label class="smallbtn"
+											for="input-file"> <span>사진변경</span></label>
+									</div>
+
+									<br> <img align="left" id="carImg" class="file_d"
+										alt="차량사진"
+										src="${pageContext.request.contextPath}/upload/${dlvo.c_file}"
+										width="732px" height="272px">
 								</div>
 
-								<br> <img align="left" id="carImg" class="file_d"
-									alt="차량사진"
-									src="${pageContext.request.contextPath}/upload/${dlvo.c_file}"
-									width="732px" height="272px">
+
 
 								<table>
 
@@ -172,7 +178,7 @@
 										<td><label for="c_num">차량등록번호*</label></td>
 										<td><input value="${dlvo.c_num}" name="c_num" id="c_num"
 											placeholder="770가7777" type="text"></td>
-												<td><button type="button" style="font-weight: bold"
+										<td><button type="button" style="font-weight: bold"
 												class="smallbtn" id="carAuth">차량인증</button></td>
 									</tr>
 									<tr align="left">
@@ -190,29 +196,30 @@
 							</div>
 
 
+
 							<div class="DC_etc">
 								<h5>차량 상세조건</h5>
 								<div class="detail">
 
 									<label class="detailtext"> <input class="detail_ckbox"
-										type="checkbox" name="ch_type" id="Dformcheckbox"value="1"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="1"
 										<c:forEach items="${dlvo.ch_type}"										
 											var="target">
 											<c:if test="${1 == target}">
 													checked="checked"
 												</c:if>
-										</c:forEach>> &nbsp;&nbsp;비흡연자
-									</label> 
-									<label class="detailtext"> <input class="detail_ckbox"
+										</c:forEach>>
+										&nbsp;&nbsp;비흡연자
+									</label> <label class="detailtext"> <input class="detail_ckbox"
 										type="checkbox" name="ch_type" id="Dformcheckbox" value="2"
 										<c:forEach items="${dlvo.ch_type}"										
 											var="target">
 											<c:if test="${2 == target}">
 													checked="checked"
 												</c:if>
-										</c:forEach>> &nbsp;&nbsp;여성드라이버
-									</label> 
-									<label class="detailtext"> <input class="detail_ckbox"
+										</c:forEach>>
+										&nbsp;&nbsp;여성드라이버
+									</label> <label class="detailtext"> <input class="detail_ckbox"
 										type="checkbox" name="ch_type" id="Dformcheckbox" value="3"
 										<c:forEach items="${dlvo.ch_type}"										
 											var="target">
@@ -260,13 +267,13 @@
 			</section>
 
 		</main>
-
-
-
-		<!-- //banner & footer -->
-		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-
 	</div>
+
+
+	<!-- //banner & footer -->
+	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+
+
 
 </body>
 
@@ -277,7 +284,7 @@
 		var img = URL.createObjectURL(tmp);
 		$("#carImg").attr("src", img);
 	});
-	
+
 	//실제 차량 등록 확인
 	$("#carAuth").on("click", function() {
 		var name = $("#username").val();
@@ -310,24 +317,17 @@
 			}
 		});
 	})
-	
-	
-	
-	
-	
+
 	let bCarAuth = false;
-	
+
 	function isCarAuth() {
-		if(!bCarAuth) {
+		if (!bCarAuth) {
 			alert("차량인증을 먼저 해주세요.");
 			//return false;
 		}
-		
+
 		/* document.getElementById("myform").submit(); */
 	}
-
-	
-	
 </script>
 
 </html>
