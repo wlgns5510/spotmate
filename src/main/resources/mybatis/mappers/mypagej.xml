@@ -199,37 +199,37 @@
 										         from place
 										         where wayNo = -1 ) sp,
 											    (select mateNo, nvl(min(day), 1) minDay
-											         from place
-											         where wayNo = -1 
-											         group by mateNo) sgp
-											     where sp.mateNo = sgp.mateNo
-											     and sp.day = sgp.minDay) st,
+											     from place
+											     where wayNo = -1 
+											     group by mateNo) sgp
+											where sp.mateNo = sgp.mateNo
+											and sp.day = sgp.minDay) st,
 									    
 									    
 									    
-									    (select ep.no eNo,
-									    		ep.mateNo eMateNo,
-									    		ep.day eDay,
-									    		ep.sepplace eSepPlace,
-									    		ep.place ePlace
-									     from 
-										       (select no,
-										               mateNo,
-										               nvl(day, 1) day,
-										               sepplace,
-										               place
-										        from place
-										        where wayNo = 0 ) ep,
-									          (select mateNo, nvl(min(day), 1) minDay
-									           from place
-									           where wayNo = 0 
-									           group by mateNo) egp
-									     where ep.mateNo = egp.mateNo
-									     and ep.day = egp.minDay) et,
+									      (select ep.no eNo,
+									    		  ep.mateNo eMateNo,
+									    		  ep.day eDay,
+									    		  ep.sepplace eSepPlace,
+									    		  ep.place ePlace
+									       from 
+										        (select no,
+										                mateNo,
+										                nvl(day, 1) day,
+										                sepplace,
+										                place
+										         from place
+										         where wayNo = 0 ) ep,
+									            (select mateNo, nvl(min(day), 1) minDay
+									             from place
+									             where wayNo = 0 
+									             group by mateNo) egp
+									       where ep.mateNo = egp.mateNo
+									       and ep.day = egp.minDay) et,
 									    
-									     spotMate sm
-									     where st.sMateNo = et.eMateNo
-									     and sm.no = st.sMateNo)se
+									       spotMate sm
+									       where st.sMateNo = et.eMateNo
+									       and sm.no = st.sMateNo)se
 			                   where sp.no = se.sMateNo
 			                   and re.mateno = sp.no
 			                   and pu.reno = re.no
@@ -238,7 +238,7 @@
 		]]>
 
 		<if test="option1 != '' and option1 != null">
-			and sp.type = #{option1}
+			                   and sp.type = #{option1}
 		</if>
 		
 		
@@ -251,14 +251,14 @@
 			                           null ptype,
 			                           null splace,
 			                           null eplace,
-			                           point        
+			                          point        
 			                   from pointUsage
 			                   where userno = #{userNo}
 			                   and (type = '충전' or type='환불' or type='구매')
 		]]>
 			
 		<if test="option1 != '' and option1 != null">
-			and type = #{option1}
+			                   and type = #{option1}
 		</if>
 		
 		<![CDATA[
