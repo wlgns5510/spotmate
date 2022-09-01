@@ -20,8 +20,6 @@
 		        #{birth},
 		        '',
 		        '',
-		        '',
-		        '',
 		        ''
 		)
 		into car
@@ -40,6 +38,7 @@
 	
 	<select id="loginOk" parameterType="userVo" resultType="userVo">
 		select u.no no
+				,id
 			   ,u.name name
 			   ,c.no carNo
 		from users u, car c
@@ -56,6 +55,7 @@
 	
 	<select id="kakaoLogin" parameterType="hashmap" resultType="userVo">
 		select u.no no
+				,id
 			   ,u.name name
 			   ,c.no carNo
 		from users u, car c

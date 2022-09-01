@@ -73,7 +73,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= cu.buyDate
+			and #{endDate} >= cu.buyDate -1
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -247,7 +247,7 @@
 		]]>
 		
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate 
+			and #{endDate} >= regDate -1
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -299,7 +299,7 @@
 			or type = #{option1}
 		</if>
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate
+			and #{endDate} >= regDate -1
 		</if>
 		<if test="startDate != '' and startDate != null">
 			and regDate >= #{startDate}
@@ -347,7 +347,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= regDate
+			and #{endDate} >= regDate -1
 		</if>
 
 		<if test="startDate != '' and startDate != null">
@@ -377,7 +377,7 @@
 		]]>
 
 		<if test="endDate != '' and endDate != null">
-			and #{endDate} >= status
+			and #{endDate} >= regDate -1
 		</if>
 
 		<if test="startDate != '' and startDate != null">

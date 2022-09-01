@@ -84,7 +84,7 @@
 
                         <!-- 비밀번호 -->
                         <div class="form_group">
-                            <input type="text" id="input_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
+                            <input type="password" id="input_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
                         </div>
                         
 
@@ -99,7 +99,7 @@
                         <!-- 버튼영역 -->
                         <div class="button_area">
                         <c:if test="${kakaoInfo != null}">
-                        	<p>첫 카카오 로그인시 로그인이 필요합니다</p>
+                        	<p style="margin: 30px 0px 0px 0px; color:#4454a1;">첫 카카오 로그인시 로그인이 필요합니다</p>
                         	<input type="hidden" name="nickname" value="${kakaoInfo.nickname}">
                         	<input type="hidden" name="email" value="${kakaoInfo.email}">
                         </c:if>
@@ -129,7 +129,7 @@
                         </li>
                         <li class="sns_kakao">
 <!--                         <a href="/login"></a> -->
-                        	<a href="https://kauth.kakao.com/oauth/authorize?client_id=2b24f06df2137983cc98995c1ddce575&redirect_uri=https://spotmate.duckdns.org/kakaoLogin&response_type=code"></a>
+                        	<a href="https://kauth.kakao.com/oauth/authorize?client_id=2b24f06df2137983cc98995c1ddce575&redirect_uri=http://localhost/kakaoLogin&response_type=code"></a>
 <!--                             <a href="javascript:void(0);" target="_blank" title="login_kakao"></a> -->
                         </li>
                         <li class="sns_naver">

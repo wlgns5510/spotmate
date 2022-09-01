@@ -99,64 +99,64 @@
 
 
 	<!-- 차량 리스트 전체 글 갯수 -->
-	
-	<select id="totalCarpoolCnt" parameterType="com.spotmate.vo.CarpoolVo" resultType="int">
-		<![CDATA[	
-		select count(*) totCnt
-        from spotMate sm, car ca, users us,   
-             (select sMateNo, sPlaceNo, sPlace, sWayNo, sSepPlace, sLat, sLng, sTime,
-                     eMateNo, ePlaceNo, ePlace, eWayNo, eSepPlace, eLat, eLng
-              from (select p.mateNo sMateNo, p.no sPlaceNo, p.place sPlace, p.wayNo sWayNo, 
-                           p.sepPlace sSepPlace, p.lat sLat, p.lng sLng, p.time sTime
-                    from place p
-                    where p.wayNo = -1) s,  
-                   (select p.mateNo eMateNo, p.no ePlaceNo, p.place ePlace, p.wayNo eWayNo, 
-                           p.sepPlace eSepPlace, p.lat eLat, p.lng eLng
-                    from place p
-                    where p.wayNo = 0) e    
-              where s.sMateNo = e.eMateNo) se,  
-             (select mateNo,
-                     LISTAGG(detailNo, ',') within group (order by detailNo asc) opts
-		      from spotDetail
-		      group by mateNo) pt 
+   <select id="totalCarpoolCnt" parameterType="com.spotmate.vo.CarpoolVo" resultType="int">
+      <![CDATA[   
+       select count(*) totCnt
+         from spotMate sm, car ca, users us,   
+              (select sMateNo, sPlaceNo, sPlace, sWayNo, sSepPlace, sLat, sLng, sTime,
+                      eMateNo, ePlaceNo, ePlace, eWayNo, eSepPlace, eLat, eLng
+               from (select p.mateNo sMateNo, p.no sPlaceNo, p.place sPlace, p.wayNo sWayNo, 
+                            p.sepPlace sSepPlace, p.lat sLat, p.lng sLng, p.time sTime
+                     from place p
+                     where p.wayNo = -1) s,  
+                    (select p.mateNo eMateNo, p.no ePlaceNo, p.place ePlace, p.wayNo eWayNo, 
+                            p.sepPlace eSepPlace, p.lat eLat, p.lng eLng
+                     from place p
+                     where p.wayNo = 0) e    
+               where s.sMateNo = e.eMateNo) se,  
+              (select mateNo,
+                      LISTAGG(detailNo, ',') within group (order by detailNo asc) opts
+             from spotDetail
+             group by mateNo) pt 
          where sm.no = se.sMateNo
          and ca.no = sm.carNo
-         and ca.userNo = us.no  
+         and ca.userNo = us.no 
+         and (sm.type = 'carpool' or sm.type = 'seasonTicket')
          and sm.no = pt.mateNo(+) 
+         and sm.people > 0
      
-		 ]]>
-		<if test="splace != ''  and  splace != null ">
-			and se.sPlace like '%'||#{splace}||'%'
-		</if>
+       ]]>
+      <if test="splace != ''  and  splace != null ">
+         and se.sPlace like '%'||#{splace}||'%'
+      </if>
 
-		<if test="eplace != ''  and  eplace != null ">
-			and se.ePlace like '%'||#{eplace}||'%'
-		</if>
+      <if test="eplace != ''  and  eplace != null ">
+         and se.ePlace like '%'||#{eplace}||'%'
+      </if>
 
-		<if test="sTime != ''  and  sTime != null ">
-			and se.sTime = #{sTime}
-		</if>
+      <if test="sTime != ''  and  sTime != null ">
+         and se.sTime = #{sTime}
+      </if>
 
-		<if test="smPeople != ''  and  smPeople != null ">
-			and sm.people = #{smPeople}
-		</if>
+      <if test="smPeople != ''  and  smPeople != null ">
+         and sm.people = #{smPeople}
+      </if>
 
-		<if test="startDate != ''  and  startDate != null ">
-			and sm.startDate = #{startDate}
-		</if>
+      <if test="startDate != ''  and  startDate != null ">
+         and sm.startDate = #{startDate}
+      </if>
 
-		<if test="endDate != ''  and  endDate != null ">
-			and sm.endDate = #{endDate}
-		</if>
+      <if test="endDate != ''  and  endDate != null ">
+         and sm.endDate = #{endDate}
+      </if>
 
-		<if test="ch_type != ''  and  ch_type != null ">
-			<foreach item="item" collection="ch_type">
-				and pt.opts like
-				'%'||#{item}||'%'
-			</foreach>
-		</if>
-	</select>
-
+      <if test="ch_type != ''  and  ch_type != null ">
+         <foreach item="item" collection="ch_type">
+            and pt.opts like
+            '%'||#{item}||'%'
+         </foreach>
+      </if>
+   </select>
 	<!-- 리뷰 배너(리스트) -->
 
 	<select id="selectReviewList" parameterType="int" resultType="com.spotmate.vo.CarpoolVo">
@@ -259,7 +259,7 @@
 	      
 	      <![CDATA[
  				insert into reservation 
- 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
+ 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, -#{point}, 'open', #{people}, '', '')
  				]]>
 
 	</insert>
@@ -289,7 +289,7 @@
 	      </selectKey>
 	      <![CDATA[
  				insert into pointusage 
- 				values (seq_pointusage_no.nextval, #{userNo}, '완료', sysdate, #{point}, #{point}, #{resvNo})
+ 				values (seq_pointusage_no.nextval, #{userNo}, '완료', sysdate, '', -#{point}, #{resvNo})
  		  ]]>
 
 	</insert>

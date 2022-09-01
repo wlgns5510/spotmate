@@ -172,6 +172,8 @@
 										<td><label for="c_num">차량등록번호*</label></td>
 										<td><input value="${dlvo.c_num}" name="c_num" id="c_num"
 											placeholder="770가7777" type="text"></td>
+												<td><button type="button" style="font-weight: bold"
+												class="smallbtn" id="carAuth">차량인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
@@ -275,6 +277,57 @@
 		var img = URL.createObjectURL(tmp);
 		$("#carImg").attr("src", img);
 	});
+	
+	//실제 차량 등록 확인
+	$("#carAuth").on("click", function() {
+		var name = $("#username").val();
+		var cnum = $("#c_num").val();
+
+		console.log(name)
+		console.log(cnum)
+		$.ajax({
+			url : "${pageContext.request.contextPath}/carAuth",
+			type : "post",
+			contentType : "application/json",
+			async : false,
+			data : JSON.stringify({
+				name : name,
+				cnum : cnum
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log("result,", result)
+				if (result == -1) {
+					alert("틀렸습니다");
+					carEnrollYN = false;
+				} else {
+					alert("성공했습니다");
+					carEnrollYN = true;
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
+	
+	
+	
+	
+	
+	let bCarAuth = false;
+	
+	function isCarAuth() {
+		if(!bCarAuth) {
+			alert("차량인증을 먼저 해주세요.");
+			//return false;
+		}
+		
+		/* document.getElementById("myform").submit(); */
+	}
+
+	
+	
 </script>
 
 </html>

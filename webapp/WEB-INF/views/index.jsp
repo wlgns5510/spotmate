@@ -58,6 +58,7 @@
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 	<!-- //header -->
 	
+	<!-- test -->
 	
 	<video src="${pageContext.request.contextPath}/assets/video/main_video.mp4" muted autoplay loop poster="이미지주소">video error</video>
 	
