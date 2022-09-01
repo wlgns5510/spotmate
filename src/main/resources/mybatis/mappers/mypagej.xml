@@ -234,7 +234,8 @@
 			                   and re.mateno = sp.no
 			                   and pu.reno = re.no
 			                   and u.no = pu.userno
-			                   and u.no = #{userNo}			                   
+			                   and u.no = #{userNo}
+			                                  
 		]]>
 
 		<if test="option1 != '' and option1 != null">
@@ -255,6 +256,7 @@
 			                   from pointUsage
 			                   where userno = #{userNo}
 			                   and (type = '충전' or type='환불' or type='구매')
+			                   
 		]]>
 			
 		<if test="option1 != '' and option1 != null">
