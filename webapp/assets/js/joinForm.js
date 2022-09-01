@@ -128,6 +128,16 @@ $(document).ready(function () {
 	});
 });
 
+//체크박스 전체 선택 및 해제
+$(document).ready(function () {
+    $('.oneCk').click(function(){
+		var checked = $('#allCk').is(':checked');
+    	if(!$('.oneCk').is(':checked') && checked) {
+			$('#allCk').prop('checked',false);    		
+    	}
+	});
+});
+
 // 주소창 띄우기
 $(document).ready(function () {
     document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
@@ -149,8 +159,7 @@ $(document).ready(function () {
 
 
 //아이디 중복 확인하는 부분
-$("#id_check").on("click", function() {
-	console.log("aaaa");
+$(".id-check").on("click", function() {
 	if ( !/^[a-zA-Z0-9]{1,6}$/.test($("#join_uid").val()) ) {
 		alert('ID는 숫자와 영문자 조합으로 1~6자리를 사용해야 합니다');
 		return;
@@ -177,28 +186,9 @@ $("#id_check").on("click", function() {
 	});
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //비밀번호 확인하는 부분
-$("#join_pass").on("input", function() {
-	if ( $("#join_pass").val().length == $("#join_passcheck").val().length && /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test($("#join_pass").val()) ) {
+$("#join_pass").on("propertychange change keyup paste input", function() {
+	if ( /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test($("#join_pass").val()) ) {
 		$("#chk_pw_p").remove();
 		if ( $("#join_pass").val() == $("#join_passcheck").val() ) {
 			$(".chk_pw").append("<div id='chk_pw_p'><p id='chk_pw_pass'>비밀번호가 일치합니다</p></div>");
@@ -209,8 +199,8 @@ $("#join_pass").on("input", function() {
 })
 
 //비밀번호 확인하는 부분
-$("#join_passcheck").on("input", function() {
-	if ( $("#join_pass").val().length == $("#join_passcheck").val().length && /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test($("#join_pass").val()) ) {
+$("#join_passcheck").on("propertychange change keyup paste input", function() {
+	if ( /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test($("#join_passcheck").val()) ) {
 		$("#chk_pw_p").remove();
 		if ( $("#join_pass").val() == $("#join_passcheck").val() ) {
 			$(".chk_pw").append("<div id='chk_pw_p'><p id='chk_pw_pass'>비밀번호가 일치합니다</p></div>");
@@ -257,5 +247,47 @@ $("#btn_submit").on("click", function() {
 		return;
 	}
 	$("#btn_submit").attr("type", "submit");
+})
+
+$(".certification").on("click", function() {
+	if ( $("#join_phone").val() == '' || $("#join_phone").val().length < 10 || $("#join_phone").val().length > 11) {
+		alert("전화번호를 입력 해 주세요")
+		return;
+	} else if ($("#join_name").val() == "") {
+		alert("이름을 입력 해 주세요");
+		return;
+	} else if ($(".certification").text() == '인증완료') {
+		alert("인증이 완료되었습니다");
+		return;
+	}
+	
+   var IMP = window.IMP; // 생략 가능
+   IMP.init('imp72838338');
+   IMP.certification({ // param
+     }, function (rsp) { // callback
+        $.ajax({
+            type : 'POST',
+            url : '/certification',
+            dataType : 'json',
+            data : rsp.imp_uid,
+            success:function(result) {
+            	$(".certification").html("본인인증");
+            	$(".certification").attr("style", "");
+               if(result[0] == $("#join_name").val() && result[1]==$("#join_phone").val()) {
+                  $(".certification").text("인증완료");
+                  $(".certification").attr("style", "background-color:#4454a1; color:white;");
+                  $("#join_phone").attr("readonly", true);
+                  $("#join_name").attr("readonly", true);
+                  $("#join_phone").attr("style", "background-color:#bfbfbf;");
+                  $("#join_name").attr("style", "background-color:#bfbfbf;");
+                  return; 
+               } else {
+                   $(".certification").html("인증실패");
+                   $(".certification").attr("style", "background-color:#4454a1; color:red;");
+                   return;
+               }
+            }
+           })
+     });
 })
 

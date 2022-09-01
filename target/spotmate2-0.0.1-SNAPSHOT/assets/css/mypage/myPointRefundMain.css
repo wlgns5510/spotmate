@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/*환불박스*/
+
+
 .myPage_RefundAsk {
 	width: 70px;
 	height: 30px;
@@ -11,6 +14,7 @@
 .myPage_RefundAsk span {
 	padding-top: 6px;
 	display: inline-block;
+	color: rgba(30, 30, 30, 1);
 }
 .myPage_article2 > .RefundAsk > tbody > tr > td {
 	padding: 13px 0px 13px 0px;

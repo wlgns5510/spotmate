@@ -421,14 +421,14 @@
 /* Change the color of links on hover */
 .topnav a:hover {
 	background-color: white;
-	color: blue;
-	border-bottom: 2px solid blue;
+	color: #4454a1;
+	border-bottom: 2px solid #4454a1;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
 	background-color: white;
-	color: blue;
+	color: #4454a1;
 	
 }
 

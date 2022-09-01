@@ -285,13 +285,8 @@
 		clickPos();
 		function setParentText() {
 			var i = $("#no").val();
-			if ($("#title").val() == "") {
-				opener.$("#s-addr"+i).val($("#addr").val());
-				opener.$(".hide-s-addr"+i).val($("#addr").val());
-			} else {
-				opener.$("#s-addr"+i).val($("#title").val());
-				opener.$(".hide-s-addr"+i).val($("#title").val());
-			}
+			opener.$("#s-addr"+i).val($("#addr").val());
+			opener.$(".hide-s-addr"+i).val($("#addr").val());
 			opener.$(".s-lat"+i).val($("#lat").val());
 			opener.$(".s-lng"+i).val($("#lng").val());
 			window.close();

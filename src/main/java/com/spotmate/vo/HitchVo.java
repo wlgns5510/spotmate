@@ -9,25 +9,6 @@ public class HitchVo {
 	
 	public HitchVo() {}
 	
-//	public HitchVo(int mateNo, String eplace1, int people, int point, String latlng) {
-//		this.mateNo = mateNo;
-//		this.eplace1 = eplace1;
-//		this.people = people;
-//		this.point = point;
-//		this.latlng = latlng;
-//	}
-//	
-//	public HitchVo(String fullPlace, String detailOpt, String comments, double star, String name, int point) {
-//		this.fullPlace = fullPlace;
-//		this.detailOpt = detailOpt;
-//		this.comments = comments;
-//		this.point = point;
-//		this.star = star;
-//		this.name = name;
-//	}
-//	
-//	
-	
 	public HitchVo(String splace1, String eplace1, String convertPoint, String nowaddr, String latlng, String fullPlace,
 			String detailOpt, String comments, String name, String convertFare, int people, int point, int mateNo,
 			double star, double lat, double lng) {

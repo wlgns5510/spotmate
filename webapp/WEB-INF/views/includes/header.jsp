@@ -82,13 +82,13 @@
 		                    <li>
 		                        <a href="javascript:void(0);" class="btn_a1">
 		                            <img src="${pageContext.request.contextPath}/assets/images/common/login_image_50_01.png" alt="회원이미지">
-		                            ${authUser.name}님
+		                            ${authUser.id}님
 		                        </a>
 		                        <div class="down">
 		                            <ul>
 		                                <li><a href="/myUsageUserMain/1">마이 페이지</a></li>
 		                                <li><a href="/myPointMain">마이 포인트</a></li>
-		                                <li><a href="/myReservationUserMain">나의 예약 내역</a></li>
+		                                <li><a href="/myReservationUserMain/1">나의 예약 내역</a></li>
 		                                <li><a href="/logout">로그아웃</a></li>
 		                            </ul>
 		                        </div>
