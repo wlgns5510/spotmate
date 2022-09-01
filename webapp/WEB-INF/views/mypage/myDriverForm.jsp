@@ -140,11 +140,7 @@
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
 										<td>
-<<<<<<< HEAD
 											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)970107" type="number">
-=======
-											<input value="${dlvo.userBD}" name="userBD" id="userBD" placeholder="ex)040831" type="text">
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 											<button type="button" id="liau" class="smallbtn" style="float: initial;">본인인증</button>
 										</td>
 										<td></td>
@@ -268,19 +264,18 @@
 						</form>
 
 					</div>
-	</div>
 	</article>
 
 
 	</section>
 
 	</main>
+	
 
 
 
 	<!-- //banner & footer -->
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-
 	</div>
 
 </body>
