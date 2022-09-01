@@ -29,7 +29,7 @@ Last update : 2022. 08. 28.
 	position : absolute;
 	width : 100%;
 	height : 210px;
-	background-image : url("../../images/content_banner_login.png");
+	background-image : url("/assets/images/content_banner_login.png");
 	background-size: 100% 100%;
 	background-position : center center;
 }
@@ -152,7 +152,7 @@ Last update : 2022. 08. 28.
 	width : 100%;
 	height : 450px;
 	margin: 0px auto;
-	background-image : url("../../images/ourservice_b1.png");
+	background-image : url("/assets/images/ourservice_b1.png");
 	/* background-size: 100% 100%; */
 	background-position : center center;
 }
@@ -198,7 +198,7 @@ Last update : 2022. 08. 28.
 	top : 100px;
 	width : 400px;
 	height : 400px;
-	background-image : url("../../images/ourservice_b2.png");
+	background-image : url("/assets/images/ourservice_b2.png");
 	background-size: 100% 100%;
 	background-position : center center;
 }
@@ -230,7 +230,7 @@ Last update : 2022. 08. 28.
 	width : 100%;
 	height : 500px;
 	margin: 0px auto;
-	background-image : url("../../images/ourservice_b3.png");
+	background-image : url("/assets/images/ourservice_b3.png");
 	/* background-size: 100% 100%; */
 	background-position : center center;
 }
@@ -356,7 +356,7 @@ Last update : 2022. 08. 28.
 	width : 100%;
 	height : 6218px;
 	margin: 0px auto;
-	background-image : url("../../images/brand_bi.png");
+	background-image : url("/assets/images/brand_bi.png");
 	/* background-size: 100% 100%; */
 	background-position : center center;
 }
