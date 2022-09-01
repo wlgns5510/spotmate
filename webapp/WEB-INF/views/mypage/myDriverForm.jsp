@@ -141,9 +141,10 @@
 
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
+
 										<td><input value="${dlvo.userBD}" name="userBD"
 											id="userBD" placeholder="ex)040831" type="text"></td>
-										<td></td>
+
 									</tr>
 
 									<tr align="left">
@@ -264,19 +265,18 @@
 						</form>
 
 					</div>
-	</div>
 	</article>
 
 
 	</section>
 
 	</main>
+	
 
 
 
 	<!-- //banner & footer -->
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-
 	</div>
 
 </body>

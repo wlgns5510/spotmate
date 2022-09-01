@@ -130,8 +130,11 @@
 					<c:if test='${param.result == "fail"}'>
 						<p class= overPeople>※ 탑승 가능 인원 수를 초과하였습니다</p>
 					</c:if>
+					<c:if test='${param.pointResult == "fail"}'>
+						<p class= overPeople>※ 포인트가 부족합니다</p>
+					</c:if>
 					탑승 요청 인원 수<br>
-					<input class="confirm-2" type="number" name="people" value="1" placeholder=" 인원 수를 입력해주세요">
+					<input class="confirm-2" type="number" name="people" value="" placeholder=" 인원 수를 입력해주세요">
 					탑승 시간<br> 
 					<div class="confirm">
 						<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
@@ -164,6 +167,7 @@
 							총 결제 포인트<br> 
 						<div class="pointConfirm">
 							<fmt:formatNumber value="${mMap.mateVo.point}" pattern="#,###" /> Point
+							<input type="hidden" value="${mMap.mateVo.point}" name="point">
 						</div><br> <br> 
 						<span
 							class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.
@@ -188,6 +192,7 @@
 				<div class="mateDeep_dayBox">
 					<p>1일차</p>
 				</div>
+				
 				<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
 					<c:if test="${matePlaceList.day == 1}">
 						<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
@@ -222,61 +227,17 @@
 						</c:if>
 					</c:if>
 				</c:forEach>														
-			</div>
-		
-		<!-- //1일차 -->
-		
-		<div class="mateDeep_today">
-			<c:if test="${mMap.mateVo.allDay == 1}">
-				<div class="mateDeep_dayBox">							
-					<p>2일차</p>							
-				</div>
-			</c:if>
-			<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
-				<c:if test="${matePlaceList.day == 2}">
-					<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
-						<div class="mateDeep_start">
-						<c:if test="${matePlaceList.wayNo == -1}">
-							START
-						</c:if>
-						<c:if test="${matePlaceList.wayNo == 1}">
-							SPOT 1
-						</c:if>
-						<c:if test="${matePlaceList.wayNo == 2}">
-							SPOT 2
-						</c:if>
-						<c:if test="${matePlaceList.wayNo == 3}">
-							SPOT 3
-						</c:if>
-						<c:if test="${matePlaceList.wayNo == 4}">
-							SPOT 4
-						</c:if>
-						<c:if test="${matePlaceList.wayNo == 5}">
-							SPOT 5
-						</c:if>
-						<c:if test="${matePlaceList.wayNo == 0}">
-							END
-						</c:if>
-						</div>
-						<div class="mateDeep_time">${matePlaceList.time}</div>
-						<div class="mateDeep_spot">${matePlaceList.place}</div>
+			</div>		
+			<!-- //1일차 -->
+			
+		<c:if test="${mMap.mateVo.allDay == 1 || mMap.mateVo.allDay == 2}">
+			<div class="mateDeep_today">			
+					<div class="mateDeep_dayBox">							
+						<p>2일차</p>							
 					</div>
-					<c:if test="${matePlaceList.wayNo != 0}">					
-						<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
-					</c:if>
-				</c:if>
-			</c:forEach>														
-		</div>
-		<!-- 2일차 -->
-		
-		<div class="mateDeep_today">
-			<c:if test="${mMap.mateVo.allDay == 2}">	
-				<div class="mateDeep_dayBox">										
-					<p>3일차</p>													
-				</div>
-			</c:if>		
+				
 				<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
-					<c:if test="${matePlaceList.day == 3}">
+					<c:if test="${matePlaceList.day == 2}">
 						<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
 							<div class="mateDeep_start">
 							<c:if test="${matePlaceList.wayNo == -1}">
@@ -310,6 +271,50 @@
 					</c:if>
 				</c:forEach>														
 			</div>
+		</c:if>
+		<!-- 2일차 -->		
+		<c:if test="${mMap.mateVo.allDay == 2}">
+			<div class="mateDeep_today">				
+					<div class="mateDeep_dayBox">										
+						<p>3일차</p>													
+					</div>
+					
+					<c:forEach items="${mMap.matePlaceList}" var="matePlaceList">
+						<c:if test="${matePlaceList.day == 3}">
+							<div class="mateDeep_spotBox" data-lat="${matePlaceList.lat}" data-lng="${matePlaceList.lng}" data-place="${matePlaceList.place}">
+								<div class="mateDeep_start">
+								<c:if test="${matePlaceList.wayNo == -1}">
+									START
+								</c:if>
+								<c:if test="${matePlaceList.wayNo == 1}">
+									SPOT 1
+								</c:if>
+								<c:if test="${matePlaceList.wayNo == 2}">
+									SPOT 2
+								</c:if>
+								<c:if test="${matePlaceList.wayNo == 3}">
+									SPOT 3
+								</c:if>
+								<c:if test="${matePlaceList.wayNo == 4}">
+									SPOT 4
+								</c:if>
+								<c:if test="${matePlaceList.wayNo == 5}">
+									SPOT 5
+								</c:if>
+								<c:if test="${matePlaceList.wayNo == 0}">
+									END
+								</c:if>
+								</div>
+								<div class="mateDeep_time">${matePlaceList.time}</div>
+								<div class="mateDeep_spot">${matePlaceList.place}</div>
+							</div>
+							<c:if test="${matePlaceList.wayNo != 0}">					
+								<img class="mateDeep_lineImg" src="${pageContext.request.contextPath}/assets/images/mate_mapline.png">
+							</c:if>
+						</c:if>
+					</c:forEach>														
+				</div>
+			</c:if>	
 			<!-- //3일차 -->
 			
 			<div class="mateDeep_titleFont2">주변 장소 추천</div>
@@ -350,12 +355,11 @@
 				</p>
 				<div class="carpool-picture">
 					<div class="carpool-picture-image">
-						<a href=""> <img src="/upload/${mateDriverVo.carPicture}">
-							<h3>
-								<span> ${mMap.mateDriverVo.carName}<br>(${mMap.mateDriverVo.carNo})</span>
+						<img src="/upload/${mMap.mateDriverVo.carPicture}">
+						<h3>
+							<span> ${mMap.mateDriverVo.carName}<br>(${mMap.mateDriverVo.carNo})</span>
 								
-							</h3>
-						</a>
+						</h3>
 					</div>
 				</div>
 				<div class="driverIntoduce">
@@ -470,10 +474,10 @@
 						<p class="recommend-Driver-list">드라이버 : ${mVo.id}</p>
 					</li>
 					<li>
-						<p class="recommend-start-list">출발일시 : ${mVo.startDate}</p>
+						<p class="recommend-start-list">출발일시 : ${mVo.sDate}</p>
 					</li>
 					<li>
-						<p class="recommend-point-list">소요 포인트 ${mVo.point}P</p> 
+						<p class="recommend-point-list">소요 포인트 <fmt:formatNumber value="${mVo.point}" pattern="#,###" />P</p> 
 		
 						<a href="${pageContext.request.contextPath}/mateDeep/${mVo.mateNo}">
 							<button>

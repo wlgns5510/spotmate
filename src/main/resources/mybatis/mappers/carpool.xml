@@ -259,7 +259,7 @@
 	      
 	      <![CDATA[
  				insert into reservation 
- 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, #{point}, 'open', #{people}, '', '')
+ 				values (seq_reservation_no.nextval, #{spotMateNo}, #{userNo}, #{driverNo}, sysdate, -#{point}, 'open', #{people}, '', '')
  				]]>
 
 	</insert>
@@ -289,7 +289,7 @@
 	      </selectKey>
 	      <![CDATA[
  				insert into pointusage 
- 				values (seq_pointusage_no.nextval, #{userNo}, '완료', sysdate, #{point}, #{point}, #{resvNo})
+ 				values (seq_pointusage_no.nextval, #{userNo}, '완료', sysdate, '', -#{point}, #{resvNo})
  		  ]]>
 
 	</insert>

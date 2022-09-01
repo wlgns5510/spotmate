@@ -1,15 +1,82 @@
+<%@page import="io.opentelemetry.exporter.logging.SystemOutLogExporter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SPOTMATE</title>
+<meta name="title" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keywords" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:url" content="">
+<meta property="og:image" content="">
+<meta property="og:author" content="">
+<meta property="kakao:title" content="">
+<meta property="kakao:description" content="">
 
+<!-- favicon -->
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon.ico"
+	type="image/x-icon">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon.ico"
+	type="image/x-icon">
+<link rel="apple-touch-icon" sizes="57x57"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="${pageContext.request.contextPath}/assets/images/common/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"
+	href="${pageContext.request.contextPath}/assets/images/common/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="${pageContext.request.contextPath}/assets/images/common/favicon-16x16.png">
+<link rel="manifest"
+	href="${pageContext.request.contextPath}/assets/images/common/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage"
+	content="${pageContext.request.contextPath}/assets/images/common/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+<!-- css, js 연결 -->
+<link
+	href="${pageContext.request.contextPath}/assets/css/swiper-bundle.min.css"
+	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/assets/css/style.css"
 	rel="stylesheet" />
-<script src="/assets/js/jquery-1.11.0.min.js"></script>
-
+<script
+	src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 
 <title>myDriverMain2</title>
 
@@ -22,58 +89,14 @@
 
 		<!-- //header -->
 		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-
 		<!-- //topNav -->
-		<nav class="myPage_topNav">
-			<div class="box1">
-				<div class="box1_box">
-					<img src="/assets/images/box_user.png">
-				</div>
-				<p>Ryeo-kyoung,kim님</p>
-				<span>Reviews</span><span><img
-					src="/assets/images/ico_star.png">4.3</span>
-			</div>
-			<div class="box2">
-				<p>
-					<a href="./myPointCharge">포인트 충전 ></a>
-				</p>
-				<span>1,0000P </span> <img src="/assets/images/ico_point.png">
-			</div>
-			<div class="box3">
-				<p>
-					<a href="./myCouponMain">쿠폰 사용 ></a>
-				</p>
-				<span>2개 </span> <img src="/assets/images/ico_coupon.png">
-			</div>
-		</nav>
-
+		<c:import url="/WEB-INF/views/includes/myPageTopNav.jsp"></c:import>
 
 		<!-- //myPage main contents -->
 		<main class="contents">
 
 			<!-- //sideNav  -->
-			<nav class="myPage_sideNav">
-				<h2>마이페이지</h2>
-				<!-- h2? -->
-				<ul class="myPage_list">
-					<li><a href="./myDriverForm">드라이버 신청/정보<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myUsageDriverMain">이용 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myReservationDriverMain">예약 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myQnaMain">문의 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointMain">포인트<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myCouponMain">쿠폰<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li><a href="./myPointRefundMain">환불 내역<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-					<li class="myPage_list_last"><a href="./myInfoChk">개인정보 수정<img
-							src="/assets/images/chevron-right-blue.png"></a></li>
-				</ul>
-			</nav>
+			<c:import url="/WEB-INF/views/includes/myPageSideNav.jsp"></c:import>
 
 			<!-- //section -->
 			<section class="myPage_selection">
@@ -93,34 +116,34 @@
 					<h4>드라이버/차량정보</h4>
 
 					<div class="DriverenrollForm">
-						<form>
-
+						<form action="${pageContext.request.contextPath }/modify"
+							method="post" enctype="multipart/form-data">
 
 							<div class="DL_info">
-
 
 								<h5>드라이버 정보</h5>
 								<!-- Driver License -->
 								<table>
 									<tr align="left">
 										<td><label for="username">이름*</label></td>
-										<td><input id="username" placeholder="홍길동" type="text"></td>
-
+										<td><input value="${dlvo.username}" name="username"
+											id="username" placeholder="홍길동" type="text"></td>
 									</tr>
 
 									<tr align="left">
-										<td><label for="usernum">생년월일*</label></td>
-										<td><input id="usernum" placeholder="19900805"
-											type="text"></td>
+										<td><label for="userBD">생년월일*</label></td>
+										<td><input value="${dlvo.userBD}" name="userBD"
+											id="userBD" placeholder="19900805" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="dl">면허등록번호*</label></td>
-										<td><input id="dl" placeholder="면허등록번호입력" type="text"></td>
+										<td><input value="${dlvo.dl}" name="dl" id="dl"
+											placeholder="면허등록번호입력" type="text"></td>
 									</tr>
 									<tr align="left">
-										<td><label for="dl_Type">종류*</label></td>
-										<td><input id="dl_Type" placeholder="대형 1종" type="text"
-											value=""></td>
+										<td><label for="licensetype">종류*</label></td>
+										<td><input value="${dlvo.licensetype}" name="licensetype"
+											id="licensetype" placeholder="대형 1종" type="text"></td>
 									</tr>
 
 								</table>
@@ -129,32 +152,38 @@
 							<div class="DC_info">
 								<h5>차량 정보</h5>
 								<div class="right_smallbtn">
-									<a class="smallbtn" type="button" href="#"><span>사진변경</span></a>
+									<input type="file" name="file" id="input-file" class="smallbtn">
+									<label class="smallbtn" for="input-file"> <span>사진변경</span></label>
 								</div>
 
-								<br> <img align="left" class="car_pic" alt="차량사진"
-									src="https://images.unsplash.com/photo-1537984822441-cff330075342?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=774&amp;q=80"
+								<br> <img align="left" id="carImg" class="file_d"
+									alt="차량사진"
+									src="${pageContext.request.contextPath}/upload/${dlvo.c_file}"
 									width="732px" height="272px">
+
 								<table>
-									<tr align="left">
-										<td><label for="carnum">차량등록번호*</label></td>
-										<td><input id="carnum" placeholder="차량등록번호입력" type="text"></td>
-									</tr>
+
 									<tr align="left">
 										<td><label for="c_Model">차량모델명*</label></td>
-										<td><input id="c_Model" placeholder="테슬라 모델3" type="text"></td>
+										<td><input value="${dlvo.c_Model}" name="c_Model"
+											id="c_Model" placeholder="테슬라 모델3" type="text"></td>
 									</tr>
 									<tr align="left">
-										<td><label for="c_num">차량번호*</label></td>
-										<td><input id="c_num" placeholder="770가7777" type="text"></td>
+										<td><label for="c_num">차량등록번호*</label></td>
+										<td><input value="${dlvo.c_num}" name="c_num" id="c_num"
+											placeholder="770가7777" type="text"></td>
+												<td><button type="button" style="font-weight: bold"
+												class="smallbtn" id="carAuth">차량인증</button></td>
 									</tr>
 									<tr align="left">
 										<td><label for="c_color">차량색상*</label></td>
-										<td><input id="c_color" placeholder="화이트" type="text"></td>
+										<td><input value="${dlvo.c_color}" name="c_color"
+											id="c_color" placeholder="화이트" type="text"></td>
 									</tr>
 									<tr align="left">
 										<td><label for="num_PA">탑승가능인원*</label></td>
-										<td><input id="num_PA" placeholder="2" type="text"></td>
+										<td><input value="${dlvo.num_PA}" name="num_PA"
+											id="num_PA" placeholder="2" type="text"></td>
 									</tr>
 								</table>
 
@@ -163,45 +192,66 @@
 
 							<div class="DC_etc">
 								<h5>차량 상세조건</h5>
-								<table>
-									<!-- input type="radio" name="gender" id="male" value="남자"  -->
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"><span>비흡연자</span></td>
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type" checked="checked">
-											<span>여성드라이버</span></td>
-									</tr>
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"><span> 반려동물
-												탑승가능</span></td>
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"> <span>핸드폰
-												충전기 보유</span></td>
-									</tr>
-									<tr align="left">
-										<td><input type="checkbox" name="ch_type"
-											id="Dformcheckbox" value="ch_type"><span> 트렁크
-												사용 가능여부</span></td>
-									</tr>
-								</table>
-							</div>
+								<div class="detail">
 
+									<label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox"value="1"
+										<c:forEach items="${dlvo.ch_type}"										
+											var="target">
+											<c:if test="${1 == target}">
+													checked="checked"
+												</c:if>
+										</c:forEach>> &nbsp;&nbsp;비흡연자
+									</label> 
+									<label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="2"
+										<c:forEach items="${dlvo.ch_type}"										
+											var="target">
+											<c:if test="${2 == target}">
+													checked="checked"
+												</c:if>
+										</c:forEach>> &nbsp;&nbsp;여성드라이버
+									</label> 
+									<label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="3"
+										<c:forEach items="${dlvo.ch_type}"										
+											var="target">
+											<c:if test="${3 == target}">
+													checked="checked"
+												</c:if>
+										</c:forEach>>
+										&nbsp;&nbsp;반려동물
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="4"
+										<c:forEach items="${dlvo.ch_type}"										
+											var="target">
+											<c:if test="${4 == target}">
+													checked="checked"
+												</c:if>
+										</c:forEach>>
+										&nbsp;&nbsp;충전기 사용 가능
+									</label> <label class="detailtext"> <input class="detail_ckbox"
+										type="checkbox" name="ch_type" id="Dformcheckbox" value="5"
+										<c:forEach items="${dlvo.ch_type}"										
+											var="target">
+											<c:if test="${5 == target}">
+													checked="checked"
+												</c:if>
+										</c:forEach>>
+										&nbsp;&nbsp;트렁크 사용 가능
+									</label>
+								</div>
+							</div>
+							<br>
 
 
 							<div class="memo">
 								<h5>드라이버님을 소개해주세요*</h5>
-								<textarea placeholder="  ex)약속 장소에는 출발 5분전에 나와주시면 좋겠습니다."></textarea>
+								<textarea name="introduce">${dlvo.introduce}</textarea>
 							</div>
 
-							<a type="button" href="./myDriverMain" target="self" alt="수정하기"
-								class="DForm_enrollbtn"> <span>수정하기</span></a>
+							<input type="submit" placeholder="수정하기" class="DForm_enrollbtn">
 
-
-
-
-					
 						</form>
 					</div>
 				</article>
@@ -220,5 +270,64 @@
 
 </body>
 
+<script type="text/javascript">
+	//파일 선택시 미리보기
+	$("#input-file").on("change", function(e) {
+		var tmp = e.target.files[0];
+		var img = URL.createObjectURL(tmp);
+		$("#carImg").attr("src", img);
+	});
+	
+	//실제 차량 등록 확인
+	$("#carAuth").on("click", function() {
+		var name = $("#username").val();
+		var cnum = $("#c_num").val();
+
+		console.log(name)
+		console.log(cnum)
+		$.ajax({
+			url : "${pageContext.request.contextPath}/carAuth",
+			type : "post",
+			contentType : "application/json",
+			async : false,
+			data : JSON.stringify({
+				name : name,
+				cnum : cnum
+			}),
+			dataType : "json",
+			success : function(result) {
+				console.log("result,", result)
+				if (result == -1) {
+					alert("틀렸습니다");
+					carEnrollYN = false;
+				} else {
+					alert("성공했습니다");
+					carEnrollYN = true;
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	})
+	
+	
+	
+	
+	
+	let bCarAuth = false;
+	
+	function isCarAuth() {
+		if(!bCarAuth) {
+			alert("차량인증을 먼저 해주세요.");
+			//return false;
+		}
+		
+		/* document.getElementById("myform").submit(); */
+	}
+
+	
+	
+</script>
 
 </html>

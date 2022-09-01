@@ -291,8 +291,8 @@
 /*p태그 글자*/
 .myPage_selection>.myPage_header>p {
 	color: rgba(47, 47, 48, 1);
-	font-family: Noto Sans;
-	font-weight: Regular;
+	font-family: 'Noto Sans', 'Noto Sans Korean';
+	font-weight: 400;
 	font-size: 16px;
 	display: inline-block;
 }
@@ -300,8 +300,8 @@
 /*list 글자*/
 .myPage_selection>.myPage_header>ul>li {
 	color: rgba(81, 81, 81, 1);
-	font-family: Noto Sans;
-	font-weight: Regular;
+	font-family: 'Noto Sans', 'Noto Sans Korean';
+	font-weight: 400;
 	font-size: 14px;
 	padding: 0px 0px 10px 0px;
 }
@@ -425,3 +425,31 @@
 .myPage_article2 .paging ul>li>a.active {
 	font-size: 15px;
 }
+
+
+
+/*inputBox 수정*/
+.style2 > input {
+	width: 220px;
+    height: 40px;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
+    top: 580px;
+    left: 555px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    overflow: hidden;
+    text-align: center;
+    color: rgba(102, 102, 102, 1);
+    font-family: Noto Sans;
+    font-weight: Regular;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 0px;
+	
+}
+
+.style2 > select {
+	width: 170px;
+}
+
+

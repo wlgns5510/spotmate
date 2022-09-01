@@ -20,11 +20,11 @@
          <div class="cen_sec">
             <strong class="footer_tit">SERVICE</strong>
             <ul class="footer_menu clear">
-               <li><a href="javascript:void(0);">BRAND</a></li>
-               <li><a href="javascript:void(0);">SPOT</a></li>
-               <li><a href="javascript:void(0);">MATE</a></li>
-               <li><a href="javascript:void(0);">COMMUNITY</a></li>
-               <li><a href="javascript:void(0);">DRIVER</a></li>
+               <li><a href="/aboutUs">BRAND</a></li>
+               <li><a href="/spotMain">SPOT</a></li>
+               <li><a href="/mateInfo">MATE</a></li>
+               <li><a href="/faq">COMMUNITY</a></li>
+               <li><a href="/driverMain">DRIVER</a></li>
             </ul>
          </div>
          <div class="rit_sec">
@@ -34,12 +34,12 @@
                <div class="down">
                   <ul>
                      <li><a href="javascript:void(0);">GITHUB</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">이정화</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">김려경</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">양지훈</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">유지은</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">이준규</a></li>
-                     <li><a href="javascript:void(0);" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
+                     <li><a href="https://github.com/LJH0716" target="_blank" rel="noopenner noreferrer">이정화</a></li>
+                     <li><a href="https://github.com/Ryeokyoung" target="_blank" rel="noopenner noreferrer">김려경</a></li>
+                     <li><a href="https://github.com/wlgns5510" target="_blank" rel="noopenner noreferrer">양지훈</a></li>
+                     <li><a href="https://github.com/ujiun" target="_blank" rel="noopenner noreferrer">유지은</a></li>
+                     <li><a href="https://github.com/ljk0071" target="_blank" rel="noopenner noreferrer">이준규</a></li>
+                     <li><a href="https://github.com/joyunju" target="_blank" rel="noopenner noreferrer">조윤주</a></li>
                   </ul>
                </div>
             </div>
@@ -78,8 +78,6 @@
 </div>
 <!-- 경찰 고정배너  -->
 
-</body>
-<!-- //body -->
 
 <script>
    var swiperFooter = new Swiper('.footer_banner', {

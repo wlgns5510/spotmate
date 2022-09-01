@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /* hover */
-.ia-btn:hover {
+.ia-:hover {
 	cursor: pointer;
 }
 
@@ -123,10 +123,10 @@
 	border: 1px solid rgba(255, 255, 255, 0.18);
 }
 #modal .modal-window { 
-    background: rgba( 232, 231, 231, 0.70 ); 
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); 
+    background: white; 
+    /*box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); 
     backdrop-filter: blur( 13.5px ); 
-    -webkit-backdrop-filter: blur( 13.5px ); 
+    -webkit-backdrop-filter: blur( 13.5px ); */
     border-radius: 10px; 
     border: 1px solid rgba( 255, 255, 255, 0.18 ); 
     width: 400px; 
@@ -141,7 +141,7 @@
     padding-right: 10px;
     cursor: pointer;
     text-shadow: 1px 1px 2px gray;
-    color: white;
+    color:gray;
 }
 
 #modal > .modal-content {
@@ -181,6 +181,7 @@
 	color: black;
 	width: 150px;
 	height: 40px;
+	cursor:pointer;
 }
 #sub-btn {
 /* 	margin: 20px 0px 0px  50px; */
@@ -192,6 +193,7 @@
 	font-size: 15px;
 	width: 150px;
 	height: 40px;
+	cursor:pointer;
 }
 
 .inner > .top {
@@ -367,10 +369,16 @@
 }
 .t-sec > table > tbody > tr > td {
 	padding: 10px 40px 5px 10px;
-	
 }
+
+.detailtext-2{
+	cursor:pointer;
+}
+	
+
 .t-sec > table > tbody > tr > .td2 {
 	margin: 0px 0px 0px 50px;
+	
 }
 .t-sec > table > tbody > tr > .selected {
 	color: #4454a1;

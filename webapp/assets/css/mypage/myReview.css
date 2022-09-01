@@ -26,6 +26,7 @@
 	left: 0px;
 	overflow: hidden;
 	color: #4454a1;
+	height: 100%;
 }	 
 
 
@@ -122,26 +123,46 @@
 	height:50px; 
 	background-color:#4454a1; 
 	color:white;
+	font-weight:700;
+	font-size:16px;
+	cursor:pointer;
 }
 .rbp {
 	margin: 0px 0px 20px 0px;
+	font-weight:700;
+	font-size:16px;
 }
 .rbp2 {
 	margin: 0px 0px 50px 0px;
+	font-weight:700;
+	font-size:16px;
 }
 .rbpc {
 	color:#4454a1;
+	font-weight:600;
 }
 
 .rfbp {
 	margin: 0px 30px 20px 0px;
+	font-weight:700;
+	font-size:16px;
 }
 .rfbp2 {
 	margin: 0px 30px 50px 0px;
+	font-weight:700;
+	font-size:16px;
 }
 .ride-user {
 	float: right;
 	border-radius:5px;
-	margin: 0px 550px 0px 0px;
-	font-size:14px;	
+	margin: 0px 470px 0px 7px;
+	padding:2px 33px 3px 33px;
+	font-size:15px;	
+	font-weight:600;
+	background-color:#e8e7e7;
+	color:black;
+	border:2px solid gray;
+	cursor:pointer;
+	
+	
 }
