@@ -120,20 +120,20 @@
 					</c:forEach>
 					<tr>
 						<td><input type="checkbox" id="nosmoke" name="nosmoke" value="nosmoke">
-						<label for="nosmoke">&nbsp;&nbsp;비흡연자</label></td>
+						<label for="nosmoke" class="detailtext-2">&nbsp;&nbsp;비흡연자</label></td>
 						<td><input type="checkbox" id="femaledriver" name="femaledriver" value="femaledriver">
-						<label for="femaledriver">&nbsp;&nbsp;여성 드라이버</label></td>
+						<label for="femaledriver" class="detailtext-2">&nbsp;&nbsp;여성 드라이버</label></td>
 						
 					</tr>
 					<tr>
 						<td><input type="checkbox" id="pet" name="pet" value="pet">
-						<label for="pet">&nbsp;&nbsp;반려동물</label></td>
+						<label for="pet" class="detailtext-2">&nbsp;&nbsp;반려동물</label></td>
 						<td><input class="td2" type="checkbox" id="phonecharge" name="phonecharge" value="phonecharge">
-						<label for="phonecharge">&nbsp;&nbsp;충전기 사용 가능</label></td>
+						<label for="phonecharge" class="detailtext-2">&nbsp;&nbsp;충전기 사용 가능</label></td>
 					</tr>
 					<tr>
 						<td><input class="td2" type="checkbox" id="trunk"
-							name="trunk" value="trunk"><label for="trunk">&nbsp;&nbsp; 트렁크 사용 가능</label></td>
+							name="trunk" value="trunk"><label for="trunk" class="detailtext-2">&nbsp;&nbsp; 트렁크 사용 가능</label></td>
 					</tr>
 				</table>
 				<p class="write-font">드라이버님을 소개해주세요 *</p>

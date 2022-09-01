@@ -15,11 +15,11 @@
 .myPage_coupon {
 	width: 366px;
 	height: 230px;
-	background: url(/assets/images/soil_3.png);
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
 	margin: auto;
+	margin-left:300px;
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
@@ -77,7 +77,6 @@
 	width: 533px;
 	height: 210px;
 	border: 1px solid rgba(217, 217, 217, 1);
-	background: green;
 	margin: 0px auto;
 }
 
@@ -118,12 +117,13 @@
 }
 
 /*교환버튼*/
-.myPage_couponExchange {
+.myPage_couponExchange  {
 	width: 533px;
 	height: 50px;
 	background: rgba(73, 85, 159, 1);
 	border: 1px solid rgba(217, 217, 217, 1);
 	margin: 0px auto;
+	cursor: pointer;
 }
 
 /*모바일 주유권 교환하기 글자*/
@@ -153,7 +153,6 @@
 .myPage_mapPicto {
 	width: 28px;
 	height: 28px;
-	background-color: green;
 	background: url(/assets/images/ico_map.png);
 	float: left;
 	position: relative;

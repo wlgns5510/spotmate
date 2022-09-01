@@ -48,6 +48,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/jquery-1.11.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
 	<title>aboutUs</title>
 	
@@ -75,13 +76,13 @@
                 <p>*필수 입력사항</p>
 
                 <div class="join_form">
-                    <form action="/joinOk" method="get">
+                    <form action="/joinOk" method="post">
                         <!-- 아이디 -->
                         <div class="join_group topborder">
                             <label class="" for="">아이디*</label> 
                             <input type="text" id="join_uid" name="id" value="" placeholder="※7자미만의 영문 혹은 영문과 숫자를 조합하여 작성해주세요">
                             <input type="hidden" id="id_chk_status" value="1">
-                            <button type="button" id="id_check">중복확인</button>
+                            <button type="button" id="id_check" class="id-check">중복확인</button>
                         </div>
 
                         <!-- 비밀번호 -->
@@ -111,7 +112,7 @@
                         <div class="join_group">
                             <label class="" for="">휴대폰*</label> 
                             <input type="text" id="join_phone" name="phone" value="" placeholder="숫자만 입력해주세요">
-                            <button type="button" id="id_check2" class="certification">본인인증</button>
+                            <button type="button" id="id_check" class="certification">본인인증</button>
                         </div>
 
                         <!-- 주소 -->

@@ -7,17 +7,30 @@
 		<typeAlias alias="mwVo" type="com.spotmate.vo.MateWriteVo" />
 		<typeAlias alias="hVo" type="com.spotmate.vo.HitchVo" />
 		<typeAlias alias="hrVo" type="com.spotmate.vo.HitchReservVo" />
+		<typeAlias alias="hsVo" type="com.spotmate.vo.HitchSearchVo" />
+		<typeAlias alias="hsrVo" type="com.spotmate.vo.HitchSearchResultVo" />
 		<typeAlias alias="mVo" type="com.spotmate.vo.MapVo" />
 		<typeAlias alias="CarpoolVo" type="com.spotmate.vo.CarpoolVo" />
 		<typeAlias alias="CouponVo" type="com.spotmate.vo.CouponVo" />
 		<typeAlias alias="PointVo" type="com.spotmate.vo.PointVo" />
 		<typeAlias alias="MateVo" type="com.spotmate.vo.MateVo" />
+		<typeAlias alias="dlvo" type="com.spotmate.vo.DriverLicenseVo" />
+		<typeAlias alias="userVo" type="com.spotmate.vo.UserVo" />
+		<typeAlias alias="muVo" type="com.spotmate.vo.MyUsageVo" />
+		<typeAlias alias="DetailOptVo" type="com.spotmate.vo.DetailOptVo" />
+		<typeAlias alias="riVo" type="com.spotmate.vo.ReviewInfoVo" />
+		<typeAlias alias="rVo" type="com.spotmate.vo.ReviewVo" />
 	</typeAliases>
-  
+
+
 	<mappers> 
 		<mapper resource="mybatis/mappers/spotmate.xml" />
 		<mapper resource="mybatis/mappers/carpool.xml" />
 		<mapper resource="mybatis/mappers/mypagej.xml" />
 		<mapper resource="mybatis/mappers/mate.xml" />
+		<mapper resource="mybatis/mappers/mypageR.xml" />
+		<mapper resource="mybatis/mappers/users.xml" />
+		<mapper resource="mybatis/mappers/driverLicense.xml" />
 	</mappers>
 </configuration>
+

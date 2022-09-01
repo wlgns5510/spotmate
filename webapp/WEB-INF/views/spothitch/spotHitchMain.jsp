@@ -387,7 +387,9 @@ $(document).ready(function() {
 			async : false,
 			success : function(result) {
 				if (result == 1) {
-					chk = 1
+					chk = 1;
+				} else {
+					chk = -1;
 				}
 			},
 			error : function(XHR, status, error) {
@@ -399,6 +401,9 @@ $(document).ready(function() {
 			return;
 		} else if(chk == 1) {
 			alert("이미 신청 하셨습니다")
+			return;
+		} else if(chk == -1) {
+			alert("로그인 후 신청해주세요!")
 			return;
 		}
 		var hrVo = {};

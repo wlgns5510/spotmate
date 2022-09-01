@@ -102,7 +102,10 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
 	public int chkRide(@RequestBody int mateNo) {
-		return hService.chkRide(mateNo);
+		if( ss.getAttribute("authUser") != null ) {
+			return hService.chkRide(mateNo);
+		}
+		return -1;
 	}
 	
 	

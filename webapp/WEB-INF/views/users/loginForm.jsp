@@ -84,7 +84,7 @@
 
                         <!-- 비밀번호 -->
                         <div class="form_group">
-                            <input type="text" id="input_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
+                            <input type="password" id="input_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
                         </div>
                         
 
@@ -99,7 +99,7 @@
                         <!-- 버튼영역 -->
                         <div class="button_area">
                         <c:if test="${kakaoInfo != null}">
-                        	<p>첫 카카오 로그인시 로그인이 필요합니다</p>
+                        	<p style="margin: 30px 0px 0px 0px; color:#4454a1;">첫 카카오 로그인시 로그인이 필요합니다</p>
                         	<input type="hidden" name="nickname" value="${kakaoInfo.nickname}">
                         	<input type="hidden" name="email" value="${kakaoInfo.email}">
                         </c:if>
