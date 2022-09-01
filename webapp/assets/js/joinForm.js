@@ -160,6 +160,10 @@ $(document).ready(function () {
 
 //아이디 중복 확인하는 부분
 $(".id-check").on("click", function() {
+	if( $("#join_uid").val() == "spotmate" ) {
+		alert('해당 아이디는 사용하실 수 없습니다');
+		return;
+	}
 	if ( !/^[a-zA-Z0-9]{1,8}$/.test($("#join_uid").val()) ) {
 		alert('ID는 숫자와 영문자 조합으로 1~6자리를 사용해야 합니다');
 		return;

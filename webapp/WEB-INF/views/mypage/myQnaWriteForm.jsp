@@ -135,22 +135,15 @@
 
 							<tr>
 								<td><label>제목*</label></td>
-								<td><input id="qnatitle" name="title" placeholder="&nbsp;제목을 작성해주세요"
+								<td><input id="qnatitle" name="title" class="myqnainput" placeholder="&nbsp;제목을 작성해주세요"
 									type="text"></td>
+									
 							</tr>
 							<tr>
 								<td><span>내용*</span></td>
 								<td><textarea name="content" placeholder="내용을 입력해주세요"></textarea></td>
 							</tr>
-							<!-- <tr>
-								<td><span>이미지</span></td>
-								<td><input type="file" name="image" class="real-upload" accept="image/*" required multiple style="display: none;">
-									<div type="button" class="imgbox">
-										<img src="/assets/images/myQna_imgfilebox.png" alt="파일 아이콘" class="image"> 
-										
-									</div>
-									</td>
-							</tr> -->
+							
 						</table>
 						
 					</div>
@@ -164,7 +157,7 @@
 					<div class="underlinegray"></div>
 					<!--  <input type="submit" value="등록하기" alt="등록하기"
 						class="DForm_enrollbtn"> -->
-						<input id="ssubmit" type="submit" placeholder="등록하기" class="DForm_enrollbtn0">
+						<input id="ssubmit" type="submit" placeholder="등록하기" class="DForm_enrollbtnQna">
 </form>
 				</article>
 			</section>

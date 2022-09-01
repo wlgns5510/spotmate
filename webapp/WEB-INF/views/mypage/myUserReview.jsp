@@ -115,7 +115,9 @@ $(".slider").on("mousemove", function(){
 	$(".score-box .display").html(point);
 	
 	$("#rs").val($(".slider").val() / 2);
-	
+$(".review-btn").on("click", function() {
+	opener.$(".btn_review").text("작성완료");
+})
 // 	if( star < 1 ){
 // 		$(".score .foreground").text();
 // 	} else if ( 2<= star < 4 ) {

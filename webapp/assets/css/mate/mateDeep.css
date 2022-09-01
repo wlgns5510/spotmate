@@ -368,13 +368,13 @@
 	display: block;
 	width: 1000px;
 	float: left;
-	margin: 0px 0px 50px 0px;
+	margin: 0px 0px 40px 0px;
 	border-bottom: 1px solid rgba(217, 217, 217, 1);
 }
 
 .mateDeep_today .mateDeep_spotBox {
 	float: left;
-	margin: 0px 0px 50px 0px;
+	margin: 0px 0px 40px 0px;
 	cursor: pointer;
 }
 .mateDeep_spotBox:hover {
