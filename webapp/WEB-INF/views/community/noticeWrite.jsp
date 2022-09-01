@@ -50,7 +50,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>NOTICE</title>
+	<title>noticeWriteForm</title>
 
 </head>
 
@@ -92,13 +92,19 @@
         <!-- inner -->
         <section>
             <div class="inner">
-                <div id="notice_board" class="notice_cover">
-					<div id="notice_list" class="notice_list">
-						<form action="/notice/1" method="get">
-                            <div class="notice_bar">
-                                <input id="startDate" name="startDate" type="date" value=""> <span> - </span> <input id="endDate" name="endDate" type="date" value="">
-                                <select name="noti_option">
-                                    <option value="">유형</option>
+                <div id="write_board" class="writeBoard">
+                    <p class="writeImg"></p>
+                    <h2>공지사항 글쓰기</h2>
+                    <p>*spotmate admin 계정만 작성가능</p>
+
+                    <div id="noticeWriteForm" class="noWriteBox">
+                    
+                        <form action="./insert" method="get">
+                            <!-- 유형 -->
+                            <div class="noWrite_form">
+                                <label class="txt-title" for="nowrite-title">유형</label>
+                                <select name="notiDetail" class="noti_Detail">
+                                    <option value="">유형을 선택해주세요</option>
                                     <option value="season">카풀정기권</option>
                                     <option value="carpool">카풀1회성</option>
                                     <option value="hitchhike">히치하이크</option>
@@ -106,74 +112,30 @@
                                     <option value="notice">공지사항</option>
                                     <option value="event">이벤트</option>
                                 </select>
-                                <input type="text" id="notice_search" name="noticeSearch" value="" placeholder="검색어를 입력해주세요">
-                                <button type="submit" class="">검색하기</button>
-                                <a href="/myQnaMain"><button type="button" class="">1:1 문의하기</button></a>
+                            </div>
+
+                            <!-- 제목 -->
+                            <div class="noWrite_form">
+                                <label class="txt-title" for="nowrite-title">제목</label>
+                                <input type="text" id="nowrite-title" name="title" value="" placeholder="제목을 입력해 주세요">
+                            </div>
+
+                            <!-- 내용 -->
+                            <div class="noWrite_form">
+                                <label class="txt-title" for="nowrite-title">내용</label>
+                                <textarea id="nowrite-content" name="content" placeholder="내용을 작성해주세요"></textarea>
+                            </div>
+
+                            <!-- 버튼영역 -->
+                            <div class="writeBtn_area">
+                                <a id="btn_cancel" href="/notice/1">취소</a>
+                                <button id="btn_add" type="button">등록</button>
                             </div>
                         </form>
-                        <h3>공지사항</h3>
-						<table class="notice_table">
-                            <caption>공지사항</caption>
-							<thead>
-								<tr>
-									<th>번호</th>
-                                    <th>유형</th>
-                                    <th>제목</th>
-                                    <th>조회수</th>
-                                    <th>작성날짜</th>
-                                    <th>작성자</th>
-                                    <th>관리</th>
-								</tr>
-							</thead>
-							<tbody>
-							
-								<c:forEach items="${nMap.nList}" var="nVo">
-									<tr id="tr${nVo.no}">
-	                                    <td>${nVo.rn}</td>
-	                                    <td>${nVo.type}</td>
-	                                    <td class="text-left" onclick="nCount(${nVo.no})">${nVo.title}</td>
-	                                    <td>${nVo.hit}</td>
-	                                    <td>${nVo.regDate}</td>
-	                                    <td>${nVo.admin}</td>
-	                                    <c:if test="${authUser.id == 'spotmate'}">
-	                                    	<td><button id="delete" onclick="nDelete(${nVo.no})" type="button">[삭제]</button></td>
-	                                    </c:if>
-	                                </tr>
-	                           	</c:forEach>
-							</tbody>
-						</table>
-			
-					<div id="notice_paging">
-						<ul>
-							<c:if test="${nMap.prev == true}">
-								<li><a href="/notice/1"> <img class="notice_arrow" src="/assets/images/chevron-double-left.png"></a></li>
-								<li><a href="/notice/${crtPage-1}"> <img class="notice_arrow" src="/assets/images/chevron-left.png"></a></li>
-							</c:if>
-							<c:forEach begin="${nMap.startPageNum}" end="${nMap.endPageNum}" step="1" var="page">
-								<c:choose>
-									<c:when test="${nMap.crtPage == page}">
-										<li class="active"><a href="/notice/${page}">${page}</a></li>
-										<input type="hidden" value="${page}" class="crtPage">
-									</c:when>
-									<c:otherwise>
-										<li><a href="/notice/${page}">${page}</a></li>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							<c:if test="${nMap.next == true}">					
-								<li><a href="/notice/${nMap.crtPage+1}"> <img class="notice_arrow" src="/assets/images/chevron-right.png">
-								</a></li>
-								<li><a href="/notice/${nMap.endPageNum}"> <img class="notice_arrow" src="/assets/images/chevron-double-right.png">
-							</a></li>
-							</c:if>
-						</ul>
-					</div>
+                    </div>
+                </div>
 
-						<a id="btn_write" href="/notice/write">글쓰기</a>
-					</div>
-					<!-- //list -->
-				</div>
-				<!-- //board -->
+                
             </div>
             <!-- inner -->
         </section>
@@ -183,34 +145,15 @@
     <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
     <!-- footer -->
 </body>
+
 <script>
-document.getElementById("startDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
-document.getElementById("endDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
-	function nDelete(noticeNo) {
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/notice/delete",		
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(noticeNo),
-			dataType : "json",
-			success : function(result){
-				if (result == 1) {
-					$("#tr"+noticeNo).remove();
-				} else {
-					return;
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-				return;
-			}
-		});
-		alert("삭제되었습니다!");
-	}
+	$("#btn_add").on("click", function() {
+		if($(".noti_Detail").val() == '') {
+			alert("유형을 지정해 주세요!")
+			return;
+		}
+		$("#btn_add").attr("type", "submit");
+	})
 	
-	function nCount(noticeNo) {
-		location.href="/notice/read/"+noticeNo;
-	}
 </script>
 </html>

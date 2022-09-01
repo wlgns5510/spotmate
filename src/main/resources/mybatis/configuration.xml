@@ -21,6 +21,7 @@
 		<typeAlias alias="riVo" type="com.spotmate.vo.ReviewInfoVo" />
 		<typeAlias alias="rVo" type="com.spotmate.vo.ReviewVo" />
 		<typeAlias alias="nVo" type="com.spotmate.vo.NoticeVo" />
+		<typeAlias alias="nsVo" type="com.spotmate.vo.NoticeSearchVo" />
 	</typeAliases>
 
 

@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+/*
+-------------------------------------------------
+-------------------------------------------------
+Content Style Sheet
+Version : 1.0
+Author : JYJ
+First update : 2022. 08. 08.
+Last update : 2022. 08. 30.
+-------------------------------------------------
+-------------------------------------------------
+*/
+
+/* .inner{display:block; width:1440px; margin:0 auto;} */
+
+
+/********** sub_nav **********/
+.sub_wrap {
+    width: 100%;
+    border-bottom : 1.5px solid #D9D9D9;
+}
+.sub_nav {
+    width: 1440px;
+    margin: 0px auto;
+    display: flex;
+}
+
+.sub_nav > ul > li{
+    display:inline-block;
+    position:relative;
+    min-width: 130px; height: 50px;
+    text-align: center;
+}
+.sub_nav> ul > li > a{
+    display:inline-block; position:relative;
+    box-sizing: border-box;
+    padding:0 20px;
+    color:#1e1e1e; font-family: 'Montserrat'; font-size:14px; font-weight:500;
+    letter-spacing:-0.25px; line-height: 60px;
+}
+.sub_nav> ul > .sub_faq {
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+    background :#F7F9FB;
+}
+.sub_nav> ul > .sub_faq > a{
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+}
+.sub_nav > ul > li > a:hover {color:#4454A1; font-family: 'Montserrat'; font-weight:700;}
+.sub_nav> ul > li:hover { border-bottom: 2px solid #4655a4;}
+
+/********** //sub_nav **********/
+
+/********** 글쓰기 테이블 **********/
+
+.writeBoard > .writeImg {
+    width : 120px;
+    height: 120px;
+    margin: 0px auto;
+	background-image : url("../../images/icon_joinOk2.png");
+	background-size: 100% 100%;
+	background-position : center center;
+}
+
+
+
+/********** 상단 글자 **********/
+.writeBoard {
+	width : 800px;
+    /* background-color: pink; */
+    margin: 0px auto;
+    padding: 100px 0px 300px 0px;
+    box-sizing: border-box;
+    
+}
+.writeBoard>h2 {
+	position : relative;
+	text-align : center;
+	font-size: 30px;
+    font-weight: 700;
+    margin: 30px 0px 0px 0px;
+}
+.writeBoard > p {
+    margin : 15px 0px 0px 0px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 17px;
+}
+/********** //상단 글자 **********/
+/********** 폼 영역 **********/
+.noWriteBox {
+    position : relative;
+	width : 800px;
+    background-color: aquamarine;
+    box-sizing: border-box;
+    margin: 40px 0px 20px 0px;
+    padding: 50px 20px 50px 20px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #DEE2E6;
+    box-shadow: 0px 0px 2px rgb(0 0 0 / 12%), 0px 20px 20px rgb(0 0 0 / 8%);
+    border-radius: 8px;
+}
+
+/* 개별 input div */
+.noWrite_form {
+    text-align: center;
+}
+
+#nowrite-title {
+    box-sizing: border-box;
+	width : 540px;
+	height : 40px;
+	padding : 0px 0px 0px 10px;
+	margin : 10px 0px 0px 0px;
+    border-radius: 5px;
+    border: 1px solid #D9D9D9;
+    font-size: 14px;
+}
+
+.noWrite_form > label {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 110px;
+    /* background: cornflowerblue; */
+    margin : 0px 10px 0px 10px;
+    text-align: left;
+}
+.noWrite_form > #nowrite-content {
+    width: 540px;
+    height: 400px;
+    box-sizing: border-box;
+    padding : 10px 0px 0px 10px;
+	margin : 10px 0px 0px 0px;
+    border-radius: 5px;
+    border: 1px solid #D9D9D9;
+    font-size: 14px;
+}
+.noWrite_form > .noti_Detail {
+    width: 540px;
+    height: 40px;
+    box-sizing: border-box;
+    padding : 0px 0px 0px 10px;
+	margin : 10px 0px 0px 0px;
+    border-radius: 5px;
+    border: 1px solid #D9D9D9;
+    font-size: 14px;
+}
+
+/********** //폼 영역 **********/
+
+/********** 버튼 영역 **********/
+
+
+
+/********** //버튼 영역 **********/
+.writeBtn_area {    
+    text-align : center;
+    cursor: pointer;
+    /* border: 1px solid plum; */
+    box-sizing: border-box;
+    padding: 10px 0px 10px 0px;
+    margin: 30px 0px 0px 0px;
+}
+
+/* 취소 버튼 */
+#btn_cancel {
+	box-sizing: border-box;
+    display: inline-block;
+    width: 100px;
+    height : 40px;
+    vertical-align:middle;
+    line-height: 40px;
+    border-radius: 5px;
+    background-color: #e6e6e6;
+    color:rgb(77, 77, 77);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* 등록 버튼 */
+#btn_add {
+	box-sizing: border-box;
+    width: 100px;
+    height : 40px;
+    border-radius: 5px;
+    /* margin: 50px 0px 10px 0px; */
+    background-color: #4454A1;
+    color:#fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+	
+}
+
+/********** // 글쓰기 테이블 **********/

@@ -215,12 +215,12 @@ public class MypageJService {
 		for (PointVo p : pointList) {
 			if ("hitchhike".equals(p.getType()) && p.getPoint() > 0 || "mate".equals(p.getType()) && p.getPoint() > 0
 					|| "carpool".equals(p.getType()) && p.getPoint() > 0
-					|| "season".equals(p.getType()) && p.getPoint() > 0) {
+					|| "seasonTicket".equals(p.getType()) && p.getPoint() > 0) {
 				p.setpType("드라이버");
 			}
 			if ("hitchhike".equals(p.getType()) && p.getPoint() < 0 || "mate".equals(p.getType()) && p.getPoint() < 0
 					|| "carpool".equals(p.getType()) && p.getPoint() < 0
-					|| "season".equals(p.getType()) && p.getPoint() < 0) {
+					|| "seasonTicket".equals(p.getType()) && p.getPoint() < 0) {
 				p.setpType("유저");
 			}
 
