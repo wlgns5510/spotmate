@@ -32,7 +32,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/mateMain">MATE</a>
+                    <a href="/mateInfo">MATE</a>
                     <div class="depth2">
                         <ul>
                             <li><a href="/mateInfo">SERVICE</a></li>
