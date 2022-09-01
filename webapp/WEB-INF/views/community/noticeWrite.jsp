@@ -102,8 +102,8 @@
                             <!-- 유형 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">유형</label>
-                                <select name="noti_option">
-                                    <option value="">유형</option>
+                                <select name="notiDetail" class="noti_Detail">
+                                    <option value="">유형을 선택해주세요</option>
                                     <option value="season">카풀정기권</option>
                                     <option value="carpool">카풀1회성</option>
                                     <option value="hitchhike">히치하이크</option>
@@ -133,8 +133,6 @@
                         </form>
                     </div>
                 </div>
-
-                
             </div>
             <!-- inner -->
         </section>
