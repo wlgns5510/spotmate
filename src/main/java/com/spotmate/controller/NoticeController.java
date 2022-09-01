@@ -26,6 +26,16 @@ public class NoticeController {
 		return "/community/notice";
 	}
 	
+	@RequestMapping(value = "/noticeRead", method = { RequestMethod.GET, RequestMethod.POST })
+	public String noticeRead() {
+	     return "/community/noticeRead";
+	}
+	
+	@RequestMapping(value = "/noticeWrite", method = { RequestMethod.GET, RequestMethod.POST })
+	public String noticeWriteForm() {
+	     return "/community/noticeWrite";
+	}
+	
 	
 	
 	
