@@ -51,6 +51,7 @@ public class HitchDao {
 //		if ( canRide >= hrVo.getPeople()) {
 		ss.update("spotmate.updatereservpeople", hrVo);
 		ss.insert("spotmate.makereserv", hrVo);
+		ss.insert("spotmate.usePoint", hrVo);
 //		} else {
 //			return -1;
 //		}

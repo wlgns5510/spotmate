@@ -82,7 +82,7 @@
 					<option value="${pVo.USERNO}">${pVo.NAME}</option>
 				</c:forEach>
 			</select>
-			<p class="rbp">탑승유저 평가*</p>
+			<p class="rbp">탑승유저 평가 *</p>
 			<p class="rbp">탑승자의 매너 점수를 평가해주세요</p>
 			<div class="score-box">
 				<div class="score">
@@ -92,7 +92,7 @@
 					<div class="foreground">★★★★★</div>
 					<div class="background">☆☆☆☆☆</div>
 				</div>
-				<span class="display">0</span>
+				<span class="display">0점</span>
 			</div>
 		</div>
 		<div>
@@ -132,6 +132,10 @@ $(".slider").on("mousemove", function(){
 // 		$(".score .foreground").text('★★★★★');
 // 	}
 });
+
+$(".review-btn").on("click", function() {
+	opener.$(".btn_review").text("작성완료");
+})
 	
 	
 </script>

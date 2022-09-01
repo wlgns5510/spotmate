@@ -1,6 +1,5 @@
 package com.spotmate.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spotmate.service.DriverLicenseService;
 import com.spotmate.service.MyQnaService;
 import com.spotmate.service.MypageJService;
 import com.spotmate.service.MypageRService;
@@ -27,9 +25,6 @@ import com.spotmate.vo.myQnaVo;
 
 @Controller
 public class MypageRController {
-
-	@Autowired
-	private DriverLicenseService dls;
 
 	@Autowired
 	private MypageRService mService;
@@ -146,6 +141,7 @@ public class MypageRController {
 	@RequestMapping(value = "/endResv", method = { RequestMethod.GET, RequestMethod.POST })
 	public int endResv(@RequestBody int mateNo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		
 		return mService.endResv(mateNo, authUser.getNo());
 	}
 	

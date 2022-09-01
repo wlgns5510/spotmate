@@ -78,17 +78,17 @@
 				<div class="detail-option">
 					<div class="do1">
 						<input class="chkitem" type="checkbox" id="nosmoke" name="nosmoke" value="비흡연자">
-						<label for="nosmoke">비흡연자</label>
+						<label for="nosmoke" class="detailtext-2">비흡연자</label>
 						<input class="chkitem" type="checkbox" id="femaledriver" name="femaledriver" value="여성드라이버">
-						<label for="femaledriver">여성 드라이버</label>
+						<label for="femaledriver" class="detailtext-2">여성 드라이버</label>
 						
 					
 						<input class="chkitem" type="checkbox" id="pet" name="pet" value="반려동물">
-						<label for="pet">반려동물</label>
+						<label for="pet" class="detailtext-2">반려동물</label>
 						<input class="chkitem" type="checkbox" id="phonecharge" name="phonecharge" value="충전기 사용 가능">
-						<label for="phonecharge">충전기 사용 가능</label>
+						<label for="phonecharge" class="detailtext-2">충전기 사용 가능</label>
 						<input class="chkitem" type="checkbox" id="trunk" name="trunk" value="트렁크 사용 가능">
-						<label for="trunk">트렁크 사용 가능</label>
+						<label for="trunk" class="detailtext-2">트렁크 사용 가능</label>
 					</div>
 <!-- 					<input class="chkitem" type="checkbox" value="femaleDriver" id="femaleDriver"><label for="femaleDriver">&nbsp;여성 드라이버</label> -->
 <!-- 					<input class="chkitem" type="checkbox" value="nosmoke" id="nosmoke"><label for="nosmoke">&nbsp;비흡연자</label> -->
@@ -180,7 +180,7 @@ $(document).ready(function() {
 				success : function(result) {
 					for(var i=0;i<result.length;i++) {
 						var mateNo = result[i].mateNo;
-						$("#hitch-list").append('<div class="box-hitch-info" id="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+result[i].mateNo+')" class="carPos" src="/assets/images/ico_spot.png"><div class="btn'+result[i].mateNo+'"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+result[i].mateNo+')" class="rideReq" id="rideReq'+result[i].mateNo+'">탑승 요청</p><input class="reqPeople" type="number" value="1" min="1"><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+result[i].mateNo+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+result[i].mateNo+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"><input type="hidden" id="point'+result[i].mateNo+'" value="'+result[i].point+'"></div></div></div>');
+						$("#hitch-list").append('<div class="box-hitch-info" id="box'+result[i].mateNo+'"><div class="driverList"><input type="hidden" id="summary'+result[i].mateNo+'" value=""><div class="start"><p>현재위치</p><span id="nowpos'+result[i].mateNo+'">'+result[i].nowaddr+'</span></div><div class="end"><p>목적지</p><span>'+result[i].eplace1+'</span></div><div class="num" id="people'+result[i].mateNo+'"><span>탑승 가능한 인원 수</span><p>'+result[i].people+'</p></div><div class="usePoint"><span>총 결제 포인트</span><p>'+result[i].convertPoint+'</p></div><img onclick="carPos('+result[i].mateNo+')" class="carPos" src="/assets/images/ico_spot.png"><div class="btn'+result[i].mateNo+'"><a href="/spotHitchhikedeep/'+result[i].mateNo+'" class="hitchdeep">상세 조건</a><p onclick="rideReq('+result[i].mateNo+')" class="rideReq" id="rideReq'+result[i].mateNo+'">탑승 요청</p><input class="reqPeople" type="number" value="1" min="1"><input type="hidden" value="'+result[i].mateNo+'" id="hitch'+result[i].mateNo+'"><input type="hidden" value="'+result[i].people+'" id="canRide'+result[i].mateNo+'"><input type="hidden" value="'+result[i].latlng.split(",")[1]+","+result[i].latlng.split(",")[0]+'" id="latlng'+result[i].mateNo+'"><input type="hidden" id="point'+result[i].mateNo+'" value="'+result[i].point+'"></div></div></div>');
 						$.ajax({
 							url : "${pageContext.request.contextPath}/cancelChk",
 							type : "post",

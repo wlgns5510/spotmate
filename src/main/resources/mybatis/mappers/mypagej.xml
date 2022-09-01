@@ -177,45 +177,64 @@
 			                           pu.point
 			                   from spotmate sp, reservation re, pointUsage pu, users u,
 			                        (select sno,
-			                                smateno,
-			                                sday,
-			                                splace,
-			                                eno,
-			                                emateno,
-			                                eday,
-			                                eplace
-			                         from (select p.no sNo,
-			                                      mp.mateNo sMateNo,
-			                                      p.day sDay,
-			                                      p.place sPlace
-			                               from place p,
-			                                    (select mateNo, min(day) minDay
-			                                     from place
-			                                     where wayNo = -1 
-			                                     group by mateNo) mp
-			                                where p.mateno = mp.mateno
-			                                and p.day = mp.minDay
-			                                and p.wayNo= -1) s, 
-			                              
-			                                (select p.no eNo,
-			                                        mp.mateNo eMateNo,
-			                                        p.day eDay,
-			                                        p.place ePlace
-			                                 from place p,
-			                                     (select mateNo, max(day) maxDay
-			                                      from place
-			                                      where wayNo = 0 
-			                                      group by mateNo) mp
-			                                 where p.mateno = mp.mateno
-			                                 and p.day = mp.maxDay
-			                                 and p.wayNo =0) e
-			                         where s.sMateNo = e.eMateNo)se
+								   	        smateno,
+									        sday,
+									        splace,
+									        eno,
+									        emateno,
+									        eday,
+									        eplace
+								     from 
+									      (select sp.no sNo,
+									      		  sp.mateNo sMateNo,
+									      		  sp.day sDay,
+									      		  sp.sepplace sSepPlace,
+									      		  sp.place sPlace
+									       from 
+										        (select no,
+										                mateNo,
+										                nvl(day, 1) day,
+										                sepplace,
+										                place
+										         from place
+										         where wayNo = -1 ) sp,
+											    (select mateNo, nvl(min(day), 1) minDay
+											         from place
+											         where wayNo = -1 
+											         group by mateNo) sgp
+											     where sp.mateNo = sgp.mateNo
+											     and sp.day = sgp.minDay) st,
+									    
+									    
+									    
+									    (select ep.no eNo,
+									    		ep.mateNo eMateNo,
+									    		ep.day eDay,
+									    		ep.sepplace eSepPlace,
+									    		ep.place ePlace
+									     from 
+										       (select no,
+										               mateNo,
+										               nvl(day, 1) day,
+										               sepplace,
+										               place
+										        from place
+										        where wayNo = 0 ) ep,
+									          (select mateNo, nvl(min(day), 1) minDay
+									           from place
+									           where wayNo = 0 
+									           group by mateNo) egp
+									     where ep.mateNo = egp.mateNo
+									     and ep.day = egp.minDay) et,
+									    
+									     spotMate sm
+									     where st.sMateNo = et.eMateNo
+									     and sm.no = st.sMateNo)se
 			                   where sp.no = se.sMateNo
 			                   and re.mateno = sp.no
 			                   and pu.reno = re.no
 			                   and u.no = pu.userno
-			                   and u.no = #{userNo}
-			                   and pu.type= '완료'
+			                   and u.no = #{userNo}			                   
 		]]>
 
 		<if test="option1 != '' and option1 != null">

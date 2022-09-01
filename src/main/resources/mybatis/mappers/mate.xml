@@ -133,7 +133,7 @@
 				       to_char(startDate, 'yyyy.mm.dd day') startDate,
 				       people,
 				       to_char(endDate, 'yyyy.mm.dd day') endDate,
-				       round(endDate - startDate, 0) allDay,
+				       ceil(endDate - startDate) allDay,
 				       point,
 				       comments
 				from spotmate

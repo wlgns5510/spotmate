@@ -76,7 +76,7 @@
 			</div>
 		</div>
 		<div class="review-second-box">
-			<p class="rbp">드라이버 평가*</p>
+			<p class="rbp">드라이버 평가 *</p>
 			<p class="rbp">운전자의 매너 점수를 평가해주세요</p>
 			<div class="score-box">
 				<div class="score">
@@ -86,11 +86,11 @@
 					<div class="foreground">★★★★★</div>
 					<div class="background">☆☆☆☆☆</div>
 				</div>
-				<span class="display">0</span>
+				<span class="display">0점</span>
 			</div>
 		</div>
 		<div class="review-third-box">
-			<p class="rbp">탑승 후기를 작성해주세요*</p>
+			<p class="rbp">탑승 후기를 작성해주세요 *</p>
 			<textarea class="rhb-ta" name="content" placeholder="너무 좋았어요!"></textarea>
 		</div>
 		<div>
@@ -115,7 +115,9 @@ $(".slider").on("mousemove", function(){
 	$(".score-box .display").html(point);
 	
 	$("#rs").val($(".slider").val() / 2);
-	
+$(".review-btn").on("click", function() {
+	opener.$(".btn_review").text("작성완료");
+})
 // 	if( star < 1 ){
 // 		$(".score .foreground").text();
 // 	} else if ( 2<= star < 4 ) {

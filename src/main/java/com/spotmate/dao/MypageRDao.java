@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spotmate.vo.DriverLicenseVo;
 import com.spotmate.vo.MyUsageVo;
 import com.spotmate.vo.ReviewInfoVo;
 import com.spotmate.vo.ReviewVo;
@@ -146,6 +145,14 @@ public class MypageRDao {
 	
 	public int endResv(Map<String, Object> map) {
 		return ss.update("mypageR.endResv", map);
+	}
+	
+	public int getResvNo(Map<String, Object> map) {
+		return ss.insert("mypageR.getResvNo", map);
+	}
+	
+	public void driverGetPoint(Map<String, Object> map) {
+		ss.insert("mypageR.driverGetPoint", map);
 	}
 	
 	public int getDriverSearchCntResv(UsageSearchVo usVo, int userNo) {

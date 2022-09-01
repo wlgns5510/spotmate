@@ -13,7 +13,7 @@
 			    #{userNo},
 			    #{type},
 			    #{title},
-			    sysdate,
+			     sysDate,
 			    #{content},
 			    '답변대기'
 
@@ -29,7 +29,7 @@
 		<![CDATA[
 	 		select  mq.no ,
         			mq.type,
-        			mq.regDate,
+        			to_char(ort.regDate, 'yy.mm.dd') regDate,
         			mq.title,
 			        mq.content,
 			        mq.status,
@@ -1101,5 +1101,31 @@
 		where carNo = #{userNo}
 		and no = #{mateNo}
 	</update>
+	
+	<select id="getResvNo" parameterType="map" resultType="int">
+		select no
+		from reservation
+		where userNo = #{userNo}
+		and mateNo = #{mateNo}
+	</select>
+	
+	<insert id="driverGetPoint" parameterType="rVo">
+		<selectKey keyProperty="point" resultType="int" order="BEFORE">
+				select point
+				from spotmate
+				where no = #{mateNo}
+		</selectKey>
+	
+		insert into pointUsage
+		values(
+			seq_pointusage_no.nextval,
+			#{userNo},
+			'완료',
+			sysdate,
+			'',
+			#{point},
+			#{resvNo}
+		)
+	</insert>
 
 </mapper>
