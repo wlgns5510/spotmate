@@ -60,7 +60,74 @@
     <!-- // header -->
     
 	<!-- content -->
-	
+	<section class="contents_wrapper content">
+            <h2 class="hidden">content</h2>
+                <section class="banner">
+                    <h2 class="hidden">banner</h2>
+                    <div class="login_banner">
+                        <p></p>
+                    </div>
+                    <div class="banner_text clear">
+                        <div class="text_lft">
+                            <h2>공지사항</h2>
+                            <h2>COMMUNITY NOTICE</h2>
+                        </div>
+                        <div class="text_rit">
+                            <h3>서비스 이용시 문의사항이 가장 많은 내용입니다.</h3>
+                            <h3>그 외의 질문이 있으시다면 1:1 문의하기를 사용해보세요.</h3>
+                        </div>
+                    </div>
+                    
+        </section>
+        <section class="sub_wrap">
+            <div class="sub_nav clear">
+                <ul>
+                    <li class="sub_faq"><a href="javascript:void(0);">NOTICE</a></li>
+                    <li><a href="javascript:void(0);">FAQ</a></li>
+                    <li><a href="javascript:void(0);">EVENT</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- inner -->
+        <section>
+            <div class="inner">
+                <div id="noticeRead" class="notice_Read">
+                    <h2>공지사항</h2>
+                    <p>스팟메이트의 새로운 소식과 정보들을 확인해보세요</p>
+                    <table class="noticeRead_table">
+                        <caption>공지사항</caption>
+                        <tbody>
+                            <tr class="tr1">
+                                <td class="tr1_head">작성자</td>
+                                <td class="tr1_txt">spotmate</td>
+                                <td class="tr1_head">작성날짜</td>
+                                <td class="tr1_txt">2022-08-31</td>
+                            </tr>
+                            <tr class="tr2">
+                                <td class="tr1_head">제목</td>
+                                <td colspan="3">[공지] 카풀 정기권 환불 규정입니다.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- 공지사항 내용 -->
+                    <div class="read-content">
+                        <p>스팟메이트를 이용해주시는 고객님들께 감사드립니다.</p>
+                        <p>스팟메이트를 이용해주시는 고객님들께 감사드립니다.</p>
+                        <p>
+                            앞으로도 편안한 탑승 경험을 하실 수 있도록 노력하겠습니다.
+                            <br>감사합니다.
+                            <br>스팟메이트 드림.
+                        </p>
+                    </div>
+
+                    <a id="btn_write" href="javascript:void(0);">목록</a>
+                </div>
+                <!-- //notice_Read -->
+            </div>
+            <!-- inner -->
+        </section>
 	<!-- //content -->
 
 	<!-- footer -->
