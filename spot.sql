@@ -1667,7 +1667,8 @@ CREATE TABLE  notice (
 	hit NUMBER, /* 조회수 */
 	regDate DATE, /* 작성날짜 */
 	admin VARCHAR2(100), /* 작성자 */
-	manage VARCHAR2(1000) /* 관리 */
+	manage VARCHAR2(100), /* 관리 */
+	content VARCHAR2(1000) /* 내용 */
 );
 
 
@@ -1693,6 +1694,8 @@ COMMENT ON COLUMN  notice.regDate IS '작성날짜';
 COMMENT ON COLUMN  notice.admin IS '작성자';
 
 COMMENT ON COLUMN  notice.manage IS '관리';
+
+COMMENT ON COLUMN  notice.content IS '내용';
 
 CREATE UNIQUE INDEX PK_ notice
 	ON  notice (
