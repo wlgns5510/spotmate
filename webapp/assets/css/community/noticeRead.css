@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+/*
+-------------------------------------------------
+-------------------------------------------------
+Content Style Sheet
+Version : 1.0
+Author : JYJ
+First update : 2022. 08. 08.
+Last update : 2022. 08. 30.
+-------------------------------------------------
+-------------------------------------------------
+*/
+
+/* .inner{display:block; width:1440px; margin:0 auto;} */
+
+
+/********** sub_nav **********/
+.sub_wrap {
+    width: 100%;
+    border-bottom : 1.5px solid #D9D9D9;
+}
+.sub_nav {
+    width: 1440px;
+    margin: 0px auto;
+    display: flex;
+}
+
+.sub_nav > ul > li{
+    display:inline-block;
+    position:relative;
+    min-width: 130px; height: 50px;
+    text-align: center;
+}
+.sub_nav> ul > li > a{
+    display:inline-block; position:relative;
+    box-sizing: border-box;
+    padding:0 20px;
+    color:#1e1e1e; font-family: 'Montserrat'; font-size:14px; font-weight:500;
+    letter-spacing:-0.25px; line-height: 60px;
+}
+.sub_nav> ul > .sub_faq {
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+    background :#F7F9FB;
+}
+.sub_nav> ul > .sub_faq > a{
+    color:#4454A1; font-family: 'Montserrat'; font-weight:700;
+}
+.sub_nav > ul > li > a:hover {color:#4454A1; font-family: 'Montserrat'; font-weight:700;}
+.sub_nav> ul > li:hover { border-bottom: 2px solid #4655a4;}
+
+/********** //sub_nav **********/
+
+/********** 공지사항 테이블 **********/
+
+.notice_Read{
+    box-sizing: border-box;
+    margin: 0px auto;
+    border: 1px solid blueviolet;
+    
+}
+
+.notice_Read>h2 {
+	position : relative;
+    margin: 100px 0px 0px 0px;
+	text-align : center;
+	font-size: 30px;
+    font-weight: 700;
+}
+.notice_Read > p {
+    margin : 20px 0px 0px 0px;
+    text-align: center;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+
+/* 게시판 table */
+.noticeRead_table {
+    position: relative;
+    width: 1440px;
+    margin: 50px 0px 0px 0px;
+    border-collapse: collapse;
+    text-align: center;
+    border: 1px solid #D3D3D3;
+}
+
+.noticeRead_table > tbody > .tr1 {
+    border-top: 2px solid #4454A1; 
+    border-bottom: 1px solid #D3D3D3;
+    border-right: 1px solid D3D3D3;
+}
+
+.noticeRead_table > tbody > .tr1> td {
+    border: 1px solid #D3D3D3;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 15px 0px 15px 15px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+}
+.noticeRead_table tbody tr .tr1_head {
+    background-color: #F5F5F5;
+}
+
+.noticeRead_table > tbody > .tr2> td {
+    border: 1px solid #D3D3D3;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 15px 0px 15px 15px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.noticeRead_table > tbody > tr >td:hover { 
+	background-color: #F7F9FB;
+    color: #4454A1; 
+}
+
+/********** 공지사항 테이블 내용**********/
+.read-content{
+    height: 500px;
+    box-sizing: border-box;
+    padding: 30px 20px 30px 20px;
+    border-bottom: 1px solid #D3D3D3;
+    margin: 0px 0px 50px 0px;
+}
+.read-content > p {
+    line-height: 30px;
+}
+/********** 공지사항 테이블 내용**********/
+
+/********** 공지사항 테이블 내용**********/
+
+
+/* 글쓰기 버튼 */
+.notice_Read > #btn_write {
+    display: block;
+    box-sizing: border-box;
+    margin: 0px auto;
+    margin-bottom: 300px;
+    padding: 10px 10px 10px 10px;
+    width: 160px;
+    height: 40px;
+    text-align: center;
+    background: #4454A1;
+    border-radius: 6px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/********** // 페이징  **********/
+
