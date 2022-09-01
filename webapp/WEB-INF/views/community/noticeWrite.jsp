@@ -99,24 +99,7 @@
 
                     <div id="noticeWriteForm" class="noWriteBox">
                         <form action="/noticeInsert" method="get">
-                            <!-- 아이디 -->
                             <!-- 유형 -->
-=======
-                            <!-- 유형 -->
-                            <div class="noWrite_form">
-                                <label class="txt-title" for="nowrite-title">유형</label>
-                                <select name="notiDetail" class="noti_Detail">
-                                    <option value="">유형을 선택해주세요</option>
-                                    <option value="season">카풀정기권</option>
-                                    <option value="carpool">카풀1회성</option>
-                                    <option value="hitchhike">히치하이크</option>
-                                    <option value="mate">메이트</option>
-                                    <option value="notice">공지사항</option>
-                                    <option value="event">이벤트</option>
-                                </select>
-                            </div>
-
-                            <!-- 제목 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">유형</label>
                                 <select name="noti_option">
