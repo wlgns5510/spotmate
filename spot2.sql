@@ -1202,14 +1202,16 @@ drop sequence seq_notice_no;
 
 -- 테이블 생성 : 공지사항게시판
 CREATE TABLE  notice (
-   no NUMBER NOT NULL, /* 글번호 */
-   type VARCHAR2(100), /* 유형 */
-   title VARCHAR2(100), /* 제목 */
-   hit NUMBER, /* 조회수 */
-   regDate DATE, /* 작성날짜 */
-   admin VARCHAR2(100), /* 작성자 */
-   content VARCHAR2(1000) /* 내용 */
+	no NUMBER NOT NULL, /* 글번호 */
+	type VARCHAR2(100), /* 유형 */
+	title VARCHAR2(100), /* 제목 */
+	hit NUMBER, /* 조회수 */
+	regDate DATE, /* 작성날짜 */
+	admin VARCHAR2(100), /* 작성자 */
+	manage VARCHAR2(100), /* 관리 */
+	content VARCHAR2(1000) /* 내용 */
 );
+
 
 -- 시퀀스 생성
 create sequence seq_notice_no
@@ -1232,19 +1234,21 @@ COMMENT ON COLUMN  notice.regDate IS '작성날짜';
 
 COMMENT ON COLUMN  notice.admin IS '작성자';
 
+COMMENT ON COLUMN  notice.manage IS '관리';
+
 COMMENT ON COLUMN  notice.content IS '내용';
 
-CREATE UNIQUE INDEX PK_notice
-   ON  notice (
-      no ASC
-   );
+CREATE UNIQUE INDEX PK_ notice
+	ON  notice (
+		no ASC
+	);
 
 ALTER TABLE  notice
-   ADD
-      CONSTRAINT PK_notice
-      PRIMARY KEY (
-         no
-      );
+	ADD
+		CONSTRAINT PK_ notice
+		PRIMARY KEY (
+			no
+		);
 
 -- insert 생성
 INSERT INTO notice VALUES (
