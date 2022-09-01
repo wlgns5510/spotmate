@@ -98,6 +98,7 @@
                     <p>*spotmate admin 계정만 작성가능</p>
 
                     <div id="noticeWriteForm" class="noWriteBox">
+                    
                         <form action="/noticeInsert" method="get">
                             <!-- 유형 -->
                             <div class="noWrite_form">
