@@ -272,8 +272,7 @@
 				</c:forEach>														
 			</div>
 		</c:if>
-		<!-- 2일차 -->
-		
+		<!-- 2일차 -->		
 		<c:if test="${mMap.mateVo.allDay == 2}">
 			<div class="mateDeep_today">				
 					<div class="mateDeep_dayBox">										
