@@ -747,6 +747,7 @@ var swiperReview = new Swiper('.review_banner', {
 		nextEl : '.review_banner_btns .swiper-button-next'
 	}
 }); 
+
 </script>
 
 

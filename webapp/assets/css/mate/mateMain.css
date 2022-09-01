@@ -11,7 +11,7 @@ input[type=checkbox] {
    padding: 10px;
 }
 .mateMain_wrap {
-/* 	width: 1920px; */
+ 	width: 1920px;
 	height: auto;
 	margin: 0px auto;
 	
@@ -131,7 +131,6 @@ input[type=checkbox] {
 }
 .mateMain_content2 {
 	width: 1440px;
-	height: 2500px;
 	background: rgba(255,255,255,1);
 	margin: 0px auto;	
 }
@@ -313,8 +312,7 @@ input[type=checkbox] {
   border-top-right-radius: 6px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  margin: 30px 0px 0px 560px;
-  float: left;
+  margin: 30px 0px 500px 560px;
 }
 .mateMain_content2 .mateListBtn h2 {
   width: 100px;
