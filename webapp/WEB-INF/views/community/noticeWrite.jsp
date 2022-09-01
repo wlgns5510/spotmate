@@ -99,7 +99,7 @@
 
                     <div id="noticeWriteForm" class="noWriteBox">
                     
-                        <form action="/noticeInsert" method="get">
+                        <form action="./insert" method="get">
                             <!-- 유형 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">유형</label>
@@ -117,19 +117,19 @@
                             <!-- 제목 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">제목</label>
-                                <input type="text" id="nowrite-title" name="" value="" placeholder="제목을 입력해 주세요">
+                                <input type="text" id="nowrite-title" name="title" value="" placeholder="제목을 입력해 주세요">
                             </div>
 
                             <!-- 내용 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">내용</label>
-                                <textarea id="nowrite-content" name="" value="" placeholder="내용을 작성해주세요"></textarea>
+                                <textarea id="nowrite-content" name="content" placeholder="내용을 작성해주세요"></textarea>
                             </div>
 
                             <!-- 버튼영역 -->
                             <div class="writeBtn_area">
-                                <a id="btn_cancel" href="">취소</a>
-                                <button id="btn_add" type="submit">등록</button>
+                                <a id="btn_cancel" href="./">취소</a>
+                                <button id="btn_add" type="button">등록</button>
                             </div>
                         </form>
                     </div>
@@ -145,4 +145,15 @@
     <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
     <!-- footer -->
 </body>
+
+<script>
+	$("#btn_add").on("click", function() {
+		if($(".noti_Detail").val() == '') {
+			alert("유형을 지정해 주세요!")
+			return;
+		}
+		$("#btn_add").attr("type", "submit");
+	})
+	
+</script>
 </html>

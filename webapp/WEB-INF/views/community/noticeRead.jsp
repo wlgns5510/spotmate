@@ -100,29 +100,23 @@
                         <tbody>
                             <tr class="tr1">
                                 <td class="tr1_head">작성자</td>
-                                <td class="tr1_txt">spotmate</td>
+                                <td class="tr1_txt">${nVo.admin}</td>
                                 <td class="tr1_head">작성날짜</td>
-                                <td class="tr1_txt">2022-08-31</td>
+                                <td class="tr1_txt">${nVo.regDate}</td>
                             </tr>
                             <tr class="tr2">
                                 <td class="tr1_head">제목</td>
-                                <td colspan="3">[공지] 카풀 정기권 환불 규정입니다.</td>
+                                <td colspan="3">[${nVo.type}] ${nVo.title}</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <!-- 공지사항 내용 -->
                     <div class="read-content">
-                        <p>스팟메이트를 이용해주시는 고객님들께 감사드립니다.</p>
-                        <p>스팟메이트를 이용해주시는 고객님들께 감사드립니다.</p>
-                        <p>
-                            앞으로도 편안한 탑승 경험을 하실 수 있도록 노력하겠습니다.
-                            <br>감사합니다.
-                            <br>스팟메이트 드림.
-                        </p>
+                        <p>${nVo.title}</p>
                     </div>
 
-                    <a id="btn_write" href="javascript:void(0);">목록</a>
+                    <a id="btn_write" href="../">목록</a>
                 </div>
                 <!-- //notice_Read -->
             </div>

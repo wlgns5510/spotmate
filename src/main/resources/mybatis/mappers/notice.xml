@@ -4,7 +4,8 @@
 <mapper namespace="notice">
 
 	<select id="getList" resultType="nVo">
-		select no,
+		select rn,
+			no,
 			type,
 			title,
 			hit,
@@ -12,7 +13,8 @@
 			admin,
 			manage,
 			content
-		from(select rownum no,
+		from(select rownum rn,
+			no,
 			type,
 			title,
 			hit,
@@ -20,7 +22,7 @@
 			admin,
 			manage,
 			content
-		from (select 
+		from (select no,
 			type,
 			title,
 			hit,
@@ -28,18 +30,38 @@
 			admin,
 			manage,
 			content
-		from notice))
+		from notice
+		order by no desc))
 		
 	</select>
 	
 	<insert id="insertNotice" parameterType="map">
-		
 		insert into notice
 		values(
 			seq_notice_no.nextval,
-			
+			#{notiDetail},
+			#{title},
+			0,
+			sysdate,
+			'spotmate',
+			'',
+			#{content}
 		)
-	
 	</insert>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice
+		where no = #{no}
+	</delete>
+	
+	<select id="getNoticeContent" parameterType="int" resultType="nVo">
+		select admin,
+			to_char(regDate, 'yyyy-mm-dd') regDate,
+			type,
+			title,
+			content
+		from notice
+		where no = #{noticeNo}
+	</select>
 
 </mapper>

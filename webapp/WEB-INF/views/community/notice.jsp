@@ -127,62 +127,17 @@
 							</thead>
 							<tbody>
 							
-							<c:forEach items="${nList}" var="nVo">
-								<tr>
-                                    <td>${nVo.no}</td>
-                                    <td>${nVo.type}</td>
-                                    <td class="text-left"><a href="javascript:void(0);">${nVo.title}</a></td>
-                                    <td>${nVo.hit}</td>
-                                    <td>${nVo.regDate}</td>
-                                    <td>${nVo.admin}</td>
-                                    <td><a href="javascript:void(0);">${nVo.manage}</a></td>
-                                </tr>
-                           	</c:forEach>
-<!-- 								<tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
-<!--                                 <tr class="last"> -->
-<!--                                     <td>1</td> -->
-<!--                                     <td>카풀정기권</td> -->
-<!--                                     <td class="text-left"><a href="javascript:void(0);">[공지] 카풀 정기권 환불 규정입니다.</a></td> -->
-<!--                                     <td>20831</td> -->
-<!--                                     <td>2022-08-31</td> -->
-<!--                                     <td>spotmate</td> -->
-<!--                                     <td><a href="javascript:void(0);">[삭제]</a></td> -->
-<!--                                 </tr> -->
+								<c:forEach items="${nList}" var="nVo">
+									<tr id="tr${nVo.no}">
+	                                    <td>${nVo.rn}</td>
+	                                    <td>${nVo.type}</td>
+	                                    <td class="text-left" onclick="nCount(${nVo.no})">${nVo.title}</td>
+	                                    <td>${nVo.hit}</td>
+	                                    <td>${nVo.regDate}</td>
+	                                    <td>${nVo.admin}</td>
+	                                    <td><button id="delete" onclick="nDelete(${nVo.no})" type="button">[삭제]</button></td>
+	                                </tr>
+	                           	</c:forEach>
 							</tbody>
 						</table>
 			
@@ -213,7 +168,7 @@
 							</ul>
 						</div>
 
-						<a id="btn_write" href="javascript:void(0);">글쓰기</a>
+						<a id="btn_write" href="/notice/write">글쓰기</a>
 					</div>
 					<!-- //list -->
 				</div>
@@ -227,4 +182,31 @@
     <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
     <!-- footer -->
 </body>
+<script>
+	function nDelete(noticeNo) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/notice/delete",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(noticeNo),
+			dataType : "json",
+			success : function(result){
+				if (result == 1) {
+					$("#tr"+noticeNo).remove();
+				} else {
+					return;
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+				return;
+			}
+		});
+		alert("삭제되었습니다!");
+	}
+	
+	function nCount(noticeNo) {
+		location.href="/notice/read/"+noticeNo;
+	}
+</script>
 </html>

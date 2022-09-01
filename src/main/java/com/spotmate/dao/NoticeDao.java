@@ -22,5 +22,13 @@ public class NoticeDao {
 	public void insertNotice(Map<String, Object> map) {
 		ss.insert("notice.insertNotice", map);
 	}
+	
+	public int deleteNotice(int no) {
+		return ss.delete("notice.deleteNotice", no);
+	}
+	
+	public NoticeVo getNoticeContent(int noticeNo) {
+		return ss.selectOne("notice.getNoticeContent", noticeNo);
+	}
 
 }
