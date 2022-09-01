@@ -102,8 +102,8 @@
                             <!-- 유형 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">유형</label>
-                                <select name="noti_option">
-                                    <option value="">유형</option>
+                                <select name="notiDetail" class="noti_Detail">
+                                    <option value="">유형을 선택해주세요</option>
                                     <option value="season">카풀정기권</option>
                                     <option value="carpool">카풀1회성</option>
                                     <option value="hitchhike">히치하이크</option>
@@ -116,13 +116,13 @@
                             <!-- 제목 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">제목</label>
-                                <input type="text" id="nowrite-title" name="title" value="" placeholder="제목을 입력해 주세요">
+                                <input type="text" id="nowrite-title" name="" value="" placeholder="제목을 입력해 주세요">
                             </div>
 
                             <!-- 내용 -->
                             <div class="noWrite_form">
                                 <label class="txt-title" for="nowrite-title">내용</label>
-                                <textarea id="nowrite-content" name="content" placeholder="내용을 작성해주세요"></textarea>
+                                <textarea id="nowrite-content" name="" value="" placeholder="내용을 작성해주세요"></textarea>
                             </div>
 
                             <!-- 버튼영역 -->
@@ -133,6 +133,8 @@
                         </form>
                     </div>
                 </div>
+
+                
             </div>
             <!-- inner -->
         </section>
