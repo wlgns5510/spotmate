@@ -167,6 +167,7 @@
 							총 결제 포인트<br> 
 						<div class="pointConfirm">
 							<fmt:formatNumber value="${mMap.mateVo.point}" pattern="#,###" /> Point
+							<input type="hidden" value="${mMap.mateVo.point}" name="point">
 						</div><br> <br> 
 						<span
 							class="pointText">*포인트는 선결제되며,<br>도착시 드라이버에게 지급됩니다.

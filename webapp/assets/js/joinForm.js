@@ -160,7 +160,7 @@ $(document).ready(function () {
 
 //아이디 중복 확인하는 부분
 $(".id-check").on("click", function() {
-	if ( !/^[a-zA-Z0-9]{1,6}$/.test($("#join_uid").val()) ) {
+	if ( !/^[a-zA-Z0-9]{1,8}$/.test($("#join_uid").val()) ) {
 		alert('ID는 숫자와 영문자 조합으로 1~6자리를 사용해야 합니다');
 		return;
 	}
@@ -212,7 +212,7 @@ $("#join_passcheck").on("propertychange change keyup paste input", function() {
 
 //회원가입전 확인
 $("#btn_submit").on("click", function() {
-	if ( !/^[a-zA-Z0-9]{1,6}$/.test($("#join_uid").val()) ) {
+	if ( !/^[a-zA-Z0-9]{1,8}$/.test($("#join_uid").val()) ) {
 		alert('ID는 숫자와 영문자 조합으로 1~6자리를 사용해야 합니다');
 		return;
 	} else if ( $("#id_chk_status").val() != 0 ) {
