@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,7 +158,7 @@
 
 			<div class="carpool-picture">
 				<div class="carpool-picture-image">
-					<img src="/upload/${cVoMap.cVo.carPicture}" alt="hover">
+					<img src="/upload/${cVoMap.cVo.carPicture}">
 
 					<h3>
 						<span> ${cVoMap.cVo.carName}<br>(${cVoMap.cVo.carNo}) </span>
@@ -307,7 +309,7 @@
 						<p class="recommend-start-list">출발일시 : ${carpoolVo.startDate}</p>
 					</li>
 					<li>
-						<p class="recommend-point-list">소요 포인트 ${carpoolVo.point}P</p> 
+						<p class="recommend-point-list">소요 포인트 <fmt:formatNumber value="${carpoolVo.point}" pattern="#,###" />P</p> 
 		
 						<a href="${pageContext.request.contextPath}/spotCarpoolDeep/${carpoolVo.spotMateNo}?splace=${param.splace}&eplace=${param.eplace}&sTime=${param.sTime}&smPeople=${param.smPeople}&startDate=${param.startDate}&endDate=${param.endDate}<c:forEach items="${paramValues.ch_type}" var="item">&ch_type=${item}</c:forEach>">
 							<button>
