@@ -561,7 +561,7 @@
 .recommend-Driver-list {
 	width: 230px;
 	color: rgba(72, 72, 72, 1);
-	font-family: Noto Sans;
+	font-family: Montserrat;
 	font-weight: 700;
 	font-size: 17px;
 	opacity: 1;
@@ -572,7 +572,7 @@
 .recommend-start-list {
 	width: 250px;
 	color: rgba(154, 154, 154, 1);
-	font-family: Noto Sans;
+	font-family: Montserrat;
 	font-weight: 600;
 	font-size: 15px;
 	text-align: left;
@@ -582,7 +582,7 @@
 .recommend-point-list {
 	width: 170px;
 	color: rgba(73, 85, 159, 1);
-	font-family: Noto Sans;
+	font-family: Montserrat;
 	font-weight: 600;
 	font-size: 15.5px;
 	text-align: left;
