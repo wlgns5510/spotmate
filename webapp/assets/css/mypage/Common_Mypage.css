@@ -556,11 +556,11 @@
 	font-weight: SemiBold;
 	font-size: 24px;
 	margin-top: 100px;
-	margin-bottom: 100px; margin-left : 280px; display : inline-block;
+	margin-bottom: 100px; margin-left : 333px; display : inline-block;
 	text-align: center;
 	cursor: pointer;
 	display: inline-block;
-	margin-left: 280px;
+
 }
 
 .DForm_enrollbtn>span {
