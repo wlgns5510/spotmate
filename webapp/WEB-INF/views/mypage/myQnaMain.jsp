@@ -152,7 +152,7 @@
 								<th>유형</th>
 								<th>날짜</th>
 								<th>제목</th>
-								<th>답변상태</th>
+								<th>내용</th>
 								<th>상태</th>
 							</tr>
 						</thead>
