@@ -103,7 +103,9 @@ public class HitchhikeController {
 	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
 	public int chkRide(@RequestBody int mateNo) {
 		if( ss.getAttribute("authUser") != null ) {
-			return hService.chkRide(mateNo);
+			UserVo authUser = (UserVo)ss.getAttribute("authUser");
+			System.out.println(hService.chkRide(mateNo, authUser.getNo()));
+			return hService.chkRide(mateNo, authUser.getNo());
 		}
 		return -1;
 	}
@@ -138,7 +140,7 @@ public class HitchhikeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/rideReq", method={RequestMethod.GET, RequestMethod.POST})
-	public int rideReq(@RequestBody HitchReservVo hrVo, HttpSession ss) {
+	public int rideReq(@RequestBody HitchReservVo hrVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		hrVo.setUserNo(authUser.getNo());
 		return hService.makeReserv(hrVo);

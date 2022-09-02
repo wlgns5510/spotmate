@@ -148,7 +148,7 @@ public class MypageRDao {
 	}
 	
 	public int getResvNo(Map<String, Object> map) {
-		return ss.insert("mypageR.getResvNo", map);
+		return ss.selectOne("mypageR.getResvNo", map);
 	}
 	
 	public void driverGetPoint(Map<String, Object> map) {

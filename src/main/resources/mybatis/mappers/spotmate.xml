@@ -316,6 +316,13 @@
 			
 	</insert>
 	
+	<select id="chkResv" parameterType="map" resultType="int">
+		select people
+		from reservation
+		where mateno = #{mateNo}
+		and userno = #{userNo}
+	</select>
+	
 	<insert id="usePoint" parameterType="hrVo">
 		<selectKey keyProperty="resvNo" resultType="int" order="BEFORE">
 				select

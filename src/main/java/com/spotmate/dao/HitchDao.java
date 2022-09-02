@@ -45,18 +45,19 @@ public class HitchDao {
 		}
 		return map;
 	}
-	//유저가 탑승예약 할 때
-	public int updateReserv(HitchReservVo hrVo){
-//		int canRide = ss.selectOne("spotmate.chkpeople", hrVo.getMateNo());
-//		if ( canRide >= hrVo.getPeople()) {
+	
+	public void updateResvPeople(HitchReservVo hrVo) {
 		ss.update("spotmate.updatereservpeople", hrVo);
-		ss.insert("spotmate.makereserv", hrVo);
-		ss.insert("spotmate.usePoint", hrVo);
-//		} else {
-//			return -1;
-//		}
-		return ss.selectOne("spotmate.chkpeople", hrVo);
 	}
+	//유저가 탑승예약 할 때
+	public void updateReserv(HitchReservVo hrVo){
+		ss.insert("spotmate.makereserv", hrVo);
+	}
+	
+	public void usePoint(HitchReservVo hrVo) {
+		ss.insert("spotmate.usePoint", hrVo);
+	}
+	
 	//유저가 탑승예약 취소 할 때	
 	public int cancelReserv(int userNo, int mateNo) {
 		int people = -1;
@@ -73,8 +74,16 @@ public class HitchDao {
 		return people;
 	}
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
+	
 	public int chkRide(int mateNo) {
 		return ss.selectOne("spotmate.chkride", mateNo);
+	}
+	
+	public int chkResv(int mateNo, int userNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mateNo", mateNo);
+		map.put("userNo", userNo);
+		return ss.selectOne("spotmate.chkResv", map);
 	}
 	//드라이버 현재 위치 저장하면서 탑승한 유저 목록 가져옴
 	public List<HitchReservVo> watchPos(MapVo mVo) {

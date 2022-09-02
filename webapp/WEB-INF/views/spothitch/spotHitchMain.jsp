@@ -377,7 +377,8 @@ $(document).ready(function() {
 	}
 	
 	function rideReq(index) {
-		var chk = 0;
+		var chk = 0,
+			mateNo = $("#hitch"+index).val();
 		$.ajax({
 			url : "${pageContext.request.contextPath}/chkRide",
 			type : "post",
@@ -386,10 +387,10 @@ $(document).ready(function() {
 			dataType : "json",
 			async : false,
 			success : function(result) {
-				if (result == 1) {
-					chk = 1;
-				} else {
+				if (result == -1) {
 					chk = -1;
+				} else {
+					chk = result;
 				}
 			},
 			error : function(XHR, status, error) {
@@ -407,7 +408,7 @@ $(document).ready(function() {
 			return;
 		}
 		var hrVo = {};
-		hrVo.mateNo = $("#hitch"+index).val();
+		hrVo.mateNo = mateNo;
 		hrVo.people = $(".reqPeople").val();
 		hrVo.canRide = $("#canRide"+index).val();
 		hrVo.point = $("#point"+index).val();
