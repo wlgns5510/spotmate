@@ -107,14 +107,14 @@
 				</header>
 
 				<!-- //section-article -->
-				<article class="myPage_article">
+				<article class="myPage_articlemqa">
 
 					<div class="inputBox">
-						<form>
+						<!-- <form>
 							<input type="date" value="2022-08-02"> <span> ~ </span> <input
 								type="date" value="2022-08-02">
 
-							<!-- <label for="lecture">유형</label> -->
+							<!-- <label for="lecture">유형</label> 
 							<select id="option1" class="form-select"
 								aria-label="Default select example">
 								<option value=selected>유형</option>
@@ -125,7 +125,7 @@
 								<option value="5"><span style="color: red">패널티</span></option>
 							</select>
 
-							<!-- <label for="lecture">참여주체</label> -->
+							<!-- <label for="lecture">참여주체</label> 
 							<select id="option1" class="form-select"
 								aria-label="Default select example">
 								<option value=selected>상태</option>
@@ -136,7 +136,7 @@
 							<button type="button" class="myPage_btnB">조회하기</button>
 							<a href="./myQnaWriteForm"><button type="button"
 									class="myPage_btnY">1:1문의하기 ></button></a>
-						</form>
+						</form> -->
 					</div>
 
 				</article>
@@ -152,7 +152,7 @@
 								<th>유형</th>
 								<th>날짜</th>
 								<th>제목</th>
-								<th>내용</th>
+								<!-- <th>내용</th>  -->
 								<th>상태</th>
 							</tr>
 						</thead>
@@ -163,14 +163,14 @@
 									<td>${qVo.type}</td>
 									<td>${qVo.regDate}</td>
 									<td>${qVo.title}</td>
-									<td>${qVo.content}</td>
+									<!-- <td>${qVo.content}</td>  -->
 									<td>${qVo.status }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 
 					</table>
-
+					<a href="./myQnaWriteForm" type="submit" class="DForm_enrollbtn"><span>1:1문의하기</span><a>
 				</article>
 			</section>
 		</main>
