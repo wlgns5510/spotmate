@@ -13,6 +13,8 @@ import com.spotmate.vo.PointVo;
 import com.spotmate.vo.RefundVo;
 import com.spotmate.vo.UserVo;
 
+import oracle.net.aso.p;
+
 @Service
 public class MypageJService {
 
@@ -215,15 +217,30 @@ public class MypageJService {
 		for (PointVo p : pointList) {
 			if ("hitchhike".equals(p.getType()) && p.getPoint() > 0 || "mate".equals(p.getType()) && p.getPoint() > 0
 					|| "carpool".equals(p.getType()) && p.getPoint() > 0
-					|| "season".equals(p.getType()) && p.getPoint() > 0) {
+					|| "seasonTicket".equals(p.getType()) && p.getPoint() > 0) {
 				p.setpType("드라이버");
 			}
 			if ("hitchhike".equals(p.getType()) && p.getPoint() < 0 || "mate".equals(p.getType()) && p.getPoint() < 0
 					|| "carpool".equals(p.getType()) && p.getPoint() < 0
-					|| "season".equals(p.getType()) && p.getPoint() < 0) {
+					|| "seasonTicket".equals(p.getType()) && p.getPoint() < 0) {
 				p.setpType("유저");
 			}
-
+			
+			if("hitchhike".equals(p.getType())) {
+				p.setType("히치하이크");
+			}
+			
+			if("mate".equals(p.getType())) {
+				p.setType("메이트");
+			}
+			
+			if("carpool".equals(p.getType())) {
+				p.setType("카풀1회성");
+			}
+			
+			if("seasonTicket".equals(p.getType())) {
+				p.setType("카풀정기권");
+			}
 		}
 		
 

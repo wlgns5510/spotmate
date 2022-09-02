@@ -44,7 +44,7 @@
                     <a href="/faq">COMMUNITY</a>
                     <div class="depth2">
                         <ul>
-                            <li><a href="/notice">NOTICE</a></li>
+                            <li><a href="/notice/1">NOTICE</a></li>
                             <li><a href="/faq">FAQ</a></li>
                             <li><a href="/event">EVENT</a></li>
                         </ul>

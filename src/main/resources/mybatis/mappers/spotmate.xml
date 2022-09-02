@@ -301,7 +301,6 @@
 		</selectKey>
 			
 		insert into reservation 
-			
 		values(
 			seq_reservation_no.nextval,
 			#{mateNo},
@@ -315,6 +314,25 @@
 			#{lng}
 		)
 			
+	</insert>
+	
+	<insert id="usePoint" parameterType="hrVo">
+		<selectKey keyProperty="resvNo" resultType="int" order="BEFORE">
+				select
+					no
+				from reservation
+				where mateNo = #{mateNo}
+				and userNo = #{userNo}
+		</selectKey>
+		   insert into pointusage 
+             values (
+             seq_pointusage_no.nextval, 
+             #{userNo}, 
+             '완료', 
+             sysdate, 
+             '', 
+             -#{point}, 
+             #{resvNo})
 	</insert>
 
 <!-- 	rideReq를 통해서 탑승 예약 -->

@@ -7,6 +7,8 @@
 /* 조윤주 */
 @import url("index.css");
 @import url("./community/notice.css");
+@import url("./community/noticeWrite.css");
+@import url("./community/noticeRead.css");
 @import url("./community/faq.css");
 @import url("./community/event.css");
 @import url("./users/login.css");

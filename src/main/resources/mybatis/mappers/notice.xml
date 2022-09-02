@@ -3,33 +3,139 @@
 
 <mapper namespace="notice">
 
-	<select id="getList" resultType="nVo">
-		select no,
-			type,
-			title,
-			hit,
-			regDate,
-			admin,
-			manage,
-			content
-		from(select rownum no,
-			type,
-			title,
-			hit,
-			regDate,
-			admin,
-			manage,
-			content
-		from (select 
-			type,
-			title,
-			hit,
+	<select id="getNoticeCrtPage" resultType="nVo">
+		<![CDATA[
+			select rn,
+				no,
+				type,
+				title,
+				hit,
+				regDate,
+				admin,
+				manage,
+				content
+			from(select rownum rn,
+				no,
+				type,
+				title,
+				hit,
+				regDate,
+				admin,
+				manage,
+				content
+			from (select no,
+				type,
+				title,
+				hit,
+				to_char(regDate, 'yyyy-mm-dd') regDate,
+				admin,
+				manage,
+				content
+			from notice
+			order by no desc))
+			where rn >= #{sNum}
+			and rn <= #{eNum}
+		]]>
+	</select>
+	
+	<insert id="insertNotice" parameterType="map">
+		insert into notice
+		values(
+			seq_notice_no.nextval,
+			#{notiDetail},
+			#{title},
+			0,
+			sysdate,
+			'spotmate',
+			'',
+			#{content}
+		)
+	</insert>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice
+		where no = #{no}
+	</delete>
+	
+	<select id="getNoticeContent" parameterType="int" resultType="nVo">
+		select admin,
 			to_char(regDate, 'yyyy-mm-dd') regDate,
-			admin,
-			manage,
+			type,
+			title,
 			content
-		from notice))
-		
+		from notice
+		where no = #{noticeNo}
+	</select>
+	
+	<update id="setHit" parameterType="int">
+		update notice
+		set hit = hit+1
+		where no = #{noticeNo}
+	</update>
+	
+	<select id="totalCnt" resultType="int">
+		select count(*)
+		from notice
+	</select>
+	
+	<select id="totalSearchCnt" parameterType="nsVo" resultType="int">
+		<![CDATA[
+			select count(*)
+			from notice
+			where regDate >= to_date(#{startDate}, 'yyyy-mm-dd') -1
+			and regDate <= to_date(#{endDate}, 'yyyy-mm-dd') +1
+		]]>
+			<if test="noti_option != null">
+				and type = #{noti_option}
+			</if>
+			<if test="noticeSearch != null">
+				and title like '%'||#{noticeSearch}||'%'
+			</if>
+	</select>
+	
+	<select id="getNoticeSearchCrtPage" parameterType="map" resultType="nVo">
+		<![CDATA[
+			select rn,
+				no,
+				type,
+				title,
+				hit,
+				regDate,
+				admin,
+				manage,
+				content
+			from(select rownum rn,
+				no,
+				type,
+				title,
+				hit,
+				regDate,
+				admin,
+				manage,
+				content
+			from (select no,
+				type,
+				title,
+				hit,
+				to_char(regDate, 'yyyy-mm-dd') regDate,
+				admin,
+				manage,
+				content
+			from notice
+			where regDate >= to_date(#{nsVo.startDate}, 'yyyy-mm-dd') -1
+			and regDate <= to_date(#{nsVo.endDate}, 'yyyy-mm-dd') +1
+		]]>
+			<if test="nsVo.noti_option != ''">
+				and type = #{nsVo.noti_option}
+			</if>
+			<if test="nsVo.noticeSearch != null">
+				and title like '%'||#{nsVo.noticeSearch}||'%'
+			</if>
+		<![CDATA[
+			order by no desc))
+			where rn >= #{sNum}
+			and rn <= #{eNum}
+		]]>
 	</select>
 
 </mapper>

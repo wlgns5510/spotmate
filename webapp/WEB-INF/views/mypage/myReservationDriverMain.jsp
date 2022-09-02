@@ -147,7 +147,7 @@
 						</thead>
 						<tbody>
 						<c:forEach items="${uMap.mL}" var="ui" varStatus="status">
-							<tr>
+							<tr id="box${ui.mateNo}">
 								<td>${ui.rn}</td>
 								<td>${ui.type}</td>
 								<td>${ui.regDate}</td>
@@ -241,7 +241,8 @@ function msg(mateNo) {
 		data : JSON.stringify(mateNo),
 		dataType : "json",
 		success : function(result){
-			console.log(result);
+			$("#box"+mateNo).remove();
+			alert("카풀이 종료 되었습니다!")
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);

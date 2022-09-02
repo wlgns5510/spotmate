@@ -216,6 +216,9 @@ document.getElementById("endDate").value = new Date(new Date().getTime() - (new 
 function msg(resvNo) {
  window.open("/driverReview/"+resvNo, "child", "width=1350, height=820, left=300, top=100");
 }
+$(".review-btn").on("click", function() {
+	opener.$(".btn_review").text("작성완료");
+})
 </script>
 
 </html>
