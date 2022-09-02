@@ -102,6 +102,12 @@ Last update : 2022. 08. 30.
 }
 .noticeRead_table tbody tr .tr1_head {
     background-color: #F5F5F5;
+    width: 200px;
+}
+
+.noticeRead_table tbody tr .tr1_txt {
+    /*background-color: #ccffd7;*/
+    width: 500px;
 }
 
 .noticeRead_table > tbody > .tr2> td {

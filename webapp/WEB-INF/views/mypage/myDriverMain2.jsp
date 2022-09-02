@@ -257,7 +257,8 @@
 								<textarea name="introduce">${dlvo.introduce}</textarea>
 							</div>
 
-							<input type="submit" placeholder="수정하기" class="DForm_enrollbtn">
+							<input type="submit" placeholder="수정하기" class="DForm_enrollbtn" style="margin-left: 277px;"
+							>
 
 						</form>
 					</div>
