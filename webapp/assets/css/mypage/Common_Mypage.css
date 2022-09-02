@@ -544,6 +544,10 @@
 	margin-bottom: 100px;
 	cursor: pointer;
 }
+.DForm_enrollbtnQna > span{
+	display:inline-block;
+	margin:20px;	
+}
 
 
 .DForm_enrollbtn {
@@ -556,7 +560,7 @@
 	font-weight: SemiBold;
 	font-size: 24px;
 	margin-top: 100px;
-	margin-bottom: 100px; margin-left : 333px; display : inline-block;
+	margin-bottom: 100px; margin-left : 277px; display : inline-block;
 	text-align: center;
 	cursor: pointer;
 	display: inline-block;
