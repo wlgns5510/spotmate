@@ -29,7 +29,7 @@
 		<![CDATA[
 	 		select  mq.no ,
         			mq.type,
-        			to_char('yy.mm.dd') regDate,
+        			to_char(mq.regDate, 'yy.mm.dd') regDate,
         			mq.title,
 			        mq.content,
 			        mq.status,
