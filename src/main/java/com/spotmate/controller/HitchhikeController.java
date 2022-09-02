@@ -33,6 +33,12 @@ public class HitchhikeController {
 	@Autowired
 	private HttpSession ss;
 	
+	@RequestMapping(value="/mobileHitch", method={RequestMethod.GET, RequestMethod.POST})
+	public String mhitch() {
+		return "/spothitch/mobileHitchMain";
+	}
+	
+	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitch() {
 		return "/spothitch/spotHitchMain";
