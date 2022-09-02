@@ -170,7 +170,7 @@
 						</tbody>
 
 					</table>
-					<a href="./myQnaWriteForm" type="submit" class="DForm_enrollbtn"><span>1:1문의하기</span><a>
+					<a href="./myQnaWriteForm" type="submit" class="DForm_enrollbtnQna"><span>1:1문의하기</span><a>
 				</article>
 			</section>
 		</main>
