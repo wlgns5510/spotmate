@@ -1,6 +1,7 @@
 package com.spotmate.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +18,6 @@ import com.spotmate.function.CarOwner;
 import com.spotmate.function.DriverLicenseAuth;
 import com.spotmate.service.DriverLicenseService;
 import com.spotmate.service.MypageJService;
-import com.spotmate.service.MypageRService;
 import com.spotmate.vo.CarAuthInfoVo;
 import com.spotmate.vo.DriverAuthVo;
 import com.spotmate.vo.DriverLicenseVo;
@@ -28,9 +28,6 @@ public class DriverLicenseController {
 
 	@Autowired
 	private DriverLicenseService dls;
-	
-	@Autowired
-	private MypageRService mService;
 	
 	@Autowired
 	private MypageJService mypagejService;
@@ -52,6 +49,8 @@ public class DriverLicenseController {
 			// 회원번호를 통해서 가입정보 가져오기
 			int userNo = authUser.getNo();
 			DriverLicenseVo carInfo = dls.getCarInfo(userNo);
+			Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+			model.addAttribute("topNavMap", topNavMap);
 
 			if (carInfo.getC_Model() == null) { // 가입정보에서 자동차 모델값이 없으면(차량 등록을 안했으면) 등록폼 메인으로 포워드
 				return "/mypage/myDriverMain";
@@ -78,6 +77,8 @@ public class DriverLicenseController {
 
 			// 회원번호를 통해서 가입정보 가져오기
 			int userNo = authUser.getNo();
+			Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+			model.addAttribute("topNavMap", topNavMap);
 			System.out.println(userNo);
 			DriverLicenseVo carInfo = dls.getCarInfo(userNo);
 
@@ -161,7 +162,7 @@ public class DriverLicenseController {
 		System.out.println(carInfo.getCnum());
 		int result = co.CarAuth(carInfo);
 		//ex)64무 6432
-		carInfo.setCnum(carInfo.getCnum().replace("[가-힣]", "[가-힣] "));
+		carInfo.setCnum(carInfo.getCnum().replace("[가-힣]", "[가-힣 ] "));
 		System.out.println(carInfo.getCnum());
 		int result2 = co.CarAuth(carInfo);
 		

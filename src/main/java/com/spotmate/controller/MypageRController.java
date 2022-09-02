@@ -36,7 +36,6 @@ public class MypageRController {
 	private MyQnaService mqs;
 	@Autowired
 	private MypageJService mypagejService;
-	private int userNo;
 
 	
 	
@@ -55,6 +54,8 @@ public class MypageRController {
 		
 		int userNo = authUser.getNo();
 		
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
+		model.addAttribute("topNavMap", topNavMap);
 		model.addAttribute("qList", mqs.getMyQnaList(userNo));
 		
 		return "/mypage/myQnaMain";
@@ -83,25 +84,26 @@ public class MypageRController {
 	@RequestMapping(value = "/myUsageUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myUsageUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
-		model.addAttribute("topNavMap", topNavMap);
 		if( authUser == null ) {
 			return "redirect:/loginForm";
 		}
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(authUser.getNo());
+		model.addAttribute("topNavMap", topNavMap);
 		model.addAttribute("uMap", mService.getUserUsageList(authUser.getNo(), no, usVo));
 		return "/mypage/myUsageUserMain";
 	}
 	
 	@RequestMapping(value = "/myUsageDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myUsageDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
-		Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
-		model.addAttribute("topNavMap", topNavMap);
 		
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		
 		if( authUser == null ) {
 			return "redirect:/loginForm";
 		}
+		
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(authUser.getNo());
+		model.addAttribute("topNavMap", topNavMap);
 		model.addAttribute("uMap", mService.getDriverUsageList(authUser.getNo(), no, usVo));
 		return "/mypage/myUsageDriverMain";
 	}
@@ -110,11 +112,11 @@ public class MypageRController {
 	@RequestMapping(value = "/myReservationUserMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myResvUserMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
-		model.addAttribute("topNavMap", topNavMap);
 		if( authUser == null ) {
 			return "redirect:/loginForm";
 		}
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(authUser.getNo());
+		model.addAttribute("topNavMap", topNavMap);
 		model.addAttribute("uMap", mService.getUserResvList(authUser.getNo(), no, usVo));
 		return "/mypage/myReservationUserMain";
 	}
@@ -122,12 +124,11 @@ public class MypageRController {
 	@RequestMapping(value = "/myReservationDriverMain/{no}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String myResvDriverMain(@PathVariable int no, Model model, @ModelAttribute UsageSearchVo usVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-			Map<String, Object> topNavMap = mypagejService.myPageTopNav(userNo);
-			model.addAttribute("topNavMap", topNavMap);
-		
 		if( authUser == null ) {
 			return "redirect:/loginForm";
 		}
+		Map<String, Object> topNavMap = mypagejService.myPageTopNav(authUser.getNo());
+		model.addAttribute("topNavMap", topNavMap);
 		model.addAttribute("uMap", mService.getDriverResvList(authUser.getNo(), no, usVo));
 		return "/mypage/myReservationDriverMain";
 	}

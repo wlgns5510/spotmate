@@ -234,7 +234,8 @@
 			                   and re.mateno = sp.no
 			                   and pu.reno = re.no
 			                   and u.no = pu.userno
-			                   and u.no = #{userNo}			                   
+			                   and u.no = #{userNo}
+			                                  
 		]]>
 
 		<if test="option1 != '' and option1 != null">
@@ -255,6 +256,7 @@
 			                   from pointUsage
 			                   where userno = #{userNo}
 			                   and (type = '충전' or type='환불' or type='구매')
+			                   
 		]]>
 			
 		<if test="option1 != '' and option1 != null">
@@ -471,19 +473,13 @@
 	</select>
 	
 	
-	<!-- 총 별점평균 가져오기 -->
+	<!-- 유저 별점평균 가져오기 -->
 	<select id="selectavgStar" parameterType="int" resultType="float">
 		<![CDATA[
-			select sum(dAvgStar + uAvgStar)/2
-			from (select round(NVL(avg(star),0),1) dAvgStar
-				  from users u, reservation re, userReview ur
-				  where u.no = re.driverNo
-				  and ur.resvNo = re.no
-				  and u.no = #{userNo}) d, (select round(NVL(avg(star),0),1) uAvgStar
-				                  from users u, reservation re, driverReview dr
-				                  where u.no = re.userNo
-				                  and dr.resvNo = re.no
-				                  and u.no = #{userNo})u
+			select round(NVL(avg(star),0),1) uAvgStar
+			from reservation re, driverReview dr
+			where dr.resvNo = re.no
+			and re.userno = #{userNo}
 		]]>
 	
 	</select>

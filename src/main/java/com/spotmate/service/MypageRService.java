@@ -222,6 +222,7 @@ public class MypageRService {
 		map.put("userNo", userNo);
 		int count = mDao.endResv(map);
 		int resvNo = mDao.getResvNo(map);
+		System.out.println(resvNo);
 		map.put("resvNo", resvNo);
 		mDao.driverGetPoint(map);
 		return count;

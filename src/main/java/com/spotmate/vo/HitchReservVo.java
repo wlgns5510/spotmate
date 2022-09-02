@@ -2,7 +2,7 @@ package com.spotmate.vo;
 
 public class HitchReservVo {
 	
-	private int mateNo, people, canRide, userNo, point, driverNo;
+	private int mateNo, people, canRide, userNo, point, driverNo, resvNo;
 	private double lat, lng;
 	
 	public HitchReservVo() {}
@@ -20,9 +20,18 @@ public class HitchReservVo {
 		this.lng = lng;
 	}
 	
+	
+	
+	public int getResvNo() {
+		return resvNo;
+	}
 
-	
-	
+
+	public void setResvNo(int resvNo) {
+		this.resvNo = resvNo;
+	}
+
+
 	public int getDriverNo() {
 		return driverNo;
 	}
