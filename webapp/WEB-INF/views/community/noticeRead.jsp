@@ -106,7 +106,9 @@
                             </tr>
                             <tr class="tr2">
                                 <td class="tr1_head">제목</td>
-                                <td colspan="3">[${nVo.type}] ${nVo.title}</td>
+                                <td class="tr1_txt">[${nVo.type}] ${nVo.title}</td>
+                                <td class="tr1_head">조회수</td>
+                                <td class="tr1_txt">${nVo.hit}</td>
                             </tr>
                         </tbody>
                     </table>
