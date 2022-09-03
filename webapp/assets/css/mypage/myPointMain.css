@@ -113,7 +113,7 @@
 .myPage_topNav>.box2 {
 	width: 160px;
 	height: 68px;
-	background: rgba(255, 255, 255, 1);
+	background: #e8e7e7;
 	border: 1px solid rgba(217, 217, 217, 1);
 	display: inline-block;
 	padding: 15px;
@@ -158,7 +158,7 @@
 .myPage_topNav>.box3 {
 	width: 160px;
 	height: 68px;
-	background: rgba(255, 255, 255, 1);
+	background:#e8e7e7;
 	border: 1px solid rgba(217, 217, 217, 1);
 	display: inline-block;
 	padding: 15px;

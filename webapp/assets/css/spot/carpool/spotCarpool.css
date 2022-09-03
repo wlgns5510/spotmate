@@ -15,7 +15,7 @@
 }
 
 .content-head{
-	
+  background-image: url("/assets/images/content_banner_login.png");
   height: 200px;
   margin: 0px auto;
   background-color: rgba(232,231,231,1);
@@ -24,7 +24,7 @@
 
 .carpool-MainText1 {
   width: 660px;
-  color: rgba(30,30,30,1);
+  color:white;
   font-family: Montserrat;
   font-weight:700;
   font-size: 32px;
@@ -36,7 +36,7 @@
 
 .carpool-MainText2 {
   width: 500px;
-  color: rgba(30,30,30,1);
+   color:white;
   top: 303px;
   left: 975px;
   font-family: Montserrat;

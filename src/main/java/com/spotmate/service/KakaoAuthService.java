@@ -108,14 +108,14 @@ public class KakaoAuthService {
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
-			String birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
+			String birth = kakao_account.getAsJsonObject().get("birthday").getAsString();
 			String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
 
-			System.out.println(gender);
-			System.out.println(birthday);
 			
 			userInfo.put("nickname", nickname);
 			userInfo.put("email", email);
+			userInfo.put("birth", birth);
+			userInfo.put("gender", gender);
 
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,6 +1,7 @@
 .driver-top-banner-inside {
 	width: 1920px;
 	margin:0px auto;
+	background-image: url("/assets/images/content_banner_login.png");	
 	
 }
 .more-box {
@@ -11,16 +12,19 @@
 	font-size: 32px;
   	font-weight:700;
   	font-size: 32px;
+  	 color:white;
 }
 .driver-top-banner .more3 {
 	font-size: 32px;
  	font-weight:700;
+ 	 color:white;
 }
 .driver-top-banner .more2 {
 	float:right;
 	font-size: 20px;
 	font-weight: 600;
 	margin: 120px 630px 0px 0px;
+	 color:white;
 }
 
 #hitch-main-map {

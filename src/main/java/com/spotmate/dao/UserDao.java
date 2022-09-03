@@ -34,6 +34,10 @@ public class UserDao {
 		}
 	}
 	
+	public UserVo getUserInfo(int userNo) {
+		return ss.selectOne("users.getUserInfo", userNo);
+	}
+	
 	public void insertKakao(Map<String, Object> map) {
 		ss.insert("users.insertKakao", map);
 	}
