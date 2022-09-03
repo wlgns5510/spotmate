@@ -1,15 +1,3 @@
-
-
-.clearfix:before, .clearfix:after {
-	display: block;
-	content: "";
-	line-height: 0;
-}
-
-.clearfix:after {
-	clear: both;
-}
-
 .mateDeep_wrap {
 	background: rgba(255, 255, 255, 1);
 	margin: 0px auto;
