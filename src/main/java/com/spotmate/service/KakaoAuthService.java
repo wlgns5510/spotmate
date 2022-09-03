@@ -86,8 +86,8 @@ public class KakaoAuthService {
 			// 요청에 필요한 Header에 포함될 내용
 			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 
-			int responseCode = conn.getResponseCode();
-			System.out.println("responseCode : " + responseCode);
+//			int responseCode = conn.getResponseCode();
+//			System.out.println("responseCode : " + responseCode);
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
@@ -97,16 +97,23 @@ public class KakaoAuthService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
+//			System.out.println("response body : " + result);
 
 			JsonElement element = JsonParser.parseString(result);
+			
 
 			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			
 
 			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
+			String birthday = kakao_account.getAsJsonObject().get("birthday").getAsString();
+			String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
 
+			System.out.println(gender);
+			System.out.println(birthday);
+			
 			userInfo.put("nickname", nickname);
 			userInfo.put("email", email);
 

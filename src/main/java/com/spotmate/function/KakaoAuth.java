@@ -23,6 +23,7 @@ public class KakaoAuth {
 		
 		String access_Token = kas.getAccessToken(code);
 		HashMap<String, Object> userInfo = kas.getUserInfo(access_Token);
+		System.out.println(userInfo.toString());
 		System.out.println("###access_Token#### : " + access_Token);
 		System.out.println("###nickname#### : " + userInfo.get("nickname"));
 		System.out.println("###email#### : " + userInfo.get("email"));
