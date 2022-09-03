@@ -1263,6 +1263,45 @@
 
 
 	</insert>
+	
+	
+	<insert id="testUser" parameterType="map">
+		insert into users
+		values(#{userNo},
+		#{id},
+		#{pw},
+		#{name},
+		'ssobbs13@naver.com',
+		'01064862467',
+		'서울시 서초구 방배동',
+		#{gender},
+		'970107',
+		'',
+		'',
+		''
+		)
+	</insert>
+	<insert id="testCar" parameterType="map">
+		insert into car
+		values(#{carNo},
+		#{userNo},
+		#{car},
+		#{carNum},
+		#{carpic},
+		'화이트',
+		4,
+		#{introduce}
+		)
+	</insert>
+	
+	<insert id="testCarDetail" parameterType="map">
+		insert into carDetail
+		values(#{carDetailNo},
+		#{carNo},
+		1
+		)
+	</insert>
+	
 
 
 
