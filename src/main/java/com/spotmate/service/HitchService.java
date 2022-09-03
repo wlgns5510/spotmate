@@ -25,13 +25,20 @@ public class HitchService {
 	
 	
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
-	public int chkRide(int mateNo) {
-		return hDao.chkRide(mateNo);
+	public int chkResv(int mateNo, int userNo) {
+		if( hDao.chkResv(mateNo, userNo) == null ) {
+			return -2;
+		}
+		return hDao.chkResv(mateNo, userNo);
 	}
 	
 	//유저가 탑승예약 할 때
 	public int makeReserv(HitchReservVo hrVo) {
-		return hDao.updateReserv(hrVo);
+		hDao.updateResvPeople(hrVo);
+		hDao.updateReserv(hrVo);
+		hDao.usePoint(hrVo);
+		int cnt = hDao.chkRide(hrVo.getMateNo());
+		return cnt;
 	}
 	//신청한게 있나 없나 확인
 	public Map<String, Object> cancelChk(int mateNo, int userNo) {
