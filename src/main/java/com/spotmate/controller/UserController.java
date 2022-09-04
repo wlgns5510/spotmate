@@ -95,11 +95,7 @@ public class UserController {
 		   session.setAttribute("authUser", authUser);
 		   //return "redirect:/driver";
 		   return "redirect:/index";
-<<<<<<< HEAD
-	   }else if (authUser == null) {
-=======
 	   }else {
->>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 		   return "redirect:/loginForm?result=fail";
 	   }
 	   
