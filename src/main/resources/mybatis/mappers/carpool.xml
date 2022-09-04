@@ -8,9 +8,8 @@
 		<![CDATA[	
 		select ort.rn,
 		       ort.spotMateNo, 
-		       to_char(ort.startDate, 'YYYY-MM-DD') startDate, 
-       		   to_char(ort.endDate, 'YYYY-MM-DD') endDate, 
-		       ort.endDate, 
+		       ort.startDate, 
+       		   ort.endDate,
 		       ort.type, ort.smPeople, ort.point,
 		       ort.userNo, ort.id, ort.userName,
 		       ort.carNo, ort.carNumber,
@@ -26,7 +25,7 @@
 		           ot.eMateNo, ot.ePlaceNo, ot.ePlace, ot.eWayNo, ot.eSepPlace, ot.eLat, ot.eLng,
 		           ot.opts
 		    from
-		        (select sm.no spotMateNo, sm.startDate, sm.endDate, sm.type, sm.people smPeople, sm.point,
+		        (select sm.no spotMateNo, to_char(sm.startDate, 'YYYY-MM-DD') startDate, to_char(sm.endDate, 'YYYY-MM-DD') endDate, sm.type, sm.people smPeople, sm.point,
 		                us.no userNo, us.id, us.name userName,
 		                ca.no carNo, ca.carNo carNumber,
 		                se.sPlaceNo, se.sPlace, se.sWayNo, se.sSepPlace, se.sLat, se.sLng, se.sTime,
@@ -73,11 +72,15 @@
 		</if>
 
 		<if test="startDate != ''  and  startDate != null ">
-			and sm.startDate = #{startDate}
+		<![CDATA[
+			and to_char(sm.startDate, 'YYYY-MM-DD') >= #{startDate}
+			]]>
 		</if>
 
 		<if test="endDate != ''  and  endDate != null ">
-			and sm.endDate = #{endDate}
+		<![CDATA[
+			and to_char(sm.endDate, 'YYYY-MM-DD') <= #{endDate}
+			]]>
 		</if>
 
 		<if test="ch_type != ''  and  ch_type != null ">
@@ -143,11 +146,15 @@
       </if>
 
       <if test="startDate != ''  and  startDate != null ">
-         and sm.startDate = #{startDate}
+         <![CDATA[
+         and to_char(sm.startDate, 'YYYY-MM-DD') >= #{startDate}
+         ]]>
       </if>
 
       <if test="endDate != ''  and  endDate != null ">
-         and sm.endDate = #{endDate}
+      	<![CDATA[   
+         and to_char(sm.endDate, 'YYYY-MM-DD') <= #{endDate}
+        ]]>
       </if>
 
       <if test="ch_type != ''  and  ch_type != null ">

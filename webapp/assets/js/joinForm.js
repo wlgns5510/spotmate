@@ -177,9 +177,14 @@ $(".id-check").on("click", function() {
 		success : function(result){
 			if(result == 1) {
 				alert("중복된 아이디입니다");
+				$(".id-check").attr("style", "background-color:#a3a3a3; color:white;");
+				$(".id-check").text("중복확인");
+				$("#id_chk_status").val(1);
 				return;
 			} else if (result == 0) {
 				alert("사용가능한 아이디입니다.")
+				$(".id-check").attr("style", "background-color:#4454a1; color:white;");
+				$(".id-check").text("사용가능");
 				$("#id_chk_status").val(0);
 				return;
 			}

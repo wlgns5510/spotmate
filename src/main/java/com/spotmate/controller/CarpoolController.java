@@ -43,6 +43,8 @@ public class CarpoolController {
 		
 		
 		model.addAttribute("cMap", cMap);
+		
+		System.out.println(cMap.toString());
 
 		System.out.println("====================================");
 		System.out.println(cMap);

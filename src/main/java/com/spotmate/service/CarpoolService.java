@@ -81,6 +81,21 @@ public class CarpoolService {
 
 		Map<String, Object> cMap = new HashMap<String, Object>();
 		cMap.put("carpoolList", carpoolList);
+		for(int i=0;i<carpoolList.size();i++) {
+			if (carpoolList.get(i).getType().equals("seasonTicket")) {
+				carpoolList.get(i).setType("카풀 정기권");
+			} else if (carpoolList.get(i).getType().equals("carpool")) {
+				carpoolList.get(i).setType("카풀 1회성");
+			} else if (carpoolList.get(i).getType().equals("hitchhike")) {
+				carpoolList.get(i).setType("히치 하이크");
+			} else if (carpoolList.get(i).getType().equals("mate")) {
+				carpoolList.get(i).setType("메이트");
+			} else if (carpoolList.get(i).getType().equals("notice")) {
+				carpoolList.get(i).setType("공지사항");
+			} else if (carpoolList.get(i).getType().equals("event")) {
+				carpoolList.get(i).setType("이벤트");
+			}
+		}
 
 		cMap.put("prev", prev);
         cMap.put("next", next);
