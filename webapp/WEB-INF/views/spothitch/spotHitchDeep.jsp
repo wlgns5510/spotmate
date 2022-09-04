@@ -297,66 +297,68 @@
 	
 	function rideReq() {
 		var mateNo = $("#mateNo").val();
-		var chk = 0;
+		var chk = 0,
+		mateNo = $("#hitch"+mateNo).val();
+	$.ajax({
+		url : "${pageContext.request.contextPath}/chkResv",
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(mateNo),
+		dataType : "json",
+		async : false,
+		success : function(result) {
+			if (result == -1) {
+				chk = -1;
+			} else if (result == -2){
+				chk = -2;
+			} else {
+				chk = result;
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	if ( $(".reqPeople").val() == '' ) {
+		alert("인원 수를 지정한 다음 시도해주세요")
+		return;
+	} else if(chk == -1) {
+		alert("로그인 후 신청해주세요!")
+		return;
+	} else if (chk == -2) {
+		var hrVo = {};
+		hrVo.mateNo = mateNo;
+		hrVo.people = $(".reqPeople").val();
+		hrVo.canRide = $("#canRide"+index).val();
+		hrVo.point = $("#point"+index).val();
+		navigator.geolocation.getCurrentPosition(function(position) {
+			lat = position.coords.latitude, // 위도
+			lng = position.coords.longitude; // 경도
+		})
+		hrVo.lat = lat;
+		hrVo.lng = lng;
 		$.ajax({
-			url : "${pageContext.request.contextPath}/chkRide",
+			url : "${pageContext.request.contextPath}/rideReq",
 			type : "post",
 			contentType : "application/json",
-			data : JSON.stringify(mateNo),
+			data : JSON.stringify(hrVo),
 			dataType : "json",
-			async : false,
 			success : function(result) {
-				if (result == 1) {
-					chk = 1
+				console.log(result);
+				if (result != -1) {
+					$("#rideReq").text("신청 완료");
 				} else {
-					chk = -1;
+					alert("탑승 인원 초과입니다.");
 				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-		if ( $("#people").val() == '' ) {
-			alert("인원 수를 지정한 다음 시도해주세요")
-			return;
-		} else if(chk == 1) {
-			alert("이미 신청 하셨습니다")
-			return;
-		} else if(chk == -1) {
-			alert("로그인 후 시도해 주세요!");
-			return;
-		}
-		var lat,
-			lng,
-			hrVo = {};
-		if(navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function(position) {
-				lat = position.coords.latitude, // 위도
-				lng = position.coords.longitude, // 경도
-				hrVo.mateNo = mateNo;
-				hrVo.people = $("#people").val();
-				hrVo.point = $("#intFare").val();
-				hrVo.lat = lat;
-				hrVo.lng = lng;
-				$.ajax({
-					url : "${pageContext.request.contextPath}/rideReq",
-					type : "post",
-					contentType : "application/json",
-					data : JSON.stringify(hrVo),
-					dataType : "json",
-					success : function(result) {
-						if (result != -1) {
-							$("#rideReq").text("신청 완료");
-						} else {
-							alert("탑승 인원 초과입니다.");
-						}
-					},
-					error : function(XHR, status, error) {
-						console.error(status + " : " + error);
-					}
-				});
-			})
-		}
+	} else {
+		alert("이미 신청 하셨습니다")
+		return;
+	}
 		
 	}
 </script>
