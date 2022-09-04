@@ -75,9 +75,7 @@ public class UserController {
 	   if( nickname != null ) {
 		   uService.insertKakao(nickname, email, authUser.getNo());
 	   }
-	   System.out.println(authUser.toString());
 	   String url = (String)session.getAttribute("prevPage");
-	   System.out.println(authUser);
 	   if(authUser !=null && url !=null) {
 		   session.setAttribute("authUser", authUser);
 		   return "redirect:"+url;
@@ -85,6 +83,8 @@ public class UserController {
 		   session.setAttribute("authUser", authUser);
 		   //return "redirect:/driver";
 		   return "redirect:/index";
+	   }else if (authUser == null) {
+		   return "redirect:/loginForm?result=fail";
 	   }
 	   
 	   //model.addAttribute("authUser", uService.loginOk(userVo));
