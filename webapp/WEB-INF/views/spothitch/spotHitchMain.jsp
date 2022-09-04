@@ -424,8 +424,9 @@ $(document).ready(function() {
 				data : JSON.stringify(hrVo),
 				dataType : "json",
 				success : function(result) {
-					console.log(result);
-					if (result != -1) {
+					if (result == -3) {
+						alert("사용 가능한 포인트가 부족합니다.")
+					} else if (result != -1) {
 						$("#canRide"+index).val(result);
 						$("#people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
 						$("#rideReq"+index).text("신청 완료");
