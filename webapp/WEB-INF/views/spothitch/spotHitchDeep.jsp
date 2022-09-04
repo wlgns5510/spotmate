@@ -296,9 +296,7 @@
 	}
 	
 	function rideReq() {
-		var mateNo = $("#mateNo").val();
-		var chk = 0,
-		mateNo = $("#hitch"+mateNo).val();
+		var chk = 0;
 	$.ajax({
 		url : "${pageContext.request.contextPath}/chkResv",
 		type : "post",
