@@ -41,7 +41,9 @@ public class HitchService {
 		hDao.updateResvPeople(hrVo);
 		hDao.updateReserv(hrVo);
 		hDao.usePoint(hrVo);
+		System.out.println("hService: "+hrVo);
 		int cnt = hDao.chkRide(hrVo.getMateNo());
+		System.out.println("hservice: "+cnt);
 		return cnt;
 	}
 	//신청한게 있나 없나 확인
