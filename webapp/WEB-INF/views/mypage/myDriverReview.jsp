@@ -64,15 +64,15 @@
 				<p class="rfbp">총 결제 포인트</p>
 			</div>
 			<div class="review-in-box">
-				<p class="rbp">${map.riVo.splace}</p>
-				<p class="rbp2">${map.riVo.eplace}</p>
-				<p class="rbp">${map.riVo.people}명</p>
-				<p class="rbp2">${map.riVo.startTime}</p>
-				<p class="rbp rbpc">${map.riVo.convertPoint}</p>
+				<p class="rbp">${map.riVo.riVo.splace}</p>
+				<p class="rbp2">${map.riVo.riVo.eplace}</p>
+				<p class="rbp">${map.riVo.riVo.people}명</p>
+				<p class="rbp2">${map.riVo.riVo.startTime}</p>
+				<p class="rbp rbpc">${map.riVo.riVo.convertPoint}</p>
 			</div>
 			<div class="review-in-box review-last-box">
 				<img class="review-img" src="/assets/images/map_line_02.png">
-				<span class="rbpc">도착지까지 소요시간 ${map.riVo.duration}, ${map.riVo.distance}</span>
+				<span class="rbpc">도착지까지 소요시간 ${map.riVo.riVo.duration}, ${map.riVo.riVo.distance}</span>
 			</div>
 		</div>
 		<div class="review-second-box">
@@ -85,18 +85,40 @@
 			<p class="rbp">탑승유저 평가 *</p>
 			<p class="rbp">탑승자의 매너 점수를 평가해주세요</p>
 			<div class="score-box">
-				<div class="score">
-					<input class="slider" type="range" min="0" max="10" step="1" value="0" >
-					<input type="hidden" name="star" value="" id="rs">
-					<input type="hidden" name="resvNo" value="${map.riVo.resvNo}">
-					<div class="foreground">★★★★★</div>
-					<div class="background">☆☆☆☆☆</div>
-				</div>
-				<span class="display">0점</span>
+				<c:choose>
+					<c:when test="${param.type=='read'}">
+						<c:forEach items="${map.riVo.star}" var="star">
+							<div class="score">
+								<input class="slider" type="range" min="0" max="10" step="1" value="${star*20}" >
+								<input type="hidden" name="star" value="" id="rs">
+								<input type="hidden" name="resvNo" value="${map.riVo.riVo.resvNo}">
+								<div class="foreground">★★★★★</div>
+								<div class="background">☆☆☆☆☆</div>
+							</div>
+							<span class="display">${star}점</span>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<div class="score">
+							<input class="slider" type="range" min="0" max="10" step="1" value="0" >
+							<input type="hidden" name="star" value="" id="rs">
+							<input type="hidden" name="resvNo" value="${map.riVo.resvNo}">
+							<div class="foreground">★★★★★</div>
+							<div class="background">☆☆☆☆☆</div>
+						</div>
+						<span class="display">0점</span>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
+		<c:choose>
+			<c:when test="${param.type=='read'}">
+			</c:when>
+			<c:otherwise>
+				<button type="submit" class="review-btn">등록하기</button>
+			</c:otherwise>
+		</c:choose>
 		<div>
-			<button type="submit" class="review-btn">등록하기</button>
 		</div>
 	</form>
 </div>

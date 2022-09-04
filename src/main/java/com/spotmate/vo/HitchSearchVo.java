@@ -2,6 +2,7 @@ package com.spotmate.vo;
 
 public class HitchSearchVo {
 	private String detailOpt, splace, eplace;
+	private String nosmoke, femaleDriver, pet, phoneCharge, trunk;
 	private int people;
 	private double lat, lng;
 	
@@ -16,6 +17,56 @@ public class HitchSearchVo {
 		this.people = people;
 		this.lat = lat;
 		this.lng = lng;
+	}
+	
+	
+	public String getNosmoke() {
+		return nosmoke;
+	}
+
+
+	public void setNosmoke(String nosmoke) {
+		this.nosmoke = nosmoke;
+	}
+
+
+	public String getFemaleDriver() {
+		return femaleDriver;
+	}
+
+
+	public void setFemaleDriver(String femaleDriver) {
+		this.femaleDriver = femaleDriver;
+	}
+
+
+	public String getPet() {
+		return pet;
+	}
+
+
+	public void setPet(String pet) {
+		this.pet = pet;
+	}
+
+
+	public String getPhoneCharge() {
+		return phoneCharge;
+	}
+
+
+	public void setPhoneCharge(String phoneCharge) {
+		this.phoneCharge = phoneCharge;
+	}
+
+
+	public String getTrunk() {
+		return trunk;
+	}
+
+
+	public void setTrunk(String trunk) {
+		this.trunk = trunk;
 	}
 
 

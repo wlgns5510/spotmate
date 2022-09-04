@@ -79,16 +79,38 @@
 			<p class="rbp">드라이버 평가 *</p>
 			<p class="rbp">운전자의 매너 점수를 평가해주세요</p>
 			<div class="score-box">
-				<div class="score">
-					<input class="slider" type="range" min="0" max="10" step="1" value="0" >
-					<input type="hidden" name="star" value="" id="rs">
-					<input type="hidden" name="resvNo" value="${riVo.resvNo}">
-					<div class="foreground">★★★★★</div>
-					<div class="background">☆☆☆☆☆</div>
-				</div>
-				<span class="display">0점</span>
+				<c:choose>
+					<c:when test="${param.type=='read'}">
+						<div class="score">
+							<input class="slider" type="range" min="0" max="10" step="1" value="${riVo.STAR*20}" >
+							<input type="hidden" name="star" value="" id="rs">
+							<input type="hidden" name="resvNo" value="${riVo.resvNo}">
+							<div class="foreground">★★★★★</div>
+							<div class="background">☆☆☆☆☆</div>
+						</div>
+						<span class="display">${riVo.STAR}점</span>
+					</c:when>
+					<c:otherwise>
+						<div class="score">
+							<input class="slider" type="range" min="0" max="10" step="1" value="0" >
+							<input type="hidden" name="star" value="" id="rs">
+							<input type="hidden" name="resvNo" value="${riVo.resvNo}">
+							<div class="foreground">★★★★★</div>
+							<div class="background">☆☆☆☆☆</div>
+						</div>
+						<span class="display">0점</span>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
+		<c:choose>
+		<c:when test="${param.type=='read'}">
+		<div class="review-third-box">
+			<p class="rbp">탑승 후기를 작성해주세요 *</p>
+			<textarea class="rhb-ta" name="content">${riVo.CONTENT}</textarea>
+		</div>
+		</c:when>
+		<c:otherwise>
 		<div class="review-third-box">
 			<p class="rbp">탑승 후기를 작성해주세요 *</p>
 			<textarea class="rhb-ta" name="content" placeholder="너무 좋았어요!"></textarea>
@@ -96,6 +118,9 @@
 		<div>
 			<button type="submit" class="review-btn">등록하기</button>
 		</div>
+		</c:otherwise>
+		</c:choose>
+		
 	</form>
 </div>
 
