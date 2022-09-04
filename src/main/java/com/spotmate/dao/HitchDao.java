@@ -54,6 +54,13 @@ public class HitchDao {
 		ss.insert("spotmate.makereserv", hrVo);
 	}
 	
+	public int getTotalPoint(int userNo) {
+	      
+	      int totalPoint = ss.selectOne("mypagej.selectTotalPoint", userNo);
+	      
+	      return totalPoint;
+	   }
+	
 	public void usePoint(HitchReservVo hrVo) {
 		ss.insert("spotmate.usePoint", hrVo);
 	}

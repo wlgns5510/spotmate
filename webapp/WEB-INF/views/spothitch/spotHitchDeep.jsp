@@ -345,7 +345,9 @@
 			dataType : "json",
 			success : function(result) {
 				console.log(result);
-				if (result != -1) {
+				if (result == -3) {
+					alert("사용가능한 포인트가 부족합니다.")
+				} else if (result != -1) {
 					$("#rideReq").text("신청 완료");
 				} else {
 					alert("탑승 인원 초과입니다.");
