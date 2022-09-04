@@ -300,13 +300,13 @@ $("#finish").on("click", function() {
 			$(".dis").remove();
 			if( $("#s-date").val() != $("#e-date").val() ) {
 				var month = 0;
+				var day = parseInt($("#e-date").val().split("-")[2]) - parseInt($("#s-date").val().split("-")[2]);
 				if ( parseInt($("#e-date").val().split("-")[1]) !=  parseInt($("#s-date").val().split("-")[1])) {
 					month = parseInt($("#e-date").val().split("-")[1]) - parseInt($("#s-date").val().split("-")[1]);
+					day = month*30 - day;
 				} else {
 					month = 0;
 				}
-				var day = parseInt($("#e-date").val().split("-")[2]) - parseInt($("#s-date").val().split("-")[2]);
-				day = month*30 - day;
 				var point = parseInt(result.totalFare.replace(",", "").replace("P", ""))*day;
 				document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트 : &nbsp;</span><input type='hidden' name='fare' id='fare' value='"+point+"'>"+point+"P</div>";
 			} else {
