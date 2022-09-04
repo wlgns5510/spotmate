@@ -142,8 +142,7 @@
 			</div>
 
 			<img class="pathPicto" src="/assets/images/map_line_02.png"> <span
-				class="pathTime">도착지까지 예상 소요 시간 ${cVoMap.cVo.duration},
-				${cVoMap.cVo.distance}</span>
+				class="pathTime">예상 소요 시간 : ${cVoMap.cVo.duration}, 거리 : ${cVoMap.cVo.distance}</span>
 
 
 		</div>

@@ -140,7 +140,25 @@ public class HitchDao {
 	}
 	
 	public List<HitchSearchResultVo> searchList(HitchSearchVo hsVo) {
-		return ss.selectList("spotmate.searchlist", hsVo);
+		String[] arr = hsVo.getDetailOpt().split(",");
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i].equals("비흡연자")) {
+				hsVo.setNosmoke(arr[i]);
+			} else if (arr[i].equals("여성드라이버")) {
+				hsVo.setFemaleDriver(arr[i]);
+			} else if (arr[i].equals("반려동물")) {
+				hsVo.setPet(arr[i]);
+			} else if (arr[i].equals("충전기 사용 가능")) {
+				hsVo.setPhoneCharge(arr[i]);
+			} else if (arr[i].equals("트렁크 사용 가능")) {
+				hsVo.setTrunk(arr[i]);
+			}
+		}
+		List<HitchSearchResultVo> hsrL = ss.selectList("spotmate.searchlist", hsVo);
+		for(int j=0;j<hsrL.size();j++) {
+			hsrL.get(j).setLatlng(ss.selectOne("spotmate.getLatlng", hsrL.get(j).getMateNo()));
+		}
+		return hsrL;
 	}
 	
 	public void lks() {
