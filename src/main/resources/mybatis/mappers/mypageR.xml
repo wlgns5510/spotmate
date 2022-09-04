@@ -1127,5 +1127,22 @@
 			#{resvNo}
 		)
 	</insert>
+	
+	<select id="getReview" parameterType="map" resultType="map">
+		select star,
+		    content
+		from userReview ur, reservation r, users u
+		where ur.resvno = r.no
+		and u.no = r.userNo
+		and r.userNo = #{userNo}
+		and ur.resvNo = #{resvNo}
+	</select>
+	
+	<select id="getDriverReview" parameterType="map" resultType="double">
+		select star
+		from driverReview
+		where resvNo = #{resvNo}
+		and userNo = #{userNo}
+	</select>
 
 </mapper>

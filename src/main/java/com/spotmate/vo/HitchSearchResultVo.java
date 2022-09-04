@@ -2,12 +2,12 @@ package com.spotmate.vo;
 
 public class HitchSearchResultVo {
 	
-	private String eplace1, latlng, convertPoint, nowAddr;
+	private String eplace1, latlng, convertPoint, nowAddr, name;
 	private int point, people, mateNo;
 	
 	public HitchSearchResultVo() {}
 	
-	public HitchSearchResultVo(String eplace1, String latlng, int point, int people, int mateNo, String convertPoint, String nowAddr) {
+	public HitchSearchResultVo(String eplace1, String name, String latlng, int point, int people, int mateNo, String convertPoint, String nowAddr) {
 		this.point = point;
 		this.eplace1 = eplace1;
 		this.latlng = latlng;
@@ -17,7 +17,14 @@ public class HitchSearchResultVo {
 		this.nowAddr = nowAddr;
 	}
 	
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getConvertPoint() {
 		return convertPoint;

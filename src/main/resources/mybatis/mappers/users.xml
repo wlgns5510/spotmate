@@ -53,6 +53,14 @@
 		where id = #{id}
 	</select>
 	
+	<select id="getUserInfo" parameterType="int" resultType="userVo">
+		select name,
+			gender,
+			birth
+		from users
+		where no = #{userNo}
+	</select>
+	
 	<select id="kakaoLogin" parameterType="hashmap" resultType="userVo">
 		select u.no no
 				,id
@@ -67,8 +75,7 @@
 	<update id="insertKakao" parameterType="map">
 		update users
 		set kakaoEmail = #{email}
-		where name = #{nickname}
-		and no = #{userNo}
+		where no = #{userNo}
 	</update>
 
 </mapper>

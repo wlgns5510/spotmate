@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.service.MyQnaService;
@@ -133,11 +134,6 @@ public class MypageRController {
 		return "/mypage/myReservationDriverMain";
 	}
 	
-	@RequestMapping(value = "/review", method = { RequestMethod.GET, RequestMethod.POST })
-	public String review(Model model) {
-		return "/mypage/myReview";
-	}
-	
 	@ResponseBody
 	@RequestMapping(value = "/endResv", method = { RequestMethod.GET, RequestMethod.POST })
 	public int endResv(@RequestBody int mateNo) {
@@ -147,8 +143,14 @@ public class MypageRController {
 	}
 	
 	@RequestMapping(value = "/userReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String userReview(@PathVariable int no, Model model) {
-		model.addAttribute("riVo", mService.forReviewInfo(no));
+	public String userReview(@PathVariable int no, Model model,
+			 @RequestParam(value = "type", required = false) String type) {
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if(type!=null) {
+			model.addAttribute("riVo", mService.forReviewInfo(no, authUser.getNo()));
+		} else {
+			model.addAttribute("riVo", mService.forReviewInfo(no));
+		}
 		return "/mypage/myUserReview";
 	}
 	
@@ -159,11 +161,17 @@ public class MypageRController {
 	}
 	
 	@RequestMapping(value = "/driverReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String driverReview(@PathVariable int no, Model model) {
-		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+	public String driverReview(@PathVariable int no, Model model,
+			@RequestParam(value = "type", required = false) String type) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("pList", mService.getPassengerList(no, authUser.getNo()));
-		map.put("riVo", mService.forReviewInfo(no));
+		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		int userNo = authUser.getNo();
+		map.put("pList", mService.getPassengerList(no, userNo));
+		if(type!=null) {
+			map.put("riVo", mService.forDriverReviewInfo(no));
+		} else {
+			map.put("riVo", mService.forReviewInfo(no));
+		}
 		model.addAttribute("map", map);
 		return "/mypage/myDriverReview";
 	}

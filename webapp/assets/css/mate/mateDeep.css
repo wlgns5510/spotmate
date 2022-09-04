@@ -1,15 +1,3 @@
-
-
-.clearfix:before, .clearfix:after {
-	display: block;
-	content: "";
-	line-height: 0;
-}
-
-.clearfix:after {
-	clear: both;
-}
-
 .mateDeep_wrap {
 	background: rgba(255, 255, 255, 1);
 	margin: 0px auto;
@@ -18,6 +6,7 @@
 .mate-deep-banner {
 	width: 1920px;
 	margin: 0px auto;
+	
 }
 
 .mateDeep_img1 {
@@ -67,6 +56,7 @@
 	/*   width: 1920px; */
 	height: 230px;
 	background: rgba(245, 245, 245, 1);
+	 background-image: url("/assets/images/content_banner_login.png");	
 }
 
 .mate-deep-banner-l-sec {
@@ -75,21 +65,21 @@
 }
 
 .mate-deep-banner-l-sec p {
-	color: rgba(30, 30, 30, 1);
+	color:white;
 	font-family: Montserrat;
 	font-weight: 600;
 	font-size: 32px;
 }
 
 .mate-deep-banner-l-sec span {
-	color: rgba(30, 30, 30, 1);
+	color:white;
 	font-family: Noto Sans;
 	font-weight: 600;
 	font-size: 32px;
 }
 
 .mateDeep_banner1 h3 {
-	color: rgba(30, 30, 30, 1);
+	color:white;
 	font-family: Noto Sans;
 	font-weight: 600;
 	font-size: 20px;

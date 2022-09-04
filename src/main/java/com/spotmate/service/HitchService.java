@@ -23,9 +23,16 @@ public class HitchService {
 	private HitchDao hDao;
 	private ConvertPoint cp = new ConvertPoint();
 	
+	public void test() {
+		hDao.lks();
+	}
+	
 	
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
-	public int chkRide(int mateNo, int userNo) {
+	public int chkResv(int mateNo, int userNo) {
+		if( hDao.chkResv(mateNo, userNo) == null ) {
+			return -2;
+		}
 		return hDao.chkResv(mateNo, userNo);
 	}
 	
@@ -34,7 +41,9 @@ public class HitchService {
 		hDao.updateResvPeople(hrVo);
 		hDao.updateReserv(hrVo);
 		hDao.usePoint(hrVo);
+		System.out.println("hService: "+hrVo);
 		int cnt = hDao.chkRide(hrVo.getMateNo());
+		System.out.println("hservice: "+cnt);
 		return cnt;
 	}
 	//신청한게 있나 없나 확인
