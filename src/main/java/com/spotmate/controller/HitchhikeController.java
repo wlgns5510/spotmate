@@ -153,7 +153,10 @@ public class HitchhikeController {
 	public int rideReq(@RequestBody HitchReservVo hrVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		hrVo.setUserNo(authUser.getNo());
-		return hService.makeReserv(hrVo);
+		System.out.println("hController: "+hrVo);
+		int cnt =  hService.makeReserv(hrVo);
+		System.out.println(cnt);
+		return cnt;
 	}
 	
 	@ResponseBody

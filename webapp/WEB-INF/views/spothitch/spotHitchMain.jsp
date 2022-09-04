@@ -424,6 +424,7 @@ $(document).ready(function() {
 				data : JSON.stringify(hrVo),
 				dataType : "json",
 				success : function(result) {
+					console.log(result);
 					if (result != -1) {
 						$("#canRide"+index).val(result);
 						$("#people"+index).html("<span>탑승 가능한 인원수</span><p>"+result+"</p>");
