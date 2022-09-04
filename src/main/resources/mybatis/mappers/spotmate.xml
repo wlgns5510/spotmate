@@ -9,6 +9,7 @@
 		where s.carNo = c.no
 		and type='hitchhike'
 		and c.userNo = #{userNo}
+		and status = 'open'
 	</select>
 	
 	<select id="searchlist" parameterType="hsVo" resultType="hsrVo">
