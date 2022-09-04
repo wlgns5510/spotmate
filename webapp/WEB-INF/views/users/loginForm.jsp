@@ -79,12 +79,26 @@
                     <form action="/loginOk" method="get">
                         <!-- 아이디 -->
                         <div class="form_group">
-                            <input type="text" id="input_uid" name="id" value="" placeholder="아이디를 입력해주세요">
+                        <c:choose>
+	                        <c:when test="${param.result!='fail'}">
+	                            <input type="text" id="input_uid" name="id" value="" placeholder="아이디를 입력해주세요">
+	                        </c:when>
+	                        <c:otherwise>
+	                        	<input style="border:1px solid red;" type="text" id="input_uid" name="id" value="" placeholder="아이디또는 비밀번호가 틀렸습니다.">
+	                        </c:otherwise>
+                        </c:choose>
                         </div>
 
                         <!-- 비밀번호 -->
                         <div class="form_group">
-                            <input type="password" id="input_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
+	                        <c:choose>
+		                        <c:when test="${param.result!='fail'}">
+		                            <input type="password" id="input_pass" name="pw" value="" placeholder="비밀번호를 입력해주세요">
+		                        </c:when>
+		                        <c:otherwise>
+		                        	<input style="border:1px solid red;" type="password" id="input_pass" name="pw" value="">
+		                        </c:otherwise>
+	                        </c:choose>
                         </div>
                         
 
@@ -102,6 +116,15 @@
                         	<p style="margin: 30px 0px 0px 0px; color:#4454a1;">첫 카카오 로그인시 로그인이 필요합니다</p>
                         	<input type="hidden" name="nickname" value="${kakaoInfo.nickname}">
                         	<input type="hidden" name="email" value="${kakaoInfo.email}">
+                        	<input type="hidden" name="birth" value="${kakaoInfo.birth}">
+                        	<input type="hidden" name="gender" value="${kakaoInfo.gender}">
+                        </c:if>
+                         <c:if test="${param.result=='kakaofail'}">
+                        	<p style="margin: 30px 0px 0px 0px; color:red;">카카오 로그인 정보와 다릅니다</p>
+                        	<input type="hidden" name="nickname" value="${kakaoInfo.nickname}">
+                        	<input type="hidden" name="email" value="${kakaoInfo.email}">
+                        	<input type="hidden" name="birth" value="${kakaoInfo.birth}">
+                        	<input type="hidden" name="gender" value="${kakaoInfo.gender}">
                         </c:if>
                             <button type="submit" id="btn_submit">로그인</button>
                         </div>

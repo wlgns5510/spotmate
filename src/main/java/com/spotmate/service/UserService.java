@@ -42,11 +42,23 @@ public class UserService {
 		return authUser;
 	}
 	
-	public void insertKakao(String nickname, String email, int userNo) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("nickname", nickname);
-		map.put("email", email);
-		map.put("userNo", userNo);
-		userDao.insertKakao(map);
+	public String insertKakao(String nickname, String email, String birth, String gender, int userNo) {
+		UserVo uVo = userDao.getUserInfo(userNo);
+		String month = uVo.getBirth().split("/")[1]; 
+		if (uVo.getBirth().split("/")[1].length() == 1) {
+			month = "0"+uVo.getBirth().split("/")[1]; 
+		}
+		String day = uVo.getBirth().split("/")[2];
+		if (uVo.getBirth().split("/")[2].length() == 1) {
+			day = "0"+uVo.getBirth().split("/")[2];
+		}
+		if( (month+day).equals(birth) && nickname.equals(uVo.getName()) && gender.equals(uVo.getGender())) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("email", email);
+			map.put("userNo", userNo);
+			userDao.insertKakao(map);
+			return "success";
+		}
+		return null;
 	}
 }

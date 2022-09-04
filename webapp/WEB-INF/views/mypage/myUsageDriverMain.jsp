@@ -160,7 +160,7 @@
 								</c:when>
 								<c:otherwise>
 								<td>
-									<button type="button" class="btn_review" >작성완료</button>
+									<button type="button" class="btn_review" onclick="msgRead(${ui.resvNo})">작성완료</button>
 								</td>
 								</c:otherwise>
 								</c:choose>
@@ -215,6 +215,10 @@ document.getElementById("endDate").value = new Date(new Date().getTime() - (new 
 
 function msg(resvNo) {
  window.open("/driverReview/"+resvNo, "child", "width=1350, height=820, left=300, top=100");
+}
+
+function msgRead(resvNo) {
+ window.open("/driverReview/"+resvNo+"?type=read", "child", "width=1350, height=820, left=300, top=100");
 }
 $(".review-btn").on("click", function() {
 	opener.$(".btn_review").text("작성완료");

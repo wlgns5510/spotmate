@@ -33,6 +33,17 @@ public class HitchhikeController {
 	@Autowired
 	private HttpSession ss;
 	
+	@RequestMapping(value="/testtest", method={RequestMethod.GET, RequestMethod.POST})
+	public void testtest() {
+		hService.test();
+	}
+	
+	@RequestMapping(value="/mobileHitch", method={RequestMethod.GET, RequestMethod.POST})
+	public String mhitch() {
+		return "/spothitch/mobileHitchMain";
+	}
+	
+	
 	@RequestMapping(value="/spotHitchhike", method={RequestMethod.GET, RequestMethod.POST})
 	public String hitch() {
 		return "/spothitch/spotHitchMain";
@@ -100,10 +111,11 @@ public class HitchhikeController {
 	
 	//탑승가능한 상태인지 아닌지(내가 신청하기 직전에 다른 사람이 눌러서 인원이 초과될 수 있으니 확인)
 	@ResponseBody
-	@RequestMapping(value="/chkRide", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/chkResv", method= {RequestMethod.GET, RequestMethod.POST})
 	public int chkRide(@RequestBody int mateNo) {
 		if( ss.getAttribute("authUser") != null ) {
-			return hService.chkRide(mateNo);
+			UserVo authUser = (UserVo)ss.getAttribute("authUser");
+			return hService.chkResv(mateNo, authUser.getNo());
 		}
 		return -1;
 	}
@@ -138,15 +150,18 @@ public class HitchhikeController {
 	
 	@ResponseBody
 	@RequestMapping(value="/rideReq", method={RequestMethod.GET, RequestMethod.POST})
-	public int rideReq(@RequestBody HitchReservVo hrVo, HttpSession ss) {
+	public int rideReq(@RequestBody HitchReservVo hrVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		hrVo.setUserNo(authUser.getNo());
-		return hService.makeReserv(hrVo);
+		System.out.println("hController: "+hrVo);
+		int cnt =  hService.makeReserv(hrVo);
+		System.out.println(cnt);
+		return cnt;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/cancel", method={RequestMethod.GET, RequestMethod.POST})
-	public int cancel(@RequestBody int mateNo, HttpSession ss) {
+	public int cancel(@RequestBody int mateNo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		return hService.cancelReserv(authUser.getNo(), mateNo);
 	}

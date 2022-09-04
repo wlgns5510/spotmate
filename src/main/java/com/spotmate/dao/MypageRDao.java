@@ -1,5 +1,6 @@
 package com.spotmate.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -148,7 +149,7 @@ public class MypageRDao {
 	}
 	
 	public int getResvNo(Map<String, Object> map) {
-		return ss.insert("mypageR.getResvNo", map);
+		return ss.selectOne("mypageR.getResvNo", map);
 	}
 	
 	public void driverGetPoint(Map<String, Object> map) {
@@ -177,6 +178,29 @@ public class MypageRDao {
 	
 	public ReviewInfoVo forReviewInfo(Map<String, Object> map) {
 		return ss.selectOne("mypageR.forReviewInfo", map);
+	}
+	
+	public Map<String, Object> getReview(int resvNo, int userNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("resvNo", resvNo);
+		map.put("userNo", userNo);
+		return ss.selectOne("mypageR.getReview", map);
+	}
+	
+	public Map<String, Object> getDriverReview(int resvNo, List<Integer> reviewdList) {
+		Map<String, Object> driverReviewed = new HashMap<>();
+		List<Double> star = new ArrayList<>();
+		List<Integer> user = new ArrayList<>();
+		for(int i=1;i<reviewdList.size()+1;i++) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("resvNo", resvNo);
+			map.put("userNo", reviewdList.get(i-1));
+			star.add(ss.selectOne("mypageR.getDriverReview", map));
+			user.add(reviewdList.get(i-1));
+		}
+		driverReviewed.put("star", star);
+		driverReviewed.put("user", user);
+		return driverReviewed;
 	}
 	
 	public void insertUserReview(ReviewVo rVo) {

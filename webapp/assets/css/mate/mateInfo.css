@@ -12,9 +12,10 @@
 /*   width: 1920px; */
   height: 230px;
   background-color: #e8e7e7;
+  background-image: url("/assets/images/content_banner_login.png");	
  }
 .mateInfo_banner1 h2 {
-  color: rgba(30,30,30,1);
+ color:white;
   font-family: Noto Sans;
   font-size: 32px; 
   font-weight: 600;
@@ -22,7 +23,7 @@
   margin: 110px 0px 0px 30px;
 }
 .mateInfo_banner1 h3 {
-  color: rgba(30,30,30,1);
+ color:white;
   font-family: Noto Sans;
   font-weight: 600;
   font-size: 20px;

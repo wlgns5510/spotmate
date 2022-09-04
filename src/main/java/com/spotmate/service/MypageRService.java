@@ -222,6 +222,7 @@ public class MypageRService {
 		map.put("userNo", userNo);
 		int count = mDao.endResv(map);
 		int resvNo = mDao.getResvNo(map);
+		System.out.println(resvNo);
 		map.put("resvNo", resvNo);
 		mDao.driverGetPoint(map);
 		return count;
@@ -238,6 +239,37 @@ public class MypageRService {
 		riVo.setConvertPoint(cp.convertPoint(riVo.getPoint()));
 		return riVo;
 	}
+	
+	public Map<String, Object> forReviewInfo(int resvNo, int userNo) {
+		ConvertPoint cp = new ConvertPoint();
+		Map<String, Object> map = new HashMap<>();
+		map.put("resvNo", resvNo);
+		map.put("mateNo", mDao.getMateNoByResvNo(resvNo));
+		ReviewInfoVo riVo = mDao.forReviewInfo(map);
+		Map<String, Object> reviewReadMap =  mDao.getReview(resvNo, userNo);
+		riVo.setSplace(riVo.getFullPlace().split(",")[0]);
+		riVo.setEplace(riVo.getFullPlace().split(",")[1]);
+		riVo.setConvertPoint(cp.convertPoint(riVo.getPoint()));
+		reviewReadMap.put("riVo", riVo);
+		return reviewReadMap;
+	}
+	
+	public Map<String, Object> forDriverReviewInfo(int resvNo) {
+		ConvertPoint cp = new ConvertPoint();
+		Map<String, Object> map = new HashMap<>();
+		List<Integer> ReviewedPassengerList = mDao.getReviewedPassengerList(resvNo);
+		Map<String, Object> driverReview = mDao.getDriverReview(resvNo, ReviewedPassengerList);
+		map.put("resvNo", resvNo);
+		map.put("mateNo", mDao.getMateNoByResvNo(resvNo));
+		ReviewInfoVo riVo = mDao.forReviewInfo(map);
+		riVo.setSplace(riVo.getFullPlace().split(",")[0]);
+		riVo.setEplace(riVo.getFullPlace().split(",")[1]);
+		riVo.setConvertPoint(cp.convertPoint(riVo.getPoint()));
+		driverReview.put("riVo", riVo);
+		System.out.println(driverReview.get("star"));
+		return driverReview;
+	}
+	
 	
 	public void insertUserReview (ReviewVo rVo) {
 		mDao.insertUserReview(rVo);
@@ -275,6 +307,12 @@ public class MypageRService {
 			mDao.afterInsertDriverReview(rVo.getResvNo());
 		}
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	private void setMl(List<MyUsageVo> mL) {

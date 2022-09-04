@@ -5,9 +5,8 @@
 <footer class="footer_wrapper" id="footer">
    <div class="footer_banner swiper-container">
       <ul class="swiper-wrapper">
-         <li class="swiper-slide"><a href="#"><img src="/assets/images/common/footer_slide01.png"></a></li>
-         <li class="swiper-slide"><a href="#"><img src="/assets/images/common/footer_slide02.png"></a></li>
-         <li class="swiper-slide"><a href="#"><img src="/assets/images/common/footer_slide03.png"></a></li>
+         <li class="swiper-slide"><a href="#"><img src="/assets/images/event_b3.png"></a></li>
+         <li class="swiper-slide"><a href="#"><img src="/assets/images/event_b4.png"></a></li>
       </ul>
    </div>
    <div class="inner">

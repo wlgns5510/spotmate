@@ -48,6 +48,7 @@
 	height: 190px;
 	background: rgba(232, 231, 231, 1);
 	text-align: center;
+	background-image: url("/assets/images/content_banner_login.png");
 }
 
 /*메뉴박스1*/
@@ -56,11 +57,11 @@
 	height: 68px;
 	position: relative;
 	top: 51px;
-	background: rgba(255, 255, 255, 1);
+	background:#e8e7e7;
 	border: 1px solid rgba(217, 217, 217, 1);
 	display: inline-block;
 	padding: 15px;
-	background: rgba(255, 255, 255, 1);
+
 }
 
 .myPage_topNav>.box1>.box1_box {
@@ -108,7 +109,7 @@
 .myPage_topNav>.box2 {
 	width: 160px;
 	height: 68px;
-	background: rgba(255, 255, 255, 1);
+	background:#e8e7e7;
 	border: 1px solid rgba(217, 217, 217, 1);
 	display: inline-block;
 	padding: 15px;
@@ -153,7 +154,7 @@
 .myPage_topNav>.box3 {
 	width: 160px;
 	height: 68px;
-	background: rgba(255, 255, 255, 1);
+	background:#e8e7e7;
 	border: 1px solid rgba(217, 217, 217, 1);
 	display: inline-block;
 	padding: 15px;
@@ -544,6 +545,10 @@
 	margin-bottom: 100px;
 	cursor: pointer;
 }
+.DForm_enrollbtnQna > span{
+	display:inline-block;
+	margin:20px;	
+}
 
 
 .DForm_enrollbtn {
@@ -556,7 +561,7 @@
 	font-weight: SemiBold;
 	font-size: 24px;
 	margin-top: 100px;
-	margin-bottom: 100px; margin-left : 333px; display : inline-block;
+	margin-bottom: 100px; margin-left : 277px; display : inline-block;
 	text-align: center;
 	cursor: pointer;
 	display: inline-block;

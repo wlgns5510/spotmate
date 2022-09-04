@@ -143,12 +143,12 @@ public class MypageJDao {
 		return count;
 	}
 	
-	//총 별점평균가져오기
-	public float getavgStar(int userVo) {
+	//유저 별점평균가져오기
+	public float getavgStar(int userNo) {
 		System.out.println("MypageJService > getvgStar");
 		
-		float avgStar = sqlSession.selectOne("mypagej.selectavgStar", userVo);
-		
+		float avgStar = sqlSession.selectOne("mypagej.selectavgStar", userNo);
+			System.out.println(avgStar);
 		return avgStar;
 	}
 	

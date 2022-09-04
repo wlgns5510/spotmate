@@ -2,12 +2,13 @@
 	height:230px;
 	background-color: #e8e7e7;
 	position:relative;
+	background-image: url("/assets/images/content_banner_login.png");	
 }
 
 
 .driver-MainText1{
   width: 660px;
-  color: rgba(30,30,30,1);
+  color:white;
   font-family: Montserrat;
   font-weight:700;
   font-size: 32px;
@@ -20,7 +21,7 @@
 
 .driver-MainText2{
   width: 500px;
-  color: rgba(30,30,30,1);
+  color:white;
   top: 303px;
   left: 975px;
   font-family: Montserrat;
