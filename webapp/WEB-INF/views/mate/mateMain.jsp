@@ -127,7 +127,7 @@
 		<div class="mateListAll clear">		
 			<c:forEach items="${mLMap.mateList}" var="mateVo" varStatus="status">
 				<div class="mateList">
-					<a href="/mateDeep/${mateVo.mateNo}">						
+					<a href="/mateDeep/${mateVo.mateNo}?ePlace=${param.ePlace}&sDate=${param.sDate}&eDate=${param.eDate}&smPeople=${param.smPeople}<c:forEach items="${paramValues.mateContactList}" var="item">&mateContactList=${item}</c:forEach>">						
 						<img src="/assets/images/mate_imgbox/${mateVo.randomImgNo}.png" class="matePicture">																										
 					</a><br>
 					<span class="driverName">Driver ${mateVo.name}</span>

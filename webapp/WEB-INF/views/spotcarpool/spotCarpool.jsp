@@ -179,7 +179,7 @@
 								<td>${carpoolVo.type}</td>
 								<td>${carpoolVo.splace}</td>
 								<td>${carpoolVo.eplace}</td>
-								<td><fmt:formatNumber value="${carpoolVo.point}" pattern="#,###" /> P</td>
+								<td>${carpoolVo.point}</td>
 								<td>${carpoolVo.id}</td>
 								<td><a href="${pageContext.request.contextPath}/spotCarpoolDeep/${carpoolVo.spotMateNo}?splace=${param.splace}&eplace=${param.eplace}&sTime=${param.sTime}&smPeople=${param.smPeople}&startDate=${param.startDate}&endDate=${param.endDate}<c:forEach items="${paramValues.ch_type}" var="item">&ch_type=${item}</c:forEach>"><button class="board">탑승요청</button></a></td>
 	
