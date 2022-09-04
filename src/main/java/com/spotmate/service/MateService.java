@@ -26,8 +26,8 @@ public class MateService {
 		
 		int tmpPage = mateVo.getCrtPage();
 		
-		//페이지당 글갯수(10개)
-		int listCnt = 4;
+		//페이지당 글갯수(16개)
+		int listCnt = 16;
 		
 		//현재페이지
 		int crtPage = (tmpPage > 0) ? tmpPage : (crtPage = 1);	//다른값 넣으면 1로 변환
