@@ -166,7 +166,7 @@ font-size : 32px;
 
 /********** footer_banner **********/
 .footer_banner {width: 100%;}
-.footer_banner .swiper-slide a{display:block; position:relative; text-align: center;}
+.footer_banner .swiper-slide a{display:block; position:relative; text-align: center; background-color:gainsboro;}
 .footer_banner .swiper-slide img{max-width:100%; image-rendering:-webkit-optimize-contrast;}
 
 /********** //footer_banner **********/
