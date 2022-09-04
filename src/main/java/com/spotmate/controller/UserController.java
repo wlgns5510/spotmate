@@ -1,6 +1,7 @@
 package com.spotmate.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +47,7 @@ public class UserController {
       
 	   String url = request.getHeader("Referer");
 	   
-	   if(url !=null && !url.contains("/login") && !url.contains("/join") && !url.contains("Write") && ( url.contains("spotmate") || url.contains("localhost") ) ) {
+	   if(url !=null && !url.contains("/login") && !url.contains("/join") && !url.contains("Write") && !url.contains("Welcome") && ( url.contains("spotmate") || url.contains("localhost") ) ) {
 		   request.getSession().setAttribute("prevPage", url);
 	   }
 	   
@@ -68,12 +69,23 @@ public class UserController {
    
    @RequestMapping(value = "/loginOk", method = { RequestMethod.GET, RequestMethod.POST })
    //public String loginOk(Model model, @ModelAttribute UserVo userVo) {
-   public String loginOk(@ModelAttribute UserVo userVo,
+   public String loginOk(Model model, @ModelAttribute UserVo userVo,
 		   @RequestParam(value = "nickname", required = false) String nickname,
-		   @RequestParam(value = "email", required = false) String email) {
+		   @RequestParam(value = "email", required = false) String email,
+		   @RequestParam(value = "birth", required = false) String birth,
+		   @RequestParam(value = "gender", required = false) String gender) {
 	   UserVo authUser = uService.loginOk(userVo);
 	   if( nickname != null ) {
-		   uService.insertKakao(nickname, email, authUser.getNo());
+		   String chk = uService.insertKakao(nickname, email, birth, gender, authUser.getNo());
+		   if(chk == null) {
+			   Map<String, Object> userInfo = new HashMap<>();
+			   userInfo.put("nickname", nickname);
+			   userInfo.put("email", email);
+			   userInfo.put("birth", birth);
+			   userInfo.put("gender", gender);
+			   model.addAttribute("kakaoInfo", userInfo);
+			   return "redirect:/loginForm?result=kakaofail";
+		   }
 	   }
 	   String url = (String)session.getAttribute("prevPage");
 	   if(authUser !=null && url !=null) {
@@ -83,14 +95,17 @@ public class UserController {
 		   session.setAttribute("authUser", authUser);
 		   //return "redirect:/driver";
 		   return "redirect:/index";
+<<<<<<< HEAD
 	   }else if (authUser == null) {
+=======
+	   }else {
+>>>>>>> branch 'master' of https://github.com/ljk0071/spotmate2.git
 		   return "redirect:/loginForm?result=fail";
 	   }
 	   
 	   //model.addAttribute("authUser", uService.loginOk(userVo));
 	   //session.setAttribute("authUser", uService.loginOk(userVo));
 	   //return "redirect:/driver";
-	   return "redirect:/index";
    }
    
    // 로그아웃

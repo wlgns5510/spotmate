@@ -16,32 +16,65 @@
 		    eplace.place eplace1,
 		    splace.people,
 		    splace.point,
-		    latlng
+            listagg(name, ',') within group(order by dopt.no asc) name
 		from (select 
 		    s.no mateNo, 
 		    s.people,
-		    s.point,
-		    listagg(name, ',') within group(order by do.no asc) as name
-		from spotmate s, spotDetail sd, detailOpt do, place p
-		where s.no = sd.mateNo
-		and p.mateNo = s.no
-		and sd.detailNo = do.no
+		    s.point
+		from spotmate s, place p
+		where p.mateNo = s.no
 		and wayno = -1
-		and place like '%'||#{splace}||'%'
-		and people >= #{people}
+        and place like '%'||#{splace}||'%'
+		and people >= #{people}  
+        and type='hitchhike'
 		group by s.no, s.people, s.point
 		order by s.no desc) splace, (select place,  
-		                                    mateNo,
-		                                    latlng
+		                                    mateNo
 		                                from spotmate s, place p
 		                                where p.mateNo = s.no
+                                        and type='hitchhike'
+                                        and place like '%'||#{eplace}||'%'
+                                        and people >= #{people}
 		                                and wayno = 0
-		                                and place like '%'||#{eplace}||'%'
-		                                and people >= #{people}
-		                                order by s.no desc) eplace
+		                                order by s.no desc) eplace, (select do.no,
+                                                                            name,
+                                                                            mateNo
+                                                                       from spotDetail sd, detailopt do
+                                                                       where sd.detailno = do.no
+                                                                       <if test="detailOpt != '' and detailOpt != null">
+                                                                       and (
+                                                                       name like ''
+                                                                       <if test="nosmoke != '' and nosmoke != null">
+                                                                       or name like '%'||'비흡연자'||'%'
+                                                                       </if>
+                                                                       <if test="femaleDriver != '' and femaleDriver != null">
+                                                                       or name like '%'||'여성'||'%'
+                                                                       </if>
+                                                                       <if test="pet != '' and pet != null">
+                                                                       or name like '%'||'반려동물'||'%'
+                                                                       </if>
+                                                                       <if test="phoneCharge != '' and phoneCharge != null">
+                                                                       or name like '%'||'충전기'||'%'
+                                                                       </if>
+                                                                       <if test="trunk != '' and trunk != null">
+                                                                       or name like '%'||'트렁크'||'%'
+                                                                       </if>
+                                                                       )
+                                                                       </if>
+                                                                       )dopt
 		where splace.mateNo = eplace.mateNo
-		and name like '%'||#{detailOpt}||'%'
+        and splace.mateNo = dopt.mateNo
+        group by splace.mateNo, eplace.place, splace.people, splace.point
 		order by splace.mateNo desc
+	</select>
+	
+	<select id="getLatlng" parameterType="hsrVo" resultType="String">
+		select latlng
+		from spotmate s, place p
+		where mateNo = #{mateNo}
+		and s.no = mateNo
+		and wayno = 0
+		and type = 'hitchhike'
 	</select>
 	
 	<select id="chkanothercarpool" parameterType="int" resultType="com.spotmate.vo.StartEndTimeVo">

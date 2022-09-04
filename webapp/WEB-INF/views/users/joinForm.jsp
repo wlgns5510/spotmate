@@ -80,7 +80,7 @@
                         <!-- 아이디 -->
                         <div class="join_group topborder">
                             <label class="" for="">아이디*</label> 
-                            <input type="text" id="join_uid" name="id" value="" placeholder="※영문과 숫자를 조합해 8자이하로 입력해주세요">
+                            <input autocomplete="off" type="text" id="join_uid" name="id" value="" placeholder="※영문과 숫자를 조합해 8자이하로 입력해주세요">
                             <input type="hidden" id="id_chk_status" value="1">
                             <button type="button" id="id_check" class="id-check">중복확인</button>
                         </div>
@@ -88,30 +88,30 @@
                         <!-- 비밀번호 -->
                         <div class="join_group">
                             <label class="" for="">비밀번호*</label> 
-                            <input type="password" id="join_pass" name="pw" value="" placeholder="※숫자,영문자와 특수기호를 조합해 8~16자리로 입력해주세요">
+                            <input autocomplete="off" type="password" id="join_pass" name="pw" value="" placeholder="※숫자,영문자와 특수기호를 조합해 8~16자리로 입력해주세요">
                         </div>
                         <!-- 비밀번호 확인 -->
                         <div class="join_group chk_pw">
                             <label class="" for="">비밀번호확인*</label> 
-                            <input type="password" id="join_passcheck" name="" value="" placeholder="비밀번호를 한번 더 입력해주세요">
+                            <input autocomplete="off" type="password" id="join_passcheck" name="" value="" placeholder="비밀번호를 한번 더 입력해주세요">
                         </div>
 
                         <!-- 이름 -->
                         <div class="join_group">
                             <label class="" for="">이름*</label> 
-                            <input type="text" id="join_name" name="name" value="" placeholder="이름을 입력해주세요">
+                            <input autocomplete="off" type="text" id="join_name" name="name" value="" placeholder="이름을 입력해주세요">
                         </div>
 
                         <!-- 이메일 -->
                         <div class="join_group">
                             <label class="" for="">이메일*</label> 
-                            <input type="email" id="join_emil" name="email" value="" placeholder="예: spotmate_official@spotmate.com">
+                            <input autocomplete="off" type="email" id="join_emil" name="email" value="" placeholder="예: spotmate_official@spotmate.com">
                         </div>
 
                         <!-- 휴대폰 -->
                         <div class="join_group">
                             <label class="" for="">휴대폰*</label> 
-                            <input type="text" id="join_phone" name="phone" value="" placeholder="숫자만 입력해주세요">
+                            <input autocomplete="off" type="text" id="join_phone" name="phone" value="" placeholder="숫자만 입력해주세요">
                             <button type="button" id="id_check" class="certification">본인인증</button>
                         </div>
 
@@ -120,7 +120,7 @@
                                 <label class="" for="">주소*</label> 
                                 <!-- <button class="btn_address" type="button" onclick="location.href='addressmap.jsp' ">주소 검색</button> -->
                                 <input type="text" id="address_kakao" name="address" value="" placeholder="주소 검색" readonly />
-                                <input type="text" id="detail_address" class="detail_address" name="address_detail" value="" placeholder="상세주소를 입력해주세요">
+                                <input autocomplete="off" type="text" id="detail_address" class="detail_address" name="address_detail" value="" placeholder="상세주소를 입력해주세요">
                         </div>
 
                         <!-- 성별 -->
