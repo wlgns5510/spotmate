@@ -76,7 +76,7 @@
    </ul>
 </div>
 <!-- 경찰 고정배너  -->
-<c:if test="${authUser.chkHitch != 0}">
+<c:if test="${authUser.chkHitch != 0 && authUser.chkHitch != null}">
 	<div class="hitchDriver">
 	   <a href="/spotHitchDriver" id="HitchDriver"> <img src="/assets/images/common/android-icon-72x72.png">
 	   </a>

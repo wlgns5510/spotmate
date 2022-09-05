@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
-import com.siot.IamportRestClient.response.Certification;
-import com.siot.IamportRestClient.response.IamportResponse;
 import com.spotmate.service.KakaoAuthService;
 import com.spotmate.service.UserService;
 import com.spotmate.vo.UserVo;
@@ -76,6 +73,7 @@ public class UserController {
 		   @RequestParam(value = "birth", required = false) String birth,
 		   @RequestParam(value = "gender", required = false) String gender) {
 	   UserVo authUser = uService.loginOk(userVo);
+	   authUser.setChkHitch(uService.chkHitch(authUser.getNo()));
 	   if( nickname != null && authUser != null ) {
 		   String chk = uService.insertKakao(nickname, email, birth, gender, authUser.getNo());
 		   if(chk == null) {
