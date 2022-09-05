@@ -222,7 +222,6 @@ public class MypageRService {
 		map.put("userNo", userNo);
 		int count = mDao.endResv(map);
 		int resvNo = mDao.getResvNo(map);
-		System.out.println(resvNo);
 		map.put("resvNo", resvNo);
 		mDao.driverGetPoint(map);
 		return count;
@@ -254,23 +253,6 @@ public class MypageRService {
 		return reviewReadMap;
 	}
 	
-	public Map<String, Object> forDriverReviewInfo(int resvNo) {
-		ConvertPoint cp = new ConvertPoint();
-		Map<String, Object> map = new HashMap<>();
-		List<Integer> ReviewedPassengerList = mDao.getReviewedPassengerList(resvNo);
-		Map<String, Object> driverReview = mDao.getDriverReview(resvNo, ReviewedPassengerList);
-		map.put("resvNo", resvNo);
-		map.put("mateNo", mDao.getMateNoByResvNo(resvNo));
-		ReviewInfoVo riVo = mDao.forReviewInfo(map);
-		riVo.setSplace(riVo.getFullPlace().split(",")[0]);
-		riVo.setEplace(riVo.getFullPlace().split(",")[1]);
-		riVo.setConvertPoint(cp.convertPoint(riVo.getPoint()));
-		driverReview.put("riVo", riVo);
-		System.out.println(driverReview.get("star"));
-		return driverReview;
-	}
-	
-	
 	public void insertUserReview (ReviewVo rVo) {
 		mDao.insertUserReview(rVo);
 		mDao.afterInsertUserReview(rVo.getResvNo());
@@ -283,7 +265,6 @@ public class MypageRService {
 		map.put("mateNo", mDao.getMateNoByResvNo(resvNo));
 		map.put("userNo", userNo);
 		List<Map<String, Object>> mList = mDao.getPassengerList(map);
-		System.out.println(ReviewedPassengerList.toString());
 		for(int i=0;i<mList.size();i++) {
 			int reviewPassenger = Integer.parseInt(String.valueOf(mList.get(i).get("USERNO")));
 			try {
@@ -316,7 +297,6 @@ public class MypageRService {
 	
 	
 	private void setMl(List<MyUsageVo> mL) {
-		ConvertPoint cp = new ConvertPoint();
 		for (int i = 0; i < mL.size(); i++) {
 			if( mL.get(i).getStartDate() != null) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -331,7 +311,29 @@ public class MypageRService {
 			}
 			mL.get(i).setStartPlace(mL.get(i).getFullPlace().split(",")[0]);
 			mL.get(i).setEndPlace(mL.get(i).getFullPlace().split(",")[1]);
-			mL.get(i).setConvertPoint(cp.convertPoint(mL.get(i).getPoint()));
+//			mL.get(i).setConvertPoint(cp.convertPoint(mL.get(i).getPoint()));
+			StringBuffer str = new StringBuffer();
+			str.append(mL.get(i).getPoint());
+			if (str.length() > 7) {
+				if (str.length() == 8) {
+					str.insert(2, ",");
+					str.insert(6, ",");
+				} else if (str.length() == 9) {
+					str.insert(3, ",");
+					str.insert(7, ",");
+				}
+			} else if (str.length() <= 7 && str.length() > 4) {
+				if (str.length() == 7) {
+					str.insert(4, ",");
+				} else if (str.length() == 6) {
+					str.insert(3, ",");
+				} else if (str.length() == 5) {
+					str.insert(2, ",");
+				}
+			}
+			str.append("P");
+			mL.get(i).setConvertPoint(str.toString());
+			
 			if (mL.get(i).getType().equals("carpool")) {
 				mL.get(i).setType("카풀 1회성");
 			} else if (mL.get(i).getType().equals("seasonTicket")) {

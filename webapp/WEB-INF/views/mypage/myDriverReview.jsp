@@ -83,14 +83,7 @@
 			</div>
 			<div class="review-in-box review-last-box">
 				<img class="review-img" src="/assets/images/map_line_02.png">
-				<c:choose>
-				<c:when test="${param.type=='read'}">
-				<span class="rbpc">도착지까지 소요시간 ${map.riVo.riVo.duration}, ${map.riVo.riVo.distance}</span>
-				</c:when>
-				<c:otherwise>
 				<span class="rbpc">도착지까지 소요시간 ${map.riVo.duration}, ${map.riVo.distance}</span>
-				</c:otherwise>
-				</c:choose>
 				
 			</div>
 		</div>
@@ -104,20 +97,6 @@
 			<p class="rbp">탑승유저 평가 *</p>
 			<p class="rbp">탑승자의 매너 점수를 평가해주세요</p>
 			<div class="score-box">
-				<c:choose>
-					<c:when test="${param.type=='read'}">
-						<c:forEach items="${map.riVo.star}" var="star">
-							<div class="score">
-								<input class="slider" type="range" min="0" max="10" step="1" value="${star*20}" >
-								<input type="hidden" name="star" value="" id="rs">
-								<input type="hidden" name="resvNo" value="${map.riVo.riVo.resvNo}">
-								<div class="foreground">★★★★★</div>
-								<div class="background">☆☆☆☆☆</div>
-							</div>
-							<span class="display">${star}점</span>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
 						<div class="score">
 							<input class="slider" type="range" min="0" max="10" step="1" value="0" >
 							<input type="hidden" name="star" value="" id="rs">
@@ -126,17 +105,9 @@
 							<div class="background">☆☆☆☆☆</div>
 						</div>
 						<span class="display">0점</span>
-					</c:otherwise>
-				</c:choose>
 			</div>
 		</div>
-		<c:choose>
-			<c:when test="${param.type=='read'}">
-			</c:when>
-			<c:otherwise>
-				<button type="submit" class="review-btn">등록하기</button>
-			</c:otherwise>
-		</c:choose>
+			<button type="submit" class="review-btn">등록하기</button>
 		<div>
 		</div>
 	</form>
@@ -159,28 +130,12 @@ $(".slider").on("mousemove", function(){
 	
 	$("#rs").val($(".slider").val() / 2);
 	
-// 	if( star < 1 ){
-// 		$(".score .foreground").text();
-// 	} else if ( 2<= star < 4 ) {
-// 		$(".score .foreground").text('★');
-// 	} else if ( 4<= star < 6 ) {
-// 		$(".score .foreground").text('★★');
-// 	} else if ( 6<= star < 8 ) {
-// 		$(".score .foreground").text('★★★');
-// 	} else if ( 8<= star < 10 ) {
-// 		$(".score .foreground").text('★★★★');
-// 	} else if ( 10<= star < 11 ) {
-// 		$(".score .foreground").text('★★★★★');
-// 	}
 });
 
 $(".review-btn").on("click", function() {
 	opener.$(".btn_review").text("작성완료");
 })
 
-var pList = ${map.pList};
-console.log(pList);
-	
 	
 </script>
 

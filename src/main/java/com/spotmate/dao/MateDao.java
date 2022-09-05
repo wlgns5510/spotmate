@@ -66,7 +66,6 @@ public class MateDao {
 	public CarpoolVo deepReviewAvg(int no) {
 		System.out.println("MateDao >> deepReviewAvg");
 		CarpoolVo cVo = sqlSession.selectOne("mate.deepReviewAvg", no);
-		System.out.println(cVo.getAvgStar());
 		return cVo;
 	}
 	

@@ -158,7 +158,7 @@
 								</c:when>
 								<c:otherwise>
 								<td>
-									<button type="button" class="btn_review" >작성완료</button>
+									<button type="button" onclick="msgRead(${ui.resvNo})" class="btn_review" >작성완료</button>
 								</td>
 								</c:otherwise>
 								</c:choose>
@@ -211,6 +211,10 @@
 function msg(resvNo) {
 	 window.open("/userReview/"+resvNo, "child", "width=1350, height=820, left=300, top=100");
 }
+
+function msgRead(resvNo) {
+	 window.open("/userReview/"+resvNo+"?type=read", "child", "width=1350, height=820, left=300, top=100");
+	}
 
 document.getElementById("startDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("endDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);

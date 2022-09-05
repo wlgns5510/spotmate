@@ -292,7 +292,7 @@ $(".certification").on("click", function() {
                   return; 
                } else {
                    $(".certification").html("인증실패");
-                   $(".certification").attr("style", "background-color:#4454a1; color:red;");
+                   $(".certification").attr("style", "background-color:#bfbfbf; color:red;");
                    return;
                }
             }

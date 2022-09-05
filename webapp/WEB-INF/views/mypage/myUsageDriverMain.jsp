@@ -150,7 +150,7 @@
 								<td>${ui.regDate}</td>
 								<td>${ui.startPlace}</td>
 								<td>${ui.endPlace}</td>
-								<td>${ui.convertPoint}</td>
+								<td>+${ui.convertPoint}</td>
 								<td><input type="hidden" class="status" value="${ui.status}"></td>
 								<c:choose>
 								<c:when test="${ui.status == 'open'}">
@@ -217,9 +217,6 @@ function msg(resvNo) {
  window.open("/driverReview/"+resvNo, "child", "width=1350, height=820, left=300, top=100");
 }
 
-function msgRead(resvNo) {
- window.open("/driverReview/"+resvNo+"?type=read", "child", "width=1350, height=820, left=300, top=100");
-}
 $(".review-btn").on("click", function() {
 	opener.$(".btn_review").text("작성완료");
 })

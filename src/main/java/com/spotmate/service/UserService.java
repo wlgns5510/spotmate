@@ -1,11 +1,16 @@
 package com.spotmate.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.Certification;
+import com.siot.IamportRestClient.response.IamportResponse;
 import com.spotmate.dao.UserDao;
 import com.spotmate.vo.UserVo;
 
@@ -64,5 +69,47 @@ public class UserService {
 	
 	public int chkHitch(int userNo) {
 		return userDao.chkHitch(userNo);
+	}
+	
+	public String[] certification(String impUid) throws IamportResponseException, IOException {
+		String impKey = "3850084311060237";
+	      String impSecret = "K7Gk4reSKmrlKMpJAM0ZSe6ct2CEavDvXfKyrmBAuukceTtzC0gcDhQWg3fgCDNZq2YTTJtfKuXAbmtV";
+	      IamportClient client = new IamportClient(impKey, impSecret);
+	      IamportResponse<Certification> certificationResponse = client.certificationByImpUid(impUid.replace("=", ""));
+
+	      String[] arr = new String[6];
+	      arr[0] = certificationResponse.getResponse().getName().toString();
+	      arr[1] = certificationResponse.getResponse().getPhone().toString();
+
+	      String[] bArr = certificationResponse.getResponse().getBirth().toString().split(" ");
+	      arr[3] = bArr[bArr.length-1];
+	      if(bArr[1].equals("Jan")) {
+	    	  arr[4] = "01";
+	      } else if (bArr[1].equals("Feb")) {
+	    	  arr[4] = "02";
+	      } else if (bArr[1].equals("Mar")) {
+	    	  arr[4] = "03";
+	      } else if (bArr[1].equals("Apr")) {
+	    	  arr[4] = "04";
+	      } else if (bArr[1].equals("May")) {
+	    	  arr[4] = "05";
+	      } else if (bArr[1].equals("Jun")) {
+	    	  arr[4] = "06";
+	      } else if (bArr[1].equals("Jul")) {
+	    	  arr[4] = "07";
+	      } else if (bArr[1].equals("Aug")) {
+	    	  arr[4] = "08";
+	      } else if (bArr[1].equals("Sep")) {
+	    	  arr[4] = "09";
+	      } else if (bArr[1].equals("Oct")) {
+	    	  arr[4] = "10";
+	      } else if (bArr[1].equals("Nov")) {
+	    	  arr[4] = "11";
+	      } else if (bArr[1].equals("Dec")) {
+	    	  arr[4] = "12";
+	      }
+	      arr[5] = bArr[2];
+	      
+	      return arr;
 	}
 }

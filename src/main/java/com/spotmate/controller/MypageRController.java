@@ -161,17 +161,12 @@ public class MypageRController {
 	}
 	
 	@RequestMapping(value = "/driverReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String driverReview(@PathVariable int no, Model model,
-			@RequestParam(value = "type", required = false) String type) {
+	public String driverReview(@PathVariable int no, Model model) {
 		Map<String, Object> map = new HashMap<>();
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		int userNo = authUser.getNo();
 		map.put("pList", mService.getPassengerList(no, userNo));
-		if(type!=null) {
-			map.put("riVo", mService.forDriverReviewInfo(no));
-		} else {
-			map.put("riVo", mService.forReviewInfo(no));
-		}
+		map.put("riVo", mService.forReviewInfo(no));
 		model.addAttribute("map", map);
 		return "/mypage/myDriverReview";
 	}

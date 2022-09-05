@@ -28,6 +28,7 @@ public class UserDao {
 	
 	public UserVo kakaoLogin(Map<String, Object> userInfo) {
 		try {
+			System.out.println(userInfo.toString());
 			return ss.selectOne("users.kakaoLogin", userInfo);
 		} catch (NullPointerException e) {
 			return null;

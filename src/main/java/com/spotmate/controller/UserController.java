@@ -125,17 +125,7 @@ public class UserController {
    @ResponseBody
    @RequestMapping(value = "/certification", method = { RequestMethod.GET, RequestMethod.POST })
    public String[] certification(@RequestBody String impUid) throws IamportResponseException, IOException {
-      System.out.println(impUid);
-      String impKey = "3850084311060237";
-      String impSecret = "K7Gk4reSKmrlKMpJAM0ZSe6ct2CEavDvXfKyrmBAuukceTtzC0gcDhQWg3fgCDNZq2YTTJtfKuXAbmtV";
-      IamportClient client = new IamportClient(impKey, impSecret);
-      IamportResponse<Certification> certificationResponse = client.certificationByImpUid(impUid.replace("=", ""));
-
-      String[] arr = new String[2];
-      arr[0] = certificationResponse.getResponse().getName().toString();
-      arr[1] = certificationResponse.getResponse().getPhone().toString();
-
-      return arr;
+      return uService.certification(impUid);
    }
    
    @ResponseBody

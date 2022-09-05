@@ -79,7 +79,7 @@
 	</update>
 	
 	<select id="chkHitch" parameterType="int" resultType="int">
-		select no
+		select count(*)
 		from spotmate
 		where type='hitchhike'
 		and status='open'

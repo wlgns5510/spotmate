@@ -153,7 +153,7 @@
 								<td>${ui.regDate}</td>
 								<td>${ui.startPlace}</td>
 								<td>${ui.endPlace}</td>
-								<td>${ui.convertPoint}</td>
+								<td>+${ui.convertPoint}</td>
 								<td><input type="hidden" class="status" value="${ui.status}"></td>
 								<c:choose>
 								<c:when test="${ui.status == 'ride'}">

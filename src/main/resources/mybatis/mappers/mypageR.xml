@@ -1105,7 +1105,8 @@
 	<select id="getResvNo" parameterType="map" resultType="int">
 		select no
 		from reservation
-		where userNo = #{userNo}
+		where driverNo = userNo
+		and userNo = #{userNo}
 		and mateNo = #{mateNo}
 	</select>
 	
