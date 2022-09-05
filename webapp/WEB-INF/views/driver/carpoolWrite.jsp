@@ -241,6 +241,10 @@ $("#finish").on("click", function() {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
+	if ( $("#s-date").val() > $("#e-date").val() ) {
+		alert("도착 날짜가 시작 날짜보다 빠를 수 없습니다.");
+		return;
+	}
 	
 	var splace = $("#s-addr1").val();
 	var eplace = $("#e-addr1").val();
@@ -248,6 +252,19 @@ $("#finish").on("click", function() {
 	var slng = $(".s-lng1").val();
 	var elat = $(".e-lat1").val();
 	var elng = $(".e-lng1").val();
+	var month,
+		day;
+	if( $("#s-date").val() != $("#e-date").val() ) {
+		month = 0;
+		day = parseInt($("#e-date").val().split("-")[2]) - parseInt($("#s-date").val().split("-")[2]);
+		if ( parseInt($("#e-date").val().split("-")[1]) !=  parseInt($("#s-date").val().split("-")[1])) {
+			month = parseInt($("#e-date").val().split("-")[1]) - parseInt($("#s-date").val().split("-")[1]);
+			day = month*30 - day;
+		} else {
+			month = 0;
+			day = day+1;
+		}
+	}
 	
 	$.ajax({
 		url : "${pageContext.request.contextPath}/setPath",		
@@ -258,7 +275,9 @@ $("#finish").on("click", function() {
 			elat: elat,
 			elng: elng,
 			splace: splace,
-			eplace: eplace}),
+			eplace: eplace,
+			month: month,
+			day: day}),
 		dataType : "json",
 		success : function(result){
 			//도착 예정시간으로 다른 일정과 겹치는지 확인하는 부분
@@ -298,20 +317,21 @@ $("#finish").on("click", function() {
 			$(".fare").remove();
 			$(".dur").remove();
 			$(".dis").remove();
-			if( $("#s-date").val() != $("#e-date").val() ) {
-				var month = 0;
-				var day = parseInt($("#e-date").val().split("-")[2]) - parseInt($("#s-date").val().split("-")[2]);
-				if ( parseInt($("#e-date").val().split("-")[1]) !=  parseInt($("#s-date").val().split("-")[1])) {
-					month = parseInt($("#e-date").val().split("-")[1]) - parseInt($("#s-date").val().split("-")[1]);
-					day = month*30 - day;
-				} else {
-					month = 0;
-				}
-				var point = parseInt(result.totalFare.replace(",", "").replace("P", ""))*day;
-				document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트 : &nbsp;</span><input type='hidden' name='fare' id='fare' value='"+point+"'>"+point+"P</div>";
-			} else {
-				document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트 : &nbsp;</span><input type='hidden' name='fare' id='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
-			}
+// 			if( $("#s-date").val() != $("#e-date").val() ) {
+// 				var month = 0;
+// 				var day = parseInt($("#e-date").val().split("-")[2]) - parseInt($("#s-date").val().split("-")[2]);
+// 				if ( parseInt($("#e-date").val().split("-")[1]) !=  parseInt($("#s-date").val().split("-")[1])) {
+// 					month = parseInt($("#e-date").val().split("-")[1]) - parseInt($("#s-date").val().split("-")[1]);
+// 					day = month*30 - day;
+// 				} else {
+// 					month = 0;
+// 				}
+// 			}
+// 				var point = parseInt(result.totalFare.replace(",", "").replace("P", ""))*day;
+// 				document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트 : &nbsp;</span><input type='hidden' name='fare' id='fare' value='"+point+"'>"+point+"P</div>";
+// 			} else {
+			document.getElementById("totalInfo").innerHTML += "<div class='fare'><span style='color:black;'>1인당 적립 포인트 : &nbsp;</span><input type='hidden' name='fare' id='fare' value='"+result.totalFare+"'>"+result.totalFare+"</div>";
+// 			}
 			document.getElementById("totalInfo").innerHTML += "<div class='dur'><span style='color:black;'>예상 소요 시간 : &nbsp;</span><input type='hidden' name='dur' value='"+result.totalDur+"'>"+result.totalDur+"</div>";
 			document.getElementById("totalInfo").innerHTML += "<div class='dis'><span style='color:black;'>예상 거리 : &nbsp;</span><input type='hidden' name='dis' value='"+result.totalDis+"'>"+result.totalDis+"</div>";
 			

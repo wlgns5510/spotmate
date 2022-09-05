@@ -3,19 +3,38 @@ package com.spotmate.vo;
 public class LatlngVo {
 
 	private double slat, slng, elat, elng;
+	private int month, day;
 	private String splace, eplace;
 	
 	
 	public LatlngVo() {
 	}
 	
-	public LatlngVo(String splace, String eplace, double slat, double slng, double elat, double elng) {
+	public LatlngVo(String splace, String eplace, double slat, double slng, double elat, double elng, int month, int day) {
 		this.splace = splace;
 		this.eplace = eplace;
 		this.slat = slat;
 		this.slng = slng;
 		this.elat = elat;
 		this.elng = elng;
+		this.month = month;
+		this.day = day;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	public double getSlat() {
@@ -68,7 +87,8 @@ public class LatlngVo {
 
 	@Override
 	public String toString() {
-		return "LatlngVo [slat=" + slat + ", slng=" + slng + ", elat=" + elat + ", elng=" + elng + ", splace=" + splace
-				+ ", eplace=" + eplace + "]";
+		return "LatlngVo [slat=" + slat + ", slng=" + slng + ", elat=" + elat + ", elng=" + elng + ", month=" + month
+				+ ", day=" + day + ", splace=" + splace + ", eplace=" + eplace + "]";
 	}
+
 }

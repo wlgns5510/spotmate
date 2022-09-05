@@ -449,6 +449,10 @@ function setDayPath(index) {
 		alert("검색 후에 시도해주세요");
 		return;
 	}
+	if ( $("#mate-s-date").val() > $("#mate-e-date").val() ) {
+		alert("도착 날짜가 시작 날짜보다 빠를 수 없습니다.");
+		return;
+	}
 	var day = index;
 	var saddr = $(".mate-s-addr"+index).val();
 	var stime = $("#stime"+index).val();
