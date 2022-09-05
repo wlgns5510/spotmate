@@ -73,7 +73,6 @@ public class UserController {
 		   @RequestParam(value = "birth", required = false) String birth,
 		   @RequestParam(value = "gender", required = false) String gender) {
 	   UserVo authUser = uService.loginOk(userVo);
-	   System.out.println(authUser);
 	   if( nickname != null && authUser != null ) {
 		   String chk = uService.insertKakao(nickname, email, birth, gender, authUser.getNo());
 		   if(chk == null) {

@@ -4,7 +4,7 @@
 <!-- header -->
 <header class="header_wrapper">
     <div class="top_banner">
-        <p>안전하게 이용하는 스팟메이트 안전 대책&nbsp;&nbsp;&gt;</p>
+        <p onclick="moveToSafe()">안전하게 이용하는 스팟메이트 안전 대책&nbsp;&nbsp;&gt;</p>
     </div>
     <div class="inner clear">
         <div class="lft_sec">
@@ -41,7 +41,7 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/faq">COMMUNITY</a>
+                    <a href="/notice/1">COMMUNITY</a>
                     <div class="depth2">
                         <ul>
                             <li><a href="/notice/1">NOTICE</a></li>
@@ -105,3 +105,8 @@
     </div>
 </header>
 <!-- //header -->
+<script>
+	function moveToSafe() {
+		location.href = "/notice/1";
+	}
+</script>

@@ -22,8 +22,8 @@
                <li><a href="/aboutUs">BRAND</a></li>
                <li><a href="/spotMain">SPOT</a></li>
                <li><a href="/mateInfo">MATE</a></li>
-               <li><a href="/faq">COMMUNITY</a></li>
-               <li><a href="/driverMain">DRIVER</a></li>
+               <li><a href="/notice/1">COMMUNITY</a></li>
+               <li><a href="/driver">DRIVER</a></li>
             </ul>
          </div>
          <div class="rit_sec">
