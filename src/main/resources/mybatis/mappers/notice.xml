@@ -62,7 +62,8 @@
 			to_char(regDate, 'yyyy-mm-dd') regDate,
 			type,
 			title,
-			content
+			content,
+			hit
 		from notice
 		where no = #{noticeNo}
 	</select>

@@ -64,15 +64,34 @@
 				<p class="rfbp">총 결제 포인트</p>
 			</div>
 			<div class="review-in-box">
-				<p class="rbp">${map.riVo.riVo.splace}</p>
-				<p class="rbp2">${map.riVo.riVo.eplace}</p>
-				<p class="rbp">${map.riVo.riVo.people}명</p>
-				<p class="rbp2">${map.riVo.riVo.startTime}</p>
-				<p class="rbp rbpc">${map.riVo.riVo.convertPoint}</p>
+			<c:choose>
+				<c:when test="${param.type=='read'}">
+					<p class="rbp">${map.riVo.riVo.splace}</p>
+					<p class="rbp2">${map.riVo.riVo.eplace}</p>
+					<p class="rbp">${map.riVo.riVo.people}명</p>
+					<p class="rbp2">${map.riVo.riVo.startTime}</p>
+					<p class="rbp rbpc">${map.riVo.riVo.convertPoint}</p>
+				</c:when>
+				<c:otherwise>
+					<p class="rbp">${map.riVo.splace}</p>
+					<p class="rbp2">${map.riVo.eplace}</p>
+					<p class="rbp">${map.riVo.people}명</p>
+					<p class="rbp2">${map.riVo.startTime}</p>
+					<p class="rbp rbpc">${map.riVo.convertPoint}</p>
+				</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="review-in-box review-last-box">
 				<img class="review-img" src="/assets/images/map_line_02.png">
+				<c:choose>
+				<c:when test="${param.type=='read'}">
 				<span class="rbpc">도착지까지 소요시간 ${map.riVo.riVo.duration}, ${map.riVo.riVo.distance}</span>
+				</c:when>
+				<c:otherwise>
+				<span class="rbpc">도착지까지 소요시간 ${map.riVo.duration}, ${map.riVo.distance}</span>
+				</c:otherwise>
+				</c:choose>
+				
 			</div>
 		</div>
 		<div class="review-second-box">
@@ -158,6 +177,9 @@ $(".slider").on("mousemove", function(){
 $(".review-btn").on("click", function() {
 	opener.$(".btn_review").text("작성완료");
 })
+
+var pList = ${map.pList};
+console.log(pList);
 	
 	
 </script>

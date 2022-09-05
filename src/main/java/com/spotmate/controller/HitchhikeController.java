@@ -63,7 +63,6 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/hitchsearch", method= {RequestMethod.GET, RequestMethod.POST})
 	public List<HitchSearchResultVo> search (@RequestBody HitchSearchVo hsVo) {
-		System.out.println(hsVo.toString());
 		return hService.searchList(hsVo);
 	}
 	

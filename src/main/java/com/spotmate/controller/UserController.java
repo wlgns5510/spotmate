@@ -63,6 +63,7 @@ public class UserController {
 			return "/users/loginForm";
 		}
 		UserVo authUser = uService.kakaoLogin(userInfo);
+		authUser.setChkHitch(uService.chkHitch(authUser.getNo()));
 		session.setAttribute("authUser", authUser);
 		return "redirect:/";
 	}
@@ -75,7 +76,7 @@ public class UserController {
 		   @RequestParam(value = "birth", required = false) String birth,
 		   @RequestParam(value = "gender", required = false) String gender) {
 	   UserVo authUser = uService.loginOk(userVo);
-	   if( nickname != null ) {
+	   if( nickname != null && authUser != null ) {
 		   String chk = uService.insertKakao(nickname, email, birth, gender, authUser.getNo());
 		   if(chk == null) {
 			   Map<String, Object> userInfo = new HashMap<>();
@@ -86,6 +87,8 @@ public class UserController {
 			   model.addAttribute("kakaoInfo", userInfo);
 			   return "redirect:/loginForm?result=kakaofail";
 		   }
+	   } else if (authUser == null) {
+		   return "redirect:/loginForm?result=fail";
 	   }
 	   String url = (String)session.getAttribute("prevPage");
 	   if(authUser !=null && url !=null) {

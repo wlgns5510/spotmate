@@ -41,5 +41,9 @@ public class UserDao {
 	public void insertKakao(Map<String, Object> map) {
 		ss.insert("users.insertKakao", map);
 	}
+	
+	public int chkHitch(int userNo) {
+		return ss.selectOne("users.chkHitch", userNo);
+	}
 
 }

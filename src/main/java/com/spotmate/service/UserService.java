@@ -61,4 +61,8 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	public int chkHitch(int userNo) {
+		return userDao.chkHitch(userNo);
+	}
 }

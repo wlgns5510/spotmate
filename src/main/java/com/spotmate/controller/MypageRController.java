@@ -179,6 +179,9 @@ public class MypageRController {
 	@RequestMapping(value = "/driverReviewInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String driverReviewInsert(@ModelAttribute ReviewVo rVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if(rVo == null) {
+			return "/mypage/endReview";
+		}
 		mService.insertDriverReview(rVo, authUser.getNo());
 		return "/mypage/endReview";
 	}

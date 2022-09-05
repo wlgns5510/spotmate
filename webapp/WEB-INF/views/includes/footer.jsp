@@ -76,7 +76,12 @@
    </ul>
 </div>
 <!-- 경찰 고정배너  -->
-
+<c:if test="${authUser.chkHitch != null}">
+	<div class="hitchDriver">
+	   <a href="/spotHitchDriver" id="HitchDriver"> <img src="/assets/images/common/android-icon-72x72.png">
+	   </a>
+	</div>
+</c:if>
 
 <script>
    var swiperFooter = new Swiper('.footer_banner', {

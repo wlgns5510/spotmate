@@ -38,10 +38,10 @@ public class HitchService {
 	
 	//유저가 탑승예약 할 때
 	public int makeReserv(HitchReservVo hrVo) {
-		hDao.updateResvPeople(hrVo);
-		hDao.updateReserv(hrVo);
 		int usablePoint = hDao.getTotalPoint(hrVo.getUserNo());
 		if (usablePoint >= hrVo.getPoint()) {
+			hDao.updateResvPeople(hrVo);
+			hDao.updateReserv(hrVo);
 			hDao.usePoint(hrVo);
 			int cnt = hDao.chkRide(hrVo.getMateNo());
 			return cnt;
