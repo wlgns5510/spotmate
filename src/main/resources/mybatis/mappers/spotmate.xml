@@ -1320,8 +1320,8 @@
 		values(#{carNo},
 		#{userNo},
 		#{car},
-		#{carNum},
 		#{carpic},
+		#{carNum},
 		'화이트',
 		4,
 		#{introduce}

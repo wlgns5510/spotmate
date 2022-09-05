@@ -214,7 +214,7 @@
 						        from reservation) d, ( select driverNo
 			                           from reservation
 			                           where mateNo = #{no}
-			                           ) i, (select star,
+			                           group by driverNo) i, (select star,
 			                                        content,
 			                                        resvno
 			                                 from userReview ) s, (select id,
@@ -241,7 +241,7 @@
 		         and u.no = (select ca.userNo
 		                     from spotMate sm, car ca
 		                     where sm.carNo = ca.no
-		                     and sm.no = 1)
+		                     and sm.no = #{mateNo})
 		]]>
 	</select>
 	

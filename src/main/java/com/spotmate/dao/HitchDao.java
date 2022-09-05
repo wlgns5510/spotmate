@@ -530,7 +530,7 @@ public class HitchDao {
 		carno.add("223마 3142");
 		List<String> carpic = new ArrayList<String>();
 		for(int i=1;i<51;i++) {
-			carpic.add("carpic"+i);
+			carpic.add("carpic"+i+".jpg");
 		}
 		
 		for(int i=1;i<name.size()+1;i++) {

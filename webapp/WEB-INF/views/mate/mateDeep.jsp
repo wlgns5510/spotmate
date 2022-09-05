@@ -478,7 +478,7 @@
 					<li>
 						<p class="recommend-point-list">소요 포인트 <fmt:formatNumber value="${mVo.point}" pattern="#,###" />P</p> 
 		
-						<a href="${pageContext.request.contextPath}/mateDeep/${mVo.mateNo}">
+						<a href="${pageContext.request.contextPath}/mateMain?ePlace=${param.ePlace}&sDate=${param.sDate}&eDate=${param.eDate}&smPeople=${param.smPeople}<c:forEach items="${paramValues.mateContactList}" var="item">&mateContactList=${item}</c:forEach>">
 							<button>
 								<img class="recommend-List-Picto"
 									src="/assets/images/external.png"> <span
@@ -491,7 +491,7 @@
 	
 		</div>
 
-		<a href="${pageContext.request.contextPath}/mateMain?splace=${param.splace}&eplace=${param.eplace}&sDate=${param.sDate}&eDate=${param.eDate}&smPeople=${param.smPeople}<c:forEach items="${paramValues.mateContactList}" var="item">&mateContactList=${item}</c:forEach>">
+		<a href="${pageContext.request.contextPath}/mateMain?ePlace=${param.ePlace}&sDate=${param.sDate}&eDate=${param.eDate}&smPeople=${param.smPeople}<c:forEach items="${paramValues.mateContactList}" var="item">&mateContactList=${item}</c:forEach>">
 			<button class="recommend-button">추천 리스트 더보기 ></button>
 		</a>
 
@@ -500,25 +500,6 @@
 	<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 	<!-- //footer -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </div>
 <!-- //mateDeep_wrap -->

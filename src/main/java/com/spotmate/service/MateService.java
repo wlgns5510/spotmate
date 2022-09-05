@@ -59,9 +59,7 @@ public class MateService {
 		Map<String, Object> mateListMap = new HashMap<String, Object>();
 		mateListMap.put("mateList", mateList);
 		mateListMap.put("optList", optList);
-		
-		
-		
+				
 		return mateListMap;
 	}		
 	
