@@ -433,7 +433,7 @@ function setDayPath(index) {
 	var i = (9*index)+(index+1);
 	if( $(".s-lat"+index).val() == "" || $(".s-lng"+index).val() == "" || $(".e-lat"+index).val() == "" || 
 			$(".e-lng"+index).val() == "" || $("#stime"+index).val() == "" ) {
-		alert("검색 후에 시도해주세요");
+		alert("경로 확인 후에 시도해주세요.");
 		return;
 	} else if ( ($("#w-addr"+i).val() != null && $("#w-addr"+i).val() == "") ||
 			($("#w-addr"+(i+1)).val() != null && $("#w-addr"+(i+1)).val() == "") ||
@@ -446,7 +446,7 @@ function setDayPath(index) {
 			($("#wtime"+(i+3)).val() != null && $("#wtime"+(i+3)).val() == "") ||
 			($("#wtime"+(i+4)).val() != null && $("#wtime"+(i+4)).val() == "")
 			) {
-		alert("검색 후에 시도해주세요");
+		alert("경로 확인 후에 시도해주세요.");
 		return;
 	}
 	if ( $("#mate-s-date").val() > $("#mate-e-date").val() ) {

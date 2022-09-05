@@ -26,6 +26,10 @@ public class DriverWriteDao {
 		ss.insert("spotmate.mateinsert", mwVo);
 	}
 	
+	public String chkLicense(int userNo) {
+		return ss.selectOne("spotmate.chkLicense", userNo);
+	}
+	
 	public String getDriverIntroduce(int userNo) {
 		String introduce = ss.selectOne("spotmate.getDriverIntroduce", userNo);
 		return introduce;

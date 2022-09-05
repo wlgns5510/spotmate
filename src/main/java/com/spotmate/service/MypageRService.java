@@ -289,13 +289,6 @@ public class MypageRService {
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	private void setMl(List<MyUsageVo> mL) {
 		for (int i = 0; i < mL.size(); i++) {
 			if( mL.get(i).getStartDate() != null) {
@@ -311,7 +304,6 @@ public class MypageRService {
 			}
 			mL.get(i).setStartPlace(mL.get(i).getFullPlace().split(",")[0]);
 			mL.get(i).setEndPlace(mL.get(i).getFullPlace().split(",")[1]);
-//			mL.get(i).setConvertPoint(cp.convertPoint(mL.get(i).getPoint()));
 			StringBuffer str = new StringBuffer();
 			str.append(mL.get(i).getPoint());
 			if (str.length() > 7) {

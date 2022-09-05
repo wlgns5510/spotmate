@@ -238,11 +238,15 @@ function moveOk() {
 $("#finish").on("click", function() {
 	
 	if($(".s-lat").val() == "" || $(".s-lng").val() == "" || $(".e-lat").val() == "" || $(".e-lng").val() == "") {
-		alert("검색 후에 시도해주세요");
+		alert("경로 확인 후에 시도해주세요.");
 		return;
 	}
 	if ( $("#s-date").val() > $("#e-date").val() ) {
 		alert("도착 날짜가 시작 날짜보다 빠를 수 없습니다.");
+		return;
+	}
+	if ( $("#s-time").val() == "" ) {
+		alert("출발 시간 설정 후 다시 시도해주세요.");
 		return;
 	}
 	
@@ -259,7 +263,7 @@ $("#finish").on("click", function() {
 		day = parseInt($("#e-date").val().split("-")[2]) - parseInt($("#s-date").val().split("-")[2]);
 		if ( parseInt($("#e-date").val().split("-")[1]) !=  parseInt($("#s-date").val().split("-")[1])) {
 			month = parseInt($("#e-date").val().split("-")[1]) - parseInt($("#s-date").val().split("-")[1]);
-			day = month*30 - day;
+			day = month*22 - day;
 		} else {
 			month = 0;
 			day = day+1;
@@ -276,7 +280,6 @@ $("#finish").on("click", function() {
 			elng: elng,
 			splace: splace,
 			eplace: eplace,
-			month: month,
 			day: day}),
 		dataType : "json",
 		success : function(result){

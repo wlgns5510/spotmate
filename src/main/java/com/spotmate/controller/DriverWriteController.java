@@ -47,6 +47,8 @@ public class DriverWriteController {
 		Map<String, Object> cMap = new HashMap<>();
 		if ( authUser == null) {
 			return "redirect:/loginForm";
+		} else if (dwService.chkLicense(authUser.getNo()) == null) {
+			return "redirect:/myDriverForm";
 		} else if ( dwService.chkAnotherCarpool(authUser.getNo()) != null ) {
 			List<StartEndTimeVo> startEnddate = dwService.chkAnotherCarpool(authUser.getNo());
 			cMap.put("startEnddate", startEnddate);
@@ -88,6 +90,8 @@ public class DriverWriteController {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		if ( authUser == null) {
 			return "redirect:/loginForm";
+		} else if (dwService.chkLicense(authUser.getNo()) == null) {
+			return "redirect:/myDriverForm";
 		} else if ( dwService.chkAnotherHitchhike(authUser.getNo()) != null) {
 			return "redirect:/driver?result=fail";
 		}
@@ -114,6 +118,8 @@ public class DriverWriteController {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		if ( authUser == null) {
 			return "redirect:/loginForm";
+		} else if (dwService.chkLicense(authUser.getNo()) == null) {
+			return "redirect:/myDriverForm";
 		}
 		model.addAttribute("driverInfo", dwService.getDriverInfo(authUser.getNo()));
 		return "/driver/mateWrite";

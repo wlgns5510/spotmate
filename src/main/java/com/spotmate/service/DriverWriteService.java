@@ -81,6 +81,10 @@ public class DriverWriteService {
 		return dwDao.getMateNo(userNo);
 	}
 	
+	public String chkLicense(int userNo) {
+		return dwDao.chkLicense(userNo);
+	}
+	
 	public Map<String, Object> setDayPath(DaylatlngVo dayLatlng) throws IOException {
 		Map<Integer, List<Double>> dll = new HashMap<>();
 		List<Double> start = new ArrayList<Double>();

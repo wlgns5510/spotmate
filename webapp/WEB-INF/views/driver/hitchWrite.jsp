@@ -201,7 +201,7 @@ function moveOk() {
 
 $("#finish").on("click", function() {
 	if($(".s-lat1").val() == "" || $(".s-lng1").val() == "" || $(".e-lat1").val() == "" || $(".e-lng1").val() == "") {
-		alert("검색 후에 시도해주세요");
+		alert("경로 확인 후에 시도해주세요.");
 		return;
 	}
 	var splace = $("#s-addr1").val();

@@ -1336,7 +1336,11 @@
 		)
 	</insert>
 	
-
+	<select id="chkLicense" parameterType="int" resultType="String">
+		select licenseNo
+		from users
+		where no = #{userNo}
+	</select>
 
 
 

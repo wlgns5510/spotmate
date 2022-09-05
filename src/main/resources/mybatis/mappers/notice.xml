@@ -12,7 +12,6 @@
 				hit,
 				regDate,
 				admin,
-				manage,
 				content
 			from(select rownum rn,
 				no,
@@ -21,7 +20,6 @@
 				hit,
 				regDate,
 				admin,
-				manage,
 				content
 			from (select no,
 				type,
@@ -29,7 +27,6 @@
 				hit,
 				to_char(regDate, 'yyyy-mm-dd') regDate,
 				admin,
-				manage,
 				content
 			from notice
 			order by no desc))
@@ -103,7 +100,6 @@
 				hit,
 				regDate,
 				admin,
-				manage,
 				content
 			from(select rownum rn,
 				no,
@@ -112,7 +108,6 @@
 				hit,
 				regDate,
 				admin,
-				manage,
 				content
 			from (select no,
 				type,
@@ -120,7 +115,6 @@
 				hit,
 				to_char(regDate, 'yyyy-mm-dd') regDate,
 				admin,
-				manage,
 				content
 			from notice
 			where regDate >= to_date(#{nsVo.startDate}, 'yyyy-mm-dd') -1
