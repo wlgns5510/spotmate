@@ -48,7 +48,7 @@
 
 
 	<!-- url매핑-->
-	<mvc:resources mapping="/upload/**" location="file:C:/JavaStudy/upload/" />
+	<mvc:resources mapping="/upload/**" location="file:C:/JavaStudy/workspaceWeb/spotmate2/upload/" />
 	
 
 

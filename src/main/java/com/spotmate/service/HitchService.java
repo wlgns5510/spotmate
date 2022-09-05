@@ -106,6 +106,10 @@ public class HitchService {
 	
 	public List<HitchVo> nearHitchList() {
 		List<HitchVo> hL = hDao.nearHitchList();
+		for( int i=0;i<hL.size();i++ ) {
+			hL.get(i).setConvertPoint(cp.convertPoint(hL.get(i).getPoint()));
+			hL.get(i).setNowaddr(hL.get(i).getLatlng().split(",")[2]);
+		}
 		return hL;
 	}
 	

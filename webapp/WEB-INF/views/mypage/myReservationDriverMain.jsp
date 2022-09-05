@@ -155,6 +155,7 @@
 								<td>${ui.endPlace}</td>
 								<td>+${ui.convertPoint}</td>
 								<td><input type="hidden" class="status" value="${ui.status}"></td>
+								<td><input type="hidden" class="type" value="${ui.type}"></td>
 								<c:choose>
 								<c:when test="${ui.status == 'ride'}">
 								<td>
@@ -234,15 +235,20 @@ function setTime(){
 	document.getElementById("out").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
 }
 function msg(mateNo) {
+	var type = $(".type").val();
 	$.ajax({
 		url : "${pageContext.request.contextPath}/endResv",		
 		type : "post",
 		contentType : "application/json",
-		data : JSON.stringify(mateNo),
+		data : JSON.stringify({
+			mateNo: mateNo+"",
+			type: type
+		}),
 		dataType : "json",
 		success : function(result){
 			$("#box"+mateNo).remove();
-			alert("카풀이 종료 되었습니다!")
+			alert("카풀이 종료 되었습니다!");
+			$(".hitchDriver").remove();
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);

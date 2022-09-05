@@ -136,10 +136,16 @@ public class MypageRController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/endResv", method = { RequestMethod.GET, RequestMethod.POST })
-	public int endResv(@RequestBody int mateNo) {
+	public int endResv(@RequestBody Map<String, Object> map) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		
-		return mService.endResv(mateNo, authUser.getNo());
+		int count = mService.endResv(Integer.parseInt(map.get("mateNo").toString()), authUser.getNo());
+		if( map.get("type").toString().equals("히치 하이크")) {
+			authUser.setChkHitch(0);
+			ss.removeAttribute("authUser");
+			ss.setAttribute("authUser", authUser);
+		}
+		return count;
+//		return mService.endResv(mateNo, authUser.getNo());
 	}
 	
 	@RequestMapping(value = "/userReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
