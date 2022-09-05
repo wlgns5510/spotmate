@@ -142,7 +142,7 @@
 									<tr align="left">
 										<td><label for="userBD">생년월일*</label></td>
 
-										<td><input value="${dlvo.userBD}" name="userBD"
+										<td><input value="" name="userBD"
 											id="userBD" placeholder="ex)040831" type="text"></td>
 
 									</tr>

@@ -40,11 +40,14 @@ public class HitchService {
 	public int makeReserv(HitchReservVo hrVo) {
 		hDao.updateResvPeople(hrVo);
 		hDao.updateReserv(hrVo);
-		hDao.usePoint(hrVo);
-		System.out.println("hService: "+hrVo);
-		int cnt = hDao.chkRide(hrVo.getMateNo());
-		System.out.println("hservice: "+cnt);
-		return cnt;
+		int usablePoint = hDao.getTotalPoint(hrVo.getUserNo());
+		if (usablePoint >= hrVo.getPoint()) {
+			hDao.usePoint(hrVo);
+			int cnt = hDao.chkRide(hrVo.getMateNo());
+			return cnt;
+		} else {
+			return -3;
+		}
 	}
 	//신청한게 있나 없나 확인
 	public Map<String, Object> cancelChk(int mateNo, int userNo) {

@@ -7,7 +7,7 @@ public class CarpoolVo {
 	// 필드
 
 	private int no, userNo, mateNo, sMateNo, eMateNo, resvNo, wayNo, sWayNo, eWayNo, sPlaceNo, ePlaceNo, point, people,
-			driverNo, detailNo, star, avgStar, spotMateNo, sLat, sLng, eLat, eLng, lat, lng, canRide;
+			driverNo, detailNo, star, spotMateNo, sLat, sLng, eLat, eLng, lat, lng, canRide;
 	private String id, userName, startDate, endDate, place, splace, sSepPlace, eplace, eSepPlace, latlng, detailOpt,
 			type, duration, distance, carName, carPicture, introduce, comments, name, time, sTime, content,
 			femaleDriver, pet, phoneCharger, nonSmoke, useTrunk, carNo;
@@ -21,6 +21,7 @@ public class CarpoolVo {
 	private int startRnum;
 	private int endRnum;
 	private int listCnt;
+	private double avgStar;
 
 	// 생성자
 	public CarpoolVo() {
@@ -227,11 +228,11 @@ public class CarpoolVo {
 		this.star = star;
 	}
 
-	public int getAvgStar() {
+	public double getAvgStar() {
 		return avgStar;
 	}
 
-	public void setAvgStar(int avgStar) {
+	public void setAvgStar(double avgStar) {
 		this.avgStar = avgStar;
 	}
 
