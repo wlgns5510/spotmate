@@ -49,7 +49,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>myUsageDriverMain</title>
+	<title>나의 이용내역</title>
 	
 </head>
 
