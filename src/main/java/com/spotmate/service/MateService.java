@@ -147,15 +147,5 @@ public class MateService {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-			
-	
 
 }
