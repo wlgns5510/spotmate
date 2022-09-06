@@ -17,6 +17,7 @@ public class NaviHttpRequest {
 	
 	private List<Double> start = new ArrayList<Double>();
 	private List<Double> end = new ArrayList<Double>();
+	private int day;
 	
 	public NaviHttpRequest() {
 	}
@@ -24,6 +25,13 @@ public class NaviHttpRequest {
 		this.start = start;
 		this.end = end;
 	}
+	
+	public NaviHttpRequest(List<Double> start ,List<Double> end, int day) throws IOException {
+		this.start = start;
+		this.end = end;
+		this.day = day;
+	}
+	
 	
 	private String convertMoney(StringBuffer money) {
 		StringBuffer str = new StringBuffer();
@@ -119,7 +127,11 @@ public class NaviHttpRequest {
 				}
 			}
 		}
-		totalFare.append(fare);
+		if( day != 0 ) {
+			totalFare.append(fare*day);
+		} else {
+			totalFare.append(fare);
+		}
 		String totalFares = convertMoney(totalFare);
 		
 		StringBuffer benefit = new StringBuffer();

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spotmate.service.HitchService;
+import com.spotmate.service.UserService;
 import com.spotmate.vo.CancelChkVo;
 import com.spotmate.vo.HitchInfoVo;
 import com.spotmate.vo.HitchReservVo;
@@ -30,6 +31,8 @@ public class HitchhikeController {
 	
 	@Autowired
 	private HitchService hService;
+	@Autowired
+    private UserService uService;
 	@Autowired
 	private HttpSession ss;
 	
@@ -50,11 +53,14 @@ public class HitchhikeController {
 	}
 	
 	@RequestMapping(value="/spotHitchDriver", method={RequestMethod.GET, RequestMethod.POST})
-	public String hitchDriver(Model model, HttpSession session) {
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
+	public String hitchDriver(Model model) {
+		UserVo authUser = (UserVo) ss.getAttribute("authUser");
 		if(authUser == null) {
 			return "redirect:/loginForm";
 		}
+		authUser.setChkHitch(uService.chkHitch(authUser.getNo()));
+		ss.removeAttribute("authUser");
+		ss.setAttribute("authUser", authUser);
 		model.addAttribute("hVo", hService.getHdriverPage(authUser.getNo()));
 		return "/spothitch/spotHitchDriver";
 	}
@@ -63,7 +69,6 @@ public class HitchhikeController {
 	@ResponseBody
 	@RequestMapping(value="/hitchsearch", method= {RequestMethod.GET, RequestMethod.POST})
 	public List<HitchSearchResultVo> search (@RequestBody HitchSearchVo hsVo) {
-		System.out.println(hsVo.toString());
 		return hService.searchList(hsVo);
 	}
 	

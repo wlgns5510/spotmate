@@ -434,6 +434,7 @@ $(document).ready(function() {
 					} else {
 						alert("탑승 인원 초과입니다.");
 					}
+					return;
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);

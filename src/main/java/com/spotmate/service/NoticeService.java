@@ -85,8 +85,8 @@ public class NoticeService {
 	
 	//read페이지에 필요한 정보들
 	public NoticeVo getNoticeContent(int noticeNo) {
-		NoticeVo nVo = nDao.getNoticeContent(noticeNo);
 		nDao.setHit(noticeNo);
+		NoticeVo nVo = nDao.getNoticeContent(noticeNo);
 
 		setNoticeType(nVo);
 		

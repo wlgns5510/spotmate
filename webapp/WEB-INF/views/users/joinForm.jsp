@@ -50,7 +50,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 
-	<title>aboutUs</title>
+	<title>회원가입</title>
 	
 </head>
 

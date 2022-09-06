@@ -103,9 +103,10 @@ public class MypageRController {
 			return "redirect:/loginForm";
 		}
 		
+		Map<String, Object> uMap = mService.getDriverUsageList(authUser.getNo(), no, usVo);
 		Map<String, Object> topNavMap = mypagejService.myPageTopNav(authUser.getNo());
 		model.addAttribute("topNavMap", topNavMap);
-		model.addAttribute("uMap", mService.getDriverUsageList(authUser.getNo(), no, usVo));
+		model.addAttribute("uMap", uMap);
 		return "/mypage/myUsageDriverMain";
 	}
 
@@ -136,10 +137,16 @@ public class MypageRController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/endResv", method = { RequestMethod.GET, RequestMethod.POST })
-	public int endResv(@RequestBody int mateNo) {
+	public int endResv(@RequestBody Map<String, Object> map) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		
-		return mService.endResv(mateNo, authUser.getNo());
+		int count = mService.endResv(Integer.parseInt(map.get("mateNo").toString()), authUser.getNo(), Integer.parseInt(map.get("point").toString()));
+		if( map.get("type").toString().equals("히치 하이크")) {
+			authUser.setChkHitch(0);
+			ss.removeAttribute("authUser");
+			ss.setAttribute("authUser", authUser);
+		}
+		return count;
+//		return mService.endResv(mateNo, authUser.getNo());
 	}
 	
 	@RequestMapping(value = "/userReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -161,17 +168,12 @@ public class MypageRController {
 	}
 	
 	@RequestMapping(value = "/driverReview/{no}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String driverReview(@PathVariable int no, Model model,
-			@RequestParam(value = "type", required = false) String type) {
+	public String driverReview(@PathVariable int no, Model model) {
 		Map<String, Object> map = new HashMap<>();
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
 		int userNo = authUser.getNo();
 		map.put("pList", mService.getPassengerList(no, userNo));
-		if(type!=null) {
-			map.put("riVo", mService.forDriverReviewInfo(no));
-		} else {
-			map.put("riVo", mService.forReviewInfo(no));
-		}
+		map.put("riVo", mService.forReviewInfo(no));
 		model.addAttribute("map", map);
 		return "/mypage/myDriverReview";
 	}
@@ -179,6 +181,9 @@ public class MypageRController {
 	@RequestMapping(value = "/driverReviewInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String driverReviewInsert(@ModelAttribute ReviewVo rVo) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
+		if(rVo == null) {
+			return "/mypage/endReview";
+		}
 		mService.insertDriverReview(rVo, authUser.getNo());
 		return "/mypage/endReview";
 	}

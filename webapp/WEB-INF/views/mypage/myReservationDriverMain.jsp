@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
 	<meta name="title" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -49,7 +48,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>myReservationDriverMain</title>
+	<title>나의 예약내역</title>
 	
 </head>
 
@@ -153,8 +152,8 @@
 								<td>${ui.regDate}</td>
 								<td>${ui.startPlace}</td>
 								<td>${ui.endPlace}</td>
-								<td>${ui.convertPoint}</td>
-								<td><input type="hidden" class="status" value="${ui.status}"></td>
+								<td>+${ui.convertPoint}</td>
+								<td><input type="hidden" class="point" value="${ui.point}"><input type="hidden" class="status" value="${ui.status}"><input type="hidden" class="type" value="${ui.type}"></td>
 								<c:choose>
 								<c:when test="${ui.status == 'ride'}">
 								<td>
@@ -234,15 +233,22 @@ function setTime(){
 	document.getElementById("out").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 16);
 }
 function msg(mateNo) {
+	var type = $(".type").val();
+	var point = $(".point").val();
 	$.ajax({
 		url : "${pageContext.request.contextPath}/endResv",		
 		type : "post",
 		contentType : "application/json",
-		data : JSON.stringify(mateNo),
+		data : JSON.stringify({
+			mateNo: mateNo+"",
+			point: point+"",
+			type: type
+		}),
 		dataType : "json",
 		success : function(result){
 			$("#box"+mateNo).remove();
-			alert("카풀이 종료 되었습니다!")
+			alert("카풀이 종료 되었습니다!");
+			$(".hitchDriver").remove();
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);

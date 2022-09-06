@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
-import com.siot.IamportRestClient.response.Certification;
-import com.siot.IamportRestClient.response.IamportResponse;
 import com.spotmate.service.KakaoAuthService;
 import com.spotmate.service.UserService;
 import com.spotmate.vo.UserVo;
@@ -63,6 +60,7 @@ public class UserController {
 			return "/users/loginForm";
 		}
 		UserVo authUser = uService.kakaoLogin(userInfo);
+		authUser.setChkHitch(uService.chkHitch(authUser.getNo()));
 		session.setAttribute("authUser", authUser);
 		return "redirect:/";
 	}
@@ -75,7 +73,7 @@ public class UserController {
 		   @RequestParam(value = "birth", required = false) String birth,
 		   @RequestParam(value = "gender", required = false) String gender) {
 	   UserVo authUser = uService.loginOk(userVo);
-	   if( nickname != null ) {
+	   if( nickname != null && authUser != null ) {
 		   String chk = uService.insertKakao(nickname, email, birth, gender, authUser.getNo());
 		   if(chk == null) {
 			   Map<String, Object> userInfo = new HashMap<>();
@@ -86,7 +84,10 @@ public class UserController {
 			   model.addAttribute("kakaoInfo", userInfo);
 			   return "redirect:/loginForm?result=kakaofail";
 		   }
+	   } else if (authUser == null) {
+		   return "redirect:/loginForm?result=fail";
 	   }
+	   authUser.setChkHitch(uService.chkHitch(authUser.getNo()));
 	   String url = (String)session.getAttribute("prevPage");
 	   if(authUser !=null && url !=null) {
 		   session.setAttribute("authUser", authUser);
@@ -122,17 +123,7 @@ public class UserController {
    @ResponseBody
    @RequestMapping(value = "/certification", method = { RequestMethod.GET, RequestMethod.POST })
    public String[] certification(@RequestBody String impUid) throws IamportResponseException, IOException {
-      System.out.println(impUid);
-      String impKey = "3850084311060237";
-      String impSecret = "K7Gk4reSKmrlKMpJAM0ZSe6ct2CEavDvXfKyrmBAuukceTtzC0gcDhQWg3fgCDNZq2YTTJtfKuXAbmtV";
-      IamportClient client = new IamportClient(impKey, impSecret);
-      IamportResponse<Certification> certificationResponse = client.certificationByImpUid(impUid.replace("=", ""));
-
-      String[] arr = new String[2];
-      arr[0] = certificationResponse.getResponse().getName().toString();
-      arr[1] = certificationResponse.getResponse().getPhone().toString();
-
-      return arr;
+      return uService.certification(impUid);
    }
    
    @ResponseBody

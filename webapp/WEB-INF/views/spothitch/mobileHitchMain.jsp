@@ -55,17 +55,17 @@
 </head>
 
 <body>
-	<!-- header -->
-    <c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-    <!-- // header -->
+<!-- 	<!-- header -->
+<%--     <c:import url="/WEB-INF/views/includes/header.jsp"></c:import> --%>
+<!--     // header -->
     
 	<!-- content -->
-	<div style="width:1170px; height:2532px;" id="mobile-hitch-map"></div>
+	<div style="width:390px; height:812px;" id="mobile-hitch-map"></div>
 	<!-- //content -->
 
-	<!-- footer -->
-    <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
-    <!-- footer -->
+<!-- 	<!-- footer -->
+<%--     <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import> --%>
+<!--     footer -->
 </body>
 <script>
 var mapContainer = document.getElementById('mobile-hitch-map'), // 지도를 표시할 div 

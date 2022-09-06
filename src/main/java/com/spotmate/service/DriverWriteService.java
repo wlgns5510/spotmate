@@ -81,6 +81,10 @@ public class DriverWriteService {
 		return dwDao.getMateNo(userNo);
 	}
 	
+	public String chkLicense(int userNo) {
+		return dwDao.chkLicense(userNo);
+	}
+	
 	public Map<String, Object> setDayPath(DaylatlngVo dayLatlng) throws IOException {
 		Map<Integer, List<Double>> dll = new HashMap<>();
 		List<Double> start = new ArrayList<Double>();
@@ -201,17 +205,20 @@ public class DriverWriteService {
 		setLatlng(start, latlng.getSlng(), latlng.getSlat());
 		List<Double> end = new ArrayList<Double>();
 		setLatlng(end, latlng.getElng(), latlng.getElat());
+		int day = latlng.getDay();
 		NaviHttpRequest nhr = new NaviHttpRequest(start, end);
-		try {
-			Map<String, Object> totalInfo = nhr.getVer();
-			totalInfo.put("start", start);
-			totalInfo.put("end", end);
-			totalInfo.put("splace", latlng.getSplace());
-			totalInfo.put("eplace", latlng.getEplace());
-			return totalInfo;
-		} catch(NullPointerException e) {
-			return null;
+		if(day != 0) {
+			nhr = new NaviHttpRequest(start, end, day);
+		} else {
+			nhr = new NaviHttpRequest(start, end);
 		}
+		Map<String, Object> totalInfo = nhr.getVer();
+		totalInfo.put("start", start);
+		totalInfo.put("end", end);
+		totalInfo.put("splace", latlng.getSplace());
+		totalInfo.put("eplace", latlng.getEplace());
+		
+		return totalInfo;
 	}
 	
 	public List<StartEndTimeVo> chkAnotherCarpool(int userNo) {

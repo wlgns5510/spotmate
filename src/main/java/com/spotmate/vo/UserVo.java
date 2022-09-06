@@ -3,7 +3,7 @@ package com.spotmate.vo;
 public class UserVo {
 
 	// 필드
-	private int no, carNo;
+	private int no, carNo, chkHitch;
 	private String id, pw, name, email, phone, address, address_detail, gender, birth, licenseNo, licenseType, year,
 			month, day;
 
@@ -92,6 +92,16 @@ public class UserVo {
 		this.no = no;
 		this.name = name;
 		this.carNo = carNo;
+	}
+	
+	
+
+	public int getChkHitch() {
+		return chkHitch;
+	}
+
+	public void setChkHitch(int chkHitch) {
+		this.chkHitch = chkHitch;
 	}
 
 	// gs

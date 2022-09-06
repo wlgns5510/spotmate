@@ -104,6 +104,7 @@
 						<!-- 휴대폰 -->
 						<div class="join_group">
 							<label class="" for="">휴대폰*</label> <input type="text" id="join_phone" name="phone" value="${userVo.phone }">
+							<button type="button" id="id_check" class="certification">본인인증</button>
 						</div>
 
 						<!-- 주소 -->
@@ -199,6 +200,48 @@
 	    
 
 	});
+	
+	$(".certification").on("click", function() {
+		if ( $("#join_phone").val() == '' || $("#join_phone").val().length < 10 || $("#join_phone").val().length > 11) {
+			alert("전화번호를 입력 해 주세요")
+			return;
+		} else if ($("#join_name").val() == "") {
+			alert("이름을 입력 해 주세요");
+			return;
+		} else if ($(".certification").text() == '인증완료') {
+			alert("인증이 완료되었습니다");
+			return;
+		}
+		
+	   var IMP = window.IMP; // 생략 가능
+	   IMP.init('imp72838338');
+	   IMP.certification({ // param
+	     }, function (rsp) { // callback
+	        $.ajax({
+	            type : 'POST',
+	            url : '/certification',
+	            dataType : 'json',
+	            data : rsp.imp_uid,
+	            success:function(result) {
+	            	$(".certification").html("본인인증");
+	            	$(".certification").attr("style", "");
+	               if(result[0] == $("#join_name").val() && result[1]==$("#join_phone").val()) {
+	                  $(".certification").text("인증완료");
+	                  $(".certification").attr("style", "background-color:#4454a1; color:white;");
+	                  $("#join_phone").attr("readonly", true);
+	                  $("#join_name").attr("readonly", true);
+	                  $("#join_phone").attr("style", "background-color:#bfbfbf;");
+	                  $("#join_name").attr("style", "background-color:#bfbfbf;");
+	                  return; 
+	               } else {
+	                   $(".certification").html("인증실패");
+	                   $(".certification").attr("style", "background-color:#bfbfbf; color:red;");
+	                   return;
+	               }
+	            }
+	           })
+	     });
+	})
 	
 	
 </script>

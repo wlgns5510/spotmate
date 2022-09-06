@@ -430,6 +430,8 @@
 		<div class="inner">
 			<div class="review_banner swiper-container">
 				<ul class="swiper-wrapper">
+				<c:choose>
+				 <c:when test="${mMap.reviewList != null && mMap.reviewList != '[]'}">
 					<c:forEach items="${mMap.reviewList}" var="carpoolVo">				
 						<li class="swiper-slide">
 							<dl class="review_box">
@@ -450,6 +452,11 @@
 							</dl>
 						</li>
 					</c:forEach>
+				 </c:when>
+				 <c:otherwise>
+				 	<div style="margin:80px auto;">아직 작성된 리뷰가 없습니다.</div>
+				 </c:otherwise>
+				 </c:choose>
 				</ul>
 			</div>
 			<div class="review_banner_btns">

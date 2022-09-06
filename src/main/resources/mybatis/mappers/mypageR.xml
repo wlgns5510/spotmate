@@ -1105,17 +1105,12 @@
 	<select id="getResvNo" parameterType="map" resultType="int">
 		select no
 		from reservation
-		where userNo = #{userNo}
+		where driverNo = userNo
+		and userNo = #{userNo}
 		and mateNo = #{mateNo}
 	</select>
 	
 	<insert id="driverGetPoint" parameterType="rVo">
-		<selectKey keyProperty="point" resultType="int" order="BEFORE">
-				select point
-				from spotmate
-				where no = #{mateNo}
-		</selectKey>
-	
 		insert into pointUsage
 		values(
 			seq_pointusage_no.nextval,
@@ -1143,6 +1138,13 @@
 		from driverReview
 		where resvNo = #{resvNo}
 		and userNo = #{userNo}
+	</select>
+	
+	<select id="getRidePeople" parameterType="map" resultType="int">
+		select people
+		from reservation
+		where mateNo = #{mateNo}
+		and userNo != #{userNo}
 	</select>
 
 </mapper>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
+	<title>메이트 등록</title>
 	<meta name="title" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -49,7 +49,6 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	<script type="text/javascript"src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c6544d76c3912585c75cfd126a875faf&libraries=services,clusterer,drawing"></script>
-	<title>Insert title here</title>
 
 <link rel="stylesheet" href="/assets/jqueryUi/jquery-ui.min.css">
 <link rel="stylesheet" href="/assets/css/style.css">
@@ -433,7 +432,7 @@ function setDayPath(index) {
 	var i = (9*index)+(index+1);
 	if( $(".s-lat"+index).val() == "" || $(".s-lng"+index).val() == "" || $(".e-lat"+index).val() == "" || 
 			$(".e-lng"+index).val() == "" || $("#stime"+index).val() == "" ) {
-		alert("검색 후에 시도해주세요");
+		alert("경로 확인 후에 시도해주세요.");
 		return;
 	} else if ( ($("#w-addr"+i).val() != null && $("#w-addr"+i).val() == "") ||
 			($("#w-addr"+(i+1)).val() != null && $("#w-addr"+(i+1)).val() == "") ||
@@ -446,7 +445,11 @@ function setDayPath(index) {
 			($("#wtime"+(i+3)).val() != null && $("#wtime"+(i+3)).val() == "") ||
 			($("#wtime"+(i+4)).val() != null && $("#wtime"+(i+4)).val() == "")
 			) {
-		alert("검색 후에 시도해주세요");
+		alert("경로 확인 후에 시도해주세요.");
+		return;
+	}
+	if ( $("#mate-s-date").val() > $("#mate-e-date").val() ) {
+		alert("도착 날짜가 시작 날짜보다 빠를 수 없습니다.");
 		return;
 	}
 	var day = index;

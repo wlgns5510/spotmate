@@ -9,6 +9,7 @@
 		where s.carNo = c.no
 		and type='hitchhike'
 		and c.userNo = #{userNo}
+		and status = 'open'
 	</select>
 	
 	<select id="searchlist" parameterType="hsVo" resultType="hsrVo">
@@ -371,7 +372,7 @@
              '완료', 
              sysdate, 
              '', 
-             -#{point}, 
+             -(#{point}*#{people}), 
              #{resvNo})
 	</insert>
 
@@ -1308,7 +1309,7 @@
 		'01064862467',
 		'서울시 서초구 방배동',
 		#{gender},
-		'970107',
+		'1997/01/07',
 		'',
 		'',
 		''
@@ -1335,7 +1336,11 @@
 		)
 	</insert>
 	
-
+	<select id="chkLicense" parameterType="int" resultType="String">
+		select licenseNo
+		from users
+		where no = #{userNo}
+	</select>
 
 
 

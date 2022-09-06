@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SPOTMATE</title>
 	<meta name="title" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -49,7 +48,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/style.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/swiper.min.js"></script>
 	
-	<title>myUsageUserMain</title>
+	<title>나의 이용내역</title>
 	
 </head>
 
@@ -158,7 +157,7 @@
 								</c:when>
 								<c:otherwise>
 								<td>
-									<button type="button" class="btn_review" >작성완료</button>
+									<button type="button" onclick="msgRead(${ui.resvNo})" class="btn_review" >작성완료</button>
 								</td>
 								</c:otherwise>
 								</c:choose>
@@ -211,6 +210,10 @@
 function msg(resvNo) {
 	 window.open("/userReview/"+resvNo, "child", "width=1350, height=820, left=300, top=100");
 }
+
+function msgRead(resvNo) {
+	 window.open("/userReview/"+resvNo+"?type=read", "child", "width=1350, height=820, left=300, top=100");
+	}
 
 document.getElementById("startDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);
 document.getElementById("endDate").value = new Date(new Date().getTime() - (new Date().getTimezoneOffset() * 60000)).toISOString().slice(0, 10);

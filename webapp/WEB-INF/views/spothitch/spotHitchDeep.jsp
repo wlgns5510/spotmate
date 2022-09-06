@@ -327,8 +327,8 @@
 		var hrVo = {};
 		hrVo.mateNo = mateNo;
 		hrVo.people = $(".reqPeople").val();
-		hrVo.canRide = $("#canRide"+index).val();
-		hrVo.point = $("#point"+index).val();
+		hrVo.canRide = $("#canRide"+mateNo).val();
+		hrVo.point = $("#point"+mateNo).val();
 		navigator.geolocation.getCurrentPosition(function(position) {
 			lat = position.coords.latitude, // 위도
 			lng = position.coords.longitude; // 경도

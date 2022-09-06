@@ -256,28 +256,36 @@
 		
 			<div class="review_banner swiper-container">
 				<ul class="swiper-wrapper">
+				 <c:choose>
+				 <c:when test="${cVoMap.reviewList != null && cVoMap.reviewList != '[]'}">
+				 	<c:forEach items="${cVoMap.reviewList}" var="carpoolVo">
 				
-			<c:forEach items="${cVoMap.reviewList}" var="carpoolVo">
-				
-					<li class="swiper-slide">
-						<dl class="review_box">
-							
-								<dt class="review_top">
-									<p class="writer_img">
-										
-									</p>
-
-									<p class="writer_info">
-										<strong class="name">유저 ID : ${carpoolVo.id}</strong> 
-										<em class="date">별점 : ${carpoolVo.star}</em>
-									</p>
-
-								</dt>
-								<dd class="review_dec">${carpoolVo.content}</dd>
-							
-						</dl>
-					</li>
+						<li class="swiper-slide">
+							<dl class="review_box">
+								
+									<dt class="review_top">
+										<p class="writer_img">
+											
+										</p>
+	
+										<p class="writer_info">
+											<strong class="name">유저 ID : ${carpoolVo.id}</strong> 
+											<em class="date">별점 : ${carpoolVo.star}</em>
+										</p>
+	
+									</dt>
+									<dd class="review_dec">${carpoolVo.content}</dd>
+								
+							</dl>
+						</li>
+						
 					</c:forEach>
+				 </c:when>
+				 <c:otherwise>
+				 	<div style="margin:100px auto;">아직 작성된 리뷰가 없습니다.</div>
+				 </c:otherwise>
+				 </c:choose>
+					
 				</ul>
 			</div>
 				

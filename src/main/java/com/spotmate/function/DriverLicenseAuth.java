@@ -10,7 +10,7 @@ public class DriverLicenseAuth {
 	
 		
 	private WebDriver setup() {
-		System.setProperty("webdriver.chrome.driver", "/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\JavaStudy\\workspaceWeb\\spotmate2\\chromedriver.exe");
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("disable-gpu", "lang=ko_KR", "headless",
 				"user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36\r\n");
