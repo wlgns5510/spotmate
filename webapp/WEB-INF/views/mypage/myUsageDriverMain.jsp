@@ -153,14 +153,19 @@
 								<td>+${ui.convertPoint}</td>
 								<td><input type="hidden" class="status" value="${ui.status}"></td>
 								<c:choose>
-								<c:when test="${ui.status == 'open'}">
+								<c:when test="${ui.status == 'open' && ui.point != 0}">
 								<td>
 									<button type="button" class="btn_review" onclick="msg(${ui.resvNo})">후기작성</button>
 								</td>
 								</c:when>
+								<c:when test="${ui.point == 0}">
+								<td>
+									<button type="button" class="btn_review">작성완료</button>
+								</td>
+								</c:when>
 								<c:otherwise>
 								<td>
-									<button type="button" class="btn_review" onclick="msgRead(${ui.resvNo})">작성완료</button>
+									<button type="button" class="btn_review">작성완료</button>
 								</td>
 								</c:otherwise>
 								</c:choose>

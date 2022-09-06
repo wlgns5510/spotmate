@@ -61,7 +61,7 @@ public class MypageRService {
 			mL = mDao.getUserSearchCrtPage(userNo, startRnum, endRnum, usVo);
 		}
 
-		setMl(mL);
+		setMl(mL, userNo);
 
 		uMap.put("usVo", usVo);
 		uMap.put("mL", mL);
@@ -108,7 +108,7 @@ public class MypageRService {
 			mL = mDao.getDriverSearchCrtPage(userNo, startRnum, endRnum, usVo);
 		}
 
-		setMl(mL);
+		setMl(mL, userNo);
 
 		uMap.put("usVo", usVo);
 		uMap.put("mL", mL);
@@ -155,7 +155,7 @@ public class MypageRService {
 			mL = mDao.getUserSearchCrtPageResv(userNo, startRnum, endRnum, usVo);
 		}
 
-		setMl(mL);
+		setMl(mL, userNo);
 
 		uMap.put("usVo", usVo);
 		uMap.put("mL", mL);
@@ -202,7 +202,7 @@ public class MypageRService {
 			mL = mDao.getDriverSearchCrtPageResv(userNo, startRnum, endRnum, usVo);
 		}
 
-		setMl(mL);
+		setMl(mL, userNo);
 
 		uMap.put("usVo", usVo);
 		uMap.put("mL", mL);
@@ -216,15 +216,25 @@ public class MypageRService {
 		return uMap;
 	}
 	
-	public int endResv(int mateNo, int userNo) {
+	public int endResv(int mateNo, int userNo,int point) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("mateNo", mateNo);
 		map.put("userNo", userNo);
+		map.put("point", point);
 		int count = mDao.endResv(map);
 		int resvNo = mDao.getResvNo(map);
 		map.put("resvNo", resvNo);
 		mDao.driverGetPoint(map);
 		return count;
+	}
+	
+	public int getRidePeople(int mateNo, int userNo) {
+		List<Integer> pL = mDao.getRidePeople(mateNo, userNo);
+		int sum = 0;
+		for(int i=0;i<pL.size();i++) {
+			sum += pL.get(i);
+		}
+		return sum;
 	}
 	
 	public ReviewInfoVo forReviewInfo(int resvNo) {
@@ -289,7 +299,7 @@ public class MypageRService {
 		}
 	}
 	
-	private void setMl(List<MyUsageVo> mL) {
+	private void setMl(List<MyUsageVo> mL, int userNo) {
 		for (int i = 0; i < mL.size(); i++) {
 			if( mL.get(i).getStartDate() != null) {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -304,6 +314,10 @@ public class MypageRService {
 			}
 			mL.get(i).setStartPlace(mL.get(i).getFullPlace().split(",")[0]);
 			mL.get(i).setEndPlace(mL.get(i).getFullPlace().split(",")[1]);
+			if(mL.get(i).getPoint() > 0) {
+				int sum = getRidePeople(mL.get(i).getMateNo(), userNo);
+				mL.get(i).setPoint(mL.get(i).getPoint()*sum);
+			}
 			StringBuffer str = new StringBuffer();
 			str.append(mL.get(i).getPoint());
 			if (str.length() > 7) {

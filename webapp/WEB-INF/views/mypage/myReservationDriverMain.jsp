@@ -153,8 +153,7 @@
 								<td>${ui.startPlace}</td>
 								<td>${ui.endPlace}</td>
 								<td>+${ui.convertPoint}</td>
-								<td><input type="hidden" class="status" value="${ui.status}"></td>
-								<td><input type="hidden" class="type" value="${ui.type}"></td>
+								<td><input type="hidden" class="point" value="${ui.point}"><input type="hidden" class="status" value="${ui.status}"><input type="hidden" class="type" value="${ui.type}"></td>
 								<c:choose>
 								<c:when test="${ui.status == 'ride'}">
 								<td>
@@ -235,12 +234,14 @@ function setTime(){
 }
 function msg(mateNo) {
 	var type = $(".type").val();
+	var point = $(".point").val();
 	$.ajax({
 		url : "${pageContext.request.contextPath}/endResv",		
 		type : "post",
 		contentType : "application/json",
 		data : JSON.stringify({
 			mateNo: mateNo+"",
+			point: point+"",
 			type: type
 		}),
 		dataType : "json",

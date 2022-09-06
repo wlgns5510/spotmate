@@ -59,6 +59,13 @@ public class MypageRDao {
 		return ss.selectList("mypageR.getuserusagelist", map);
 	}
 	
+	public List<Integer> getRidePeople(int mateNo, int userNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("mateNo", mateNo);
+		map.put("userNo", userNo);
+		return ss.selectList("mypageR.getRidePeople", map);
+	}
+	
 	public List<MyUsageVo> getDriverCrtPage(int userNo, int startRnum, int endRnum) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userNo", userNo);

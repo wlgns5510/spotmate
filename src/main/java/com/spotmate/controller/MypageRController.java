@@ -103,9 +103,10 @@ public class MypageRController {
 			return "redirect:/loginForm";
 		}
 		
+		Map<String, Object> uMap = mService.getDriverUsageList(authUser.getNo(), no, usVo);
 		Map<String, Object> topNavMap = mypagejService.myPageTopNav(authUser.getNo());
 		model.addAttribute("topNavMap", topNavMap);
-		model.addAttribute("uMap", mService.getDriverUsageList(authUser.getNo(), no, usVo));
+		model.addAttribute("uMap", uMap);
 		return "/mypage/myUsageDriverMain";
 	}
 
@@ -138,7 +139,7 @@ public class MypageRController {
 	@RequestMapping(value = "/endResv", method = { RequestMethod.GET, RequestMethod.POST })
 	public int endResv(@RequestBody Map<String, Object> map) {
 		UserVo authUser = (UserVo)ss.getAttribute("authUser");
-		int count = mService.endResv(Integer.parseInt(map.get("mateNo").toString()), authUser.getNo());
+		int count = mService.endResv(Integer.parseInt(map.get("mateNo").toString()), authUser.getNo(), Integer.parseInt(map.get("point").toString()));
 		if( map.get("type").toString().equals("히치 하이크")) {
 			authUser.setChkHitch(0);
 			ss.removeAttribute("authUser");
